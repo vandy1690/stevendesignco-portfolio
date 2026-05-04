@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="svg16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 557.4 179.4">
+  <!-- Generator: Adobe Illustrator 30.3.0, SVG Export Plug-In . SVG Version: 2.1.3 Build 182)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: none;
+      }
+
+      .st1 {
+        fill: url(#x);
+      }
+
+      .st2 {
+        fill: url(#radial-gradient);
+      }
+
+      .st3 {
+        fill: url(#radial-gradient1);
+      }
+
+      .st4 {
+        fill: url(#radial-gradient3);
+      }
+
+      .st5 {
+        fill: url(#radial-gradient2);
+      }
+
+      .st6 {
+        fill: url(#radial-gradient4);
+      }
+
+      .st7 {
+        fill: #6d51a1;
+      }
+    </style>
+    <radialGradient id="radial-gradient" cx="7796.2" cy="-9175.6" fx="7796.2" fy="-9175.6" r="1" gradientTransform="translate(-25562.1 -237192.1) rotate(45.8) scale(24.1 -16)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5c55a3"/>
+      <stop offset="1" stop-color="#5c55a3" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="radial-gradient1" cx="7589.5" cy="-8666" fx="7589.5" fy="-8666" r="1" gradientTransform="translate(-383313.9 -291138.3) rotate(-5.1) scale(46.9 -37.4)" gradientUnits="userSpaceOnUse">
+      <stop offset=".2" stop-color="#24bdc7"/>
+      <stop offset="1" stop-color="#24bdc7" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="radial-gradient2" cx="7745" cy="-9014.1" fx="7745" fy="-9014.1" r="1" gradientTransform="translate(-65418.9 -291960.5) rotate(38.8) scale(30.2 -20.7)" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient3" cx="7676.7" cy="-8921" fx="7676.7" fy="-8921" r="1" gradientTransform="translate(-146737.8 -308989.2) rotate(26.1) scale(34.9 -23.9)" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient4" cx="7635.6" cy="-8536.6" fx="7635.6" fy="-8536.6" r="1" gradientTransform="translate(-676676.7 -597109) rotate(-12.5) scale(69.6 -85.4)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#24bdc7"/>
+      <stop offset="1" stop-color="#24bdc7" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="x" x="0" y="0" width="1" height="1" patternTransform="translate(23.7 -16345.7) scale(1 -1)" patternUnits="userSpaceOnUse" viewBox="0 0 1 1">
+      <g>
+        <rect class="st0" width="1" height="1"/>
+        <rect class="st7" y="-99" width="100" height="100"/>
+        <rect class="st2" y="-99" width="100" height="100"/>
+        <rect class="st3" y="-99" width="100" height="100"/>
+        <rect class="st5" y="-99" width="100" height="100"/>
+        <rect class="st4" y="-99" width="100" height="100"/>
+        <rect class="st6" y="-99" width="100" height="100"/>
+      </g>
+    </pattern>
+  </defs>
+  <path id="path16" class="st1" d="M553.5,122.5c-.9,0-1.8.6-2.3,1.9-5.7,16.3-13.4,26-19.8,26s-5.1-4.1-5.1-10.5c0-16,9.6-49.8,14.4-65.3.6-1.9.9-3.5.9-5,0-4.5-2.5-6.7-8.5-6.7s-13.6,2.6-20.5,14.6c-2.4-10.6-9.5-15.2-19.5-15.2s-22.7,7.4-31.9,19.5-20,16-28.1,14.1c5.9-14.3,8-25,8-33,0-12.5-6.2-20-16.1-20-15.1,0-23.9,14.4-23.9,29.6s5.3,23.8,17,29.7c-9.8,22.2-24.1,42.2-29.6,42.2s-9.1-34.4-8.7-58.9c.3-14.1,1.4-14.8,1.4-19.1s-1.6-4.1-8-4.1c-14.9,0-19.5,12.6-20.2,27.1-.2,5.5-1.1,10.9-2.6,16.2-6.2,22.2-19,39-27.4,39s-4.9-3.9-4.9-8.9c0-16,8.9-35.9,8.9-53s-5.5-20.4-15.8-20.4-28.3,14.5-43.5,41.6c5-20.8,7.1-40.9-7.8-40.9-3.2,0-6.4.9-9.2,2.4-2,.9-3.1,2.9-3,5.1,1.4,22.1-17.8,78.8-36.1,78.8s-4.9-3.6-4.9-9.4c0-16,9.5-49.8,14.3-65.2.6-2,.9-3.7.9-5.2,0-4.2-2.6-6.4-8.6-6.4s-13.6,2.5-20.4,14.5c-2.4-10.6-9.6-15.2-19.6-15.2-16.4,0-34.8,17.4-42.8,40-10.8,30.2-32.5,59.4-61.8,59.4s-40.6-22.1-40.6-57c0-50.4,37-91.6,64.5-91.6s19.4,8.4,19.4,21.2-8.7,22.7-8.7,28.6,1.5,3.6,4.5,3.6c11.9,0,26-14,26-33.1S118.5.3,91,.3C45.6.3,0,46,0,104.5s23,74.6,62.7,74.6,50.8-21.1,63.5-45.6c1.4,20.4,10.7,31,24.8,31s22.7-7.5,30.4-20.6c3,13.7,10.9,20.5,21.2,20.5s21.7-7.5,31-21.3c-.1,10.9,2.3,21.2,11.8,21.2s9.8-1,10.7-4.9c9.9-41.1,34.5-74.7,42.1-74.7s2.8,2.1,2.8,4.7c0,11.2-7.9,34.1-7.9,48.7s6.7,26.3,20.6,26.3,31-18.8,41.4-46.4c3.3,25.7,10.3,46.5,21.3,46.5s37.6-28.5,52.2-58.7c5.7.7,14.3.5,22.5-5.3-3.5,8.9-5.6,18.6-5.6,28.3,0,28,13.4,35.9,24.9,35.9s22.7-7.5,30.4-20.6c2.6,11.8,9.1,20.4,21.2,20.4,18.8,0,35.2-19.3,35.2-35.1s-1.8-6.7-3.9-6.7h0ZM162.5,148.9c-7.6,0-10.6-7.7-10.6-19.1,0-19.8,13.6-53,27.9-53s8.6,7.4,8.6,16.4c0,20.1-12.9,55.7-26,55.7h0ZM423.1,89.7c-4.5-5.4-6.2-12.8-6.2-19.3s3-14.9,6.5-14.9,4.6,3.5,4.6,8.3c0,8.1-2.9,20-4.9,25.9ZM482.1,148.9c-7.6,0-10.6-8.8-10.6-19.1,0-19.1,13.6-53,28-53s8.5,7.3,8.5,16.4c0,20.1-12.7,55.7-25.9,55.7h0Z"/>
+</svg>

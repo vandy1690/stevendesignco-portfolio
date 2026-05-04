@@ -1,0 +1,26 @@
+---
+import PayPalHero from '../components/animated/PayPalHero';
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>PayPal case study — hero preview</title>
+		<style>
+			:root { color-scheme: light; }
+			html, body { margin: 0; padding: 0; background: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }
+			.page { min-height: 100vh; padding: 48px 24px; }
+			.label { text-align: center; color: #64748b; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 32px; }
+		</style>
+	</head>
+	<body>
+		<main class="page">
+			<p class="label">PayPal hero — orbit composition preview</p>
+			<PayPalHero client:load />
+		</main>
+	</body>
+</html>
