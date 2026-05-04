@@ -1,0 +1,220 @@
+import React from 'react';
+
+type Ring = {
+  radius: number;
+  chipSize: number;
+  duration: string;
+  direction: 'normal' | 'reverse';
+  merchants: string[];
+};
+
+const RINGS: Ring[] = [
+  {
+    radius: 340,
+    chipSize: 96,
+    duration: '44s',
+    direction: 'normal',
+    merchants: ['Aliexpress', 'BestBuy', 'Canva', 'Chewy', 'DisneyPlus', 'Fanduel'],
+  },
+  {
+    radius: 240,
+    chipSize: 84,
+    duration: '30s',
+    direction: 'reverse',
+    merchants: ['Gap', 'HomeDepot', 'LEGO', 'LinkedIn', 'MicrosoftSurface', 'Nintendo'],
+  },
+  {
+    radius: 150,
+    chipSize: 72,
+    duration: '20s',
+    direction: 'normal',
+    merchants: ['Spotify', 'Starbucks', 'Target', 'TikTokShop', 'Xbox'],
+  },
+];
+
+const ASSET_BASE = '/images/case-studies/paypal';
+
+interface PayPalHeroProps {
+  className?: string;
+}
+
+const PayPalHero: React.FC<PayPalHeroProps> = ({ className = '' }) => {
+  return (
+    <div className={`pp-hero ${className}`}>
+      <style>{`
+        .pp-hero {
+          position: relative;
+          width: 100%;
+          aspect-ratio: 1 / 1;
+          max-width: 760px;
+          margin: 0 auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .pp-stage {
+          position: relative;
+          width: 100%;
+          height: 100%;
+        }
+        .pp-center {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          width: 220px;
+          height: 220px;
+          transform: translate(-50%, -50%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 5;
+          animation: pp-breath 6s ease-in-out infinite alternate;
+          filter: drop-shadow(0 20px 40px rgba(0, 48, 135, 0.18));
+        }
+        .pp-center img {
+          width: 100%;
+          height: auto;
+        }
+        .pp-ring {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          pointer-events: none;
+        }
+        .pp-ring--spin-cw  { animation: pp-spin-cw  var(--pp-dur) linear infinite; }
+        .pp-ring--spin-ccw { animation: pp-spin-ccw var(--pp-dur) linear infinite; }
+
+        .pp-chip {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          width: var(--pp-size);
+          height: var(--pp-size);
+          margin-left: calc(var(--pp-size) / -2);
+          margin-top: calc(var(--pp-size) / -2);
+          transform: translate(var(--pp-x), var(--pp-y));
+        }
+        .pp-chip__inner {
+          width: 100%;
+          height: 100%;
+          border-radius: 9999px;
+          background: #ffffff;
+          box-shadow:
+            0 6px 14px rgba(15, 23, 42, 0.10),
+            0 1px 2px rgba(15, 23, 42, 0.06);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 14%;
+          box-sizing: border-box;
+        }
+        .pp-chip__inner--counter-cw  { animation: pp-counter-cw  var(--pp-dur) linear infinite; }
+        .pp-chip__inner--counter-ccw { animation: pp-counter-ccw var(--pp-dur) linear infinite; }
+        .pp-chip__inner img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          display: block;
+        }
+
+        @keyframes pp-breath {
+          from { transform: translate(-50%, -50%) scale(1); }
+          to   { transform: translate(-50%, -50%) scale(1.03); }
+        }
+        @keyframes pp-spin-cw {
+          from { transform: translate(-50%, -50%) rotate(0deg); }
+          to   { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        @keyframes pp-spin-ccw {
+          from { transform: translate(-50%, -50%) rotate(0deg); }
+          to   { transform: translate(-50%, -50%) rotate(-360deg); }
+        }
+        @keyframes pp-counter-cw {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(-360deg); }
+        }
+        @keyframes pp-counter-ccw {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
+        }
+        @keyframes pp-fade-in {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .pp-center,
+          .pp-ring,
+          .pp-chip__inner {
+            animation: pp-fade-in 600ms ease-out forwards !important;
+          }
+          .pp-center { transform: translate(-50%, -50%) !important; }
+          .pp-ring   { transform: translate(-50%, -50%) !important; }
+        }
+
+        @media (max-width: 720px) {
+          .pp-center { width: 150px; height: 150px; }
+        }
+      `}</style>
+
+      <div className="pp-stage">
+        <div className="pp-center">
+          <img src={`${ASSET_BASE}/PayPal.svg`} alt="PayPal" />
+        </div>
+
+        {RINGS.map((ring, ringIdx) => {
+          const ringClass =
+            ring.direction === 'normal' ? 'pp-ring--spin-cw' : 'pp-ring--spin-ccw';
+          const counterClass =
+            ring.direction === 'normal'
+              ? 'pp-chip__inner--counter-cw'
+              : 'pp-chip__inner--counter-ccw';
+          const size = ring.radius * 2;
+          const angleStep = 360 / ring.merchants.length;
+
+          return (
+            <div
+              key={ringIdx}
+              className={`pp-ring ${ringClass}`}
+              style={{
+                width: `${size}px`,
+                height: `${size}px`,
+                ['--pp-dur' as string]: ring.duration,
+              }}
+              aria-hidden="true"
+            >
+              {ring.merchants.map((name, i) => {
+                const angle = angleStep * i - 90;
+                const rad = (angle * Math.PI) / 180;
+                const x = Math.cos(rad) * ring.radius;
+                const y = Math.sin(rad) * ring.radius;
+
+                return (
+                  <div
+                    key={name}
+                    className="pp-chip"
+                    style={{
+                      ['--pp-size' as string]: `${ring.chipSize}px`,
+                      ['--pp-x' as string]: `${x}px`,
+                      ['--pp-y' as string]: `${y}px`,
+                    }}
+                  >
+                    <div
+                      className={`pp-chip__inner ${counterClass}`}
+                      style={{ ['--pp-dur' as string]: ring.duration }}
+                    >
+                      <img src={`${ASSET_BASE}/${name}.svg`} alt={name} />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+export default PayPalHero;
