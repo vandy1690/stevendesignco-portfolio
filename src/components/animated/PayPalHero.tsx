@@ -28,7 +28,7 @@ const RINGS: Ring[] = [
     chipSize: 72,
     duration: '20s',
     direction: 'normal',
-    merchants: ['Spotify', 'Starbucks', 'Target', 'TikTokShop', 'Xbox'],
+    merchants: ['Spotify', 'Starbucks', 'Target', 'TikTokShop', 'Xbox', 'HM'],
   },
 ];
 
@@ -69,7 +69,7 @@ const PayPalHero: React.FC<PayPalHeroProps> = ({ className = '' }) => {
           justify-content: center;
           z-index: 5;
           animation: pp-breath 6s ease-in-out infinite alternate;
-          filter: drop-shadow(0 20px 40px rgba(0, 48, 135, 0.18));
+          filter: drop-shadow(0 24px 48px rgba(204, 255, 0, 0.18));
         }
         .pp-center img {
           width: 100%;
@@ -117,6 +117,23 @@ const PayPalHero: React.FC<PayPalHeroProps> = ({ className = '' }) => {
           object-fit: contain;
           display: block;
         }
+
+        /* Brand-colored chips: drop shadow, fill the circle with brand color */
+        .pp-chip__inner--linkedin,
+        .pp-chip__inner--lego,
+        .pp-chip__inner--homedepot,
+        .pp-chip__inner--gap,
+        .pp-chip__inner--nintendo {
+          box-shadow: none;
+          padding: 16%;
+        }
+        .pp-chip__inner--linkedin   { background: #0A66C2; }
+        .pp-chip__inner--lego       { background: #E3000B; }
+        .pp-chip__inner--homedepot  { background: #F96302; }
+        .pp-chip__inner--gap        { background: #002A5F; }
+        .pp-chip__inner--nintendo   { background: #E60012; padding: 8%; }
+        /* Microsoft mark fills the chip more aggressively */
+        .pp-chip__inner--microsoftsurface { padding: 22%; }
 
         @keyframes pp-breath {
           from { transform: translate(-50%, -50%) scale(1); }
@@ -201,7 +218,7 @@ const PayPalHero: React.FC<PayPalHeroProps> = ({ className = '' }) => {
                     }}
                   >
                     <div
-                      className={`pp-chip__inner ${counterClass}`}
+                      className={`pp-chip__inner ${counterClass} pp-chip__inner--${name.toLowerCase()}`}
                       style={{ ['--pp-dur' as string]: ring.duration }}
                     >
                       <img src={`${ASSET_BASE}/${name}.svg`} alt={name} />

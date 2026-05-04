@@ -1,0 +1,177 @@
+---
+import Site from '../../layouts/Site.astro';
+import PayPalHero from '../../components/animated/PayPalHero';
+---
+
+<Site
+	title="PayPal — Merchant Checkout · Steven Vanden Heuvel"
+	description="Designer on the PayPal merchant checkout team. Modernizing checkout and raising PayPal's visibility for the world's top merchants."
+>
+	<section class="cs-hero">
+		<div class="cs-hero__inner">
+			<a class="cs-back-top" href="/#work">← Case studies</a>
+			<p class="eyebrow">Case study</p>
+			<h1 class="cs-hero__title display">PayPal —<br />Merchant Checkout</h1>
+			<p class="cs-hero__lede">Improving the checkout experience and PayPal's visibility to grow TPV for the merchant and PayPal.</p>
+			<dl class="cs-meta">
+				<div><dt>Role</dt><dd>Designer at PayPal</dd></div>
+				<div><dt>Team</dt><dd>Merchant Checkout</dd></div>
+				<div><dt>Engagement</dt><dd>Contract via MagnitGlobal</dd></div>
+			</dl>
+			<p class="cs-note">Note: This work is proprietary to PayPal and has not yet been implemented. Designs shown during in-person presentations only.</p>
+		</div>
+	</section>
+
+	<section class="section section--alt">
+		<div class="section__inner cs-orbit" data-animate="fade">
+			<p class="eyebrow">The Stage</p>
+			<h2 class="cs-h2 display">17 brand partners.<br />One checkout team.</h2>
+			<div class="cs-orbit__art">
+				<PayPalHero client:load />
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="section__inner cs-body" data-animate="fade">
+			<div class="cs-block">
+				<p class="eyebrow">Context</p>
+				<p class="cs-block__lede">PayPal partners with the top 100 merchants globally.</p>
+				<p>The work is to modernize each merchant's checkout and raise PayPal's visibility within it, growing TPV for the merchant and PayPal. Our team operates as an extension of each merchant's design team, learning their brand systems and matching their voice.</p>
+			</div>
+			<ul class="cs-stats">
+				<li><strong>100+</strong><span>Top merchants</span></li>
+				<li><strong>20+</strong><span>Proposal packages shipped</span></li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="section section--alt">
+		<div class="section__inner cs-body" data-animate="fade">
+			<div class="cs-block">
+				<p class="eyebrow">Approach</p>
+				<p class="cs-block__lede">Audit. Adapt. Design. Present.</p>
+				<p>For each merchant, I study their existing checkout flow, brand guidelines, and design system. Then I create modernized checkout designs that feel native to their brand while prominently featuring PayPal and Pay Later options.</p>
+			</div>
+			<ol class="cs-steps">
+				<li>
+					<span class="cs-steps__num">01</span>
+					<div>
+						<h3 class="cs-steps__title">Audit</h3>
+						<p>Analyze current checkout UX, identify friction points.</p>
+					</div>
+				</li>
+				<li>
+					<span class="cs-steps__num">02</span>
+					<div>
+						<h3 class="cs-steps__title">Adapt</h3>
+						<p>Adopt the merchant's design system, type, and brand voice.</p>
+					</div>
+				</li>
+				<li>
+					<span class="cs-steps__num">03</span>
+					<div>
+						<h3 class="cs-steps__title">Design</h3>
+						<p>Create modernized checkout flows with Pay Later prominence.</p>
+					</div>
+				</li>
+				<li>
+					<span class="cs-steps__num">04</span>
+					<div>
+						<h3 class="cs-steps__title">Present</h3>
+						<p>Deliver polished proposals to merchant design teams.</p>
+					</div>
+				</li>
+			</ol>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="section__inner cs-body" data-animate="fade">
+			<div class="cs-block">
+				<p class="eyebrow">What I have learned</p>
+				<h2 class="cs-h2 display">Three lessons from twenty+ checkouts.</h2>
+			</div>
+			<ul class="cs-pillars">
+				<li>
+					<h3 class="cs-pillar__title">Brand fluency</h3>
+					<p>Rapidly adopting and designing within world-class brand systems, from Nintendo's playfulness to Sephora's sophistication.</p>
+				</li>
+				<li>
+					<h3 class="cs-pillar__title">Conversion focus</h3>
+					<p>Every design decision ties back to reducing friction and increasing payment completion rates.</p>
+				</li>
+				<li>
+					<h3 class="cs-pillar__title">Pay Later integration</h3>
+					<p>Finding the right balance between merchant branding and PayPal feature prominence across different checkout contexts.</p>
+				</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="section section--alt">
+		<div class="section__inner cs-back">
+			<a class="btn" href="/#work">← All case studies</a>
+			<a class="btn btn--primary" href="/work/plate">Next: Plate →</a>
+		</div>
+	</section>
+</Site>
+
+<style>
+	.cs-hero { max-width: var(--max); margin: 0 auto; padding: var(--space-2xl) var(--gutter); }
+	.cs-back-top { display: inline-block; margin-bottom: var(--space-lg); color: var(--text-mute); font-size: var(--text-body-sm); }
+	.cs-back-top:hover { color: var(--lime); }
+	.cs-hero__title { margin: var(--space-xs) 0 var(--space-lg); max-width: 16ch; }
+	.cs-hero__lede { font-size: var(--text-deck); color: var(--text); line-height: 1.5; max-width: 56ch; margin-bottom: var(--space-2xl); font-weight: 500; }
+	.cs-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); margin: 0; padding: var(--space-lg) 0 0; border-top: 1px solid var(--rule); }
+	.cs-meta div { margin: 0; }
+	.cs-meta dt { font-size: var(--text-label); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); font-weight: 600; margin-bottom: var(--space-xs); }
+	.cs-meta dd { margin: 0; color: var(--text); font-size: var(--text-body); font-weight: 500; }
+	.cs-note { margin: var(--space-lg) 0 0; padding: var(--space-md); border-left: 2px solid var(--lime); font-size: 14px; color: var(--text-mute); max-width: 64ch; }
+
+	.cs-orbit { display: grid; gap: var(--space-md); }
+	.cs-orbit__art { margin-top: var(--space-md); }
+	.cs-h2 { max-width: 18ch; margin: 0 0 var(--space-sm); }
+
+	.cs-body { display: grid; gap: var(--space-2xl); max-width: var(--max-narrow); }
+	.cs-block .eyebrow { margin-bottom: var(--space-sm); }
+	.cs-block__lede { color: var(--text); font-size: 28px; font-weight: 500; margin: 0 0 var(--space-md); letter-spacing: -0.015em; line-height: 1.2; }
+	.cs-block p { color: var(--text); margin: 0; font-size: 17px; line-height: 1.6; }
+	.cs-block p + p { margin-top: var(--space-sm); }
+
+	.cs-stats { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); }
+	.cs-stats li { padding: var(--space-lg) 0; border-top: 1px solid var(--rule); }
+	.cs-stats strong { display: block; font-family: var(--font-display); font-weight: 900; font-style: normal; font-variation-settings: "wght" 900, "slnt" 0, "ital" 0; font-synthesis: none; font-size: clamp(48px, 6vw, 72px); color: var(--lime); line-height: 1; letter-spacing: -0.02em; margin-bottom: var(--space-xs); }
+	.cs-stats span { color: var(--text-mute); font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; }
+
+	.cs-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-md); }
+	.cs-steps li { display: grid; grid-template-columns: 80px 1fr; gap: var(--space-md); align-items: baseline; padding: var(--space-md) 0; border-top: 1px solid var(--rule); }
+	.cs-steps__num { font-family: var(--font-display); font-weight: 900; font-style: normal; font-variation-settings: "wght" 900, "slnt" 0, "ital" 0; font-synthesis: none; font-size: 32px; color: var(--lime); line-height: 1; }
+	.cs-steps__title { margin: 0 0 var(--space-xs); }
+	.cs-steps li p { color: var(--text); font-size: 16px; }
+
+	.cs-pillars { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+	.cs-pillars li { padding: var(--space-md) 0; border-top: 1px solid var(--rule); }
+	.cs-pillar__title { margin: 0 0 var(--space-sm); }
+	.cs-pillars li p { color: var(--text); font-size: 16px; line-height: 1.55; }
+
+	.cs-back { display: flex; gap: var(--space-sm); flex-wrap: wrap; justify-content: space-between; align-items: center; }
+
+	@media (max-width: 880px) {
+		.cs-orbit__art {
+			width: 100%;
+			aspect-ratio: 1 / 1;
+			border: 1px solid #fff;
+			overflow: hidden;
+			overflow: clip;
+			margin-top: var(--space-md);
+		}
+	}
+
+	@media (max-width: 700px) {
+		.cs-meta { grid-template-columns: 1fr 1fr; }
+		.cs-pillars { grid-template-columns: 1fr; }
+		.cs-stats { grid-template-columns: 1fr; }
+		.cs-steps li { grid-template-columns: 60px 1fr; }
+	}
+</style>
