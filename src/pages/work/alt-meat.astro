@@ -1,0 +1,73 @@
+---
+import Site from '../../layouts/Site.astro';
+---
+
+<Site
+	title="Alt-Meat · Steven Vanden Heuvel"
+	description="Coverage of the alternative protein sector — plant-based, cultivated, fermentation, and blended."
+>
+	<section class="cs-hero">
+		<div class="cs-hero__inner">
+			<a class="cs-back-top" href="/#work">← Selected work</a>
+			<p class="eyebrow">Case study</p>
+			<h1 class="cs-hero__title display">Alt-Meat</h1>
+			<p class="cs-hero__lede">Coverage of the alternative protein sector. Plant-based, cultivated, fermentation, and blended categories.</p>
+			<dl class="cs-meta">
+				<div><dt>Role</dt><dd>Creative Director</dd></div>
+				<div><dt>Org</dt><dd>MTG Media Group</dd></div>
+				<div><dt>Format</dt><dd>Digital news platform</dd></div>
+			</dl>
+		</div>
+	</section>
+
+	<section class="section section--alt">
+		<div class="section__inner">
+			<p class="eyebrow">Alt-Meat</p>
+			<div class="cs-figure" data-animate="fade">
+				<img src="/images/case-studies/alt-meat/alt-meat-hero.jpg" alt="Alt-Meat website hero" />
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="section__inner cs-body">
+			<div class="cs-block cs-block--placeholder">
+				<p class="eyebrow eyebrow--accent">Case study content</p>
+				<p>Detailed write-up coming soon.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--alt">
+		<div class="section__inner cs-back">
+			<a class="btn" href="/work/blackbird">← Project Blackbird</a>
+			<a class="btn btn--primary" href="/work/meatingplace">Next: Meatingplace →</a>
+		</div>
+	</section>
+</Site>
+
+<style>
+	.cs-hero { max-width: var(--max); margin: 0 auto; padding: var(--space-2xl) var(--gutter) var(--space-2xl); }
+	.cs-back-top { display: inline-block; margin-bottom: var(--space-lg); color: var(--text-mute); font-size: var(--text-body-sm); }
+	.cs-back-top:hover { color: var(--lime); }
+	.cs-hero__title { margin: var(--space-xs) 0 var(--space-lg); max-width: 16ch; }
+	.cs-hero__lede { font-size: var(--text-deck); color: var(--text); line-height: 1.5; max-width: 56ch; margin-bottom: var(--space-2xl); font-weight: 500; }
+	.cs-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); margin: 0; padding: var(--space-lg) 0 0; border-top: 1px solid var(--rule); }
+	.cs-meta div { margin: 0; }
+	.cs-meta dt { font-size: var(--text-label); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); font-weight: 600; margin-bottom: var(--space-xs); }
+	.cs-meta dd { margin: 0; color: var(--text); font-size: var(--text-body); font-weight: 500; }
+
+	.cs-figure { max-width: 50%; margin: 0 auto; }
+	.cs-figure img { width: 100%; height: auto; display: block; }
+	@media (max-width: 700px) { .cs-figure { max-width: 100%; } }
+
+	.cs-body { display: grid; gap: var(--space-2xl); max-width: var(--max-narrow); }
+	.cs-block--placeholder { color: var(--text-mute); font-style: italic; }
+	.cs-block p { color: var(--text); font-size: 17px; }
+
+	.cs-back { display: flex; gap: var(--space-sm); flex-wrap: wrap; justify-content: space-between; align-items: center; }
+
+	@media (max-width: 700px) {
+		.cs-meta { grid-template-columns: 1fr 1fr; }
+	}
+</style>

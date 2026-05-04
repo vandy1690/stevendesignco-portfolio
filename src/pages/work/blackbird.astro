@@ -1,0 +1,125 @@
+---
+import Site from '../../layouts/Site.astro';
+---
+
+<Site
+	title="Project Blackbird · Steven Vanden Heuvel"
+	description="An interactive oral history of the restaurant that transformed Chicago's dining landscape. Grand Jesse H. Neal Finalist, top 4 nationally."
+>
+	<section class="cs-hero">
+		<div class="cs-hero__inner">
+			<a class="cs-back-top" href="/#work">← Case studies</a>
+			<p class="eyebrow">Case study</p>
+			<h1 class="cs-hero__title display">Project<br />Blackbird</h1>
+			<p class="cs-hero__lede">An interactive oral history of the restaurant that transformed Chicago's dining landscape.</p>
+			<dl class="cs-meta">
+				<div><dt>Role</dt><dd>Creative Director / Design Lead</dd></div>
+				<div><dt>Org</dt><dd>MTG Media Group</dd></div>
+				<div><dt>Recognition</dt><dd>Grand Neal Finalist, top 4 nationally</dd></div>
+			</dl>
+		</div>
+	</section>
+
+	<section class="section section--alt">
+		<div class="section__inner">
+			<div class="cs-figure" data-animate="fade">
+				<img src="/images/case-studies/blackbird/blackbird-hero.jpg" alt="Project Blackbird hero image" />
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="section__inner cs-body" data-animate="fade">
+			<div class="cs-block">
+				<p class="eyebrow">Challenge</p>
+				<p class="cs-block__lede">Translate a culinary movement into an immersive digital experience.</p>
+				<p>How do you tell the story of a restaurant that helped spark an entire culinary movement? Blackbird was not just a restaurant. It shaped Chicago's farm-to-table identity. We needed to translate that complex, multi-layered story into an immersive digital experience.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--alt">
+		<div class="section__inner cs-body" data-animate="fade">
+			<div class="cs-block">
+				<p class="eyebrow">Approach</p>
+				<h2 class="cs-h2 display">Long-form storytelling, visual depth.</h2>
+			</div>
+			<ul class="cs-pillars">
+				<li>
+					<h3 class="cs-pillar__title">Typographic hierarchy</h3>
+					<p>Strong grids and clean layouts supporting long-form storytelling.</p>
+				</li>
+				<li>
+					<h3 class="cs-pillar__title">Immersive media</h3>
+					<p>Original photography, illustrations, and video woven into the narrative.</p>
+				</li>
+				<li>
+					<h3 class="cs-pillar__title">User-centered navigation</h3>
+					<p>Interactive storytelling letting readers explore the personalities and vision behind Blackbird.</p>
+				</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="section__inner cs-body" data-animate="fade">
+			<div class="cs-block">
+				<p class="eyebrow">Results</p>
+				<h2 class="cs-h2 display">A national finalist, a guest seat at Medill.</h2>
+			</div>
+			<ul class="cs-awards">
+				<li><span class="cs-awards__mark">★</span><span>Jesse H. Neal Award</span></li>
+				<li><span class="cs-awards__mark">★</span><span>Grand Jesse H. Neal Finalist — Top 4 Nationally</span></li>
+				<li><span class="cs-awards__mark">◆</span><span>Invited guest at Northwestern's Medill School of Journalism</span></li>
+			</ul>
+			<p class="cs-block__note">Presented insights on long-form journalism in digital media at Medill, discussing strategies for translating complex stories into engaging, user-focused digital experiences.</p>
+		</div>
+	</section>
+
+	<section class="section section--alt">
+		<div class="section__inner cs-back">
+			<a class="btn" href="/work/plate">← Plate</a>
+			<a class="btn btn--primary" href="/work/alt-meat">Next: Alt-Meat →</a>
+		</div>
+	</section>
+</Site>
+
+<style>
+	.cs-hero { max-width: var(--max); margin: 0 auto; padding: var(--space-2xl) var(--gutter); }
+	.cs-back-top { display: inline-block; margin-bottom: var(--space-lg); color: var(--text-mute); font-size: var(--text-body-sm); }
+	.cs-back-top:hover { color: var(--lime); }
+	.cs-hero__title { margin: var(--space-xs) 0 var(--space-lg); max-width: 16ch; }
+	.cs-hero__lede { font-size: var(--text-deck); color: var(--text); line-height: 1.5; max-width: 56ch; margin-bottom: var(--space-2xl); font-weight: 500; }
+	.cs-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); margin: 0; padding: var(--space-lg) 0 0; border-top: 1px solid var(--rule); }
+	.cs-meta div { margin: 0; }
+	.cs-meta dt { font-size: var(--text-label); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); font-weight: 600; margin-bottom: var(--space-xs); }
+	.cs-meta dd { margin: 0; color: var(--text); font-size: var(--text-body); font-weight: 500; }
+
+	.cs-figure { max-width: 50%; margin: 0 auto; }
+	.cs-figure img { width: 100%; height: auto; display: block; }
+
+	.cs-body { display: grid; gap: var(--space-2xl); max-width: var(--max-narrow); }
+	.cs-block .eyebrow { margin-bottom: var(--space-sm); }
+	.cs-block__lede { color: var(--text); font-size: 28px; font-weight: 500; margin: 0 0 var(--space-md); letter-spacing: -0.015em; line-height: 1.2; }
+	.cs-block p { color: var(--text); margin: 0; font-size: 17px; line-height: 1.6; }
+	.cs-block__note { color: var(--text-mute); font-size: 15px; margin: var(--space-md) 0 0; max-width: 56ch; }
+	.cs-h2 { max-width: 18ch; margin: 0; }
+
+	.cs-pillars { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+	.cs-pillars li { padding: var(--space-md) 0; border-top: 1px solid var(--rule); }
+	.cs-pillar__title { margin: 0 0 var(--space-sm); }
+	.cs-pillars li p { color: var(--text); font-size: 16px; line-height: 1.55; }
+
+	.cs-awards { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+	.cs-awards li { display: flex; gap: var(--space-md); align-items: center; padding: var(--space-md) 0; border-top: 1px solid var(--rule); font-size: 18px; }
+	.cs-awards li:last-child { border-bottom: 1px solid var(--rule); }
+	.cs-awards__mark { color: var(--lime); font-size: 22px; min-width: 24px; }
+
+	.cs-back { display: flex; gap: var(--space-sm); flex-wrap: wrap; justify-content: space-between; align-items: center; }
+
+	@media (max-width: 700px) {
+		.cs-meta { grid-template-columns: 1fr 1fr; }
+		.cs-pillars { grid-template-columns: 1fr; }
+		.cs-figure { max-width: 100%; }
+	}
+</style>

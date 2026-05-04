@@ -1,26 +1,460 @@
 ---
+import Site from '../layouts/Site.astro';
 import PayPalHero from '../components/animated/PayPalHero';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>PayPal case study — hero preview</title>
-		<style>
-			:root { color-scheme: light; }
-			html, body { margin: 0; padding: 0; background: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }
-			.page { min-height: 100vh; padding: 48px 24px; }
-			.label { text-align: center; color: #64748b; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 32px; }
-		</style>
-	</head>
-	<body>
-		<main class="page">
-			<p class="label">PayPal hero — orbit composition preview</p>
+<Site
+	title="Steven Vanden Heuvel — Designer at PayPal"
+	description="Designer at PayPal. Designing checkout and payment experiences for the world's top merchants. Payments. Design systems. B2B product. 18 years in."
+>
+	<section class="hero">
+		<div class="hero__copy">
+			<p class="eyebrow">Designer at PayPal</p>
+			<h1 class="hero__title display">Steven<br />Vanden Heuvel</h1>
+			<p class="hero__sub">Designer at PayPal. Designing checkout and payment experiences for the world's top merchants.</p>
+			<p class="hero__tagline">Payments. Design systems. B2B product.</p>
+			<div class="cta-row">
+				<a class="btn btn--primary" href="/resume.pdf">View Resume</a>
+				<a class="btn" href="#contact">Contact</a>
+				<a class="btn" href="https://linkedin.com/in/stevendesignco" target="_blank" rel="noopener">LinkedIn</a>
+			</div>
+		</div>
+		<div class="hero__art">
 			<PayPalHero client:load />
-		</main>
-	</body>
-</html>
+		</div>
+	</section>
+
+	<section id="about" class="section">
+		<div class="section__inner about">
+			<p class="eyebrow">About</p>
+			<div class="prose">
+				<p>Currently a Designer at PayPal (contract via MagnitGlobal), working on the merchant checkout team. Over the past six months I have shipped 20+ merchant proposal packages on weekly sprint cycles for top global brands including <strong>Home Depot, Nintendo, Target, Best Buy, TikTok Shop, Chewy, and Microsoft</strong>. The work feeds PayPal's top priority of growing TPV through greater checkout prominence.</p>
+				<p>Before PayPal I spent 18 years at MTG Media Group, growing from Senior Art Director to VP and Creative Director. I led a 6 person team and built responsive web products and design systems for <strong>7 brands serving 128,000+ B2B professionals</strong>. Plate, the website I rebuilt as a responsive product, won the 2017 Jesse H. Neal Award for Best Website. Four-time Neal Award winner overall.</p>
+				<p>Through Steven Design Services LLC I also take on select contract design work, focused on design systems, responsive web products, and product strategy.</p>
+			</div>
+		</div>
+	</section>
+
+	<section id="work" class="section section--alt">
+		<div class="section__inner">
+			<p class="eyebrow">Selected Work</p>
+			<h2 class="section__title">Case studies</h2>
+		</div>
+		<div class="marquee" aria-label="Selected work, auto-scrolling">
+			<div class="marquee__track">
+				<a class="card" href="/work/paypal">
+					<div class="card__media card__media--paypal">
+						<img src="/images/case-studies/_logos/paypal-black.svg" alt="PayPal" />
+					</div>
+					<div class="card__content">
+						<div class="card__role">Designer at PayPal</div>
+						<h3 class="card__title">PayPal — Merchant Checkout</h3>
+						<p class="card__body">Improving the checkout experience and PayPal's visibility to grow TPV for the merchant and PayPal.</p>
+						<span class="card__cta">Read case study <span class="arrow">→</span></span>
+					</div>
+				</a>
+				<a class="card" href="/work/plate">
+					<div class="card__media card__media--photo" style="background-image:url('/images/case-studies/plate/plate-hero.jpg');" aria-hidden="true"></div>
+					<div class="card__content">
+						<div class="card__role">Creative Director · MTG Media Group</div>
+						<h3 class="card__title">Plate — Website Redesign</h3>
+						<p class="card__body">Building the digital platform for chefs and foodservice professionals. Won the 2017 Jesse H. Neal Award for Best Website.</p>
+						<span class="card__cta">Read case study <span class="arrow">→</span></span>
+					</div>
+				</a>
+				<a class="card" href="/work/blackbird">
+					<div class="card__media card__media--photo" style="background-image:url('/images/case-studies/blackbird/blackbird-hero.jpg');" aria-hidden="true"></div>
+					<div class="card__content">
+						<div class="card__role">Creative Director / Design Lead · MTG Media Group</div>
+						<h3 class="card__title">Project Blackbird</h3>
+						<p class="card__body">An interactive oral history of the restaurant that transformed Chicago's dining. Grand Jesse H. Neal Finalist, top 4 nationally.</p>
+						<span class="card__cta">Read case study <span class="arrow">→</span></span>
+					</div>
+				</a>
+				<a class="card" href="/work/alt-meat">
+					<div class="card__media card__media--photo" style="background-image:url('/images/case-studies/alt-meat/alt-meat-hero.jpg');" aria-hidden="true"></div>
+					<div class="card__content">
+						<div class="card__role">Creative Director · MTG Media Group</div>
+						<h3 class="card__title">Alt-Meat</h3>
+						<p class="card__body">Coverage of the alternative protein sector. Plant-based, cultivated, fermentation, and blended categories.</p>
+						<span class="card__cta">Read case study <span class="arrow">→</span></span>
+					</div>
+				</a>
+				<a class="card" href="/work/meatingplace">
+					<div class="card__media card__media--photo" style="background-image:url('/images/case-studies/meatingplace/meatingplace-hero.jpg');" aria-hidden="true"></div>
+					<div class="card__content">
+						<div class="card__role">Creative Director · MTG Media Group</div>
+						<h3 class="card__title">Meatingplace</h3>
+						<p class="card__body">Daily news platform for U.S. meat and poultry professionals. Flagship MTG property.</p>
+						<span class="card__cta">Read case study <span class="arrow">→</span></span>
+					</div>
+				</a>
+
+				<a class="card" href="/work/paypal" aria-hidden="true" tabindex="-1">
+					<div class="card__media card__media--paypal">
+						<img src="/images/case-studies/_logos/paypal-black.svg" alt="" />
+					</div>
+					<div class="card__content">
+						<div class="card__role">Designer at PayPal</div>
+						<h3 class="card__title">PayPal — Merchant Checkout</h3>
+						<p class="card__body">Improving the checkout experience and PayPal's visibility to grow TPV for the merchant and PayPal.</p>
+						<span class="card__cta">Read case study <span class="arrow">→</span></span>
+					</div>
+				</a>
+				<a class="card" href="/work/plate" aria-hidden="true" tabindex="-1">
+					<div class="card__media card__media--photo" style="background-image:url('/images/case-studies/plate/plate-hero.jpg');" aria-hidden="true"></div>
+					<div class="card__content">
+						<div class="card__role">Creative Director · MTG Media Group</div>
+						<h3 class="card__title">Plate — Website Redesign</h3>
+						<p class="card__body">Building the digital platform for chefs and foodservice professionals. Won the 2017 Jesse H. Neal Award for Best Website.</p>
+						<span class="card__cta">Read case study <span class="arrow">→</span></span>
+					</div>
+				</a>
+				<a class="card" href="/work/blackbird" aria-hidden="true" tabindex="-1">
+					<div class="card__media card__media--photo" style="background-image:url('/images/case-studies/blackbird/blackbird-hero.jpg');" aria-hidden="true"></div>
+					<div class="card__content">
+						<div class="card__role">Creative Director / Design Lead · MTG Media Group</div>
+						<h3 class="card__title">Project Blackbird</h3>
+						<p class="card__body">An interactive oral history of the restaurant that transformed Chicago's dining. Grand Jesse H. Neal Finalist, top 4 nationally.</p>
+						<span class="card__cta">Read case study <span class="arrow">→</span></span>
+					</div>
+				</a>
+				<a class="card" href="/work/alt-meat" aria-hidden="true" tabindex="-1">
+					<div class="card__media card__media--photo" style="background-image:url('/images/case-studies/alt-meat/alt-meat-hero.jpg');" aria-hidden="true"></div>
+					<div class="card__content">
+						<div class="card__role">Creative Director · MTG Media Group</div>
+						<h3 class="card__title">Alt-Meat</h3>
+						<p class="card__body">Coverage of the alternative protein sector. Plant-based, cultivated, fermentation, and blended categories.</p>
+						<span class="card__cta">Read case study <span class="arrow">→</span></span>
+					</div>
+				</a>
+				<a class="card" href="/work/meatingplace" aria-hidden="true" tabindex="-1">
+					<div class="card__media card__media--photo" style="background-image:url('/images/case-studies/meatingplace/meatingplace-hero.jpg');" aria-hidden="true"></div>
+					<div class="card__content">
+						<div class="card__role">Creative Director · MTG Media Group</div>
+						<h3 class="card__title">Meatingplace</h3>
+						<p class="card__body">Daily news platform for U.S. meat and poultry professionals. Flagship MTG property.</p>
+						<span class="card__cta">Read case study <span class="arrow">→</span></span>
+					</div>
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="section__inner">
+			<p class="eyebrow">Recognition</p>
+			<h2 class="section__title">Awarded work, on record.</h2>
+			<ul class="awards">
+				<li><strong>4</strong><span>Jesse H. Neal Awards</span></li>
+				<li><strong>6</strong><span>Neal Finalist Recognitions</span></li>
+				<li><strong>1</strong><span>Grand Neal Finalist (top 4 nationally)</span></li>
+				<li><span class="awards__dot" aria-hidden="true">●</span><span>Folio Ozzie Honoree</span></li>
+				<li><span class="awards__dot" aria-hidden="true">●</span><span>Multiple ASBPE Awards</span></li>
+				<li><span class="awards__dot" aria-hidden="true">●</span><span>Northwestern Medill Guest Speaker</span></li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="section section--alt">
+		<div class="section__inner">
+			<p class="eyebrow">What I Do</p>
+			<h2 class="section__title">Design Systems · Responsive Web Products · Product Strategy.</h2>
+			<ul class="services">
+				<li>Design Systems</li>
+				<li>Service Blueprints</li>
+				<li>UX and UI Design</li>
+				<li>Prototyping</li>
+				<li>Wireframing</li>
+				<li>Accessibility</li>
+				<li>AI Assisted Workflows (Claude Code, Cursor)</li>
+				<li>Figma</li>
+			</ul>
+		</div>
+	</section>
+
+	<section id="contact" class="section section--contact">
+		<div class="section__inner contact">
+			<h2 class="contact__title display">Let's talk.</h2>
+			<ul class="contact__list">
+				<li><a href="mailto:steven@stevendesignco.com">steven@stevendesignco.com</a></li>
+				<li><a href="https://www.stevendesignco.com">stevendesignco.com</a></li>
+				<li><a href="https://linkedin.com/in/stevendesignco" target="_blank" rel="noopener">linkedin.com/in/stevendesignco</a></li>
+			</ul>
+			<p class="contact__based">Aurora, IL · Chicago area · Open to remote</p>
+		</div>
+	</section>
+</Site>
+
+<style>
+	.hero {
+		max-width: var(--max);
+		margin: 0 auto;
+		padding: 96px var(--gutter) 64px;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 64px;
+		align-items: center;
+		min-height: calc(100vh - 80px);
+		overflow: hidden;
+		overflow: clip;
+	}
+	.hero__title { margin-bottom: 28px; letter-spacing: -0.03em; }
+	.hero__sub {
+		font-size: clamp(20px, 1.8vw, 26px);
+		color: var(--text);
+		max-width: 32ch;
+		margin-bottom: 16px;
+		line-height: 1.35;
+		font-weight: 500;
+	}
+	.hero__tagline {
+		font-size: 16px;
+		color: var(--text-mute);
+		margin-bottom: 36px;
+		letter-spacing: -0.005em;
+	}
+	.hero__tagline-mark { color: var(--lime); font-weight: 600; }
+	.cta-row { display: flex; flex-wrap: nowrap; gap: 12px; }
+	.cta-row .btn { white-space: nowrap; flex: 0 1 auto; min-width: 0; }
+	.hero__art { min-width: 0; }
+
+	.section__title {
+		max-width: 22ch;
+		margin: 0 0 56px;
+		letter-spacing: -0.025em;
+	}
+
+	.about { display: grid; gap: 8px; }
+
+	.marquee {
+		position: relative;
+		overflow-x: auto;
+		overflow-y: hidden;
+		margin-inline: calc(-1 * var(--gutter));
+		mask-image: linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%);
+		-webkit-mask-image: linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%);
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+		-webkit-overflow-scrolling: touch;
+		cursor: grab;
+	}
+	.marquee:active { cursor: grabbing; }
+	.marquee::-webkit-scrollbar { display: none; }
+	.marquee__track {
+		display: flex;
+		width: max-content;
+	}
+	.marquee .card {
+		flex: 0 0 360px;
+		margin-right: 20px;
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.marquee { mask-image: none; -webkit-mask-image: none; }
+	}
+	@media (max-width: 600px) {
+		.marquee .card { flex: 0 0 280px; margin-right: 16px; }
+	}
+	.card {
+		background: var(--surface);
+		border: 1px solid var(--rule);
+		border-radius: var(--radius);
+		color: var(--text);
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+		transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+	}
+	.card:hover {
+		transform: translateY(-4px);
+		border-color: var(--lime);
+		background: var(--surface-2);
+		color: var(--text);
+	}
+	.card:hover .arrow { transform: translateX(6px); color: var(--lime); }
+	.card__media {
+		position: relative;
+		aspect-ratio: 16 / 9;
+		background-color: var(--surface);
+		background-size: cover;
+		background-position: center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-bottom: 1px solid var(--rule);
+	}
+	.card__media--paypal { background-color: #60cdff; }
+	.card__media--paypal img { width: 56%; max-width: 200px; }
+	.card__media--photo::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.45) 100%);
+	}
+	.card__content { padding: 24px 24px 26px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+	.card__role { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-mute); font-weight: 600; }
+	.card__title { line-height: 1.1; }
+	.card__body { color: var(--text); margin: 0; font-size: 15px; line-height: 1.5; flex: 1; }
+	.card__cta {
+		margin-top: 8px;
+		color: var(--text);
+		font-weight: 600;
+		font-size: 14px;
+		letter-spacing: 0.01em;
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+	}
+	.arrow { display: inline-block; transition: transform 0.22s ease, color 0.22s ease; }
+
+	.awards {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 0 32px;
+	}
+	.awards li {
+		display: flex;
+		align-items: baseline;
+		gap: 18px;
+		padding: 22px 0;
+		border-top: 1px solid var(--rule);
+		color: var(--text);
+		font-size: 16px;
+	}
+	.awards li:last-child:nth-child(3n) { border-bottom: none; }
+	.awards strong {
+		font-size: 36px;
+		font-weight: 700;
+		color: var(--lime);
+		min-width: 44px;
+		font-variant-numeric: tabular-nums;
+		line-height: 1;
+		letter-spacing: -0.02em;
+	}
+	.awards__dot { color: var(--lime); font-size: 22px; min-width: 44px; }
+
+	.services {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+	}
+	.services li {
+		padding: 12px 18px;
+		background: transparent;
+		border: 1px solid var(--rule);
+		border-radius: 999px;
+		font-size: 15px;
+		color: var(--text);
+		font-weight: 500;
+		transition: border-color 0.14s ease, color 0.14s ease;
+	}
+	.services li:hover { border-color: var(--lime); color: var(--lime); }
+
+	.section--contact { padding: 160px var(--gutter); text-align: center; }
+	.contact { display: flex; flex-direction: column; align-items: center; gap: 48px; }
+	.contact__title {
+		color: var(--text);
+		font-size: clamp(56px, 8vw, 128px);
+		margin: 0;
+	}
+	.contact__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: clamp(18px, 1.6vw, 24px); font-weight: 600; }
+	.contact__list a {
+		color: var(--text);
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 4px;
+		transition: color 0.14s ease;
+	}
+	.contact__list a:hover { color: var(--lime); }
+	.contact__based { color: var(--text-mute); font-size: 14px; margin: 0; letter-spacing: 0.04em; }
+
+	@media (max-width: 880px) {
+		.hero { grid-template-columns: 1fr; padding-top: 48px; gap: 32px; min-height: 0; }
+		.marquee { cursor: auto; }
+		.hero__art {
+			order: -1;
+			width: 100%;
+			aspect-ratio: 1 / 1;
+			border: 1px solid #fff;
+			overflow: hidden;
+			overflow: clip;
+		}
+		.cta-row { gap: 8px; }
+		.cta-row .btn { padding: 11px 14px; font-size: 13px; }
+		.awards { grid-template-columns: 1fr; }
+		.contact__list li { grid-template-columns: 1fr; gap: 6px; padding: 18px 0; font-size: 17px; }
+	}
+</style>
+
+<script>
+	const marquee = document.querySelector<HTMLElement>('#work .marquee');
+	if (marquee) {
+		const SPEED = 40; // px per second
+		const PAUSE_MS = 2200;
+		const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		let pausedUntil = reduced ? Infinity : 0;
+		let last = performance.now();
+		let halfWidth = 0;
+
+		const measure = () => { halfWidth = marquee.scrollWidth / 2; };
+		measure();
+		new ResizeObserver(measure).observe(marquee);
+
+		const isPaused = () => performance.now() < pausedUntil || marquee.matches(':hover');
+		const bumpPause = () => { pausedUntil = performance.now() + PAUSE_MS; };
+
+		marquee.addEventListener('wheel', bumpPause, { passive: true });
+		marquee.addEventListener('touchstart', bumpPause, { passive: true });
+		marquee.addEventListener('keydown', bumpPause);
+
+		// Drag-to-scroll on desktop (mouse only — touch already scrolls natively)
+		let dragging = false;
+		let dragStartX = 0;
+		let dragStartScroll = 0;
+		marquee.addEventListener('pointerdown', (e) => {
+			bumpPause();
+			if (e.pointerType === 'mouse') {
+				dragging = true;
+				dragStartX = e.clientX;
+				dragStartScroll = marquee.scrollLeft;
+				marquee.setPointerCapture(e.pointerId);
+			}
+		});
+		marquee.addEventListener('pointermove', (e) => {
+			if (!dragging) return;
+			marquee.scrollLeft = dragStartScroll - (e.clientX - dragStartX);
+			bumpPause();
+		});
+		const endDrag = (e: PointerEvent) => {
+			if (dragging) {
+				dragging = false;
+				try { marquee.releasePointerCapture(e.pointerId); } catch {}
+			}
+		};
+		marquee.addEventListener('pointerup', endDrag);
+		marquee.addEventListener('pointercancel', endDrag);
+
+		const step = (now: number) => {
+			const dt = now - last;
+			last = now;
+			if (halfWidth > 0) {
+				if (!isPaused()) {
+					let next = marquee.scrollLeft + (dt / 1000) * SPEED;
+					if (next >= halfWidth) next -= halfWidth;
+					marquee.scrollLeft = next;
+				} else {
+					if (marquee.scrollLeft >= halfWidth) marquee.scrollLeft -= halfWidth;
+					else if (marquee.scrollLeft < 0) marquee.scrollLeft += halfWidth;
+				}
+			}
+			requestAnimationFrame(step);
+		};
+		requestAnimationFrame(step);
+	}
+</script>

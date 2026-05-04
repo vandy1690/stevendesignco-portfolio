@@ -1,0 +1,311 @@
+---
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/inter/700.css';
+import '@fontsource/inter/900.css';
+import '@fontsource/inter/900-italic.css';
+
+// Adobe Fonts (Typekit) kit for Nickel Gothic Variable.
+// Replace ADOBE_KIT_ID with the kit ID from fonts.adobe.com → Web Projects.
+// Until set, --font-display falls back to Inter Black Italic.
+const ADOBE_KIT_ID = 'eft2zbk';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description } = Astro.props;
+const path = Astro.url.pathname;
+const isHome = path === '/';
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="theme-color" content="#000000" />
+		{ADOBE_KIT_ID && <link rel="stylesheet" href={`https://use.typekit.net/${ADOBE_KIT_ID}.css`} />}
+		<title>{title}</title>
+		{description && <meta name="description" content={description} />}
+	</head>
+	<body>
+		<header class="site-header">
+			<a class="brand" href="/" aria-label="Steven Vanden Heuvel — home">
+				<img class="brand__mark" src="/images/brand/SDC_initialLogo.svg" alt="Steven Vanden Heuvel" width="40" height="24" />
+			</a>
+			<nav class="nav">
+				<a href={isHome ? '#work' : '/#work'}>Case Studies</a>
+				<a href={isHome ? '#about' : '/#about'}>About</a>
+				<a href={isHome ? '#contact' : '/#contact'}>Contact</a>
+				<a class="nav__cta" href="/resume.pdf">Resume</a>
+			</nav>
+		</header>
+
+		<main>
+			<slot />
+		</main>
+
+		<footer class="site-footer">
+			<div class="site-footer__inner">
+				<a class="brand brand--footer" href="/">
+					<img src="/images/brand/SDC_initialLogo.svg" alt="" width="36" height="22" />
+					<span>Steven Design Services LLC</span>
+				</a>
+				<div class="site-footer__meta">
+					<span>© Steven Vanden Heuvel</span>
+					<a href="mailto:steven@stevendesignco.com">steven@stevendesignco.com</a>
+				</div>
+			</div>
+		</footer>
+
+		<script>
+			const els = document.querySelectorAll<HTMLElement>('[data-animate="fade"]');
+			if (els.length && 'IntersectionObserver' in window) {
+				const io = new IntersectionObserver((entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('is-visible');
+							io.unobserve(entry.target);
+						}
+					});
+				}, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+				els.forEach((el) => io.observe(el));
+			} else {
+				els.forEach((el) => el.classList.add('is-visible'));
+			}
+		</script>
+
+		<style is:global>
+			:root {
+				color-scheme: dark;
+
+				/* color tokens (from SDC-Design-Tokens > Color Tokens) */
+				--bg: #000000;            /* color/background */
+				--surface: #111111;       /* color/surface */
+				--surface-2: #1a1a1a;     /* derived */
+				--text: #ffffff;          /* color/text/heading + body + secondary + action */
+				--text-mute: #666666;     /* matches Figma's caption color (#666) */
+				--rule: rgba(255, 255, 255, 0.20);   /* color/divider */
+				--rule-soft: rgba(255, 255, 255, 0.10);
+				--lime: #CCFF00;          /* color/primary + accent */
+				--lime-text: #000000;     /* color/accent-text */
+				--lime-glow: rgba(204, 255, 0, 0.20);
+
+				/* layout tokens (from Layout Tokens) */
+				--max: 1280px;            /* layout/content-width */
+				--max-narrow: 800px;      /* layout/content-narrow */
+				--gutter: 24px;           /* layout/content-padding */
+				--nav-h: 56px;            /* layout/nav-height */
+				--radius: 18px;
+				--radius-sm: 10px;
+
+				/* spacing tokens (from Spacing Tokens) */
+				--space-xs: 8px;
+				--space-sm: 16px;
+				--space-md: 24px;
+				--space-lg: 32px;
+				--space-xl: 48px;
+				--space-2xl: 64px;
+				--space-3xl: 96px;
+				--space-4xl: 128px;
+				--space-5xl: 160px;
+
+				/* type-scale tokens (from Typography Tokens) */
+				--font-display: 'nickel-gothic-variable', 'Inter', system-ui, sans-serif;
+				--font-body: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+				--text-display-1: clamp(48px, 8vw, 96px);   /* hero headlines */
+				--text-display-2: clamp(32px, 4.8vw, 48px); /* section titles */
+				--text-heading: clamp(24px, 3.2vw, 32px);   /* case study titles */
+				--text-deck: clamp(18px, 1.9vw, 24px);      /* taglines, intros */
+				--text-subheading: 20px;                    /* section labels */
+				--text-body: 16px;                          /* paragraph */
+				--text-nav: 15px;                           /* navigation */
+				--text-body-sm: 14px;                       /* captions */
+				--text-label: 11px;                         /* tags, metadata */
+			}
+			* { box-sizing: border-box; }
+			html, body { margin: 0; padding: 0; }
+			html { background: var(--bg); }
+			body {
+				background: var(--bg);
+				color: var(--text);
+				font-family: var(--font-body);
+				font-size: var(--text-body);
+				line-height: 1.6;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+			}
+			::selection { background: var(--lime); color: var(--lime-text); }
+			a { color: var(--lime); text-decoration: none; }
+			a:hover { text-decoration: none; }
+
+			h1, h2, h3 { color: var(--text); margin: 0; line-height: 1.1; letter-spacing: -0.022em; font-weight: 700; }
+			h1 { font-size: var(--text-display-1); line-height: 0.98; letter-spacing: -0.03em; }
+			h2 { font-size: var(--text-display-2); line-height: 1.04; letter-spacing: -0.025em; }
+			h3 {
+				font-family: var(--font-display);
+				font-size: 18px;
+				font-weight: 900;
+				font-style: normal;
+				font-variation-settings: "wght" 900, "slnt" 0, "ital" 0;
+				font-synthesis: none;
+				line-height: 1.1;
+				letter-spacing: 0.01em;
+				color: var(--lime);
+			}
+			p { margin: 0 0 1em; }
+			img, svg { display: block; max-width: 100%; }
+
+			/* Display style — Nickel Gothic Variable, normal weight, upright */
+			.display {
+				font-family: var(--font-display);
+				font-weight: 400;
+				font-style: normal;
+				font-variation-settings: "wght" 400, "slnt" 0, "ital" 0;
+				font-synthesis: none;
+				letter-spacing: normal;
+				line-height: 0.96;
+			}
+
+			.eyebrow {
+				font-size: var(--text-label);
+				letter-spacing: 0.16em;
+				text-transform: uppercase;
+				color: var(--lime);
+				margin: 0 0 var(--space-md);
+				font-weight: 600;
+			}
+			.eyebrow--mute { color: var(--text-mute); }
+
+			/* Header */
+			.site-header {
+				position: sticky;
+				top: 0;
+				z-index: 30;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				height: var(--nav-h);
+				padding: 0 var(--gutter);
+				background: rgba(0, 0, 0, 0.78);
+				-webkit-backdrop-filter: saturate(180%) blur(14px);
+				backdrop-filter: saturate(180%) blur(14px);
+				border-bottom: 1px solid var(--rule-soft);
+			}
+			.brand {
+				display: inline-flex;
+				align-items: center;
+				gap: 14px;
+				color: var(--text);
+				letter-spacing: -0.01em;
+				font-weight: 600;
+				font-size: var(--text-body);
+			}
+			.brand:hover { color: var(--text); }
+			.brand__mark { display: block; height: 24px; width: auto; }
+			.nav { display: flex; align-items: center; gap: var(--space-lg); }
+			.nav a {
+				color: var(--text);
+				font-size: var(--text-nav);
+				font-weight: 500;
+				transition: color 0.12s ease, opacity 0.12s ease;
+				opacity: 0.8;
+			}
+			.nav a:hover { color: var(--text); opacity: 1; }
+			.nav__cta {
+				padding: 8px 16px;
+				border-radius: 999px;
+				border: 1px solid var(--rule);
+				color: var(--text) !important;
+				opacity: 1 !important;
+				transition: background 0.14s ease, border-color 0.14s ease, color 0.14s ease;
+			}
+			.nav__cta:hover { background: var(--lime); color: var(--lime-text) !important; border-color: var(--lime); }
+
+			/* Sections (shared) */
+			.section { padding: var(--space-3xl) var(--gutter); }
+			.section--alt { background: var(--bg); }
+
+			/* Fade-in on scroll, observed via tiny script at end of body */
+			[data-animate="fade"] {
+				opacity: 0;
+				transform: translateY(12px);
+				transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+			}
+			[data-animate="fade"].is-visible {
+				opacity: 1;
+				transform: translateY(0);
+			}
+			@media (prefers-reduced-motion: reduce) {
+				[data-animate="fade"] { opacity: 1; transform: none; transition: none; }
+			}
+			.section--ink { background: var(--bg); }
+			.section__inner { max-width: var(--max); margin: 0 auto; }
+			.section__inner--narrow { max-width: var(--max-narrow); }
+			.prose { max-width: var(--max-narrow); font-size: 18px; color: var(--text); line-height: 1.7; font-weight: 400; }
+			.prose p { margin: 0 0 1.2em; }
+			.prose strong { color: var(--text); font-weight: 600; }
+
+			/* Buttons */
+			.btn {
+				display: inline-flex;
+				align-items: center;
+				gap: var(--space-xs);
+				padding: 14px 22px;
+				border-radius: 999px;
+				border: 1px solid var(--rule);
+				background: transparent;
+				color: var(--text);
+				font-family: var(--font-body);
+				font-size: var(--text-nav);
+				font-weight: 600;
+				letter-spacing: -0.005em;
+				transition: background 0.14s ease, border-color 0.14s ease, color 0.14s ease, transform 0.12s ease;
+				cursor: pointer;
+			}
+			.btn:hover { border-color: var(--text); transform: translateY(-1px); }
+			.btn--primary { background: var(--lime); color: var(--lime-text); border-color: var(--lime); }
+			.btn--primary:hover {
+				background: #d8ff33;
+				border-color: #d8ff33;
+				color: var(--lime-text);
+				box-shadow: 0 14px 40px -10px var(--lime-glow);
+			}
+
+			/* Footer */
+			.site-footer {
+				padding: var(--space-xl) var(--gutter);
+				border-top: 1px solid var(--rule-soft);
+				background: var(--bg);
+			}
+			.site-footer__inner {
+				max-width: var(--max);
+				margin: 0 auto;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				gap: var(--space-md);
+				flex-wrap: wrap;
+			}
+			.brand--footer { font-size: var(--text-body-sm); color: var(--text-mute); font-weight: 500; }
+			.brand--footer:hover { color: var(--text); }
+			.site-footer__meta { display: flex; gap: var(--space-md); color: var(--text-mute); font-size: var(--text-body-sm); }
+			.site-footer__meta a { color: var(--text-mute); }
+			.site-footer__meta a:hover { color: var(--lime); }
+
+			@media (max-width: 880px) {
+				.nav { gap: var(--space-md); }
+				.nav a { font-size: 14px; }
+				.brand__name { display: none; }
+				.section { padding: var(--space-2xl) var(--gutter); }
+			}
+			@media (max-width: 640px) {
+				.nav a:not(.nav__cta) { display: none; }
+			}
+		</style>
+	</body>
+</html>
