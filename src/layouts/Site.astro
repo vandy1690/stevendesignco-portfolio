@@ -57,12 +57,13 @@ const isHome = path === '/';
 				</a>
 				<div class="site-footer__meta">
 					<span>© Steven Vanden Heuvel</span>
-					<a href="mailto:steven@stevendesignco.com">steven@stevendesignco.com</a>
+					<a class="js-email" data-eml="73746576656e4073746576656e64657369676e636f2e636f6d" href="#" aria-label="Email Steven">steven [at] stevendesignco [dot] com</a>
 				</div>
 			</div>
 		</footer>
 
 		<script>
+			// Fade-in on scroll
 			const els = document.querySelectorAll<HTMLElement>('[data-animate="fade"]');
 			if (els.length && 'IntersectionObserver' in window) {
 				const io = new IntersectionObserver((entries) => {
@@ -77,6 +78,18 @@ const isHome = path === '/';
 			} else {
 				els.forEach((el) => el.classList.add('is-visible'));
 			}
+
+			// Email reveal: hex-decode data-eml at runtime so plain-text scrapers miss it
+			document.querySelectorAll<HTMLAnchorElement>('a.js-email').forEach((a) => {
+				const hex = a.dataset.eml;
+				if (!hex) return;
+				let email = '';
+				for (let i = 0; i < hex.length; i += 2) {
+					email += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+				}
+				a.href = 'mailto:' + email;
+				a.textContent = email;
+			});
 		</script>
 
 		<style is:global>
