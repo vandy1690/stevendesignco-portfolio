@@ -4,14 +4,14 @@ import PayPalHero from '../components/animated/PayPalHero';
 ---
 
 <Site
-	title="Steven Vanden Heuvel — Designer at PayPal"
-	description="Designer at PayPal. Designing checkout and payment experiences for the world's top merchants. Payments. Design systems. B2B product. 18 years in."
+	title="Steven Vanden Heuvel — Principal Designer at PayPal"
+	description="Principal Designer at PayPal. Designing checkout and payment experiences for the world's top merchants. Payments. Design systems. B2B product. 18 years in."
 >
 	<section class="hero">
 		<div class="hero__copy">
-			<p class="eyebrow">Designer at PayPal</p>
+			<p class="eyebrow">Principal Designer at PayPal</p>
 			<h1 class="hero__title display">Steven<br />Vanden Heuvel</h1>
-			<p class="hero__sub">Designer at PayPal. Designing checkout and payment experiences for the world's top merchants.</p>
+			<p class="hero__sub">Principal Designer at PayPal. Designing checkout and payment experiences for the world's top merchants.</p>
 			<p class="hero__tagline">Payments. Design systems. B2B product.</p>
 			<div class="cta-row">
 				<a class="btn btn--primary" href="/resume.pdf">View Resume</a>
@@ -28,7 +28,7 @@ import PayPalHero from '../components/animated/PayPalHero';
 		<div class="section__inner about">
 			<p class="eyebrow">About</p>
 			<div class="prose">
-				<p>Currently a Designer at PayPal (contract via MagnitGlobal), working on the merchant checkout team. Over the past six months I have shipped 20+ merchant proposal packages on weekly sprint cycles for top global brands including <strong>Home Depot, Nintendo, Target, Best Buy, TikTok Shop, Chewy, and Microsoft</strong>. The work feeds PayPal's top priority of growing TPV through greater checkout prominence.</p>
+				<p>Currently a Principal Designer at PayPal (contract via MagnitGlobal), working on the merchant checkout team. Over the past six months I have shipped 20+ merchant proposal packages on weekly sprint cycles for top global brands including <strong>Home Depot, Nintendo, Target, Best Buy, TikTok Shop, Chewy, and Microsoft</strong>. The work feeds PayPal's top priority of growing TPV through greater checkout prominence.</p>
 				<p>Before PayPal I spent 18 years at MTG Media Group, growing from Senior Art Director to VP and Creative Director. I led a 6 person team and built responsive web products and design systems for <strong>7 brands serving 128,000+ B2B professionals</strong>. Plate, the website I rebuilt as a responsive product, won the 2017 Jesse H. Neal Award for Best Website. Four-time Neal Award winner overall.</p>
 				<p>Through Steven Design Services LLC I also take on select contract design work, focused on design systems, responsive web products, and product strategy.</p>
 			</div>
@@ -47,7 +47,7 @@ import PayPalHero from '../components/animated/PayPalHero';
 						<img src="/images/case-studies/_logos/paypal-black.svg" alt="PayPal" />
 					</div>
 					<div class="card__content">
-						<div class="card__role">Designer at PayPal</div>
+						<div class="card__role">Principal Designer at PayPal</div>
 						<h3 class="card__title">PayPal — Merchant Checkout</h3>
 						<p class="card__body">Improving the checkout experience and PayPal's visibility to grow TPV for the merchant and PayPal.</p>
 						<span class="card__cta">Read case study <span class="arrow">→</span></span>
@@ -95,7 +95,7 @@ import PayPalHero from '../components/animated/PayPalHero';
 						<img src="/images/case-studies/_logos/paypal-black.svg" alt="" />
 					</div>
 					<div class="card__content">
-						<div class="card__role">Designer at PayPal</div>
+						<div class="card__role">Principal Designer at PayPal</div>
 						<h3 class="card__title">PayPal — Merchant Checkout</h3>
 						<p class="card__body">Improving the checkout experience and PayPal's visibility to grow TPV for the merchant and PayPal.</p>
 						<span class="card__cta">Read case study <span class="arrow">→</span></span>
@@ -405,6 +405,11 @@ import PayPalHero from '../components/animated/PayPalHero';
 		const measure = () => { halfWidth = marquee.scrollWidth / 2; };
 		measure();
 		new ResizeObserver(measure).observe(marquee);
+		window.addEventListener('load', measure);
+		if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+		marquee.querySelectorAll('img').forEach((img) => {
+			if (!img.complete) img.addEventListener('load', measure, { once: true });
+		});
 
 		const isPaused = () => performance.now() < pausedUntil || marquee.matches(':hover');
 		const bumpPause = () => { pausedUntil = performance.now() + PAUSE_MS; };
@@ -413,36 +418,50 @@ import PayPalHero from '../components/animated/PayPalHero';
 		marquee.addEventListener('touchstart', bumpPause, { passive: true });
 		marquee.addEventListener('keydown', bumpPause);
 
-		// Drag-to-scroll on desktop (mouse only — touch already scrolls natively)
-		let dragging = false;
-		let dragStartX = 0;
-		let dragStartScroll = 0;
+		// Drag-to-scroll on desktop (mouse only — touch scrolls natively).
+		// Don't capture the pointer or treat anything as a drag until the mouse
+		// has moved past a small threshold; clicks on cards still navigate.
+		const DRAG_THRESHOLD = 5;
+		let downX = 0;
+		let downScroll = 0;
+		let isDown = false;
+		let isDrag = false;
+
 		marquee.addEventListener('pointerdown', (e) => {
 			bumpPause();
-			if (e.pointerType === 'mouse') {
-				dragging = true;
-				dragStartX = e.clientX;
-				dragStartScroll = marquee.scrollLeft;
-				marquee.setPointerCapture(e.pointerId);
-			}
+			if (e.pointerType !== 'mouse') return;
+			isDown = true;
+			isDrag = false;
+			downX = e.clientX;
+			downScroll = marquee.scrollLeft;
 		});
 		marquee.addEventListener('pointermove', (e) => {
-			if (!dragging) return;
-			marquee.scrollLeft = dragStartScroll - (e.clientX - dragStartX);
-			bumpPause();
-		});
-		const endDrag = (e: PointerEvent) => {
-			if (dragging) {
-				dragging = false;
-				try { marquee.releasePointerCapture(e.pointerId); } catch {}
+			if (!isDown) return;
+			const delta = e.clientX - downX;
+			if (!isDrag && Math.abs(delta) > DRAG_THRESHOLD) isDrag = true;
+			if (isDrag) {
+				marquee.scrollLeft = downScroll - delta;
+				bumpPause();
 			}
-		};
-		marquee.addEventListener('pointerup', endDrag);
-		marquee.addEventListener('pointercancel', endDrag);
+		});
+		const endDown = () => { isDown = false; };
+		marquee.addEventListener('pointerup', endDown);
+		marquee.addEventListener('pointercancel', endDown);
+
+		// Suppress the synthetic click that follows a drag (otherwise the card
+		// under the mouse navigates after a scroll-drag).
+		marquee.addEventListener('click', (e) => {
+			if (isDrag) {
+				e.preventDefault();
+				e.stopPropagation();
+				isDrag = false;
+			}
+		}, true);
 
 		const step = (now: number) => {
 			const dt = now - last;
 			last = now;
+			if (halfWidth === 0) measure();
 			if (halfWidth > 0) {
 				if (!isPaused()) {
 					let next = marquee.scrollLeft + (dt / 1000) * SPEED;

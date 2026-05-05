@@ -43,7 +43,19 @@ const isHome = path === '/';
 				<a href={isHome ? '#contact' : '/#contact'}>Contact</a>
 				<a class="nav__cta" href="/resume.pdf">Resume</a>
 			</nav>
+			<button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+				<span class="nav-toggle__bar"></span>
+				<span class="nav-toggle__bar"></span>
+				<span class="nav-toggle__bar"></span>
+			</button>
 		</header>
+
+		<nav id="mobile-nav" class="nav-mobile" aria-hidden="true">
+			<a href={isHome ? '#work' : '/#work'}>Case Studies</a>
+			<a href={isHome ? '#about' : '/#about'}>About</a>
+			<a href={isHome ? '#contact' : '/#contact'}>Contact</a>
+			<a href="/resume.pdf">Resume</a>
+		</nav>
 
 		<main>
 			<slot />
@@ -77,6 +89,28 @@ const isHome = path === '/';
 				els.forEach((el) => io.observe(el));
 			} else {
 				els.forEach((el) => el.classList.add('is-visible'));
+			}
+
+			// Mobile nav toggle
+			const navToggle = document.querySelector<HTMLButtonElement>('.nav-toggle');
+			const navMobile = document.querySelector<HTMLElement>('#mobile-nav');
+			if (navToggle && navMobile) {
+				const setOpen = (open: boolean) => {
+					navMobile.dataset.open = String(open);
+					navToggle.setAttribute('aria-expanded', String(open));
+					navMobile.setAttribute('aria-hidden', String(!open));
+					navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+					document.body.classList.toggle('nav-open', open);
+				};
+				navToggle.addEventListener('click', () => {
+					setOpen(navMobile.dataset.open !== 'true');
+				});
+				navMobile.querySelectorAll('a').forEach((a) => {
+					a.addEventListener('click', () => setOpen(false));
+				});
+				document.addEventListener('keydown', (e) => {
+					if (e.key === 'Escape' && navMobile.dataset.open === 'true') setOpen(false);
+				});
 			}
 
 			// Email reveal: hex-decode data-eml at runtime so plain-text scrapers miss it
@@ -239,8 +273,72 @@ const isHome = path === '/';
 			}
 			.nav__cta:hover { background: var(--lime); color: var(--lime-text) !important; border-color: var(--lime); }
 
+			/* Hamburger toggle (mobile) */
+			.nav-toggle {
+				display: none;
+				width: 40px;
+				height: 40px;
+				margin-right: -8px;
+				background: none;
+				border: none;
+				padding: 8px;
+				cursor: pointer;
+				flex-direction: column;
+				justify-content: space-between;
+				align-items: stretch;
+			}
+			.nav-toggle__bar {
+				display: block;
+				height: 2px;
+				background: var(--text);
+				border-radius: 2px;
+				transition: transform 0.18s ease, opacity 0.18s ease;
+				transform-origin: center;
+			}
+			.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(1) {
+				transform: translateY(7px) rotate(45deg);
+			}
+			.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(2) { opacity: 0; }
+			.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(3) {
+				transform: translateY(-7px) rotate(-45deg);
+			}
+
+			/* Mobile nav overlay */
+			.nav-mobile {
+				display: none;
+				position: fixed;
+				top: var(--nav-h);
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: var(--bg);
+				flex-direction: column;
+				padding: var(--space-md) var(--gutter) var(--space-2xl);
+				z-index: 25;
+				border-top: 1px solid var(--rule-soft);
+				overflow-y: auto;
+			}
+			.nav-mobile[data-open="true"] { display: flex; }
+			.nav-mobile a {
+				display: block;
+				padding: var(--space-md) 0;
+				font-family: var(--font-display);
+				font-weight: 400;
+				font-style: normal;
+				font-variation-settings: "wght" 400, "slnt" 0, "ital" 0;
+				font-synthesis: none;
+				font-size: clamp(28px, 6vw, 40px);
+				color: var(--text);
+				border-bottom: 1px solid var(--rule);
+				letter-spacing: normal;
+				line-height: 1.1;
+			}
+			.nav-mobile a:hover,
+			.nav-mobile a:focus-visible { color: var(--lime); }
+			body.nav-open { overflow: hidden; }
+
 			/* Sections (shared) */
-			.section { padding: var(--space-3xl) var(--gutter); }
+			.section { padding: var(--space-2xl) var(--gutter); }
 			.section--alt { background: var(--bg); }
 
 			/* Fade-in on scroll, observed via tiny script at end of body */
@@ -311,13 +409,9 @@ const isHome = path === '/';
 			.site-footer__meta a:hover { color: var(--lime); }
 
 			@media (max-width: 880px) {
-				.nav { gap: var(--space-md); }
-				.nav a { font-size: 14px; }
-				.brand__name { display: none; }
-				.section { padding: var(--space-2xl) var(--gutter); }
-			}
-			@media (max-width: 640px) {
-				.nav a:not(.nav__cta) { display: none; }
+				.nav { display: none; }
+				.nav-toggle { display: flex; }
+				.section { padding: var(--space-xl) var(--gutter); }
 			}
 		</style>
 	</body>
