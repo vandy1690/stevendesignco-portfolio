@@ -4,7 +4,7 @@ import PayPalHero from '../components/animated/PayPalHero';
 ---
 
 <Site
-	title="Steven Vanden Heuvel — Principal Designer at PayPal"
+	title="Steven Vanden Heuvel · Principal Designer at PayPal"
 	description="Principal Designer at PayPal. Designing checkout and payment experiences for the world's top merchants. Payments. Design systems. B2B product. 18 years in."
 >
 	<section class="hero">
@@ -48,7 +48,7 @@ import PayPalHero from '../components/animated/PayPalHero';
 					</div>
 					<div class="card__content">
 						<div class="card__role">Principal Designer at PayPal</div>
-						<h3 class="card__title">PayPal — Merchant Checkout</h3>
+						<h3 class="card__title">PayPal: Merchant Checkout</h3>
 						<p class="card__body">Improving the checkout experience and PayPal's visibility to grow TPV for the merchant and PayPal.</p>
 						<span class="card__cta">Read case study <span class="arrow">→</span></span>
 					</div>
@@ -57,7 +57,7 @@ import PayPalHero from '../components/animated/PayPalHero';
 					<div class="card__media card__media--photo" style="background-image:url('/images/case-studies/plate/plate-hero.jpg');" aria-hidden="true"></div>
 					<div class="card__content">
 						<div class="card__role">Creative Director · MTG Media Group</div>
-						<h3 class="card__title">Plate — Website Redesign</h3>
+						<h3 class="card__title">Plate: Website Redesign</h3>
 						<p class="card__body">Building the digital platform for chefs and foodservice professionals. Won the 2017 Jesse H. Neal Award for Best Website.</p>
 						<span class="card__cta">Read case study <span class="arrow">→</span></span>
 					</div>
@@ -76,7 +76,7 @@ import PayPalHero from '../components/animated/PayPalHero';
 					<div class="card__content">
 						<div class="card__role">Creative Director · MTG Media Group</div>
 						<h3 class="card__title">Alt-Meat</h3>
-						<p class="card__body">Coverage of the alternative protein sector. Plant-based, cultivated, fermentation, and blended categories.</p>
+						<p class="card__body">Brand identity, magazine, and responsive news site for MTG's alternative protein property. Designed in under 90 days.</p>
 						<span class="card__cta">Read case study <span class="arrow">→</span></span>
 					</div>
 				</a>
@@ -85,7 +85,7 @@ import PayPalHero from '../components/animated/PayPalHero';
 					<div class="card__content">
 						<div class="card__role">Creative Director · MTG Media Group</div>
 						<h3 class="card__title">Meatingplace</h3>
-						<p class="card__body">Daily news platform for U.S. meat and poultry professionals. Flagship MTG property.</p>
+						<p class="card__body">Responsive rebuild of MTG's flagship daily news site for U.S. meat and poultry professionals. Largest audience across MTG's 7-brand portfolio.</p>
 						<span class="card__cta">Read case study <span class="arrow">→</span></span>
 					</div>
 				</a>
@@ -96,7 +96,7 @@ import PayPalHero from '../components/animated/PayPalHero';
 					</div>
 					<div class="card__content">
 						<div class="card__role">Principal Designer at PayPal</div>
-						<h3 class="card__title">PayPal — Merchant Checkout</h3>
+						<h3 class="card__title">PayPal: Merchant Checkout</h3>
 						<p class="card__body">Improving the checkout experience and PayPal's visibility to grow TPV for the merchant and PayPal.</p>
 						<span class="card__cta">Read case study <span class="arrow">→</span></span>
 					</div>
@@ -105,7 +105,7 @@ import PayPalHero from '../components/animated/PayPalHero';
 					<div class="card__media card__media--photo" style="background-image:url('/images/case-studies/plate/plate-hero.jpg');" aria-hidden="true"></div>
 					<div class="card__content">
 						<div class="card__role">Creative Director · MTG Media Group</div>
-						<h3 class="card__title">Plate — Website Redesign</h3>
+						<h3 class="card__title">Plate: Website Redesign</h3>
 						<p class="card__body">Building the digital platform for chefs and foodservice professionals. Won the 2017 Jesse H. Neal Award for Best Website.</p>
 						<span class="card__cta">Read case study <span class="arrow">→</span></span>
 					</div>
@@ -124,7 +124,7 @@ import PayPalHero from '../components/animated/PayPalHero';
 					<div class="card__content">
 						<div class="card__role">Creative Director · MTG Media Group</div>
 						<h3 class="card__title">Alt-Meat</h3>
-						<p class="card__body">Coverage of the alternative protein sector. Plant-based, cultivated, fermentation, and blended categories.</p>
+						<p class="card__body">Brand identity, magazine, and responsive news site for MTG's alternative protein property. Designed in under 90 days.</p>
 						<span class="card__cta">Read case study <span class="arrow">→</span></span>
 					</div>
 				</a>
@@ -133,7 +133,7 @@ import PayPalHero from '../components/animated/PayPalHero';
 					<div class="card__content">
 						<div class="card__role">Creative Director · MTG Media Group</div>
 						<h3 class="card__title">Meatingplace</h3>
-						<p class="card__body">Daily news platform for U.S. meat and poultry professionals. Flagship MTG property.</p>
+						<p class="card__body">Responsive rebuild of MTG's flagship daily news site for U.S. meat and poultry professionals. Largest audience across MTG's 7-brand portfolio.</p>
 						<span class="card__cta">Read case study <span class="arrow">→</span></span>
 					</div>
 				</a>
@@ -381,9 +381,7 @@ import PayPalHero from '../components/animated/PayPalHero';
 			order: -1;
 			width: 100%;
 			aspect-ratio: 1 / 1;
-			border: 1px solid #fff;
-			overflow: hidden;
-			overflow: clip;
+			overflow: visible;
 		}
 		.cta-row { gap: 8px; }
 		.cta-row .btn { padding: 11px 14px; font-size: 13px; }
@@ -418,7 +416,7 @@ import PayPalHero from '../components/animated/PayPalHero';
 		marquee.addEventListener('touchstart', bumpPause, { passive: true });
 		marquee.addEventListener('keydown', bumpPause);
 
-		// Drag-to-scroll on desktop (mouse only — touch scrolls natively).
+		// Drag-to-scroll on desktop (mouse only; touch scrolls natively).
 		// Don't capture the pointer or treat anything as a drag until the mouse
 		// has moved past a small threshold; clicks on cards still navigate.
 		const DRAG_THRESHOLD = 5;

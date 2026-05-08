@@ -3,26 +3,25 @@ import Site from '../../layouts/Site.astro';
 ---
 
 <Site
-	title="Meatingplace · Steven Vanden Heuvel"
-	description="Daily news platform for U.S. meat and poultry professionals. Flagship MTG property."
+	title="Meatingplace · Modernization · Steven Vanden Heuvel"
+	description="Brand-wide art direction and the 2018 modernization of MTG's flagship daily news site. 2018 Folio OZZIE Honorable Mention for Overall Art Direction."
 >
 	<section class="cs-hero">
 		<div class="cs-hero__inner">
 			<a class="cs-back-top" href="/#work">← Selected work</a>
 			<p class="eyebrow">Case study</p>
-			<h1 class="cs-hero__title display">Meatingplace</h1>
-			<p class="cs-hero__lede">Daily news platform for U.S. meat and poultry professionals. Flagship MTG property.</p>
+			<h1 class="cs-hero__title display">Meatingplace<br />Modernization</h1>
+			<p class="cs-hero__lede">Brand-wide art direction and the modernization of MTG's flagship daily news site, serving U.S. meat and poultry professionals.</p>
 			<dl class="cs-meta">
 				<div><dt>Role</dt><dd>Creative Director</dd></div>
 				<div><dt>Org</dt><dd>MTG Media Group</dd></div>
-				<div><dt>Format</dt><dd>Daily news platform</dd></div>
+				<div><dt>Recognition</dt><dd>2018 Folio OZZIE Honorable Mention, Overall Art Direction</dd></div>
 			</dl>
 		</div>
 	</section>
 
-	<section class="section section--alt">
+	<section class="section section--alt section--figure">
 		<div class="section__inner">
-			<p class="eyebrow">Meatingplace</p>
 			<div class="cs-figure" data-animate="fade">
 				<img src="/images/case-studies/meatingplace/meatingplace-hero.jpg" alt="Meatingplace mobile experience" />
 			</div>
@@ -30,11 +29,51 @@ import Site from '../../layouts/Site.astro';
 	</section>
 
 	<section class="section">
-		<div class="section__inner cs-body">
-			<div class="cs-block cs-block--placeholder">
-				<p class="eyebrow eyebrow--accent">Case study content</p>
-				<p>Detailed write-up coming soon.</p>
+		<div class="section__inner cs-body" data-animate="fade">
+			<div class="cs-block">
+				<p class="eyebrow">Problem</p>
+				<p class="cs-block__lede">Daily news, on a site designed in 2010.</p>
+				<p>Meatingplace was MTG's flagship and largest audience, but the site dated to 2010. Readers were on mobile. Advertisers needed a site that performed everywhere their buyers were, and editors needed templates they could publish breaking industry news from quickly.</p>
 			</div>
+		</div>
+	</section>
+
+	<section class="section section--alt">
+		<div class="section__inner cs-body" data-animate="fade">
+			<div class="cs-block">
+				<p class="eyebrow">Solution</p>
+				<p class="cs-block__lede">A responsive system for a daily newsroom.</p>
+				<p>I led a complete modernization of Meatingplace as a responsive product. The work covered art direction across the brand, a new article and section template system, and a reusable component library designed to extend across MTG's other titles. The redesign was design-complete and approved for launch in 2018.</p>
+			</div>
+			<ul class="cs-pillars">
+				<li>
+					<h3 class="cs-pillar__title">Responsive-first system</h3>
+					<p>Templates and components built to work from phone to desktop, sized for editorial reading.</p>
+				</li>
+				<li>
+					<h3 class="cs-pillar__title">Editorial speed</h3>
+					<p>Layouts that let editors publish breaking industry news without help from design.</p>
+				</li>
+				<li>
+					<h3 class="cs-pillar__title">Reusable foundation</h3>
+					<p>A component library structured to extend across MTG's other titles.</p>
+				</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="section__inner cs-body" data-animate="fade">
+			<div class="cs-block">
+				<p class="eyebrow">Results</p>
+				<h2 class="cs-h2 display">Recognized art direction, finished modernization.</h2>
+			</div>
+			<ul class="cs-awards">
+				<li><span class="cs-awards__mark">★</span><span>2018 Folio OZZIE Honorable Mention, Overall Art Direction (Meatingplace as a brand)</span></li>
+				<li><span class="cs-awards__mark">★</span><span>2018 modernization design-complete and approved for launch</span></li>
+				<li><span class="cs-awards__mark">★</span><span>Largest audience across MTG's 7-brand B2B portfolio</span></li>
+				<li><span class="cs-awards__mark">★</span><span>MTG was acquired before launch; new ownership pursued a separate redesign</span></li>
+			</ul>
 		</div>
 	</section>
 
@@ -47,7 +86,7 @@ import Site from '../../layouts/Site.astro';
 </Site>
 
 <style>
-	.cs-hero { max-width: var(--max); margin: 0 auto; padding: var(--space-2xl) var(--gutter) var(--space-2xl); }
+	.cs-hero { max-width: var(--max); margin: 0 auto; padding: var(--space-2xl) var(--gutter); }
 	.cs-back-top { display: inline-block; margin-bottom: var(--space-lg); color: var(--text-mute); font-size: var(--text-body-sm); }
 	.cs-back-top:hover { color: var(--lime); }
 	.cs-hero__title { margin: var(--space-xs) 0 var(--space-lg); max-width: 16ch; }
@@ -59,15 +98,32 @@ import Site from '../../layouts/Site.astro';
 
 	.cs-figure { max-width: 75%; margin: 0 auto; }
 	.cs-figure img { width: 100%; height: auto; display: block; }
-	@media (max-width: 700px) { .cs-figure { max-width: 100%; } }
 
 	.cs-body { display: grid; gap: var(--space-2xl); max-width: var(--max-narrow); }
-	.cs-block--placeholder { color: var(--text-mute); font-style: italic; }
-	.cs-block p { color: var(--text); font-size: 17px; }
+	.cs-block .eyebrow { margin-bottom: var(--space-sm); }
+	.cs-block__lede { color: var(--text); font-size: 28px; font-weight: 500; margin: 0 0 var(--space-md); letter-spacing: -0.015em; line-height: 1.2; }
+	.cs-block p { color: var(--text); margin: 0; font-size: 17px; line-height: 1.6; }
+	.cs-h2 { max-width: 18ch; margin: 0; }
+
+	.cs-pillars { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+	.cs-pillars li { padding: var(--space-md) 0; border-top: 1px solid var(--rule); }
+	.cs-pillar__title { margin: 0 0 var(--space-sm); }
+	.cs-pillars li p { color: var(--text); font-size: 16px; line-height: 1.55; }
+
+	.cs-awards { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+	.cs-awards li { display: flex; gap: var(--space-md); align-items: center; padding: var(--space-md) 0; border-top: 1px solid var(--rule); font-size: 18px; }
+	.cs-awards li:last-child { border-bottom: 1px solid var(--rule); }
+	.cs-awards__mark { color: var(--lime); font-size: 22px; min-width: 24px; }
 
 	.cs-back { display: flex; gap: var(--space-sm); flex-wrap: wrap; justify-content: space-between; align-items: center; }
 
+	@media (max-width: 880px) {
+		.section--figure { padding: 0 24px; }
+		.cs-figure { max-width: 100%; }
+		.cs-hero__title { font-size: clamp(32px, 9vw, 64px); }
+	}
 	@media (max-width: 700px) {
 		.cs-meta { grid-template-columns: 1fr 1fr; }
+		.cs-pillars { grid-template-columns: 1fr; }
 	}
 </style>
