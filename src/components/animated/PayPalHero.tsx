@@ -170,6 +170,12 @@ const PayPalHero: React.FC<PayPalHeroProps> = ({ className = '' }) => {
           .pp-ring   { transform: translate(-50%, -50%) !important; }
         }
 
+        @media (max-width: 880px) {
+          .pp-stage {
+            transform: scale(0.5);
+            transform-origin: center center;
+          }
+        }
         @media (max-width: 720px) {
           .pp-center { width: 150px; height: 150px; }
         }

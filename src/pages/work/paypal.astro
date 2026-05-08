@@ -4,14 +4,14 @@ import PayPalHero from '../../components/animated/PayPalHero';
 ---
 
 <Site
-	title="PayPal — Merchant Checkout · Steven Vanden Heuvel"
+	title="PayPal · Merchant Checkout · Steven Vanden Heuvel"
 	description="Designer on the PayPal merchant checkout team. Modernizing checkout and raising PayPal's visibility for the world's top merchants."
 >
 	<section class="cs-hero">
 		<div class="cs-hero__inner">
 			<a class="cs-back-top" href="/#work">← Case studies</a>
 			<p class="eyebrow">Case study</p>
-			<h1 class="cs-hero__title display">PayPal —<br />Merchant Checkout</h1>
+			<h1 class="cs-hero__title display">PayPal<br />Merchant Checkout</h1>
 			<p class="cs-hero__lede">Improving the checkout experience and PayPal's visibility to grow TPV for the merchant and PayPal.</p>
 			<dl class="cs-meta">
 				<div><dt>Role</dt><dd>Principal Designer at PayPal</dd></div>
@@ -161,11 +161,10 @@ import PayPalHero from '../../components/animated/PayPalHero';
 		.cs-orbit__art {
 			width: 100%;
 			aspect-ratio: 1 / 1;
-			border: 1px solid #fff;
-			overflow: hidden;
-			overflow: clip;
+			overflow: visible;
 			margin-top: var(--space-md);
 		}
+		.cs-hero__title { font-size: clamp(32px, 9vw, 64px); }
 	}
 
 	@media (max-width: 700px) {

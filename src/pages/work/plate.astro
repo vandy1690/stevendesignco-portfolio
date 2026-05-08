@@ -3,7 +3,7 @@ import Site from '../../layouts/Site.astro';
 ---
 
 <Site
-	title="Plate — Website Redesign · Steven Vanden Heuvel"
+	title="Plate · Website Redesign · Steven Vanden Heuvel"
 	description="Building the go-to digital platform for chefs and foodservice professionals. 2017 Jesse H. Neal Award for Best Website."
 >
 	<section class="cs-hero">
@@ -20,7 +20,7 @@ import Site from '../../layouts/Site.astro';
 		</div>
 	</section>
 
-	<section class="section section--alt">
+	<section class="section section--alt section--figure">
 		<div class="section__inner">
 			<div class="cs-figure" data-animate="fade">
 				<img src="/images/case-studies/plate/plate-hero.jpg" alt="Plate magazine covers and editorial spreads" />
@@ -69,8 +69,8 @@ import Site from '../../layouts/Site.astro';
 				<h2 class="cs-h2 display">Recognized work, real outcomes.</h2>
 			</div>
 			<ul class="cs-awards">
-				<li><span class="cs-awards__mark">★</span><span>Jesse H. Neal Award — Best Website</span></li>
-				<li><span class="cs-awards__mark">★</span><span>Folio OZZIE Honorable Mention — Site Design</span></li>
+				<li><span class="cs-awards__mark">★</span><span>Jesse H. Neal Award for Best Website</span></li>
+				<li><span class="cs-awards__mark">★</span><span>Folio OZZIE Honorable Mention for Site Design</span></li>
 			</ul>
 			<blockquote class="cs-quote">
 				"What made it successful was not just the design. It was understanding how restaurant professionals actually worked and building something that made their jobs easier."
@@ -120,9 +120,13 @@ import Site from '../../layouts/Site.astro';
 
 	.cs-back { display: flex; gap: var(--space-sm); flex-wrap: wrap; justify-content: space-between; align-items: center; }
 
+	@media (max-width: 880px) {
+		.section--figure { padding: 0 24px; }
+		.cs-figure { max-width: 100%; }
+		.cs-hero__title { font-size: clamp(32px, 9vw, 64px); }
+	}
 	@media (max-width: 700px) {
 		.cs-meta { grid-template-columns: 1fr 1fr; }
 		.cs-pillars { grid-template-columns: 1fr; }
-		.cs-figure { max-width: 100%; }
 	}
 </style>
