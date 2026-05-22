@@ -40,8 +40,8 @@ import PayPalHero from '../components/animated/PayPalHero';
 			<p class="eyebrow">Selected Work</p>
 			<h2 class="section__title">Case studies</h2>
 		</div>
-		<div class="marquee" aria-label="Selected work, auto-scrolling">
-			<div class="marquee__track">
+		<div class="section__inner">
+			<div class="work-grid">
 				<a class="card" href="/work/paypal">
 					<div class="card__media card__media--paypal">
 						<img src="/images/case-studies/_logos/paypal-black.svg" alt="PayPal" />
@@ -53,6 +53,17 @@ import PayPalHero from '../components/animated/PayPalHero';
 						<span class="card__cta">Read case study <span class="arrow">→</span></span>
 					</div>
 				</a>
+				<div class="card card--info">
+					<div class="card__media card__media--stat">
+						<span class="card__stat">&lt; 60s</span>
+						<span class="card__stat-label">build time</span>
+					</div>
+					<div class="card__content">
+						<div class="card__role">Design Engineering · PayPal</div>
+						<h3 class="card__title">Merchant Flow Builder</h3>
+						<p class="card__body">Browser brief form and Figma plugin. Per-merchant checkout flow assembly: 30 to 60 minutes to under 60 seconds.</p>
+					</div>
+				</div>
 				<a class="card" href="/work/plate">
 					<div class="card__media card__media--photo" style="background-image:url('/images/case-studies/plate/plate-hero.jpg');" aria-hidden="true"></div>
 					<div class="card__content">
@@ -81,54 +92,6 @@ import PayPalHero from '../components/animated/PayPalHero';
 					</div>
 				</a>
 				<a class="card" href="/work/meatingplace">
-					<div class="card__media card__media--photo" style="background-image:url('/images/case-studies/meatingplace/meatingplace-hero.jpg');" aria-hidden="true"></div>
-					<div class="card__content">
-						<div class="card__role">Creative Director · MTG Media Group</div>
-						<h3 class="card__title">Meatingplace</h3>
-						<p class="card__body">Responsive rebuild of MTG's flagship daily news site for U.S. meat and poultry professionals. Largest audience across MTG's 7-brand portfolio.</p>
-						<span class="card__cta">Read case study <span class="arrow">→</span></span>
-					</div>
-				</a>
-
-				<a class="card" href="/work/paypal" aria-hidden="true" tabindex="-1">
-					<div class="card__media card__media--paypal">
-						<img src="/images/case-studies/_logos/paypal-black.svg" alt="" />
-					</div>
-					<div class="card__content">
-						<div class="card__role">Principal Designer at PayPal</div>
-						<h3 class="card__title">PayPal: Merchant Checkout</h3>
-						<p class="card__body">Improving the checkout experience and PayPal's visibility to grow TPV for the merchant and PayPal.</p>
-						<span class="card__cta">Read case study <span class="arrow">→</span></span>
-					</div>
-				</a>
-				<a class="card" href="/work/plate" aria-hidden="true" tabindex="-1">
-					<div class="card__media card__media--photo" style="background-image:url('/images/case-studies/plate/plate-hero.jpg');" aria-hidden="true"></div>
-					<div class="card__content">
-						<div class="card__role">Creative Director · MTG Media Group</div>
-						<h3 class="card__title">Plate: Website Redesign</h3>
-						<p class="card__body">Building the digital platform for chefs and foodservice professionals. Won the 2017 Jesse H. Neal Award for Best Website.</p>
-						<span class="card__cta">Read case study <span class="arrow">→</span></span>
-					</div>
-				</a>
-				<a class="card" href="/work/blackbird" aria-hidden="true" tabindex="-1">
-					<div class="card__media card__media--photo" style="background-image:url('/images/case-studies/blackbird/blackbird-hero.jpg');" aria-hidden="true"></div>
-					<div class="card__content">
-						<div class="card__role">Creative Director / Design Lead · MTG Media Group</div>
-						<h3 class="card__title">Project Blackbird</h3>
-						<p class="card__body">An interactive oral history of the restaurant that transformed Chicago's dining. Grand Jesse H. Neal Finalist, top 4 nationally.</p>
-						<span class="card__cta">Read case study <span class="arrow">→</span></span>
-					</div>
-				</a>
-				<a class="card" href="/work/alt-meat" aria-hidden="true" tabindex="-1">
-					<div class="card__media card__media--photo" style="background-image:url('/images/case-studies/alt-meat/alt-meat-hero.jpg');" aria-hidden="true"></div>
-					<div class="card__content">
-						<div class="card__role">Creative Director · MTG Media Group</div>
-						<h3 class="card__title">Alt-Meat</h3>
-						<p class="card__body">Brand identity, magazine, and responsive news site for MTG's alternative protein property. Designed in under 90 days.</p>
-						<span class="card__cta">Read case study <span class="arrow">→</span></span>
-					</div>
-				</a>
-				<a class="card" href="/work/meatingplace" aria-hidden="true" tabindex="-1">
 					<div class="card__media card__media--photo" style="background-image:url('/images/case-studies/meatingplace/meatingplace-hero.jpg');" aria-hidden="true"></div>
 					<div class="card__content">
 						<div class="card__role">Creative Director · MTG Media Group</div>
@@ -227,33 +190,16 @@ import PayPalHero from '../components/animated/PayPalHero';
 
 	.about { display: grid; gap: 8px; }
 
-	.marquee {
-		position: relative;
-		overflow-x: auto;
-		overflow-y: hidden;
-		margin-inline: calc(-1 * var(--gutter));
-		mask-image: linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%);
-		-webkit-mask-image: linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%);
-		scrollbar-width: none;
-		-ms-overflow-style: none;
-		-webkit-overflow-scrolling: touch;
-		cursor: grab;
+	.work-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 24px;
 	}
-	.marquee:active { cursor: grabbing; }
-	.marquee::-webkit-scrollbar { display: none; }
-	.marquee__track {
-		display: flex;
-		width: max-content;
+	@media (max-width: 1024px) {
+		.work-grid { grid-template-columns: repeat(2, 1fr); }
 	}
-	.marquee .card {
-		flex: 0 0 360px;
-		margin-right: 20px;
-	}
-	@media (prefers-reduced-motion: reduce) {
-		.marquee { mask-image: none; -webkit-mask-image: none; }
-	}
-	@media (max-width: 600px) {
-		.marquee .card { flex: 0 0 280px; margin-right: 16px; }
+	@media (max-width: 720px) {
+		.work-grid { grid-template-columns: 1fr; gap: 20px; }
 	}
 	.card {
 		background: var(--surface);
@@ -285,6 +231,37 @@ import PayPalHero from '../components/animated/PayPalHero';
 	}
 	.card__media--paypal { background-color: #60cdff; }
 	.card__media--paypal img { width: 56%; max-width: 200px; }
+	.card__media--stat {
+		background-color: var(--bg);
+		flex-direction: column;
+		gap: 8px;
+		color: var(--lime);
+	}
+	.card__stat {
+		font-family: var(--font-display);
+		font-weight: 400;
+		font-style: normal;
+		font-variation-settings: "wght" 400, "slnt" 0, "ital" 0;
+		font-synthesis: none;
+		font-size: clamp(56px, 8vw, 88px);
+		line-height: 1;
+		letter-spacing: normal;
+		color: var(--lime);
+	}
+	.card__stat-label {
+		font-family: var(--font-body);
+		font-size: 11px;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+		color: var(--text-mute);
+		font-weight: 600;
+	}
+	.card--info { cursor: default; }
+	.card--info:hover {
+		transform: none;
+		border-color: var(--rule);
+		background: var(--surface);
+	}
 	.card__media--photo::after {
 		content: "";
 		position: absolute;
@@ -376,7 +353,6 @@ import PayPalHero from '../components/animated/PayPalHero';
 
 	@media (max-width: 880px) {
 		.hero { grid-template-columns: 1fr; padding-top: 48px; gap: 32px; min-height: 0; }
-		.marquee { cursor: auto; }
 		.hero__art {
 			order: -1;
 			width: 100%;
@@ -389,89 +365,3 @@ import PayPalHero from '../components/animated/PayPalHero';
 		.contact__list li { grid-template-columns: 1fr; gap: 6px; padding: 18px 0; font-size: 17px; }
 	}
 </style>
-
-<script>
-	const marquee = document.querySelector<HTMLElement>('#work .marquee');
-	if (marquee) {
-		const SPEED = 40; // px per second
-		const PAUSE_MS = 2200;
-		const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-		let pausedUntil = reduced ? Infinity : 0;
-		let last = performance.now();
-		let halfWidth = 0;
-
-		const measure = () => { halfWidth = marquee.scrollWidth / 2; };
-		measure();
-		new ResizeObserver(measure).observe(marquee);
-		window.addEventListener('load', measure);
-		if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
-		marquee.querySelectorAll('img').forEach((img) => {
-			if (!img.complete) img.addEventListener('load', measure, { once: true });
-		});
-
-		const isPaused = () => performance.now() < pausedUntil || marquee.matches(':hover');
-		const bumpPause = () => { pausedUntil = performance.now() + PAUSE_MS; };
-
-		marquee.addEventListener('wheel', bumpPause, { passive: true });
-		marquee.addEventListener('touchstart', bumpPause, { passive: true });
-		marquee.addEventListener('keydown', bumpPause);
-
-		// Drag-to-scroll on desktop (mouse only; touch scrolls natively).
-		// Don't capture the pointer or treat anything as a drag until the mouse
-		// has moved past a small threshold; clicks on cards still navigate.
-		const DRAG_THRESHOLD = 5;
-		let downX = 0;
-		let downScroll = 0;
-		let isDown = false;
-		let isDrag = false;
-
-		marquee.addEventListener('pointerdown', (e) => {
-			bumpPause();
-			if (e.pointerType !== 'mouse') return;
-			isDown = true;
-			isDrag = false;
-			downX = e.clientX;
-			downScroll = marquee.scrollLeft;
-		});
-		marquee.addEventListener('pointermove', (e) => {
-			if (!isDown) return;
-			const delta = e.clientX - downX;
-			if (!isDrag && Math.abs(delta) > DRAG_THRESHOLD) isDrag = true;
-			if (isDrag) {
-				marquee.scrollLeft = downScroll - delta;
-				bumpPause();
-			}
-		});
-		const endDown = () => { isDown = false; };
-		marquee.addEventListener('pointerup', endDown);
-		marquee.addEventListener('pointercancel', endDown);
-
-		// Suppress the synthetic click that follows a drag (otherwise the card
-		// under the mouse navigates after a scroll-drag).
-		marquee.addEventListener('click', (e) => {
-			if (isDrag) {
-				e.preventDefault();
-				e.stopPropagation();
-				isDrag = false;
-			}
-		}, true);
-
-		const step = (now: number) => {
-			const dt = now - last;
-			last = now;
-			if (halfWidth === 0) measure();
-			if (halfWidth > 0) {
-				if (!isPaused()) {
-					let next = marquee.scrollLeft + (dt / 1000) * SPEED;
-					if (next >= halfWidth) next -= halfWidth;
-					marquee.scrollLeft = next;
-				} else {
-					if (marquee.scrollLeft >= halfWidth) marquee.scrollLeft -= halfWidth;
-					else if (marquee.scrollLeft < 0) marquee.scrollLeft += halfWidth;
-				}
-			}
-			requestAnimationFrame(step);
-		};
-		requestAnimationFrame(step);
-	}
-</script>
