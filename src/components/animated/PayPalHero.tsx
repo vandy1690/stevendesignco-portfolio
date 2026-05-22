@@ -14,7 +14,7 @@ const RINGS: Ring[] = [
     chipSize: 96,
     duration: '44s',
     direction: 'normal',
-    merchants: ['Aliexpress', 'BestBuy', 'Canva', 'Chewy', 'DisneyPlus', 'Fanduel'],
+    merchants: ['Alibaba', 'Aliexpress', 'BestBuy', 'Canva', 'Chewy', 'DisneyPlus', 'Fanduel'],
   },
   {
     radius: 240,
