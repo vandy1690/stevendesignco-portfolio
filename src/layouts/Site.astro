@@ -22,6 +22,8 @@ const isHome = path === '/';
 const SITE_URL = 'https://www.stevendesignco.com';
 const ogImage = `${SITE_URL}/og-image.png`;
 const canonical = `${SITE_URL}${path}`;
+const GA_ID = 'G-RCWC0PX4G9';
+const enableGA = import.meta.env.PROD;
 ---
 
 <html lang="en">
@@ -49,6 +51,17 @@ const canonical = `${SITE_URL}${path}`;
 		<meta name="twitter:title" content={title} />
 		{description && <meta name="twitter:description" content={description} />}
 		<meta name="twitter:image" content={ogImage} />
+		{enableGA && (
+			<>
+				<script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+				<script is:inline define:vars={{ GA_ID }}>
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+					gtag('config', GA_ID);
+				</script>
+			</>
+		)}
 	</head>
 	<body>
 		<header class="site-header">
