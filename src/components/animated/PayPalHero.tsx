@@ -69,12 +69,19 @@ const PayPalHero: React.FC<PayPalHeroProps> = ({ className = '' }) => {
           justify-content: center;
           z-index: 5;
           animation: pp-breath 6s ease-in-out infinite alternate;
-          filter: drop-shadow(0 24px 48px rgba(204, 255, 0, 0.18));
+          filter: drop-shadow(0 24px 48px var(--lime-glow, rgba(204, 255, 0, 0.18)));
         }
         .pp-center img {
           width: 100%;
           height: auto;
         }
+        /* Light mode: PayPal logo black, no glow */
+        @media (prefers-color-scheme: light) {
+          :root:not([data-theme="dark"]) .pp-center { filter: none; }
+          :root:not([data-theme="dark"]) .pp-center img { filter: brightness(0); }
+        }
+        :root[data-theme="light"] .pp-center { filter: none; }
+        :root[data-theme="light"] .pp-center img { filter: brightness(0); }
         .pp-ring {
           position: absolute;
           left: 50%;
