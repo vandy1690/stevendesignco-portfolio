@@ -231,6 +231,10 @@ import PayPalHero from '../components/animated/PayPalHero';
 	}
 	.card__media--paypal { background-color: #60cdff; }
 	.card__media--paypal img { width: 56%; max-width: 200px; }
+	@media (prefers-color-scheme: light) {
+		:root:not([data-theme="dark"]) .card__media--paypal { background-color: #ffffff; }
+	}
+	:root[data-theme="light"] .card__media--paypal { background-color: #ffffff; }
 	.card__media--stat {
 		background-color: var(--bg);
 		flex-direction: column;
