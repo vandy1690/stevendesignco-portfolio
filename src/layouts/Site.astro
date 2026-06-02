@@ -34,7 +34,18 @@ const enableGA = import.meta.env.PROD;
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="theme-color" content="#000000" />
+		<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+		<script is:inline>
+			(() => {
+				try {
+					const stored = localStorage.getItem('theme');
+					if (stored === 'light' || stored === 'dark') {
+						document.documentElement.dataset.theme = stored;
+					}
+				} catch (e) {}
+			})();
+		</script>
 		{ADOBE_KIT_ID && <link rel="stylesheet" href={`https://use.typekit.net/${ADOBE_KIT_ID}.css`} />}
 		<title>{title}</title>
 		{description && <meta name="description" content={description} />}
@@ -87,6 +98,11 @@ const enableGA = import.meta.env.PROD;
 			<a href={isHome ? '#contact' : '/#contact'}>Contact</a>
 			<a href="/resume.pdf">Resume</a>
 		</nav>
+
+		<button class="theme-toggle theme-toggle--float" type="button" aria-label="Switch theme" title="Switch theme">
+			<svg class="theme-toggle__sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+			<svg class="theme-toggle__moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+		</button>
 
 		<main>
 			<slot />
@@ -155,13 +171,29 @@ const enableGA = import.meta.env.PROD;
 				a.href = 'mailto:' + email;
 				a.textContent = email;
 			});
+
+			// Theme toggle: cycles dark <-> light, persisted to localStorage.
+			// The pre-paint inline script in <head> applies the saved value before render.
+			const themeToggles = document.querySelectorAll<HTMLButtonElement>('.theme-toggle');
+			const getActiveTheme = (): 'light' | 'dark' => {
+				const explicit = document.documentElement.dataset.theme;
+				if (explicit === 'light' || explicit === 'dark') return explicit;
+				return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+			};
+			themeToggles.forEach((btn) => {
+				btn.addEventListener('click', () => {
+					const next = getActiveTheme() === 'dark' ? 'light' : 'dark';
+					document.documentElement.dataset.theme = next;
+					try { localStorage.setItem('theme', next); } catch (e) {}
+				});
+			});
 		</script>
 
 		<style is:global>
 			:root {
-				color-scheme: dark;
+				color-scheme: light dark;
 
-				/* color tokens (from SDC-Design-Tokens > Color Tokens) */
+				/* color tokens — dark theme (default) */
 				--bg: #000000;            /* color/background */
 				--surface: #111111;       /* color/surface */
 				--surface-2: #1a1a1a;     /* derived */
@@ -171,7 +203,9 @@ const enableGA = import.meta.env.PROD;
 				--rule-soft: rgba(255, 255, 255, 0.10);
 				--lime: #CCFF00;          /* color/primary + accent */
 				--lime-text: #000000;     /* color/accent-text */
+				--lime-hover: #d8ff33;    /* derived hover state */
 				--lime-glow: rgba(204, 255, 0, 0.20);
+				--header-bg: rgba(0, 0, 0, 0.78);
 
 				/* layout tokens (from Layout Tokens) */
 				--max: 1280px;            /* layout/content-width */
@@ -204,6 +238,41 @@ const enableGA = import.meta.env.PROD;
 				--text-nav: 15px;                           /* navigation */
 				--text-body-sm: 14px;                       /* captions */
 				--text-label: 11px;                         /* tags, metadata */
+			}
+
+			/* Light theme: applied when system requests light AND user has not
+			   explicitly chosen dark, OR when user has explicitly chosen light. */
+			@media (prefers-color-scheme: light) {
+				:root:not([data-theme="dark"]) {
+					color-scheme: light;
+					--bg: #ffffff;
+					--surface: #f5f5f5;
+					--surface-2: #e8e8e8;
+					--text: #000000;
+					--text-mute: #666666;
+					--rule: rgba(0, 0, 0, 0.20);
+					--rule-soft: rgba(0, 0, 0, 0.10);
+					--lime: #000000;
+					--lime-text: #ffffff;
+					--lime-hover: #2a2a2a;
+					--lime-glow: rgba(0, 0, 0, 0.20);
+					--header-bg: rgba(255, 255, 255, 0.78);
+				}
+			}
+			:root[data-theme="light"] {
+				color-scheme: light;
+				--bg: #ffffff;
+				--surface: #f5f5f5;
+				--surface-2: #e8e8e8;
+				--text: #000000;
+				--text-mute: #666666;
+				--rule: rgba(0, 0, 0, 0.20);
+				--rule-soft: rgba(0, 0, 0, 0.10);
+				--lime: #000000;
+				--lime-text: #CCFF00;
+				--lime-hover: #2a2a2a;
+				--lime-glow: rgba(0, 0, 0, 0.20);
+				--header-bg: rgba(255, 255, 255, 0.78);
 			}
 			* { box-sizing: border-box; }
 			html, body { margin: 0; padding: 0; }
@@ -269,7 +338,7 @@ const enableGA = import.meta.env.PROD;
 				justify-content: space-between;
 				height: var(--nav-h);
 				padding: 0 var(--gutter);
-				background: rgba(0, 0, 0, 0.78);
+				background: var(--header-bg);
 				-webkit-backdrop-filter: saturate(180%) blur(14px);
 				backdrop-filter: saturate(180%) blur(14px);
 				border-bottom: 1px solid var(--rule-soft);
@@ -285,6 +354,11 @@ const enableGA = import.meta.env.PROD;
 			}
 			.brand:hover { color: var(--text); }
 			.brand__mark { display: block; height: 24px; width: auto; }
+			/* SDC mark SVG has hardcoded lime fills — invert to black in light mode */
+			@media (prefers-color-scheme: light) {
+				:root:not([data-theme="dark"]) .brand img { filter: brightness(0); }
+			}
+			:root[data-theme="light"] .brand img { filter: brightness(0); }
 			.nav { display: flex; align-items: center; gap: var(--space-lg); }
 			.nav a {
 				color: var(--text);
@@ -303,6 +377,49 @@ const enableGA = import.meta.env.PROD;
 				transition: background 0.14s ease, border-color 0.14s ease, color 0.14s ease;
 			}
 			.nav__cta:hover { background: var(--lime); color: var(--lime-text) !important; border-color: var(--lime); }
+
+			/* Theme toggle (sun/moon) — floating in bottom-right corner */
+			.theme-toggle {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				background: var(--bg);
+				border: 1px solid var(--rule);
+				border-radius: 999px;
+				color: var(--text);
+				cursor: pointer;
+				padding: 0;
+				transition: border-color 0.14s ease, color 0.14s ease, background 0.14s ease, transform 0.12s ease;
+			}
+			.theme-toggle:hover { border-color: var(--text); color: var(--text); transform: translateY(-1px); }
+			.theme-toggle__sun, .theme-toggle__moon { display: block; }
+			.theme-toggle__label { display: none; }
+
+			.theme-toggle--float {
+				position: fixed;
+				right: 20px;
+				bottom: 20px;
+				z-index: 40;
+				width: 48px;
+				height: 48px;
+				box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+				-webkit-backdrop-filter: blur(8px);
+				backdrop-filter: blur(8px);
+			}
+			@media (max-width: 600px) {
+				.theme-toggle--float { right: 16px; bottom: 16px; width: 44px; height: 44px; }
+			}
+			/* Dark theme: show sun icon (click → switch to light) */
+			.theme-toggle__moon { display: none; }
+			/* Light theme: show moon icon (click → switch to dark) */
+			@media (prefers-color-scheme: light) {
+				:root:not([data-theme="dark"]) .theme-toggle__sun { display: none; }
+				:root:not([data-theme="dark"]) .theme-toggle__moon { display: block; }
+			}
+			:root[data-theme="light"] .theme-toggle__sun { display: none; }
+			:root[data-theme="light"] .theme-toggle__moon { display: block; }
+			:root[data-theme="dark"] .theme-toggle__sun { display: block; }
+			:root[data-theme="dark"] .theme-toggle__moon { display: none; }
 
 			/* Hamburger toggle (mobile) */
 			.nav-toggle {
@@ -372,6 +489,19 @@ const enableGA = import.meta.env.PROD;
 			.section { padding: var(--space-2xl) var(--gutter); }
 			.section--alt { background: var(--bg); }
 
+			/* Theme-aware image swap: pair a .theme-img--dark with .theme-img--light,
+			   the browser will paint whichever matches the active theme.
+			   !important is used so these win over scoped page styles that target img. */
+			.theme-img--light { display: none !important; }
+			@media (prefers-color-scheme: light) {
+				:root:not([data-theme="dark"]) .theme-img--dark { display: none !important; }
+				:root:not([data-theme="dark"]) .theme-img--light { display: block !important; }
+			}
+			:root[data-theme="light"] .theme-img--dark { display: none !important; }
+			:root[data-theme="light"] .theme-img--light { display: block !important; }
+			:root[data-theme="dark"] .theme-img--dark { display: block !important; }
+			:root[data-theme="dark"] .theme-img--light { display: none !important; }
+
 			/* Fade-in on scroll, observed via tiny script at end of body */
 			[data-animate="fade"] {
 				opacity: 0;
@@ -412,8 +542,8 @@ const enableGA = import.meta.env.PROD;
 			.btn:hover { border-color: var(--text); transform: translateY(-1px); }
 			.btn--primary { background: var(--lime); color: var(--lime-text); border-color: var(--lime); }
 			.btn--primary:hover {
-				background: #d8ff33;
-				border-color: #d8ff33;
+				background: var(--lime-hover);
+				border-color: var(--lime-hover);
 				color: var(--lime-text);
 				box-shadow: 0 14px 40px -10px var(--lime-glow);
 			}
