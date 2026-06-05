@@ -15,7 +15,7 @@ import Site from '../../layouts/Site.astro';
 			<dl class="cs-meta">
 				<div><dt>Role</dt><dd>Creative Director</dd></div>
 				<div><dt>Org</dt><dd>MTG Media Group</dd></div>
-				<div><dt>Recognition</dt><dd>Highest-traffic site in MTG's portfolio</dd></div>
+				<div><dt>Recognition</dt><dd>2018 Folio OZZIE Honorable Mention, Overall Art Direction</dd></div>
 			</dl>
 		</div>
 	</section>
@@ -63,9 +63,13 @@ import Site from '../../layouts/Site.astro';
 		<div class="section__inner cs-body" data-animate="fade">
 			<div class="cs-block">
 				<p class="eyebrow">What changed</p>
-				<p class="cs-block__lede">The portfolio's highest-traffic site moved to a modern, responsive experience.</p>
-				<p>The 2007 build gave way to a daily-news product built for the devices its readers actually used.</p>
+				<p class="cs-block__lede">A finished, recognized rebuild that did not ship under MTG.</p>
 			</div>
+			<ul class="cs-awards">
+				<li><span class="cs-awards__mark">★</span><span>2018 Folio OZZIE Honorable Mention, Overall Art Direction</span></li>
+				<li><span class="cs-awards__mark">★</span><span>Modernization design-complete and approved for launch</span></li>
+				<li><span class="cs-awards__mark">◆</span><span>MTG was acquired before launch, and new ownership pursued a separate redesign</span></li>
+			</ul>
 		</div>
 	</section>
 
@@ -92,10 +96,16 @@ import Site from '../../layouts/Site.astro';
 	.cs-figure img { width: 100%; height: auto; display: block; }
 
 	.cs-body { display: grid; gap: var(--space-2xl); max-width: var(--max-narrow); }
-	.cs-block .eyebrow { margin-bottom: var(--space-sm); }
-	.cs-block__lede { color: var(--text); font-size: 28px; font-weight: 500; margin: 0 0 var(--space-md); letter-spacing: -0.015em; line-height: 1.2; }
-	.cs-block p { color: var(--text); margin: 0; font-size: 17px; line-height: 1.6; }
+	/* Hierarchy: eyebrow + subhead group as the headline, body is support. */
+	.cs-block .eyebrow { margin-bottom: var(--space-xs); }
+	.cs-block__lede { color: var(--text); font-size: clamp(24px, 2.5vw, 32px); font-weight: 600; margin: 0 0 var(--space-lg); letter-spacing: -0.015em; line-height: 1.25; }
+	.cs-block p { color: #5A6565; margin: 0; font-size: 16px; line-height: 1.65; }
 	.cs-block p + p { margin-top: var(--space-sm); }
+
+	.cs-awards { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+	.cs-awards li { display: flex; gap: var(--space-md); align-items: center; padding: var(--space-md) 0; border-top: 1px solid var(--rule); font-size: 18px; }
+	.cs-awards li:last-child { border-bottom: 1px solid var(--rule); }
+	.cs-awards__mark { color: var(--lime); font-size: 22px; min-width: 24px; }
 
 	.cs-back { display: flex; gap: var(--space-sm); flex-wrap: wrap; justify-content: space-between; align-items: center; }
 
