@@ -4,7 +4,7 @@ import Site from '../../layouts/Site.astro';
 
 <Site
 	title="Alt-Meat: Launching a Brand and Platform in Under 90 Days · Steven Vanden Heuvel"
-	description="As Creative Director at MTG, I built the brand, magazine, and responsive news site for Alt-Meat as one system, in under 90 days, aimed at the growing alternative protein market."
+	description="As Creative Director at MTG, I built the brand, magazine, enewsletters, and responsive news site for Alt-Meat as one system, in under 90 days, aimed at the growing alternative protein market."
 >
 	<section class="cs-hero">
 		<div class="cs-hero__inner">
@@ -43,8 +43,8 @@ import Site from '../../layouts/Site.astro';
 		<div class="section__inner cs-body" data-animate="fade">
 			<div class="cs-block">
 				<p class="eyebrow">What I led</p>
-				<p class="cs-block__lede">Brand, magazine, and site as one system, in under 90 days.</p>
-				<p>I built the brand identity, the magazine, and a responsive news site as one system, in under 90 days. The visual language tied the three together so the new title read as a peer to MTG's other properties.</p>
+				<p class="cs-block__lede">Brand, magazine, enewsletters, and site as one system, in under 90 days.</p>
+				<p>I built the brand identity, the magazine, the enewsletters, and a responsive news site as one system, in under 90 days. The visual language tied them together so the new title read as a peer to MTG's other properties.</p>
 			</div>
 		</div>
 	</section>
@@ -66,7 +66,7 @@ import Site from '../../layouts/Site.astro';
 				<p class="cs-block__lede">MTG launched a new property on a tight timeline, aimed at a growing audience.</p>
 			</div>
 			<ul class="cs-awards">
-				<li><span class="cs-awards__mark">★</span><span>Brand, magazine, and responsive site shipped together</span></li>
+				<li><span class="cs-awards__mark">★</span><span>Brand, magazine, enewsletters, and responsive site shipped together</span></li>
 				<li><span class="cs-awards__mark">★</span><span>Built in under 90 days, from a standing start</span></li>
 			</ul>
 		</div>
@@ -95,9 +95,10 @@ import Site from '../../layouts/Site.astro';
 	.cs-figure img { width: 100%; height: auto; display: block; }
 
 	.cs-body { display: grid; gap: var(--space-2xl); max-width: var(--max-narrow); }
-	.cs-block .eyebrow { margin-bottom: var(--space-sm); }
-	.cs-block__lede { color: var(--text); font-size: 28px; font-weight: 500; margin: 0 0 var(--space-md); letter-spacing: -0.015em; line-height: 1.2; }
-	.cs-block p { color: var(--text); margin: 0; font-size: 17px; line-height: 1.6; }
+	/* Hierarchy: eyebrow + subhead group as the headline, body is support. */
+	.cs-block .eyebrow { margin-bottom: var(--space-xs); }
+	.cs-block__lede { color: var(--text); font-size: clamp(24px, 2.5vw, 32px); font-weight: 600; margin: 0 0 var(--space-lg); letter-spacing: -0.015em; line-height: 1.25; }
+	.cs-block p { color: #5A6565; margin: 0; font-size: 16px; line-height: 1.65; }
 	.cs-block p + p { margin-top: var(--space-sm); }
 
 	.cs-awards { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }

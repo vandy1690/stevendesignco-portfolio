@@ -4,14 +4,14 @@ import PayPalHero from '../../components/animated/PayPalHero';
 ---
 
 <Site
-	title="PayPal: Making PayPal the Default at Checkout · Steven Vanden Heuvel"
+	title="PayPal: Becoming the Default at Checkout · Steven Vanden Heuvel"
 	description="On PayPal's Merchant Enablement team, I helped make PayPal more prominent and more consistent at checkout for top merchants, on weekly sprint cycles."
 >
 	<section class="cs-hero">
 		<div class="cs-hero__inner">
 			<a class="cs-back-top" href="/#work">← Case studies</a>
 			<p class="eyebrow">Case study</p>
-			<h1 class="cs-hero__title display">PayPal: Making PayPal the Default at Checkout</h1>
+			<h1 class="cs-hero__title display">PayPal: Becoming the Default at Checkout</h1>
 			<p class="cs-hero__lede">PayPal's prominence at checkout varied from merchant to merchant. The work was to make it consistent, and to make PayPal the obvious way to pay.</p>
 			<dl class="cs-meta">
 				<div><dt>Role</dt><dd>Principal Designer · PayPal</dd></div>
@@ -102,9 +102,10 @@ import PayPalHero from '../../components/animated/PayPalHero';
 	.cs-h2 { max-width: 22ch; margin: 0 0 var(--space-sm); }
 
 	.cs-body { display: grid; gap: var(--space-2xl); max-width: var(--max-narrow); }
-	.cs-block .eyebrow { margin-bottom: var(--space-sm); }
-	.cs-block__lede { color: var(--text); font-size: 28px; font-weight: 500; margin: 0 0 var(--space-md); letter-spacing: -0.015em; line-height: 1.2; }
-	.cs-block p { color: var(--text); margin: 0; font-size: 17px; line-height: 1.6; }
+	/* Hierarchy: eyebrow + subhead group as the headline, body is support. */
+	.cs-block .eyebrow { margin-bottom: var(--space-xs); }
+	.cs-block__lede { color: var(--text); font-size: clamp(24px, 2.5vw, 32px); font-weight: 600; margin: 0 0 var(--space-lg); letter-spacing: -0.015em; line-height: 1.25; }
+	.cs-block p { color: #5A6565; margin: 0; font-size: 16px; line-height: 1.65; }
 	.cs-block p + p { margin-top: var(--space-sm); }
 
 	.cs-stats { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); }
