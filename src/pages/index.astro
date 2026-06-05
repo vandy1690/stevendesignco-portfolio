@@ -10,7 +10,7 @@ import PayPalHero from '../components/animated/PayPalHero';
 	<section class="hero">
 		<div class="hero__copy">
 			<p class="eyebrow">Principal Designer at PayPal</p>
-			<h1 class="hero__title display">Steven<br />Vanden Heuvel</h1>
+			<h1 class="hero__title display">Steven<br class="hero__title-br" />Vanden Heuvel</h1>
 			<p class="hero__sub">Principal Designer at PayPal. Designing checkout and payment experiences for top global merchants.</p>
 			<p class="hero__tagline">Payments. Design systems. B2B product.</p>
 			<div class="cta-row">
@@ -103,7 +103,7 @@ import PayPalHero from '../components/animated/PayPalHero';
 						<span class="card__stat-label">build time</span>
 					</div>
 					<div class="card__content">
-						<div class="card__role">Design Engineering · PayPal</div>
+						<div class="card__role">Principal Designer · PayPal</div>
 						<h3 class="card__title">Merchant Flow Builder</h3>
 						<p class="card__body">Browser brief form and Figma plugin. Per-merchant checkout flow assembly: 30 to 60 minutes to under 60 seconds.</p>
 					</div>
@@ -169,7 +169,17 @@ import PayPalHero from '../components/animated/PayPalHero';
 		min-height: calc(100vh - 80px);
 		overflow: visible;
 	}
-	.hero__title { margin-bottom: 28px; letter-spacing: -0.03em; }
+	/* min-width:0 lets the copy column shrink so its text wraps instead of
+	   overflowing the viewport on small screens. */
+	.hero__copy { min-width: 0; }
+	/* Two-line stack everywhere: "Steven" / "Vanden Heuvel". This display face is
+	   wide, so the size is capped so "Vanden Heuvel" stays on one line in the hero
+	   copy column and never breaks to a third line. The phone size is in the 880 block. */
+	.hero__title {
+		font-size: clamp(32px, 4vw, 52px);
+		margin-bottom: 28px;
+		letter-spacing: -0.03em;
+	}
 	.hero__sub {
 		font-size: clamp(20px, 1.8vw, 26px);
 		color: var(--text);
@@ -381,6 +391,9 @@ import PayPalHero from '../components/animated/PayPalHero';
 
 	@media (max-width: 880px) {
 		.hero { grid-template-columns: 1fr; padding-top: 48px; gap: 32px; min-height: 0; }
+		/* Phones and tablets: same two-line stack, but the copy spans the full
+		   width, so the cap keeps "Vanden Heuvel" on one line down to 360px. */
+		.hero__title { font-size: clamp(24px, 7.5vw, 56px); }
 		.hero__art {
 			order: -1;
 			width: 100%;
