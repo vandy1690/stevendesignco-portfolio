@@ -141,6 +141,13 @@ const PayPalHero: React.FC<PayPalHeroProps> = ({ className = '' }) => {
         .pp-chip__inner--nintendo   { background: #E60012; padding: 8%; }
         /* Microsoft mark fills the chip more aggressively */
         .pp-chip__inner--microsoftsurface { padding: 22%; }
+        /* Spotify: the asset is a green circle with black waves, so drop the
+           white chip and padding and let the green fill to the edge */
+        .pp-chip__inner--spotify {
+          background: transparent;
+          box-shadow: none;
+          padding: 0;
+        }
 
         @keyframes pp-breath {
           from { transform: translate(-50%, -50%) scale(1); }
