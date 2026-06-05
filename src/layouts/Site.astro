@@ -26,7 +26,7 @@ const GA_ID = 'G-RCWC0PX4G9';
 const enableGA = import.meta.env.PROD;
 ---
 
-<html lang="en">
+<html lang="en" data-theme="light">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -34,18 +34,7 @@ const enableGA = import.meta.env.PROD;
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
-		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-		<script is:inline>
-			(() => {
-				try {
-					const stored = localStorage.getItem('theme');
-					if (stored === 'light' || stored === 'dark') {
-						document.documentElement.dataset.theme = stored;
-					}
-				} catch (e) {}
-			})();
-		</script>
+		<meta name="theme-color" content="#F0EEE9" />
 		{ADOBE_KIT_ID && <link rel="stylesheet" href={`https://use.typekit.net/${ADOBE_KIT_ID}.css`} />}
 		<title>{title}</title>
 		{description && <meta name="description" content={description} />}
@@ -98,11 +87,6 @@ const enableGA = import.meta.env.PROD;
 			<a href={isHome ? '#contact' : '/#contact'}>Contact</a>
 			<a href="/resume.pdf">Resume</a>
 		</nav>
-
-		<button class="theme-toggle theme-toggle--float" type="button" aria-label="Switch theme" title="Switch theme">
-			<svg class="theme-toggle__sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-			<svg class="theme-toggle__moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-		</button>
 
 		<main>
 			<slot />
@@ -171,22 +155,6 @@ const enableGA = import.meta.env.PROD;
 				a.href = 'mailto:' + email;
 				a.textContent = email;
 			});
-
-			// Theme toggle: cycles dark <-> light, persisted to localStorage.
-			// The pre-paint inline script in <head> applies the saved value before render.
-			const themeToggles = document.querySelectorAll<HTMLButtonElement>('.theme-toggle');
-			const getActiveTheme = (): 'light' | 'dark' => {
-				const explicit = document.documentElement.dataset.theme;
-				if (explicit === 'light' || explicit === 'dark') return explicit;
-				return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-			};
-			themeToggles.forEach((btn) => {
-				btn.addEventListener('click', () => {
-					const next = getActiveTheme() === 'dark' ? 'light' : 'dark';
-					document.documentElement.dataset.theme = next;
-					try { localStorage.setItem('theme', next); } catch (e) {}
-				});
-			});
 		</script>
 
 		<style is:global>
@@ -242,37 +210,40 @@ const enableGA = import.meta.env.PROD;
 
 			/* Light theme: applied when system requests light AND user has not
 			   explicitly chosen dark, OR when user has explicitly chosen light. */
+			/* Light theme: Atmospheric palette (Pantone candidate, June 2026).
+			   Warm Cloud Dancer paper, charcoal body text, Regatta blue as the
+			   single accent. Dusky Citron #E2C56E is the optional warm pop. */
 			@media (prefers-color-scheme: light) {
 				:root:not([data-theme="dark"]) {
 					color-scheme: light;
-					--bg: #ffffff;
-					--surface: #f5f5f5;
-					--surface-2: #e8e8e8;
-					--text: #000000;
-					--text-mute: #666666;
-					--rule: rgba(0, 0, 0, 0.20);
-					--rule-soft: rgba(0, 0, 0, 0.10);
-					--lime: #000000;
+					--bg: #F0EEE9;                       /* Cloud Dancer */
+					--surface: #E4E1DA;                  /* warm card, derived */
+					--surface-2: #D8D4CB;                /* hover */
+					--text: #2D3436;                     /* charcoal body */
+					--text-mute: #6E7574;                /* muted charcoal */
+					--rule: rgba(45, 52, 54, 0.20);
+					--rule-soft: rgba(45, 52, 54, 0.10);
+					--lime: #4A6FA8;                     /* Regatta, accent */
 					--lime-text: #ffffff;
-					--lime-hover: #2a2a2a;
-					--lime-glow: rgba(0, 0, 0, 0.20);
-					--header-bg: rgba(255, 255, 255, 0.78);
+					--lime-hover: #3D5C8C;
+					--lime-glow: rgba(74, 111, 168, 0.22);
+					--header-bg: rgba(240, 238, 233, 0.82);
 				}
 			}
 			:root[data-theme="light"] {
 				color-scheme: light;
-				--bg: #ffffff;
-				--surface: #f5f5f5;
-				--surface-2: #e8e8e8;
-				--text: #000000;
-				--text-mute: #666666;
-				--rule: rgba(0, 0, 0, 0.20);
-				--rule-soft: rgba(0, 0, 0, 0.10);
-				--lime: #000000;
-				--lime-text: #CCFF00;
-				--lime-hover: #2a2a2a;
-				--lime-glow: rgba(0, 0, 0, 0.20);
-				--header-bg: rgba(255, 255, 255, 0.78);
+				--bg: #F0EEE9;                       /* Cloud Dancer */
+				--surface: #E4E1DA;                  /* warm card, derived */
+				--surface-2: #D8D4CB;                /* hover */
+				--text: #2D3436;                     /* charcoal body */
+				--text-mute: #6E7574;                /* muted charcoal */
+				--rule: rgba(45, 52, 54, 0.20);
+				--rule-soft: rgba(45, 52, 54, 0.10);
+				--lime: #4A6FA8;                     /* Regatta, accent */
+				--lime-text: #ffffff;
+				--lime-hover: #3D5C8C;
+				--lime-glow: rgba(74, 111, 168, 0.22);
+				--header-bg: rgba(240, 238, 233, 0.82);
 			}
 			* { box-sizing: border-box; }
 			html, body { margin: 0; padding: 0; }
@@ -283,6 +254,7 @@ const enableGA = import.meta.env.PROD;
 				font-family: var(--font-body);
 				font-size: var(--text-body);
 				line-height: 1.6;
+				overflow-x: clip;
 				-webkit-font-smoothing: antialiased;
 				-moz-osx-font-smoothing: grayscale;
 			}

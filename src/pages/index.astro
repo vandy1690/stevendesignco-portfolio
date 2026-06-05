@@ -5,13 +5,13 @@ import PayPalHero from '../components/animated/PayPalHero';
 
 <Site
 	title="Steven Vanden Heuvel · Principal Designer at PayPal"
-	description="Principal Designer at PayPal. Designing checkout and payment experiences for the world's top merchants. Payments. Design systems. B2B product. 18 years in."
+	description="Principal Designer at PayPal. Designing checkout and payment experiences for top global merchants. Payments. Design systems. B2B product. 18 years in."
 >
 	<section class="hero">
 		<div class="hero__copy">
 			<p class="eyebrow">Principal Designer at PayPal</p>
 			<h1 class="hero__title display">Steven<br />Vanden Heuvel</h1>
-			<p class="hero__sub">Principal Designer at PayPal. Designing checkout and payment experiences for the world's top merchants.</p>
+			<p class="hero__sub">Principal Designer at PayPal. Designing checkout and payment experiences for top global merchants.</p>
 			<p class="hero__tagline">Payments. Design systems. B2B product.</p>
 			<div class="cta-row">
 				<a class="btn btn--primary" href="/resume.pdf">View Resume</a>
@@ -49,12 +49,14 @@ import PayPalHero from '../components/animated/PayPalHero';
 					<div class="card__content">
 						<div class="card__role">Principal Designer at PayPal</div>
 						<h3 class="card__title">PayPal: Merchant Checkout</h3>
-						<p class="card__body">Improving the checkout experience and PayPal's visibility to grow TPV for the merchant and PayPal.</p>
+						<p class="card__body">Improving the checkout experience and PayPal's visibility to grow TPV for both the merchant and the platform.</p>
 						<span class="card__cta">Read case study <span class="arrow">→</span></span>
 					</div>
 				</a>
 				<a class="card" href="/work/plate">
-					<div class="card__media card__media--photo" style="background-image:url('/images/case-studies/plate/plate-hero.jpg');" aria-hidden="true"></div>
+					<div class="card__media card__media--photo">
+						<img src="/images/case-studies/plate/plate-hero-light.png" alt="" aria-hidden="true" loading="lazy" />
+					</div>
 					<div class="card__content">
 						<div class="card__role">Creative Director · MTG Media Group</div>
 						<h3 class="card__title">Plate: Website Redesign</h3>
@@ -63,7 +65,9 @@ import PayPalHero from '../components/animated/PayPalHero';
 					</div>
 				</a>
 				<a class="card" href="/work/blackbird">
-					<div class="card__media card__media--photo" style="background-image:url('/images/case-studies/blackbird/blackbird-hero.jpg');" aria-hidden="true"></div>
+					<div class="card__media card__media--photo">
+						<img src="/images/case-studies/blackbird/blackbird-hero-light.png" alt="" aria-hidden="true" loading="lazy" />
+					</div>
 					<div class="card__content">
 						<div class="card__role">Creative Director / Design Lead · MTG Media Group</div>
 						<h3 class="card__title">Project Blackbird</h3>
@@ -72,7 +76,9 @@ import PayPalHero from '../components/animated/PayPalHero';
 					</div>
 				</a>
 				<a class="card" href="/work/alt-meat">
-					<div class="card__media card__media--photo" style="background-image:url('/images/case-studies/alt-meat/alt-meat-hero.jpg');" aria-hidden="true"></div>
+					<div class="card__media card__media--photo">
+						<img src="/images/case-studies/alt-meat/alt-meat-hero-light.png" alt="" aria-hidden="true" loading="lazy" />
+					</div>
 					<div class="card__content">
 						<div class="card__role">Creative Director · MTG Media Group</div>
 						<h3 class="card__title">Alt-Meat</h3>
@@ -81,11 +87,13 @@ import PayPalHero from '../components/animated/PayPalHero';
 					</div>
 				</a>
 				<a class="card" href="/work/meatingplace">
-					<div class="card__media card__media--photo" style="background-image:url('/images/case-studies/meatingplace/meatingplace-hero.jpg');" aria-hidden="true"></div>
+					<div class="card__media card__media--photo">
+						<img src="/images/case-studies/meatingplace/meatingplace-hero-light.png" alt="" aria-hidden="true" loading="lazy" />
+					</div>
 					<div class="card__content">
 						<div class="card__role">Creative Director · MTG Media Group</div>
 						<h3 class="card__title">Meatingplace</h3>
-						<p class="card__body">Responsive rebuild of MTG's flagship daily news site for U.S. meat and poultry professionals. Largest audience across MTG's 7-brand portfolio.</p>
+						<p class="card__body">Responsive rebuild of MTG's flagship daily news site for U.S. meat and poultry professionals. Served the largest audience across MTG's 7-brand portfolio.</p>
 						<span class="card__cta">Read case study <span class="arrow">→</span></span>
 					</div>
 				</a>
@@ -159,8 +167,7 @@ import PayPalHero from '../components/animated/PayPalHero';
 		gap: 64px;
 		align-items: center;
 		min-height: calc(100vh - 80px);
-		overflow: hidden;
-		overflow: clip;
+		overflow: visible;
 	}
 	.hero__title { margin-bottom: 28px; letter-spacing: -0.03em; }
 	.hero__sub {
@@ -180,7 +187,20 @@ import PayPalHero from '../components/animated/PayPalHero';
 	.hero__tagline-mark { color: var(--lime); font-weight: 600; }
 	.cta-row { display: flex; flex-wrap: nowrap; gap: 12px; }
 	.cta-row .btn { white-space: nowrap; flex: 0 1 auto; min-width: 0; }
-	.hero__art { min-width: 0; }
+
+	/* Full-bleed orbit. The stage is scaled up and pushed right so the outer
+	   ring is cut by the right viewport edge (body has overflow-x: clip).
+	   Tune these two values to taste, then they cascade to the stage transform. */
+	.hero__art {
+		min-width: 0;
+		position: relative;
+		--orbit-scale: 1.18;
+		--orbit-shift: 9vw;
+	}
+	.hero__art :global(.pp-stage) {
+		transform: translateX(var(--orbit-shift)) scale(var(--orbit-scale));
+		transform-origin: center center;
+	}
 
 	.section__title {
 		max-width: 22ch;
@@ -250,7 +270,7 @@ import PayPalHero from '../components/animated/PayPalHero';
 		font-size: clamp(56px, 8vw, 88px);
 		line-height: 1;
 		letter-spacing: normal;
-		color: var(--lime);
+		color: #000000;
 	}
 	.card__stat-label {
 		font-family: var(--font-body);
@@ -266,11 +286,15 @@ import PayPalHero from '../components/animated/PayPalHero';
 		border-color: var(--rule);
 		background: var(--surface);
 	}
-	.card__media--photo::after {
-		content: "";
-		position: absolute;
-		inset: 0;
-		background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.45) 100%);
+	/* Photo cards use the light hero mockups, now background-removed and
+	   pre-framed to 16:9 so every window matches. Transparent field blends
+	   into the paper; the device screens keep their own white.
+	   Light-only for now; when dark mode returns, add the .jpg variants back. */
+	.card__media--photo { background: var(--bg); }
+	.card__media--photo img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
 	}
 	.card__content { padding: 24px 24px 26px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
 	.card__role { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-mute); font-weight: 600; }
@@ -362,7 +386,9 @@ import PayPalHero from '../components/animated/PayPalHero';
 			width: 100%;
 			aspect-ratio: 1 / 1;
 			overflow: visible;
+			--orbit-shift: 0vw;
 		}
+		.hero__art :global(.pp-stage) { transform: scale(0.5); }
 		.cta-row { gap: 8px; }
 		.cta-row .btn { padding: 11px 14px; font-size: 13px; }
 		.awards { grid-template-columns: 1fr; }
