@@ -14,13 +14,16 @@ const ADOBE_KIT_ID = 'eft2zbk';
 interface Props {
 	title: string;
 	description?: string;
+	/** Path to a page-specific social card under /public, e.g. "/og/plate.png".
+	    Falls back to the site-wide /og-image.png when omitted. */
+	image?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, image } = Astro.props;
 const path = Astro.url.pathname;
 const isHome = path === '/';
 const SITE_URL = 'https://www.stevendesignco.com';
-const ogImage = `${SITE_URL}/og-image.png`;
+const ogImage = `${SITE_URL}${image ?? '/og-image.png'}`;
 const canonical = `${SITE_URL}${path}`;
 const GA_ID = 'G-RCWC0PX4G9';
 const enableGA = import.meta.env.PROD;
@@ -72,7 +75,7 @@ const enableGA = import.meta.env.PROD;
 				<a href={isHome ? '#work' : '/#work'}>Case Studies</a>
 				<a href={isHome ? '#about' : '/#about'}>About</a>
 				<a href={isHome ? '#contact' : '/#contact'}>Contact</a>
-				<a class="nav__cta" href="/resume.pdf">Resume</a>
+				<a class="nav__cta" href="/resume">Resume</a>
 			</nav>
 			<button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
 				<span class="nav-toggle__bar"></span>
@@ -85,7 +88,7 @@ const enableGA = import.meta.env.PROD;
 			<a href={isHome ? '#work' : '/#work'}>Case Studies</a>
 			<a href={isHome ? '#about' : '/#about'}>About</a>
 			<a href={isHome ? '#contact' : '/#contact'}>Contact</a>
-			<a href="/resume.pdf">Resume</a>
+			<a href="/resume">Resume</a>
 		</nav>
 
 		<main>
