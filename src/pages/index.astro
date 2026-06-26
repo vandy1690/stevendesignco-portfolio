@@ -1,6 +1,6 @@
 ---
 import Site from '../layouts/Site.astro';
-import PayPalHero from '../components/animated/PayPalHero';
+import LogoScatter from '../components/animated/LogoScatter';
 ---
 
 <Site
@@ -9,18 +9,18 @@ import PayPalHero from '../components/animated/PayPalHero';
 >
 	<section class="hero">
 		<div class="hero__copy">
-			<p class="eyebrow">Principal Designer at PayPal</p>
+			<p class="eyebrow">Principal Designer</p>
 			<h1 class="hero__title display">Steven<br class="hero__title-br" />Vanden Heuvel</h1>
 			<p class="hero__sub">Principal Designer at PayPal. Designing checkout and payment experiences for top global merchants.</p>
 			<p class="hero__tagline">Payments. Design systems. B2B product.</p>
 			<div class="cta-row">
-				<a class="btn btn--primary" href="/resume">View Resume</a>
-				<a class="btn" href="#contact">Contact</a>
-				<a class="btn" href="https://linkedin.com/in/stevendesignco" target="_blank" rel="noopener">LinkedIn</a>
+				<a href="/resume">View Resume</a>
+				<a href="#contact">Contact</a>
+				<a href="https://linkedin.com/in/stevendesignco" target="_blank" rel="noopener">LinkedIn</a>
 			</div>
 		</div>
 		<div class="hero__art">
-			<PayPalHero client:load />
+			<LogoScatter client:load />
 		</div>
 	</section>
 
@@ -28,6 +28,7 @@ import PayPalHero from '../components/animated/PayPalHero';
 		<div class="section__inner about">
 			<p class="eyebrow">About</p>
 			<div class="prose">
+				<img class="about__photo" src="/images/about/headshot.jpg" alt="Steven Vanden Heuvel" width="500" height="500" loading="lazy" />
 				<p>Currently a Principal Designer at PayPal (contract via MagnitGlobal), working on the Merchant Enablement team. Over the past six months I have shipped 20+ merchant proposal packages on weekly sprint cycles for top global brands including <strong>Home Depot, Nintendo, Target, Best Buy, TikTok Shop, Chewy, and Microsoft</strong>. The work feeds PayPal's top priority of growing TPV through greater checkout prominence.</p>
 				<p>Before PayPal I spent 18 years at MTG Media Group, growing from Senior Art Director to VP and Creative Director. I led a 6 person team and built responsive web products and design systems for <strong>7 brands serving 128,000+ B2B professionals</strong>. Plate, the website I rebuilt as a responsive product, won the 2017 Jesse H. Neal Award for Best Website. Four-time Neal Award winner overall.</p>
 				<p>Through Steven Design Services LLC I also take on select contract design work, focused on design systems, responsive web products, and product strategy.</p>
@@ -120,9 +121,10 @@ import PayPalHero from '../components/animated/PayPalHero';
 				<li><strong>4</strong><span>Jesse H. Neal Awards</span></li>
 				<li><strong>6</strong><span>Neal Finalist Recognitions</span></li>
 				<li><strong>1</strong><span>Grand Neal Finalist (top 4 nationally)</span></li>
-				<li><span class="awards__dot" aria-hidden="true">●</span><span>Folio Ozzie Honoree</span></li>
-				<li><span class="awards__dot" aria-hidden="true">●</span><span>Multiple ASBPE Awards</span></li>
-				<li><span class="awards__dot" aria-hidden="true">●</span><span>Northwestern Medill Guest Speaker</span></li>
+				<li class="awards__break" aria-hidden="true"></li>
+				<li><span>Folio Ozzie Honoree</span></li>
+				<li><span>Multiple ASBPE Awards</span></li>
+				<li><span>Northwestern Medill Guest Speaker</span></li>
 			</ul>
 		</div>
 	</section>
@@ -136,6 +138,7 @@ import PayPalHero from '../components/animated/PayPalHero';
 				<li>Service Blueprints</li>
 				<li>UX and UI Design</li>
 				<li>Prototyping</li>
+				<li class="services__break" aria-hidden="true"></li>
 				<li>Wireframing</li>
 				<li>Accessibility</li>
 				<li>AI Assisted Workflows (Claude Code, Cursor)</li>
@@ -171,7 +174,7 @@ import PayPalHero from '../components/animated/PayPalHero';
 	}
 	/* min-width:0 lets the copy column shrink so its text wraps instead of
 	   overflowing the viewport on small screens. */
-	.hero__copy { min-width: 0; }
+	.hero__copy { min-width: 0; position: relative; z-index: 2; }
 	/* Two-line stack everywhere: "Steven" / "Vanden Heuvel". This display face is
 	   wide, so the size is capped so "Vanden Heuvel" stays on one line in the hero
 	   copy column and never breaks to a third line. The phone size is in the 880 block. */
@@ -191,12 +194,43 @@ import PayPalHero from '../components/animated/PayPalHero';
 	.hero__tagline {
 		font-size: 16px;
 		color: var(--text-mute);
-		margin-bottom: 36px;
+		margin-bottom: 24px;
 		letter-spacing: -0.005em;
 	}
 	.hero__tagline-mark { color: var(--lime); font-weight: 600; }
-	.cta-row { display: flex; flex-wrap: nowrap; gap: 12px; }
-	.cta-row .btn { white-space: nowrap; flex: 0 1 auto; min-width: 0; }
+	/* CTA row: text links (not pills), nickel display, black, "|" separated, lime on hover,
+	   with a thin light rule between it and the tagline above. */
+	.cta-row {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0;
+		padding-top: 24px;
+		border-top: 1px solid var(--rule-soft);
+	}
+	.cta-row a {
+		display: inline-flex;
+		align-items: center;
+		font-family: var(--font-display);
+		font-size: 18px;
+		color: var(--text);
+		letter-spacing: 0.03em;
+		white-space: nowrap;
+		transition: color 0.14s ease;
+	}
+	.cta-row a:hover { color: var(--lime); }
+	/* thin, light separator that matches the rule above */
+	.cta-row a + a::before {
+		content: "";
+		flex: none;
+		width: 1px;
+		height: 1.05em;
+		background: var(--rule-soft);
+		margin: 0 16px;
+	}
+	/* JS adds this when the row would wrap: stack vertically, drop the separators */
+	.cta-row--stacked { flex-direction: column; align-items: flex-start; gap: 12px; }
+	.cta-row--stacked a + a::before { display: none; }
 
 	/* Full-bleed orbit. The stage is scaled up and pushed right so the outer
 	   ring is cut by the right viewport edge (body has overflow-x: clip).
@@ -204,6 +238,7 @@ import PayPalHero from '../components/animated/PayPalHero';
 	.hero__art {
 		min-width: 0;
 		position: relative;
+		z-index: 1;
 		--orbit-scale: 1.18;
 		--orbit-shift: 9vw;
 	}
@@ -218,7 +253,16 @@ import PayPalHero from '../components/animated/PayPalHero';
 		letter-spacing: -0.025em;
 	}
 
-	.about { display: grid; gap: 8px; }
+	/* headshot floated within the body copy so the text wraps around it */
+	.about__photo {
+		float: left;
+		width: 230px;
+		height: auto;
+		margin: 6px 30px 14px 0;
+		border-radius: 16px;
+		display: block;
+		shape-outside: inset(0 round 16px);
+	}
 
 	.work-grid {
 		display: grid;
@@ -326,30 +370,44 @@ import PayPalHero from '../components/animated/PayPalHero';
 		list-style: none;
 		margin: 0;
 		padding: 0;
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 0 32px;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
 	}
 	.awards li {
-		display: flex;
+		display: inline-flex;
 		align-items: baseline;
-		gap: 18px;
-		padding: 22px 0;
-		border-top: 1px solid var(--rule);
+		gap: 10px;
 		color: var(--text);
 		font-size: 16px;
+		padding: 6px 0;
 	}
-	.awards li:last-child:nth-child(3n) { border-bottom: none; }
+	/* same thin light separator as the CTA links above; static (not links) */
+	.awards li + li::before {
+		content: "";
+		align-self: center;
+		flex: none;
+		width: 1px;
+		height: 28px;
+		background: var(--rule-soft);
+		margin: 0 22px;
+	}
 	.awards strong {
-		font-size: 36px;
+		font-family: var(--font-display);
 		font-weight: 700;
-		color: var(--lime);
-		min-width: 44px;
-		font-variant-numeric: tabular-nums;
+		color: var(--text);
+		font-size: 30px;
 		line-height: 1;
-		letter-spacing: -0.02em;
+		letter-spacing: -0.01em;
+		font-variant-numeric: tabular-nums;
 	}
-	.awards__dot { color: var(--lime); font-size: 22px; min-width: 44px; }
+	/* force a wrap (recognition: non-numbered to line 2; services: Wireframing+ to line 2) */
+	.awards__break,
+	.services__break { flex-basis: 100%; height: 0; padding: 0; margin: 0; }
+	.awards__break::before,
+	.services__break::before { display: none; }
+	.awards__break + li::before,
+	.services__break + li::before { display: none; }
 
 	.services {
 		list-style: none;
@@ -357,19 +415,40 @@ import PayPalHero from '../components/animated/PayPalHero';
 		padding: 0;
 		display: flex;
 		flex-wrap: wrap;
-		gap: 12px;
+		align-items: center;
 	}
 	.services li {
-		padding: 12px 18px;
-		background: transparent;
-		border: 1px solid var(--rule);
-		border-radius: 999px;
-		font-size: 15px;
+		display: inline-flex;
+		align-items: center;
+		font-size: 16px;
 		color: var(--text);
-		font-weight: 500;
-		transition: border-color 0.14s ease, color 0.14s ease;
+		padding: 6px 0;
 	}
-	.services li:hover { border-color: var(--lime); color: var(--lime); }
+	/* same thin light separator as the recognition + CTA rows; static (not links) */
+	.services li + li::before {
+		content: "";
+		align-self: center;
+		flex: none;
+		width: 1px;
+		height: 22px;
+		background: var(--rule-soft);
+		margin: 0 18px;
+	}
+	/* first item of any wrapped line: no leading "|" or space (set by JS) */
+	.awards li.line-start::before,
+	.services li.line-start::before { display: none; }
+
+	/* mobile: drop the "|" and stack both lists vertically */
+	@media (max-width: 720px) {
+		.awards,
+		.services { flex-direction: column; align-items: flex-start; gap: 12px; }
+		.awards li + li::before,
+		.services li + li::before { display: none; }
+		.awards__break,
+		.services__break { display: none; }
+		/* keep the headshot floated within the copy on phones, just smaller */
+		.about__photo { width: auto; max-width: 40%; margin: 4px 16px 6px 0; }
+	}
 
 	.section--contact { padding: 160px var(--gutter); text-align: center; }
 	.contact { display: flex; flex-direction: column; align-items: center; gap: 48px; }
@@ -394,17 +473,8 @@ import PayPalHero from '../components/animated/PayPalHero';
 		/* Phones and tablets: same two-line stack, but the copy spans the full
 		   width, so the cap keeps "Vanden Heuvel" on one line down to 360px. */
 		.hero__title { font-size: clamp(24px, 7.5vw, 56px); }
-		.hero__art {
-			order: -1;
-			width: 100%;
-			aspect-ratio: 1 / 1;
-			overflow: visible;
-			--orbit-shift: 0vw;
-		}
-		.hero__art :global(.pp-stage) { transform: scale(0.5); }
-		.cta-row { gap: 8px; }
-		.cta-row .btn { padding: 11px 14px; font-size: 13px; }
-		.awards { grid-template-columns: 1fr; }
+		.hero__art { display: none; }
+		.about__photo { width: 200px; margin: 4px 22px 10px 0; }
 		.contact__list li { grid-template-columns: 1fr; gap: 6px; padding: 18px 0; font-size: 17px; }
 	}
 </style>

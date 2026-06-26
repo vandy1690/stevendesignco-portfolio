@@ -100,6 +100,8 @@ import Site from '../../layouts/Site.astro';
 	.cs-body { display: grid; gap: var(--space-2xl); max-width: var(--max-narrow); }
 	/* Hierarchy: eyebrow + subhead group as the headline, body is support. */
 	.cs-block .eyebrow { margin-bottom: var(--space-xs); }
+	/* case-study eyebrows: nickel, normal weight, .03em, black */
+	.eyebrow { font-family: var(--font-display); font-weight: 400; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; letter-spacing: 0.03em; }
 	.cs-block__lede { color: var(--text); font-size: clamp(24px, 2.5vw, 32px); font-weight: 600; margin: 0 0 var(--space-lg); letter-spacing: -0.015em; line-height: 1.25; }
 	.cs-block p { color: #5A6565; margin: 0; font-size: 16px; line-height: 1.65; }
 	.cs-block p + p { margin-top: var(--space-sm); }
@@ -107,11 +109,13 @@ import Site from '../../layouts/Site.astro';
 	.cs-awards { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
 	.cs-awards li { display: flex; gap: var(--space-md); align-items: center; padding: var(--space-md) 0; border-top: 1px solid var(--rule); font-size: 18px; }
 	.cs-awards li:last-child { border-bottom: 1px solid var(--rule); }
-	.cs-awards__mark { color: var(--lime); font-size: 22px; min-width: 24px; }
+	.cs-awards__mark { display: none; }
 
 	.cs-quote { margin: var(--space-lg) 0 0; padding: 0 0 0 var(--space-lg); border-left: 2px solid var(--lime); font-family: var(--font-display); font-weight: 400; font-style: normal; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; font-size: clamp(20px, 2vw, 28px); line-height: 1.4; color: var(--text); max-width: 64ch; }
 
 	.cs-back { display: flex; gap: var(--space-sm); flex-wrap: wrap; justify-content: space-between; align-items: center; }
+	.cs-back .btn--primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+	.cs-back .btn--primary:hover { background: var(--text); border-color: var(--text); color: var(--bg); box-shadow: none; }
 
 	@media (max-width: 880px) {
 		.section--figure { padding: 0 24px; }
