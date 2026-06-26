@@ -9,7 +9,7 @@ import '@fontsource/inter/900-italic.css';
 // Adobe Fonts (Typekit) kit for Nickel Gothic Variable.
 // Replace ADOBE_KIT_ID with the kit ID from fonts.adobe.com → Web Projects.
 // Until set, --font-display falls back to Inter Black Italic.
-const ADOBE_KIT_ID = 'eft2zbk';
+const ADOBE_KIT_ID = 'uic8bwd';
 
 interface Props {
 	title: string;
@@ -160,6 +160,118 @@ const enableGA = import.meta.env.PROD;
 			});
 		</script>
 
+		<script>
+			// flip-links: wrap each menu + CTA link's text into two stacked letter rows
+			(() => {
+				const links = document.querySelectorAll('.nav-mobile a, .cta-row a');
+				links.forEach((a) => {
+					const text = (a.textContent || '').trim();
+					if (!text) return;
+					const makeRow = (cls, hidden) => {
+						const row = document.createElement('span');
+						row.className = 'flip__row ' + cls;
+						if (hidden) row.setAttribute('aria-hidden', 'true');
+						Array.from(text).forEach((ch, i) => {
+							const s = document.createElement('span');
+							s.className = 'flip__char';
+							s.style.setProperty('--i', String(i));
+							s.textContent = ch === ' ' ? ' ' : ch;
+							row.appendChild(s);
+						});
+						return row;
+					};
+					const flip = document.createElement('span');
+					flip.className = 'flip';
+					flip.appendChild(makeRow('flip__row--top', false));
+					flip.appendChild(makeRow('flip__row--bottom', true));
+					a.textContent = '';
+					a.appendChild(flip);
+				});
+
+				// Stack the CTA row and drop the "|" separators when it wraps to >1 line.
+				const cta = document.querySelector('.cta-row');
+				if (cta) {
+					const checkWrap = () => {
+						cta.classList.remove('cta-row--stacked');
+						const items = cta.querySelectorAll('a');
+						if (items.length < 2) return;
+						const top0 = items[0].offsetTop;
+						let wrapped = false;
+						items.forEach((a) => { if (a.offsetTop !== top0) wrapped = true; });
+						cta.classList.toggle('cta-row--stacked', wrapped);
+					};
+					checkWrap();
+					window.addEventListener('resize', checkWrap);
+					if (document.fonts && document.fonts.ready) document.fonts.ready.then(checkWrap);
+				}
+
+				// card titles: per-letter roll on card hover. Each letter = its own clipped
+				// unit with two stacked copies; words stay nowrap so wrapping only happens at spaces.
+				document.querySelectorAll('.card__title').forEach((h) => {
+					const text = (h.textContent || '').trim();
+					if (!text) return;
+					const wrap = document.createElement('span');
+					wrap.className = 'cflip';
+					wrap.setAttribute('aria-label', text);
+					let i = 0;
+					text.split(/(\s+)/).forEach((token) => {
+						if (token === '') return;
+						if (/^\s+$/.test(token)) {
+							const sp = document.createElement('span');
+							sp.className = 'cflip-space';
+							sp.setAttribute('aria-hidden', 'true');
+							sp.textContent = token;
+							wrap.appendChild(sp);
+							return;
+						}
+						const word = document.createElement('span');
+						word.className = 'cflip-word';
+						word.setAttribute('aria-hidden', 'true');
+						Array.from(token).forEach((ch) => {
+							const c = document.createElement('span');
+							c.className = 'cflip-char';
+							c.style.setProperty('--i', String(i++));
+							const a = document.createElement('span'); a.textContent = ch;
+							const b = document.createElement('span'); b.textContent = ch;
+							c.appendChild(a);
+							c.appendChild(b);
+							word.appendChild(c);
+						});
+						wrap.appendChild(word);
+					});
+					h.textContent = '';
+					h.appendChild(wrap);
+				});
+
+				// inline "|" lists (recognition + services): hide the separator on the
+				// first item of every wrapped line so there's no leading "|" or space.
+				const markLineStarts = (list) => {
+					if (!list) return;
+					const items = Array.from(list.children).filter(
+						(el) => el.tagName === 'LI' &&
+							!el.classList.contains('awards__break') &&
+							!el.classList.contains('services__break')
+					);
+					items.forEach((li) => li.classList.remove('line-start'));
+					const tops = items.map((li) => li.offsetTop);
+					let prev = null;
+					items.forEach((li, i) => {
+						if (prev === null || Math.abs(tops[i] - prev) > 1) li.classList.add('line-start');
+						prev = tops[i];
+					});
+				};
+				const fixSeps = () => {
+					[document.querySelector('.awards'), document.querySelector('.services')].forEach((l) => {
+						markLineStarts(l);
+						markLineStarts(l);
+					});
+				};
+				fixSeps();
+				window.addEventListener('resize', fixSeps);
+				if (document.fonts && document.fonts.ready) document.fonts.ready.then(fixSeps);
+			})();
+		</script>
+
 		<style is:global>
 			:root {
 				color-scheme: light dark;
@@ -273,7 +385,14 @@ const enableGA = import.meta.env.PROD;
 
 			h1, h2, h3 { color: var(--text); margin: 0; line-height: 1.1; letter-spacing: -0.022em; font-weight: 700; }
 			h1 { font-size: var(--text-display-1); line-height: 0.98; letter-spacing: -0.03em; }
-			h2 { font-size: var(--text-display-2); line-height: 1.04; letter-spacing: -0.025em; }
+			h2 {
+				font-family: var(--font-display);
+				font-variation-settings: "wght" 700, "slnt" 0, "ital" 0;
+				font-synthesis: none;
+				font-size: var(--text-display-2);
+				line-height: 1.04;
+				letter-spacing: -0.025em;
+			}
 			h3 {
 				font-family: var(--font-display);
 				font-size: 18px;
@@ -283,7 +402,7 @@ const enableGA = import.meta.env.PROD;
 				font-synthesis: none;
 				line-height: 1.1;
 				letter-spacing: 0.01em;
-				color: var(--lime);
+				color: var(--text);
 			}
 			p { margin: 0 0 1em; }
 			img, svg { display: block; max-width: 100%; }
@@ -303,9 +422,9 @@ const enableGA = import.meta.env.PROD;
 				font-size: var(--text-label);
 				letter-spacing: 0.16em;
 				text-transform: uppercase;
-				color: var(--lime);
+				color: var(--text);
 				margin: 0 0 var(--space-md);
-				font-weight: 600;
+				font-weight: 700;
 			}
 			.eyebrow--mute { color: var(--text-mute); }
 
@@ -340,7 +459,7 @@ const enableGA = import.meta.env.PROD;
 				:root:not([data-theme="dark"]) .brand img { filter: brightness(0); }
 			}
 			:root[data-theme="light"] .brand img { filter: brightness(0); }
-			.nav { display: flex; align-items: center; gap: var(--space-lg); }
+			.nav { display: none; align-items: center; gap: var(--space-lg); }
 			.nav a {
 				color: var(--text);
 				font-size: var(--text-nav);
@@ -404,7 +523,7 @@ const enableGA = import.meta.env.PROD;
 
 			/* Hamburger toggle (mobile) */
 			.nav-toggle {
-				display: none;
+				display: flex;
 				width: 40px;
 				height: 40px;
 				margin-right: -8px;
@@ -465,6 +584,43 @@ const enableGA = import.meta.env.PROD;
 			.nav-mobile a:hover,
 			.nav-mobile a:focus-visible { color: var(--lime); }
 			body.nav-open { overflow: hidden; }
+
+			/* flip-links: per-letter vertical roll on hover, revealing the accent color */
+			.flip { position: relative; display: inline-block; overflow: hidden; vertical-align: top; }
+			.flip__row { display: flex; }
+			.flip__row--top { color: var(--text); }
+			.flip__row--bottom { position: absolute; left: 0; top: 0; color: var(--lime); }
+			.flip__char {
+				display: inline-block;
+				white-space: pre;
+				transform: translateY(0);
+				transition: transform .45s cubic-bezier(.76, 0, .24, 1);
+				transition-delay: calc(var(--i) * 18ms);
+			}
+			.flip__row--bottom .flip__char { transform: translateY(105%); }
+			.nav-mobile a:hover .flip__row--top .flip__char,
+			.nav-mobile a:focus-visible .flip__row--top .flip__char,
+			.cta-row a:hover .flip__row--top .flip__char,
+			.cta-row a:focus-visible .flip__row--top .flip__char { transform: translateY(-105%); }
+			.nav-mobile a:hover .flip__row--bottom .flip__char,
+			.nav-mobile a:focus-visible .flip__row--bottom .flip__char,
+			.cta-row a:hover .flip__row--bottom .flip__char,
+			.cta-row a:focus-visible .flip__row--bottom .flip__char { transform: translateY(0); }
+			@media (prefers-reduced-motion: reduce) { .flip__char { transition: none; } }
+
+			/* card titles: per-letter roll on card hover (same as CTA links; multi-line safe
+			   because each letter is its own clipped unit and words wrap at spaces) */
+			.cflip { display: inline; }
+			.cflip-word { display: inline-block; white-space: nowrap; vertical-align: top; }
+			.cflip-space { white-space: pre; }
+			.cflip-char { position: relative; display: inline-block; overflow: hidden; vertical-align: top; }
+			.cflip-char > span { display: block; transition: transform 0.42s cubic-bezier(0.76, 0, 0.24, 1); transition-delay: calc(var(--i) * 16ms); }
+			.cflip-char > span:last-child { position: absolute; left: 0; top: 0; transform: translateY(100%); color: var(--lime); }
+			.card:hover .cflip-char > span:first-child,
+			.card:focus-visible .cflip-char > span:first-child { transform: translateY(-100%); }
+			.card:hover .cflip-char > span:last-child,
+			.card:focus-visible .cflip-char > span:last-child { transform: translateY(0); }
+			@media (prefers-reduced-motion: reduce) { .cflip-char > span { transition: none; } }
 
 			/* Sections (shared) */
 			.section { padding: var(--space-2xl) var(--gutter); }
@@ -549,6 +705,10 @@ const enableGA = import.meta.env.PROD;
 			.site-footer__meta { display: flex; gap: var(--space-md); color: var(--text-mute); font-size: var(--text-body-sm); }
 			.site-footer__meta a { color: var(--text-mute); }
 			.site-footer__meta a:hover { color: var(--lime); }
+			@media (max-width: 600px) {
+				.site-footer__inner { flex-direction: column; align-items: flex-start; gap: var(--space-md); }
+				.site-footer__meta { flex-direction: column; align-items: flex-start; gap: 6px; }
+			}
 
 			@media (max-width: 880px) {
 				.nav { display: none; }
