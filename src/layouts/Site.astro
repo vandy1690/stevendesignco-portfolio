@@ -27,6 +27,33 @@ const ogImage = `${SITE_URL}${image ?? '/og-image.png'}`;
 const canonical = `${SITE_URL}${path}`;
 const GA_ID = 'G-RCWC0PX4G9';
 const enableGA = import.meta.env.PROD;
+
+const ogType = isHome ? 'website' : 'article';
+const jsonLd = {
+	'@context': 'https://schema.org',
+	'@graph': [
+		{
+			'@type': 'Person',
+			'@id': `${SITE_URL}/#person`,
+			name: 'Steven Vanden Heuvel',
+			url: SITE_URL,
+			image: `${SITE_URL}/images/about/headshot.jpg`,
+			jobTitle: 'Principal Designer',
+			worksFor: { '@type': 'Organization', name: 'PayPal' },
+			address: { '@type': 'PostalAddress', addressLocality: 'Aurora', addressRegion: 'IL', addressCountry: 'US' },
+			sameAs: ['https://www.linkedin.com/in/stevendesignco'],
+			knowsAbout: ['Design Systems', 'Product Design', 'UX/UI Design', 'Responsive Web Products', 'Payments', 'Product Strategy'],
+			description: 'Principal Designer focused on payments, design systems, and B2B product.',
+		},
+		{
+			'@type': 'WebSite',
+			'@id': `${SITE_URL}/#website`,
+			name: 'Steven Design Co.',
+			url: SITE_URL,
+			author: { '@id': `${SITE_URL}/#person` },
+		},
+	],
+};
 ---
 
 <html lang="en" data-theme="light">
@@ -38,11 +65,14 @@ const enableGA = import.meta.env.PROD;
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="theme-color" content="#F0EEE9" />
+		<meta name="author" content="Steven Vanden Heuvel" />
+		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+		<link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 		{ADOBE_KIT_ID && <link rel="stylesheet" href={`https://use.typekit.net/${ADOBE_KIT_ID}.css`} />}
 		<title>{title}</title>
 		{description && <meta name="description" content={description} />}
 		<link rel="canonical" href={canonical} />
-		<meta property="og:type" content="website" />
+		<meta property="og:type" content={ogType} />
 		<meta property="og:site_name" content="Steven Design Co." />
 		<meta property="og:title" content={title} />
 		{description && <meta property="og:description" content={description} />}
@@ -50,10 +80,13 @@ const enableGA = import.meta.env.PROD;
 		<meta property="og:image" content={ogImage} />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content={title} />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		{description && <meta name="twitter:description" content={description} />}
 		<meta name="twitter:image" content={ogImage} />
+		<meta name="twitter:image:alt" content={title} />
+		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 		{enableGA && (
 			<>
 				<script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
