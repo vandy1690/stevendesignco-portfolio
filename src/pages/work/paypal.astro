@@ -65,6 +65,19 @@ import PayPalHero from '../../components/animated/PayPalHero';
 	<section class="section section--alt">
 		<div class="section__inner cs-body" data-animate="fade">
 			<div class="cs-block">
+				<p class="eyebrow">The consumer side</p>
+				<p class="cs-block__lede">The checkout dead end</p>
+				<p>A customer reaches checkout and finds there is no card that can pay. The card expired, or it was declined, or it was removed, or it was never added in the first place. The order stops there.</p>
+				<p>I built the Figma board that mapped that dead end back to every earlier moment the customer could have fixed the card. The board traced the touchpoints across roughly a month before checkout, marked which ones send a message today and which ones send nothing, and ended on the checkout experience itself.</p>
+				<p>The structure came together fast because I used Claude Code to turn a Design Director's diagram into the underlying framework of the board, then designed into it. The screens came from teams across the company, which meant tracking down owners in parts of the organization I had not worked with before. The work was presented to senior leadership and moved the broader group toward building a strategy for it.</p>
+				<p class="cs-caption">PayPal, 2026. Figma, Claude Code, cross-team research.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="section__inner cs-body" data-animate="fade">
+			<div class="cs-block">
 				<p class="eyebrow">What changed</p>
 				<p class="cs-block__lede">Twenty-plus packages in my first six months, and the tooling to hold the pace.</p>
 				<p>The tooling was not part of my assignment. To hold the weekly pace, I built a browser brief form and a Figma plugin on my own initiative. The plugin assembles a per-merchant checkout flow, and assembly went from 30 to 60 minutes down to about 30 seconds across the 38-merchant program. The work ties back to the TPV priority: make PayPal more prominent and more consistent at the point of payment.</p>
@@ -108,6 +121,7 @@ import PayPalHero from '../../components/animated/PayPalHero';
 	.cs-block__lede { color: var(--text); font-size: clamp(24px, 2.5vw, 32px); font-weight: 600; margin: 0 0 var(--space-lg); letter-spacing: -0.015em; line-height: 1.25; }
 	.cs-block p { color: #5A6565; margin: 0; font-size: 16px; line-height: 1.65; }
 	.cs-block p + p { margin-top: var(--space-sm); }
+	.cs-block .cs-caption { margin-top: var(--space-md); color: var(--text-mute); font-size: 14px; letter-spacing: 0.04em; }
 
 	.cs-stats { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); }
 	.cs-stats li { padding: var(--space-lg) 0; border-top: 1px solid var(--rule); }
