@@ -67,8 +67,8 @@ import LogoScatter from '../components/animated/LogoScatter';
 					</div>
 				</div>
 				<a class="card" href="/work/paypal#checkout-dead-end">
-					<div class="card__media card__media--stat card__media--words">
-						<span class="card__kicker">Now the team's template for mapping flows</span>
+					<div class="card__media card__media--photo card__media--cover">
+						<img src="/images/case-studies/paypal/edit-fi-card.webp" alt="A hand holding a phone showing a blurred checkout screen" loading="lazy" />
 					</div>
 					<div class="card__content">
 						<div class="card__role">Principal Designer · PayPal</div>
@@ -348,23 +348,10 @@ import LogoScatter from '../components/animated/LogoScatter';
 		color: var(--text-mute);
 		font-weight: 600;
 	}
+	/* full-bleed photo media: fills the 16:9 box instead of the contain default */
+	.card__media--cover img { object-fit: cover; }
 	/* longer stat value: sized down so it stays inside the media box */
 	.card__stat--long { font-size: clamp(36px, 4vw, 52px); }
-	/* worded kicker: same slot as the stat, set smaller so a sentence fits */
-	.card__media--words { padding: 24px; }
-	.card__kicker {
-		font-family: var(--font-display);
-		font-weight: 400;
-		font-style: normal;
-		font-variation-settings: "wght" 400, "slnt" 0, "ital" 0;
-		font-synthesis: none;
-		font-size: clamp(24px, 2.6vw, 32px);
-		line-height: 1.3;
-		letter-spacing: 0.01em;
-		color: #000000;
-		text-align: center;
-		max-width: 16ch;
-	}
 	.card--info { cursor: default; }
 	.card--info:hover {
 		transform: none;
