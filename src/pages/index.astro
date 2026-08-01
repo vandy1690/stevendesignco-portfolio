@@ -30,6 +30,7 @@ import LogoScatter from '../components/animated/LogoScatter';
 			<div class="prose">
 				<img class="about__photo" src="/images/about/headshot.jpg" alt="Steven Vanden Heuvel" width="500" height="500" loading="lazy" />
 				<p>Currently a Principal Designer at PayPal, working on the Merchant Enablement team. In my first six months I shipped 20+ merchant proposal packages on weekly sprint cycles for top global brands including <strong>Home Depot, Nintendo, Target, Best Buy, TikTok Shop, Chewy, and Microsoft</strong>. The work feeds PayPal's top priority of growing TPV through greater checkout prominence.</p>
+				<p>I build with agentic tooling, Claude Code and Cursor, every day. That work shows up in the product, not just in my own workflow. On a recent PayPal project I used Claude Code to build the structure of a design board that went to senior leadership.</p>
 				<p>Before PayPal I spent 18 years at MTG Media Group, growing from Senior Art Director to VP and Creative Director. I initiated the rebuilds of MTG's brand sites and introduced mobile-first responsive design, Figma, and Atomic Design to the company. I led a 6 person team and built responsive web products and design systems for <strong>7 brands serving 128,000+ B2B professionals</strong>. Plate, the website I rebuilt as a responsive product, won the 2017 Jesse H. Neal Award for Best Website. Four-time Neal Award winner overall.</p>
 				<p>Through Steven Design Services LLC I also take on select design work, focused on design systems, responsive web products, and product strategy.</p>
 			</div>
@@ -51,6 +52,28 @@ import LogoScatter from '../components/animated/LogoScatter';
 						<div class="card__role">Principal Designer · PayPal</div>
 						<h3 class="card__title">Becoming the Default at Checkout</h3>
 						<p class="card__body">PayPal's prominence at checkout varied by merchant. I shipped per-merchant proposals to make it consistent and grow TPV.</p>
+						<span class="card__cta">Read case study <span class="arrow">→</span></span>
+					</div>
+				</a>
+				<div class="card card--info">
+					<div class="card__media card__media--stat">
+						<span class="card__stat card__stat--long">10 to 15 min</span>
+						<span class="card__stat-label">per merchant</span>
+					</div>
+					<div class="card__content">
+						<div class="card__role">Principal Designer · PayPal</div>
+						<h3 class="card__title">Merchant Flow Builder</h3>
+						<p class="card__body">Browser brief form and Figma plugin, built on my own initiative. A merchant's full set of checkout flows goes from most of a day to 10 to 15 minutes.</p>
+					</div>
+				</div>
+				<a class="card" href="/work/paypal#checkout-dead-end">
+					<div class="card__media card__media--photo card__media--cover">
+						<img src="/images/case-studies/paypal/edit-fi-card.webp" alt="A hand holding a phone showing a blurred checkout screen" loading="lazy" />
+					</div>
+					<div class="card__content">
+						<div class="card__role">Principal Designer · PayPal</div>
+						<h3 class="card__title">The checkout dead end</h3>
+						<p class="card__body">I used Claude Code to turn a director's diagram into the structure of the Figma board, then designed into it. The work was presented to senior leadership, and the team now reuses the board to map the next flows.</p>
 						<span class="card__cta">Read case study <span class="arrow">→</span></span>
 					</div>
 				</a>
@@ -98,17 +121,6 @@ import LogoScatter from '../components/animated/LogoScatter';
 						<span class="card__cta">Read case study <span class="arrow">→</span></span>
 					</div>
 				</a>
-				<div class="card card--info">
-					<div class="card__media card__media--stat">
-						<span class="card__stat">30s</span>
-						<span class="card__stat-label">build time</span>
-					</div>
-					<div class="card__content">
-						<div class="card__role">Principal Designer · PayPal</div>
-						<h3 class="card__title">Merchant Flow Builder</h3>
-						<p class="card__body">Browser brief form and Figma plugin, built on my own initiative. Per-merchant checkout flow assembly: 30 to 60 minutes to about 30 seconds.</p>
-					</div>
-				</div>
 			</div>
 		</div>
 	</section>
@@ -336,6 +348,10 @@ import LogoScatter from '../components/animated/LogoScatter';
 		color: var(--text-mute);
 		font-weight: 600;
 	}
+	/* full-bleed photo media: fills the 16:9 box instead of the contain default */
+	.card__media--cover img { object-fit: cover; }
+	/* longer stat value: sized down so it stays inside the media box */
+	.card__stat--long { font-size: clamp(36px, 4vw, 52px); }
 	.card--info { cursor: default; }
 	.card--info:hover {
 		transform: none;
