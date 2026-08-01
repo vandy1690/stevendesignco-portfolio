@@ -1,5 +1,7 @@
 # build output
 dist/
+# design-sync staging (claude.ai/design upload build)
+.design-sync-build/
 # generated types
 .astro/
 
