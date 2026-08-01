@@ -57,13 +57,13 @@ import LogoScatter from '../components/animated/LogoScatter';
 				</a>
 				<div class="card card--info">
 					<div class="card__media card__media--stat">
-						<span class="card__stat">30s</span>
-						<span class="card__stat-label">build time</span>
+						<span class="card__stat card__stat--long">10 to 15 min</span>
+						<span class="card__stat-label">per merchant</span>
 					</div>
 					<div class="card__content">
 						<div class="card__role">Principal Designer · PayPal</div>
 						<h3 class="card__title">Merchant Flow Builder</h3>
-						<p class="card__body">Browser brief form and Figma plugin, built on my own initiative. Per-merchant checkout flow assembly: 30 to 60 minutes to about 30 seconds.</p>
+						<p class="card__body">Browser brief form and Figma plugin, built on my own initiative. A merchant's full set of checkout flows goes from most of a day to 10 to 15 minutes.</p>
 					</div>
 				</div>
 				<a class="card" href="/work/paypal#checkout-dead-end">
@@ -348,6 +348,8 @@ import LogoScatter from '../components/animated/LogoScatter';
 		color: var(--text-mute);
 		font-weight: 600;
 	}
+	/* longer stat value: sized down so it stays inside the media box */
+	.card__stat--long { font-size: clamp(36px, 4vw, 52px); }
 	/* worded kicker: same slot as the stat, set smaller so a sentence fits */
 	.card__media--words { padding: 24px; }
 	.card__kicker {
