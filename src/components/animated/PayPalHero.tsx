@@ -1,4 +1,5 @@
 import React from 'react';
+import { LOGOS } from './logos';
 
 type Ring = {
   radius: number;
@@ -31,8 +32,6 @@ const RINGS: Ring[] = [
     merchants: ['Spotify', 'Starbucks', 'Target', 'TikTokShop', 'Xbox', 'HM'],
   },
 ];
-
-const ASSET_BASE = '/images/case-studies/paypal';
 
 interface PayPalHeroProps {
   className?: string;
@@ -71,17 +70,19 @@ const PayPalHero: React.FC<PayPalHeroProps> = ({ className = '' }) => {
           animation: pp-breath 6s ease-in-out infinite alternate;
           filter: drop-shadow(0 24px 48px var(--lime-glow, rgba(204, 255, 0, 0.18)));
         }
-        .pp-center img {
+        .pp-center .pp-logo { display: block; width: 100%; }
+        .pp-center .pp-logo svg {
           width: 100%;
           height: auto;
+          display: block;
         }
         /* Light mode: PayPal logo black, no glow */
         @media (prefers-color-scheme: light) {
           :root:not([data-theme="dark"]) .pp-center { filter: none; }
-          :root:not([data-theme="dark"]) .pp-center img { filter: brightness(0); }
+          :root:not([data-theme="dark"]) .pp-center .pp-logo { filter: brightness(0); }
         }
         :root[data-theme="light"] .pp-center { filter: none; }
-        :root[data-theme="light"] .pp-center img { filter: brightness(0); }
+        :root[data-theme="light"] .pp-center .pp-logo { filter: brightness(0); }
         .pp-ring {
           position: absolute;
           left: 50%;
@@ -118,10 +119,10 @@ const PayPalHero: React.FC<PayPalHeroProps> = ({ className = '' }) => {
         }
         .pp-chip__inner--counter-cw  { animation: pp-counter-cw  var(--pp-dur) linear infinite; }
         .pp-chip__inner--counter-ccw { animation: pp-counter-ccw var(--pp-dur) linear infinite; }
-        .pp-chip__inner img {
+        .pp-chip__inner .pp-logo { width: 100%; height: 100%; display: block; color: #000; }
+        .pp-chip__inner .pp-logo svg {
           width: 100%;
           height: 100%;
-          object-fit: contain;
           display: block;
         }
 
@@ -197,7 +198,12 @@ const PayPalHero: React.FC<PayPalHeroProps> = ({ className = '' }) => {
 
       <div className="pp-stage">
         <div className="pp-center">
-          <img src={`${ASSET_BASE}/PayPal.svg`} alt="PayPal" />
+          <span
+            className="pp-logo"
+            role="img"
+            aria-label="PayPal"
+            dangerouslySetInnerHTML={{ __html: LOGOS.PayPal }}
+          />
         </div>
 
         {RINGS.map((ring, ringIdx) => {
@@ -241,7 +247,12 @@ const PayPalHero: React.FC<PayPalHeroProps> = ({ className = '' }) => {
                       className={`pp-chip__inner ${counterClass} pp-chip__inner--${name.toLowerCase()}`}
                       style={{ ['--pp-dur' as string]: ring.duration }}
                     >
-                      <img src={`${ASSET_BASE}/${name}.svg`} alt={name} />
+                      <span
+                        className="pp-logo"
+                        role="img"
+                        aria-label={name}
+                        dangerouslySetInnerHTML={{ __html: LOGOS[name] }}
+                      />
                     </div>
                   </div>
                 );
