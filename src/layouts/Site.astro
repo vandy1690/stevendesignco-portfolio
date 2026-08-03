@@ -183,6 +183,12 @@ const jsonLd = {
 		</footer>
 
 		<script>
+			// Planned degradation: this class only exists when the bundled JS
+			// actually loads. Every JS-dependent initial state (hidden fade
+			// sections, hidden nav links, dead controls) is gated on html.js in
+			// the CSS, so a blocked or failed script leaves a usable page.
+			document.documentElement.classList.add('js');
+
 			// Fade-in on scroll
 			const els = document.querySelectorAll<HTMLElement>('[data-animate="fade"]');
 			if (els.length && 'IntersectionObserver' in window) {
@@ -713,19 +719,29 @@ const jsonLd = {
 			:root[data-theme="dark"] .theme-img--dark { display: block !important; }
 			:root[data-theme="dark"] .theme-img--light { display: none !important; }
 
-			/* Fade-in on scroll, observed via tiny script at end of body */
-			[data-animate="fade"] {
+			/* Fade-in on scroll, observed via tiny script at end of body.
+			   Gated on html.js: if the bundled script never loads (blocked
+			   network, proxy), sections stay visible instead of opacity 0. */
+			html.js [data-animate="fade"] {
 				opacity: 0;
 				transform: translateY(12px);
 				transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 			}
-			[data-animate="fade"].is-visible {
+			html.js [data-animate="fade"].is-visible {
 				opacity: 1;
 				transform: translateY(0);
 			}
 			@media (prefers-reduced-motion: reduce) {
-				[data-animate="fade"] { opacity: 1; transform: none; transition: none; }
+				html.js [data-animate="fade"] { opacity: 1; transform: none; transition: none; }
 			}
+
+			/* No-JS fallbacks: plain link nav instead of the dead hamburger,
+			   no dead theme toggle, email link reads as text (the address is
+			   already human readable in the anchor text). */
+			html:not(.js) .nav { display: flex; flex-wrap: wrap; }
+			html:not(.js) .nav-toggle { display: none; }
+			html:not(.js) .theme-toggle { display: none; }
+			html:not(.js) a.js-email { pointer-events: none; text-decoration: none; cursor: default; }
 			.section--ink { background: var(--bg); }
 			.section__inner { max-width: var(--max); margin: 0 auto; }
 			.section__inner--narrow { max-width: var(--max-narrow); }
