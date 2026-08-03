@@ -1,10 +1,10 @@
 import React from 'react';
+import { LOGOS } from './logos';
 
 // Scattered brand tiles for the home hero. Each logo wanders across the whole
 // area on its own randomized path (container units), sometimes drifting off the
-// edges. PayPal sits in the middle as a bare black logo.
-
-const ASSET_BASE = '/images/case-studies/paypal';
+// edges. PayPal sits in the middle as a bare black logo. Logos are inlined
+// SVG (see logos.ts), not img fetches, so no proxy can break individual tiles.
 
 type Tile = { brand: string; x: number; y: number; w: number };
 
@@ -102,7 +102,8 @@ const LogoScatter: React.FC<LogoScatterProps> = ({ className = '' }) => {
           animation: ls-roam var(--ls-dur, 26s) ease-in-out var(--ls-delay, 0s) infinite;
           will-change: transform;
         }
-        .ls-inner img { width: 100%; height: 100%; object-fit: contain; display: block; }
+        .ls-inner .ls-logo { width: 100%; height: 100%; display: block; color: #000; }
+        .ls-inner .ls-logo svg { width: 100%; height: 100%; display: block; }
 
         .ls-paypal {
           position: absolute;
@@ -111,12 +112,13 @@ const LogoScatter: React.FC<LogoScatterProps> = ({ className = '' }) => {
           width: 26%;
           z-index: 3;
         }
-        .ls-paypal img {
-          width: 100%; height: auto; display: block;
+        .ls-paypal .ls-logo {
+          display: block;
           filter: brightness(0);
           animation: ls-roam 30s ease-in-out infinite;
           will-change: transform;
         }
+        .ls-paypal .ls-logo svg { width: 100%; height: auto; display: block; }
 
         /* one path, per-logo waypoints via custom properties */
         @keyframes ls-roam {
@@ -153,14 +155,25 @@ const LogoScatter: React.FC<LogoScatterProps> = ({ className = '' }) => {
                 ...roamVars(i, 42),
               }}
             >
-              <img src={`${ASSET_BASE}/${t.brand}.svg`} alt={t.brand} loading="lazy" />
+              <span
+                className="ls-logo"
+                role="img"
+                aria-label={t.brand}
+                dangerouslySetInnerHTML={{ __html: LOGOS[t.brand] }}
+              />
             </div>
           </div>
         );
       })}
 
       <div className="ls-paypal">
-        <img src={`${ASSET_BASE}/PayPal.svg`} alt="PayPal" style={roamVars(99, 24)} />
+        <span
+          className="ls-logo"
+          role="img"
+          aria-label="PayPal"
+          style={roamVars(99, 24)}
+          dangerouslySetInnerHTML={{ __html: LOGOS.PayPal }}
+        />
       </div>
     </div>
   );
