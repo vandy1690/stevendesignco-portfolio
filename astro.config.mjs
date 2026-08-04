@@ -9,4 +9,9 @@ export default defineConfig({
   output: 'server',
   adapter: vercel(),
   integrations: [react()],
+  build: {
+    // Ship all page css inline in the HTML. Corporate proxies (Steve's work
+    // machine) block /_astro/ asset fetches; inline styles cannot be blocked.
+    inlineStylesheets: 'always',
+  },
 });
