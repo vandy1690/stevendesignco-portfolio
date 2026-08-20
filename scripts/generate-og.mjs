@@ -100,7 +100,7 @@ function orbit(cx, cy) {
 function homeCard() {
 	const inner = `
   ${orbit(958, 318)}
-  <text x="90" y="250" fill="${LIME}" font-family="${FONT}" font-size="26" font-weight="700" letter-spacing="4">PRINCIPAL DESIGNER · PAYPAL</text>
+  <text x="90" y="250" fill="${LIME}" font-family="${FONT}" font-size="26" font-weight="700" letter-spacing="4">PRINCIPAL DESIGNER</text>
   <text x="88" y="338" fill="${INK}" font-family="${FONT}" font-size="92" font-weight="700" letter-spacing="-2">Steven</text>
   <text x="88" y="432" fill="${INK}" font-family="${FONT}" font-size="92" font-weight="700" letter-spacing="-2">Vanden Heuvel</text>
   <text x="90" y="566" fill="${MUTE}" font-family="${FONT}" font-size="28" font-weight="500">Payments${SEP}Design Systems${SEP}B2B Product</text>`;
