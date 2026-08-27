@@ -1,5 +1,5 @@
 import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e((()=>{t=`<!-- Begin .header -->
-<header class="header cf" role="banner"><a href="0"><img src="../../../../images/plate-black.svg" class="logo" alt="Plate" /></a>	<a href="#search-form" class="nav-toggle nav-toggle-search icon-search"><span class="is-vishidden">Search</span></a>
+<header class="header cf" role="banner"><a href="#"><img src="../../images/plate-black.svg" class="logo" alt="Plate" /></a>	<a href="#search-form" class="nav-toggle nav-toggle-search icon-search"><span class="is-vishidden">Search</span></a>
 	<a href="#nav" class="nav-toggle nav-toggle-menu icon-menu"><span class="is-vishidden">Menu</span></a><nav id="nav" class="nav">
 	<ul class="nav-list">
 		<li><a href="#">Home</a></li>

@@ -75,6 +75,20 @@ import Site from '../../layouts/Site.astro';
 		</div>
 	</section>
 
+	<section class="section">
+		<div class="section__inner cs-body" data-animate="fade">
+			<div class="cs-block">
+				<p class="eyebrow">Design system</p>
+				<p class="cs-block__lede">The component library behind this build is still browsable.</p>
+				<p>The original Pattern Lab from the project, and the same patterns rebuilt in Storybook with interactive controls on the core atoms.</p>
+			</div>
+			<div class="cs-artifacts">
+				<a class="btn" href="/labs/plate/" target="_blank" rel="noopener">Open the Pattern Lab</a>
+				<a class="btn" href="/labs/plate-storybook/" target="_blank" rel="noopener">Open the Storybook</a>
+			</div>
+		</div>
+	</section>
+
 	<section class="section section--alt">
 		<div class="section__inner cs-back">
 			<a class="btn" href="/work/paypal">← PayPal</a>
@@ -112,6 +126,8 @@ import Site from '../../layouts/Site.astro';
 	.cs-awards__mark { display: none; }
 
 	.cs-quote { margin: var(--space-lg) 0 0; padding: 0 0 0 var(--space-lg); border-left: 2px solid var(--lime); font-family: var(--font-display); font-weight: 400; font-style: normal; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; font-size: clamp(20px, 2vw, 28px); line-height: 1.4; color: var(--text); max-width: 64ch; }
+
+	.cs-artifacts { display: flex; gap: var(--space-sm); flex-wrap: wrap; }
 
 	.cs-back { display: flex; gap: var(--space-sm); flex-wrap: wrap; justify-content: space-between; align-items: center; }
 	.cs-back .btn--primary { background: var(--text); color: var(--bg); border-color: var(--text); }
