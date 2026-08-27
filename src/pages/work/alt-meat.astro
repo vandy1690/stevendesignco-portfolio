@@ -73,6 +73,20 @@ import Site from '../../layouts/Site.astro';
 		</div>
 	</section>
 
+	<section class="section">
+		<div class="section__inner cs-body" data-animate="fade">
+			<div class="cs-block">
+				<p class="eyebrow">Design system</p>
+				<p class="cs-block__lede">The component library behind this build is still browsable.</p>
+				<p>The original Pattern Lab from the project, and the same patterns rebuilt in Storybook with interactive controls on the core atoms.</p>
+			</div>
+			<div class="cs-artifacts">
+				<a class="btn" href="/labs/altmeat/" target="_blank" rel="noopener">Open the Pattern Lab</a>
+				<a class="btn" href="/labs/altmeat-storybook/" target="_blank" rel="noopener">Open the Storybook</a>
+			</div>
+		</div>
+	</section>
+
 	<section class="section section--alt">
 		<div class="section__inner cs-back">
 			<a class="btn" href="/work/blackbird">← Project Blackbird</a>
@@ -108,6 +122,8 @@ import Site from '../../layouts/Site.astro';
 	.cs-awards li { display: flex; gap: var(--space-md); align-items: center; padding: var(--space-md) 0; border-top: 1px solid var(--rule); font-size: 18px; }
 	.cs-awards li:last-child { border-bottom: 1px solid var(--rule); }
 	.cs-awards__mark { display: none; }
+
+	.cs-artifacts { display: flex; gap: var(--space-sm); flex-wrap: wrap; }
 
 	.cs-back { display: flex; gap: var(--space-sm); flex-wrap: wrap; justify-content: space-between; align-items: center; }
 	.cs-back .btn--primary { background: var(--text); color: var(--bg); border-color: var(--text); }

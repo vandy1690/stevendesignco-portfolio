@@ -2,7 +2,7 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
     <!-- Begin .header -->
 <header class="header cf" role="banner">
 	<div class="masthead">
-		<a href="0"><img src="../../images/altMeat_logo.svg" class="logo" alt="Logo Alt Text" /></a>		<div class="ad banner"><img src="../../images/banner_728x90.jpg" alt="728x90 ad" /></div>	</div>
+		<a href="#"><img src="../../images/altMeat_logo.svg" class="logo" alt="Logo Alt Text" /></a>		<div class="ad banner"><img src="../../images/banner_728x90.jpg" alt="728x90 ad" /></div>	</div>
 	<a href="#search-form" class="nav-toggle nav-toggle-search icon-search"><span class="is-vishidden">Search</span></a>
 	<a href="#nav" class="nav-toggle nav-toggle-menu icon-menu"><span class="is-vishidden">Menu</span></a>
 	<form action="#" method="post" class="inline-form search-form">           
@@ -140,7 +140,7 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
     <!-- Begin .header -->
 <header class="header cf" role="banner">
 	<div class="masthead">
-		<a href="0"><img src="../../images/altMeat_logo.svg" class="logo" alt="Logo Alt Text" /></a>		<div class="ad banner"><img src="../../images/banner_728x90.jpg" alt="728x90 ad" /></div>	</div>
+		<a href="#"><img src="../../images/altMeat_logo.svg" class="logo" alt="Logo Alt Text" /></a>		<div class="ad banner"><img src="../../images/banner_728x90.jpg" alt="728x90 ad" /></div>	</div>
 	<a href="#search-form" class="nav-toggle nav-toggle-search icon-search"><span class="is-vishidden">Search</span></a>
 	<a href="#nav" class="nav-toggle nav-toggle-menu icon-menu"><span class="is-vishidden">Menu</span></a>
 	<form action="#" method="post" class="inline-form search-form">           
@@ -280,7 +280,7 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
     <!-- Begin .header -->
 <header class="header cf" role="banner">
 	<div class="masthead">
-		<a href="0"><img src="../../images/altMeat_logo.svg" class="logo" alt="Logo Alt Text" /></a>		<div class="ad banner"><img src="../../images/banner_728x90.jpg" alt="728x90 ad" /></div>	</div>
+		<a href="#"><img src="../../images/altMeat_logo.svg" class="logo" alt="Logo Alt Text" /></a>		<div class="ad banner"><img src="../../images/banner_728x90.jpg" alt="728x90 ad" /></div>	</div>
 	<a href="#search-form" class="nav-toggle nav-toggle-search icon-search"><span class="is-vishidden">Search</span></a>
 	<a href="#nav" class="nav-toggle nav-toggle-menu icon-menu"><span class="is-vishidden">Menu</span></a>
 	<form action="#" method="post" class="inline-form search-form">           
