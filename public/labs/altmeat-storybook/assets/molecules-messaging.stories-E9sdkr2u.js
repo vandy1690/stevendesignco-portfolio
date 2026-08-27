@@ -1,0 +1,3 @@
+import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e((()=>{t=`<div class="alert alert-">
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+</div>`})))()}var r,i,a;function o(){return(o=e((()=>{n(),r={title:`Molecules/Messaging`},i=()=>t,i.storyName=`Alert`,i.parameters={...i.parameters,docs:{...i.parameters?.docs,source:{originalSource:`() => html0`,...i.parameters?.docs?.source}}},a=[`Story0`]})))()}o();export{i as Story0,a as __namedExportsOrder,r as default};

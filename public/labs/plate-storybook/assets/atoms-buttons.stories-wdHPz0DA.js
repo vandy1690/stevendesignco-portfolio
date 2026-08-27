@@ -1,0 +1,4 @@
+import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e((()=>{t=`<p><a href="#" class="btn">Button</a></p>
+<p><a href="#" class="btn alt">Alternate Button</a></p>
+<p><a href="#" class="btn disabled">Disabled Button</a></p>
+<p><a href="#" class="text-btn">Text Button</a></p>`})))()}var r,i,a;function o(){return(o=e((()=>{n(),r={title:`Atoms/Buttons`},i=()=>t,i.storyName=`Buttons`,i.parameters={...i.parameters,docs:{...i.parameters?.docs,source:{originalSource:`() => html0`,...i.parameters?.docs?.source}}},a=[`Story0`]})))()}o();export{i as Story0,a as __namedExportsOrder,r as default};

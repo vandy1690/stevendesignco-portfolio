@@ -1,0 +1,3 @@
+import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e((()=>{t=`<figure>
+	<img src="../../images/fpo_4x3.png" alt="4x3 Image" />	<figcaption>This is an example of an image with a caption. Photo captions, also known as cutlines, are a few lines of text used to explain or elaborate on published photographs.</figcaption>
+</figure>`})))()}var r,i,a;function o(){return(o=e((()=>{n(),r={title:`Molecules/Media`},i=()=>t,i.storyName=`Figure With Caption`,i.parameters={...i.parameters,docs:{...i.parameters?.docs,source:{originalSource:`() => html0`,...i.parameters?.docs?.source}}},a=[`Story0`]})))()}o();export{i as Story0,a as __namedExportsOrder,r as default};
