@@ -2,7 +2,7 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
     <!-- Begin .header -->
 <header class="header cf" role="banner">
 	<div class="masthead">
-		<a href="#"><img src="../../images/altMeat_logo.svg" class="logo" alt="Logo Alt Text" /></a>		<div class="ad banner"><img src="../../images/banner_728x90.jpg" alt="728x90 ad" /></div>	</div>
+		<a href="#"><img src="images/altMeat_logo.svg" class="logo" alt="Logo Alt Text" /></a>		<div class="ad banner"><img src="images/banner_728x90.jpg" alt="728x90 ad" /></div>	</div>
 	<a href="#search-form" class="nav-toggle nav-toggle-search icon-search"><span class="is-vishidden">Search</span></a>
 	<a href="#nav" class="nav-toggle nav-toggle-menu icon-menu"><span class="is-vishidden">Menu</span></a>
 	<form action="#" method="post" class="inline-form search-form">           
@@ -29,7 +29,7 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
 	    	        <div class="block block-hero">
 	<a href="#" class="b-inner">
 		<div class="b-thumb">
-			<img src="../../images/fpo_4x3.png" alt="4x3 Image" />		</div>
+			<img src="images/fpo_4x3.png" alt="4x3 Image" />		</div>
 		<div class="b-text">
 			<h2 class="b-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
 		</div>
@@ -41,7 +41,7 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
 	                <div class="block block-inset">
     <a href="#" class="inner">
 		<div class="b-thumb">
-			<img src="../../images/fpo_4x3.png" alt="4x3 Image" />		</div>
+			<img src="images/fpo_4x3.png" alt="4x3 Image" />		</div>
 		<div class="b-text">
 			<h2 class="headline">Lorem ipsum dolor sit</h2>
 		</div>
@@ -52,7 +52,7 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
 	                <div class="block block-inset">
     <a href="#" class="inner">
 		<div class="b-thumb">
-			<img src="../../images/fpo_4x3.png" alt="4x3 Image" />		</div>
+			<img src="images/fpo_4x3.png" alt="4x3 Image" />		</div>
 		<div class="b-text">
 			<h2 class="headline">Lorem ipsum dolor sit</h2>
 		</div>
@@ -63,7 +63,7 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
 	                <div class="block block-inset">
     <a href="#" class="inner">
 		<div class="b-thumb">
-			<img src="../../images/fpo_4x3.png" alt="4x3 Image" />		</div>
+			<img src="images/fpo_4x3.png" alt="4x3 Image" />		</div>
 		<div class="b-text">
 			<h2 class="headline">Lorem ipsum dolor sit</h2>
 		</div>
@@ -125,7 +125,7 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
 		<li><a href="#" class="icon-twitter"></a></li>
 		<li><a href="#" class="icon-linkedin"></a></li>
 	</ul>
-</div>	    <div class="ad tower"><img src="../../images/tower_240x440.jpg" alt="240x440 ad" /></div>    </div>
+</div>	    <div class="ad tower"><img src="images/tower_240x440.jpg" alt="240x440 ad" /></div>    </div>
     <!--<div class="l-sidebar2">
                     </div>-->
 </div>
@@ -140,7 +140,7 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
     <!-- Begin .header -->
 <header class="header cf" role="banner">
 	<div class="masthead">
-		<a href="#"><img src="../../images/altMeat_logo.svg" class="logo" alt="Logo Alt Text" /></a>		<div class="ad banner"><img src="../../images/banner_728x90.jpg" alt="728x90 ad" /></div>	</div>
+		<a href="#"><img src="images/altMeat_logo.svg" class="logo" alt="Logo Alt Text" /></a>		<div class="ad banner"><img src="images/banner_728x90.jpg" alt="728x90 ad" /></div>	</div>
 	<a href="#search-form" class="nav-toggle nav-toggle-search icon-search"><span class="is-vishidden">Search</span></a>
 	<a href="#nav" class="nav-toggle nav-toggle-menu icon-menu"><span class="is-vishidden">Menu</span></a>
 	<form action="#" method="post" class="inline-form search-form">           
@@ -170,7 +170,7 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
         <div class="byline">by Author Name</div>
     </header>
     <article class="article">
-        <img src="../../images/fpo_4x3.png" alt="4x3 Image" /><p><span class="intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span> Integer fringilla sem a urna porttitor fringilla. Nulla eget justo felis. </p>
+        <img src="images/fpo_4x3.png" alt="4x3 Image" /><p><span class="intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span> Integer fringilla sem a urna porttitor fringilla. Nulla eget justo felis. </p>
 
 <p><a href="#">Aliquam erat volutpat.</a> Mauris vulputate scelerisque feugiat. Cras a erat a diam venenatis aliquam. Sed tempus, purus ac pretium varius, risus orci sagittis purus, quis auctor libero magna nec magna. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas eros dolor, rutrum eu sollicitudin eu, commodo at leo. Suspendisse potenti. Sed eu nibh sit amet quam auctor feugiat vel et risus. Maecenas eu urna adipiscing neque dictum mollis suscipit in augue. Praesent pulvinar condimentum sagittis. Maecenas laoreet neque non eros consectetur fringilla. Donec vitae risus leo, vitae pharetra ipsum. Sed placerat eros eget elit iaculis semper. Aliquam congue blandit orci ac pretium.</p>
 
@@ -245,7 +245,7 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
 							<li class="comment-container">
 	<div class="comment-meta">
 		<h4 class="commentHeadline"><a href="#">Comment headline</a></h4>
-		<!--<img src="../../images/fpo_avatar.png" alt="Avatar" />-->
+		<!--<img src="images/fpo_avatar.png" alt="Avatar" />-->
 		<h4 class="comment-name"><a href="#">John Public</a> | <time datetime="2021-01-01T12:32+00:00">Jan. 1, 2021</time></h4>
 		
 	</div>
@@ -256,7 +256,7 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
 							<li class="comment-container">
 	<div class="comment-meta">
 		<h4 class="commentHeadline"><a href="#">Comment headline</a></h4>
-		<!--<img src="../../images/fpo_avatar.png" alt="Avatar" />-->
+		<!--<img src="images/fpo_avatar.png" alt="Avatar" />-->
 		<h4 class="comment-name"><a href="#">John Public</a> | <time datetime="2021-01-01T12:32+00:00">Jan. 1, 2021</time></h4>
 		
 	</div>
@@ -267,7 +267,7 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
 							<li class="comment-container">
 	<div class="comment-meta">
 		<h4 class="commentHeadline"><a href="#">Comment headline</a></h4>
-		<!--<img src="../../images/fpo_avatar.png" alt="Avatar" />-->
+		<!--<img src="images/fpo_avatar.png" alt="Avatar" />-->
 		<h4 class="comment-name"><a href="#">John Public</a> | <time datetime="2021-01-01T12:32+00:00">Jan. 1, 2021</time></h4>
 		
 	</div>
@@ -278,7 +278,7 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
 							<li class="comment-container">
 	<div class="comment-meta">
 		<h4 class="commentHeadline"><a href="#">Comment headline</a></h4>
-		<!--<img src="../../images/fpo_avatar.png" alt="Avatar" />-->
+		<!--<img src="images/fpo_avatar.png" alt="Avatar" />-->
 		<h4 class="comment-name"><a href="#">John Public</a> | <time datetime="2021-01-01T12:32+00:00">Jan. 1, 2021</time></h4>
 		
 	</div>
@@ -289,7 +289,7 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
 							<li class="comment-container">
 	<div class="comment-meta">
 		<h4 class="commentHeadline"><a href="#">Comment headline</a></h4>
-		<!--<img src="../../images/fpo_avatar.png" alt="Avatar" />-->
+		<!--<img src="images/fpo_avatar.png" alt="Avatar" />-->
 		<h4 class="comment-name"><a href="#">John Public</a> | <time datetime="2021-01-01T12:32+00:00">Jan. 1, 2021</time></h4>
 		
 	</div>
@@ -320,7 +320,7 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
 		<li><h4><a href="#">Lorem ipsum dolor sit</a></h4></li>
 		<li><h4><a href="#">Lorem ipsum dolor sit</a></h4></li>
 	</ul>
-</section>    <div class="ad tower"><img src="../../images/tower_240x440.jpg" alt="240x440 ad" /></div>    </div>
+</section>    <div class="ad tower"><img src="images/tower_240x440.jpg" alt="240x440 ad" /></div>    </div>
 </div>
     </div><!--End role=main-->
     <!-- Begin Footer -->

@@ -1,6 +1,6 @@
 import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e((()=>{t=`<div class="block block-thumb">
     <a href="#" class="b-inner">
-		<div class="b-thumb"><img src="../../images/fpo_square.png" alt="Square Thumbnail" />		</div>
+		<div class="b-thumb"><img src="images/fpo_square.png" alt="Square Thumbnail" />		</div>
 		<div class="b-text">
 			<h2 class="b-title">Lorem ipsum dolor sit (37 characters)</h2>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -13,7 +13,7 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
 	</a>
 </div>`})))()}var a;function o(){return(o=e((()=>{a=`<div class="block block-hero">
 	<a href="#" class="b-inner">
-		<div class="b-thumb"><img src="../../images/fpo_16x9.png" alt="16x9 Image" /> 
+		<div class="b-thumb"><img src="images/fpo_16x9.png" alt="16x9 Image" /> 
 		</div>
 		<div class="b-text">
 			<h2 class="b-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit. (72 characters)</h2>
@@ -21,7 +21,7 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
 	</a>
 </div>`})))()}var s;function c(){return(c=e((()=>{s=`<div class="block block-thumb">
 	<a href="#" class="b-inner">
-		<div class="b-thumb"><img src="../../images/fpo_square.png" alt="Square Thumbnail" />		</div>
+		<div class="b-thumb"><img src="images/fpo_square.png" alt="Square Thumbnail" />		</div>
 		<div class="b-text">
 			<h2 class="b-title">Pattern Lab</h2>
 		</div>

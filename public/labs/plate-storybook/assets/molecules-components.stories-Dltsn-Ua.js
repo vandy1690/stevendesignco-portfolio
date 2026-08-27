@@ -24,7 +24,7 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
 		</li>
 	</ul>
 </div>`})))()}var a;function o(){return(o=e((()=>{a=`<li class="comment-container">
-	<div class="comment-meta"><img src="../../images/fpo_avatar.png" alt="Avatar" />		<h4 class="comment-name"><a href="#">LacyWay</a></h4>
+	<div class="comment-meta"><img src="images/fpo_avatar.png" alt="Avatar" />		<h4 class="comment-name"><a href="#">LacyWay</a></h4>
 	</div>
 	<div class="comment-text">
 		<p>So, setting about it as methodically as men might smoke out a wasps&#039; nest, the Martians spread this strange stifling vapour over the Londonward country. The horns of the crescent slowly moved apart, until at last they formed a line from Hanwell to Coombe and Malden. All night through their destructive tubes advanced.</p>
