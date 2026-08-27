@@ -1,0 +1,52 @@
+.header {
+	background: $white;
+	padding: 0;
+	border-bottom: 1px solid $am-gray;
+	@extend .lc;
+}
+
+.logo {
+	float: left;
+	max-width: 8rem;
+	margin: 0.4rem;
+	fill: $am-green;
+	@media all and (min-width: $bp-med) {
+		max-width: 20rem;
+	}
+}
+
+.nav-toggle {
+	float: right;
+	display: block;
+	padding: 0.9rem 1rem 0.7rem;
+	font-size: 1.3rem;
+	line-height: 1;
+	border-left: 1px solid #dbdbdb;
+
+	@media all and (min-width: $bp-med) {
+		display: none;
+	}
+
+	@media all and (max-width: 17em) {
+		padding-left: 0.2rem;
+		padding-right: 0.2rem;
+	}
+}
+
+.search-form {
+	overflow: hidden;
+	max-height: 0;
+
+	@media all and (min-width: $bp-med) {
+		float: right;
+		max-height: none;
+		margin: $space-half $space-half 0 0;
+	}
+}
+.masthead {
+	display: inline-block;
+	width: 100%;
+	margin: $space 0 0;
+	padding: 0 0 $pad;
+	border-bottom: $am-gray 1px solid;
+}

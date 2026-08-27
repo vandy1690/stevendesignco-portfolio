@@ -1,0 +1,40 @@
+/*------------------------------------*\
+    $FOOTER
+\*------------------------------------*/
+.footer {
+	clear: both;
+	overflow: hidden;
+	line-height: 1.2;
+	font-family: $font-secondary;
+	font-size: $font-size-small-2;
+	a {
+		color: $gray-light;
+	}
+}
+
+//Footer Nav
+.nav-footer {
+	margin: (-$pad) (-$pad) $space;
+	font-family: $font-secondary;
+	font-size: $font-size-small-2;
+
+	li {
+		border-bottom: 1px solid $gray-dark;
+
+		@media all and (min-width: $bp-med) {
+			border: 0;
+			float: left;
+		}
+	}
+
+	a {
+		display: block;
+		padding: $pad;
+	}
+}
+
+.copyright {
+	@media all and (min-width: $bp-med) {
+		float: right;
+	}
+}

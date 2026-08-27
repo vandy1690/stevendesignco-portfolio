@@ -1,0 +1,68 @@
+//Article
+.article-header {
+	h1 {
+		font-size: 2.5em;
+	}
+}
+
+.byline {
+	font-size: $font-size-small-2;
+	font-style: italic;
+	margin-bottom: $space-half;
+}
+
+//Social Share
+.social-share {
+	overflow: hidden;
+	margin-bottom: $space;
+
+	li {
+		float: left;
+		margin-right: $space-half;
+	}
+
+	a {
+		background: $gray-dark;
+		color: $white;
+		display: block;
+		padding: $pad-half $pad-half $pad-quarter;
+		border-radius: 1em;
+		&.icon-facebook, &.icon-envelope, &.icon-twitter, &.icon-linkedin {
+			&:before {
+				color:$white;
+			}
+		}
+		&.icon-facebook {
+			background-color: $facebookBlue;
+		}
+		&.icon-envelope {
+			background-color: $am-gray;
+		}
+		&.icon-twitter {
+			background-color: $twitterBlue;
+		}
+		&.icon-linkedin {
+			background-color: $linkedInBlue;
+		}
+		&:hover {
+			background: $gray;
+		}
+	}
+}
+.social-sites-list {
+	font-size: 1.5em;
+	padding: $space-half 0 $space-double;
+	li {
+		float: left;
+		margin-right: $space-half;
+	}
+}
+header {
+	.banner {
+		float: right;
+	}
+	.logo {
+		float: left;
+		padding: $pad 0 0;
+	}
+}

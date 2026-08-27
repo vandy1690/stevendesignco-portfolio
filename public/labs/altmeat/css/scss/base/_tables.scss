@@ -1,0 +1,36 @@
+/*------------------------------------*\
+    $Table
+\*------------------------------------*/
+table {
+	border-collapse: collapse; 
+	border-spacing: 0; 
+	border: none;
+	width: 100%;
+}
+th {
+	text-align: left;
+	padding: 0.2em;
+	@include fontVar;
+	border-bottom: 4px solid $am-green;
+	color: $am-darker-green;
+	font-size: $font-size-med-2;
+}
+td {
+	border-bottom: 1px solid $am-light-green;
+	padding: 0.2em;
+	font-family: $font-secondary;
+	font-size: $font-size-small-2;
+	&:nth-child(even) {
+		background-color: lighten($am-light-green, 10%);
+	}
+}
+tfoot {
+	th {
+		border-top: 4px solid $am-green;
+		border-bottom: none;
+		font-family: $font-secondary;
+		font-weight: 400;
+		color: $black;
+		font-size: $font-size-small-2;
+	}
+}
