@@ -2,7 +2,7 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
     <h2 class="section-title">Latest Posts</h2>
     <ul class="post-list">      <li><div class="block block-thumb">
     <a href="#" class="b-inner">
-		<div class="b-thumb"><img src="../../images/fpo_square.png" alt="Square Thumbnail" />		</div>
+		<div class="b-thumb"><img src="images/fpo_square.png" alt="Square Thumbnail" />		</div>
 		<div class="b-text">
 			<h2 class="b-title">Lorem ipsum dolor sit (37 characters)</h2>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -10,7 +10,7 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
 	</a>
 </div></li>      <li><div class="block block-thumb">
     <a href="#" class="b-inner">
-		<div class="b-thumb"><img src="../../images/fpo_square.png" alt="Square Thumbnail" />		</div>
+		<div class="b-thumb"><img src="images/fpo_square.png" alt="Square Thumbnail" />		</div>
 		<div class="b-text">
 			<h2 class="b-title">Lorem ipsum dolor sit (37 characters)</h2>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -18,7 +18,7 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
 	</a>
 </div></li>      <li><div class="block block-thumb">
     <a href="#" class="b-inner">
-		<div class="b-thumb"><img src="../../images/fpo_square.png" alt="Square Thumbnail" />		</div>
+		<div class="b-thumb"><img src="images/fpo_square.png" alt="Square Thumbnail" />		</div>
 		<div class="b-text">
 			<h2 class="b-title">Lorem ipsum dolor sit (37 characters)</h2>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -26,7 +26,7 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
 	</a>
 </div></li>      <li><div class="block block-thumb">
     <a href="#" class="b-inner">
-		<div class="b-thumb"><img src="../../images/fpo_square.png" alt="Square Thumbnail" />		</div>
+		<div class="b-thumb"><img src="images/fpo_square.png" alt="Square Thumbnail" />		</div>
 		<div class="b-text">
 			<h2 class="b-title">Lorem ipsum dolor sit (37 characters)</h2>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -34,7 +34,7 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
 	</a>
 </div></li>      <li><div class="block block-thumb">
     <a href="#" class="b-inner">
-		<div class="b-thumb"><img src="../../images/fpo_square.png" alt="Square Thumbnail" />		</div>
+		<div class="b-thumb"><img src="images/fpo_square.png" alt="Square Thumbnail" />		</div>
 		<div class="b-text">
 			<h2 class="b-title">Lorem ipsum dolor sit (37 characters)</h2>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>

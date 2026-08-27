@@ -8,7 +8,7 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
 </div>`})))()}var r;function i(){return(i=e((()=>{r=`<li class="comment-container">
 	<div class="comment-meta">
 		<h4 class="commentHeadline"><a href="#">Comment headline</a></h4>
-		<!--<img src="../../images/fpo_avatar.png" alt="Avatar" />-->
+		<!--<img src="images/fpo_avatar.png" alt="Avatar" />-->
 		<h4 class="comment-name"><a href="#">John Public</a> | <time datetime="2021-01-01T12:32+00:00">Jan. 1, 2021</time></h4>
 		
 	</div>
