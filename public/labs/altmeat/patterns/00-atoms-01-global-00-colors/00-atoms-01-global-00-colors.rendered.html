@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html class="pl">
+  <head>
+    <title>Pattern Lab</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    
+    <link rel="stylesheet" href="../../css/style.css?1646251849977" media="all" />
+    <link rel="stylesheet" href="../../css/pattern-scaffolding.css?1646251849977" media="all" />
+
+    <!-- Begin Pattern Lab (Required for Pattern Lab to run properly) -->
+    
+    <!-- End Pattern Lab -->
+  
+  </head>
+  <body class="body"><ul class="sg-colors">
+	<li>
+		<span class="sg-swatch" style="background: #dfedc9;"></span>
+		<span class="sg-label">#dfedc9</span>
+	</li>
+	<li>
+		<span class="sg-swatch" style="background: #94c941;"></span>
+		<span class="sg-label">#94c941</span>
+	</li>
+	<li>
+		<span class="sg-swatch" style="background: #1e592b;"></span>
+		<span class="sg-label">#1e592b</span>
+	</li>
+	<li>
+		<span class="sg-swatch" style="background: #00332e;"></span>
+		<span class="sg-label">#00332e</span>
+	</li>
+	<li>
+		<span class="sg-swatch" style="background: #f5e3c1;"></span>
+		<span class="sg-label">#f5e3c1</span>
+	</li>
+	<li>
+		<span class="sg-swatch" style="background: #ffd948;"></span>
+		<span class="sg-label">#ffd948</span>
+	</li>
+	<li>
+		<span class="sg-swatch" style="background: #f89e54;"></span>
+		<span class="sg-label">#f89e54</span>
+	</li>
+	<li>
+		<span class="sg-swatch" style="background: #d0482b;"></span>
+		<span class="sg-label">#d0482b</span>
+	</li>
+	<li>
+		<span class="sg-swatch" style="background: #b12a30;"></span>
+		<span class="sg-label">#b12a30</span>
+	</li>
+	<li>
+		<span class="sg-swatch" style="background: #690000;"></span>
+		<span class="sg-label">#690000</span>
+	</li>
+	
+	<li>
+		<span class="sg-swatch" style="background: #d8dbdb;"></span>
+		<span class="sg-label">#d8dbdb</span>
+	</li>
+	<li>
+		<span class="sg-swatch" style="background: #2f6d8d;"></span>
+		<span class="sg-label">#2f6d8d</span>
+	</li>
+	<li>
+		<span class="sg-swatch" style="background: #073548;"></span>
+		<span class="sg-label">#073548</span>
+	</li>
+	<li>
+		<span class="sg-swatch" style="background: #000000;"></span>
+		<span class="sg-label">#000000</span>
+	</li>
+	<li>
+		<span class="sg-swatch" style="background: #ffffff;"></span>
+		<span class="sg-label">#ffffff</span>
+	</li>
+</ul><!--DO NOT REMOVE-->
+  <script type="text/json" id="pl-pattern-data-footer" class="pl-js-pattern-data">
+  {"cssEnabled":false,"patternLineageExists":false,"patternLineages":[],"lineage":[],"patternLineageRExists":false,"patternLineagesR":[],"lineageR":[],"patternLineageEExists":false,"patternDesc":"","patternBreadcrumb":{"patternType":"atoms","patternSubtype":"global"},"patternExtension":"twig","patternName":"Colors","patternPartial":"atoms-colors","patternState":"","patternEngineName":"twig-php","extraOutput":{}}
+</script>
+
+<script>
+  window.patternData = {"cssEnabled":false,"patternLineageExists":false,"patternLineages":[],"lineage":[],"patternLineageRExists":false,"patternLineagesR":[],"lineageR":[],"patternLineageEExists":false,"patternDesc":"","patternBreadcrumb":{"patternType":"atoms","patternSubtype":"global"},"patternExtension":"twig","patternName":"Colors","patternPartial":"atoms-colors","patternState":"","patternEngineName":"twig-php","extraOutput":{}};
+</script>
+
+<script>
+  /*!
+   * scriptLoader - v0.1
+   *
+   * Copyright (c) 2014 Dave Olsen, http://dmolsen.com
+   * Licensed under the MIT license
+   *
+   */
+
+  var scriptLoader = {
+
+    run: function(js,cb,target) {
+      var s  = document.getElementById(target+'-'+cb);
+      for (var i = 0; i < js.length; i++) {
+        var src = (typeof js[i] != 'string') ? js[i].src : js[i];
+        var c   = document.createElement('script');
+        c.src   = '../../'+src+'?'+cb;
+        if (typeof js[i] != 'string') {
+          if (js[i].dep !== undefined) {
+            c.onload = function(dep,cb,target) {
+              return function() {
+                scriptLoader.run(dep,cb,target);
+              }
+            }(js[i].dep,cb,target);
+          }
+        }
+        s.parentNode.insertBefore(c,s);
+      }
+    }
+
+  }
+</script>
+
+<script id="pl-js-polyfill-insert-1646251849977">
+  (function() {
+    if (self != top) {
+      var cb = '1646251849977';
+      var js = [];
+      scriptLoader.run(js,cb,'pl-js-polyfill-insert');
+    }
+  })();
+</script>
+
+
+<script type="module">
+  // always load Pattern-specific JS so UI like accordions, etc can continue to work even when viewed as a standalone HTML page
+  import('../../styleguide/js/patternlab-pattern.modern.js');
+</script>
+
+<script id="pl-js-insert-1646251849977" nomodule>
+  /*! loadJS: load a JS file asynchronously. [c]2014 @scottjehl, Filament Group, Inc. (Based on http://goo.gl/REQGQ by Paul Irish). Licensed MIT */
+  !function(e){var t=function(t,n){"use strict";var o=e.document.getElementsByTagName("script")[0],r=e.document.createElement("script");return r.src=t,r.async=!0,o.parentNode.insertBefore(r,o),n&&"function"==typeof n&&(r.onload=n),r};"undefined"!=typeof module?module.exports=t:e.loadJS=t}("undefined"!=typeof global?global:this);
+
+  // always load Pattern-specific JS so UI like accordions, etc can continue to work even when viewed as a standalone HTML page
+  loadJS('../../styleguide/js/patternlab-pattern.js');
+</script>
+
+  
+  </body>
+</html>

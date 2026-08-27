@@ -1,0 +1,36 @@
+{% extends "@templates/00-layouts/01-page-3col.twig" %}
+	{% block hero %}
+	    {% if emergency %}
+	        {% include "@molecules/07-messaging/00-alert.twig" with emergency %}
+	    {% endif %}
+	    <div class="hp-firstcol">
+	    {% if hero %}
+	        {% include "@molecules/02-blocks/02-block-hero.twig" %}
+	    {% endif %}
+	
+	    <div class="g g-2up">
+	        {% for tout in touts %}
+	            <div class="gi">
+	                {% include "@molecules/02-blocks/05-block-inset.twig" %}
+	            </div>
+	        {% endfor %}
+	    </div><!--end 3up-->
+	    </div>
+	
+	    <!--<hr/>-->
+	{% endblock %}
+	
+	{% block main %}
+	    <section class="section latest-posts">
+	        <h2 class="section-title">Latest News</h2>
+	        <ul class="post-list">
+	            {% for post in latest_posts %}
+	                <li>{% include "@molecules/02-blocks/06-other-headlines-block.twig" %}</li>
+	            {% endfor %}
+	        </ul>
+	        <a href="#" class="text-btn">View more posts</a>
+	    </section>
+	{% endblock %}
+	
+	{% block sidebar %}
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "@templates/00-layouts/00-site.twig" %}
+{% block content %}
+<div class="l-three-col">
+    <div class="l-main">
+        {% block main %}
+            <p>Content Placeholder</p>
+        {% endblock %}
+    </div>
+    <div class="l-sidebar">
+        {% block sidebar %}
+        {% endblock %}
+        <ul>
+        	<li class="othernavlinks"><a href="#">Login</a> / <a href="#">Register</a></li>
+        	<li class="othernavlinks"><a href="#">Digital Magazine</a></li>
+        	<li class="othernavlinks"><a href="#">Advertising Opportunities</a></li>
+        </ul>
+        {% include "@molecules/06-components/03-social-sites.twig" %}
+	    {% include "@atoms/04-images/10-tower-ad-240x440.twig" %}
+    </div>
+    <!--<div class="l-sidebar2">
+        {% block sidebar2 %}
+        {% endblock %}
+    </div>-->
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+//Intro text
+.intro {
+	font-size: $font-size-med-2;
+	font-weight: bold;
+	color: $am-blue;
+}
+
+//Pullquote
+.pullquote {
+	font-family: $font-secondary;
+	font-size: $font-size-large;
+}
+
+//Caption 
+.caption {
+	@include caption;
+}
+
+//Passages of text
+.text {
+	a {
+		text-decoration: underline;
+	}
+
+	ul {
+		list-style: square;
+		margin: 0 0 $space 1.2em;
+
+		ul {
+			margin-bottom: 0;
+		}
+	}
+
+	ol {
+		list-style: decimal;
+		margin: 0 0 $space 1.5em;
+
+		ol {
+			margin-bottom: 0;
+		}
+	}
+}
+mark {
+	background-color: $am-yellow;
+}
+.deck {
+	font-family: $font-secondary;
+	margin: $space-half 0 0;
+}
+cite {
+	color: $am-blue;
+	font-size: $font-size-small;
+	font-family: Roslindale-DisplayCondensedExtraLightItalic;
+}
