@@ -1,0 +1,1629 @@
+@charset "UTF-8";
+/*                                                                                                                                         
+                                                ,,            ,,                          ,,                                             
+ .M"""bgd mm                                    db          `7MM        mm         mm   `7MM                                    OO OO OO 
+,MI    "Y MM                                                  MM        MM         MM     MM                                    88 88 88 
+`MMb.   mmMMmm ,pW"Wq.`7MMpdMAo.     `7Mb,od8 `7MM  .P"Ybmmm  MMpMMMb.mmMMmm     mmMMmm   MMpMMMb.  .gP"Ya `7Mb,od8 .gP"Ya      || || || 
+  `YMMNq. MM  6W'   `Wb MM   `Wb       MM' "'   MM :MI  I8    MM    MM  MM         MM     MM    MM ,M'   Yb  MM' "',M'   Yb     || || || 
+.     `MM MM  8M     M8 MM    M8       MM       MM  WmmmP"    MM    MM  MM         MM     MM    MM 8M""""""  MM    8M""""""     `' `' `' 
+Mb     dM MM  YA.   ,A9 MM   ,AP       MM       MM 8M         MM    MM  MM         MM     MM    MM YM.    ,  MM    YM.    ,     ,, ,, ,, 
+P"Ybmmd"  `Mbmo`Ybmd9'  MMbmmd'      .JMML.   .JMML.YMMMMMb .JMML  JMML.`Mbmo      `Mbmo.JMML  JMML.`Mbmmd'.JMML.   `Mbmmd'     db db db 
+                        MM                         6'     dP                                                                             
+                      .JMML.                       Ybmmmd'                                                                               
+
+Pattern Lab doesn't have any CSS requirements, which means you can write your styles however you want. Hooray!
+You can use Sass, Less, vanilla CSS, or some other crazy thing I haven't heard of yet.
+So please don't use these styles. They're just here to put together the demo, and nothing more.
+They're intentionally gray, boring, and crappy because you're supposed to do this stuff yourself.
+
+Atomic design is philosophically complimentary with these CSS approaches:
+
+* SMACSS by Jonathan Snook http://smacss.com/
+* OOCSS by Nicole Sullivan http://oocss.org/
+* BEM CSS Methology : http://bem.info/method/
+* CSS Guidelines by Harry Roberts : https://github.com/csswizardry/CSS-Guidelines
+
+So feel free to use any of these approaches. Or don't. It's totally up to you.
+
+*/
+/*------------------------------------*\
+    $TABLE OF CONTENTS 
+    based generally on Harry Roberts excellent CSS Guidelines https://github.com/csswizardry/CSS-Guidelines
+\*------------------------------------*/
+/**
+ * VARIABLES..............................Declarations of Sass variables 
+ * .....Colors
+ * .....Typography
+ * .....Layout
+ * .....Defaults
+ * .....Breakpoints
+ * MIXINS.................................Sass mixins 
+ * RESET..................................Set reset defaults
+ * GLOBAL CLASSES.........................Set reset defaults
+ * GLOBAL ELEMENTS........................Establish global styles
+ * .....Main
+ * .....Headings
+ * .....Text-related elements (p, blockquote, lists)
+ * .....Defaults
+ * .....Breakpoints
+ * TYPOGRAPHY------------------------------
+ * MEDIA------------------------------
+ * LAYOUT------------------------------
+ * NAVIGATION------------------------------
+ * TOC To Be Continued
+ */
+/*------------------------------------*\
+    $VARIABLES — Plate brand values
+    (Variable NAMES are kept identical to the original HotelsLife
+    Pattern Lab so existing atoms/molecules pick up the new palette
+    automatically.)
+\*------------------------------------*/
+@import url("//fast.fonts.net/t/1.css?apiType=css&projectid=cf03026c-681c-425b-8c40-7664d6d9cc98");
+@font-face {
+  font-family: "Tungsten Rounded";
+  src: url("../fonts/TungstenRnd-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Tungsten Rounded";
+  src: url("../fonts/TungstenRnd-Book.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Tungsten Rounded";
+  src: url("../fonts/TungstenRnd-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Tungsten Rounded";
+  src: url("../fonts/TungstenRnd-Semibold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Tungsten Rounded";
+  src: url("../fonts/TungstenRnd-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Tungsten Rounded";
+  src: url("../fonts/TungstenRnd-Black.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "HelveticaNeueW01-UltLtC 673371";
+  src: url("../fonts/3345539a-5527-4641-bca2-fa42b579c9ed.eot?#iefix");
+  src: url("../fonts/3345539a-5527-4641-bca2-fa42b579c9ed.eot?#iefix") format("eot"), url("../fonts/ed81998a-20f5-461f-8ae8-b2d1c4feec2a.woff") format("woff"), url("../fonts/ea4682a4-ca47-43c0-a7af-aa3d4c3df6c8.ttf") format("truetype"), url("../fonts/dc47192b-c265-43dd-8513-6a8d3bf3c186.svg#dc47192b-c265-43dd-8513-6a8d3bf3c186") format("svg");
+}
+@font-face {
+  font-family: "HelveticaNeueW01-UltLtC 673374";
+  src: url("../fonts/024cf5cb-32dc-4063-9838-9580b205338a.eot?#iefix");
+  src: url("../fonts/024cf5cb-32dc-4063-9838-9580b205338a.eot?#iefix") format("eot"), url("../fonts/96fca99f-d03c-4e52-99bf-2128f97b3007.woff") format("woff"), url("../fonts/c7a64d57-bb2b-41d9-81f3-d168da918abf.ttf") format("truetype"), url("../fonts/e02edb6e-3a04-44e9-a714-1d0d3587c857.svg#e02edb6e-3a04-44e9-a714-1d0d3587c857") format("svg");
+}
+@font-face {
+  font-family: "HelveticaNeueW01-ThinCn 673383";
+  src: url("../fonts/08e2b89e-9853-40e2-b409-05538c48390b.eot?#iefix");
+  src: url("../fonts/08e2b89e-9853-40e2-b409-05538c48390b.eot?#iefix") format("eot"), url("../fonts/3d0bfb88-4887-4fd3-a16f-34ae15cbfe25.woff") format("woff"), url("../fonts/007ff3cd-c6c5-4d33-8458-99c3d6fc8598.ttf") format("truetype"), url("../fonts/67ccdd14-5fcd-479c-9829-ec39a60795fa.svg#67ccdd14-5fcd-479c-9829-ec39a60795fa") format("svg");
+}
+@font-face {
+  font-family: "HelveticaNeueW01-ThinCn 673386";
+  src: url("../fonts/980df724-09f2-4cbb-b493-f682b8c6c590.eot?#iefix");
+  src: url("../fonts/980df724-09f2-4cbb-b493-f682b8c6c590.eot?#iefix") format("eot"), url("../fonts/2906fb00-117f-4f5d-8e80-5c0658969b92.woff") format("woff"), url("../fonts/1e030520-a37b-4e02-b7cd-d514be1cbebb.ttf") format("truetype"), url("../fonts/fca2f769-a4e5-4857-a18c-c435c3b7025f.svg#fca2f769-a4e5-4857-a18c-c435c3b7025f") format("svg");
+}
+@font-face {
+  font-family: "HelveticaNeueW01-47LtCn 692686";
+  src: url("../fonts/7de6b03f-1298-4bc2-89af-9d9da594008d.eot?#iefix");
+  src: url("../fonts/7de6b03f-1298-4bc2-89af-9d9da594008d.eot?#iefix") format("eot"), url("../fonts/42aacb2f-222e-46f5-a95a-1c22948ee0d1.woff") format("woff"), url("../fonts/217a2f81-1e65-4924-a0d4-05ac8576f883.ttf") format("truetype"), url("../fonts/5405647d-099e-47f7-9d4a-f8692e57a206.svg#5405647d-099e-47f7-9d4a-f8692e57a206") format("svg");
+}
+@font-face {
+  font-family: "HelveticaNeueW01-47LtCn 692689";
+  src: url("../fonts/08bfcfa5-cfb6-462a-8047-8398a026a60e.eot?#iefix");
+  src: url("../fonts/08bfcfa5-cfb6-462a-8047-8398a026a60e.eot?#iefix") format("eot"), url("../fonts/aa6913f7-e674-4d61-973b-002422ac447e.woff") format("woff"), url("../fonts/857b0b99-c6b3-4ad8-a049-28506caba502.ttf") format("truetype"), url("../fonts/af9d9c5b-b4f4-4d6f-9809-26fb6a2bb794.svg#af9d9c5b-b4f4-4d6f-9809-26fb6a2bb794") format("svg");
+}
+@font-face {
+  font-family: "HelveticaNeueW01-57Cn";
+  src: url("../fonts/ecaa98fe-425a-42de-846b-c235f0dbc449.eot?#iefix");
+  src: url("../fonts/ecaa98fe-425a-42de-846b-c235f0dbc449.eot?#iefix") format("eot"), url("../fonts/842088d0-1ae2-40d0-8561-3c95761ba7a6.woff") format("woff"), url("../fonts/c74505d5-13e8-47ed-94a8-630aab4da3e6.ttf") format("truetype"), url("../fonts/6cd480d1-47d0-48b4-86bd-283db2cb9235.svg#6cd480d1-47d0-48b4-86bd-283db2cb9235") format("svg");
+}
+@font-face {
+  font-family: "HelveticaNeueW01-57CnOb";
+  src: url("../fonts/fe7d63fc-e92b-4a46-b4f4-fd73aefeede6.eot?#iefix");
+  src: url("../fonts/fe7d63fc-e92b-4a46-b4f4-fd73aefeede6.eot?#iefix") format("eot"), url("../fonts/62667cf4-401a-4878-83c9-4cfabc21ac51.woff") format("woff"), url("../fonts/e7e2d460-5cf5-4bd1-b1a3-efdb8490bc94.ttf") format("truetype"), url("../fonts/b11cea27-f24b-43bf-a74f-f69ae0ef7fa7.svg#b11cea27-f24b-43bf-a74f-f69ae0ef7fa7") format("svg");
+}
+@font-face {
+  font-family: "HelveticaNeueW01-67MdCn 692710";
+  src: url("../fonts/3a605871-b94d-4161-a394-bb2cfc975df7.eot?#iefix");
+  src: url("../fonts/3a605871-b94d-4161-a394-bb2cfc975df7.eot?#iefix") format("eot"), url("../fonts/aef05e22-e1d4-4e59-bc2e-a71c13c26cca.woff") format("woff"), url("../fonts/b785b1cf-24fa-44c9-8c93-d8e2d6912c47.ttf") format("truetype"), url("../fonts/5ab0c585-fb4b-43d9-abb0-b92f452b1284.svg#5ab0c585-fb4b-43d9-abb0-b92f452b1284") format("svg");
+}
+@font-face {
+  font-family: "HelveticaNeueW01-67MdCn 692713";
+  src: url("../fonts/0a98bfe2-0b00-4033-8edf-4a77862a203b.eot?#iefix");
+  src: url("../fonts/0a98bfe2-0b00-4033-8edf-4a77862a203b.eot?#iefix") format("eot"), url("../fonts/08168171-ce66-4a8c-ae2c-720f44ea63ea.woff") format("woff"), url("../fonts/d9b14ee9-cc93-4033-894c-cb00960ace98.ttf") format("truetype"), url("../fonts/5f8c937b-8250-40b4-a74f-356cbc41ac9a.svg#5f8c937b-8250-40b4-a74f-356cbc41ac9a") format("svg");
+}
+@font-face {
+  font-family: "HelveticaNeueW01-77BdCn 692722";
+  src: url("../fonts/83d5bc89-af33-46a9-8fe3-15d87784f50e.eot?#iefix");
+  src: url("../fonts/83d5bc89-af33-46a9-8fe3-15d87784f50e.eot?#iefix") format("eot"), url("../fonts/102ab74c-0e84-4fe5-a17a-b20fb643591a.woff") format("woff"), url("../fonts/1d146b29-55e2-485b-96aa-5cb628e7e9eb.ttf") format("truetype"), url("../fonts/d90b3358-e1e2-4abb-ba96-356983a54c22.svg#d90b3358-e1e2-4abb-ba96-356983a54c22") format("svg");
+}
+@font-face {
+  font-family: "HelveticaNeueW01-77BdCn 692725";
+  src: url("../fonts/da1caa74-3384-442b-9cf3-c7c71ea54b37.eot?#iefix");
+  src: url("../fonts/da1caa74-3384-442b-9cf3-c7c71ea54b37.eot?#iefix") format("eot"), url("../fonts/5287baae-f2f0-48f7-98bd-ec2986854951.woff") format("woff"), url("../fonts/e6ab5bf0-c0a7-4aeb-a5d0-50177e6b354b.ttf") format("truetype"), url("../fonts/38074018-c2af-4832-8ffa-02293e606fb7.svg#38074018-c2af-4832-8ffa-02293e606fb7") format("svg");
+}
+@font-face {
+  font-family: "HelveticaNeueW01-87HvCn 692734";
+  src: url("../fonts/3d1a3114-ffd3-4f16-99c5-0e0441676d88.eot?#iefix");
+  src: url("../fonts/3d1a3114-ffd3-4f16-99c5-0e0441676d88.eot?#iefix") format("eot"), url("../fonts/33bb86d1-8adf-454e-aee3-ca1c89445476.woff") format("woff"), url("../fonts/921ef834-872c-4460-ac11-f5fbcac9fa2d.ttf") format("truetype"), url("../fonts/9d3bb5f2-6932-419e-a56f-382131ffd4b8.svg#9d3bb5f2-6932-419e-a56f-382131ffd4b8") format("svg");
+}
+@font-face {
+  font-family: "HelveticaNeueW01-87HvCn 692737";
+  src: url("../fonts/87ddbdde-49a7-4df2-a599-8bca51a40120.eot?#iefix");
+  src: url("../fonts/87ddbdde-49a7-4df2-a599-8bca51a40120.eot?#iefix") format("eot"), url("../fonts/6f4f41f2-18c9-493a-9227-296fb66e26bc.woff") format("woff"), url("../fonts/ff8f917b-bb43-402a-8960-f2cce8961904.ttf") format("truetype"), url("../fonts/96f398dd-5e2b-4830-9362-0bdd7b0743f4.svg#96f398dd-5e2b-4830-9362-0bdd7b0743f4") format("svg");
+}
+@font-face {
+  font-family: "HelveticaNeueW01-97Blac";
+  src: url("../fonts/7d437e5f-fe70-4acd-968d-ed4beaaf6183.eot?#iefix");
+  src: url("../fonts/7d437e5f-fe70-4acd-968d-ed4beaaf6183.eot?#iefix") format("eot"), url("../fonts/a6949d17-6d8e-42ab-8032-2d9cb114c1b4.woff") format("woff"), url("../fonts/843152a1-f5b5-4cbf-a5d3-e9ccaccddd2a.ttf") format("truetype"), url("../fonts/0fd53488-84fc-474e-b665-23a72ffda266.svg#0fd53488-84fc-474e-b665-23a72ffda266") format("svg");
+}
+@font-face {
+  font-family: "HelveticaNeueW01-BlackC";
+  src: url("../fonts/eaf176be-8d1a-4938-a936-c4a1b29a9f6d.eot?#iefix");
+  src: url("../fonts/eaf176be-8d1a-4938-a936-c4a1b29a9f6d.eot?#iefix") format("eot"), url("../fonts/276f9a92-d418-46c3-adec-af917fde9a18.woff") format("woff"), url("../fonts/1505593c-c09b-40f0-a192-cfcf2f2d956e.ttf") format("truetype"), url("../fonts/597d343c-6344-4af7-9171-a1edc046a0ed.svg#597d343c-6344-4af7-9171-a1edc046a0ed") format("svg");
+}
+@font-face {
+  font-family: "HelveticaNeueW01-XBlkCn 710276";
+  src: url("../fonts/978fc490-bc85-49a5-a85d-d28703cdeb3b.eot?#iefix");
+  src: url("../fonts/978fc490-bc85-49a5-a85d-d28703cdeb3b.eot?#iefix") format("eot"), url("../fonts/58310d61-40ac-4464-b817-30d9e9deb3bb.woff") format("woff"), url("../fonts/96017e22-70f3-4c82-9620-352a5f107d90.ttf") format("truetype"), url("../fonts/d7282731-5798-4d1c-90ae-efbd49632898.svg#d7282731-5798-4d1c-90ae-efbd49632898") format("svg");
+}
+@font-face {
+  font-family: "HelveticaNeueW01-XBlkCn 710279";
+  src: url("../fonts/32e58334-5b2e-4812-a05d-01797d67a56f.eot?#iefix");
+  src: url("../fonts/32e58334-5b2e-4812-a05d-01797d67a56f.eot?#iefix") format("eot"), url("../fonts/57c64de9-ee40-4809-8093-d22fe6f1531f.woff") format("woff"), url("../fonts/875b83e0-53de-4643-b157-3ea90e2e634b.ttf") format("truetype"), url("../fonts/84cddb2f-a7bd-46a2-9e41-3926014b7a2e.svg#84cddb2f-a7bd-46a2-9e41-3926014b7a2e") format("svg");
+}
+@font-face {
+  font-family: "Neue Helvetica W01 29 C1289686";
+  src: url("../fonts/7436cb52-1d89-4276-8da3-6da02d9421f0.eot?#iefix");
+  src: url("../fonts/7436cb52-1d89-4276-8da3-6da02d9421f0.eot?#iefix") format("eot"), url("../fonts/a9ead6e0-06b0-4f08-92a6-6f8d94f0f0e4.woff") format("woff"), url("../fonts/ad6ca72d-7f33-46c5-8923-65091d52635c.ttf") format("truetype"), url("../fonts/70ca94b2-0717-46fd-8e5c-014837731a19.svg#70ca94b2-0717-46fd-8e5c-014837731a19") format("svg");
+}
+@font-face {
+  font-family: "Neue Helvetica W01 39 C1289693";
+  src: url("../fonts/cf3f1d33-56d0-43de-be30-be7c29c5f78c.eot?#iefix");
+  src: url("../fonts/cf3f1d33-56d0-43de-be30-be7c29c5f78c.eot?#iefix") format("eot"), url("../fonts/6ddafeb8-6ef4-474f-bc80-3101d0dbc15a.woff") format("woff"), url("../fonts/70bfc343-9012-44b1-9b35-0c3bbf81cf56.ttf") format("truetype"), url("../fonts/7a177d88-971d-4139-8165-861e0306899e.svg#7a177d88-971d-4139-8165-861e0306899e") format("svg");
+}
+@font-face {
+  font-family: "Neue Helvetica W01 49 Cm Light";
+  src: url("../fonts/b85c12cf-ebe8-45fb-ae0a-305915b4b882.eot?#iefix");
+  src: url("../fonts/b85c12cf-ebe8-45fb-ae0a-305915b4b882.eot?#iefix") format("eot"), url("../fonts/756a072f-5ad1-45b4-98ab-995e7b220c2b.woff") format("woff"), url("../fonts/980e5e93-8b09-42df-89fa-ab8aba3ffd0f.ttf") format("truetype"), url("../fonts/0c9a4195-3716-4ed6-936d-44740d1d497e.svg#0c9a4195-3716-4ed6-936d-44740d1d497e") format("svg");
+}
+@font-face {
+  font-family: "Neue Helvetica W01 59 Comp";
+  src: url("../fonts/16fcc3ae-9eac-408e-9730-c05fd7ff78a4.eot?#iefix");
+  src: url("../fonts/16fcc3ae-9eac-408e-9730-c05fd7ff78a4.eot?#iefix") format("eot"), url("../fonts/ff4ce601-b504-4b47-9d8d-3b3062c2034e.woff") format("woff"), url("../fonts/8f4c046d-7190-455d-b7ad-348264710152.ttf") format("truetype"), url("../fonts/d93f354d-e94c-42df-9a15-3fb785d5cb9b.svg#d93f354d-e94c-42df-9a15-3fb785d5cb9b") format("svg");
+}
+@font-face {
+  font-family: "Neue Helvetica W01 69 C1289704";
+  src: url("../fonts/5e781ea9-c685-4e97-b80f-3d7cf06880ff.eot?#iefix");
+  src: url("../fonts/5e781ea9-c685-4e97-b80f-3d7cf06880ff.eot?#iefix") format("eot"), url("../fonts/419de798-1d12-4531-a58b-bebb429e245c.woff") format("woff"), url("../fonts/3e794e49-fb25-40aa-bbf1-b132d8e49409.ttf") format("truetype"), url("../fonts/9937dfc0-caed-47fa-ab76-60d8e5769073.svg#9937dfc0-caed-47fa-ab76-60d8e5769073") format("svg");
+}
+@font-face {
+  font-family: "Neue Helvetica W01 79 C1289709";
+  src: url("../fonts/fd82e75b-65f1-4356-b6b1-eaf6e466db25.eot?#iefix");
+  src: url("../fonts/fd82e75b-65f1-4356-b6b1-eaf6e466db25.eot?#iefix") format("eot"), url("../fonts/bc3be26e-0e16-4127-a87d-eb76bb903f4c.woff") format("woff"), url("../fonts/f270cf00-6a43-4941-b860-a45eef36bfbf.ttf") format("truetype"), url("../fonts/b9e5f86e-b932-4cac-9841-946b33309ad3.svg#b9e5f86e-b932-4cac-9841-946b33309ad3") format("svg");
+}
+@font-face {
+  font-family: "Neue Helvetica W01 89 Cm Heavy";
+  src: url("../fonts/584913fa-562a-49d1-acff-8848047b7f24.eot?#iefix");
+  src: url("../fonts/584913fa-562a-49d1-acff-8848047b7f24.eot?#iefix") format("eot"), url("../fonts/e9e0f1a6-5620-4556-a1ed-cca70b60727e.woff") format("woff"), url("../fonts/f468e67a-43ce-4721-9652-185d63672e71.ttf") format("truetype"), url("../fonts/2704076f-c483-4fed-8e9d-45d52b051a5d.svg#2704076f-c483-4fed-8e9d-45d52b051a5d") format("svg");
+}
+@font-face {
+  font-family: "Neue Helvetica W01 99 Cm Black";
+  src: url("../fonts/6de3facb-1bbc-4376-85c1-7a4a0620c5f4.eot?#iefix");
+  src: url("../fonts/6de3facb-1bbc-4376-85c1-7a4a0620c5f4.eot?#iefix") format("eot"), url("../fonts/678f1149-b5b7-42ee-84b9-13b3e33695ba.woff") format("woff"), url("../fonts/079a3b2e-4d82-4510-9317-2b9955ec422f.ttf") format("truetype"), url("../fonts/51721d41-a243-40d2-bc4e-8c5b345743e8.svg#51721d41-a243-40d2-bc4e-8c5b345743e8") format("svg");
+}
+/*------------------------------------*\
+    $MIXINS
+\*------------------------------------*/
+/* CSS Transition
+	Usage: @include transition(width,0.3s,ease-out);
+ */
+/* Rem Unit font sizes with relative fallback http:/seesparkbox.com/foundry/scss_rem_mixin_now_with_a_better_fallback  
+	Usage: @include font-size(1, large);
+*/
+/*------------------------------------*\
+    $RESET
+\*------------------------------------*/
+/* Border-Box http:/paulirish.com/2012/box-sizing-border-box-ftw/ */
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, ol, ul, li, form, legend, label, table, header, footer, nav, section, figure {
+  margin: 0;
+  padding: 0;
+}
+
+header, footer, nav, section, article, hgroup, figure {
+  display: block;
+}
+
+/*------------------------------------*\
+    $GLOBAL ELEMENTS
+\*------------------------------------*/
+/*------------------------------------*\
+    $GLOBAL CLASSES
+\*------------------------------------*/
+/* Clearfix */
+.cf, [role=main], .l-two-col {
+  *zoom: 1;
+}
+
+.cf:before, [role=main]:before, .l-two-col:before, .cf:after, [role=main]:after, .l-two-col:after {
+  content: " "; /* 1 */
+  display: table; /* 2 */
+}
+
+.cf:after, [role=main]:after, .l-two-col:after {
+  clear: both;
+}
+
+/* Completely remove from the flow and screen readers. */
+.is-hidden {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Completely remove from the flow but leave available to screen readers. */
+.is-vishidden {
+  position: absolute !important;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+/* Floats */
+.right {
+  float: right;
+  padding: 0 0 1em 1em;
+}
+
+.right-search {
+  float: right;
+  padding: 0 0 1em 0;
+}
+
+.left {
+  float: left;
+  padding: 0 1em 1em 0;
+}
+
+/* Text-Align */
+.align-right {
+  text-align: right;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+/* Display Classes */
+@media all and (max-width: 46.8em) {
+  .hide-small {
+    display: none;
+  }
+}
+
+@media all and (min-width: 46.8em) and (max-width: 50em) {
+  .hide-med {
+    display: none;
+  }
+}
+
+@media all and (min-width: 50em) {
+  .hide-large {
+    display: none;
+  }
+}
+
+.valid {
+  color: #638427;
+}
+
+.error {
+  color: #bc5952;
+}
+
+.warning {
+  color: #c0b47f;
+}
+
+.information {
+  color: #1a7496;
+}
+
+.font-secondary {
+  font-family: "Tungsten Rounded", "HelveticaNeueW01-57Cn", helvetica, verdana, arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+.font-secondary strong {
+  font-weight: 600;
+}
+
+p.font-secondary {
+  font-size: 110%;
+}
+
+body {
+  background: #fff;
+  font: 100%/1.5 "Helvetica", "Arial", sans-serif;
+  -webkit-text-size-adjust: 100%;
+  color: #635854;
+}
+
+/* Links */
+a {
+  color: #635854;
+  text-decoration: none;
+  outline: 0;
+}
+a:hover, a:focus {
+  color: #7a6e69;
+}
+
+/* Headings */
+/*Further Reading: http:/csswizardry.com/2012/02/pragmatic-practical-font-sizing-in-css/ */
+h1, .alpha, h2, .beta, h3, .gamma, h4, .delta, h5, .epsilon, h6, .zeta, .subheading {
+  font-family: "Tungsten Rounded", "HelveticaNeueW01-57Cn", helvetica, verdana, arial, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+}
+
+h1, .alpha {
+  line-height: 1.2;
+  font-size: 2.6em;
+}
+
+h2, .beta {
+  line-height: 1.2;
+  font-size: 2.2em;
+}
+
+h3, .gamma {
+  line-height: 1.2;
+  font-size: 2em;
+}
+
+h4, .delta {
+  font-size: 1.6em;
+}
+
+h5, .epsilon {
+  font-size: 1.4em;
+}
+
+h6, .zeta {
+  font-size: 1em;
+}
+
+/* Subheadings */
+.subheading {
+  font-weight: normal;
+}
+
+.sg-subtype h2, .sg-subtype .beta {
+  line-height: 1.2;
+  font-size: 2em;
+  border-bottom: 0.2em #000 solid;
+  font-weight: 600;
+  color: #000;
+}
+.sg-subtype h2 a, .sg-subtype .beta a {
+  color: #635854;
+}
+.sg-subtype h2 a:hover, .sg-subtype .beta a:hover {
+  color: #4d4441;
+}
+
+/* Text-Related Elements */
+p {
+  margin-bottom: 1em;
+}
+
+/* Blockquote */
+blockquote {
+  font-family: "Tungsten Rounded", "HelveticaNeueW01-57Cn", helvetica, verdana, arial, sans-serif;
+  font-style: italic;
+  font-weight: 400;
+  border-left: 1em solid #0f4a60;
+  border-right: 1em solid #0f4a60;
+  color: #0f4a60;
+  padding: 0 1em;
+  margin-bottom: 1em;
+  font-size: 1.4em;
+}
+
+/* Horizontal Rule */
+hr {
+  border: 0;
+  height: 2px;
+  background: #c4bbb8;
+  margin: 2em 0;
+}
+
+abbr {
+  border-bottom: 1px dotted #7a6e69;
+  cursor: help;
+}
+
+a {
+  color: #0f4a60;
+}
+a:hover {
+  color: #748b9e;
+}
+
+mark {
+  background-color: #c0b47f;
+}
+
+ol, ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Definition Lists */
+dl {
+  overflow: hidden;
+  margin: 0 0 1em;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-left: 0;
+}
+
+/*------------------------------------*\
+    $MEDIA ELEMENTS
+\*------------------------------------*/
+/* Flexible Media */
+img, video, object {
+  max-width: 100%;
+  height: auto;
+}
+
+iframe {
+  margin-bottom: 1em;
+}
+
+figure {
+  margin-bottom: 1em;
+}
+figure img {
+  margin-bottom: 0.5em;
+}
+
+figcaption {
+  font-style: italic;
+}
+
+/*------------------------------------*\
+    $FORMS
+\*------------------------------------*/
+form ol, form ul {
+  list-style: none;
+  margin-left: 0;
+}
+
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+label {
+  display: block;
+  padding-bottom: 0.5em;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0 1px 0;
+}
+
+input, textarea {
+  width: 100%;
+  border: 1px solid #7a6e69;
+  padding: 0.5em 0.65rem;
+}
+
+input[type=text], input[type=search], input[type=url], input[type=number], textarea {
+  -webkit-appearance: none;
+}
+
+button, input[type=submit] {
+  padding: 0.5em;
+  background: #635854;
+  border: 1px solid #7a6e69;
+  cursor: pointer;
+}
+
+input[type=checkbox],
+input[type=radio] {
+  width: auto;
+  margin-right: 0.3em;
+}
+
+input[type=search] {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+input[type=search]::-webkit-search-cancel-button,
+input[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+.field-container {
+  margin-bottom: 1em;
+}
+
+.inline-form fieldset, .inline-form .inline-container {
+  position: relative;
+}
+.inline-form input[type=submit], .inline-form button, .inline-form .btn {
+  font-size: 0.875em;
+  padding: 0.65rem 1.3rem;
+  background: #635854;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  width: auto;
+}
+.inline-form input[type=submit]:hover, .inline-form input[type=submit]:focus, .inline-form button:hover, .inline-form button:focus, .inline-form .btn:hover, .inline-form .btn:focus {
+  background: #7a6e69;
+  color: #fff;
+}
+
+/* Validation */
+.has-error {
+  border-color: #bc5952;
+}
+
+.is-valid {
+  border-color: #638427;
+}
+
+/*------------------------------------*\
+    $SPECIFIC FORMS
+\*------------------------------------*/
+/* Search Form */
+.search-field {
+  padding-right: 3em;
+}
+
+.inline-form .search-submit {
+  background: none;
+  padding: 0.78em 1em;
+  border: 0;
+  border-left: 1px solid #7a6e69;
+  color: #7a6e69;
+}
+
+/*------------------------------------*\
+    $Table
+\*------------------------------------*/
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid #7a6e69;
+  width: 100%;
+}
+
+th {
+  text-align: left;
+  border: 1px solid #7a6e69;
+  padding: 0.2em;
+}
+
+td {
+  border: 1px solid #7a6e69;
+  padding: 0.2em;
+}
+
+.animate-fade {
+  -webkit-transition: opacity 0.3s ease-out;
+  -moz-transition: opacity 0.3s ease-out;
+  -ms-transition: opacity 0.3s ease-out;
+  -o-transition: opacity 0.3s ease-out;
+  transition: opacity 0.3s ease-out;
+}
+.animate-fade:hover {
+  opacity: 0;
+}
+
+.animate-move > .demo-shape {
+  -webkit-transition: all 0.8s ease-in-out;
+  -moz-transition: all 0.8s ease-in-out;
+  -ms-transition: all 0.8s ease-in-out;
+  -o-transition: all 0.8s ease-in-out;
+  transition: all 0.8s ease-in-out;
+}
+
+/*------------------------------------*\
+    $LAYOUT
+\*------------------------------------*/
+/*------------------------------------*\
+    $LAYOUT
+\*------------------------------------*/
+/* Layout Container */
+.lc, [role=main], .header {
+  max-width: 72em;
+  margin: 0 auto;
+  padding: 0.5em;
+}
+
+/*------------------------------------*\
+    $TEMPLATES
+\*------------------------------------*/
+/* Two Column Layout */
+@media all and (min-width: 50em) {
+  .l-two-col .l-main {
+    float: left;
+    width: 70%;
+    padding-right: 1em;
+  }
+}
+@media all and (max-width: 50em) {
+  .l-two-col .l-sidebar {
+    clear: both;
+  }
+}
+@media all and (min-width: 50em) {
+  .l-two-col .l-sidebar {
+    float: left;
+    width: 30%;
+    padding: 0 0 0 1em;
+  }
+}
+
+/*------------------------------------*\
+    $GRIDS
+\*------------------------------------*/
+/* Grid Container */
+.g {
+  overflow: hidden;
+  margin: 0 -0.5em;
+}
+
+/* Grid Item */
+.gi {
+  padding: 0.5em;
+}
+.gi img {
+  display: block;
+}
+@media all and (min-width: 46.8em) {
+  .gi {
+    float: left;
+  }
+}
+
+/* Grid 1up */
+.g-1up .gi {
+  width: 100%;
+}
+
+/* Grid 2up */
+@media all and (min-width: 46.8em) {
+  .g-2up > .gi {
+    float: left;
+    width: 50%;
+  }
+  .g-2up > .gi:nth-of-type(odd) {
+    clear: left;
+  }
+}
+
+/* Grid Half (Always displayed side by side) */
+.g-half > .gi {
+  float: left;
+  width: 50%;
+}
+.g-half > .gi:nth-of-type(odd) {
+  clear: left;
+}
+
+/* Grid 3up */
+@media all and (min-width: 46.8em) {
+  .g-3up > .gi {
+    float: left;
+    width: 50%;
+  }
+  .g-3up > .gi:nth-of-type(2n+1) {
+    clear: left;
+  }
+}
+@media all and (min-width: 50em) {
+  .g-3up > .gi {
+    width: 33.3333333%;
+  }
+  .g-3up > .gi:nth-of-type(2n+1) {
+    clear: none;
+  }
+  .g-3up > .gi:nth-of-type(3n+1) {
+    clear: left;
+  }
+}
+
+/* Grid 4up */
+@media all and (min-width: 46.8em) {
+  .g-4up > .gi {
+    float: left;
+    width: 50%;
+  }
+  .g-4up > .gi:nth-of-type(2n+1) {
+    clear: both;
+  }
+}
+@media all and (min-width: 50em) {
+  .g-4up > .gi {
+    width: 25%;
+  }
+  .g-4up > .gi:nth-of-type(2n+1) {
+    clear: none;
+  }
+  .g-4up > .gi:nth-of-type(4n+1) {
+    clear: left;
+  }
+}
+
+/* Grid Quarter (Always displayed side by side) */
+.g-quarter > .gi {
+  float: left;
+  width: 24%;
+}
+.g-quarter > .gi:nth-of-type(4n+1) {
+  clear: left;
+}
+
+@media all and (min-width: 29.75em) {
+  .g-max4 > .gi {
+    float: left;
+    width: 50%;
+  }
+  .g-max4 > .gi:nth-of-type(2n+1) {
+    clear: both;
+  }
+}
+@media all and (min-width: 39.8em) {
+  .g-max4 > .gi {
+    width: 33.3333333%;
+  }
+  .g-max4 > .gi:nth-of-type(2n+1) {
+    clear: none;
+  }
+  .g-max4 > .gi:nth-of-type(3n+1) {
+    clear: left;
+  }
+}
+@media all and (min-width: 50em) {
+  .g-max4 > .gi {
+    width: 25%;
+  }
+  .g-max4 > .gi:nth-of-type(3n+1) {
+    clear: none;
+  }
+  .g-max4 > .gi:nth-of-type(4n+1) {
+    clear: left;
+  }
+}
+
+/* Grid 5up */
+.g-max5 > .gi {
+  float: left;
+  width: 50%;
+}
+.g-max5 > .gi:nth-of-type(2n+1) {
+  clear: both;
+}
+@media all and (min-width: 39.8em) {
+  .g-max5 > .gi {
+    width: 33.3333333%;
+  }
+  .g-max5 > .gi:nth-of-type(2n+1) {
+    clear: none;
+  }
+  .g-max5 > .gi:nth-of-type(3n+1) {
+    clear: left;
+  }
+}
+@media all and (min-width: 46.8em) {
+  .g-max5 > .gi {
+    width: 25%;
+  }
+  .g-max5 > .gi:nth-of-type(3n+1) {
+    clear: none;
+  }
+  .g-max5 > .gi:nth-of-type(4n+1) {
+    clear: left;
+  }
+}
+@media all and (min-width: 48em) {
+  .g-max5 > .gi {
+    width: 20%;
+  }
+  .g-max5 > .gi:nth-of-type(4n+1) {
+    clear: none;
+  }
+  .g-max5 > .gi:nth-of-type(5n+1) {
+    clear: left;
+  }
+}
+
+/* Grid 2/3 */
+@media all and (min-width: 46.8em) {
+  .gi-2-3 {
+    float: left;
+    width: 66.666666%;
+  }
+}
+
+@media all and (min-width: 46.8em) {
+  .gi-1-3 {
+    float: left;
+    width: 33.333333%;
+  }
+}
+
+/* Grid 4up block */
+.g-opposites .gi {
+  float: left;
+}
+.g-opposites .gi:last-child {
+  float: right;
+  text-align: right;
+}
+
+/*------------------------------------*\
+    $PAGE STRUCTURE
+\*------------------------------------*/
+.header {
+  background: #fff;
+  padding: 0;
+  border-bottom: 1px solid #c4bbb8;
+}
+
+.logo {
+  float: left;
+  max-width: 20rem;
+  max-height: 75px;
+  width: auto;
+  height: auto;
+  margin: 0.4rem;
+}
+@media all and (min-width: 46.8em) {
+  .logo {
+    max-width: 20rem;
+    max-height: 100px;
+  }
+}
+
+.nav-toggle {
+  float: right;
+  display: block;
+  padding: 0.9rem 1rem 0.7rem;
+  font-size: 1.3rem;
+  line-height: 1;
+  border-left: 1px solid #c4bbb8;
+}
+@media all and (min-width: 46.8em) {
+  .nav-toggle {
+    display: none;
+  }
+}
+@media all and (max-width: 17em) {
+  .nav-toggle {
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+  }
+}
+
+.search-form {
+  overflow: hidden;
+  max-height: 0;
+}
+@media all and (min-width: 46.8em) {
+  .search-form {
+    float: right;
+    max-height: none;
+    margin: 0.65em 0.5em 0 0;
+  }
+}
+
+/*------------------------------------*\
+    $NAVIGATION
+\*------------------------------------*/
+.nav {
+  clear: both;
+  overflow: hidden;
+  max-height: 0;
+}
+.nav a {
+  display: block;
+  padding: 1em;
+  border-top: 1px solid #c4bbb8;
+}
+.nav.active {
+  max-height: 40em;
+}
+@media all and (min-width: 46.8em) {
+  .nav {
+    max-height: none;
+    float: right;
+    clear: none;
+  }
+  .nav li {
+    float: left;
+  }
+  .nav a {
+    border: 0;
+  }
+}
+
+.pagination {
+  overflow: hidden;
+}
+.pagination li {
+  float: left;
+  border-right: 1px solid #c4bbb8;
+}
+.pagination li:last-child {
+  border: 0;
+}
+.pagination a {
+  padding: 1em;
+}
+
+/*------------------------------------*\
+    $MAIN CONTENT AREA
+\*------------------------------------*/
+[role=main] {
+  padding: 0.5em 0.5em 2em;
+  overflow: hidden;
+}
+
+/*------------------------------------*\
+    $FOOTER
+\*------------------------------------*/
+.footer {
+  clear: both;
+  overflow: hidden;
+  background: #635854;
+  color: #fff;
+  line-height: 1.2;
+}
+.footer a {
+  color: #998c87;
+}
+
+.nav-footer {
+  margin: -1em -1em 1em;
+}
+.nav-footer li {
+  border-bottom: 1px solid #635854;
+}
+@media all and (min-width: 46.8em) {
+  .nav-footer li {
+    border: 0;
+    float: left;
+  }
+}
+.nav-footer a {
+  display: block;
+  padding: 1em;
+}
+
+@media all and (min-width: 46.8em) {
+  .copyright {
+    float: right;
+  }
+}
+
+/*------------------------------------*\
+    $TEXT Styles
+\*------------------------------------*/
+.intro {
+  font-size: 1.0625em;
+  font-weight: bold;
+}
+
+.pullquote {
+  font-family: "Tungsten Rounded", "HelveticaNeueW01-57Cn", helvetica, verdana, arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.4375em;
+}
+
+.caption {
+  font-style: italic;
+}
+
+.text a {
+  text-decoration: underline;
+}
+.text ul {
+  list-style: none;
+  margin: 0 0 1em 1.2em;
+}
+.text ul li::before {
+  content: "•";
+  color: #1a7496;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+.text ul ul {
+  margin-bottom: 0;
+}
+.text ol {
+  list-style: decimal;
+  margin: 0 0 1em 1.5em;
+}
+.text ol ol {
+  margin-bottom: 0;
+}
+
+/*------------------------------------*\
+    $COMPONENTS
+\*------------------------------------*/
+/* Icon Font */
+@font-face {
+  font-family: "icons";
+  src: url("../fonts/icons.eot");
+  src: url("../fonts/icons.eot?#iefix") format("embedded-opentype"), url("../fonts/icons.woff") format("woff"), url("../fonts/icons.ttf") format("truetype"), url("../fonts/icons.svg#icons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-icon]:before {
+  font-family: "icons";
+  content: attr(data-icon);
+  speak: none;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+.icon-twitter:before, .icon-stumbleupon:before, .icon-pinterest:before, .icon-linkedin:before, .icon-google-plus:before, .icon-search:before, .icon-play:before, .icon-menu:before, .icon-arrow-left:before, .icon-arrow-right:before, .icon-bubble:before, .icon-facebook:before, .icon-feed:before, .icon-youtube:before, .icon-tag:before, .icon-tumblr:before, .icon-instagram, .icon-podcast, .icon-apple, .icon-android, .icon-arrow:after, .icon-envelope:before {
+  font-family: "icons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+.icon-twitter:before {
+  content: "t";
+}
+
+.icon-stumbleupon:before {
+  content: "u";
+}
+
+.icon-pinterest:before {
+  content: "p";
+}
+
+.icon-linkedin:before {
+  content: "i";
+}
+
+.icon-google-plus:before {
+  content: "g";
+}
+
+.icon-search:before {
+  content: "s";
+}
+
+.icon-play:before {
+  content: "a";
+}
+
+.icon-menu:before {
+  content: "!";
+}
+
+.icon-arrow-left:before {
+  content: "#";
+}
+
+.icon-arrow-right:before {
+  content: "$";
+}
+
+.icon-bubble:before {
+  content: "%";
+}
+
+.icon-facebook:before {
+  content: "f";
+}
+
+.icon-feed:before {
+  content: "'";
+}
+
+.icon-youtube:before {
+  content: "y";
+}
+
+.icon-tag:before {
+  content: "(";
+}
+
+.icon-tumblr:before {
+  content: "m";
+}
+
+.icon-instagram:before {
+  content: '"';
+}
+
+.icon-podcast:before {
+  content: "&";
+}
+
+.icon-android:before {
+  content: ")";
+}
+
+.icon-apple:before {
+  content: "*";
+}
+
+.icon-envelope:before {
+  content: "+";
+}
+
+.icon-arrow:after {
+  content: "a";
+  display: inline-block;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.icon-play:before {
+  font-size: 0.7rem;
+  padding-left: 0.2em;
+}
+
+.icon-play-box {
+  display: block;
+  margin-left: 2em;
+}
+
+.icon-play-box:before {
+  padding: 0.25em;
+  background: #7a6e69;
+  color: #fff;
+  margin-left: -1.7rem;
+  margin-right: 0.5em;
+}
+
+/*------------------------------------*\
+    $BUTTONS
+\*------------------------------------*/
+.btn {
+  display: inline-block;
+  background: #635854;
+  color: #fff;
+  line-height: 1;
+  font-weight: bold;
+  padding: 1em;
+  border: 0;
+  text-align: center;
+}
+.btn:hover, .btn:focus {
+  background: #7a6e69;
+  color: #fff;
+}
+.btn.disabled {
+  background: #c4bbb8;
+  color: #7a6e69;
+}
+
+.btn-small {
+  padding: 0.5em;
+}
+
+.btn-large {
+  padding: 0.5em;
+  text-transform: uppercase;
+  background: #7a6e69;
+  font-size: 1.4rem;
+  font-weight: normal;
+}
+
+.text-btn {
+  font-style: italic;
+}
+
+/* Generic Placeholder Brick: REMOVE FOR PRODUCTION */
+.brick {
+  background: #ece7e4;
+  padding: 2em;
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 1px solid #c4bbb8;
+}
+
+/* Block */
+.block {
+  overflow: hidden;
+}
+.block p:last-child {
+  margin-bottom: 0;
+}
+
+.headline {
+  line-height: 1.2;
+}
+
+/* Hero Block */
+.block-hero {
+  margin-bottom: 0.5em;
+}
+.block-hero .b-thumb img {
+  display: block;
+}
+@media all and (min-width: 50em) {
+  .block-hero {
+    position: relative;
+  }
+  .block-hero .b-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 1.5em;
+  }
+}
+
+/* Block Thumbnail with Headline */
+.block-thumb {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+}
+.block-thumb .b-inner {
+  display: table-row;
+  vertical-align: top;
+  overflow: hidden;
+}
+@media all and (min-width: 29.75em) {
+  .block-thumb .b-thumb {
+    display: table-cell;
+    vertical-align: top;
+    width: 30%;
+    max-width: 10em;
+  }
+  .block-thumb .b-thumb img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+@media all and (min-width: 29.75em) {
+  .block-thumb .b-text {
+    display: table-cell;
+    width: 70%;
+    padding: 0 1em;
+  }
+}
+
+/* Block Headline Summary */
+.block-headline-summary a {
+  display: block;
+  padding: 0.5em;
+}
+
+/* Block Inset */
+.block-inset {
+  position: relative;
+}
+.block-inset .b-thumb {
+  position: relative;
+  z-index: 0;
+}
+.block-inset .b-thumb img {
+  display: block;
+}
+
+/* Hero Block */
+.block-inset {
+  margin-bottom: 0.5em;
+  position: relative;
+}
+.block-inset .headline {
+  font-size: 1.1em;
+}
+.block-inset .b-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 0.5em;
+}
+
+/* Block Thumb with Summary */
+.block-thumb-summary .b-thumb {
+  float: left;
+  width: 50%;
+}
+.block-thumb-summary .b-text {
+  margin-left: 50%;
+  padding: 0.5em;
+}
+
+.inline-list li {
+  display: inline-block;
+}
+
+/* Social List */
+.social-list li {
+  margin: 0 0.4rem 1em 0;
+}
+.social-list a {
+  font-size: 1.6em;
+}
+
+/* Headline List */
+.headline-list {
+  margin-bottom: 1em;
+}
+.headline-list.flush {
+  margin: 0;
+}
+.headline-list h4 {
+  font-weight: normal;
+}
+.headline-list li {
+  padding: 0.25em 0;
+  border-top: 1px solid #ece7e4;
+}
+
+/* Post List */
+.post-list li {
+  margin-bottom: 1em;
+}
+
+/* Bullet List */
+.bullet-list {
+  list-style: square;
+  margin: 0 0 1em 1.2em;
+  line-height: 1.3;
+}
+.bullet-list li {
+  margin-bottom: 1em;
+}
+
+/* Text List */
+.text-list {
+  margin: 0 0 1em;
+  line-height: 1.3;
+}
+.text-list li {
+  margin-bottom: 1em;
+}
+
+.tooltip-container {
+  display: inline-block;
+  position: relative;
+}
+.tooltip-container:hover .tooltip {
+  display: block;
+}
+
+.tooltip-link {
+  background: #998c87;
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  top: 1.5em;
+  left: 0;
+  width: 18em;
+  padding: 1em;
+  background: #fff;
+  border: 1px solid #7a6e69;
+  box-shadow: 0.3em 0.3em 1em 0 rgba(0, 0, 0, 0.2);
+}
+.tooltip h2 {
+  margin-top: 0;
+}
+@media all and (min-width: 24em) {
+  .tooltip {
+    width: 22em;
+  }
+}
+@media all and (min-width: 29.75em) {
+  .tooltip {
+    width: 27em;
+  }
+}
+@media all and (min-width: 39.8em) {
+  .tooltip {
+    width: 30em;
+  }
+}
+
+.accordion {
+  margin-bottom: 1em;
+}
+
+.acc-handle {
+  background: #635854;
+  color: #fff;
+  font-family: "Tungsten Rounded", "HelveticaNeueW01-57Cn", helvetica, verdana, arial, sans-serif;
+  font-weight: bold;
+  display: block;
+  position: relative;
+  padding: 0.5em;
+  border-bottom: 1px solid #ece7e4;
+}
+.acc-handle:after {
+  content: "+";
+  float: right;
+}
+.acc-handle:hover {
+  color: #fff;
+  background: #635854;
+}
+.acc-handle.active {
+  background: #635854;
+}
+.acc-handle.active:after {
+  content: "-";
+}
+
+.tabs {
+  overflow: hidden;
+}
+.tabs ul {
+  display: table;
+  width: 100%;
+}
+.tabs li {
+  display: table-cell;
+  text-align: center;
+  border-right: 1px solid #ece7e4;
+}
+.tabs li:last-child {
+  border-right: 0;
+}
+.tabs a {
+  display: block;
+  padding: 0.5em;
+  background: #7a6e69;
+}
+.tabs a:hover, .tabs a:focus {
+  background: #ece7e4;
+}
+.tabs a.active {
+  background: #635854;
+  color: #fff;
+}
+
+.section {
+  margin: 0 0 1em;
+}
+
+.section-title {
+  margin-bottom: 0.5em;
+}
+
+.article-header h1 {
+  font-size: 2.5em;
+}
+
+.byline {
+  font-size: 0.875em;
+  font-style: italic;
+  margin-bottom: 0.5em;
+}
+
+.social-share {
+  overflow: hidden;
+  margin-bottom: 1em;
+}
+.social-share li {
+  float: left;
+  margin-right: 0.5em;
+}
+.social-share a {
+  background: #635854;
+  color: #fff;
+  display: block;
+  padding: 0.5em;
+}
+.social-share a:hover {
+  background: #7a6e69;
+}
+
+.comments li {
+  margin-bottom: 1em;
+}
+
+.comment-container {
+  overflow: hidden;
+  margin-bottom: 1em;
+  list-style: none;
+}
+
+.comment-meta {
+  float: left;
+  width: 6.5em;
+}
+.comment-meta img {
+  display: block;
+  border: 1px solid #c4bbb8;
+  margin-bottom: 0.5em;
+}
+
+.comment-name {
+  font-size: 0.75em;
+}
+
+.comment-text {
+  margin-left: 9em;
+}
+
+/*------------------------------------*\
+    $MESSAGING
+\*------------------------------------*/
+.alert {
+  text-align: center;
+  padding: 1em;
+  margin-bottom: 0.5em;
+  border: 1px solid #7a6e69;
+  background: #998c87;
+}
+
+.alert-error {
+  color: #bc5952;
+  border-color: #bc5952;
+  background: rgb(230.7125, 194.825, 192.2875);
+}

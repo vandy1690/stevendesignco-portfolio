@@ -1,0 +1,37 @@
+.tabs {
+	overflow: hidden;
+
+	ul {
+		display: table;
+		width: 100%;
+	}
+	
+	li {
+		display: table-cell;
+		text-align: center;
+		border-right: 1px solid $gray-light-3;
+
+		&:last-child {
+			border-right: 0;
+		}
+	}
+
+	a {
+		display: block;
+		padding: $pad-half;
+		background: $am-dark-green;
+		color: $white;
+		font-style: normal;
+		font-weight: 900;
+		letter-spacing: .05em;
+
+		&:hover, &:focus {
+			background: $gray-light-3;
+		}
+
+		&.active {
+			background: $am-green;
+			color: $white;
+		}
+	}
+}
