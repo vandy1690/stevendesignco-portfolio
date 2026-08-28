@@ -44,6 +44,18 @@ import LogoScatter from '../components/animated/LogoScatter';
 		</div>
 		<div class="section__inner">
 			<div class="work-grid">
+				<a class="card" href="/work/merchant-flow-builder">
+					<div class="card__media card__media--stat">
+						<span class="card__stat card__stat--long">10 to 15 min</span>
+						<span class="card__stat-label">per merchant</span>
+					</div>
+					<div class="card__content">
+						<div class="card__role">Principal Designer · PayPal</div>
+						<h3 class="card__title">Merchant Flow Builder</h3>
+						<p class="card__body">Browser brief form and Figma plugin, built on my own initiative. A merchant's full set of checkout flows goes from most of a day to 10 to 15 minutes.</p>
+						<span class="card__cta">Read case study <span class="arrow">→</span></span>
+					</div>
+				</a>
 				<a class="card" href="/work/paypal">
 					<div class="card__media card__media--paypal">
 						<img src="/images/case-studies/_logos/paypal-black.svg" alt="PayPal" />
@@ -55,17 +67,6 @@ import LogoScatter from '../components/animated/LogoScatter';
 						<span class="card__cta">Read case study <span class="arrow">→</span></span>
 					</div>
 				</a>
-				<div class="card card--info">
-					<div class="card__media card__media--stat">
-						<span class="card__stat card__stat--long">10 to 15 min</span>
-						<span class="card__stat-label">per merchant</span>
-					</div>
-					<div class="card__content">
-						<div class="card__role">Principal Designer · PayPal</div>
-						<h3 class="card__title">Merchant Flow Builder</h3>
-						<p class="card__body">Browser brief form and Figma plugin, built on my own initiative. A merchant's full set of checkout flows goes from most of a day to 10 to 15 minutes.</p>
-					</div>
-				</div>
 				<a class="card" href="/work/paypal#checkout-dead-end">
 					<div class="card__media card__media--photo card__media--cover">
 						<img src="/images/case-studies/paypal/edit-fi-card.webp" alt="A hand holding a phone showing a blurred checkout screen" loading="lazy" />
@@ -145,6 +146,7 @@ import LogoScatter from '../components/animated/LogoScatter';
 		<div class="section__inner">
 			<p class="eyebrow">What I Do</p>
 			<h2 class="section__title">Design Systems · Responsive Web Products · Product Strategy.</h2>
+			<p class="services__lede">The design systems work has its own page, with the Pattern Lab, Figma and Storybook libraries still browsable. <a class="services__link" href="/design-systems">See the practice →</a></p>
 			<ul class="services">
 				<li>Design Systems</li>
 				<li>Service Blueprints</li>
@@ -209,8 +211,8 @@ import LogoScatter from '../components/animated/LogoScatter';
 		margin-bottom: 24px;
 		letter-spacing: -0.005em;
 	}
-	.hero__tagline-mark { color: var(--lime); font-weight: 600; }
-	/* CTA row: text links (not pills), nickel display, black, "|" separated, lime on hover,
+	.hero__tagline-mark { color: var(--accent); font-weight: 600; }
+	/* CTA row: text links (not pills), nickel display, black, "|" separated, accent on hover,
 	   with a thin light rule between it and the tagline above. */
 	.cta-row {
 		display: flex;
@@ -232,7 +234,7 @@ import LogoScatter from '../components/animated/LogoScatter';
 		white-space: nowrap;
 		transition: color 0.14s ease;
 	}
-	.cta-row a:hover { color: var(--lime); }
+	.cta-row a:hover { color: var(--accent); }
 	/* thin, light separator that matches the rule above */
 	.cta-row a + a::before {
 		content: "";
@@ -301,11 +303,11 @@ import LogoScatter from '../components/animated/LogoScatter';
 	}
 	.card:hover {
 		transform: translateY(-4px);
-		border-color: var(--lime);
+		border-color: var(--accent);
 		background: var(--surface-2);
 		color: var(--text);
 	}
-	.card:hover .arrow { transform: translateX(6px); color: var(--lime); }
+	.card:hover .arrow { transform: translateX(6px); color: var(--accent); }
 	.card__media {
 		position: relative;
 		aspect-ratio: 16 / 9;
@@ -327,7 +329,7 @@ import LogoScatter from '../components/animated/LogoScatter';
 		background-color: var(--bg);
 		flex-direction: column;
 		gap: 8px;
-		color: var(--lime);
+		color: var(--accent);
 	}
 	.card__stat {
 		font-family: var(--font-display);
@@ -429,6 +431,9 @@ import LogoScatter from '../components/animated/LogoScatter';
 	.awards__break + li::before,
 	.services__break + li::before { display: none; }
 
+	.services__lede { max-width: 60ch; margin: var(--space-md) 0 var(--space-lg); color: var(--text-mute); font-size: 16px; line-height: 1.65; }
+	.services__link { color: var(--accent); font-weight: 600; white-space: nowrap; }
+	.services__link:hover { text-decoration: underline; }
 	.services {
 		list-style: none;
 		margin: 0;
@@ -485,7 +490,7 @@ import LogoScatter from '../components/animated/LogoScatter';
 		text-underline-offset: 4px;
 		transition: color 0.14s ease;
 	}
-	.contact__list a:hover { color: var(--lime); }
+	.contact__list a:hover { color: var(--accent); }
 	.contact__based { color: var(--text-mute); font-size: 14px; margin: 0; letter-spacing: 0.04em; }
 
 	@media (max-width: 880px) {

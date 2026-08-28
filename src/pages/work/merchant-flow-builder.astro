@@ -1,0 +1,217 @@
+---
+import Site from '../../layouts/Site.astro';
+---
+
+<Site
+	title="Merchant Flow Builder: Making the Brief the Spec · Steven Vanden Heuvel"
+	description="A browser brief form and a Figma plugin, built on my own initiative, that took a merchant's full set of checkout flows from most of a day to 10 to 15 minutes across a 38-merchant program."
+>
+	<section class="cs-hero">
+		<div class="cs-hero__inner">
+			<a class="cs-back-top" href="/#work">← Case studies</a>
+			<p class="eyebrow">Case study</p>
+			<h1 class="cs-hero__title display">Merchant Flow Builder: Making the Brief the Spec</h1>
+			<p class="cs-hero__lede">Nobody asked me to build this. The weekly pace was the reason I started. The reason I kept going was that no one could be certain the designer was building the right flow.</p>
+			<dl class="cs-meta">
+				<div><dt>Role</dt><dd>Principal Designer · PayPal</dd></div>
+				<div><dt>Team</dt><dd>Merchant Enablement</dd></div>
+				<div><dt>Scope</dt><dd>Self-initiated tooling</dd></div>
+			</dl>
+			<p class="cs-note">Built inside PayPal, and the code lives in PayPal's internal repository. Tool names here are generic and the interfaces are not reproduced.</p>
+		</div>
+	</section>
+
+	<section class="section section--alt">
+		<div class="section__inner cs-body" data-animate="fade">
+			<div class="cs-block">
+				<p class="eyebrow">What was unclear</p>
+				<p class="cs-block__lede">The handoff was a Slack message, and there was no way to check it.</p>
+				<p>A product manager would describe the flows a merchant needed in a message or a set of meeting notes. The designer would go find what they believed was the matching section of the checkout guide and build from that. Nothing in the process closed the loop between what was asked for and what got built.</p>
+				<p>The cost landed in two places. Time, because finding the right reference and assembling the flows by hand was most of the work of preparing a package. And risk, because nothing in the process verified that the section the designer found was the section the product manager meant. On a weekly sprint across a 38-merchant program, a loose handoff is not a small tax.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="section__inner cs-body" data-animate="fade">
+			<div class="cs-block">
+				<p class="eyebrow">What I built</p>
+				<p class="cs-block__lede">Two tools, one pipeline.</p>
+				<p>The goal was not to make the manual steps faster. It was to remove the step where a person guesses.</p>
+				<p><strong>A browser brief form.</strong> No install, no server. It captures the merchant, the contact, the meeting date, and each flow being requested. Every flow request carries a direct link to the matching section of the checkout guide rather than a typed description. On submit it saves a standalone brief, sends the team an email, and puts structured JSON on the clipboard.</p>
+				<p><strong>A Figma plugin.</strong> It reads that JSON, scans the merchant's screen audit page, assigns the screen roles, resolves the requested flows against a library of 17 supported payment flows, and assembles the flow page: merchant screens cloned and resized, PayPal placeholder frames deep-linked back to the guide, handoff markers, section headlines.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--alt">
+		<div class="section__inner cs-body" data-animate="fade">
+			<div class="cs-block">
+				<p class="eyebrow">How it fits together</p>
+				<p class="cs-block__lede">The link is the thing that travels.</p>
+			</div>
+			<div class="cs-diagram" role="img" aria-label="Diagram. A brief form captures each flow request as a link to a section of the checkout guide. That link is carried through structured JSON into a Figma plugin, which assembles a flow page where every placeholder frame still points back to the same guide section.">
+				<svg class="cs-diagram__svg" viewBox="0 0 960 340" xmlns="http://www.w3.org/2000/svg">
+					<g class="dg-panel">
+						<rect x="8" y="40" width="264" height="180" rx="10" />
+						<line x1="40" y1="80" x2="180" y2="80" />
+						<line x1="40" y1="108" x2="216" y2="108" />
+						<line x1="40" y1="136" x2="150" y2="136" />
+					</g>
+					<rect class="dg-accent-fill" x="40" y="164" width="200" height="26" rx="6" />
+					<text class="dg-accent-label" x="52" y="182">guide section link</text>
+					<text class="dg-title" x="8" y="26">Brief form</text>
+					<text class="dg-note" x="8" y="248">Browser. No install.</text>
+					<text class="dg-note" x="8" y="268">The product manager picks the</text>
+					<text class="dg-note" x="8" y="286">section instead of describing it.</text>
+
+					<g class="dg-panel">
+						<rect x="348" y="40" width="264" height="180" rx="10" />
+						<line x1="380" y1="80" x2="470" y2="80" />
+						<line x1="380" y1="108" x2="520" y2="108" />
+						<line x1="380" y1="136" x2="440" y2="136" />
+					</g>
+					<rect class="dg-accent-fill" x="380" y="164" width="200" height="26" rx="6" />
+					<text class="dg-accent-label" x="392" y="182">guide section link</text>
+					<text class="dg-title" x="348" y="26">Structured JSON</text>
+					<text class="dg-note" x="348" y="248">One clipboard handoff.</text>
+					<text class="dg-note" x="348" y="268">Nothing is retyped, so nothing</text>
+					<text class="dg-note" x="348" y="286">can be mistyped.</text>
+
+					<g class="dg-panel">
+						<rect x="688" y="40" width="264" height="180" rx="10" />
+						<rect x="712" y="66" width="52" height="76" rx="5" />
+						<rect x="776" y="66" width="52" height="76" rx="5" />
+						<rect x="840" y="66" width="52" height="76" rx="5" />
+					</g>
+					<rect class="dg-accent-fill" x="712" y="164" width="180" height="26" rx="6" />
+					<text class="dg-accent-label" x="724" y="182">guide section link</text>
+					<text class="dg-title" x="688" y="26">Assembled flow page</text>
+					<text class="dg-note" x="688" y="248">Every placeholder frame still</text>
+					<text class="dg-note" x="688" y="268">points at the section it came</text>
+					<text class="dg-note" x="688" y="286">from. The file documents itself.</text>
+
+					<g class="dg-arrow">
+						<line x1="286" y1="177" x2="330" y2="177" />
+						<polyline points="320,170 332,177 320,184" />
+						<line x1="626" y1="177" x2="670" y2="177" />
+						<polyline points="660,170 672,177 660,184" />
+					</g>
+				</svg>
+			</div>
+			<p class="cs-caption">PayPal, 2026. Browser form, Figma Plugin API, Claude Code and Cursor.</p>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="section__inner cs-body" data-animate="fade">
+			<div class="cs-block">
+				<p class="eyebrow">The decision that made it work</p>
+				<p class="cs-block__lede">Links, not words.</p>
+				<p>The reference format inside the brief is a Figma node link, not free text. That one choice is what turns a brief into a specification. There is no text to parse, no shorthand to interpret, and no version of the guide to go looking for. The plugin resolves the link or it fails loudly, which is the behavior you want.</p>
+				<p>It also changed the deliverable. Because every placeholder frame carries the link it was built from, an engineer or a product manager opening the file later can get back to the source without asking me. The time savings were a consequence of fixing the accuracy problem, not the thing I set out to do.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--alt">
+		<div class="section__inner cs-body" data-animate="fade">
+			<div class="cs-block">
+				<p class="eyebrow">What I had to work around</p>
+				<p class="cs-block__lede">The tooling was not ready either.</p>
+				<p>I built this early against Figma's MCP server, before it could read a full file. That ruled out the approach I wanted, which was to let the model look at the merchant's file and work out the structure. Instead I wrote my own scheme for identifying frames and instances so the plugin could find its way around a file it could not be told about.</p>
+				<p>That is the part I would redo now. The capability landed later, and a version built today would be shorter and less clever. I would rather have the version that shipped than the elegant one that did not exist yet.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="section__inner cs-body" data-animate="fade">
+			<div class="cs-block">
+				<p class="eyebrow">How I built it</p>
+				<p class="cs-block__lede">I designed the system. Claude Code and Cursor wrote most of the implementation.</p>
+				<p>The form is plain HTML and JavaScript with no framework and no server behind it. The plugin runs on the Figma Plugin API. I am not going to describe myself as the engineer here. What I did was specify the pipeline, decide the data contract between the two halves, and iterate on the output until it was something a designer would accept without cleanup.</p>
+				<p>That is the same work I do in Figma. The difference is only where it lands.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--alt">
+		<div class="section__inner cs-body" data-animate="fade">
+			<div class="cs-block">
+				<p class="eyebrow">What changed</p>
+				<p class="cs-block__lede">Most of a day became 10 to 15 minutes.</p>
+				<p>Building a merchant's full set of checkout flows by hand took most of a day. With the pipeline it takes 10 to 15 minutes, across the 38-merchant program. I recorded video tutorials covering install, the form, storage, and browsing the library, and published the whole thing to the internal company GitHub so another team could fork it.</p>
+				<p>The honest ending: it was adopted and in active use when my contract finished, and I handed it to another designer to broaden. It was not fully scaled before I left. I would rather tell you that than claim the whole organization was on it.</p>
+			</div>
+			<ul class="cs-stats cs-stats--three">
+				<li><strong>15 min</strong><span>Per merchant, from most of a day</span></li>
+				<li><strong>17</strong><span>Payment flows supported</span></li>
+				<li><strong>38</strong><span>Merchant program</span></li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="section section--alt">
+		<div class="section__inner cs-back">
+			<a class="btn" href="/#work">← All case studies</a>
+			<a class="btn btn--primary" href="/work/paypal">Next: Becoming the Default at Checkout →</a>
+		</div>
+	</section>
+</Site>
+
+<style>
+	.cs-hero { max-width: var(--max); margin: 0 auto; padding: var(--space-2xl) var(--gutter); }
+	.cs-back-top { display: inline-block; margin-bottom: var(--space-lg); color: var(--text-mute); font-size: var(--text-body-sm); }
+	.cs-back-top:hover { color: var(--accent); }
+	.cs-hero__title { margin: var(--space-xs) 0 var(--space-lg); max-width: 20ch; }
+	.cs-hero__lede { font-size: var(--text-deck); color: var(--text); line-height: 1.5; max-width: 56ch; margin-bottom: var(--space-2xl); font-weight: 500; }
+	.cs-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); margin: 0; padding: var(--space-lg) 0 0; border-top: 1px solid var(--rule); }
+	.cs-meta div { margin: 0; }
+	.cs-meta dt { font-size: var(--text-label); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); font-weight: 600; margin-bottom: var(--space-xs); }
+	.cs-meta dd { margin: 0; color: var(--text); font-size: var(--text-body); font-weight: 500; }
+	.cs-note { margin: var(--space-lg) 0 0; padding: var(--space-md); border-left: 2px solid var(--accent); font-size: 14px; color: var(--text-mute); max-width: 64ch; }
+
+	.cs-body { display: grid; gap: var(--space-2xl); max-width: var(--max-narrow); }
+	/* Hierarchy: eyebrow + subhead group as the headline, body is support. */
+	.cs-block .eyebrow { margin-bottom: var(--space-xs); }
+	/* case-study eyebrows: nickel, normal weight, .03em, black */
+	.eyebrow { font-family: var(--font-display); font-weight: 400; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; letter-spacing: 0.03em; }
+	.cs-block__lede { color: var(--text); font-size: clamp(24px, 2.5vw, 32px); font-weight: 600; margin: 0 0 var(--space-lg); letter-spacing: -0.015em; line-height: 1.25; }
+	.cs-block p { color: #5A6565; margin: 0; font-size: 16px; line-height: 1.65; }
+	.cs-block p + p { margin-top: var(--space-sm); }
+	.cs-block strong { color: var(--text); font-weight: 600; }
+	.cs-caption { margin: var(--space-md) 0 0; color: var(--text-mute); font-size: 14px; letter-spacing: 0.04em; }
+
+	/* Diagram. Strokes inherit the text color so it themes with the page; the
+	   accent band is the one element that carries the guide link through all
+	   three stages. Scrolls rather than shrinking on narrow screens. */
+	.cs-diagram { overflow-x: auto; padding-bottom: var(--space-xs); }
+	.cs-diagram__svg { display: block; width: 100%; min-width: 640px; max-width: 960px; height: auto; color: var(--text); }
+	.dg-panel rect, .dg-panel line { fill: none; stroke: currentColor; stroke-width: 1.25; opacity: 0.45; }
+	.dg-panel line { stroke-width: 6; stroke-linecap: round; opacity: 0.22; }
+	.dg-accent-fill { fill: var(--accent); }
+	.dg-accent-label { fill: var(--accent-text); font-family: var(--font-body); font-size: 13px; font-weight: 600; letter-spacing: 0.02em; }
+	.dg-title { fill: currentColor; font-family: var(--font-display); font-size: 17px; font-weight: 400; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; letter-spacing: 0.03em; }
+	.dg-note { fill: var(--text-mute); font-family: var(--font-body); font-size: 13.5px; }
+	.dg-arrow line, .dg-arrow polyline { fill: none; stroke: currentColor; stroke-width: 1.5; opacity: 0.5; stroke-linecap: round; stroke-linejoin: round; }
+
+	.cs-stats { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); }
+	.cs-stats--three { grid-template-columns: repeat(3, 1fr); }
+	.cs-stats li { padding: var(--space-lg) 0; border-top: 1px solid var(--rule); }
+	.cs-stats strong { display: block; font-family: var(--font-display); font-weight: 900; font-style: normal; font-variation-settings: "wght" 900, "slnt" 0, "ital" 0; font-synthesis: none; font-size: clamp(40px, 5vw, 64px); color: var(--text); line-height: 1; letter-spacing: -0.02em; margin-bottom: var(--space-xs); }
+	.cs-stats span { color: var(--text-mute); font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; }
+
+	.cs-back { display: flex; gap: var(--space-sm); flex-wrap: wrap; justify-content: space-between; align-items: center; }
+	.cs-back .btn--primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+	.cs-back .btn--primary:hover { background: var(--text); border-color: var(--text); color: var(--bg); box-shadow: none; }
+
+	@media (max-width: 880px) {
+		.cs-hero__title { font-size: clamp(32px, 9vw, 56px); }
+	}
+
+	@media (max-width: 700px) {
+		.cs-meta { grid-template-columns: 1fr 1fr; }
+		.cs-stats, .cs-stats--three { grid-template-columns: 1fr; }
+	}
+</style>

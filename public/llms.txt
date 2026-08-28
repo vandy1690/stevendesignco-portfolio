@@ -6,8 +6,12 @@ Steven worked on PayPal's Merchant Enablement team from December 2025 to August 
 
 Before PayPal he spent 18 years at MTG Media Group, growing from Senior Art Director to VP and Creative Director. He led a 6 person team and built responsive web products and design systems for 7 brands serving 128,000+ B2B professionals. He has won 4 Jesse H. Neal Awards, including the 2017 Neal Award for Best Website, and was a Grand Neal Finalist, top 4 nationally. He also takes on select freelance work through Steven Design Services LLC.
 
+His design systems practice runs the length of that history. He introduced atomic design and Pattern Lab at MTG, built one component library underneath seven publication brands, and built a Figma library of roughly 600 component variants for the Meatingplace rebuild. He began moving those libraries to Storybook by hand before MTG was acquired and finished the Plate and Alt-Meat conversions recently using Cursor. The working Pattern Lab and Storybook instances are published on this site and are browsable.
+
 ## Case studies
 
+- [Design Systems](https://www.stevendesignco.com/design-systems): The practice behind the case studies. Atomic design and Pattern Lab at MTG, the Meatingplace Figma library, the Storybook conversions, and the three simultaneous library versions at PayPal. Links to every working artifact.
+- [Merchant Flow Builder](https://www.stevendesignco.com/work/merchant-flow-builder): A browser brief form and Figma plugin, built on his own initiative, that assembles a merchant's full set of checkout flows from published library components.
 - [PayPal: Becoming the Default at Checkout](https://www.stevendesignco.com/work/paypal): Merchant checkout proposals on weekly sprints, a consumer checkout mapping project, and the Merchant Flow Builder tooling.
 - [Plate: Website Redesign](https://www.stevendesignco.com/work/plate): The digital platform for chefs and foodservice professionals. Won the 2017 Jesse H. Neal Award for Best Website.
 - [Project Blackbird](https://www.stevendesignco.com/work/blackbird): An interactive oral history of the restaurant that transformed Chicago's dining. Grand Jesse H. Neal Finalist.

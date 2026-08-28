@@ -73,6 +73,21 @@ import Site from '../../layouts/Site.astro';
 		</div>
 	</section>
 
+	<section class="section">
+		<div class="section__inner cs-body" data-animate="fade">
+			<div class="cs-block">
+				<p class="eyebrow">Design system</p>
+				<p class="cs-block__lede">The library survived the rebuild.</p>
+				<p>Roughly 600 component variants in Figma, desktop and mobile across the whole product: multi step registration with processing states, the supplier directory, the equipment exchange with its own ad creation and checkout, and the paywall and sponsorship states. Forty two tokens underneath it covering color, type, border, spacing and the eight column grid.</p>
+				<p class="cs-note">The eleven brand color styles are original. I added the variable layer recently, generated from those styles, since Figma variables did not exist when this was built. The file is password protected. Ask me and I will send it.</p>
+			</div>
+			<div class="cs-artifacts">
+				<a class="btn" href="https://www.figma.com/design/aSlwmciAvHgoreg68ddVtq/meatingplace.com" target="_blank" rel="noopener">Open the Figma library</a>
+				<a class="btn" href="/design-systems">The full practice →</a>
+			</div>
+		</div>
+	</section>
+
 	<section class="section section--alt">
 		<div class="section__inner cs-back">
 			<a class="btn" href="/work/alt-meat">← Alt-Meat</a>
@@ -84,7 +99,7 @@ import Site from '../../layouts/Site.astro';
 <style>
 	.cs-hero { max-width: var(--max); margin: 0 auto; padding: var(--space-2xl) var(--gutter); }
 	.cs-back-top { display: inline-block; margin-bottom: var(--space-lg); color: var(--text-mute); font-size: var(--text-body-sm); }
-	.cs-back-top:hover { color: var(--lime); }
+	.cs-back-top:hover { color: var(--accent); }
 	.cs-hero__title { margin: var(--space-xs) 0 var(--space-lg); max-width: 20ch; }
 	.cs-hero__lede { font-size: var(--text-deck); color: var(--text); line-height: 1.5; max-width: 56ch; margin-bottom: var(--space-2xl); font-weight: 500; }
 	.cs-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); margin: 0; padding: var(--space-lg) 0 0; border-top: 1px solid var(--rule); }
@@ -109,6 +124,8 @@ import Site from '../../layouts/Site.astro';
 	.cs-awards li:last-child { border-bottom: 1px solid var(--rule); }
 	.cs-awards__mark { display: none; }
 
+	.cs-artifacts { display: flex; gap: var(--space-sm); flex-wrap: wrap; }
+	.cs-note { margin: var(--space-md) 0 0; padding: var(--space-md); border-left: 2px solid var(--accent); font-size: 14px; color: var(--text-mute); max-width: 64ch; }
 	.cs-back { display: flex; gap: var(--space-sm); flex-wrap: wrap; justify-content: space-between; align-items: center; }
 	.cs-back .btn--primary { background: var(--text); color: var(--bg); border-color: var(--text); }
 	.cs-back .btn--primary:hover { background: var(--text); border-color: var(--text); color: var(--bg); box-shadow: none; }
