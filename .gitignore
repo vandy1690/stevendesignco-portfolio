@@ -25,3 +25,10 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 .vercel
+
+# Claude context package. Holds comp floors, recruiter names, and job
+# search notes. This repo is public, so these must never be committed.
+CLAUDE.md
+COLLAB-LOG.md
+claude-context/
+claude-code-handoff_*.md

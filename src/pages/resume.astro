@@ -111,7 +111,7 @@ import Site from '../layouts/Site.astro';
 	.rs-loc { color: #5A6565; font-size: 15px; margin: 0 0 var(--space-md); }
 	.rs-contact { list-style: none; margin: 0 0 var(--space-lg); padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-md); font-size: 15px; font-weight: 500; }
 	.rs-contact a { color: var(--text); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; transition: color 0.14s ease; }
-	.rs-contact a:hover { color: var(--lime); }
+	.rs-contact a:hover { color: var(--accent); }
 	.rs-pdf { margin-top: var(--space-xs); }
 
 	/* Sections, divided by rules */
@@ -128,7 +128,7 @@ import Site from '../layouts/Site.astro';
 	.rs-job__meta { color: #5A6565; font-size: 13px; letter-spacing: 0.02em; margin: var(--space-xs) 0 0; }
 	.rs-points { list-style: none; margin: var(--space-md) 0 0; padding: 0; display: grid; gap: var(--space-sm); }
 	.rs-points li { position: relative; padding-left: var(--space-md); color: #5A6565; font-size: 16px; line-height: 1.6; }
-	.rs-points li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 6px; height: 6px; border-radius: 50%; background: var(--lime); }
+	.rs-points li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 
 	/* Skills: pills, matching the homepage capability tags */
 	.rs-skills { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
@@ -137,7 +137,7 @@ import Site from '../layouts/Site.astro';
 	/* Recognition: flowing list with accent dot separators */
 	.rs-recognition { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 0; font-size: 16px; color: var(--text); }
 	.rs-recognition li { display: inline-flex; align-items: center; }
-	.rs-recognition li:not(:last-child)::after { content: "·"; color: var(--lime); margin: 0 12px; font-weight: 700; }
+	.rs-recognition li:not(:last-child)::after { content: "·"; color: var(--accent); margin: 0 12px; font-weight: 700; }
 
 	/* Education */
 	.rs-education { margin: 0; font-size: 16px; color: var(--text); }

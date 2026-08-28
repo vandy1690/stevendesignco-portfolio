@@ -1,0 +1,161 @@
+---
+import Site from '../layouts/Site.astro';
+---
+
+<Site
+	title="Design Systems · Steven Vanden Heuvel"
+	description="One component library under seven brands in Pattern Lab, a Figma library of roughly 600 components, and the Storybook conversion. The practice behind the case studies, with the working artifacts still browsable."
+>
+	<section class="cs-hero">
+		<div class="cs-hero__inner">
+			<a class="cs-back-top" href="/#work">← Case studies</a>
+			<p class="eyebrow">Practice</p>
+			<h1 class="cs-hero__title display">Design Systems</h1>
+			<p class="cs-hero__lede">One library underneath seven brands, a Figma library for a rebuild that never launched, and the Storybook conversion I went back and finished. The tools changed. The problem did not.</p>
+			<dl class="cs-meta">
+				<div><dt>Method</dt><dd>Atomic design</dd></div>
+				<div><dt>Tools</dt><dd>Pattern Lab, Figma, Storybook</dd></div>
+				<div><dt>Org</dt><dd>MTG Media Group, PayPal</dd></div>
+			</dl>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="section__inner cs-body" data-animate="fade">
+			<div class="cs-block">
+				<p class="eyebrow">Where it started</p>
+				<p class="cs-block__lede">I got here through Brad Frost, before "design system" was the phrase everybody used.</p>
+				<p>Atomic design and Pattern Lab, two workshops, and more talks than I can count. I brought both into MTG Media Group, a print publisher that had not built a responsive site yet. Plate came first, then Alt-Meat. Hotels and Meatingplace were in progress when the company was acquired and the sites were sunsetted.</p>
+				<p>Changing how a team works is a persuasion problem before it is a craft problem. Nobody asked for any of this.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--alt">
+		<div class="section__inner cs-body" data-animate="fade">
+			<div class="cs-block">
+				<p class="eyebrow">Pattern Lab</p>
+				<p class="cs-block__lede">One component library sat underneath seven publication brands and six responsive web products.</p>
+				<p>Both instances below are the originals and both still run. Plate carries eleven brand colors with a semantic layer over them, so a section reads <code>food</code> or <code>chefs</code> and a state reads <code>error</code> or <code>warning</code> rather than a hex or a hue name. Seventy three documented sections climb from color and type through buttons, bylines and comment threads out to the assembled page templates. Alt-Meat runs its own palette and typeface on the same structure.</p>
+				<p>Drag the viewport control. The whole library was built mobile first, which was not a settled argument in B2B publishing at the time.</p>
+			</div>
+			<div class="cs-artifacts">
+				<a class="btn" href="/labs/plate/" target="_blank" rel="noopener">Plate Pattern Lab</a>
+				<a class="btn" href="/labs/altmeat/" target="_blank" rel="noopener">Alt-Meat Pattern Lab</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="section__inner cs-body" data-animate="fade">
+			<div class="cs-block">
+				<p class="eyebrow">Figma</p>
+				<p class="cs-block__lede">Meatingplace was the flagship daily news site and the last thing I worked on there. The rebuild was finished. It never launched.</p>
+				<p>The library runs to roughly 600 component variants with desktop and mobile across the whole product: multi step registration with processing states, the supplier directory, the equipment exchange with its own ad creation and checkout, and the paywall and sponsorship states that paid for the place. Forty two tokens underneath it, covering color, type, border, spacing and the eight column grid.</p>
+				<p>Private equity acquired MTG, brought their own site, and the rebuild was shelved. The library is the only part of it that survived.</p>
+				<p class="cs-note">The eleven brand color styles are original. I added the variable layer recently, generated from those styles, since Figma variables did not exist when this was built.</p>
+			</div>
+			<div class="cs-artifacts">
+				<a class="btn" href="https://www.figma.com/design/aSlwmciAvHgoreg68ddVtq/meatingplace.com" target="_blank" rel="noopener">Meatingplace library in Figma</a>
+			</div>
+			<p class="cs-note">Password protected. Ask me and I will send it.</p>
+		</div>
+	</section>
+
+	<section class="section section--alt">
+		<div class="section__inner cs-body" data-animate="fade">
+			<div class="cs-block">
+				<p class="eyebrow">Storybook</p>
+				<p class="cs-block__lede">I had started moving all of these libraries to Storybook by hand before the acquisition. I never finished.</p>
+				<p>I went back recently and finished the Plate and Alt-Meat conversions with Cursor, generated from the Pattern Labs. The buttons and form fields are real stories with working controls, so the states are something you change rather than something you read about.</p>
+				<p>Same components, same decisions, a decade of tooling apart. That is the part worth noticing.</p>
+			</div>
+			<div class="cs-artifacts">
+				<a class="btn" href="/labs/plate-storybook/" target="_blank" rel="noopener">Plate Storybook</a>
+				<a class="btn" href="/labs/altmeat-storybook/" target="_blank" rel="noopener">Alt-Meat Storybook</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="section__inner cs-body" data-animate="fade">
+			<div class="cs-block">
+				<p class="eyebrow">At PayPal</p>
+				<p class="cs-block__lede">Three versions of the design library were live at the same time, with a fourth coming, and checkout was locked to the oldest one.</p>
+				<p>Engineering could not move off it. So a real part of that job was telling product managers which ideas were presentable now and which ones were years from shipping. Every merchant proposal I built came out of that constrained library.</p>
+				<p>I also built content tokens that connected the engineering Storybook to Figma so content designers worked from the same source, and a Figma plugin that assembles a merchant's full set of checkout flows out of the published library components. That took setup from most of a day to ten or fifteen minutes across a 38 merchant program.</p>
+			</div>
+			<div class="cs-artifacts">
+				<a class="btn" href="/work/merchant-flow-builder">The Figma plugin</a>
+				<a class="btn" href="/work/paypal">PayPal case study</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--alt">
+		<div class="section__inner cs-body" data-animate="fade">
+			<div class="cs-block">
+				<p class="eyebrow">What I actually think</p>
+				<p>A component library is the easy half. The hard half is the version nobody can upgrade off, the pattern two teams named differently, and the argument about whether a new component is a new component. Most of what I have learned about design systems came from the things that could not be built.</p>
+			</div>
+			<blockquote class="cs-quote">
+				Naming is the part that decides whether anybody else can use it.
+			</blockquote>
+		</div>
+	</section>
+
+	<section class="section section--alt">
+		<div class="section__inner cs-back">
+			<a class="btn" href="/#work">← Case studies</a>
+			<a class="btn btn--primary" href="/work/merchant-flow-builder">Next: Merchant Flow Builder →</a>
+		</div>
+	</section>
+</Site>
+
+<style>
+	.cs-hero { max-width: var(--max); margin: 0 auto; padding: var(--space-2xl) var(--gutter); }
+	.cs-back-top { display: inline-block; margin-bottom: var(--space-lg); color: var(--text-mute); font-size: var(--text-body-sm); }
+	.cs-back-top:hover { color: var(--accent); }
+	.cs-hero__title { margin: var(--space-xs) 0 var(--space-lg); max-width: 20ch; }
+	.cs-hero__lede { font-size: var(--text-deck); color: var(--text); line-height: 1.5; max-width: 56ch; margin-bottom: var(--space-2xl); font-weight: 500; }
+	.cs-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); margin: 0; padding: var(--space-lg) 0 0; border-top: 1px solid var(--rule); }
+	.cs-meta div { margin: 0; }
+	.cs-meta dt { font-size: var(--text-label); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); font-weight: 600; margin-bottom: var(--space-xs); }
+	.cs-meta dd { margin: 0; color: var(--text); font-size: var(--text-body); font-weight: 500; }
+
+	.cs-figure { max-width: 75%; margin: 0 auto; }
+	.cs-figure img { width: 100%; height: auto; display: block; }
+
+	.cs-body { display: grid; gap: var(--space-2xl); max-width: var(--max-narrow); }
+	/* Hierarchy: eyebrow + subhead group as the headline, body is support. */
+	.cs-block .eyebrow { margin-bottom: var(--space-xs); }
+	/* case-study eyebrows: nickel, normal weight, .03em, black */
+	.eyebrow { font-family: var(--font-display); font-weight: 400; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; letter-spacing: 0.03em; }
+	.cs-block__lede { color: var(--text); font-size: clamp(24px, 2.5vw, 32px); font-weight: 600; margin: 0 0 var(--space-lg); letter-spacing: -0.015em; line-height: 1.25; }
+	.cs-block p { color: #5A6565; margin: 0; font-size: 16px; line-height: 1.65; }
+	.cs-block p + p { margin-top: var(--space-sm); }
+
+	.cs-awards { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+	.cs-awards li { display: flex; gap: var(--space-md); align-items: center; padding: var(--space-md) 0; border-top: 1px solid var(--rule); font-size: 18px; }
+	.cs-awards li:last-child { border-bottom: 1px solid var(--rule); }
+	.cs-awards__mark { display: none; }
+
+	.cs-quote { margin: var(--space-lg) 0 0; padding: 0 0 0 var(--space-lg); border-left: 2px solid var(--accent); font-family: var(--font-display); font-weight: 400; font-style: normal; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; font-size: clamp(20px, 2vw, 28px); line-height: 1.4; color: var(--text); max-width: 64ch; }
+
+	.cs-note { margin: var(--space-md) 0 0; padding: var(--space-md); border-left: 2px solid var(--accent); font-size: 14px; color: var(--text-mute); max-width: 64ch; }
+	.cs-block code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.92em; color: var(--text); }
+	.cs-artifacts { display: flex; gap: var(--space-sm); flex-wrap: wrap; }
+
+	.cs-back { display: flex; gap: var(--space-sm); flex-wrap: wrap; justify-content: space-between; align-items: center; }
+	.cs-back .btn--primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+	.cs-back .btn--primary:hover { background: var(--text); border-color: var(--text); color: var(--bg); box-shadow: none; }
+
+	@media (max-width: 880px) {
+		.section--figure { padding: 0 24px; }
+		.cs-figure { max-width: 100%; }
+		.cs-hero__title { font-size: clamp(32px, 9vw, 56px); }
+	}
+	@media (max-width: 700px) {
+		.cs-meta { grid-template-columns: 1fr 1fr; }
+	}
+</style>
