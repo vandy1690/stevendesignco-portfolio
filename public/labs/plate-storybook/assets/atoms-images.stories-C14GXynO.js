@@ -1,0 +1,12 @@
+import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e((()=>{t=`<a href="#"><img src="images/plate-black.svg" class="logo" alt="Plate" /></a>`})))()}var r;function i(){return(i=e((()=>{r=`<img src="" alt="" />`})))()}var a;function o(){return(o=e((()=>{a=`<img src="images/fpo_16x9.png" alt="16x9 Image" />`})))()}var s;function c(){return(c=e((()=>{s=`<img src="images/fpo_square.png" alt="Square Thumbnail" />`})))()}var l;function u(){return(u=e((()=>{l=`<img src="images/fpo_avatar.png" alt="Avatar" />`})))()}var d;function f(){return(f=e((()=>{d=`<ul class="icons inline-list">
+	<li class="icon-twitter"></li>
+	<li class="icon-facebook"></li>
+	<li class="icon-stumbleupon"></li>
+	<li class="icon-linkedin"></li>
+	<li class="icon-pinterest"></li>
+	<li class="icon-google-plus"></li>
+	<li class="icon-youtube"></li>
+	<li class="icon-feed"></li>
+	<li class="icon-search"></li>
+	<li class="icon-play"></li>
+</ul>`})))()}var p;function m(){return(m=e((()=>{p=`<img src="images/ajax-loader.gif" alt="Loading" />`})))()}var h,g,_,v,y,b,x,S,C;function w(){return(w=e((()=>{n(),i(),o(),c(),u(),f(),m(),h={title:`Atoms/Images`},g=()=>t,g.storyName=`Logo`,_=()=>r,_.storyName=`Landscape 3x2`,v=()=>a,v.storyName=`Landscape 16x9`,y=()=>s,y.storyName=`Square`,b=()=>l,b.storyName=`Avatar`,x=()=>d,x.storyName=`Icons`,S=()=>p,S.storyName=`Loading Icon`,g.parameters={...g.parameters,docs:{...g.parameters?.docs,source:{originalSource:`() => html0`,...g.parameters?.docs?.source}}},_.parameters={..._.parameters,docs:{..._.parameters?.docs,source:{originalSource:`() => html1`,..._.parameters?.docs?.source}}},v.parameters={...v.parameters,docs:{...v.parameters?.docs,source:{originalSource:`() => html2`,...v.parameters?.docs?.source}}},y.parameters={...y.parameters,docs:{...y.parameters?.docs,source:{originalSource:`() => html3`,...y.parameters?.docs?.source}}},b.parameters={...b.parameters,docs:{...b.parameters?.docs,source:{originalSource:`() => html4`,...b.parameters?.docs?.source}}},x.parameters={...x.parameters,docs:{...x.parameters?.docs,source:{originalSource:`() => html5`,...x.parameters?.docs?.source}}},S.parameters={...S.parameters,docs:{...S.parameters?.docs,source:{originalSource:`() => html6`,...S.parameters?.docs?.source}}},C=[`Story0`,`Story1`,`Story2`,`Story3`,`Story4`,`Story5`,`Story6`]})))()}w();export{g as Story0,_ as Story1,v as Story2,y as Story3,b as Story4,x as Story5,S as Story6,C as __namedExportsOrder,h as default};
