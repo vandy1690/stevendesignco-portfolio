@@ -32,7 +32,7 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
 	</a>
 </div>`})))()}var d;function f(){return(f=e((()=>{d=`<div class="block block-inset">
     <a href="#" class="inner">
-		<div class="b-thumb"><img src="" alt="" /> 
+		<div class="b-thumb"><img src="images/fpo_3x2.png" alt="3x2 Image" /> 
 		</div>
 		<div class="b-text">
 			<h2 class="headline">Lorem ipsum dolor sit (37 characters)</h2>
