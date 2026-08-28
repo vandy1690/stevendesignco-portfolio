@@ -1,4 +1,5 @@
-import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e((()=>{t=`<ul class="sg-colors">
+import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e((()=>{t=`<h2>Brand</h2>
+<ul class="sg-colors">
 	<li>
 		<span class="sg-swatch" style="background: #635854;"></span>
 		<span class="sg-label">#635854<br><small>plategray</small></span>
@@ -33,7 +34,7 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
 	</li>
 	<li>
 		<span class="sg-swatch" style="background: #a69138;"></span>
-		<span class="sg-label">#a69138<br><small>chartreuse</small></span>
+		<span class="sg-label">#a69138<br><small>gold</small></span>
 	</li>
 	<li>
 		<span class="sg-swatch" style="background: #b38767;"></span>
@@ -43,12 +44,63 @@ import{t as e}from"./rolldown-runtime-Dh6celcD.js";var t;function n(){return(n=e
 		<span class="sg-swatch" style="background: #c9863b;"></span>
 		<span class="sg-label">#c9863b<br><small>brown</small></span>
 	</li>
+</ul>
+
+<h2>Sections</h2>
+<ul class="sg-colors">
+	<li>
+		<span class="sg-swatch" style="background: #c4bbb8;"></span>
+		<span class="sg-label">#c4bbb8<br><small>food</small></span>
+	</li>
+	<li>
+		<span class="sg-swatch" style="background: #1a7496;"></span>
+		<span class="sg-label">#1a7496<br><small>chefs</small></span>
+	</li>
+	<li>
+		<span class="sg-swatch" style="background: #bc5952;"></span>
+		<span class="sg-label">#bc5952<br><small>recipes</small></span>
+	</li>
+	<li>
+		<span class="sg-swatch" style="background: #6a888e;"></span>
+		<span class="sg-label">#6a888e<br><small>drink</small></span>
+	</li>
+	<li>
+		<span class="sg-swatch" style="background: #c9863b;"></span>
+		<span class="sg-label">#c9863b<br><small>magazine</small></span>
+	</li>
+	<li>
+		<span class="sg-swatch" style="background: #c0b47f;"></span>
+		<span class="sg-label">#c0b47f<br><small>video</small></span>
+	</li>
+	<li>
+		<span class="sg-swatch" style="background: #c0b47f;"></span>
+		<span class="sg-label">#c0b47f<br><small>blogs</small></span>
+	</li>
+</ul>
+
+<h2>Status</h2>
+<ul class="sg-colors">
+	<li>
+		<span class="sg-swatch" style="background: #bc5952;"></span>
+		<span class="sg-label">#bc5952<br><small>error</small></span>
+	</li>
+	<li>
+		<span class="sg-swatch" style="background: #638427;"></span>
+		<span class="sg-label">#638427<br><small>valid</small></span>
+	</li>
+	<li>
+		<span class="sg-swatch" style="background: #c0b47f;"></span>
+		<span class="sg-label">#c0b47f<br><small>warning</small></span>
+	</li>
+	<li>
+		<span class="sg-swatch" style="background: #1a7496;"></span>
+		<span class="sg-label">#1a7496<br><small>information</small></span>
+	</li>
 	<li>
 		<span class="sg-swatch" style="background: #d0021b;"></span>
 		<span class="sg-label">#d0021b<br><small>specialReport</small></span>
 	</li>
-</ul>
-`})))()}var r;function i(){return(i=e((()=>{r=`<p>Primary font: "Helvetica", "Arial", sans-serif;</p>
+</ul>`})))()}var r;function i(){return(i=e((()=>{r=`<p>Primary font: "Helvetica", "Arial", sans-serif;</p>
 <p><em>Primary font italic: "Helvetica", "Arial", sans-serif;</em></p>
 <p><strong>Primary font bold: "Helvetica", "Arial", sans-serif;</strong></p>
 <p class="font-secondary">Display font: "Tungsten Rounded", "HelveticaNeueW01-57Cn", helvetica, sans-serif;</p>
