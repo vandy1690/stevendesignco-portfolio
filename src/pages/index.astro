@@ -14,7 +14,7 @@ const cases = [
 		art: 'image',
 		image: '/images/case-studies/merchant-flow-builder/plugin-pipeline.webp',
 		head: 'Nobody asked for this one.',
-		text: 'A Figma plugin, built on my own initiative, that cut merchant flow setup from most of a day to 10 to 15 minutes.',
+		text: 'A Figma plugin, built on my own initiative, that cut merchant flow setup from most of a day to 10 to 15 minutes, across the 38-merchant program.',
 		product: 'Figma plugin, PayPal',
 		objective: 'Faster merchant flow setup',
 	},
@@ -33,7 +33,7 @@ const cases = [
 		art: 'image',
 		image: '/images/case-studies/paypal/one-click.webp',
 		head: 'Becoming the default at checkout.',
-		text: '20+ merchant proposal packages for the one-click program, each with a working prototype, on weekly sprints.',
+		text: '20+ merchant proposal packages for the one-click program, each with a working prototype, on weekly sprints. Merchants included Nintendo, Home Depot, Target, Best Buy, Chewy, Canva and TikTok Shop.',
 		product: 'One-click checkout, PayPal',
 		objective: 'One tap in each merchant’s own checkout',
 	},
@@ -51,7 +51,7 @@ const cases = [
 		art: 'image',
 		image: '/images/case-studies/paypal/journey-dead-end.webp',
 		head: 'The checkout dead end.',
-		text: 'The journey a customer takes when a saved card stops working, mapped for senior leadership and now the team’s template.',
+		text: 'A saved card stops working, and nothing stops the order until checkout. I mapped the month leading up to it for senior leadership, marking where it could have been resolved instead. Now the team’s template.',
 		product: 'PayPal consumer checkout',
 		objective: 'Show leadership where the dead end starts',
 	},
@@ -619,6 +619,7 @@ const quotes = [
 	.card__meta { grid-area: meta; display: flex; flex-wrap: wrap; gap: 4px var(--space-lg); margin: 0; }
 	.card__meta div { display: flex; gap: 8px; align-items: baseline; min-width: 0; }
 	.card__meta dt { font-size: var(--text-label); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); font-weight: 800; }
+	.card__meta dt::after { content: '|' / ''; margin-left: 8px; font-weight: 400; letter-spacing: 0; opacity: 0.55; }
 	.card__meta dd { margin: 0; font-size: 13px; color: var(--text); font-weight: 500; }
 	.card__cta { grid-area: cta; font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
 	.arrow { display: inline-block; transition: transform 0.22s ease; }
@@ -816,6 +817,7 @@ const quotes = [
 		.card__meta { flex-direction: column; gap: 12px; }
 		.card__meta div { flex-direction: column; gap: 2px; align-items: flex-start; }
 		.card__meta dt { font-size: 12px; letter-spacing: 0.1em; color: var(--text); }
+		.card__meta dt::after { content: none; }
 		.card__meta dd { font-size: 15px; }
 		.how__list li, .rec__list li { grid-template-columns: 1fr; gap: 8px; }
 		.deck__after { padding-top: var(--space-md); }

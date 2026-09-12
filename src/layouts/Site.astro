@@ -340,6 +340,8 @@ const jsonLd = {
 				--text-mute: #8A8F8C;     /* 5.6:1 on black; was #666 at 3.6:1 */
 				--rule: rgba(255, 255, 255, 0.20);   /* color/divider */
 				--rule-soft: rgba(255, 255, 255, 0.10);
+				--texture-dot: rgba(255, 255, 255, 0.07);   /* page grain */
+				--texture-size: 20px;
 				--accent: #CCFF00;          /* color/primary + accent */
 				--accent-text: #000000;     /* color/accent-text */
 				--accent-hover: #d8ff33;    /* derived hover state */
@@ -394,6 +396,8 @@ const jsonLd = {
 					--text-mute: #5A6160;                /* muted charcoal, 5.9:1 on paper; was #6E7574 at 4.06:1 */
 					--rule: rgba(45, 52, 54, 0.20);
 					--rule-soft: rgba(45, 52, 54, 0.10);
+					--texture-dot: rgba(45, 52, 54, 0.10);   /* page grain */
+					--texture-size: 20px;
 					--accent: #4A6FA8;                     /* Regatta, accent */
 					--accent-text: #ffffff;
 					--accent-hover: #3D5C8C;
@@ -410,6 +414,8 @@ const jsonLd = {
 				--text-mute: #5A6160;                /* muted charcoal, 5.9:1 on paper; was #6E7574 at 4.06:1 */
 				--rule: rgba(45, 52, 54, 0.20);
 				--rule-soft: rgba(45, 52, 54, 0.10);
+				--texture-dot: rgba(45, 52, 54, 0.10);   /* page grain */
+				--texture-size: 20px;
 				--accent: #4A6FA8;                     /* Regatta, accent */
 				--accent-text: #ffffff;
 				--accent-hover: #3D5C8C;
@@ -428,7 +434,11 @@ const jsonLd = {
 			}
 			@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 			body {
-				background: var(--bg);
+				/* Dot-grid page grain, ported from the 21st.dev noise texture to the
+				   site's own tokens. Turn it up or down with --texture-dot. */
+				background-color: var(--bg);
+				background-image: radial-gradient(circle at 1px 1px, var(--texture-dot) 1px, transparent 0);
+				background-size: var(--texture-size) var(--texture-size);
 				color: var(--text);
 				font-family: var(--font-body);
 				font-size: var(--text-body);
