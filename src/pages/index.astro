@@ -150,7 +150,6 @@ const REPEAT = 6;
 	<section id="recommendations" class="deck deck--recs" data-mode="fan" data-per="0.42" aria-labelledby="rec-title" style={`--n: ${quotes.length}; --per: 0.42`}>
 		<div class="deck__track">
 			<div class="deck__stage recs__stage">
-				<p class="eyebrow">Recommendations</p>
 				<h2 id="rec-title" class="recs__lede display">On the record.</h2>
 				<ol class="recs__fan">
 					{quotes.map((q) => (
@@ -163,7 +162,6 @@ const REPEAT = 6;
 						</li>
 					))}
 				</ol>
-				<p class="recs__progress" aria-hidden="true"><span class="recs__count">1</span> / {quotes.length}</p>
 			</div>
 		</div>
 	</section>
@@ -302,7 +300,6 @@ const REPEAT = 6;
 		const track = deck.querySelector<HTMLElement>('.deck__track');
 		const cards = Array.from(deck.querySelectorAll<HTMLElement>('.deck__card, .recs__card'));
 		const lines = Array.from(deck.querySelectorAll<HTMLElement>('.deck__marquee-line'));
-		const count = deck.querySelector<HTMLElement>('.recs__count');
 		const mode = deck.dataset.mode || 'flip';
 		const per = parseFloat(deck.dataset.per || '1') || 1;
 		// Share of the remaining distance a card closes each frame. 1 tracks the
@@ -341,7 +338,6 @@ const REPEAT = 6;
 						`rotateZ(${(o * 7).toFixed(2)}deg) rotateX(${(near * 7).toFixed(2)}deg) scale(${scale.toFixed(3)})`;
 					card.style.zIndex = String(Math.round(100 - a * 10));
 				}
-				if (count) count.textContent = String(Math.min(n, Math.round(t) + 1));
 				return;
 			}
 			let kOut = 0;
@@ -751,7 +747,6 @@ const REPEAT = 6;
 	.quote__text { margin: 0; }
 	.quote__text p { margin: 0; font-size: clamp(15px, 1.35vw, 18px); line-height: 1.45; letter-spacing: -0.005em; color: var(--text); font-weight: 500; text-wrap: pretty; }
 	.quote__title { font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; font-size: 11px; color: var(--text-mute); max-width: 34ch; }
-	.recs__progress { margin: 0; font-size: 12px; letter-spacing: 0.1em; color: var(--text-mute); font-variant-numeric: tabular-nums; }
 
 	/* ---------- How I work ---------- */
 	.section--how { padding: var(--space-4xl) var(--gutter) var(--space-3xl); }

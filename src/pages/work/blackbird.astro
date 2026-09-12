@@ -13,6 +13,10 @@ import Site from '../../layouts/Site.astro';
 			<p class="eyebrow">Case study</p>
 			<h1 class="cs-hero__title display">Project Blackbird</h1>
 			<p class="cs-hero__lede">An oral history of the Chicago restaurant that changed the city's dining, built as a responsive longform site that did the story justice.</p>
+			<div class="cs-figure" data-animate="fade">
+				<img class="theme-img theme-img--dark" src="/images/case-studies/blackbird/blackbird-hero.jpg" alt="Project Blackbird longform feature" />
+				<img class="theme-img theme-img--light" src="/images/case-studies/blackbird/blackbird-hero-light.png" alt="" aria-hidden="true" />
+			</div>
 			<dl class="cs-meta">
 				<div><dt>Role</dt><dd>Creative Director / Design Lead</dd></div>
 				<div><dt>Org</dt><dd>MTG Media Group</dd></div>
@@ -21,14 +25,6 @@ import Site from '../../layouts/Site.astro';
 		</div>
 	</section>
 
-	<section class="section section--alt section--figure">
-		<div class="section__inner">
-			<div class="cs-figure" data-animate="fade">
-				<img class="theme-img theme-img--dark" src="/images/case-studies/blackbird/blackbird-hero.jpg" alt="Project Blackbird longform feature" />
-				<img class="theme-img theme-img--light" src="/images/case-studies/blackbird/blackbird-hero-light.png" alt="" aria-hidden="true" />
-			</div>
-		</div>
-	</section>
 
 	<section class="section">
 		<div class="section__inner cs-body" data-animate="fade">
@@ -89,7 +85,7 @@ import Site from '../../layouts/Site.astro';
 	.cs-meta dt { font-size: var(--text-label); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); font-weight: 800; margin-bottom: var(--space-xs); }
 	.cs-meta dd { margin: 0; color: var(--text); font-size: var(--text-body); font-weight: 500; }
 
-	.cs-figure { max-width: 75%; margin: 0 auto; }
+	.cs-figure { max-width: 100%; margin: var(--space-lg) 0 var(--space-xl); }
 	.cs-figure img { width: 100%; height: auto; display: block; }
 
 	/* One organism grouping: label, subhead and body sit tight together, and the
@@ -103,7 +99,8 @@ import Site from '../../layouts/Site.astro';
 	.eyebrow { font-family: var(--font-display); font-weight: 400; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; letter-spacing: 0.03em; }
 	.cs-block__lede { color: var(--text); font-size: clamp(24px, 2.5vw, 32px); font-weight: 600; margin: 0; letter-spacing: -0.015em; line-height: 1.25; }
 	.cs-block p { color: #5A6565; margin: 0; font-size: 16px; line-height: 1.65; }
-	.cs-block p + p { margin-top: var(--space-sm); }
+	.cs-block p + p { margin-top: 0; }
+	.cs-block p:not(.eyebrow):not(.cs-block__lede) + p:not(.eyebrow):not(.cs-block__lede) { margin-top: var(--space-sm); }
 
 	.cs-awards { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
 	.cs-awards li { display: flex; gap: var(--space-md); align-items: center; padding: var(--space-md) 0; border-top: 1px solid var(--rule); font-size: 18px; }
@@ -123,5 +120,30 @@ import Site from '../../layouts/Site.astro';
 		.cs-meta { grid-template-columns: 1fr; gap: var(--space-lg); }
 		.cs-meta dt { font-size: 13px; letter-spacing: 0.1em; color: var(--text); margin-bottom: 2px; }
 		.cs-meta dd { font-size: 17px; }
+	}
+
+	/* Case study links read as text, not pills: underline, accent on hover. */
+	.cs-artifacts .btn, .cs-back .btn, .cs-back .btn--primary {
+		padding: 0;
+		border: 0;
+		border-radius: 0;
+		background: transparent;
+		color: var(--text);
+		font-family: var(--font-body);
+		font-weight: 600;
+		font-size: 15px;
+		letter-spacing: 0;
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 5px;
+		transform: none;
+		box-shadow: none;
+	}
+	.cs-artifacts .btn:hover, .cs-back .btn:hover, .cs-back .btn--primary:hover {
+		color: var(--accent);
+		background: transparent;
+		border: 0;
+		transform: none;
+		box-shadow: none;
 	}
 </style>
