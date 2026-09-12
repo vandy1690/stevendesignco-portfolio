@@ -569,11 +569,30 @@ const quotes = [
 		}));
 	}
 
+	/* Inert everything except the dialog. The dialog is rendered inside <main>,
+	   so inerting <main> wholesale also inerted the dialog and killed its
+	   scrolling. Walk from the dialog up to <body> and inert each ancestor's
+	   other children, which leaves the dialog's own chain live. */
 	function setBackgroundInert(on: boolean) {
-		document.querySelectorAll<HTMLElement>('body > header, body > main, body > footer, body > nav, body > .skip-link').forEach((el) => {
-			if (on) el.setAttribute('inert', '');
-			else el.removeAttribute('inert');
-		});
+		if (!modal) return;
+		if (!on) {
+			document.querySelectorAll<HTMLElement>('[data-modal-inert]').forEach((el) => {
+				el.removeAttribute('inert');
+				el.removeAttribute('data-modal-inert');
+			});
+			return;
+		}
+		let node: HTMLElement | null = modal;
+		while (node && node !== document.body) {
+			const parent: HTMLElement | null = node.parentElement;
+			if (!parent) break;
+			for (const sib of Array.from(parent.children) as HTMLElement[]) {
+				if (sib === node || sib.hasAttribute('inert')) continue;
+				sib.setAttribute('inert', '');
+				sib.setAttribute('data-modal-inert', '');
+			}
+			node = parent;
+		}
 	}
 
 	/* Focus always moves, so keyboard order stays correct. The ring is
@@ -621,6 +640,25 @@ const quotes = [
 		});
 		window.addEventListener('keydown', (e) => {
 			if (e.key === 'Escape' && openUrl !== null) modalClose?.click();
+			/* Keep Tab inside the dialog. The background is inert, so focus cannot
+			   reach page content either way, but without this it passes through
+			   <body> on the way round instead of wrapping. */
+			if (e.key === 'Tab' && openUrl !== null && modal) {
+				const focusables = Array.from(
+					modal.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"]), input, select, textarea')
+				).filter((el) => el.offsetParent !== null || el === modalClose);
+				if (!focusables.length) return;
+				const first = focusables[0];
+				const last = focusables[focusables.length - 1];
+				const active = document.activeElement as HTMLElement | null;
+				if (e.shiftKey && (active === first || !modal.contains(active))) {
+					e.preventDefault();
+					last.focus();
+				} else if (!e.shiftKey && (active === last || !modal.contains(active))) {
+					e.preventDefault();
+					first.focus();
+				}
+			}
 		});
 		// Links inside a loaded case study: other case studies open in place, the
 		// links back to the home page close the modal, everything else behaves.
