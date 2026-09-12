@@ -95,7 +95,6 @@ const quotes = [
 				<a class="btn" href="/resume">Resume</a>
 			</div>
 		</div>
-		<a class="hero__cue" href="#work" aria-label="Scroll to selected work" data-reveal="block"><span class="hero__cue-line"></span></a>
 	</section>
 
 	<section id="work" class="deck deck--work" data-mode="flip" aria-labelledby="work-title" style={`--n: ${cases.length}`}>
@@ -127,9 +126,6 @@ const quotes = [
 					))}
 				</ol>
 			</div>
-		</div>
-		<div class="deck__after">
-			<a class="deck__more" href="/work">All work, including Alt-Meat, Project Blackbird, and the labs <span class="arrow">→</span></a>
 		</div>
 	</section>
 
@@ -581,9 +577,6 @@ const quotes = [
 	.hero__proof { font-size: clamp(17px, 1.4vw, 20px); line-height: 1.5; color: var(--text); max-width: 58ch; margin: 0 0 var(--space-sm); text-wrap: pretty; }
 	.hero__valid { font-size: 15px; color: var(--text-mute); margin: 0 0 var(--space-xl); letter-spacing: 0.01em; }
 	.hero__cta { display: flex; gap: var(--space-sm); flex-wrap: wrap; }
-	.hero__cue { position: absolute; left: 50%; bottom: var(--space-lg); transform: translateX(-50%); width: 44px; height: 44px; display: flex; align-items: flex-start; justify-content: center; }
-	.hero__cue-line { display: block; width: 1px; height: 36px; background: var(--text); opacity: 0.5; transform-origin: top; animation: cue 2.4s ease-in-out infinite; }
-	@keyframes cue { 0%, 100% { transform: scaleY(0.3); opacity: 0.25; } 50% { transform: scaleY(1); opacity: 0.6; } }
 
 	/* ---------- Card ---------- */
 	.card {
@@ -656,10 +649,6 @@ const quotes = [
 	.deck--work .deck__stage { gap: var(--space-lg); }
 	.deck--work .card { max-height: calc(100svh - var(--nav-h) - 200px); }
 
-	.deck__after { width: var(--content); margin: 0 auto; padding: var(--space-xl) 0 0; }
-	.deck__more { color: var(--text); font-weight: 600; display: inline-flex; align-items: center; gap: 8px; }
-	.deck__more:hover { color: var(--accent); }
-	.deck__more:hover .arrow { transform: translateX(6px); }
 
 	/* ---------- Recommendations: a fanned deck, driven by scroll ---------- */
 	.deck--recs { --rec-w: 440px; --rec-h: 330px; }
@@ -807,31 +796,56 @@ const quotes = [
 	/* ---------- Phones: same decks, tighter cards ---------- */
 	@media (max-width: 880px) {
 		.deck__stage { padding-top: calc(var(--nav-h) + 8px); gap: 14px; perspective: 1200px; }
-			.card__art { max-height: 38svh; }
+		/* The art is the only flexible item in the card, so any height shortfall
+		   used to come out of it and left a sliver. Pin it to its ratio and take
+		   the room out of the body instead. */
+		.card__art { flex: 0 0 auto; max-height: none; }
+		/* Reserve only what actually sits above the card: nav, stage padding,
+		   the Case studies headline and one gap. */
+		.deck--work .card { max-height: calc(100svh - var(--nav-h) - 120px); }
+		.card__body { gap: 8px; }
+		.card__text { font-size: 15px; line-height: 1.45; margin-bottom: 2px; }
 		.quote { padding: 28px 22px; }
 		.quote__text p { font-size: 17px; }
 		.hero { padding-top: var(--space-2xl); padding-bottom: var(--space-3xl); }
 		.hero__claim { font-size: clamp(30px, 7.2vw, 44px); }
-		.card__body { grid-template-columns: 1fr; grid-template-areas: "head" "text" "meta" "cta"; padding: 20px; align-items: start; }
+		.card__body { grid-template-columns: 1fr; grid-template-areas: "head" "text" "meta" "cta"; padding: 18px 20px; align-items: start; }
 		/* Labels read as subheads on phones: above the value, not beside it. */
-		.card__meta { flex-direction: column; gap: 12px; }
+		.card__meta { flex-direction: column; gap: 10px; }
 		.card__meta div { flex-direction: column; gap: 2px; align-items: flex-start; }
 		.card__meta dt { font-size: 12px; letter-spacing: 0.1em; color: var(--text); }
 		.card__meta dt::after { content: none; }
-		.card__meta dd { font-size: 15px; }
+		.card__meta dd { font-size: 14px; line-height: 1.4; }
 		.how__list li, .rec__list li { grid-template-columns: 1fr; gap: 8px; }
-		.deck__after { padding-top: var(--space-md); }
 		.deck--recs { --rec-w: min(300px, 82vw); --rec-h: 380px; }
 		.recs__stage { gap: var(--space-md); }
 		.modal { padding: 16px; }
 		.modal__close { top: 8px; margin: 8px 8px -56px 0; width: 44px; height: 44px; }
+	}
+	/* Short phones: the headline and stage padding are the only things left to
+	   give, so they shrink before the card does. */
+	@media (max-width: 880px) and (max-height: 720px) {
+		.deck--work .deck__stage { padding-top: calc(var(--nav-h) + 2px); gap: 8px; }
+		.work__lede { font-size: 30px; }
+		.deck--work .card { max-height: calc(100svh - var(--nav-h) - 78px); }
+		.card__head { font-size: 20px; }
+		.card__text { font-size: 14px; }
+		.card__body { padding: 14px 18px; }
+	}
+	/* Smallest phones with full browser chrome: a wider crop gives height back
+	   to the copy while the image still reads as an image. */
+	@media (max-width: 880px) and (max-height: 620px) {
+		.card__art { aspect-ratio: 2 / 1; }
+		.card__body { gap: 6px; padding: 12px 16px; }
+		.card__text { font-size: 13.5px; }
+		.card__meta { gap: 8px; }
+		.deck--work .card { max-height: calc(100svh - var(--nav-h) - 70px); }
 	}
 	@media (max-height: 760px) and (min-width: 881px) {
 		.card__art { max-height: 44svh; }
 		.card__text { font-size: 15px; }
 	}
 	@media (prefers-reduced-motion: reduce) {
-		.hero__cue-line { animation: none; transform: none; }
 		:global(.rw__i) { transition: none; transform: none; }
 		[data-reveal="block"] { transition: none; }
 	}
