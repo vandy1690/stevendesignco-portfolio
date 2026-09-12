@@ -141,11 +141,12 @@ const jsonLd = {
 		)}
 	</head>
 	<body>
+		<a class="skip-link" href="#main">Skip to content</a>
 		<header class="site-header">
 			<a class="brand" href="/" aria-label="Steven Vanden Heuvel home">
-				<img class="brand__mark" src="/images/brand/SDC_initialLogo.svg" alt="Steven Vanden Heuvel" width="40" height="24" />
+				<img class="brand__mark" src="/images/brand/SDC_initialLogo.svg" alt="" width="40" height="24" />
 			</a>
-			<nav class="nav">
+			<nav class="nav" aria-label="Main">
 				<a href={isHome ? '#work' : '/#work'}>Work</a>
 				<a href={isHome ? '#design-systems' : '/#design-systems'}>Design systems</a>
 				<a href={isHome ? '#about' : '/#about'}>About</a>
@@ -159,7 +160,7 @@ const jsonLd = {
 			</button>
 		</header>
 
-		<nav id="mobile-nav" class="nav-mobile" aria-hidden="true">
+		<nav id="mobile-nav" class="nav-mobile" aria-label="Mobile">
 			<a href={isHome ? '#work' : '/#work'}>Work</a>
 			<a href={isHome ? '#design-systems' : '/#design-systems'}>Design systems</a>
 			<a href={isHome ? '#about' : '/#about'}>About</a>
@@ -167,7 +168,7 @@ const jsonLd = {
 			<a href="/resume">Resume</a>
 		</nav>
 
-		<main>
+		<main id="main" tabindex="-1">
 			<slot />
 		</main>
 
@@ -214,18 +215,20 @@ const jsonLd = {
 				const setOpen = (open: boolean) => {
 					navMobile.dataset.open = String(open);
 					navToggle.setAttribute('aria-expanded', String(open));
-					navMobile.setAttribute('aria-hidden', String(!open));
 					navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
 					document.body.classList.toggle('nav-open', open);
 				};
 				navToggle.addEventListener('click', () => {
-					setOpen(navMobile.dataset.open !== 'true');
+					const open = navMobile.dataset.open !== 'true';
+					setOpen(open);
+					if (open) navMobile.querySelector('a')?.focus();
+					else navToggle.focus();
 				});
 				navMobile.querySelectorAll('a').forEach((a) => {
 					a.addEventListener('click', () => setOpen(false));
 				});
 				document.addEventListener('keydown', (e) => {
-					if (e.key === 'Escape' && navMobile.dataset.open === 'true') setOpen(false);
+					if (e.key === 'Escape' && navMobile.dataset.open === 'true') { setOpen(false); navToggle.focus(); }
 				});
 			}
 
@@ -287,44 +290,6 @@ const jsonLd = {
 					if (document.fonts && document.fonts.ready) document.fonts.ready.then(checkWrap);
 				}
 
-				// card titles: per-letter roll on card hover. Each letter = its own clipped
-				// unit with two stacked copies; words stay nowrap so wrapping only happens at spaces.
-				document.querySelectorAll('.card__title').forEach((h) => {
-					const text = (h.textContent || '').trim();
-					if (!text) return;
-					const wrap = document.createElement('span');
-					wrap.className = 'cflip';
-					wrap.setAttribute('aria-label', text);
-					let i = 0;
-					text.split(/(\s+)/).forEach((token) => {
-						if (token === '') return;
-						if (/^\s+$/.test(token)) {
-							const sp = document.createElement('span');
-							sp.className = 'cflip-space';
-							sp.setAttribute('aria-hidden', 'true');
-							sp.textContent = token;
-							wrap.appendChild(sp);
-							return;
-						}
-						const word = document.createElement('span');
-						word.className = 'cflip-word';
-						word.setAttribute('aria-hidden', 'true');
-						Array.from(token).forEach((ch) => {
-							const c = document.createElement('span');
-							c.className = 'cflip-char';
-							c.style.setProperty('--i', String(i++));
-							const a = document.createElement('span'); a.textContent = ch;
-							const b = document.createElement('span'); b.textContent = ch;
-							c.appendChild(a);
-							c.appendChild(b);
-							word.appendChild(c);
-						});
-						wrap.appendChild(word);
-					});
-					h.textContent = '';
-					h.appendChild(wrap);
-				});
-
 			})();
 		</script>
 
@@ -340,6 +305,7 @@ const jsonLd = {
 				--text-mute: #8A8F8C;     /* 5.6:1 on black; was #666 at 3.6:1 */
 				--rule: rgba(255, 255, 255, 0.20);   /* color/divider */
 				--rule-soft: rgba(255, 255, 255, 0.10);
+				--rule-strong: rgba(255, 255, 255, 0.42);   /* control borders, clears 3:1 */
 				--texture-dot: rgba(255, 255, 255, 0.07);   /* page grain */
 				--texture-size: 20px;
 				--accent: #CCFF00;          /* color/primary + accent */
@@ -396,12 +362,13 @@ const jsonLd = {
 					--text-mute: #5A6160;                /* muted charcoal, 5.9:1 on paper; was #6E7574 at 4.06:1 */
 					--rule: rgba(45, 52, 54, 0.20);
 					--rule-soft: rgba(45, 52, 54, 0.10);
+					--rule-strong: rgba(45, 52, 54, 0.46);   /* control borders, clears 3:1 */
 					--texture-dot: rgba(45, 52, 54, 0.10);   /* page grain */
 					--texture-size: 20px;
-					--accent: #4A6FA8;                     /* Regatta, accent */
+					--accent: #3F5F92;                     /* Regatta, accent */
 					--accent-text: #ffffff;
 					--accent-hover: #3D5C8C;
-					--accent-glow: rgba(74, 111, 168, 0.22);
+					--accent-glow: rgba(63, 95, 146, 0.22);
 					--header-bg: rgba(240, 238, 233, 0.82);
 				}
 			}
@@ -414,12 +381,13 @@ const jsonLd = {
 				--text-mute: #5A6160;                /* muted charcoal, 5.9:1 on paper; was #6E7574 at 4.06:1 */
 				--rule: rgba(45, 52, 54, 0.20);
 				--rule-soft: rgba(45, 52, 54, 0.10);
+				--rule-strong: rgba(45, 52, 54, 0.46);   /* control borders, clears 3:1 */
 				--texture-dot: rgba(45, 52, 54, 0.10);   /* page grain */
 				--texture-size: 20px;
-				--accent: #4A6FA8;                     /* Regatta, accent */
+				--accent: #3F5F92;                     /* Regatta, accent */
 				--accent-text: #ffffff;
 				--accent-hover: #3D5C8C;
-				--accent-glow: rgba(74, 111, 168, 0.22);
+				--accent-glow: rgba(63, 95, 146, 0.22);
 				--header-bg: rgba(240, 238, 233, 0.82);
 			}
 			* { box-sizing: border-box; }
@@ -447,6 +415,37 @@ const jsonLd = {
 				-webkit-font-smoothing: antialiased;
 				-moz-osx-font-smoothing: grayscale;
 			}
+			/* Focus. The browser default is a blue ring that reads as a selected
+			   state and is off-palette, so the ring is the page's own ink: high
+			   contrast against both grounds and identical in both themes. Only
+			   :focus-visible, so a mouse click never draws it. */
+			:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
+			:focus:not(:focus-visible) { outline: none; }
+			.no-ring:focus, .no-ring:focus-visible { outline: none; }
+			/* Windows High Contrast: let the system draw its own ring. */
+			@media (forced-colors: active) {
+				:focus-visible { outline: 3px solid Highlight; outline-offset: 3px; }
+				/* These are painted with background, which HCM forces. */
+				.nav-toggle__bar { forced-color-adjust: none; background: ButtonText; }
+				.pager { forced-color-adjust: none; background: ButtonFace; color: ButtonText; border: 1px solid ButtonText; }
+				.pager__cap { forced-color-adjust: none; background: transparent; border-left: 1px solid ButtonText; }
+				.pager--prev .pager__cap { border-left: 0; border-right: 1px solid ButtonText; }
+				a[target="_blank"]::after { forced-color-adjust: none; background: LinkText; }
+				.skip-link { forced-color-adjust: none; background: ButtonFace; color: ButtonText; border: 1px solid ButtonText; }
+			}
+			/* Users asking for more contrast get the muted tones collapsed into the ink. */
+			@media (prefers-contrast: more) {
+				:root, :root[data-theme="light"] { --text-mute: var(--text); --rule: var(--rule-strong); }
+			}
+			.skip-link {
+				position: absolute; left: 12px; top: -64px; z-index: 200;
+				display: inline-flex; align-items: center; height: 44px; padding: 0 18px;
+				background: var(--text); color: var(--bg); border-radius: 10px;
+				font-family: var(--font-body); font-size: 15px; font-weight: 600;
+				transition: top 0.12s ease;
+			}
+			.skip-link:focus { top: 12px; color: var(--bg); }
+			main:focus { outline: none; }
 			::selection { background: var(--accent); color: var(--accent-text); }
 			a { color: var(--accent); text-decoration: none; }
 			a:hover { text-decoration: none; }
@@ -539,7 +538,7 @@ const jsonLd = {
 			.nav__cta {
 				padding: 8px 16px;
 				border-radius: 10px;
-				border: 1px solid var(--rule);
+				border: 1px solid var(--rule-strong);
 				color: var(--text) !important;
 				opacity: 1 !important;
 				transition: background 0.14s ease, border-color 0.14s ease, color 0.14s ease;
@@ -552,7 +551,7 @@ const jsonLd = {
 				align-items: center;
 				justify-content: center;
 				background: var(--bg);
-				border: 1px solid var(--rule);
+				border: 1px solid var(--rule-strong);
 				border-radius: 999px;
 				color: var(--text);
 				cursor: pointer;
@@ -744,7 +743,7 @@ const jsonLd = {
 				gap: var(--space-xs);
 				padding: 14px 22px;
 				border-radius: 10px;
-				border: 1px solid var(--rule);
+				border: 1px solid var(--rule-strong);
 				background: transparent;
 				color: var(--text);
 				font-family: var(--font-body);

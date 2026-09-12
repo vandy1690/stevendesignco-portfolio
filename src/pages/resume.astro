@@ -5,6 +5,7 @@ import Site from '../layouts/Site.astro';
 <Site
 	title="Resume · Steven Vanden Heuvel"
 	description="Principal Designer on payments and design systems. 18 years of responsive web and design systems work in B2B publishing."
+	image="/og/resume.png"
 >
 	<article class="rs">
 		<header class="rs-head">
@@ -22,15 +23,15 @@ import Site from '../layouts/Site.astro';
 		</header>
 
 		<section class="rs-sec">
-			<p class="eyebrow">Summary</p>
+			<h2 class="eyebrow">Summary</h2>
 			<p class="rs-summary">Principal Designer at PayPal (contract via Magnit Global) from December 2025 to August 2026, working as a product designer on consumer checkout and merchant-facing payment flows for top global brands on weekly sprints. Spent 18 years at MTG Media Group building design systems for 7 B2B brands across responsive web, email, and print. Fintech background spanning consumer finance, financial products, consumer checkout, merchant tooling, and high-stakes payment flows. Build with agentic tooling, Claude Code and Cursor, every day. Four-time Jesse H. Neal Award winner.</p>
 		</section>
 
 		<section class="rs-sec">
-			<p class="eyebrow">Experience</p>
+			<h2 class="eyebrow">Experience</h2>
 			<div class="rs-jobs">
 				<div class="rs-job">
-					<h2 class="rs-job__role">Principal Designer, Merchant Enablement</h2>
+					<h3 class="rs-job__role">Principal Designer, Merchant Enablement</h3>
 					<p class="rs-job__org">PayPal</p>
 					<p class="rs-job__meta">Chicago, IL and remote · December 2025 to August 2026</p>
 					<ul class="rs-points">
@@ -42,7 +43,7 @@ import Site from '../layouts/Site.astro';
 				</div>
 
 				<div class="rs-job">
-					<h2 class="rs-job__role">VP and Creative Director</h2>
+					<h3 class="rs-job__role">VP and Creative Director</h3>
 					<p class="rs-job__org">MTG Media Group · grew from Senior Art Director</p>
 					<p class="rs-job__meta">Chicago, IL and remote · October 2007 to May 2025, 18 years</p>
 					<ul class="rs-points">
@@ -56,7 +57,7 @@ import Site from '../layouts/Site.astro';
 				</div>
 
 				<div class="rs-job">
-					<h2 class="rs-job__role">Founder and Designer</h2>
+					<h3 class="rs-job__role">Founder and Designer</h3>
 					<p class="rs-job__org">Steven Design Services LLC</p>
 					<p class="rs-job__meta">Aurora, IL · Concurrent</p>
 					<ul class="rs-points">
@@ -67,7 +68,7 @@ import Site from '../layouts/Site.astro';
 		</section>
 
 		<section class="rs-sec">
-			<p class="eyebrow">Skills</p>
+			<h2 class="eyebrow">Skills</h2>
 			<ul class="rs-skills">
 				<li>Design Systems</li>
 				<li>UX and UI Design</li>
@@ -83,7 +84,7 @@ import Site from '../layouts/Site.astro';
 		</section>
 
 		<section class="rs-sec">
-			<p class="eyebrow">Recognition</p>
+			<h2 class="eyebrow">Recognition</h2>
 			<ul class="rs-recognition">
 				<li>4 Jesse H. Neal Awards</li>
 				<li>6 Neal Finalists</li>
@@ -95,7 +96,7 @@ import Site from '../layouts/Site.astro';
 		</section>
 
 		<section class="rs-sec">
-			<p class="eyebrow">Education</p>
+			<h2 class="eyebrow">Education</h2>
 			<p class="rs-education">University of Wisconsin-Whitewater, B.A. in Art with emphasis in Graphic Design and Marketing</p>
 		</section>
 	</article>
@@ -108,8 +109,8 @@ import Site from '../layouts/Site.astro';
 	.rs-head .eyebrow { margin-bottom: var(--space-sm); }
 	.rs-name { font-size: clamp(40px, 6vw, 72px); letter-spacing: -0.02em; margin: 0 0 var(--space-md); }
 	.rs-role { font-size: clamp(20px, 2vw, 26px); font-weight: 600; color: var(--text); margin: 0 0 var(--space-sm); letter-spacing: -0.01em; }
-	.rs-loc { color: #5A6565; font-size: 15px; margin: 0 0 var(--space-md); }
-	.rs-contact { list-style: none; margin: 0 0 var(--space-lg); padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-md); font-size: 15px; font-weight: 500; }
+	.rs-loc { color: var(--text-mute); font-size: 15px; margin: 0 0 var(--space-md); }
+	.rs-contact { list-style: none; margin: 0 0 var(--space-lg); padding: 0; display: flex; flex-wrap: wrap; gap: 12px var(--space-md); font-size: 15px; font-weight: 500; }
 	.rs-contact a { color: var(--text); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; transition: color 0.14s ease; }
 	.rs-contact a:hover { color: var(--accent); }
 	.rs-pdf { margin-top: var(--space-xs); }
@@ -125,9 +126,9 @@ import Site from '../layouts/Site.astro';
 	.rs-jobs { display: grid; gap: var(--space-2xl); }
 	.rs-job__role { font-size: clamp(20px, 2.2vw, 24px); font-weight: 700; color: var(--text); line-height: 1.2; letter-spacing: -0.015em; margin: 0 0 var(--space-xs); }
 	.rs-job__org { color: var(--text); font-size: 16px; font-weight: 600; margin: 0; }
-	.rs-job__meta { color: #5A6565; font-size: 13px; letter-spacing: 0.02em; margin: var(--space-xs) 0 0; }
+	.rs-job__meta { color: var(--text-mute); font-size: 13px; letter-spacing: 0.02em; margin: var(--space-xs) 0 0; }
 	.rs-points { list-style: none; margin: var(--space-md) 0 0; padding: 0; display: grid; gap: var(--space-sm); }
-	.rs-points li { position: relative; padding-left: var(--space-md); color: #5A6565; font-size: 16px; line-height: 1.6; }
+	.rs-points li { position: relative; padding-left: var(--space-md); color: var(--text-mute); font-size: 16px; line-height: 1.6; }
 	.rs-points li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 
 	/* Skills: pills, matching the homepage capability tags */
