@@ -12,7 +12,6 @@ const cases = [
 		href: '/work/merchant-flow-builder',
 		art: 'plugin',
 		image: null,
-		word: 'Flow Builder',
 		head: 'Nobody asked for this one.',
 		text: 'A Figma plugin, built on my own initiative, that cut merchant flow setup from most of a day to 10 to 15 minutes.',
 		product: 'Figma plugin, PayPal',
@@ -23,7 +22,6 @@ const cases = [
 		art: 'image',
 		image: '/images/case-studies/design-systems/pattern-lab.webp',
 		anchor: 'design-systems',
-		word: 'Systems',
 		head: 'One library, seven brands.',
 		text: 'Two Pattern Labs, two Storybook builds, and a Figma library of about 600 component variants, all still browsable.',
 		product: 'Design systems, MTG Media Group and PayPal',
@@ -33,7 +31,6 @@ const cases = [
 		href: '/work/paypal',
 		art: 'checkout',
 		image: null,
-		word: 'Checkout',
 		head: 'Becoming the default at checkout.',
 		text: '20+ merchant proposal packages for the one-click program, each with a working prototype, on weekly sprints.',
 		product: 'One-click checkout, PayPal',
@@ -43,17 +40,15 @@ const cases = [
 		href: '/work/plate',
 		art: 'image',
 		image: '/images/case-studies/plate/plate-scene.webp',
-		word: 'Plate',
-		head: 'Two print brands, rebuilt as products.',
-		text: 'Plate, workshop to launch, won the 2017 Jesse H. Neal Award for Best Website. Meatingplace was ready to launch when the company sold.',
-		product: 'Plate and Meatingplace, MTG Media Group',
+		head: 'One rebuilt, one built from nothing.',
+		text: 'Plate grew from a recipe database into a full content platform and won the 2017 Jesse H. Neal Award for Best Website. Alt-Meat launched from zero in under 8 weeks and reached 22,000 registered users.',
+		product: 'Plate and Alt-Meat, MTG Media Group',
 		objective: 'Responsive products on their own design systems',
 	},
 	{
 		href: '/work/paypal#checkout-dead-end',
 		art: 'journey',
 		image: null,
-		word: 'Dead end',
 		head: 'The checkout dead end.',
 		text: 'The journey a customer takes when a saved card stops working, mapped for senior leadership and now the team’s template.',
 		product: 'PayPal consumer checkout',
@@ -82,7 +77,6 @@ const quotes = [
 	{ text: 'He recognized and responded to the need to grow the company\u2019s web designs and all that it encompassed.', title: 'Creative Director, Marketing and Technology Group, 1998 to 2015' },
 ].map((q) => ({ ...q, href: RECS_URL }));
 
-const REPEAT = 6;
 ---
 
 <Site
@@ -107,16 +101,7 @@ const REPEAT = 6;
 		<div class="deck__track">
 			{cases.map((c, i) => c.anchor && <span class="deck__anchor" id={c.anchor} style={`--j: ${i}`} aria-hidden="true"></span>)}
 			<div class="deck__stage">
-				<div class="deck__marquee" aria-hidden="true">
-					{cases.map((c, i) => (
-						<div class="deck__marquee-line" data-index={i}>
-							<div class="deck__marquee-inner">
-								<span class="deck__marquee-run">{Array.from({ length: REPEAT }).map(() => <span>{c.word}</span>)}</span>
-							</div>
-						</div>
-					))}
-				</div>
-				<h2 id="work-title" class="visually-hidden">Selected work</h2>
+				<h2 id="work-title" class="work__lede display">Case studies</h2>
 				<ol class="deck__cards">
 					{cases.map((c) => (
 						<li class="deck__card">
@@ -299,7 +284,6 @@ const REPEAT = 6;
 	document.querySelectorAll<HTMLElement>('.deck').forEach((deck) => {
 		const track = deck.querySelector<HTMLElement>('.deck__track');
 		const cards = Array.from(deck.querySelectorAll<HTMLElement>('.deck__card, .recs__card'));
-		const lines = Array.from(deck.querySelectorAll<HTMLElement>('.deck__marquee-line'));
 		const mode = deck.dataset.mode || 'flip';
 		const per = parseFloat(deck.dataset.per || '1') || 1;
 		// Share of the remaining distance a card closes each frame. 1 tracks the
@@ -358,8 +342,6 @@ const REPEAT = 6;
 				else if (j === i + 1) target[j] = 1 - kIn;
 				else target[j] = 1;
 			}
-			const active = kIn > 0.5 ? i + 1 : i;
-			lines.forEach((line, j) => line.classList.toggle('is-active', j === active));
 		};
 
 		const render = () => {
@@ -544,46 +526,6 @@ const REPEAT = 6;
 		});
 	}
 
-	// Marquee behind the work cards: the active case study's short name, repeated,
-	// drifting left, reversing with scroll direction and speeding up while scrolling.
-	if (!reduce) {
-		let lastY = window.scrollY;
-		let dir = 1;
-		let boost = 0;
-		window.addEventListener('scroll', () => {
-			const y = window.scrollY;
-			const d = y - lastY;
-			lastY = y;
-			if (d !== 0) dir = d > 0 ? 1 : -1;
-			boost = Math.min(18, Math.abs(d) * 0.35);
-		}, { passive: true });
-		document.querySelectorAll<HTMLElement>('.deck__marquee-inner').forEach((inner) => {
-			const run = inner.querySelector<HTMLElement>('.deck__marquee-run');
-			if (!run) return;
-			let unit = run.offsetWidth;
-			if (!unit) return;
-			const copies = Math.max(2, Math.ceil((window.innerWidth * 2) / unit));
-			for (let k = 1; k < copies; k++) inner.appendChild(run.cloneNode(true));
-			unit = run.offsetWidth;
-			let x = 0;
-			let active = false;
-			const frame = () => {
-				if (!active) return;
-				x -= (0.9 + boost) * dir;
-				boost *= 0.92;
-				if (x <= -unit) x += unit;
-				if (x > 0) x -= unit;
-				inner.style.transform = `translate3d(${x.toFixed(2)}px, 0, 0)`;
-				requestAnimationFrame(frame);
-			};
-			const io = new IntersectionObserver(([e]) => {
-				const was = active;
-				active = e.isIntersecting;
-				if (active && !was) requestAnimationFrame(frame);
-			});
-			io.observe(inner);
-		});
-	}
 </script>
 
 <style>
@@ -688,25 +630,10 @@ const REPEAT = 6;
 	}
 	.deck--work .deck__card { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
 	.deck__dim { position: absolute; inset: 0; border-radius: inherit; background: #000; opacity: calc(var(--dim) * 0.5); pointer-events: none; }
-	.deck__marquee { position: absolute; inset: 0; pointer-events: none; }
-	.deck__marquee-line { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); overflow: hidden; white-space: nowrap; opacity: 0; transition: opacity 0.5s ease; }
-	.deck__marquee-line.is-active { opacity: 1; }
-	.deck__marquee-inner {
-		display: inline-flex;
-		font-family: var(--font-display);
-		font-weight: 400;
-		font-variation-settings: "wght" 400, "slnt" 0, "ital" 0;
-		font-synthesis: none;
-		font-variation-settings: "wdth" 50, "slnt" 0;
-		font-size: clamp(96px, 13.5vw, 210px);
-		line-height: 1;
-		text-transform: uppercase;
-		letter-spacing: 0;
-		color: var(--text);
-		will-change: transform;
-	}
-	.deck__marquee-run { display: inline-flex; }
-	.deck__marquee-run > span { padding-right: 0.32em; }
+	.work__lede { font-size: clamp(40px, 6vw, 92px); line-height: 0.95; margin: 0; text-align: center; }
+	.deck--work .deck__stage { gap: var(--space-lg); }
+	.deck--work .card { max-height: calc(100svh - var(--nav-h) - 200px); }
+
 	.deck__after { width: var(--content); margin: 0 auto; padding: var(--space-xl) 0 0; }
 	.deck__more { color: var(--text); font-weight: 600; display: inline-flex; align-items: center; gap: 8px; }
 	.deck__more:hover { color: var(--accent); }
@@ -857,7 +784,6 @@ const REPEAT = 6;
 		.deck__cards { display: grid; gap: var(--space-md); place-items: stretch; }
 		.deck__card { grid-area: auto; transform: none !important; visibility: visible !important; }
 			.deck__dim { display: none; }
-		.deck__marquee { display: none; }
 			.card__art { max-height: none; }
 	}
 	/* ---------- Phones: same decks, tighter cards ---------- */

@@ -13,6 +13,7 @@ import Site from '../layouts/Site.astro';
 			<p class="rs-role">Principal Designer</p>
 			<p class="rs-loc">Aurora, IL · Chicago area · Open to remote</p>
 			<ul class="rs-contact">
+				<li class="print-only">630.862.6534</li>
 				<li><a class="js-email" data-eml="73746576656e4073746576656e64657369676e636f2e636f6d" href="#" aria-label="Email Steven">steven [at] stevendesignco [dot] com</a></li>
 				<li><a href="https://www.stevendesignco.com">stevendesignco.com</a></li>
 				<li><a href="https://linkedin.com/in/stevendesignco" target="_blank" rel="noopener">linkedin.com/in/stevendesignco</a></li>
@@ -34,7 +35,7 @@ import Site from '../layouts/Site.astro';
 					<p class="rs-job__meta">Chicago, IL and remote · December 2025 to August 2026</p>
 					<ul class="rs-points">
 						<li>Designed a modular checkout flow library for grocery, retail, restaurant, and subscription merchants, covering product selection through payment confirmation.</li>
-						<li>Produced 20+ complete merchant proposal packages for PayPal's top 100 global brands on weekly sprints. PM brief to final deliverable in 5 days, including wireframes, high-fidelity screens, annotated components, and flow specs.</li>
+						<li>Produced 20+ complete merchant proposal packages for PayPal's top 100 global brands on weekly sprints. PM brief to final deliverable in 5 days, including wireframes, high-fidelity screens, annotated components, and flow specs. The program's product manager credited the team with moving top strategic accounts to integration or launch.</li>
 						<li>Built the Figma board mapping the checkout dead end customers hit with no working card to pay, one of the most frequent checkout patterns, back to the earlier points where they could have fixed it. Structured it with Claude Code from a director's diagram and gathered screens from teams across the company. The work reached senior leadership and became the template the team now uses to map the next flows.</li>
 						<li>On my own initiative, built a Figma plugin that cut merchant flow setup from most of a day to 10 to 15 minutes across the 38-merchant program. Adopted by the team and in daily use when I handed it off at the end of the contract.</li>
 					</ul>
@@ -43,14 +44,14 @@ import Site from '../layouts/Site.astro';
 				<div class="rs-job">
 					<h2 class="rs-job__role">VP and Creative Director</h2>
 					<p class="rs-job__org">MTG Media Group · grew from Senior Art Director</p>
-					<p class="rs-job__meta">Chicago, IL and remote · 18 years</p>
+					<p class="rs-job__meta">Chicago, IL and remote · October 2007 to May 2025, 18 years</p>
 					<ul class="rs-points">
 						<li>Led a 6-person creative team across 7 publication brands and 6 responsive web products at MTG Media Group, building and owning the design system for all 7 properties.</li>
 						<li>Initiated the brand-site rebuilds and introduced mobile-first responsive design, Figma, and Atomic Design through Pattern Lab, and began the team's move to Storybook.js.</li>
-						<li>Plate: grew a recipe-database site into a full content platform across Recipes, Trends, Food News, and Magazine. Won the 2017 Jesse H. Neal Award for Best Website.</li>
-						<li>Project Blackbird: designed and built a dynamically responsive oral-history site. Grand Jesse H. Neal Finalist, top 4 nationally.</li>
+						<li>Plate: grew a recipe-database site into a full content platform across Recipes, Trends, Food News, and Magazine. Won the 2017 Jesse H. Neal Award for Best Website, reached 42,000+ readers and 56,000+ monthly pageviews, and 90% of subscribers reported the content shaped their purchasing decisions.</li>
+						<li>Project Blackbird: designed and built a dynamically responsive oral-history site with a dozen video interviews, original photography, and commissioned illustration. Grand Jesse H. Neal Finalist, top 4 nationally.</li>
 						<li>Meatingplace: designed a modern responsive rebuild of MTG's highest-traffic daily news site, where 95% of readers reported taking action from content. The brand was acquired before the rebuild launched.</li>
-						<li>Alt-Meat: built the brand, magazine, responsive site, and enewsletters in under 8 weeks.</li>
+						<li>Alt-Meat: built the brand, magazine, responsive site, and enewsletters in under 8 weeks, the first major B2B publication in alternative protein. Grew to 22,000 registered users.</li>
 					</ul>
 				</div>
 
@@ -145,5 +146,36 @@ import Site from '../layouts/Site.astro';
 		.rs { padding-top: var(--space-2xl); }
 		.rs-recognition { display: grid; gap: var(--space-xs); }
 		.rs-recognition li:not(:last-child)::after { content: none; }
+	}
+
+	/* Print: the downloadable PDF is generated from this page, so the phone number
+	   rides along in print only and the page chrome drops out. */
+	.print-only { display: none; }
+	@media print {
+		.print-only { display: list-item; }
+		.rs { padding: 0 !important; max-width: none; }
+		.rs-pdf { display: none !important; }
+		.rs-sec, .rs-job { break-inside: avoid; }
+		.rs-head .eyebrow { display: none; }
+		.rs-name { font-size: 26px !important; margin: 0 0 2px !important; }
+		.rs-role { font-size: 13px !important; margin: 0 0 2px !important; }
+		.rs-loc { font-size: 9.5px !important; margin: 0 0 3px !important; color: #444 !important; }
+		.rs-contact { font-size: 9.5px !important; gap: 1px 12px !important; margin: 0 !important; }
+		.rs-contact a { text-decoration: none !important; }
+		.rs-sec { margin-top: 10px !important; padding-top: 8px !important; }
+		.rs-sec > .eyebrow { font-size: 8px !important; letter-spacing: 0.14em !important; margin-bottom: 5px !important; }
+		.rs-summary { font-size: 10px !important; font-weight: 500 !important; line-height: 1.4 !important; letter-spacing: 0 !important; max-width: none !important; }
+		.rs-jobs { gap: 10px !important; }
+		.rs-job__role { font-size: 12px !important; margin-bottom: 1px !important; }
+		.rs-job__org { font-size: 10px !important; }
+		.rs-job__meta { font-size: 9px !important; margin-top: 1px !important; color: #444 !important; }
+		.rs-points { margin-top: 5px !important; gap: 3px !important; }
+		.rs-points li { font-size: 9.5px !important; line-height: 1.38 !important; padding-left: 11px !important; color: #333 !important; }
+		.rs-points li::before { width: 3px; height: 3px; top: 0.5em; background: #666 !important; }
+		.rs-skills { gap: 4px !important; }
+		.rs-skills li { padding: 2px 7px !important; font-size: 8.5px !important; border-radius: 4px !important; }
+		.rs-recognition { font-size: 9.5px !important; }
+		.rs-recognition li:not(:last-child)::after { margin: 0 6px !important; }
+		.rs-education { font-size: 9.5px !important; }
 	}
 </style>
