@@ -6,12 +6,13 @@ import JourneyMap from '../components/art/JourneyMap.astro';
 
 // Four case studies, one argument each. Order is a data decision: swap entries here.
 // `image` is the full-bleed card image (16:9, 1600 by 900 or larger, object-fit cover).
-// Until Steve supplies one, the drawn art stands in. Copy is one statement per card.
+// Card art is flat editorial art in the site palette, generated Sept 12 2026. The
+// labelled SVG diagrams still live on the case study pages, where the facts belong.
 const cases = [
 	{
 		href: '/work/merchant-flow-builder',
-		art: 'plugin',
-		image: null,
+		art: 'image',
+		image: '/images/case-studies/merchant-flow-builder/plugin-pipeline.webp',
 		head: 'Nobody asked for this one.',
 		text: 'A Figma plugin, built on my own initiative, that cut merchant flow setup from most of a day to 10 to 15 minutes.',
 		product: 'Figma plugin, PayPal',
@@ -29,8 +30,8 @@ const cases = [
 	},
 	{
 		href: '/work/paypal',
-		art: 'checkout',
-		image: null,
+		art: 'image',
+		image: '/images/case-studies/paypal/one-click.webp',
 		head: 'Becoming the default at checkout.',
 		text: '20+ merchant proposal packages for the one-click program, each with a working prototype, on weekly sprints.',
 		product: 'One-click checkout, PayPal',
@@ -47,8 +48,8 @@ const cases = [
 	},
 	{
 		href: '/work/paypal#checkout-dead-end',
-		art: 'journey',
-		image: null,
+		art: 'image',
+		image: '/images/case-studies/paypal/journey-dead-end.webp',
 		head: 'The checkout dead end.',
 		text: 'The journey a customer takes when a saved card stops working, mapped for senior leadership and now the team’s template.',
 		product: 'PayPal consumer checkout',
