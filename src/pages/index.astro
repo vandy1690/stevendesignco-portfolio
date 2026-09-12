@@ -97,15 +97,35 @@ const quotes = [
 		</div>
 	</section>
 
+	<noscript>
+		<style>
+			.deck__track, .deck--recs .deck__track { height: auto !important; }
+			.deck__stage { position: static !important; height: auto !important; overflow: visible !important; padding: var(--space-3xl) 0 0 !important; }
+			.deck__cards { display: grid !important; gap: var(--space-md) !important; }
+			.deck__card { grid-area: auto !important; transform: none !important; visibility: visible !important; }
+			.deck--work .card, .card__art { max-height: none !important; }
+			.recs__fan { position: static !important; height: auto !important; display: grid !important; gap: var(--space-md) !important; }
+			.recs__card { position: static !important; width: auto !important; height: auto !important; margin-left: 0 !important; transform: none !important; visibility: visible !important; opacity: 1 !important; }
+			[data-animate], [data-reveal] { opacity: 1 !important; transform: none !important; }
+			.rw, .rw__i { overflow: visible !important; transform: none !important; }
+		</style>
+	</noscript>
 	<section id="work" class="deck deck--work" data-mode="flip" aria-labelledby="work-title" style={`--n: ${cases.length}`}>
 		<div class="deck__track">
 			{cases.map((c, i) => c.anchor && <span class="deck__anchor" id={c.anchor} style={`--j: ${i}`} aria-hidden="true"></span>)}
 			<div class="deck__stage">
 				<h2 id="work-title" class="work__lede display">Case studies</h2>
+				<div class="deck__jump">
+					<p class="deck__jump-title">Jump to a case study</p>
+					<ul>
+						{cases.map((c) => (<li><a href={c.href} data-case>{c.head}</a></li>))}
+						<li><a href="/work">All work</a></li>
+					</ul>
+				</div>
 				<ol class="deck__cards">
 					{cases.map((c) => (
 						<li class="deck__card">
-							<a class="card" href={c.href} data-case aria-label={`${c.head} Read the case study.`}>
+							<a class="card" href={c.href} data-case aria-label={`${c.head} Read case study.`}>
 								<div class={`card__art card__art--${c.art}`}>
 									{c.image && <img src={c.image} alt="" loading="lazy" />}
 									{!c.image && c.art === 'plugin' && <PluginPipeline />}
@@ -215,7 +235,7 @@ const quotes = [
 				<p>I design product flows end to end, and I build the design systems and tools that keep the quality up after the first version ships. Most of the time nobody asked me to build them.</p>
 				<p>Eighteen years as VP and Creative Director at MTG Media Group is where the product habits come from. I ran the content strategy workshop that set Plate&rsquo;s taxonomy, built the Pattern Lab one level at a time so the room approved atoms before pages, themed the Drupal site myself, tested it on UserTesting.com before launch, and directed the photography, video, and illustration the system had to hold.</p>
 				<p class="about__seat">What I am looking for: a Senior or Staff Product Designer seat where one person holds the whole flow, design systems are part of the job rather than the whole job, and tooling is wanted. In house, remote or Chicago.</p>
-				<p class="about__seat">Outside of work you can find me on the trail, at a football game, in a museum, or hanging out with my family.</p>
+				<p class="about__seat">Outside of work you can find me on the trail, at a football game, at live performances, in a museum, or hanging out with my family.</p>
 			</div>
 		</div>
 	</section>
@@ -225,7 +245,8 @@ const quotes = [
 			<h2 class="contact__title display" data-reveal="words">Let's talk.</h2>
 			<ul class="contact__list" data-reveal="block">
 				<li><a class="js-email" data-eml="73746576656e4073746576656e64657369676e636f2e636f6d" href="#" aria-label="Email Steven">steven [at] stevendesignco [dot] com</a></li>
-				<li><a href="https://linkedin.com/in/stevendesignco" target="_blank" rel="noopener">linkedin.com/in/stevendesignco</a></li>
+				<li><a href="https://www.linkedin.com/in/stevendesignco" target="_blank" rel="noopener">linkedin.com/in/stevendesignco</a></li>
+				<li><a href="https://www.instagram.com/stevendesignservices/" target="_blank" rel="noopener">instagram.com/stevendesignservices</a></li>
 			</ul>
 			<p class="contact__based" data-reveal="block">Aurora, IL · Chicago area · Open to remote</p>
 		</div>
@@ -236,7 +257,7 @@ const quotes = [
 			<button class="modal__close" type="button" aria-label="Close case study">
 				<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 1L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M1 15L15 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
 			</button>
-			<div class="modal__content"></div>
+			<div class="modal__content" aria-live="polite"></div>
 		</div>
 	</div>
 </Site>
@@ -245,12 +266,44 @@ const quotes = [
 	import Lenis from 'lenis';
 	import 'lenis/dist/lenis.css';
 
-	const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	/* Graceful degradation. Below 600 CSS px of height a pinned 100svh stage
+	   cannot show a card and its copy at once, so the deck falls back to a
+	   plain list. This is also what happens at 400 percent browser zoom. */
+	const shortViewport = window.matchMedia('(max-height: 599px)').matches;
+	const reduce = reduceMotion || shortViewport;
+	const root = document.documentElement;
+	if (reduce) root.classList.add('deck-static');
+
+	/* Measured degradation. Media queries only know the viewport; this checks
+	   whether a card's own content actually fits the pinned stage on this
+	   device, at this font size, in this language. If it does not, the deck
+	   becomes the plain list rather than clipping the copy. */
+	function auditDeckFit() {
+		if (reduce) return;
+		const deck = document.querySelector<HTMLElement>('.deck--work');
+		if (!deck) return;
+		root.classList.remove('deck-static');
+		const cards = Array.from(deck.querySelectorAll<HTMLElement>('.card'));
+		if (!cards.length) return;
+		const clips = cards.some((c) => c.scrollHeight - c.clientHeight > 4);
+		const stage = deck.querySelector<HTMLElement>('.deck__stage');
+		const overflowsStage = !!stage && stage.scrollHeight - stage.clientHeight > 4;
+		if (clips || overflowsStage) root.classList.add('deck-static');
+	}
+	let fitTimer = 0;
+	const scheduleAudit = () => {
+		window.clearTimeout(fitTimer);
+		fitTimer = window.setTimeout(auditDeckFit, 180);
+	};
+	window.addEventListener('resize', scheduleAudit);
+	if (document.fonts) document.fonts.ready.then(scheduleAudit);
+	window.addEventListener('load', scheduleAudit);
 
 	// Smooth scroll, the same library the reference site runs. Native scrolling
 	// underneath, so sticky positioning and scroll events keep working.
 	let lenis: Lenis | null = null;
-	if (!reduce) {
+	if (!reduceMotion) {
 		lenis = new Lenis({ autoRaf: true, anchors: true, lerp: 0.1 });
 	}
 
@@ -424,6 +477,13 @@ const quotes = [
 	const loaded = new Map<string, string>();
 	let openUrl: string | null = null;
 	let lastFocus: HTMLElement | null = null;
+	// Input modality. The browser shows a focus ring when focus() is called
+	// programmatically, which put a ring around the card after a mouse close.
+	let viaKeyboard = false;
+	window.addEventListener('keydown', (e) => {
+		if (e.key === 'Tab' || e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') viaKeyboard = true;
+	}, true);
+	window.addEventListener('pointerdown', () => { viaKeyboard = false; }, true);
 	let hideTimer = 0;
 
 	async function fetchCase(path: string): Promise<string> {
@@ -466,6 +526,14 @@ const quotes = [
 		}
 		modalContent.querySelectorAll('[data-animate]').forEach((el) => el.classList.add('is-visible'));
 		modalContent.querySelectorAll<HTMLElement>('.cs-back-top').forEach((el) => { el.hidden = true; });
+		/* Name the dialog after the case it is showing, and demote the case page's
+		   own h1 so the document does not end up with two. */
+		const h1 = modalContent.querySelector<HTMLElement>('h1');
+		if (h1) {
+			modal.setAttribute('aria-label', (h1.textContent || 'Case study').trim());
+			h1.setAttribute('role', 'heading');
+			h1.setAttribute('aria-level', '2');
+		}
 		const target = u.hash ? modalContent.querySelector<HTMLElement>(u.hash) : null;
 		requestAnimationFrame(() => {
 			if (target) target.scrollIntoView({ block: 'start' });
@@ -485,9 +553,38 @@ const quotes = [
 		}
 		modal.hidden = false;
 		document.body.classList.add('modal-open');
+		/* Without this, Tab walks out of the dialog into the page behind it,
+		   which the dialog is covering. aria-modal only helps the virtual cursor. */
+		setBackgroundInert(true);
 		lenis?.stop();
-		requestAnimationFrame(() => requestAnimationFrame(() => modal.classList.add('is-open')));
-		showCase(url).then(() => modalClose?.focus());
+		/* The modal is visibility:hidden until is-open lands, and focus() is a
+		   no-op on a hidden element, so focus only moves once it is visible.
+		   Without this the dialog opened with focus still on the page behind. */
+		const shown = showCase(url);
+		requestAnimationFrame(() => requestAnimationFrame(() => {
+			modal.classList.add('is-open');
+			shown.then(() => requestAnimationFrame(() => restoreFocus(modalClose)));
+		}));
+	}
+
+	function setBackgroundInert(on: boolean) {
+		document.querySelectorAll<HTMLElement>('body > header, body > main, body > footer, body > nav, body > .skip-link').forEach((el) => {
+			if (on) el.setAttribute('inert', '');
+			else el.removeAttribute('inert');
+		});
+	}
+
+	/* Focus always moves, so keyboard order stays correct. The ring is
+	   suppressed only when the interaction that caused it was a pointer. */
+	function restoreFocus(el: HTMLElement | null) {
+		if (!el) return;
+		if (!viaKeyboard) {
+			el.classList.add('no-ring');
+			const clear = () => { el.classList.remove('no-ring'); el.removeEventListener('blur', clear); };
+			el.addEventListener('blur', clear);
+			window.addEventListener('keydown', clear, { once: true, capture: true });
+		}
+		el.focus({ preventScroll: true });
 	}
 
 	function closeCase() {
@@ -495,12 +592,14 @@ const quotes = [
 		openUrl = null;
 		modal.classList.remove('is-open');
 		document.body.classList.remove('modal-open');
+		setBackgroundInert(false);
+		modal.setAttribute('aria-label', 'Case study');
 		lenis?.start();
 		hideTimer = window.setTimeout(() => {
 			modal.hidden = true;
 			if (modalContent) modalContent.innerHTML = '';
 		}, 1600);
-		lastFocus?.focus();
+		restoreFocus(lastFocus);
 	}
 
 	if (modal) {
@@ -547,6 +646,15 @@ const quotes = [
 
 <style>
 	.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+	/* The deck keeps only the face-on card visible, so four of five case study
+	   links are not tabbable. This list carries the same links for keyboard and
+	   screen reader users and shows itself the moment one of them is focused. */
+	.deck__jump { position: fixed; left: 12px; top: 12px; z-index: 150; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+	.deck__jump:focus-within { width: auto; height: auto; overflow: visible; clip: auto; background: var(--surface); border: 1px solid var(--rule-strong); border-radius: 12px; padding: 14px 18px; box-shadow: var(--shadow-card); max-width: min(380px, calc(100vw - 24px)); }
+	.deck__jump-title { margin: 0 0 8px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 800; color: var(--text-mute); }
+	.deck__jump ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+	.deck__jump a { display: block; padding: 8px 4px; min-height: 24px; color: var(--text); font-size: 15px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+	.deck__jump a:hover { color: var(--accent); }
 
 	/* One measure for everything on this page: the card width. */
 	:root { --content: min(800px, 100vw - 48px); --shadow-card: 0 1px 2px rgba(45, 52, 54, 0.08), 0 6px 12px -4px rgba(45, 52, 54, 0.14), 0 18px 32px -12px rgba(45, 52, 54, 0.24), 0 36px 64px -24px rgba(45, 52, 54, 0.32); --shadow-card-hover: 0 1px 2px rgba(45, 52, 54, 0.08), 0 10px 18px -6px rgba(45, 52, 54, 0.18), 0 26px 44px -14px rgba(45, 52, 54, 0.3), 0 48px 80px -28px rgba(45, 52, 54, 0.38); }
@@ -714,7 +822,7 @@ const quotes = [
 	.contact { display: flex; flex-direction: column; align-items: center; gap: var(--space-xl); }
 	.contact__title { font-size: clamp(56px, 7vw, 112px); margin: 0; }
 	.contact__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: clamp(18px, 1.6vw, 22px); font-weight: 600; }
-	.contact__list a { color: var(--text); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; transition: color 0.14s ease; }
+	.contact__list a { color: var(--text); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; transition: color 0.14s ease; overflow-wrap: anywhere; }
 	.contact__list a:hover { color: var(--accent); }
 	.contact__based { color: var(--text-mute); font-size: 14px; margin: 0; letter-spacing: 0.04em; }
 
@@ -773,7 +881,9 @@ const quotes = [
 		transition: transform 0.15s ease, background 0.15s ease;
 	}
 	.modal__close:hover { transform: scale(1.06); }
-	.modal__close:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+	.modal__close:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
+	/* Opened with a mouse, the dialog should not show a ring on its own X. */
+	.modal__close.no-ring:focus, .modal__close.no-ring:focus-visible { outline: none; }
 	.modal__close svg { width: 16px; height: 16px; display: block; }
 	.modal__content { clear: none; }
 	.modal__loading { padding: var(--space-3xl) var(--space-xl); color: var(--text-mute); }
@@ -785,14 +895,45 @@ const quotes = [
 	:global(body.modal-open) { overflow: hidden; }
 
 	/* ---------- Reduced motion: decks become lists ---------- */
-	@media (prefers-reduced-motion: reduce) {
-		.deck__track { height: auto; }
+	@media (prefers-reduced-motion: reduce), (max-height: 599px) {
+		.deck__track, .deck--recs .deck__track { height: auto; }
+		/* The cards stop being height-capped, or the copy is clipped. */
+		.deck--work .card { max-height: none; }
+		/* The fan stacked all twelve quotes in one absolute slot. */
+		.recs__fan { position: static; height: auto; display: grid; gap: var(--space-md); }
+		.recs__card { position: static; width: auto; height: auto; margin-left: 0; transform: none !important; visibility: visible !important; opacity: 1 !important; }
+		/* A full-screen 3D flip is the classic vestibular trigger. */
+		.modal__body { transform: none; transition: none; }
+		.modal, .modal.is-open { transition: none; }
+		.card, .arrow { transition: none; }
 		.deck__stage { position: static; height: auto; padding: var(--space-3xl) 0 0; overflow: visible; perspective: none; }
 		.deck__cards { display: grid; gap: var(--space-md); place-items: stretch; }
 		.deck__card { grid-area: auto; transform: none !important; visibility: visible !important; }
 			.deck__dim { display: none; }
 			.card__art { max-height: none; }
 	}
+	/* Graceful degradation. The script adds .deck-static to the root when the
+	   pinned deck measurably cannot fit this device, and the layout becomes the
+	   same plain list the reduced-motion path uses. */
+	:root.deck-static .deck__track { height: auto; }
+
+		:root.deck-static .deck--recs .deck__track { height: auto; }
+		/* The cards stop being height-capped, or the copy is clipped. */
+		:root.deck-static .deck--work .card { max-height: none; }
+		/* The fan stacked all twelve quotes in one absolute slot. */
+		:root.deck-static .recs__fan { position: static; height: auto; display: grid; gap: var(--space-md); }
+		:root.deck-static .recs__card { position: static; width: auto; height: auto; margin-left: 0; transform: none !important; visibility: visible !important; opacity: 1 !important; }
+		/* A full-screen 3D flip is the classic vestibular trigger. */
+		:root.deck-static .modal__body { transform: none; transition: none; }
+		:root.deck-static .modal, :root.deck-static .modal.is-open { transition: none; }
+		:root.deck-static .card, :root.deck-static .arrow { transition: none; }
+		:root.deck-static .deck__stage { position: static; height: auto; padding: var(--space-3xl) 0 0; overflow: visible; perspective: none; }
+		:root.deck-static .deck__cards { display: grid; gap: var(--space-md); place-items: stretch; }
+		:root.deck-static .deck__card { grid-area: auto; transform: none !important; visibility: visible !important; }
+		:root.deck-static .deck__dim { display: none; }
+		:root.deck-static .card__art { max-height: none; }
+	
+
 	/* ---------- Phones: same decks, tighter cards ---------- */
 	@media (max-width: 880px) {
 		.deck__stage { padding-top: calc(var(--nav-h) + 8px); gap: 14px; perspective: 1200px; }
@@ -824,7 +965,7 @@ const quotes = [
 	}
 	/* Short phones: the headline and stage padding are the only things left to
 	   give, so they shrink before the card does. */
-	@media (max-width: 880px) and (max-height: 720px) {
+	@media (max-width: 880px) and (min-height: 600px) and (max-height: 720px) {
 		.deck--work .deck__stage { padding-top: calc(var(--nav-h) + 2px); gap: 8px; }
 		.work__lede { font-size: 30px; }
 		.deck--work .card { max-height: calc(100svh - var(--nav-h) - 78px); }
@@ -834,7 +975,7 @@ const quotes = [
 	}
 	/* Smallest phones with full browser chrome: a wider crop gives height back
 	   to the copy while the image still reads as an image. */
-	@media (max-width: 880px) and (max-height: 620px) {
+	@media (max-width: 880px) and (min-height: 600px) and (max-height: 620px) {
 		.card__art { aspect-ratio: 2 / 1; }
 		.card__body { gap: 6px; padding: 12px 16px; }
 		.card__text { font-size: 13.5px; }

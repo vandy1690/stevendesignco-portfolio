@@ -30,7 +30,7 @@ import Site from '../../layouts/Site.astro';
 		<div class="section__inner cs-body" data-animate="fade">
 			<div class="cs-block">
 				<p class="eyebrow">What was unclear</p>
-				<p class="cs-block__lede">A new market, and a short window to be credible in it.</p>
+				<h2 class="cs-block__lede">A new market, and a short window to be credible in it.</h2>
 				<p>MTG was entering the alternative protein market, the growing non-animal protein space, and needed a credible brand and publication before the moment passed.</p>
 			</div>
 		</div>
@@ -40,7 +40,7 @@ import Site from '../../layouts/Site.astro';
 		<div class="section__inner cs-body" data-animate="fade">
 			<div class="cs-block">
 				<p class="eyebrow">What I led</p>
-				<p class="cs-block__lede">Brand, magazine, enewsletters, and site as one system, in under 8 weeks.</p>
+				<h2 class="cs-block__lede">Brand, magazine, enewsletters, and site as one system, in under 8 weeks.</h2>
 				<p>I built the brand identity, the magazine, the enewsletters, and a responsive news site as one system, in under 8 weeks. The visual language tied them together so the new title read as a peer to MTG's other properties.</p>
 			</div>
 		</div>
@@ -50,7 +50,7 @@ import Site from '../../layouts/Site.astro';
 		<div class="section__inner cs-body" data-animate="fade">
 			<div class="cs-block">
 				<p class="eyebrow">Who I influenced</p>
-				<p class="cs-block__lede">Brand and product design, across the business.</p>
+				<h2 class="cs-block__lede">Brand and product design, across the business.</h2>
 				<p>I led brand and product design, working with the owner and president, the Publisher, the editor, and the developers.</p>
 			</div>
 		</div>
@@ -60,7 +60,7 @@ import Site from '../../layouts/Site.astro';
 		<div class="section__inner cs-body" data-animate="fade">
 			<div class="cs-block">
 				<p class="eyebrow">What changed</p>
-				<p class="cs-block__lede">MTG launched a new property on a tight timeline, aimed at a growing audience.</p>
+				<h2 class="cs-block__lede">MTG launched a new property on a tight timeline, aimed at a growing audience.</h2>
 			</div>
 			<ul class="cs-awards">
 				<li><span class="cs-awards__mark">★</span><span>Brand, magazine, enewsletters, and responsive site shipped together</span></li>
@@ -73,7 +73,7 @@ import Site from '../../layouts/Site.astro';
 		<div class="section__inner cs-body" data-animate="fade">
 			<div class="cs-block">
 				<p class="eyebrow">Design system</p>
-				<p class="cs-block__lede">The component library behind this build is still browsable.</p>
+				<h2 class="cs-block__lede">The component library behind this build is still browsable.</h2>
 				<p>The original Pattern Lab from the project, and the same patterns rebuilt recently in Storybook with interactive controls on the core atoms.</p>
 			</div>
 			<div class="cs-artifacts">
@@ -86,15 +86,15 @@ import Site from '../../layouts/Site.astro';
 
 	<section class="section section--alt">
 		<div class="section__inner cs-back">
-			<a class="pager pager--prev" href="/work/blackbird"><span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg></span>Project Blackbird</a>
-			<a class="pager" href="/work/meatingplace">Next: Meatingplace<span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 3.5 4.5 4.5L6 12.5"/></svg></span></a>
+			<a class="pager pager--prev" href="/work/blackbird" aria-label="Previous case study: Project Blackbird"><span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg></span>Project Blackbird</a>
+			<a class="pager" href="/work/meatingplace" aria-label="Next case study: Meatingplace">Meatingplace<span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 3.5 4.5 4.5L6 12.5"/></svg></span></a>
 		</div>
 	</section>
 </Site>
 
 <style>
 	.cs-hero { max-width: var(--max); margin: 0 auto; padding: var(--space-2xl) var(--gutter); }
-	.cs-back-top { display: inline-block; margin-bottom: var(--space-lg); color: var(--text-mute); font-size: var(--text-body-sm); }
+	.cs-back-top { display: inline-flex; align-items: center; min-height: 24px; margin-bottom: var(--space-lg); color: var(--text-mute); font-size: var(--text-body-sm); }
 	.cs-back-top:hover { color: var(--accent); }
 	.cs-hero__title { margin: var(--space-xs) 0 var(--space-lg); max-width: 20ch; }
 	.cs-hero__lede { font-size: var(--text-deck); color: var(--text); line-height: 1.5; max-width: 56ch; margin-bottom: var(--space-2xl); font-weight: 500; }
@@ -116,7 +116,7 @@ import Site from '../../layouts/Site.astro';
 	/* case-study eyebrows: nickel, normal weight, .03em, black */
 	.eyebrow { font-family: var(--font-display); font-weight: 400; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; letter-spacing: 0.03em; }
 	.cs-block__lede { color: var(--text); font-size: clamp(24px, 2.5vw, 32px); font-weight: 600; margin: 0; letter-spacing: -0.015em; line-height: 1.25; }
-	.cs-block p { color: #5A6565; margin: 0; font-size: 16px; line-height: 1.65; }
+	.cs-block p { color: var(--text-mute); margin: 0; font-size: 16px; line-height: 1.65; }
 	.cs-block p + p { margin-top: 0; }
 	.cs-block p:not(.eyebrow):not(.cs-block__lede) + p:not(.eyebrow):not(.cs-block__lede) { margin-top: var(--space-sm); }
 
@@ -126,6 +126,7 @@ import Site from '../../layouts/Site.astro';
 	.cs-awards__mark { display: none; }
 
 	.cs-artifacts { display: flex; gap: var(--space-lg); flex-wrap: wrap; margin-top: var(--space-md); }
+	.cs-artifacts .btn { min-height: 24px; display: inline-flex; align-items: center; }
 
 	.cs-back { display: flex; gap: var(--space-sm); flex-wrap: wrap; justify-content: space-between; align-items: center; }
 	.cs-back .btn--primary { background: var(--text); color: var(--bg); border-color: var(--text); }
@@ -137,6 +138,12 @@ import Site from '../../layouts/Site.astro';
 		.cs-hero__title { font-size: clamp(32px, 9vw, 56px); }
 	}
 	@media (max-width: 700px) {
+		/* Pagers stay side by side on phones: they share the row and wrap their
+		   own label rather than dropping to two stacked buttons. */
+		.cs-back { flex-wrap: nowrap; gap: 10px; align-items: stretch; }
+		.cs-back .pager { flex: 1 1 0; min-width: 0; height: auto; min-height: 44px; padding: 9px 40px 9px 12px; font-size: 13px; line-height: 1.25; white-space: normal; }
+		.cs-back .pager--prev { padding: 9px 12px 9px 40px; }
+		.cs-back .pager__cap { width: 32px; }
 		.cs-meta { grid-template-columns: 1fr; gap: var(--space-lg); }
 		.cs-meta dt { font-size: 13px; letter-spacing: 0.1em; color: var(--text); margin-bottom: 2px; }
 		.cs-meta dd { font-size: 17px; }

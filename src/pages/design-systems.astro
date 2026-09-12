@@ -5,6 +5,7 @@ import Site from '../layouts/Site.astro';
 <Site
 	title="Design Systems · Steven Vanden Heuvel"
 	description="One component library under seven brands in Pattern Lab, a Figma library of roughly 600 components, and the Storybook conversion. The practice behind the case studies, with the working artifacts still browsable."
+	image="/og/design-systems.png"
 >
 	<section class="cs-hero">
 		<div class="cs-hero__inner">
@@ -24,7 +25,7 @@ import Site from '../layouts/Site.astro';
 		<div class="section__inner cs-body" data-animate="fade">
 			<div class="cs-block">
 				<p class="eyebrow">Where it started</p>
-				<p class="cs-block__lede">I got here through Brad Frost, before "design system" was the phrase everybody used.</p>
+				<h2 class="cs-block__lede">I got here through Brad Frost, before "design system" was the phrase everybody used.</h2>
 				<p>Atomic design and Pattern Lab, two workshops, and more talks than I can count. I brought both into MTG Media Group, a print publisher that had not built a responsive site yet. Plate came first, then Alt-Meat. Hotels and Meatingplace were in progress when the company was acquired and the sites were sunsetted.</p>
 				<p>Changing how a team works is a persuasion problem before it is a craft problem. Nobody asked for any of this.</p>
 			</div>
@@ -35,7 +36,7 @@ import Site from '../layouts/Site.astro';
 		<div class="section__inner cs-body" data-animate="fade">
 			<div class="cs-block">
 				<p class="eyebrow">Pattern Lab</p>
-				<p class="cs-block__lede">One component library sat underneath seven publication brands and six responsive web products.</p>
+				<h2 class="cs-block__lede">One component library sat underneath seven publication brands and six responsive web products.</h2>
 				<p>Both instances below still run. Plate carries eleven brand colors with a semantic layer aliased on top, so a section reads <code>food</code> or <code>chefs</code> and a state reads <code>error</code> or <code>warning</code> rather than a hex or a hue name. In the Sass, <code>$error</code> points at <code>$red</code> rather than at a value, so the brand color changes in one place and everything naming it follows. Sixty four documented patterns climb from color and type through buttons, bylines and comment threads out to the assembled page templates. Alt-Meat runs its own palette and typeface on the same structure.</p>
 				<p>Drag the viewport control. The whole library was built mobile first, which was not a settled argument in B2B publishing at the time.</p>
 			</div>
@@ -50,7 +51,7 @@ import Site from '../layouts/Site.astro';
 		<div class="section__inner cs-body" data-animate="fade">
 			<div class="cs-block">
 				<p class="eyebrow">Figma</p>
-				<p class="cs-block__lede">Meatingplace was the flagship daily news site and the last thing I worked on there. The rebuild was finished. It never launched.</p>
+				<h2 class="cs-block__lede">Meatingplace was the flagship daily news site and the last thing I worked on there. The rebuild was finished. It never launched.</h2>
 				<p>The library runs to roughly 600 component variants with desktop and mobile across the whole product: multi step registration with processing states, the supplier directory, the equipment exchange with its own ad creation and checkout, and the paywall and sponsorship states that paid for the place. Forty two tokens underneath it, covering color, type, border, spacing and the eight column grid.</p>
 				<p>Private equity acquired MTG, brought their own site, and the rebuild was shelved. The library is the only part of it that survived.</p>
 				<p class="cs-note">The eleven brand color styles are original. I added the variable layer recently, generated from those styles, since Figma variables did not exist when this was built.</p>
@@ -66,7 +67,7 @@ import Site from '../layouts/Site.astro';
 		<div class="section__inner cs-body" data-animate="fade">
 			<div class="cs-block">
 				<p class="eyebrow">Storybook</p>
-				<p class="cs-block__lede">I had started moving all of these libraries to Storybook by hand before the acquisition. I never finished.</p>
+				<h2 class="cs-block__lede">I had started moving all of these libraries to Storybook by hand before the acquisition. I never finished.</h2>
 				<p>I went back recently and finished the Plate and Alt-Meat conversions with Cursor, generated from the Pattern Labs. The buttons and form fields are real stories with working controls, so the states are something you change rather than something you read about.</p>
 				<p>Same components, same decisions, a decade of tooling apart. That is the part worth noticing.</p>
 			</div>
@@ -81,7 +82,7 @@ import Site from '../layouts/Site.astro';
 		<div class="section__inner cs-body" data-animate="fade">
 			<div class="cs-block">
 				<p class="eyebrow">At PayPal</p>
-				<p class="cs-block__lede">Three versions of the design library were live at the same time, with a fourth coming, and checkout was locked to the oldest one.</p>
+				<h2 class="cs-block__lede">Three versions of the design library were live at the same time, with a fourth coming, and checkout was locked to the oldest one.</h2>
 				<p>Engineering could not move off it. So a real part of that job was telling product managers which ideas were presentable now and which ones were years from shipping. Every merchant proposal I built came out of that constrained library.</p>
 				<p>I also built content tokens that connected the engineering Storybook to Figma so content designers worked from the same source, and a Figma plugin that assembles a merchant's full set of checkout flows out of the published library components. That took setup from most of a day to ten or fifteen minutes across a 38 merchant program.</p>
 			</div>
@@ -106,15 +107,15 @@ import Site from '../layouts/Site.astro';
 
 	<section class="section section--alt">
 		<div class="section__inner cs-back">
-			<a class="pager pager--prev" href="/#work"><span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg></span>Case studies</a>
-			<a class="pager" href="/work/merchant-flow-builder">Next: Merchant Flow Builder<span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 3.5 4.5 4.5L6 12.5"/></svg></span></a>
+			<a class="pager pager--prev" href="/#work" aria-label="Back to all case studies"><span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg></span>Case studies</a>
+			<a class="pager" href="/work/merchant-flow-builder" aria-label="Next case study: Merchant Flow Builder">Merchant Flow Builder<span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 3.5 4.5 4.5L6 12.5"/></svg></span></a>
 		</div>
 	</section>
 </Site>
 
 <style>
 	.cs-hero { max-width: var(--max); margin: 0 auto; padding: var(--space-2xl) var(--gutter); }
-	.cs-back-top { display: inline-block; margin-bottom: var(--space-lg); color: var(--text-mute); font-size: var(--text-body-sm); }
+	.cs-back-top { display: inline-flex; align-items: center; min-height: 24px; margin-bottom: var(--space-lg); color: var(--text-mute); font-size: var(--text-body-sm); }
 	.cs-back-top:hover { color: var(--accent); }
 	.cs-hero__title { margin: var(--space-xs) 0 var(--space-lg); max-width: 20ch; }
 	.cs-hero__lede { font-size: var(--text-deck); color: var(--text); line-height: 1.5; max-width: 56ch; margin-bottom: var(--space-2xl); font-weight: 500; }
@@ -136,7 +137,7 @@ import Site from '../layouts/Site.astro';
 	/* case-study eyebrows: nickel, normal weight, .03em, black */
 	.eyebrow { font-family: var(--font-display); font-weight: 400; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; letter-spacing: 0.03em; }
 	.cs-block__lede { color: var(--text); font-size: clamp(24px, 2.5vw, 32px); font-weight: 600; margin: 0; letter-spacing: -0.015em; line-height: 1.25; }
-	.cs-block p { color: #5A6565; margin: 0; font-size: 16px; line-height: 1.65; }
+	.cs-block p { color: var(--text-mute); margin: 0; font-size: 16px; line-height: 1.65; }
 	.cs-block p + p { margin-top: 0; }
 	.cs-block p:not(.eyebrow):not(.cs-block__lede) + p:not(.eyebrow):not(.cs-block__lede) { margin-top: var(--space-sm); }
 
@@ -150,6 +151,7 @@ import Site from '../layouts/Site.astro';
 	.cs-note { margin: var(--space-md) 0 0; padding: 0; border: 0; font-family: var(--font-body); font-weight: 400; font-size: 14px; line-height: 1.6; letter-spacing: 0.04em; color: var(--text-mute); max-width: 64ch; }
 	.cs-block code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.92em; color: var(--text); }
 	.cs-artifacts { display: flex; gap: var(--space-lg); flex-wrap: wrap; margin-top: var(--space-md); }
+	.cs-artifacts .btn { min-height: 24px; display: inline-flex; align-items: center; }
 
 	.cs-back { display: flex; gap: var(--space-sm); flex-wrap: wrap; justify-content: space-between; align-items: center; }
 	.cs-back .btn--primary { background: var(--text); color: var(--bg); border-color: var(--text); }
@@ -161,6 +163,12 @@ import Site from '../layouts/Site.astro';
 		.cs-hero__title { font-size: clamp(32px, 9vw, 56px); }
 	}
 	@media (max-width: 700px) {
+		/* Pagers stay side by side on phones: they share the row and wrap their
+		   own label rather than dropping to two stacked buttons. */
+		.cs-back { flex-wrap: nowrap; gap: 10px; align-items: stretch; }
+		.cs-back .pager { flex: 1 1 0; min-width: 0; height: auto; min-height: 44px; padding: 9px 40px 9px 12px; font-size: 13px; line-height: 1.25; white-space: normal; }
+		.cs-back .pager--prev { padding: 9px 12px 9px 40px; }
+		.cs-back .pager__cap { width: 32px; }
 		.cs-meta { grid-template-columns: 1fr; gap: var(--space-lg); }
 		.cs-meta dt { font-size: 13px; letter-spacing: 0.1em; color: var(--text); margin-bottom: 2px; }
 		.cs-meta dd { font-size: 17px; }
