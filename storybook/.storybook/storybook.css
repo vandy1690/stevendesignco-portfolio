@@ -1,0 +1,36 @@
+/* Storybook chrome only. Nothing here ships to the site. */
+.sb-canvas {
+  background-color: var(--bg);
+  background-image: radial-gradient(circle at 1px 1px, var(--texture-dot) 1px, transparent 0);
+  background-size: var(--texture-size) var(--texture-size);
+  color: var(--text);
+  font-family: var(--font-body);
+  padding: 28px;
+  margin: -16px;
+  min-height: 220px;
+}
+.sb-stack { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+.sb-col { display: grid; gap: 20px; }
+.sb-note {
+  font-family: var(--font-body); font-size: 13px; line-height: 1.5;
+  color: var(--text-mute); max-width: 68ch; margin: 0 0 18px;
+}
+.sb-label {
+  font-family: var(--font-body); font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase; font-weight: 800; color: var(--text-mute); margin: 0 0 8px;
+}
+.sb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 18px; }
+.sb-swatch { border-radius: 12px; overflow: hidden; border: 1px solid var(--rule); }
+.sb-swatch__chip { height: 78px; }
+.sb-swatch__meta { padding: 10px 12px; background: var(--surface); }
+.sb-swatch__name { font-size: 13px; font-weight: 700; }
+.sb-swatch__val { font-size: 12px; color: var(--text-mute); font-variant-numeric: tabular-nums; }
+.sb-swatch__ratio { font-size: 12px; margin-top: 4px; font-variant-numeric: tabular-nums; }
+.sb-pass { color: #1F7A4C; font-weight: 700; }
+.sb-fail { color: #B3261E; font-weight: 700; }
+:root[data-theme="dark"] .sb-pass { color: #6EE7A8; }
+:root[data-theme="dark"] .sb-fail { color: #FF9B93; }
+.sb-row { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 20px; align-items: baseline;
+  padding: 12px 0; border-bottom: 1px solid var(--rule); }
+.sb-row__k { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 800; color: var(--text-mute); }
+.sb-bar { background: var(--accent); height: 14px; border-radius: 3px; }
