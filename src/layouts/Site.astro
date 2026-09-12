@@ -325,32 +325,6 @@ const jsonLd = {
 					h.appendChild(wrap);
 				});
 
-				// inline "|" lists (recognition + services): hide the separator on the
-				// first item of every wrapped line so there's no leading "|" or space.
-				const markLineStarts = (list) => {
-					if (!list) return;
-					const items = Array.from(list.children).filter(
-						(el) => el.tagName === 'LI' &&
-							!el.classList.contains('awards__break') &&
-							!el.classList.contains('services__break')
-					);
-					items.forEach((li) => li.classList.remove('line-start'));
-					const tops = items.map((li) => li.offsetTop);
-					let prev = null;
-					items.forEach((li, i) => {
-						if (prev === null || Math.abs(tops[i] - prev) > 1) li.classList.add('line-start');
-						prev = tops[i];
-					});
-				};
-				const fixSeps = () => {
-					[document.querySelector('.awards'), document.querySelector('.services')].forEach((l) => {
-						markLineStarts(l);
-						markLineStarts(l);
-					});
-				};
-				fixSeps();
-				window.addEventListener('resize', fixSeps);
-				if (document.fonts && document.fonts.ready) document.fonts.ready.then(fixSeps);
 			})();
 		</script>
 
