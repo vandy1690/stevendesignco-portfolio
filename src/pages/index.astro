@@ -1,505 +1,999 @@
 ---
 import Site from '../layouts/Site.astro';
-import LogoScatter from '../components/animated/LogoScatter';
+import PluginPipeline from '../components/art/PluginPipeline.astro';
+import OneClickCheckout from '../components/art/OneClickCheckout.astro';
+import JourneyMap from '../components/art/JourneyMap.astro';
+
+// Four case studies, one argument each. Order is a data decision: swap entries here.
+// `image` is the full-bleed card image (16:9, 1600 by 900 or larger, object-fit cover).
+// Card art is flat editorial art in the site palette, generated Sept 12 2026. The
+// labelled SVG diagrams still live on the case study pages, where the facts belong.
+const cases = [
+	{
+		href: '/work/merchant-flow-builder',
+		art: 'image',
+		image: '/images/case-studies/merchant-flow-builder/plugin-pipeline.webp',
+		head: 'Nobody asked for this one.',
+		text: 'A Figma plugin, built on my own initiative, that cut merchant flow setup from most of a day to 10 to 15 minutes, across the 38-merchant program.',
+		product: 'Figma plugin, PayPal',
+		objective: 'Faster merchant flow setup',
+	},
+	{
+		href: '/design-systems',
+		art: 'image',
+		image: '/images/case-studies/design-systems/pattern-lab.webp',
+		anchor: 'design-systems',
+		head: 'One library, seven brands.',
+		text: 'Two Pattern Labs, two Storybook builds, and a Figma library of about 600 component variants, all still browsable.',
+		product: 'Design systems, MTG Media Group and PayPal',
+		objective: 'Keep the quality up after the first version ships',
+	},
+	{
+		href: '/work/paypal',
+		art: 'image',
+		image: '/images/case-studies/paypal/one-click.webp',
+		// A logo lockup, so it letterboxes rather than cropping a row of marks.
+		contain: true,
+		head: 'Becoming the default at checkout.',
+		text: '20+ merchant proposal packages for the one-click program, each with a working prototype, on weekly sprints.',
+		product: 'One-click checkout, PayPal',
+		objective: 'One tap in each merchant’s own checkout',
+	},
+	{
+		href: '/work/plate',
+		art: 'image',
+		image: '/images/case-studies/plate/plate-scene.webp',
+		head: 'One rebuilt, one built from nothing.',
+		text: 'Plate grew from a recipe database into a full content platform and won the 2017 Jesse H. Neal Award for Best Website. Alt-Meat launched from zero in under 8 weeks and reached 22,000 registered users.',
+		product: 'Plate and Alt-Meat, MTG Media Group',
+		objective: 'Responsive products on their own design systems',
+	},
+	{
+		href: '/work/paypal#checkout-dead-end',
+		art: 'image',
+		image: '/images/case-studies/paypal/journey-dead-end.webp',
+		head: 'The checkout dead end.',
+		text: 'A saved card stops working, and nothing stops the order until checkout. I mapped the month leading up to it for senior leadership, marking where it could have been resolved instead. Now the team’s template.',
+		product: 'PayPal consumer checkout',
+		objective: 'Show leadership where the dead end starts',
+	},
+];
+
+// Recommendations. One verbatim sentence from each of the twelve LinkedIn
+// recommendations, pasted by Steve on September 11, 2026. Titles only, no names,
+// and no sentence that carries an em dash or a claim the site does not make
+// elsewhere. Titles marked (inferred) come from the writer's headline, not a
+// confirmed job title at the time.
+const RECS_URL = 'https://www.linkedin.com/in/stevendesignco/details/recommendations/';
+const quotes = [
+	{ text: 'He created a novel design intake process that allowed the team to accelerate production, and developed a unique workflow for producing first-draft designs.', title: 'Senior Design Program Manager, PayPal' },
+	{ text: 'He used AI tools to work faster, but traditional know-how and design excellence to deliver a product-wide audit and analysis that was shown to the c-suite and directly affected the company\u2019s roadmap.', title: 'Content Designer, PayPal' },
+	{ text: 'He is one of those uncommon designers who can move fluidly between strategy, design, prototyping, and code.', title: 'Product Designer, PayPal Merchant Enablement' },
+	{ text: 'Early on, he found, learned and implemented responsive design for all our web-based products. This saved an incredible amount of time and money and positioned us ahead of all our competitors.', title: 'President and Owner, MTG Media Group' },
+	{ text: 'He\u2019s also a terrific collaborator. Low ego, high output, and completely dependable.', title: 'Editorial leadership, MTG Media Group' },
+	{ text: 'He has been an invaluable resource in my growth as a designer and a mentor throughout my career.', title: 'Art Director, MTG Media Group' },
+	{ text: 'Steve took the initiative to learn many new website design programs and built our first responsive design website when it was cutting edge technology.', title: 'Executive Vice President and Publisher, Meatingplace' },
+	{ text: 'Whether it\u2019s website design, print design, or UI/UX, Steve approaches each project with a careful eye for detail and a deep understanding of user experience.', title: 'Marketing and Creative Leader, collaborator' },
+	{ text: 'He also was in charge of the Plate website and newsletter designs, and was always thinking of ways to improve and update both platforms, making our digital products as beautiful as the print ones.', title: 'Editorial lead, Plate' },
+	{ text: 'His forward-looking vision and ability to put into action new technology and innovations allowed our teams the ability to thrive in their positions whether sales or editorial and he provided our readers/users cutting edge resources.', title: 'Marketing Strategist and Project Manager, MTG Media Group' },
+	{ text: 'Steve has an uncanny ability to translate complex ideas into compelling visual stories.', title: 'VP Creative and Operations, former manager' },
+	{ text: 'He recognized and responded to the need to grow the company\u2019s web designs and all that it encompassed.', title: 'Creative Director, Marketing and Technology Group, 1998 to 2015' },
+].map((q) => ({ ...q, href: RECS_URL }));
+
 ---
 
 <Site
-	title="Steven Vanden Heuvel · Principal Designer"
-	description="Principal Designer. Most recently at PayPal, designing checkout and payment experiences for top global merchants. Payments. Design systems. B2B product. 19 years in."
+	title="Steven Vanden Heuvel · Product Designer"
+	description="I make products feel considered, and I build the systems that keep them that way, usually before anyone asks. Product design, design systems, and design tooling. Formerly PayPal checkout."
 >
 	<section class="hero">
-		<div class="hero__copy">
-			<p class="eyebrow">Principal Designer</p>
-			<h1 class="hero__title display">Steven<br class="hero__title-br" />Vanden Heuvel</h1>
-			<p class="hero__sub">Principal Designer. Most recently at PayPal, designing checkout and payment experiences for top global merchants.</p>
-			<p class="hero__tagline">Payments. Design systems. B2B product.</p>
-			<div class="cta-row">
-				<a href="/resume">View Resume</a>
-				<a href="#contact">Contact</a>
-				<a href="https://linkedin.com/in/stevendesignco" target="_blank" rel="noopener">LinkedIn</a>
-			</div>
-		</div>
-		<div class="hero__art">
-			<LogoScatter client:load />
-		</div>
-	</section>
-
-	<section id="about" class="section">
-		<div class="section__inner about">
-			<p class="eyebrow">About</p>
-			<div class="prose">
-				<img class="about__photo" src="/images/about/headshot.jpg" alt="Steven Vanden Heuvel" width="500" height="500" loading="lazy" />
-				<p>Most recently a Principal Designer at PayPal, on the Merchant Enablement team through August 2026. In my first six months I shipped 20+ merchant proposal packages on weekly sprint cycles for top global brands including <strong>Home Depot, Nintendo, Target, Best Buy, TikTok Shop, Chewy, and Microsoft</strong>. The work fed PayPal's top priority of growing TPV through greater checkout prominence.</p>
-				<p>I build with agentic tooling, Claude Code and Cursor, every day. That work shows up in the product, not just in my own workflow. On a recent PayPal project I used Claude Code to build the structure of a design board that went to senior leadership.</p>
-				<p>Before PayPal I spent 18 years at MTG Media Group, growing from Senior Art Director to VP and Creative Director. I initiated the rebuilds of MTG's brand sites and introduced mobile-first responsive design, Figma, and Atomic Design to the company. I led a 6 person team and built responsive web products and design systems for <strong>7 brands serving 128,000+ B2B professionals</strong>. Plate, the website I rebuilt as a responsive product, won the 2017 Jesse H. Neal Award for Best Website. Four-time Neal Award winner overall.</p>
-				<p>Through Steven Design Services LLC I also take on select design work, focused on design systems, responsive web products, and product strategy.</p>
+		<div class="hero__inner">
+			<p class="hero__name display" data-reveal="words">Steven Vanden Heuvel</p>
+			<h1 class="hero__claim display" data-reveal="words">I make products feel considered, and I build the systems that keep them that way, usually before anyone asks.</h1>
+			<p class="hero__proof" data-reveal="words">Responsive web in B2B publishing before it was standard. Atomic design before it had a name. Now agentic tooling, on PayPal checkout.</p>
+			<p class="hero__valid" data-reveal="block">Four Jesse H. Neal Awards, one for Best Website.</p>
+			<div class="hero__cta" data-reveal="block">
+				<a class="btn btn--primary" href="#work">View work</a>
+				<a class="btn" href="/resume">Resume</a>
 			</div>
 		</div>
 	</section>
 
-	<section id="work" class="section section--alt">
-		<div class="section__inner">
-			<p class="eyebrow">Selected Work</p>
-			<h2 class="section__title">Case studies</h2>
-		</div>
-		<div class="section__inner">
-			<div class="work-grid">
-				<a class="card" href="/work/merchant-flow-builder">
-					<div class="card__media card__media--stat">
-						<span class="card__stat card__stat--long">10 to 15 min</span>
-						<span class="card__stat-label">per merchant</span>
-					</div>
-					<div class="card__content">
-						<div class="card__role">Principal Designer · PayPal</div>
-						<h3 class="card__title">Merchant Flow Builder</h3>
-						<p class="card__body">Browser brief form and Figma plugin, built on my own initiative. A merchant's full set of checkout flows goes from most of a day to 10 to 15 minutes.</p>
-						<span class="card__cta">Read case study <span class="arrow">→</span></span>
-					</div>
-				</a>
-				<a class="card" href="/work/paypal">
-					<div class="card__media card__media--paypal">
-						<img src="/images/case-studies/_logos/paypal-black.svg" alt="PayPal" />
-					</div>
-					<div class="card__content">
-						<div class="card__role">Principal Designer · PayPal</div>
-						<h3 class="card__title">Becoming the Default at Checkout</h3>
-						<p class="card__body">PayPal's prominence at checkout varied by merchant. I shipped per-merchant proposals to make it consistent and grow TPV.</p>
-						<span class="card__cta">Read case study <span class="arrow">→</span></span>
-					</div>
-				</a>
-				<a class="card" href="/work/paypal#checkout-dead-end">
-					<div class="card__media card__media--photo card__media--cover">
-						<img src="/images/case-studies/paypal/edit-fi-card.webp" alt="A hand holding a phone showing a blurred checkout screen" loading="lazy" />
-					</div>
-					<div class="card__content">
-						<div class="card__role">Principal Designer · PayPal</div>
-						<h3 class="card__title">The checkout dead end</h3>
-						<p class="card__body">I used Claude Code to turn a director's diagram into the structure of the Figma board, then designed into it. The work was presented to senior leadership, and the team now reuses the board to map the next flows.</p>
-						<span class="card__cta">Read case study <span class="arrow">→</span></span>
-					</div>
-				</a>
-				<a class="card" href="/work/plate">
-					<div class="card__media card__media--photo">
-						<img src="/images/case-studies/plate/plate-hero-light.png" alt="" aria-hidden="true" loading="lazy" />
-					</div>
-					<div class="card__content">
-						<div class="card__role">Creative Director · MTG Media Group</div>
-						<h3 class="card__title">Plate: Website Redesign</h3>
-						<p class="card__body">Building the digital platform for chefs and foodservice professionals. Won the 2017 Jesse H. Neal Award for Best Website.</p>
-						<span class="card__cta">Read case study <span class="arrow">→</span></span>
-					</div>
-				</a>
-				<a class="card" href="/work/blackbird">
-					<div class="card__media card__media--photo">
-						<img src="/images/case-studies/blackbird/blackbird-hero-light.png" alt="" aria-hidden="true" loading="lazy" />
-					</div>
-					<div class="card__content">
-						<div class="card__role">Creative Director / Design Lead · MTG Media Group</div>
-						<h3 class="card__title">Project Blackbird</h3>
-						<p class="card__body">An interactive oral history of the restaurant that transformed Chicago's dining. Grand Jesse H. Neal Finalist, top 4 nationally.</p>
-						<span class="card__cta">Read case study <span class="arrow">→</span></span>
-					</div>
-				</a>
-				<a class="card" href="/work/alt-meat">
-					<div class="card__media card__media--photo">
-						<img src="/images/case-studies/alt-meat/alt-meat-hero-light.png" alt="" aria-hidden="true" loading="lazy" />
-					</div>
-					<div class="card__content">
-						<div class="card__role">Creative Director · MTG Media Group</div>
-						<h3 class="card__title">Alt-Meat</h3>
-						<p class="card__body">Brand identity, magazine, and responsive news site for MTG's alternative protein property. Designed in under 8 weeks.</p>
-						<span class="card__cta">Read case study <span class="arrow">→</span></span>
-					</div>
-				</a>
-				<a class="card" href="/work/meatingplace">
-					<div class="card__media card__media--photo">
-						<img src="/images/case-studies/meatingplace/meatingplace-hero-light.png" alt="" aria-hidden="true" loading="lazy" />
-					</div>
-					<div class="card__content">
-						<div class="card__role">Creative Director · MTG Media Group</div>
-						<h3 class="card__title">Meatingplace</h3>
-						<p class="card__body">Responsive rebuild of MTG's flagship daily news site for U.S. meat and poultry professionals. Served the largest audience across MTG's 7-brand portfolio.</p>
-						<span class="card__cta">Read case study <span class="arrow">→</span></span>
-					</div>
-				</a>
+	<noscript>
+		<style>
+			.deck__track, .deck--recs .deck__track { height: auto !important; }
+			.deck__stage { position: static !important; height: auto !important; overflow: visible !important; padding: var(--space-3xl) 0 0 !important; }
+			.deck__cards { display: grid !important; gap: var(--space-md) !important; }
+			.deck__card { grid-area: auto !important; transform: none !important; visibility: visible !important; }
+			.deck--work .card, .card__art { max-height: none !important; }
+			.recs__fan { position: static !important; height: auto !important; display: grid !important; gap: var(--space-md) !important; }
+			.recs__card { position: static !important; width: auto !important; height: auto !important; margin-left: 0 !important; transform: none !important; visibility: visible !important; opacity: 1 !important; }
+			[data-animate], [data-reveal] { opacity: 1 !important; transform: none !important; }
+			.rw, .rw__i { overflow: visible !important; transform: none !important; }
+		</style>
+	</noscript>
+	<section id="work" class="deck deck--work" data-mode="flip" aria-labelledby="work-title" style={`--n: ${cases.length}`}>
+		<div class="deck__track">
+			{cases.map((c, i) => c.anchor && <span class="deck__anchor" id={c.anchor} style={`--j: ${i}`} aria-hidden="true"></span>)}
+			<div class="deck__stage">
+				<h2 id="work-title" class="work__lede display">Case studies</h2>
+				<div class="deck__jump">
+					<p class="deck__jump-title">Jump to a case study</p>
+					<ul>
+						{cases.map((c) => (<li><a href={c.href} data-case>{c.head}</a></li>))}
+						<li><a href="/work">All work</a></li>
+					</ul>
+				</div>
+				<ol class="deck__cards">
+					{cases.map((c) => (
+						<li class="deck__card">
+							<a class="card" href={c.href} data-case aria-label={`${c.head} Read case study.`}>
+								<div class={`card__art card__art--${c.art}${c.contain ? ' card__art--contain' : ''}`}>
+									{c.image && <img src={c.image} alt="" loading="lazy" />}
+									{!c.image && c.art === 'plugin' && <PluginPipeline />}
+									{!c.image && c.art === 'checkout' && <OneClickCheckout />}
+									{!c.image && c.art === 'journey' && <JourneyMap />}
+								</div>
+								<div class="card__body">
+									<h3 class="card__head">{c.head}</h3>
+									<p class="card__text">{c.text}</p>
+									<dl class="card__meta">
+										<div><dt>Product</dt><dd>{c.product}</dd></div>
+										<div><dt>Objective</dt><dd>{c.objective}</dd></div>
+									</dl>
+									<span class="card__cta">Read case study <span class="arrow">→</span></span>
+								</div>
+							</a>
+						</li>
+					))}
+				</ol>
 			</div>
 		</div>
 	</section>
 
-	<section class="section">
-		<div class="section__inner">
-			<p class="eyebrow">Recognition</p>
-			<h2 class="section__title">Awarded work, on record.</h2>
-			<ul class="awards">
-				<li><strong>4</strong><span>Jesse H. Neal Awards</span></li>
-				<li><strong>6</strong><span>Neal Finalist Recognitions</span></li>
-				<li><strong>1</strong><span>Grand Neal Finalist (top 4 nationally)</span></li>
-				<li class="awards__break" aria-hidden="true"></li>
-				<li><span>Folio Ozzie Honoree</span></li>
-				<li><span>Multiple ASBPE Awards</span></li>
-				<li><span>Northwestern Medill Guest Speaker</span></li>
+	<section id="recommendations" class="deck deck--recs" data-mode="fan" data-per="0.42" aria-labelledby="rec-title" style={`--n: ${quotes.length}; --per: 0.42`}>
+		<div class="deck__track">
+			<div class="deck__stage recs__stage">
+				<h2 id="rec-title" class="recs__lede display">On the record.</h2>
+				<ol class="recs__fan">
+					{quotes.map((q) => (
+						<li class="recs__card">
+							<figure class="quote">
+								<svg class="quote__mark" viewBox="0 0 37 32" aria-hidden="true"><path d="M16.5 16H8.5c0 4.4 3.6 8 8 8v8C7.7 32 .5 24.8.5 16V0h16v16Zm20 0h-8c0 4.4 3.6 8 8 8v8c-8.8 0-16-7.2-16-16V0h16v16Z" fill="currentColor"/></svg>
+								<blockquote class="quote__text"><p>{q.text}</p></blockquote>
+								<figcaption class="quote__title">{q.title}</figcaption>
+							</figure>
+						</li>
+					))}
+				</ol>
+			</div>
+		</div>
+	</section>
+
+	<section id="how" class="section section--how">
+		<div class="wrap">
+			<p class="eyebrow" data-reveal="block">How I work</p>
+			<h2 class="how__lede display" data-reveal="words">The tools got me to the real problem faster. They did not have the idea.</h2>
+			<ul class="how__list">
+				<li data-reveal="block">
+					<h3 class="how__tool display">Figma</h3>
+					<p>Where the work happens, and now something I build on top of rather than only inside. I write plugins against the plugin API and pull from the REST API.</p>
+				</li>
+				<li data-reveal="block">
+					<h3 class="how__tool display">Claude Code and Cursor</h3>
+					<p>The other half of the day. I build tooling around my own process, and read, debug, and extend front-end code so I can check how something will behave. I direct them and review what comes back.</p>
+				</li>
+				<li data-reveal="block">
+					<h3 class="how__tool display">Storybook</h3>
+					<p>Where there is a component layer worth keeping honest. Two live conversions of my Pattern Labs, and a proof of concept at PayPal that treated a product string as a token.</p>
+				</li>
+				<li data-reveal="block">
+					<h3 class="how__tool display">Creative Cloud</h3>
+					<p>Where the brand and print side of the record lives: magazine covers and features, the Alt-Meat identity, and the photography and illustration direction the systems had to hold.</p>
+				</li>
 			</ul>
 		</div>
 	</section>
 
-	<section class="section section--alt">
-		<div class="section__inner">
-			<p class="eyebrow">What I Do</p>
-			<h2 class="section__title">Design Systems · Responsive Web Products · Product Strategy.</h2>
-			<p class="services__lede">The design systems work has its own page, with the Pattern Lab, Figma and Storybook libraries still browsable. <a class="services__link" href="/design-systems">See the practice →</a></p>
-			<ul class="services">
-				<li>Design Systems</li>
-				<li>Service Blueprints</li>
-				<li>UX and UI Design</li>
-				<li>Prototyping</li>
-				<li class="services__break" aria-hidden="true"></li>
-				<li>Wireframing</li>
-				<li>Accessibility</li>
-				<li>AI Assisted Workflows (Claude Code, Cursor)</li>
-				<li>Figma</li>
+	<section class="section section--awards">
+		<div class="wrap">
+			<p class="eyebrow" data-reveal="block">Recognition</p>
+			<h2 class="rec__lede display" data-reveal="words">What the awards actually are.</h2>
+			<ul class="rec__list">
+				<li data-reveal="block">
+					<h3 class="rec__name display">4 Jesse H. Neal Awards</h3>
+					<p>The Neals are the top national awards for business-to-business journalism, judged across reporting, design, and whole publications. The trade press treats them the way consumer media treats the Pulitzers.</p>
+				</li>
+				<li data-reveal="block">
+					<h3 class="rec__name display">6 Neal finalists</h3>
+					<p>Shortlisted in a category and named publicly, without taking the win that year. Six separate times.</p>
+				</li>
+				<li data-reveal="block">
+					<h3 class="rec__name display">1 Grand Neal finalist</h3>
+					<p>The Grand Neal is best in show. It is chosen from that year&rsquo;s category winners across every B2B title that entered, so reaching the final group puts the work in the top four in the country.</p>
+				</li>
+				<li data-reveal="block">
+					<h3 class="rec__name display">Folio Ozzie, honorable mention</h3>
+					<p>The Ozzies are Folio&rsquo;s awards for magazine design and art direction. An honorable mention is a named placement below the win, for the art direction of a magazine rather than for a website.</p>
+				</li>
+				<li data-reveal="block">
+					<h3 class="rec__name display">ASBPE awards</h3>
+					<p>The American Society of Business Publication Editors runs the other main awards program in trade publishing, covering editorial and design. These came from the Putman Media years, before MTG.</p>
+				</li>
+				<li data-reveal="block">
+					<h3 class="rec__name display">Medill guest speaker</h3>
+					<p>Not an award. An invitation to speak to students at Northwestern&rsquo;s Medill School, which I am listing here because it is the same kind of outside signal.</p>
+				</li>
 			</ul>
+		</div>
+	</section>
+
+	<section id="about" class="section section--about">
+		<div class="wrap about">
+			<img class="about__photo" src="/images/about/headshot.jpg" alt="Steven Vanden Heuvel" width="500" height="500" loading="lazy" data-reveal="block" />
+			<p class="eyebrow" data-reveal="block">About</p>
+			<h2 class="about__lede display" data-reveal="words">Where the habits come from.</h2>
+			<div class="about__copy prose" data-reveal="block">
+				<p>I design product flows end to end, and I build the design systems and tools that keep the quality up after the first version ships. Most of the time nobody asked me to build them.</p>
+				<p>Eighteen years as VP and Creative Director at MTG Media Group is where the product habits come from. I ran the content strategy workshop that set Plate&rsquo;s taxonomy, built the Pattern Lab one level at a time so the room approved atoms before pages, themed the Drupal site myself, tested it on UserTesting.com before launch, and directed the photography, video, and illustration the system had to hold.</p>
+				<p class="about__seat">What I am looking for: a Senior or Staff Product Designer seat where one person holds the whole flow, design systems are part of the job rather than the whole job, and tooling is wanted. In house, remote or Chicago.</p>
+				<p class="about__seat">Outside of work you can find me on the trail, at a football game, at live performances, in a museum, or hanging out with my family.</p>
+			</div>
 		</div>
 	</section>
 
 	<section id="contact" class="section section--contact">
-		<div class="section__inner contact">
-			<h2 class="contact__title display">Let's talk.</h2>
-			<ul class="contact__list">
+		<div class="wrap contact">
+			<h2 class="contact__title display" data-reveal="words">Let's talk.</h2>
+			<ul class="contact__list" data-reveal="block">
 				<li><a class="js-email" data-eml="73746576656e4073746576656e64657369676e636f2e636f6d" href="#" aria-label="Email Steven">steven [at] stevendesignco [dot] com</a></li>
-				<li><a href="https://www.stevendesignco.com">stevendesignco.com</a></li>
-				<li><a href="https://linkedin.com/in/stevendesignco" target="_blank" rel="noopener">linkedin.com/in/stevendesignco</a></li>
+				<li><a href="https://www.linkedin.com/in/stevendesignco" target="_blank" rel="noopener">linkedin.com/in/stevendesignco</a></li>
+				<li><a href="https://www.instagram.com/stevendesignservices/" target="_blank" rel="noopener">instagram.com/stevendesignservices</a></li>
 			</ul>
-			<p class="contact__based">Aurora, IL · Chicago area · Open to remote</p>
+			<p class="contact__based" data-reveal="block">Aurora, IL · Chicago area · Open to remote</p>
 		</div>
 	</section>
+
+	<div class="modal" id="case-modal" role="dialog" aria-modal="true" aria-label="Case study" data-lenis-prevent hidden>
+		<div class="modal__body">
+			<button class="modal__close" type="button" aria-label="Close case study">
+				<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 1L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M1 15L15 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+			</button>
+			<div class="modal__content" aria-live="polite"></div>
+		</div>
+	</div>
 </Site>
 
+<script>
+	import Lenis from 'lenis';
+	import 'lenis/dist/lenis.css';
+
+	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	/* Graceful degradation. Below 600 CSS px of height a pinned 100svh stage
+	   cannot show a card and its copy at once, so the deck falls back to a
+	   plain list. This is also what happens at 400 percent browser zoom. */
+	const shortViewport = window.matchMedia('(max-height: 599px)').matches;
+	const reduce = reduceMotion || shortViewport;
+	const root = document.documentElement;
+	if (reduce) root.classList.add('deck-static');
+
+	/* Measured degradation. Media queries only know the viewport; this checks
+	   whether a card's own content actually fits the pinned stage on this
+	   device, at this font size, in this language. If it does not, the deck
+	   becomes the plain list rather than clipping the copy. */
+	function auditDeckFit() {
+		if (reduce) return;
+		const deck = document.querySelector<HTMLElement>('.deck--work');
+		if (!deck) return;
+		root.classList.remove('deck-static');
+		const cards = Array.from(deck.querySelectorAll<HTMLElement>('.card'));
+		if (!cards.length) return;
+		const clips = cards.some((c) => c.scrollHeight - c.clientHeight > 4);
+		const stage = deck.querySelector<HTMLElement>('.deck__stage');
+		const overflowsStage = !!stage && stage.scrollHeight - stage.clientHeight > 4;
+		if (clips || overflowsStage) root.classList.add('deck-static');
+	}
+	let fitTimer = 0;
+	const scheduleAudit = () => {
+		window.clearTimeout(fitTimer);
+		fitTimer = window.setTimeout(auditDeckFit, 180);
+	};
+	window.addEventListener('resize', scheduleAudit);
+	if (document.fonts) document.fonts.ready.then(scheduleAudit);
+	window.addEventListener('load', scheduleAudit);
+
+	// Smooth scroll, the same library the reference site runs. Native scrolling
+	// underneath, so sticky positioning and scroll events keep working.
+	let lenis: Lenis | null = null;
+	if (!reduceMotion) {
+		lenis = new Lenis({ autoRaf: true, anchors: true, lerp: 0.1 });
+	}
+
+	// Reveal. Text marked data-reveal="words" is split into masked words that
+	// slide up with a stagger; data-reveal="block" fades and lifts as one. The hero
+	// runs on load once fonts are ready; everything else runs when it scrolls in.
+	document.querySelectorAll<HTMLElement>('[data-reveal="words"]').forEach((el) => {
+		const words = (el.textContent || '').trim().split(/\s+/);
+		el.textContent = '';
+		words.forEach((w, i) => {
+			const mask = document.createElement('span');
+			mask.className = 'rw';
+			const inner = document.createElement('span');
+			inner.className = 'rw__i';
+			inner.style.setProperty('--i', String(i));
+			inner.textContent = w;
+			mask.appendChild(inner);
+			el.appendChild(mask);
+			if (i < words.length - 1) el.appendChild(document.createTextNode(' '));
+		});
+	});
+	const revealEls = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
+	const heroEls = revealEls.filter((el) => el.closest('.hero'));
+	const restEls = revealEls.filter((el) => !el.closest('.hero'));
+	const show = (el: HTMLElement) => el.classList.add('is-in');
+	if (reduce) {
+		revealEls.forEach(show);
+	} else {
+		const start = () => heroEls.forEach((el, i) => setTimeout(() => show(el), 120 + i * 140));
+		if (document.fonts && document.fonts.ready) document.fonts.ready.then(start); else start();
+		const io = new IntersectionObserver((entries) => {
+			entries.forEach((e) => {
+				if (e.isIntersecting) { show(e.target as HTMLElement); io.unobserve(e.target); }
+			});
+		}, { threshold: 0.2, rootMargin: '0px 0px -8% 0px' });
+		restEls.forEach((el) => io.observe(el));
+	}
+
+	// Decks. The track is (n + 1) screens tall and the stage sticks for n of them.
+	// Scroll position inside the track sets a target for every card: a signed
+	// offset, 0 at center, +1 waiting, -1 gone. The flip deck (work) renders that
+	// target directly. The swing deck (recommendations) lets each card drift
+	// toward its target and settle, so it floats in from the bottom right and
+	// floats out to the top left instead of tracking the scroll one to one.
+	// Reduced motion gets a plain list.
+	const smooth = (x: number) => x * x * (3 - 2 * x);
+	const clamp = (x: number, a: number, b: number) => Math.min(b, Math.max(a, x));
+	document.querySelectorAll<HTMLElement>('.deck').forEach((deck) => {
+		const track = deck.querySelector<HTMLElement>('.deck__track');
+		const cards = Array.from(deck.querySelectorAll<HTMLElement>('.deck__card, .recs__card'));
+		const mode = deck.dataset.mode || 'flip';
+		const per = parseFloat(deck.dataset.per || '1') || 1;
+		// Share of the remaining distance a card closes each frame. 1 tracks the
+		// scroll exactly; smaller values make the card drift and settle.
+		const ease = mode === 'swing' ? 0.065 : 1;
+		const n = cards.length;
+		if (!track || !n) return;
+		const target = cards.map((_, j) => (j === 0 ? 0 : 1));
+		const current = target.slice();
+		let raf = 0;
+		let inView = false;
+
+		const measure = () => {
+			const vh = window.innerHeight;
+			const t = clamp(-track.getBoundingClientRect().top / (vh * per), 0, mode === 'fan' ? n - 1 : n - 0.0001);
+			const i = Math.floor(t);
+			const lp = t - i;
+			if (mode === 'fan') {
+				// Continuous fan: card j sits at slot (j - t), so the whole spread
+				// slides one slot per card as the page scrolls. The centered card is
+				// lifted, upright and on top; the rest lean away and sit behind it.
+				const first = cards[0];
+				const w = first.getBoundingClientRect().width || 440;
+				const spacing = w * 0.46;
+				for (let j = 0; j < n; j++) {
+					const card = cards[j];
+					const o = j - t;
+					const a = Math.abs(o);
+					if (a > 3.6) { card.style.visibility = 'hidden'; continue; }
+					card.style.visibility = 'visible';
+					const near = Math.min(1, a);
+					const scale = 1 - 0.06 * near;
+					const lift = -20 * (1 - near);
+					card.style.transform =
+						`translate3d(${(o * spacing).toFixed(1)}px, ${(a * 9 + lift).toFixed(1)}px, 0) ` +
+						`rotateZ(${(o * 7).toFixed(2)}deg) rotateX(${(near * 7).toFixed(2)}deg) scale(${scale.toFixed(3)})`;
+					card.style.zIndex = String(Math.round(100 - a * 10));
+				}
+				return;
+			}
+			let kOut = 0;
+			let kIn = 0;
+			if (mode === 'swing') {
+				// Hold at center, leave, a beat with only the line showing, then the next arrives.
+				const hold = 0.18, outEnd = 0.44, inStart = 0.6;
+				kOut = i < n - 1 ? smooth(clamp((lp - hold) / (outEnd - hold), 0, 1)) : 0;
+				kIn = smooth(clamp((lp - inStart) / (1 - inStart), 0, 1));
+			} else {
+				const hold = 0.55;
+				kOut = i < n - 1 ? smooth(clamp((lp - hold) / (1 - hold), 0, 1)) : 0;
+				kIn = kOut;
+			}
+			for (let j = 0; j < n; j++) {
+				if (j < i) target[j] = -1;
+				else if (j === i) target[j] = -kOut;
+				else if (j === i + 1) target[j] = 1 - kIn;
+				else target[j] = 1;
+			}
+		};
+
+		const render = () => {
+			cards.forEach((card, j) => {
+				const s = current[j];
+				const a = Math.abs(s);
+				if (mode === 'swing') {
+					const sc = 1 - 0.05 * a;
+					card.style.transform = `translate3d(${(s * 58).toFixed(2)}vw, ${(s * 50).toFixed(2)}vh, 0) rotateY(${(s * 22).toFixed(2)}deg) rotateX(${(-s * 12).toFixed(2)}deg) rotateZ(${(s * 3).toFixed(2)}deg) scale(${sc.toFixed(3)})`;
+					card.style.opacity = (1 - smooth(clamp((a - 0.35) / 0.65, 0, 1))).toFixed(3);
+					card.style.setProperty('--dim', Math.min(1, a * 1.5).toFixed(3));
+				} else {
+					card.style.transform = `rotateX(${(-s * 180).toFixed(2)}deg)`;
+					card.style.opacity = '';
+					card.style.setProperty('--dim', '0');
+				}
+				card.style.visibility = a >= 0.995 ? 'hidden' : 'visible';
+				card.style.zIndex = String(Math.round(100 - a * 100));
+			});
+		};
+
+		const tick = () => {
+			raf = 0;
+			let moving = false;
+			for (let j = 0; j < n; j++) {
+				const d = target[j] - current[j];
+				if (Math.abs(d) > 0.0008) { current[j] += d * ease; moving = true; }
+				else current[j] = target[j];
+			}
+			render();
+			if (moving && inView) raf = requestAnimationFrame(tick);
+		};
+		// The fan maps scroll straight to a transform in measure(), so it must not
+		// run the easing loop; that loop renders flip and swing only and would
+		// overwrite the fan's transforms.
+		const kick = () => { if (mode === 'fan') return; if (!raf) raf = requestAnimationFrame(tick); };
+
+		if (reduce) {
+			cards.forEach((c) => { c.style.transform = ''; c.style.zIndex = ''; c.style.visibility = ''; c.style.opacity = ''; c.style.setProperty('--dim', '0'); });
+			return;
+		}
+		const io = new IntersectionObserver(([e]) => {
+			inView = e.isIntersecting;
+			if (inView) { measure(); kick(); }
+		});
+		io.observe(track);
+		window.addEventListener('scroll', () => { measure(); kick(); }, { passive: true });
+		window.addEventListener('resize', () => { measure(); kick(); });
+		measure();
+		if (mode !== 'fan') {
+			for (let j = 0; j < n; j++) current[j] = target[j];
+			render();
+		}
+	});
+
+	// Case study modal. A card click flips the case study in over the blurred page
+	// and never leaves it. The content is the existing case study page, fetched and
+	// dropped into the card, so the standalone URLs keep working for links sent by
+	// email. The URL updates while it is open, so Back closes it.
+	const modal = document.getElementById('case-modal') as HTMLElement | null;
+	const modalContent = modal?.querySelector<HTMLElement>('.modal__content') || null;
+	const modalClose = modal?.querySelector<HTMLButtonElement>('.modal__close') || null;
+	const loaded = new Map<string, string>();
+	let openUrl: string | null = null;
+	let lastFocus: HTMLElement | null = null;
+	// Input modality. The browser shows a focus ring when focus() is called
+	// programmatically, which put a ring around the card after a mouse close.
+	let viaKeyboard = false;
+	window.addEventListener('keydown', (e) => {
+		if (e.key === 'Tab' || e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') viaKeyboard = true;
+	}, true);
+	window.addEventListener('pointerdown', () => { viaKeyboard = false; }, true);
+	let hideTimer = 0;
+
+	async function fetchCase(path: string): Promise<string> {
+		const cached = loaded.get(path);
+		if (cached) return cached;
+		const res = await fetch(path, { headers: { Accept: 'text/html' } });
+		if (!res.ok) throw new Error(String(res.status));
+		const doc = new DOMParser().parseFromString(await res.text(), 'text/html');
+		// Bring the page's own styles along. Production inlines them as <style>;
+		// the dev server serves them as style modules.
+		doc.querySelectorAll<HTMLStyleElement>('head style').forEach((st, idx) => {
+			const key = `${path}#${idx}`;
+			if (document.head.querySelector(`style[data-case-style="${CSS.escape(key)}"]`)) return;
+			const c = st.cloneNode(true) as HTMLStyleElement;
+			c.setAttribute('data-case-style', key);
+			document.head.appendChild(c);
+		});
+		doc.querySelectorAll<HTMLLinkElement>('head link[rel="stylesheet"]').forEach((ln) => {
+			const href = ln.getAttribute('href') || '';
+			if (!href || document.head.querySelector(`link[href="${CSS.escape(href)}"]`)) return;
+			document.head.appendChild(ln.cloneNode(true));
+		});
+		doc.querySelectorAll<HTMLScriptElement>('script[type="module"][src*="type=style"]').forEach((sc) => {
+			import(/* @vite-ignore */ sc.src).catch(() => {});
+		});
+		const main = doc.querySelector('main');
+		const html = main ? main.innerHTML : '<p>Could not load this case study.</p>';
+		loaded.set(path, html);
+		return html;
+	}
+
+	async function showCase(url: string) {
+		if (!modal || !modalContent) return;
+		const u = new URL(url, location.origin);
+		modalContent.innerHTML = '<p class="modal__loading">Loading</p>';
+		try {
+			modalContent.innerHTML = await fetchCase(u.pathname);
+		} catch {
+			modalContent.innerHTML = '<p class="modal__loading">Could not load this case study. <a href="' + u.pathname + '">Open it as a page.</a></p>';
+		}
+		modalContent.querySelectorAll('[data-animate]').forEach((el) => el.classList.add('is-visible'));
+		modalContent.querySelectorAll<HTMLElement>('.cs-back-top').forEach((el) => { el.hidden = true; });
+		/* Name the dialog after the case it is showing, and demote the case page's
+		   own h1 so the document does not end up with two. */
+		const h1 = modalContent.querySelector<HTMLElement>('h1');
+		if (h1) {
+			modal.setAttribute('aria-label', (h1.textContent || 'Case study').trim());
+			h1.setAttribute('role', 'heading');
+			h1.setAttribute('aria-level', '2');
+		}
+		const target = u.hash ? modalContent.querySelector<HTMLElement>(u.hash) : null;
+		requestAnimationFrame(() => {
+			if (target) target.scrollIntoView({ block: 'start' });
+			else modal.scrollTop = 0;
+		});
+	}
+
+	function openCase(url: string, trigger: HTMLElement | null, push = true) {
+		if (!modal) return;
+		window.clearTimeout(hideTimer);
+		lastFocus = trigger;
+		const wasOpen = openUrl !== null;
+		openUrl = url;
+		if (push) {
+			if (wasOpen) history.replaceState({ case: url }, '', url);
+			else history.pushState({ case: url }, '', url);
+		}
+		modal.hidden = false;
+		document.body.classList.add('modal-open');
+		/* Without this, Tab walks out of the dialog into the page behind it,
+		   which the dialog is covering. aria-modal only helps the virtual cursor. */
+		setBackgroundInert(true);
+		lenis?.stop();
+		/* The modal is visibility:hidden until is-open lands, and focus() is a
+		   no-op on a hidden element, so focus only moves once it is visible.
+		   Without this the dialog opened with focus still on the page behind. */
+		const shown = showCase(url);
+		requestAnimationFrame(() => requestAnimationFrame(() => {
+			modal.classList.add('is-open');
+			shown.then(() => requestAnimationFrame(() => restoreFocus(modalClose)));
+		}));
+	}
+
+	function setBackgroundInert(on: boolean) {
+		document.querySelectorAll<HTMLElement>('body > header, body > main, body > footer, body > nav, body > .skip-link').forEach((el) => {
+			if (on) el.setAttribute('inert', '');
+			else el.removeAttribute('inert');
+		});
+	}
+
+	/* Focus always moves, so keyboard order stays correct. The ring is
+	   suppressed only when the interaction that caused it was a pointer. */
+	function restoreFocus(el: HTMLElement | null) {
+		if (!el) return;
+		if (!viaKeyboard) {
+			el.classList.add('no-ring');
+			const clear = () => { el.classList.remove('no-ring'); el.removeEventListener('blur', clear); };
+			el.addEventListener('blur', clear);
+			window.addEventListener('keydown', clear, { once: true, capture: true });
+		}
+		el.focus({ preventScroll: true });
+	}
+
+	function closeCase() {
+		if (!modal || openUrl === null) return;
+		openUrl = null;
+		modal.classList.remove('is-open');
+		document.body.classList.remove('modal-open');
+		setBackgroundInert(false);
+		modal.setAttribute('aria-label', 'Case study');
+		lenis?.start();
+		hideTimer = window.setTimeout(() => {
+			modal.hidden = true;
+			if (modalContent) modalContent.innerHTML = '';
+		}, 1600);
+		restoreFocus(lastFocus);
+	}
+
+	if (modal) {
+		document.querySelectorAll<HTMLAnchorElement>('a[data-case]').forEach((a) => {
+			a.addEventListener('click', (e) => {
+				if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+				e.preventDefault();
+				openCase(a.getAttribute('href') || '/', a);
+			});
+		});
+		modalClose?.addEventListener('click', () => {
+			if (history.state && history.state.case) history.back();
+			else closeCase();
+		});
+		modal.addEventListener('click', (e) => {
+			if (e.target === modal) modalClose?.click();
+		});
+		window.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape' && openUrl !== null) modalClose?.click();
+		});
+		// Links inside a loaded case study: other case studies open in place, the
+		// links back to the home page close the modal, everything else behaves.
+		modalContent?.addEventListener('click', (e) => {
+			const a = (e.target as HTMLElement).closest('a');
+			if (!a) return;
+			const href = a.getAttribute('href') || '';
+			if (a.target === '_blank') return;
+			if (href.startsWith('/work/') || href.startsWith('/design-systems')) {
+				e.preventDefault();
+				openCase(href, lastFocus);
+			} else if (href.startsWith('/#') || href === '/') {
+				e.preventDefault();
+				modalClose?.click();
+			}
+		});
+		window.addEventListener('popstate', () => {
+			const st = history.state;
+			if (st && st.case) openCase(st.case, lastFocus, false);
+			else if (openUrl !== null) closeCase();
+		});
+	}
+
+</script>
+
 <style>
+	.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+	/* The deck keeps only the face-on card visible, so four of five case study
+	   links are not tabbable. This list carries the same links for keyboard and
+	   screen reader users and shows itself the moment one of them is focused. */
+	.deck__jump { position: fixed; left: 12px; top: 12px; z-index: 150; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+	.deck__jump:focus-within { width: auto; height: auto; overflow: visible; clip: auto; background: var(--surface); border: 1px solid var(--rule-strong); border-radius: 12px; padding: 14px 18px; box-shadow: var(--shadow-card); max-width: min(380px, calc(100vw - 24px)); }
+	.deck__jump-title { margin: 0 0 8px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 800; color: var(--text-mute); }
+	.deck__jump ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+	.deck__jump a { display: block; padding: 8px 4px; min-height: 24px; color: var(--text); font-size: 15px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+	.deck__jump a:hover { color: var(--accent); }
+
+	/* One measure for everything on this page: the card width. */
+	:root { --content: min(800px, 100vw - 48px); --shadow-card: 0 1px 2px rgba(45, 52, 54, 0.08), 0 6px 12px -4px rgba(45, 52, 54, 0.14), 0 18px 32px -12px rgba(45, 52, 54, 0.24), 0 36px 64px -24px rgba(45, 52, 54, 0.32); --shadow-card-hover: 0 1px 2px rgba(45, 52, 54, 0.08), 0 10px 18px -6px rgba(45, 52, 54, 0.18), 0 26px 44px -14px rgba(45, 52, 54, 0.3), 0 48px 80px -28px rgba(45, 52, 54, 0.38); }
+	.wrap { width: var(--content); margin: 0 auto; }
+	#work, #recommendations, #how, #about, #contact { scroll-margin-top: var(--nav-h); }
+
+	/* ---------- Reveal ---------- */
+	:global(.rw) { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.1em; margin-bottom: -0.1em; }
+	:global(.rw__i) { display: inline-block; transform: translateY(112%); transition: transform 0.95s cubic-bezier(0.16, 1, 0.3, 1); transition-delay: calc(var(--i, 0) * 28ms); }
+	:global([data-reveal="words"].is-in .rw__i) { transform: translateY(0); }
+	[data-reveal="block"] { opacity: 0; transform: translateY(22px); transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+	[data-reveal="block"].is-in { opacity: 1; transform: none; }
+	:global(html:not(.js)) [data-reveal="block"] { opacity: 1; transform: none; }
+
+	/* ---------- Hero ---------- */
 	.hero {
-		max-width: var(--max);
+		position: relative;
+		width: var(--content);
 		margin: 0 auto;
-		padding: 96px var(--gutter) 64px;
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 64px;
-		align-items: center;
-		min-height: calc(100vh - 80px);
-		overflow: visible;
-	}
-	/* min-width:0 lets the copy column shrink so its text wraps instead of
-	   overflowing the viewport on small screens. */
-	.hero__copy { min-width: 0; position: relative; z-index: 2; }
-	/* Two-line stack everywhere: "Steven" / "Vanden Heuvel". This display face is
-	   wide, so the size is capped so "Vanden Heuvel" stays on one line in the hero
-	   copy column and never breaks to a third line. The phone size is in the 880 block. */
-	.hero__title {
-		font-size: clamp(32px, 4vw, 52px);
-		margin-bottom: 28px;
-		letter-spacing: -0.03em;
-	}
-	.hero__sub {
-		font-size: clamp(20px, 1.8vw, 26px);
-		color: var(--text);
-		max-width: 32ch;
-		margin-bottom: 16px;
-		line-height: 1.35;
-		font-weight: 500;
-	}
-	.hero__tagline {
-		font-size: 16px;
-		color: var(--text-mute);
-		margin-bottom: 24px;
-		letter-spacing: -0.005em;
-	}
-	.hero__tagline-mark { color: var(--accent); font-weight: 600; }
-	/* CTA row: text links (not pills), nickel display, black, "|" separated, accent on hover,
-	   with a thin light rule between it and the tagline above. */
-	.cta-row {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		gap: 0;
-		padding-top: 24px;
-		border-top: 1px solid var(--rule-soft);
-	}
-	.cta-row a {
-		display: inline-flex;
-		align-items: center;
-		font-family: var(--font-display);
-		font-size: 18px;
-		color: var(--text);
-		letter-spacing: 0.03em;
-		font-variation-settings: "wght" 400, "slnt" 0, "ital" 0;
-		font-synthesis: none;
-		white-space: nowrap;
-		transition: color 0.14s ease;
-	}
-	.cta-row a:hover { color: var(--accent); }
-	/* thin, light separator that matches the rule above */
-	.cta-row a + a::before {
-		content: "";
-		flex: none;
-		width: 1px;
-		height: 1.05em;
-		background: var(--rule-soft);
-		margin: 0 16px;
-	}
-	/* JS adds this when the row would wrap: stack vertically, drop the separators */
-	.cta-row--stacked { flex-direction: column; align-items: flex-start; gap: 12px; }
-	.cta-row--stacked a + a::before { display: none; }
-
-	/* Full-bleed orbit. The stage is scaled up and pushed right so the outer
-	   ring is cut by the right viewport edge (body has overflow-x: clip).
-	   Tune these two values to taste, then they cascade to the stage transform. */
-	.hero__art {
-		min-width: 0;
-		position: relative;
-		z-index: 1;
-		--orbit-scale: 1.18;
-		--orbit-shift: 9vw;
-	}
-	.hero__art :global(.pp-stage) {
-		transform: translateX(var(--orbit-shift)) scale(var(--orbit-scale));
-		transform-origin: center center;
-	}
-
-	.section__title {
-		max-width: 22ch;
-		margin: 0 0 56px;
-		letter-spacing: -0.025em;
-	}
-
-	/* headshot floated within the body copy so the text wraps around it */
-	.about__photo {
-		float: left;
-		width: 230px;
-		height: auto;
-		margin: 6px 30px 14px 0;
-		border-radius: 16px;
-		display: block;
-		shape-outside: inset(0 round 16px);
-	}
-
-	.work-grid {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 24px;
-	}
-	@media (max-width: 1024px) {
-		.work-grid { grid-template-columns: repeat(2, 1fr); }
-	}
-	@media (max-width: 720px) {
-		.work-grid { grid-template-columns: 1fr; gap: 20px; }
-	}
-	.card {
-		background: var(--surface);
-		border: 1px solid var(--rule);
-		border-radius: var(--radius);
-		color: var(--text);
+		padding: var(--space-3xl) 0 var(--space-4xl);
+		min-height: calc(100svh - var(--nav-h));
 		display: flex;
 		flex-direction: column;
-		overflow: hidden;
-		transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
-	}
-	.card:hover {
-		transform: translateY(-4px);
-		border-color: var(--accent);
-		background: var(--surface-2);
-		color: var(--text);
-	}
-	.card:hover .arrow { transform: translateX(6px); color: var(--accent); }
-	.card__media {
-		position: relative;
-		aspect-ratio: 16 / 9;
-		background-color: var(--surface);
-		background-size: cover;
-		background-position: center;
-		display: flex;
-		align-items: center;
 		justify-content: center;
-		border-bottom: 1px solid var(--rule);
 	}
-	.card__media--paypal { background-color: #60cdff; }
-	.card__media--paypal img { width: 56%; max-width: 200px; }
-	@media (prefers-color-scheme: light) {
-		:root:not([data-theme="dark"]) .card__media--paypal { background-color: #ffffff; }
-	}
-	:root[data-theme="light"] .card__media--paypal { background-color: #ffffff; }
-	.card__media--stat {
-		background-color: var(--bg);
+	.hero__name { font-size: 16px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text); margin: 0 0 var(--space-lg); }
+	.hero__claim { font-size: clamp(32px, 4.1vw, 56px); line-height: 1.04; letter-spacing: -0.012em; margin: 0 0 var(--space-xl); text-wrap: pretty; }
+	.hero__proof { font-size: clamp(17px, 1.4vw, 20px); line-height: 1.5; color: var(--text); max-width: 58ch; margin: 0 0 var(--space-sm); text-wrap: pretty; }
+	.hero__valid { font-size: 15px; color: var(--text-mute); margin: 0 0 var(--space-xl); letter-spacing: 0.01em; }
+	.hero__cta { display: flex; gap: var(--space-sm); flex-wrap: wrap; }
+
+	/* ---------- Card ---------- */
+	.card {
+		display: flex;
 		flex-direction: column;
-		gap: 8px;
-		color: var(--accent);
+		width: var(--content);
+		background: var(--surface);
+		border-radius: var(--radius);
+		box-shadow: var(--shadow-card);
+		color: var(--text);
+		overflow: hidden;
+		transition: box-shadow 0.25s ease, transform 0.25s ease;
 	}
-	.card__stat {
+	.card:hover, .card:focus-visible { color: var(--text); box-shadow: var(--shadow-card-hover); }
+	.card:hover .arrow, .card:focus-visible .arrow { transform: translateX(6px); }
+	/* Full-bleed media. Images cover; the drawn stand-ins sit on paper until the images arrive. */
+	.card__art { position: relative; width: 100%; aspect-ratio: 16 / 9; max-height: 50svh; background: var(--bg); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+	.card__art img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+	/* Logo lockups must show every mark, so they fit inside the box and the box
+	   takes the artwork's own ground, which makes the letterbox invisible. */
+	.card__art--contain { background: #F2F1EC; }
+	.card__art--contain img { object-fit: contain; object-position: center; }
+	.card__body { padding: clamp(22px, 3vw, 32px) clamp(22px, 3.2vw, 36px) clamp(22px, 3vw, 30px); display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "head head" "text text" "meta cta"; gap: 10px var(--space-lg); align-items: end; }
+	.card__head {
+		grid-area: head;
 		font-family: var(--font-display);
 		font-weight: 400;
-		font-style: normal;
 		font-variation-settings: "wght" 400, "slnt" 0, "ital" 0;
 		font-synthesis: none;
-		font-size: clamp(56px, 8vw, 88px);
-		line-height: 1;
-		letter-spacing: normal;
-		color: #000000;
+		font-size: clamp(22px, 2.3vw, 30px);
+		line-height: 1.05;
+		letter-spacing: 0;
+		color: var(--text);
+		margin: 0;
 	}
-	.card__stat-label {
-		font-family: var(--font-body);
-		font-size: 11px;
-		letter-spacing: 0.16em;
-		text-transform: uppercase;
-		color: var(--text-mute);
-		font-weight: 600;
+	.card__text { grid-area: text; margin: 0 0 6px; font-size: 16px; line-height: 1.5; color: var(--text); max-width: 60ch; text-wrap: pretty; }
+	.card__meta { grid-area: meta; display: flex; flex-wrap: wrap; gap: 4px var(--space-lg); margin: 0; }
+	.card__meta div { display: flex; gap: 8px; align-items: baseline; min-width: 0; }
+	.card__meta dt { font-size: var(--text-label); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); font-weight: 800; }
+	.card__meta dt::after { content: '|' / ''; margin-left: 8px; font-weight: 400; letter-spacing: 0; opacity: 0.55; }
+	.card__meta dd { margin: 0; font-size: 13px; color: var(--text); font-weight: 500; }
+	.card__cta { grid-area: cta; font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+	.arrow { display: inline-block; transition: transform 0.22s ease; }
+
+	/* ---------- Flip deck ---------- */
+	.deck { position: relative; }
+	.deck__track { position: relative; height: calc(var(--n) * var(--per, 1) * 100svh + 100svh); }
+	/* One per card, at the scroll offset where that card sits centered. */
+	.deck__anchor { position: absolute; left: 0; top: calc(var(--j) * var(--per, 1) * 100svh); width: 1px; height: 1px; scroll-margin-top: 0; }
+	.deck__stage {
+		position: sticky;
+		top: 0;
+		height: 100svh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 18px;
+		padding-top: var(--nav-h);
+		perspective: 1800px;
+		overflow: hidden;
 	}
-	/* full-bleed photo media: fills the 16:9 box instead of the contain default */
-	.card__media--cover img { object-fit: cover; }
-	/* longer stat value: sized down so it stays inside the media box */
-	.card__stat--long { font-size: clamp(36px, 4vw, 52px); }
-	.card--info { cursor: default; }
-	.card--info:hover {
-		transform: none;
-		border-color: var(--rule);
-		background: var(--surface);
+	.deck__label { position: relative; z-index: 3; margin: 0; font-family: var(--font-body); font-size: var(--text-label); font-weight: 700; letter-spacing: 0.16em; line-height: 1.2; }
+	.deck__cards { list-style: none; margin: 0; padding: 0; display: grid; place-items: center; width: var(--content); }
+	.deck__card {
+		--dim: 0;
+		grid-area: 1 / 1;
+		transform-style: preserve-3d;
+		will-change: transform, opacity;
 	}
-	/* Photo cards use the light hero mockups, now background-removed and
-	   pre-framed to 16:9 so every window matches. Transparent field blends
-	   into the paper; the device screens keep their own white.
-	   Light-only for now; when dark mode returns, add the .jpg variants back. */
-	.card__media--photo { background: var(--bg); }
-	.card__media--photo img {
+	.deck--work .deck__card { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+	.deck__dim { position: absolute; inset: 0; border-radius: inherit; background: #000; opacity: calc(var(--dim) * 0.5); pointer-events: none; }
+	.work__lede { font-size: clamp(40px, 6vw, 92px); line-height: 0.95; margin: 0; text-align: center; }
+	.deck--work .deck__stage { gap: var(--space-lg); }
+	.deck--work .card { max-height: calc(100svh - var(--nav-h) - 200px); }
+
+
+	/* ---------- Recommendations: a fanned deck, driven by scroll ---------- */
+	.deck--recs { --rec-w: 440px; --rec-h: 330px; }
+	.deck--recs .deck__track { height: calc((var(--n) - 1) * var(--per, 1) * 100svh + 100svh); }
+	.recs__stage { gap: var(--space-lg); perspective: 1500px; }
+	.recs__lede { font-size: clamp(40px, 6vw, 92px); line-height: 0.95; margin: 0; text-align: center; }
+	.recs__fan { list-style: none; margin: 0; padding: 0; position: relative; width: 100%; height: var(--rec-h); }
+	.recs__card {
+		position: absolute;
+		left: 50%;
+		top: 0;
+		width: var(--rec-w);
+		height: var(--rec-h);
+		margin-left: calc(var(--rec-w) / -2);
+		transform-style: preserve-3d;
+		will-change: transform;
+	}
+	.quote {
+		margin: 0;
 		width: 100%;
 		height: 100%;
-		object-fit: contain;
-	}
-	.card__content { padding: 24px 24px 26px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
-	.card__role { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-mute); font-weight: 600; }
-	.card__title { line-height: 1.1; }
-	.card__body { color: var(--text); margin: 0; font-size: 15px; line-height: 1.5; flex: 1; }
-	.card__cta {
-		margin-top: 8px;
-		color: var(--text);
-		font-weight: 600;
-		font-size: 14px;
-		letter-spacing: 0.01em;
-		display: inline-flex;
-		align-items: center;
-		gap: 8px;
-	}
-	.arrow { display: inline-block; transition: transform 0.22s ease, color 0.22s ease; }
-
-	.awards {
-		list-style: none;
-		margin: 0;
-		padding: 0;
+		padding: clamp(22px, 3.2vw, 36px);
+		background: var(--surface);
+		border-radius: var(--radius);
+		box-shadow: var(--shadow-card);
 		display: flex;
-		flex-wrap: wrap;
+		flex-direction: column;
 		align-items: center;
+		justify-content: center;
+		gap: var(--space-sm);
+		text-align: center;
 	}
-	.awards li {
-		display: inline-flex;
-		align-items: baseline;
-		gap: 10px;
-		color: var(--text);
-		font-size: 16px;
-		padding: 6px 0;
-	}
-	/* same thin light separator as the CTA links above; static (not links) */
-	.awards li + li::before {
-		content: "";
-		align-self: center;
-		flex: none;
-		width: 1px;
-		height: 28px;
-		background: var(--rule-soft);
-		margin: 0 22px;
-	}
-	.awards strong {
-		font-family: var(--font-display);
-		font-weight: 700;
-		font-variation-settings: "wght" 700, "slnt" 0, "ital" 0;
-		font-synthesis: none;
-		color: var(--text);
-		font-size: 30px;
-		line-height: 1;
-		letter-spacing: -0.01em;
-		font-variant-numeric: tabular-nums;
-	}
-	/* force a wrap (recognition: non-numbered to line 2; services: Wireframing+ to line 2) */
-	.awards__break,
-	.services__break { flex-basis: 100%; height: 0; padding: 0; margin: 0; }
-	.awards__break::before,
-	.services__break::before { display: none; }
-	.awards__break + li::before,
-	.services__break + li::before { display: none; }
+	.quote__mark { width: 26px; height: auto; color: var(--text); flex: none; }
+	.quote__text { margin: 0; }
+	.quote__text p { margin: 0; font-size: clamp(15px, 1.35vw, 18px); line-height: 1.45; letter-spacing: -0.005em; color: var(--text); font-weight: 500; text-wrap: pretty; }
+	.quote__title { font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; font-size: 11px; color: var(--text-mute); max-width: 34ch; }
 
-	.services__lede { max-width: 60ch; margin: var(--space-md) 0 var(--space-lg); color: var(--text-mute); font-size: 16px; line-height: 1.65; }
-	.services__link { color: var(--accent); font-weight: 600; white-space: nowrap; }
-	.services__link:hover { text-decoration: underline; }
-	.services {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-	}
-	.services li {
-		display: inline-flex;
-		align-items: center;
-		font-size: 16px;
-		color: var(--text);
-		padding: 6px 0;
-	}
-	/* same thin light separator as the recognition + CTA rows; static (not links) */
-	.services li + li::before {
-		content: "";
-		align-self: center;
-		flex: none;
-		width: 1px;
-		height: 22px;
-		background: var(--rule-soft);
-		margin: 0 18px;
-	}
-	/* first item of any wrapped line: no leading "|" or space (set by JS) */
-	.awards li.line-start::before,
-	.services li.line-start::before { display: none; }
+	/* ---------- How I work ---------- */
+	.section--how { padding: var(--space-4xl) var(--gutter) var(--space-3xl); }
+	.how__lede { font-size: clamp(26px, 3vw, 40px); max-width: 22ch; margin: 0 0 var(--space-xl); text-wrap: pretty; }
+	/* One row treatment, shared by How I work and Recognition. */
+	.how__list, .rec__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+	.how__list li, .rec__list li { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: var(--space-lg); padding: var(--space-md) 0; border-bottom: 1px solid var(--rule); }
+	.how__tool, .rec__name { font-size: 20px; letter-spacing: 0.02em; margin: 0; }
+	.how__list p, .rec__list p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--text); text-wrap: pretty; }
 
-	/* mobile: drop the "|" and stack both lists vertically */
-	@media (max-width: 720px) {
-		.awards,
-		.services { flex-direction: column; align-items: flex-start; gap: 12px; }
-		.awards li + li::before,
-		.services li + li::before { display: none; }
-		.awards__break,
-		.services__break { display: none; }
-		/* keep the headshot floated within the copy on phones, just smaller */
-		.about__photo { width: auto; max-width: 40%; margin: 4px 16px 6px 0; }
-	}
+	/* ---------- Recognition ---------- */
+	.section--awards { padding: var(--space-2xl) var(--gutter) var(--space-3xl); }
+	.rec__lede { font-size: clamp(26px, 3vw, 40px); max-width: 22ch; margin: 0 0 var(--space-xl); text-wrap: pretty; }
 
-	.section--contact { padding: 160px var(--gutter); text-align: center; }
-	.contact { display: flex; flex-direction: column; align-items: center; gap: 48px; }
-	.contact__title {
-		color: var(--text);
-		font-size: clamp(56px, 8vw, 128px);
-		margin: 0;
-	}
-	.contact__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: clamp(18px, 1.6vw, 24px); font-weight: 600; }
-	.contact__list a {
-		color: var(--text);
-		text-decoration: underline;
-		text-decoration-thickness: 1px;
-		text-underline-offset: 4px;
-		transition: color 0.14s ease;
-	}
+	/* ---------- About, the end ---------- */
+	.section--about { padding: var(--space-4xl) var(--gutter) var(--space-2xl); }
+	.about { display: flex; flex-direction: column; align-items: center; text-align: center; }
+	.about__photo { width: 160px; height: 160px; object-fit: cover; border-radius: 50%; display: block; margin-bottom: var(--space-lg); }
+	.about__lede { font-size: clamp(28px, 3.4vw, 48px); margin: 0 0 var(--space-lg); text-wrap: pretty; }
+	.about .eyebrow { margin-bottom: var(--space-md); }
+	.about__copy { max-width: 62ch; }
+	.about__copy p { text-wrap: pretty; }
+	.about__seat { color: var(--text-mute); }
+
+	/* ---------- Contact ---------- */
+	.section--contact { padding: var(--space-3xl) var(--gutter) var(--space-5xl); text-align: center; }
+	.contact { display: flex; flex-direction: column; align-items: center; gap: var(--space-xl); }
+	.contact__title { font-size: clamp(56px, 7vw, 112px); margin: 0; }
+	.contact__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: clamp(18px, 1.6vw, 22px); font-weight: 600; }
+	.contact__list a { color: var(--text); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; transition: color 0.14s ease; overflow-wrap: anywhere; }
 	.contact__list a:hover { color: var(--accent); }
 	.contact__based { color: var(--text-mute); font-size: 14px; margin: 0; letter-spacing: 0.04em; }
 
+	/* ---------- Case study modal ---------- */
+	.modal {
+		position: fixed;
+		inset: 0;
+		z-index: 120;
+		overflow: auto;
+		padding: 80px 24px;
+		perspective: 2000px;
+		background: rgba(0, 0, 0, 0);
+		-webkit-backdrop-filter: blur(0);
+		backdrop-filter: blur(0);
+		visibility: hidden;
+		transition: background 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s, backdrop-filter 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s, -webkit-backdrop-filter 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s, visibility 0s linear 1.6s;
+	}
+	.modal[hidden] { display: none; }
+	.modal.is-open {
+		visibility: visible;
+		background: rgba(0, 0, 0, 0.3);
+		-webkit-backdrop-filter: blur(2rem);
+		backdrop-filter: blur(2rem);
+		transition-delay: 0s;
+	}
+	.modal__body {
+		position: relative;
+		width: min(960px, 100%);
+		margin: 0 auto;
+		background: var(--bg);
+		border-radius: var(--radius);
+		box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.45);
+		padding: 8px 0 32px;
+		transform: rotateY(180deg);
+		transform-style: preserve-3d;
+		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
+		transition: transform 1s cubic-bezier(0.87, 0, 0.13, 1);
+	}
+	.modal.is-open .modal__body { transform: rotateY(0deg); }
+	.modal__close {
+		position: sticky;
+		top: 16px;
+		float: right;
+		z-index: 3;
+		width: 48px;
+		height: 48px;
+		margin: 8px 16px -64px 0;
+		border: 0;
+		border-radius: 12px;
+		background: var(--text);
+		color: var(--bg);
+		cursor: pointer;
+		display: grid;
+		place-items: center;
+		transition: transform 0.15s ease, background 0.15s ease;
+	}
+	.modal__close:hover { transform: scale(1.06); }
+	.modal__close:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
+	/* Opened with a mouse, the dialog should not show a ring on its own X. */
+	.modal__close.no-ring:focus, .modal__close.no-ring:focus-visible { outline: none; }
+	.modal__close svg { width: 16px; height: 16px; display: block; }
+	.modal__content { clear: none; }
+	.modal__loading { padding: var(--space-3xl) var(--space-xl); color: var(--text-mute); }
+	/* The loaded case page inside the card: no back link, a title sized for the card. */
+	.modal__content :global(.cs-back-top) { display: none; }
+	.modal__content :global(.cs-hero) { padding-top: var(--space-xl); }
+	.modal__content :global(.cs-hero__title) { font-size: clamp(32px, 4.6vw, 60px); }
+	.modal__content :global(.cs-back .btn--primary) { background: var(--text); color: var(--bg); }
+	:global(body.modal-open) { overflow: hidden; }
+
+	/* ---------- Reduced motion: decks become lists ---------- */
+	@media (prefers-reduced-motion: reduce), (max-height: 599px) {
+		.deck__track, .deck--recs .deck__track { height: auto; }
+		/* The cards stop being height-capped, or the copy is clipped. */
+		.deck--work .card { max-height: none; }
+		/* The fan stacked all twelve quotes in one absolute slot. */
+		.recs__fan { position: static; height: auto; display: grid; gap: var(--space-md); }
+		.recs__card { position: static; width: auto; height: auto; margin-left: 0; transform: none !important; visibility: visible !important; opacity: 1 !important; }
+		/* A full-screen 3D flip is the classic vestibular trigger. */
+		.modal__body { transform: none; transition: none; }
+		.modal, .modal.is-open { transition: none; }
+		.card, .arrow { transition: none; }
+		.deck__stage { position: static; height: auto; padding: var(--space-3xl) 0 0; overflow: visible; perspective: none; }
+		.deck__cards { display: grid; gap: var(--space-md); place-items: stretch; }
+		.deck__card { grid-area: auto; transform: none !important; visibility: visible !important; }
+			.deck__dim { display: none; }
+			.card__art { max-height: none; }
+	}
+	/* Graceful degradation. The script adds .deck-static to the root when the
+	   pinned deck measurably cannot fit this device, and the layout becomes the
+	   same plain list the reduced-motion path uses. */
+	:root.deck-static .deck__track { height: auto; }
+
+		:root.deck-static .deck--recs .deck__track { height: auto; }
+		/* The cards stop being height-capped, or the copy is clipped. */
+		:root.deck-static .deck--work .card { max-height: none; }
+		/* The fan stacked all twelve quotes in one absolute slot. */
+		:root.deck-static .recs__fan { position: static; height: auto; display: grid; gap: var(--space-md); }
+		:root.deck-static .recs__card { position: static; width: auto; height: auto; margin-left: 0; transform: none !important; visibility: visible !important; opacity: 1 !important; }
+		/* A full-screen 3D flip is the classic vestibular trigger. */
+		:root.deck-static .modal__body { transform: none; transition: none; }
+		:root.deck-static .modal, :root.deck-static .modal.is-open { transition: none; }
+		:root.deck-static .card, :root.deck-static .arrow { transition: none; }
+		:root.deck-static .deck__stage { position: static; height: auto; padding: var(--space-3xl) 0 0; overflow: visible; perspective: none; }
+		:root.deck-static .deck__cards { display: grid; gap: var(--space-md); place-items: stretch; }
+		:root.deck-static .deck__card { grid-area: auto; transform: none !important; visibility: visible !important; }
+		:root.deck-static .deck__dim { display: none; }
+		:root.deck-static .card__art { max-height: none; }
+	
+
+	/* ---------- Phones: same decks, tighter cards ---------- */
 	@media (max-width: 880px) {
-		.hero { grid-template-columns: 1fr; padding-top: 48px; gap: 32px; min-height: 0; }
-		/* Phones and tablets: same two-line stack, but the copy spans the full
-		   width, so the cap keeps "Vanden Heuvel" on one line down to 360px. */
-		.hero__title { font-size: clamp(24px, 7.5vw, 56px); }
-		.hero__art { display: none; }
-		.about__photo { width: 200px; margin: 4px 22px 10px 0; }
-		.contact__list li { grid-template-columns: 1fr; gap: 6px; padding: 18px 0; font-size: 17px; }
+		.deck__stage { padding-top: calc(var(--nav-h) + 8px); gap: 14px; perspective: 1200px; }
+		/* The art is the only flexible item in the card, so any height shortfall
+		   used to come out of it and left a sliver. Pin it to its ratio and take
+		   the room out of the body instead. */
+		.card__art { flex: 0 0 auto; max-height: none; }
+		/* Reserve only what actually sits above the card: nav, stage padding,
+		   the Case studies headline and one gap. */
+		.deck--work .card { max-height: calc(100svh - var(--nav-h) - 120px); }
+		.card__body { gap: 8px; }
+		.card__text { font-size: 15px; line-height: 1.45; margin-bottom: 2px; }
+		.quote { padding: 28px 22px; }
+		.quote__text p { font-size: 17px; }
+		.hero { padding-top: var(--space-2xl); padding-bottom: var(--space-3xl); }
+		.hero__claim { font-size: clamp(30px, 7.2vw, 44px); }
+		.card__body { grid-template-columns: 1fr; grid-template-areas: "head" "text" "meta" "cta"; padding: 18px 20px; align-items: start; }
+		/* Labels read as subheads on phones: above the value, not beside it. */
+		.card__meta { flex-direction: column; gap: 10px; }
+		.card__meta div { flex-direction: column; gap: 2px; align-items: flex-start; }
+		.card__meta dt { font-size: 12px; letter-spacing: 0.1em; color: var(--text); }
+		.card__meta dt::after { content: none; }
+		.card__meta dd { font-size: 14px; line-height: 1.4; }
+		.how__list li, .rec__list li { grid-template-columns: 1fr; gap: 8px; }
+		.deck--recs { --rec-w: min(300px, 82vw); --rec-h: 380px; }
+		.recs__stage { gap: var(--space-md); }
+		.modal { padding: 16px; }
+		.modal__close { top: 8px; margin: 8px 8px -56px 0; width: 44px; height: 44px; }
+	}
+	/* Short phones: the headline and stage padding are the only things left to
+	   give, so they shrink before the card does. */
+	@media (max-width: 880px) and (min-height: 600px) and (max-height: 720px) {
+		.deck--work .deck__stage { padding-top: calc(var(--nav-h) + 2px); gap: 8px; }
+		.work__lede { font-size: 30px; }
+		.deck--work .card { max-height: calc(100svh - var(--nav-h) - 78px); }
+		.card__head { font-size: 20px; }
+		.card__text { font-size: 14px; }
+		.card__body { padding: 14px 18px; }
+	}
+	/* Smallest phones with full browser chrome: a wider crop gives height back
+	   to the copy while the image still reads as an image. */
+	@media (max-width: 880px) and (min-height: 600px) and (max-height: 620px) {
+		.card__art { aspect-ratio: 2 / 1; }
+		.card__body { gap: 6px; padding: 12px 16px; }
+		.card__text { font-size: 13.5px; }
+		.card__meta { gap: 8px; }
+		.deck--work .card { max-height: calc(100svh - var(--nav-h) - 70px); }
+	}
+	@media (max-height: 760px) and (min-width: 881px) {
+		.card__art { max-height: 44svh; }
+		.card__text { font-size: 15px; }
+	}
+	@media (prefers-reduced-motion: reduce) {
+		:global(.rw__i) { transition: none; transform: none; }
+		[data-reveal="block"] { transition: none; }
 	}
 </style>

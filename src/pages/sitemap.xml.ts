@@ -6,15 +6,16 @@ const SITE = 'https://www.stevendesignco.com';
 
 // lastmod: bump the date for a page when its content changes.
 const pages: { path: string; priority: string; lastmod: string }[] = [
-	{ path: '/', priority: '1.0', lastmod: '2026-08-27' },
+	{ path: '/', priority: '1.0', lastmod: '2026-09-11' },
+	{ path: '/work', priority: '0.9', lastmod: '2026-09-11' },
 	{ path: '/design-systems', priority: '0.9', lastmod: '2026-08-27' },
 	{ path: '/work/merchant-flow-builder', priority: '0.9', lastmod: '2026-08-26' },
-	{ path: '/work/paypal', priority: '0.9', lastmod: '2026-08-26' },
+	{ path: '/work/paypal', priority: '0.9', lastmod: '2026-09-11' },
 	{ path: '/work/plate', priority: '0.8', lastmod: '2026-08-27' },
 	{ path: '/work/blackbird', priority: '0.8', lastmod: '2026-06-26' },
 	{ path: '/work/alt-meat', priority: '0.8', lastmod: '2026-08-27' },
 	{ path: '/work/meatingplace', priority: '0.8', lastmod: '2026-08-27' },
-	{ path: '/resume', priority: '0.7', lastmod: '2026-07-08' },
+	{ path: '/resume', priority: '0.7', lastmod: '2026-09-11' },
 ];
 
 export const GET: APIRoute = () => {

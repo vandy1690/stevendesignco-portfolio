@@ -100,10 +100,10 @@ function orbit(cx, cy) {
 function homeCard() {
 	const inner = `
   ${orbit(958, 318)}
-  <text x="90" y="250" fill="${LIME}" font-family="${FONT}" font-size="26" font-weight="700" letter-spacing="4">PRINCIPAL DESIGNER</text>
+  <text x="90" y="250" fill="${LIME}" font-family="${FONT}" font-size="26" font-weight="700" letter-spacing="4">PRODUCT DESIGN${SEP}DESIGN SYSTEMS${SEP}TOOLING</text>
   <text x="88" y="338" fill="${INK}" font-family="${FONT}" font-size="92" font-weight="700" letter-spacing="-2">Steven</text>
   <text x="88" y="432" fill="${INK}" font-family="${FONT}" font-size="92" font-weight="700" letter-spacing="-2">Vanden Heuvel</text>
-  <text x="90" y="566" fill="${MUTE}" font-family="${FONT}" font-size="28" font-weight="500">Payments${SEP}Design Systems${SEP}B2B Product</text>`;
+  <text x="90" y="566" fill="${MUTE}" font-family="${FONT}" font-size="24" font-weight="500">I make products feel considered, and I build the systems that keep them that way.</text>`;
 	return frame(inner);
 }
 
@@ -125,6 +125,16 @@ function caseCard({ eyebrow, title, footer }) {
 }
 
 const CASES = {
+	paypal: {
+		eyebrow: 'PRODUCT DESIGN · PAYPAL',
+		title: 'Becoming the Default at Checkout',
+		footer: 'One-click checkout · 20+ merchant proposals',
+	},
+	'merchant-flow-builder': {
+		eyebrow: 'SELF-INITIATED TOOLING · PAYPAL',
+		title: 'Merchant Flow Builder: Making the Brief the Spec',
+		footer: 'Figma plugin · Most of a day to 10 to 15 minutes',
+	},
 	plate: {
 		eyebrow: 'CREATIVE DIRECTOR · MTG MEDIA GROUP',
 		title: 'Plate: Repositioning a Print Brand as a Digital Platform',

@@ -1,0 +1,105 @@
+---
+import Site from '../../layouts/Site.astro';
+
+// Everything, not only the four on the home page. The four carry the arguments;
+// these carry the rest of the record, plus the working artifacts.
+const featured = [
+	{ href: '/work/merchant-flow-builder', title: 'Merchant Flow Builder', meta: 'PayPal · Self-initiated tooling', note: 'A Figma plugin and brief form that cut merchant flow setup from most of a day to 10 to 15 minutes across the 38-merchant program.' },
+	{ href: '/work/paypal', title: 'Becoming the Default at Checkout', meta: 'PayPal · One-click checkout', note: '20+ merchant proposal packages on weekly sprints, and the consumer-side checkout dead end mapped for senior leadership.' },
+	{ href: '/work/plate', title: 'Plate', meta: 'MTG Media Group · Responsive web, design system', note: 'A complete new design, workshop to launch. 2017 Jesse H. Neal Award for Best Website.' },
+	{ href: '/work/meatingplace', title: 'Meatingplace', meta: 'MTG Media Group · Responsive rebuild', note: 'The flagship daily news site, redesigned in Figma on a library of about 600 component variants. Ready to launch when the company was acquired.' },
+];
+const more = [
+	{ href: '/work/alt-meat', title: 'Alt-Meat', meta: 'MTG Media Group · Zero to one', note: 'Brand identity, print magazine, responsive site, and newsletters launched from nothing. 22,000 registered users, then the segment cooled.' },
+	{ href: '/work/blackbird', title: 'Project Blackbird', meta: 'MTG Media Group · Long-form editorial', note: 'An oral history microsite under the Plate brand: a dozen video interviews, original photography, commissioned illustration. Grand Neal finalist, top 4 nationally.' },
+];
+const labs = [
+	{ href: '/design-systems', title: 'Design systems', note: 'The practice behind the case studies, with every working artifact linked.' },
+	{ href: '/labs/plate/', title: 'Plate Pattern Lab', note: 'The original atomic design library, still running.' },
+	{ href: '/labs/altmeat/', title: 'Alt-Meat Pattern Lab', note: 'Same structure, its own palette and type.' },
+	{ href: '/labs/plate-storybook/', title: 'Plate Storybook', note: 'The 2026 conversion, built in Cursor.' },
+	{ href: '/labs/altmeat-storybook/', title: 'Alt-Meat Storybook', note: 'The 2026 conversion, built in Cursor.' },
+];
+---
+
+<Site
+	title="Work · Steven Vanden Heuvel"
+	description="Every case study and working artifact: PayPal checkout and tooling, Plate, Meatingplace, Alt-Meat, Project Blackbird, and the Pattern Lab and Storybook labs."
+	image="/og/work.png"
+>
+	<section class="wk-hero">
+		<div class="section__inner">
+			<p class="eyebrow">Work</p>
+			<h1 class="wk-title display">All of it.</h1>
+			<p class="wk-lede">Four case studies carry the home page. The rest of the record is here, with the libraries you can open.</p>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="section__inner">
+			<p class="eyebrow">Case studies</p>
+			<ul class="wk-list">
+				{[...featured, ...more].map((w) => (
+					<li>
+						<a class="wk-row" href={w.href}>
+							<span class="wk-row__meta">{w.meta}</span>
+							<span class="wk-row__title display">{w.title}</span>
+							<span class="wk-row__note">{w.note}</span>
+							<span class="wk-row__cta">Read <span class="arrow">→</span></span>
+						</a>
+					</li>
+				))}
+			</ul>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="section__inner">
+			<p class="eyebrow">Labs and libraries</p>
+			<ul class="wk-list wk-list--labs">
+				{labs.map((w) => (
+					<li>
+						<a class="wk-row" href={w.href} target={w.href.startsWith('/labs') ? '_blank' : undefined} rel={w.href.startsWith('/labs') ? 'noopener' : undefined}>
+							<span class="wk-row__title display">{w.title}</span>
+							<span class="wk-row__note">{w.note}</span>
+							<span class="wk-row__cta">Open <span class="arrow">→</span></span>
+						</a>
+					</li>
+				))}
+			</ul>
+			<p class="wk-note">PayPal work is proprietary. Flows are shown generically and the plugin interface is not reproduced. The Meatingplace Figma library is password protected; ask and I will send it.</p>
+		</div>
+	</section>
+</Site>
+
+<style>
+	.wk-hero { max-width: var(--max); margin: 0 auto; padding: var(--space-3xl) var(--gutter) var(--space-xl); }
+	.wk-title { font-size: clamp(48px, 8vw, 96px); margin: 0 0 var(--space-md); }
+	.wk-lede { font-size: var(--text-deck); max-width: 48ch; margin: 0; color: var(--text); text-wrap: pretty; }
+	.wk-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+	.wk-row {
+		display: grid;
+		grid-template-columns: 240px minmax(0, 1fr) auto;
+		grid-template-areas: "meta title cta" "meta note cta";
+		gap: 6px var(--space-xl);
+		align-items: baseline;
+		padding: var(--space-lg) 0;
+		border-bottom: 1px solid var(--rule);
+		color: var(--text);
+		transition: color 0.14s ease;
+	}
+	.wk-list--labs .wk-row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "title cta" "note cta"; }
+	.wk-row:hover { color: var(--accent); }
+	.wk-row:hover .arrow { transform: translateX(6px); }
+	.wk-row__meta { grid-area: meta; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-mute); font-weight: 600; }
+	.wk-row__title { grid-area: title; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.05; }
+	.wk-row__note { grid-area: note; font-size: 15px; color: var(--text); line-height: 1.5; max-width: 60ch; text-wrap: pretty; }
+	.wk-row:hover .wk-row__note { color: var(--text); }
+	.wk-row__cta { grid-area: cta; align-self: center; font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+	.arrow { display: inline-block; transition: transform 0.22s ease; }
+	.wk-note { margin: var(--space-xl) 0 0; padding: 0; border: 0; font-family: var(--font-body); font-weight: 400; font-size: 14px; line-height: 1.6; letter-spacing: 0.04em; color: var(--text-mute); max-width: 64ch; }
+	@media (max-width: 720px) {
+		.wk-row, .wk-list--labs .wk-row { grid-template-columns: 1fr; grid-template-areas: "meta" "title" "note" "cta"; gap: 6px; }
+		.wk-row__cta { margin-top: 6px; }
+	}
+</style>
