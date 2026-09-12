@@ -118,9 +118,9 @@ import PayPalHero from '../../components/animated/PayPalHero';
 	.cs-hero__lede { font-size: var(--text-deck); color: var(--text); line-height: 1.5; max-width: 56ch; margin-bottom: var(--space-2xl); font-weight: 500; }
 	.cs-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); margin: 0; padding: var(--space-lg) 0 0; border-top: 1px solid var(--rule); }
 	.cs-meta div { margin: 0; }
-	.cs-meta dt { font-size: var(--text-label); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); font-weight: 600; margin-bottom: var(--space-xs); }
+	.cs-meta dt { font-size: var(--text-label); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); font-weight: 800; margin-bottom: var(--space-xs); }
 	.cs-meta dd { margin: 0; color: var(--text); font-size: var(--text-body); font-weight: 500; }
-	.cs-note { margin: var(--space-lg) 0 0; padding: var(--space-md); border-left: 2px solid var(--accent); font-size: 14px; color: var(--text-mute); max-width: 64ch; }
+	.cs-note { margin: var(--space-lg) 0 0; padding: 0; border: 0; font-family: var(--font-display); font-weight: 400; font-style: normal; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; font-size: clamp(20px, 2vw, 28px); line-height: 1.4; color: var(--text); max-width: 64ch; }
 
 	.cs-orbit { display: grid; gap: var(--space-md); }
 	.cs-orbit__art { margin-top: var(--space-md); }
@@ -156,7 +156,9 @@ import PayPalHero from '../../components/animated/PayPalHero';
 	}
 
 	@media (max-width: 700px) {
-		.cs-meta { grid-template-columns: 1fr 1fr; }
+		.cs-meta { grid-template-columns: 1fr; gap: var(--space-lg); }
+		.cs-meta dt { font-size: 13px; letter-spacing: 0.1em; color: var(--text); margin-bottom: 2px; }
+		.cs-meta dd { font-size: 17px; }
 		.cs-stats { grid-template-columns: 1fr; }
 	}
 </style>

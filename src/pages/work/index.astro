@@ -96,7 +96,7 @@ const labs = [
 	.wk-row:hover .wk-row__note { color: var(--text); }
 	.wk-row__cta { grid-area: cta; align-self: center; font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
 	.arrow { display: inline-block; transition: transform 0.22s ease; }
-	.wk-note { margin: var(--space-xl) 0 0; padding: var(--space-md); border-left: 2px solid var(--accent); font-size: 14px; color: var(--text-mute); max-width: 64ch; }
+	.wk-note { margin: var(--space-xl) 0 0; padding: 0; border: 0; font-family: var(--font-display); font-weight: 400; font-style: normal; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; font-size: clamp(20px, 2vw, 28px); line-height: 1.4; color: var(--text); max-width: 64ch; }
 	@media (max-width: 720px) {
 		.wk-row, .wk-list--labs .wk-row { grid-template-columns: 1fr; grid-template-areas: "meta" "title" "note" "cta"; gap: 6px; }
 		.wk-row__cta { margin-top: 6px; }

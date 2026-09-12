@@ -19,6 +19,17 @@ const cases = [
 		objective: 'Faster merchant flow setup',
 	},
 	{
+		href: '/design-systems',
+		art: 'image',
+		image: '/images/case-studies/design-systems/pattern-lab.webp',
+		anchor: 'design-systems',
+		word: 'Systems',
+		head: 'One library, seven brands.',
+		text: 'Two Pattern Labs, two Storybook builds, and a Figma library of about 600 component variants, all still browsable.',
+		product: 'Design systems, MTG Media Group and PayPal',
+		objective: 'Keep the quality up after the first version ships',
+	},
+	{
 		href: '/work/paypal',
 		art: 'checkout',
 		image: null,
@@ -31,7 +42,7 @@ const cases = [
 	{
 		href: '/work/plate',
 		art: 'image',
-		image: '/images/case-studies/plate/plate-hero-light.png',
+		image: '/images/case-studies/plate/plate-scene.webp',
 		word: 'Plate',
 		head: 'Two print brands, rebuilt as products.',
 		text: 'Plate, workshop to launch, won the 2017 Jesse H. Neal Award for Best Website. Meatingplace was ready to launch when the company sold.',
@@ -94,6 +105,7 @@ const REPEAT = 6;
 
 	<section id="work" class="deck deck--work" data-mode="flip" aria-labelledby="work-title" style={`--n: ${cases.length}`}>
 		<div class="deck__track">
+			{cases.map((c, i) => c.anchor && <span class="deck__anchor" id={c.anchor} style={`--j: ${i}`} aria-hidden="true"></span>)}
 			<div class="deck__stage">
 				<div class="deck__marquee" aria-hidden="true">
 					{cases.map((c, i) => (
@@ -135,25 +147,7 @@ const REPEAT = 6;
 		</div>
 	</section>
 
-	<section id="design-systems" class="solo" aria-labelledby="ds-title">
-		<h2 id="ds-title" class="solo__label eyebrow" data-reveal="block">Design systems</h2>
-		<a class="card card--static" href="/design-systems" data-case aria-label="Design systems. See the practice." data-reveal="block">
-			<div class="card__art card__art--image">
-				<img src="/images/case-studies/design-systems/pattern-tablet.jpg" alt="" loading="lazy" />
-			</div>
-			<div class="card__body">
-				<h3 class="card__head">Systems is depth here, not the headline.</h3>
-				<p class="card__text">Two Pattern Labs, two Storybook builds, and a Figma library of about 600 component variants, all still browsable.</p>
-				<dl class="card__meta">
-					<div><dt>Product</dt><dd>Seven B2B brands, six systems, MTG Media Group</dd></div>
-					<div><dt>Objective</dt><dd>Keep the quality up after the first version ships</dd></div>
-				</dl>
-				<span class="card__cta">See the practice <span class="arrow">→</span></span>
-			</div>
-		</a>
-	</section>
-
-	<section id="recommendations" class="deck deck--quotes" data-mode="swing" data-per="1" aria-labelledby="rec-title" style={`--n: ${quotes.length}; --per: 1`}>
+	<section id="recommendations" class="deck deck--quotes" data-mode="swing" data-per="1.4" aria-labelledby="rec-title" style={`--n: ${quotes.length}; --per: 1.4`}>
 		<div class="deck__track">
 			<div class="deck__stage">
 				<h2 id="rec-title" class="deck__label eyebrow">Recommendations</h2>
@@ -299,13 +293,12 @@ const REPEAT = 6;
 	}
 
 	// Decks. The track is (n + 1) screens tall and the stage sticks for n of them.
-	// Scroll position inside the track picks the active card, and the last part of
-	// each screen is the transition to the next one. Two modes:
-	//   flip  (work): the active card turns away on the X axis, top edge receding,
-	//         while the next one rolls up into place from behind it.
-	//   swing (recommendations): the active card swings out to the left and dims
-	//         while the next one swings in from the right, the reference site's move.
-	// Phones and reduced motion get a plain list.
+	// Scroll position inside the track sets a target for every card: a signed
+	// offset, 0 at center, +1 waiting, -1 gone. The flip deck (work) renders that
+	// target directly. The swing deck (recommendations) lets each card drift
+	// toward its target and settle, so it floats in from the bottom right and
+	// floats out to the top left instead of tracking the scroll one to one.
+	// Reduced motion gets a plain list.
 	const smooth = (x: number) => x * x * (3 - 2 * x);
 	const clamp = (x: number, a: number, b: number) => Math.min(b, Math.max(a, x));
 	document.querySelectorAll<HTMLElement>('.deck').forEach((deck) => {
@@ -314,195 +307,90 @@ const REPEAT = 6;
 		const lines = Array.from(deck.querySelectorAll<HTMLElement>('.deck__marquee-line'));
 		const mode = deck.dataset.mode || 'flip';
 		const per = parseFloat(deck.dataset.per || '1') || 1;
+		// Share of the remaining distance a card closes each frame. 1 tracks the
+		// scroll exactly; smaller values make the card drift and settle.
+		const ease = mode === 'swing' ? 0.065 : 1;
 		const n = cards.length;
 		if (!track || !n) return;
-		let ticking = false;
-		const update = () => {
-			ticking = false;
-			if (reduce) {
-				cards.forEach((c) => { c.style.transform = ''; c.style.zIndex = ''; c.style.visibility = ''; c.style.setProperty('--dim', '0'); });
-				return;
-			}
+		const target = cards.map((_, j) => (j === 0 ? 0 : 1));
+		const current = target.slice();
+		let raf = 0;
+		let inView = false;
+
+		const measure = () => {
 			const vh = window.innerHeight;
 			const t = clamp(-track.getBoundingClientRect().top / (vh * per), 0, n - 0.0001);
 			const i = Math.floor(t);
 			const lp = t - i;
-			let k = 0; // transition progress for the flip deck and the marquee
+			let kOut = 0;
+			let kIn = 0;
 			if (mode === 'swing') {
-				// Timeline inside one card's span: hold at center, leave to the top
-				// left, a beat with only the line behind showing, then the next card
-				// arrives from the bottom right. 95% size at both ends, 100% at center.
-				const hold = 0.2, outEnd = 0.46, inStart = 0.72;
-				const kOut = i < n - 1 ? smooth(clamp((lp - hold) / (outEnd - hold), 0, 1)) : 0;
-				const kIn = smooth(clamp((lp - inStart) / (1 - inStart), 0, 1));
-				k = kIn;
-				cards.forEach((card, j) => {
-					let o = 1;   // 0 = centered, 1 = fully off
-					let dir = 1; // -1 = top left, +1 = bottom right
-					if (j < i) { o = 1; dir = -1; }
-					else if (j === i) { o = kOut; dir = -1; }
-					else if (j === i + 1) { o = 1 - kIn; dir = 1; }
-					const sc = 1 - 0.05 * o;
-					card.style.transform = `translate3d(${(dir * o * 62).toFixed(2)}vw, ${(dir * o * 54).toFixed(2)}vh, 0) rotateY(${(dir * o * 42).toFixed(2)}deg) rotateX(${(-dir * o * 26).toFixed(2)}deg) scale(${sc.toFixed(3)})`;
-					card.style.setProperty('--dim', Math.min(1, o * 1.5).toFixed(3));
-					card.style.visibility = o >= 0.999 ? 'hidden' : 'visible';
-					card.style.zIndex = String(Math.round(100 - o * 100));
-				});
+				// Hold at center, leave, a beat with only the line showing, then the next arrives.
+				const hold = 0.18, outEnd = 0.44, inStart = 0.6;
+				kOut = i < n - 1 ? smooth(clamp((lp - hold) / (outEnd - hold), 0, 1)) : 0;
+				kIn = smooth(clamp((lp - inStart) / (1 - inStart), 0, 1));
 			} else {
 				const hold = 0.55;
-				k = i < n - 1 ? smooth(clamp((lp - hold) / (1 - hold), 0, 1)) : 0;
-				cards.forEach((card, j) => {
-					let o = 0;
-					if (j < i) o = -1;
-					else if (j === i) o = -k;
-					else if (j === i + 1) o = 1 - k;
-					else o = 1;
-					const a = Math.abs(o);
-					card.style.transform = `rotateX(${(-o * 180).toFixed(2)}deg)`;
-					card.style.setProperty('--dim', '0');
-					card.style.visibility = a >= 0.999 ? 'hidden' : 'visible';
-					card.style.zIndex = String(Math.round(100 - a * 100));
-				});
+				kOut = i < n - 1 ? smooth(clamp((lp - hold) / (1 - hold), 0, 1)) : 0;
+				kIn = kOut;
 			}
-			const active = k > 0.5 ? i + 1 : i;
+			for (let j = 0; j < n; j++) {
+				if (j < i) target[j] = -1;
+				else if (j === i) target[j] = -kOut;
+				else if (j === i + 1) target[j] = 1 - kIn;
+				else target[j] = 1;
+			}
+			const active = kIn > 0.5 ? i + 1 : i;
 			lines.forEach((line, j) => line.classList.toggle('is-active', j === active));
 		};
-		const request = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
-		window.addEventListener('scroll', request, { passive: true });
-		window.addEventListener('resize', request);
-		update();
-	});
 
-	// Case study modal. A card click flips the case study in over the blurred page,
-	// the way the reference site opens a project, and never leaves the page. The
-	// content is the existing case study page, fetched and dropped into the card, so
-	// the standalone URLs keep working for links sent by email. The URL updates so
-	// Back closes it.
-	const modal = document.getElementById('case-modal') as HTMLElement | null;
-	const modalBody = modal?.querySelector<HTMLElement>('.modal__body') || null;
-	const modalContent = modal?.querySelector<HTMLElement>('.modal__content') || null;
-	const modalClose = modal?.querySelector<HTMLButtonElement>('.modal__close') || null;
-	const loaded = new Map<string, string>();
-	let openUrl: string | null = null;
-	let lastFocus: HTMLElement | null = null;
-	let hideTimer = 0;
-
-	async function fetchCase(path: string): Promise<string> {
-		const cached = loaded.get(path);
-		if (cached) return cached;
-		const res = await fetch(path, { headers: { Accept: 'text/html' } });
-		if (!res.ok) throw new Error(String(res.status));
-		const doc = new DOMParser().parseFromString(await res.text(), 'text/html');
-		// Bring the page's own styles along. Production inlines them as <style>;
-		// the dev server serves them as style modules.
-		doc.querySelectorAll<HTMLStyleElement>('head style').forEach((st, idx) => {
-			const key = `${path}#${idx}`;
-			if (document.head.querySelector(`style[data-case-style="${CSS.escape(key)}"]`)) return;
-			const c = st.cloneNode(true) as HTMLStyleElement;
-			c.setAttribute('data-case-style', key);
-			document.head.appendChild(c);
-		});
-		doc.querySelectorAll<HTMLLinkElement>('head link[rel="stylesheet"]').forEach((ln) => {
-			const href = ln.getAttribute('href') || '';
-			if (!href || document.head.querySelector(`link[href="${CSS.escape(href)}"]`)) return;
-			document.head.appendChild(ln.cloneNode(true));
-		});
-		doc.querySelectorAll<HTMLScriptElement>('script[type="module"][src*="type=style"]').forEach((sc) => {
-			import(/* @vite-ignore */ sc.src).catch(() => {});
-		});
-		const main = doc.querySelector('main');
-		const html = main ? main.innerHTML : '<p>Could not load this case study.</p>';
-		loaded.set(path, html);
-		return html;
-	}
-
-	async function showCase(url: string) {
-		if (!modal || !modalContent) return;
-		const u = new URL(url, location.origin);
-		modalContent.innerHTML = '<p class="modal__loading">Loading</p>';
-		try {
-			modalContent.innerHTML = await fetchCase(u.pathname);
-		} catch {
-			modalContent.innerHTML = '<p class="modal__loading">Could not load this case study. <a href="' + u.pathname + '">Open it as a page.</a></p>';
-		}
-		modalContent.querySelectorAll('[data-animate]').forEach((el) => el.classList.add('is-visible'));
-		modalContent.querySelectorAll<HTMLElement>('.cs-back-top').forEach((el) => { el.hidden = true; });
-		const target = u.hash ? modalContent.querySelector<HTMLElement>(u.hash) : null;
-		requestAnimationFrame(() => {
-			if (target) target.scrollIntoView({ block: 'start' });
-			else modal.scrollTop = 0;
-		});
-	}
-
-	function openCase(url: string, trigger: HTMLElement | null, push = true) {
-		if (!modal || !modalBody) return;
-		window.clearTimeout(hideTimer);
-		lastFocus = trigger;
-		const wasOpen = openUrl !== null;
-		openUrl = url;
-		if (push) {
-			if (wasOpen) history.replaceState({ case: url }, '', url);
-			else history.pushState({ case: url }, '', url);
-		}
-		modal.hidden = false;
-		document.body.classList.add('modal-open');
-		lenis?.stop();
-		requestAnimationFrame(() => requestAnimationFrame(() => modal.classList.add('is-open')));
-		showCase(url).then(() => modalClose?.focus());
-	}
-
-	function closeCase() {
-		if (!modal || openUrl === null) return;
-		openUrl = null;
-		modal.classList.remove('is-open');
-		document.body.classList.remove('modal-open');
-		lenis?.start();
-		hideTimer = window.setTimeout(() => {
-			modal.hidden = true;
-			if (modalContent) modalContent.innerHTML = '';
-		}, 1600);
-		lastFocus?.focus();
-	}
-
-	if (modal) {
-		document.querySelectorAll<HTMLAnchorElement>('a[data-case]').forEach((a) => {
-			a.addEventListener('click', (e) => {
-				if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
-				e.preventDefault();
-				openCase(a.getAttribute('href') || '/', a);
+		const render = () => {
+			cards.forEach((card, j) => {
+				const s = current[j];
+				const a = Math.abs(s);
+				if (mode === 'swing') {
+					const sc = 1 - 0.05 * a;
+					card.style.transform = `translate3d(${(s * 58).toFixed(2)}vw, ${(s * 50).toFixed(2)}vh, 0) rotateY(${(s * 22).toFixed(2)}deg) rotateX(${(-s * 12).toFixed(2)}deg) rotateZ(${(s * 3).toFixed(2)}deg) scale(${sc.toFixed(3)})`;
+					card.style.opacity = (1 - smooth(clamp((a - 0.35) / 0.65, 0, 1))).toFixed(3);
+					card.style.setProperty('--dim', Math.min(1, a * 1.5).toFixed(3));
+				} else {
+					card.style.transform = `rotateX(${(-s * 180).toFixed(2)}deg)`;
+					card.style.opacity = '';
+					card.style.setProperty('--dim', '0');
+				}
+				card.style.visibility = a >= 0.995 ? 'hidden' : 'visible';
+				card.style.zIndex = String(Math.round(100 - a * 100));
 			});
-		});
-		modalClose?.addEventListener('click', () => {
-			if (history.state && history.state.case) history.back();
-			else closeCase();
-		});
-		modal.addEventListener('click', (e) => {
-			if (e.target === modal) modalClose?.click();
-		});
-		window.addEventListener('keydown', (e) => {
-			if (e.key === 'Escape' && openUrl !== null) modalClose?.click();
-		});
-		// Links inside a loaded case study: other case studies open in place, the
-		// "all case studies" links close, everything else behaves normally.
-		modalContent?.addEventListener('click', (e) => {
-			const a = (e.target as HTMLElement).closest('a');
-			if (!a) return;
-			const href = a.getAttribute('href') || '';
-			if (a.target === '_blank') return;
-			if (href.startsWith('/work/') || href.startsWith('/design-systems')) {
-				e.preventDefault();
-				openCase(href, lastFocus);
-			} else if (href.startsWith('/#') || href === '/') {
-				e.preventDefault();
-				modalClose?.click();
+		};
+
+		const tick = () => {
+			raf = 0;
+			let moving = false;
+			for (let j = 0; j < n; j++) {
+				const d = target[j] - current[j];
+				if (Math.abs(d) > 0.0008) { current[j] += d * ease; moving = true; }
+				else current[j] = target[j];
 			}
+			render();
+			if (moving && inView) raf = requestAnimationFrame(tick);
+		};
+		const kick = () => { if (!raf) raf = requestAnimationFrame(tick); };
+
+		if (reduce) {
+			cards.forEach((c) => { c.style.transform = ''; c.style.zIndex = ''; c.style.visibility = ''; c.style.opacity = ''; c.style.setProperty('--dim', '0'); });
+			return;
+		}
+		const io = new IntersectionObserver(([e]) => {
+			inView = e.isIntersecting;
+			if (inView) { measure(); kick(); }
 		});
-		window.addEventListener('popstate', () => {
-			const st = history.state;
-			if (st && st.case) openCase(st.case, lastFocus, false);
-			else if (openUrl !== null) closeCase();
-		});
-	}
+		io.observe(track);
+		window.addEventListener('scroll', () => { measure(); kick(); }, { passive: true });
+		window.addEventListener('resize', () => { measure(); kick(); });
+		measure();
+		for (let j = 0; j < n; j++) current[j] = target[j];
+		render();
+	});
 
 	// Marquee behind the work cards: the active case study's short name, repeated,
 	// drifting left, reversing with scroll direction and speeding up while scrolling.
@@ -550,9 +438,9 @@ const REPEAT = 6;
 	.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 	/* One measure for everything on this page: the card width. */
-	:root { --content: min(800px, 100vw - 48px); --shadow-card: 0 1px 2px rgba(45, 52, 54, 0.05), 0 12px 32px -12px rgba(45, 52, 54, 0.22); }
+	:root { --content: min(800px, 100vw - 48px); --shadow-card: 0 1px 2px rgba(45, 52, 54, 0.08), 0 6px 12px -4px rgba(45, 52, 54, 0.14), 0 18px 32px -12px rgba(45, 52, 54, 0.24), 0 36px 64px -24px rgba(45, 52, 54, 0.32); --shadow-card-hover: 0 1px 2px rgba(45, 52, 54, 0.08), 0 10px 18px -6px rgba(45, 52, 54, 0.18), 0 26px 44px -14px rgba(45, 52, 54, 0.3), 0 48px 80px -28px rgba(45, 52, 54, 0.38); }
 	.wrap { width: var(--content); margin: 0 auto; }
-	#work, #design-systems, #recommendations, #how, #about, #contact { scroll-margin-top: var(--nav-h); }
+	#work, #recommendations, #how, #about, #contact { scroll-margin-top: var(--nav-h); }
 
 	/* ---------- Reveal ---------- */
 	:global(.rw) { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.1em; margin-bottom: -0.1em; }
@@ -594,7 +482,7 @@ const REPEAT = 6;
 		overflow: hidden;
 		transition: box-shadow 0.25s ease, transform 0.25s ease;
 	}
-	.card:hover, .card:focus-visible { color: var(--text); box-shadow: 0 1px 2px rgba(45, 52, 54, 0.06), 0 18px 44px -14px rgba(45, 52, 54, 0.3); }
+	.card:hover, .card:focus-visible { color: var(--text); box-shadow: var(--shadow-card-hover); }
 	.card:hover .arrow, .card:focus-visible .arrow { transform: translateX(6px); }
 	/* Full-bleed media. Images cover; the drawn stand-ins sit on paper until the images arrive. */
 	.card__art { position: relative; width: 100%; aspect-ratio: 16 / 9; max-height: 50svh; background: var(--bg); overflow: hidden; display: flex; align-items: center; justify-content: center; }
@@ -615,14 +503,16 @@ const REPEAT = 6;
 	.card__text { grid-area: text; margin: 0 0 6px; font-size: 16px; line-height: 1.5; color: var(--text); max-width: 60ch; text-wrap: pretty; }
 	.card__meta { grid-area: meta; display: flex; flex-wrap: wrap; gap: 4px var(--space-lg); margin: 0; }
 	.card__meta div { display: flex; gap: 8px; align-items: baseline; min-width: 0; }
-	.card__meta dt { font-size: var(--text-label); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); font-weight: 700; }
+	.card__meta dt { font-size: var(--text-label); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); font-weight: 800; }
 	.card__meta dd { margin: 0; font-size: 13px; color: var(--text); font-weight: 500; }
 	.card__cta { grid-area: cta; font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
 	.arrow { display: inline-block; transition: transform 0.22s ease; }
 
 	/* ---------- Flip deck ---------- */
 	.deck { position: relative; }
-	.deck__track { height: calc(var(--n) * var(--per, 1) * 100svh + 100svh); }
+	.deck__track { position: relative; height: calc(var(--n) * var(--per, 1) * 100svh + 100svh); }
+	/* One per card, at the scroll offset where that card sits centered. */
+	.deck__anchor { position: absolute; left: 0; top: calc(var(--j) * var(--per, 1) * 100svh); width: 1px; height: 1px; scroll-margin-top: 0; }
 	.deck__stage {
 		position: sticky;
 		top: 0;
@@ -636,13 +526,13 @@ const REPEAT = 6;
 		perspective: 1800px;
 		overflow: hidden;
 	}
-	.deck__label, .solo__label { position: relative; z-index: 3; margin: 0; font-family: var(--font-body); font-size: var(--text-label); font-weight: 700; letter-spacing: 0.16em; line-height: 1.2; }
+	.deck__label { position: relative; z-index: 3; margin: 0; font-family: var(--font-body); font-size: var(--text-label); font-weight: 700; letter-spacing: 0.16em; line-height: 1.2; }
 	.deck__cards { list-style: none; margin: 0; padding: 0; display: grid; place-items: center; width: var(--content); }
 	.deck__card {
 		--dim: 0;
 		grid-area: 1 / 1;
 		transform-style: preserve-3d;
-		will-change: transform;
+		will-change: transform, opacity;
 	}
 	.deck--work .deck__card { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
 	.deck__dim { position: absolute; inset: 0; border-radius: inherit; background: #000; opacity: calc(var(--dim) * 0.5); pointer-events: none; }
@@ -685,10 +575,6 @@ const REPEAT = 6;
 	.deck__more { color: var(--text); font-weight: 600; display: inline-flex; align-items: center; gap: 8px; }
 	.deck__more:hover { color: var(--accent); }
 	.deck__more:hover .arrow { transform: translateX(6px); }
-
-	/* ---------- Single card section (design systems) ---------- */
-	.solo { display: flex; flex-direction: column; align-items: center; gap: 18px; padding: var(--space-4xl) 0 var(--space-3xl); }
-	.card--static { display: flex; }
 
 	/* ---------- Recommendation card ---------- */
 	.quote { margin: 0; padding: clamp(32px, 5vw, 56px); text-align: center; align-items: center; gap: var(--space-md); }
@@ -826,7 +712,11 @@ const REPEAT = 6;
 		.hero { padding-top: var(--space-2xl); padding-bottom: var(--space-3xl); }
 		.hero__claim { font-size: clamp(30px, 7.2vw, 44px); }
 		.card__body { grid-template-columns: 1fr; grid-template-areas: "head" "text" "meta" "cta"; padding: 20px; align-items: start; }
-		.card__meta { flex-direction: column; }
+		/* Labels read as subheads on phones: above the value, not beside it. */
+		.card__meta { flex-direction: column; gap: 12px; }
+		.card__meta div { flex-direction: column; gap: 2px; align-items: flex-start; }
+		.card__meta dt { font-size: 12px; letter-spacing: 0.1em; color: var(--text); }
+		.card__meta dd { font-size: 15px; }
 		.how__list li { grid-template-columns: 1fr; gap: 8px; }
 		.awards { flex-direction: column; align-items: flex-start; gap: 12px; }
 		.awards li + li::before, .awards__break { display: none; }
