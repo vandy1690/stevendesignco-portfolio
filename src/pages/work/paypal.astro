@@ -5,14 +5,15 @@ import PayPalHero from '../../components/animated/PayPalHero';
 
 <Site
 	title="PayPal: Becoming the Default at Checkout · Steven Vanden Heuvel"
-	description="On PayPal's Merchant Enablement team, I helped make PayPal more prominent and more consistent at checkout for top merchants, on weekly sprint cycles."
+	description="Merchant checkout proposals for the one-click program, 20+ of them on weekly sprints for top global merchants, and the consumer-side checkout dead end mapped for senior leadership."
+	image="/og/paypal.png"
 >
 	<section class="cs-hero">
 		<div class="cs-hero__inner">
 			<a class="cs-back-top" href="/#work">← Case studies</a>
 			<p class="eyebrow">Case study</p>
 			<h1 class="cs-hero__title display">PayPal: Becoming the Default at Checkout</h1>
-			<p class="cs-hero__lede">We needed to feature PayPal as the option the consumer wanted to use, and convert the transaction for the merchant.</p>
+			<p class="cs-hero__lede">PayPal is competing with Apple Pay and Google Pay to be the default payment method at mobile checkout. The way to win it is one-click checkout: save a customer's payment details securely so buying takes one tap instead of filling a form. My work was showing enterprise merchants what that looks like inside their own checkout, in their own brand, mostly on mobile.</p>
 			<dl class="cs-meta">
 				<div><dt>Role</dt><dd>Principal Designer · PayPal</dd></div>
 				<div><dt>Team</dt><dd>Merchant Enablement</dd></div>
@@ -36,7 +37,7 @@ import PayPalHero from '../../components/animated/PayPalHero';
 			<div class="cs-block">
 				<p class="eyebrow">What was unclear</p>
 				<p class="cs-block__lede">PayPal showed up differently at every checkout.</p>
-				<p>Each merchant integration carried its own patterns. Across vaulting, express, and standard flows, the experience changed from one surface to the next: app switch versus web, first time versus returning. That inconsistency worked against PayPal's top priority, greater checkout prominence to grow TPV.</p>
+				<p>Each merchant integration carried its own patterns. Across vaulting, express, and standard flows, the experience changed from one surface to the next: app switch versus web, first time versus returning. That inconsistency worked against the one-click program, where the whole point is that paying takes one tap in any merchant's checkout.</p>
 			</div>
 		</div>
 	</section>
@@ -53,6 +54,17 @@ import PayPalHero from '../../components/animated/PayPalHero';
 	</section>
 
 	<section class="section">
+		<div class="section__inner cs-body" data-animate="fade">
+			<div class="cs-block">
+				<p class="eyebrow">The constraint</p>
+				<p class="cs-block__lede">Three design libraries were live at once, and checkout was locked to the oldest.</p>
+				<p>Versions 4.0, 5.1 and 5.2, and a 6.0 target ran side by side, with Oslo incoming, and checkout stayed on the oldest because engineering could not move. Part of the job was telling product managers which blue-sky work was presentable now and which was years from shipping. Every proposal came out of that constrained library.</p>
+				<p>A second thread ran alongside the top accounts: a modular checkout flow library for merchants outside the top 100, covering grocery, retail, subscriptions, and restaurants, mostly mobile, from product selection through payment confirmation. Those generic flows are the ones that can be shown.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--alt">
 		<div class="section__inner cs-body" data-animate="fade">
 			<div class="cs-block">
 				<p class="eyebrow">Who I influenced</p>
@@ -80,7 +92,7 @@ import PayPalHero from '../../components/animated/PayPalHero';
 			<div class="cs-block">
 				<p class="eyebrow">What changed</p>
 				<p class="cs-block__lede">Twenty-plus packages in my first six months, and the tooling to hold the pace.</p>
-				<p>The work ties back to the TPV priority: make PayPal more prominent and more consistent at the point of payment.</p>
+				<p>The product manager on that work credited the team's merchant-specific proposals and demos with moving several top accounts to contract, integration, or launch on new PayPal checkout enhancements. Wayfair selected PayPal to test upstream presentment on product and cart pages for a new guest checkout. I never saw conversion data. It was proposal work.</p>
 				<p>Holding a weekly cadence at that volume is its own design problem. The tooling was not part of my assignment, and I built it because the handoff into each package was the part that kept breaking. That story is its own case study: <a href="/work/merchant-flow-builder">Merchant Flow Builder</a>.</p>
 			</div>
 			<ul class="cs-stats">
