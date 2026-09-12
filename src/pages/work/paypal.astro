@@ -18,7 +18,7 @@ import PayPalHero from '../../components/animated/PayPalHero';
 				<div><dt>Role</dt><dd>Principal Designer · PayPal</dd></div>
 				<div><dt>Team</dt><dd>Merchant Enablement</dd></div>
 			</dl>
-			<p class="cs-note">This work is proprietary to PayPal. Flows are shown generically and in person only, so they are not reproduced here.</p>
+			<p class="cs-note">This work is proprietary to PayPal. Flows are shown generically, so they are not reproduced here.</p>
 		</div>
 	</section>
 
@@ -120,18 +120,22 @@ import PayPalHero from '../../components/animated/PayPalHero';
 	.cs-meta div { margin: 0; }
 	.cs-meta dt { font-size: var(--text-label); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); font-weight: 800; margin-bottom: var(--space-xs); }
 	.cs-meta dd { margin: 0; color: var(--text); font-size: var(--text-body); font-weight: 500; }
-	.cs-note { margin: var(--space-lg) 0 0; padding: 0; border: 0; font-family: var(--font-display); font-weight: 400; font-style: normal; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; font-size: clamp(20px, 2vw, 28px); line-height: 1.4; color: var(--text); max-width: 64ch; }
+	.cs-note { margin: var(--space-md) 0 0; padding: 0; border: 0; font-family: var(--font-body); font-weight: 400; font-size: 14px; line-height: 1.6; letter-spacing: 0.04em; color: var(--text-mute); max-width: 64ch; }
 
 	.cs-orbit { display: grid; gap: var(--space-md); }
 	.cs-orbit__art { margin-top: var(--space-md); }
 	.cs-h2 { max-width: 22ch; margin: 0 0 var(--space-sm); }
 
-	.cs-body { display: grid; gap: var(--space-2xl); max-width: var(--max-narrow); }
+	/* One organism grouping: label, subhead and body sit tight together, and the
+	   space between groupings is 25 percent narrower than it was. */
+	.section { padding-top: var(--space-xl); padding-bottom: var(--space-xl); }
+
+	.cs-body { display: grid; gap: var(--space-xl); max-width: var(--max-narrow); }
 	/* Hierarchy: eyebrow + subhead group as the headline, body is support. */
-	.cs-block .eyebrow { margin-bottom: var(--space-xs); }
+	.cs-block .eyebrow { margin-bottom: 6px; }
 	/* case-study eyebrows: nickel, normal weight, .03em, black */
 	.eyebrow { font-family: var(--font-display); font-weight: 400; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; letter-spacing: 0.03em; }
-	.cs-block__lede { color: var(--text); font-size: clamp(24px, 2.5vw, 32px); font-weight: 600; margin: 0 0 var(--space-lg); letter-spacing: -0.015em; line-height: 1.25; }
+	.cs-block__lede { color: var(--text); font-size: clamp(24px, 2.5vw, 32px); font-weight: 600; margin: 0 0 12px; letter-spacing: -0.015em; line-height: 1.25; }
 	.cs-block p { color: #5A6565; margin: 0; font-size: 16px; line-height: 1.65; }
 	.cs-block p + p { margin-top: var(--space-sm); }
 	.cs-block .cs-caption { margin-top: var(--space-md); color: var(--text-mute); font-size: 14px; letter-spacing: 0.04em; }

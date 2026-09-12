@@ -3,6 +3,7 @@ import Site from '../layouts/Site.astro';
 import PluginPipeline from '../components/art/PluginPipeline.astro';
 import OneClickCheckout from '../components/art/OneClickCheckout.astro';
 import JourneyMap from '../components/art/JourneyMap.astro';
+import RecommendationStack from '../components/animated/RecommendationStack';
 
 // Four case studies, one argument each. Order is a data decision: swap entries here.
 // `image` is the full-bleed card image (16:9, 1600 by 900 or larger, object-fit cover).
@@ -147,27 +148,13 @@ const REPEAT = 6;
 		</div>
 	</section>
 
-	<section id="recommendations" class="deck deck--quotes" data-mode="swing" data-per="1.4" aria-labelledby="rec-title" style={`--n: ${quotes.length}; --per: 1.4`}>
-		<div class="deck__track">
-			<div class="deck__stage">
-				<h2 id="rec-title" class="deck__label eyebrow">Recommendations</h2>
-				<div class="deck__bigword display" aria-hidden="true">On the record.</div>
-				<ol class="deck__cards">
-					{quotes.map((q) => (
-						<li class="deck__card">
-							<figure class="card quote">
-								<svg class="quote__mark" viewBox="0 0 37 32" aria-hidden="true"><path d="M16.5 16H8.5c0 4.4 3.6 8 8 8v8C7.7 32 .5 24.8.5 16V0h16v16Zm20 0h-8c0 4.4 3.6 8 8 8v8c-8.8 0-16-7.2-16-16V0h16v16Z" fill="currentColor"/></svg>
-								<blockquote class="quote__text"><p>{q.text}</p></blockquote>
-								<figcaption class="quote__by">
-									<span class="quote__title">{q.title}</span>
-									{q.href && <a class="quote__link" href={q.href} target="_blank" rel="noopener">Read on LinkedIn ↗</a>}
-								</figcaption>
-								<span class="deck__dim" aria-hidden="true"></span>
-							</figure>
-						</li>
-					))}
-				</ol>
-			</div>
+	<section id="recommendations" class="section section--recs" aria-labelledby="rec-title">
+		<div class="wrap recs__head">
+			<p class="eyebrow" data-reveal="block">Recommendations</p>
+			<h2 id="rec-title" class="recs__lede display" data-reveal="words">On the record.</h2>
+		</div>
+		<div class="recs__stack" data-reveal="block">
+			<RecommendationStack client:visible items={quotes.map((q, i) => ({ id: i, ...q }))} />
 		</div>
 	</section>
 
@@ -392,6 +379,135 @@ const REPEAT = 6;
 		render();
 	});
 
+	// Case study modal. A card click flips the case study in over the blurred page
+	// and never leaves it. The content is the existing case study page, fetched and
+	// dropped into the card, so the standalone URLs keep working for links sent by
+	// email. The URL updates while it is open, so Back closes it.
+	const modal = document.getElementById('case-modal') as HTMLElement | null;
+	const modalContent = modal?.querySelector<HTMLElement>('.modal__content') || null;
+	const modalClose = modal?.querySelector<HTMLButtonElement>('.modal__close') || null;
+	const loaded = new Map<string, string>();
+	let openUrl: string | null = null;
+	let lastFocus: HTMLElement | null = null;
+	let hideTimer = 0;
+
+	async function fetchCase(path: string): Promise<string> {
+		const cached = loaded.get(path);
+		if (cached) return cached;
+		const res = await fetch(path, { headers: { Accept: 'text/html' } });
+		if (!res.ok) throw new Error(String(res.status));
+		const doc = new DOMParser().parseFromString(await res.text(), 'text/html');
+		// Bring the page's own styles along. Production inlines them as <style>;
+		// the dev server serves them as style modules.
+		doc.querySelectorAll<HTMLStyleElement>('head style').forEach((st, idx) => {
+			const key = `${path}#${idx}`;
+			if (document.head.querySelector(`style[data-case-style="${CSS.escape(key)}"]`)) return;
+			const c = st.cloneNode(true) as HTMLStyleElement;
+			c.setAttribute('data-case-style', key);
+			document.head.appendChild(c);
+		});
+		doc.querySelectorAll<HTMLLinkElement>('head link[rel="stylesheet"]').forEach((ln) => {
+			const href = ln.getAttribute('href') || '';
+			if (!href || document.head.querySelector(`link[href="${CSS.escape(href)}"]`)) return;
+			document.head.appendChild(ln.cloneNode(true));
+		});
+		doc.querySelectorAll<HTMLScriptElement>('script[type="module"][src*="type=style"]').forEach((sc) => {
+			import(/* @vite-ignore */ sc.src).catch(() => {});
+		});
+		const main = doc.querySelector('main');
+		const html = main ? main.innerHTML : '<p>Could not load this case study.</p>';
+		loaded.set(path, html);
+		return html;
+	}
+
+	async function showCase(url: string) {
+		if (!modal || !modalContent) return;
+		const u = new URL(url, location.origin);
+		modalContent.innerHTML = '<p class="modal__loading">Loading</p>';
+		try {
+			modalContent.innerHTML = await fetchCase(u.pathname);
+		} catch {
+			modalContent.innerHTML = '<p class="modal__loading">Could not load this case study. <a href="' + u.pathname + '">Open it as a page.</a></p>';
+		}
+		modalContent.querySelectorAll('[data-animate]').forEach((el) => el.classList.add('is-visible'));
+		modalContent.querySelectorAll<HTMLElement>('.cs-back-top').forEach((el) => { el.hidden = true; });
+		const target = u.hash ? modalContent.querySelector<HTMLElement>(u.hash) : null;
+		requestAnimationFrame(() => {
+			if (target) target.scrollIntoView({ block: 'start' });
+			else modal.scrollTop = 0;
+		});
+	}
+
+	function openCase(url: string, trigger: HTMLElement | null, push = true) {
+		if (!modal) return;
+		window.clearTimeout(hideTimer);
+		lastFocus = trigger;
+		const wasOpen = openUrl !== null;
+		openUrl = url;
+		if (push) {
+			if (wasOpen) history.replaceState({ case: url }, '', url);
+			else history.pushState({ case: url }, '', url);
+		}
+		modal.hidden = false;
+		document.body.classList.add('modal-open');
+		lenis?.stop();
+		requestAnimationFrame(() => requestAnimationFrame(() => modal.classList.add('is-open')));
+		showCase(url).then(() => modalClose?.focus());
+	}
+
+	function closeCase() {
+		if (!modal || openUrl === null) return;
+		openUrl = null;
+		modal.classList.remove('is-open');
+		document.body.classList.remove('modal-open');
+		lenis?.start();
+		hideTimer = window.setTimeout(() => {
+			modal.hidden = true;
+			if (modalContent) modalContent.innerHTML = '';
+		}, 1600);
+		lastFocus?.focus();
+	}
+
+	if (modal) {
+		document.querySelectorAll<HTMLAnchorElement>('a[data-case]').forEach((a) => {
+			a.addEventListener('click', (e) => {
+				if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+				e.preventDefault();
+				openCase(a.getAttribute('href') || '/', a);
+			});
+		});
+		modalClose?.addEventListener('click', () => {
+			if (history.state && history.state.case) history.back();
+			else closeCase();
+		});
+		modal.addEventListener('click', (e) => {
+			if (e.target === modal) modalClose?.click();
+		});
+		window.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape' && openUrl !== null) modalClose?.click();
+		});
+		// Links inside a loaded case study: other case studies open in place, the
+		// links back to the home page close the modal, everything else behaves.
+		modalContent?.addEventListener('click', (e) => {
+			const a = (e.target as HTMLElement).closest('a');
+			if (!a) return;
+			const href = a.getAttribute('href') || '';
+			if (a.target === '_blank') return;
+			if (href.startsWith('/work/') || href.startsWith('/design-systems')) {
+				e.preventDefault();
+				openCase(href, lastFocus);
+			} else if (href.startsWith('/#') || href === '/') {
+				e.preventDefault();
+				modalClose?.click();
+			}
+		});
+		window.addEventListener('popstate', () => {
+			const st = history.state;
+			if (st && st.case) openCase(st.case, lastFocus, false);
+			else if (openUrl !== null) closeCase();
+		});
+	}
+
 	// Marquee behind the work cards: the active case study's short name, repeated,
 	// drifting left, reversing with scroll direction and speeding up while scrolling.
 	if (!reduce) {
@@ -536,22 +652,6 @@ const REPEAT = 6;
 	}
 	.deck--work .deck__card { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
 	.deck__dim { position: absolute; inset: 0; border-radius: inherit; background: #000; opacity: calc(var(--dim) * 0.5); pointer-events: none; }
-	.deck--quotes .deck__stage { perspective: 1600px; perspective-origin: 50% 50%; }
-	.deck__bigword {
-		position: absolute;
-		left: 0;
-		right: 0;
-		top: 50%;
-		transform: translateY(-46%);
-		text-align: center;
-		font-size: clamp(72px, 14vw, 220px);
-		line-height: 0.92;
-		letter-spacing: -0.01em;
-		color: var(--text);
-		pointer-events: none;
-		z-index: 0;
-	}
-	.deck--quotes .deck__cards { position: relative; z-index: 1; }
 	.deck__marquee { position: absolute; inset: 0; pointer-events: none; }
 	.deck__marquee-line { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); overflow: hidden; white-space: nowrap; opacity: 0; transition: opacity 0.5s ease; }
 	.deck__marquee-line.is-active { opacity: 1; }
@@ -576,17 +676,11 @@ const REPEAT = 6;
 	.deck__more:hover { color: var(--accent); }
 	.deck__more:hover .arrow { transform: translateX(6px); }
 
-	/* ---------- Recommendation card ---------- */
-	.quote { margin: 0; padding: clamp(32px, 5vw, 56px); text-align: center; align-items: center; gap: var(--space-md); }
-	.quote__mark { width: 30px; height: auto; color: var(--text); }
-	.quote__text { margin: 0; }
-	.quote__text p { margin: 0; font-family: var(--font-body); font-weight: 500; font-size: clamp(18px, 1.9vw, 23px); line-height: 1.45; letter-spacing: -0.005em; text-wrap: pretty; max-width: 40ch; }
-	.quote__by { display: flex; flex-direction: column; gap: 4px; align-items: center; }
-	.quote { position: relative; }
-	.deck--quotes .card { width: calc(var(--content) * 0.75); }
-	.quote__title { font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; font-size: 13px; max-width: 40ch; }
-	.quote__link { margin-top: 8px; font-size: 14px; font-weight: 600; color: var(--accent); }
-	.quote__link:hover { text-decoration: underline; text-underline-offset: 4px; }
+	/* ---------- Recommendations, a fanned card stack ---------- */
+	.section--recs { padding: var(--space-4xl) 0 var(--space-3xl); overflow: hidden; }
+	.recs__head { text-align: center; margin-bottom: var(--space-xl); }
+	.recs__lede { font-size: clamp(48px, 8vw, 128px); margin: 0; line-height: 0.95; }
+	.recs__stack { width: 100%; }
 
 	/* ---------- How I work ---------- */
 	.section--how { padding: var(--space-4xl) var(--gutter) var(--space-3xl); }
@@ -696,17 +790,14 @@ const REPEAT = 6;
 		.deck__stage { position: static; height: auto; padding: var(--space-3xl) 0 0; overflow: visible; perspective: none; }
 		.deck__cards { display: grid; gap: var(--space-md); place-items: stretch; }
 		.deck__card { grid-area: auto; transform: none !important; visibility: visible !important; }
-		.deck--quotes .card { width: 100%; }
-		.deck__dim { display: none; }
+			.deck__dim { display: none; }
 		.deck__marquee { display: none; }
-		.deck__bigword { display: none; }
-		.card__art { max-height: none; }
+			.card__art { max-height: none; }
 	}
 	/* ---------- Phones: same decks, tighter cards ---------- */
 	@media (max-width: 880px) {
 		.deck__stage { padding-top: calc(var(--nav-h) + 8px); gap: 14px; perspective: 1200px; }
-		.deck--quotes .card { width: 100%; }
-		.card__art { max-height: 38svh; }
+			.card__art { max-height: 38svh; }
 		.quote { padding: 28px 22px; }
 		.quote__text p { font-size: 17px; }
 		.hero { padding-top: var(--space-2xl); padding-bottom: var(--space-3xl); }

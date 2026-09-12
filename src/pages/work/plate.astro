@@ -65,10 +65,8 @@ import Site from '../../layouts/Site.astro';
 			<div class="cs-block">
 				<p class="eyebrow">What changed</p>
 				<p class="cs-block__lede">The rebuilt site won the top honor in B2B publishing.</p>
+				<p>🏆 Plate took the 2017 Jesse H. Neal Award for Best Website. The site reached 42,000 readers and 56,000 monthly pageviews, and 90 percent of subscribers said the content shaped their purchasing decisions.</p>
 			</div>
-			<ul class="cs-awards">
-				<li><span class="cs-awards__mark">★</span><span>2017 Jesse H. Neal Award for Best Website</span></li>
-			</ul>
 			<blockquote class="cs-quote">
 				"What made it successful was not just the design. It was understanding how restaurant professionals actually worked and building something that made their jobs easier."
 			</blockquote>
@@ -112,12 +110,16 @@ import Site from '../../layouts/Site.astro';
 	.cs-figure { max-width: 75%; margin: 0 auto; }
 	.cs-figure img { width: 100%; height: auto; display: block; }
 
-	.cs-body { display: grid; gap: var(--space-2xl); max-width: var(--max-narrow); }
+	/* One organism grouping: label, subhead and body sit tight together, and the
+	   space between groupings is 25 percent narrower than it was. */
+	.section { padding-top: var(--space-xl); padding-bottom: var(--space-xl); }
+
+	.cs-body { display: grid; gap: var(--space-xl); max-width: var(--max-narrow); }
 	/* Hierarchy: eyebrow + subhead group as the headline, body is support. */
-	.cs-block .eyebrow { margin-bottom: var(--space-xs); }
+	.cs-block .eyebrow { margin-bottom: 6px; }
 	/* case-study eyebrows: nickel, normal weight, .03em, black */
 	.eyebrow { font-family: var(--font-display); font-weight: 400; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; letter-spacing: 0.03em; }
-	.cs-block__lede { color: var(--text); font-size: clamp(24px, 2.5vw, 32px); font-weight: 600; margin: 0 0 var(--space-lg); letter-spacing: -0.015em; line-height: 1.25; }
+	.cs-block__lede { color: var(--text); font-size: clamp(24px, 2.5vw, 32px); font-weight: 600; margin: 0 0 12px; letter-spacing: -0.015em; line-height: 1.25; }
 	.cs-block p { color: #5A6565; margin: 0; font-size: 16px; line-height: 1.65; }
 	.cs-block p + p { margin-top: var(--space-sm); }
 
