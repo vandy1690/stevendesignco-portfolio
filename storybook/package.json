@@ -1,0 +1,17 @@
+{
+  "name": "sdc-storybook",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "The stevendesignco.com component library. Plain HTML stories on the CSS the site ships.",
+  "scripts": {
+    "sync": "node sync-css.mjs",
+    "dev": "storybook dev -p 6007",
+    "build": "node sync-css.mjs && storybook build -o ../public/labs/sdc-storybook"
+  },
+  "devDependencies": {
+    "@storybook/html-vite": "^8.6.14",
+    "storybook": "^8.6.14",
+    "vite": "^6.0.11"
+  }
+}
