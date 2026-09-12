@@ -32,8 +32,10 @@ const cases = [
 		href: '/work/paypal',
 		art: 'image',
 		image: '/images/case-studies/paypal/one-click.webp',
+		// A logo lockup, so it letterboxes rather than cropping a row of marks.
+		contain: true,
 		head: 'Becoming the default at checkout.',
-		text: '20+ merchant proposal packages for the one-click program, each with a working prototype, on weekly sprints. Merchants included Nintendo, Home Depot, Target, Best Buy, Chewy, Canva and TikTok Shop.',
+		text: '20+ merchant proposal packages for the one-click program, each with a working prototype, on weekly sprints.',
 		product: 'One-click checkout, PayPal',
 		objective: 'One tap in each merchant’s own checkout',
 	},
@@ -126,7 +128,7 @@ const quotes = [
 					{cases.map((c) => (
 						<li class="deck__card">
 							<a class="card" href={c.href} data-case aria-label={`${c.head} Read case study.`}>
-								<div class={`card__art card__art--${c.art}`}>
+								<div class={`card__art card__art--${c.art}${c.contain ? ' card__art--contain' : ''}`}>
 									{c.image && <img src={c.image} alt="" loading="lazy" />}
 									{!c.image && c.art === 'plugin' && <PluginPipeline />}
 									{!c.image && c.art === 'checkout' && <OneClickCheckout />}
@@ -703,6 +705,10 @@ const quotes = [
 	/* Full-bleed media. Images cover; the drawn stand-ins sit on paper until the images arrive. */
 	.card__art { position: relative; width: 100%; aspect-ratio: 16 / 9; max-height: 50svh; background: var(--bg); overflow: hidden; display: flex; align-items: center; justify-content: center; }
 	.card__art img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+	/* Logo lockups must show every mark, so they fit inside the box and the box
+	   takes the artwork's own ground, which makes the letterbox invisible. */
+	.card__art--contain { background: #F2F1EC; }
+	.card__art--contain img { object-fit: contain; object-position: center; }
 	.card__body { padding: clamp(22px, 3vw, 32px) clamp(22px, 3.2vw, 36px) clamp(22px, 3vw, 30px); display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "head head" "text text" "meta cta"; gap: 10px var(--space-lg); align-items: end; }
 	.card__head {
 		grid-area: head;
