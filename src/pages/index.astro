@@ -255,7 +255,6 @@ const REPEAT = 6;
 	import 'lenis/dist/lenis.css';
 
 	const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-	const narrow = () => window.matchMedia('(max-width: 880px)').matches;
 
 	// Smooth scroll, the same library the reference site runs. Native scrolling
 	// underneath, so sticky positioning and scroll events keep working.
@@ -320,7 +319,7 @@ const REPEAT = 6;
 		let ticking = false;
 		const update = () => {
 			ticking = false;
-			if (reduce || narrow()) {
+			if (reduce) {
 				cards.forEach((c) => { c.style.transform = ''; c.style.zIndex = ''; c.style.visibility = ''; c.style.setProperty('--dim', '0'); });
 				return;
 			}
@@ -805,8 +804,8 @@ const REPEAT = 6;
 	.modal__content :global(.cs-back .btn--primary) { background: var(--text); color: var(--bg); }
 	:global(body.modal-open) { overflow: hidden; }
 
-	/* ---------- Responsive and reduced motion: decks become lists ---------- */
-	@media (max-width: 880px), (prefers-reduced-motion: reduce) {
+	/* ---------- Reduced motion: decks become lists ---------- */
+	@media (prefers-reduced-motion: reduce) {
 		.deck__track { height: auto; }
 		.deck__stage { position: static; height: auto; padding: var(--space-3xl) 0 0; overflow: visible; perspective: none; }
 		.deck__cards { display: grid; gap: var(--space-md); place-items: stretch; }
@@ -817,7 +816,13 @@ const REPEAT = 6;
 		.deck__bigword { display: none; }
 		.card__art { max-height: none; }
 	}
+	/* ---------- Phones: same decks, tighter cards ---------- */
 	@media (max-width: 880px) {
+		.deck__stage { padding-top: calc(var(--nav-h) + 8px); gap: 14px; perspective: 1200px; }
+		.deck--quotes .card { width: 100%; }
+		.card__art { max-height: 38svh; }
+		.quote { padding: 28px 22px; }
+		.quote__text p { font-size: 17px; }
 		.hero { padding-top: var(--space-2xl); padding-bottom: var(--space-3xl); }
 		.hero__claim { font-size: clamp(30px, 7.2vw, 44px); }
 		.card__body { grid-template-columns: 1fr; grid-template-areas: "head" "text" "meta" "cta"; padding: 20px; align-items: start; }
