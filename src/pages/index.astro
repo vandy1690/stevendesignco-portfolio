@@ -3,7 +3,6 @@ import Site from '../layouts/Site.astro';
 import PluginPipeline from '../components/art/PluginPipeline.astro';
 import OneClickCheckout from '../components/art/OneClickCheckout.astro';
 import JourneyMap from '../components/art/JourneyMap.astro';
-import RecommendationStack from '../components/animated/RecommendationStack';
 
 // Four case studies, one argument each. Order is a data decision: swap entries here.
 // `image` is the full-bleed card image (16:9, 1600 by 900 or larger, object-fit cover).
@@ -148,13 +147,24 @@ const REPEAT = 6;
 		</div>
 	</section>
 
-	<section id="recommendations" class="section section--recs" aria-labelledby="rec-title">
-		<div class="wrap recs__head">
-			<p class="eyebrow" data-reveal="block">Recommendations</p>
-			<h2 id="rec-title" class="recs__lede display" data-reveal="words">On the record.</h2>
-		</div>
-		<div class="recs__stack" data-reveal="block">
-			<RecommendationStack client:visible items={quotes.map((q, i) => ({ id: i, ...q }))} />
+	<section id="recommendations" class="deck deck--recs" data-mode="fan" data-per="0.42" aria-labelledby="rec-title" style={`--n: ${quotes.length}; --per: 0.42`}>
+		<div class="deck__track">
+			<div class="deck__stage recs__stage">
+				<p class="eyebrow">Recommendations</p>
+				<h2 id="rec-title" class="recs__lede display">On the record.</h2>
+				<ol class="recs__fan">
+					{quotes.map((q) => (
+						<li class="recs__card">
+							<figure class="quote">
+								<svg class="quote__mark" viewBox="0 0 37 32" aria-hidden="true"><path d="M16.5 16H8.5c0 4.4 3.6 8 8 8v8C7.7 32 .5 24.8.5 16V0h16v16Zm20 0h-8c0 4.4 3.6 8 8 8v8c-8.8 0-16-7.2-16-16V0h16v16Z" fill="currentColor"/></svg>
+								<blockquote class="quote__text"><p>{q.text}</p></blockquote>
+								<figcaption class="quote__title">{q.title}</figcaption>
+							</figure>
+						</li>
+					))}
+				</ol>
+				<p class="recs__progress" aria-hidden="true"><span class="recs__count">1</span> / {quotes.length}</p>
+			</div>
 		</div>
 	</section>
 
@@ -290,8 +300,9 @@ const REPEAT = 6;
 	const clamp = (x: number, a: number, b: number) => Math.min(b, Math.max(a, x));
 	document.querySelectorAll<HTMLElement>('.deck').forEach((deck) => {
 		const track = deck.querySelector<HTMLElement>('.deck__track');
-		const cards = Array.from(deck.querySelectorAll<HTMLElement>('.deck__card'));
+		const cards = Array.from(deck.querySelectorAll<HTMLElement>('.deck__card, .recs__card'));
 		const lines = Array.from(deck.querySelectorAll<HTMLElement>('.deck__marquee-line'));
+		const count = deck.querySelector<HTMLElement>('.recs__count');
 		const mode = deck.dataset.mode || 'flip';
 		const per = parseFloat(deck.dataset.per || '1') || 1;
 		// Share of the remaining distance a card closes each frame. 1 tracks the
@@ -306,9 +317,33 @@ const REPEAT = 6;
 
 		const measure = () => {
 			const vh = window.innerHeight;
-			const t = clamp(-track.getBoundingClientRect().top / (vh * per), 0, n - 0.0001);
+			const t = clamp(-track.getBoundingClientRect().top / (vh * per), 0, mode === 'fan' ? n - 1 : n - 0.0001);
 			const i = Math.floor(t);
 			const lp = t - i;
+			if (mode === 'fan') {
+				// Continuous fan: card j sits at slot (j - t), so the whole spread
+				// slides one slot per card as the page scrolls. The centered card is
+				// lifted, upright and on top; the rest lean away and sit behind it.
+				const first = cards[0];
+				const w = first.getBoundingClientRect().width || 440;
+				const spacing = w * 0.46;
+				for (let j = 0; j < n; j++) {
+					const card = cards[j];
+					const o = j - t;
+					const a = Math.abs(o);
+					if (a > 3.6) { card.style.visibility = 'hidden'; continue; }
+					card.style.visibility = 'visible';
+					const near = Math.min(1, a);
+					const scale = 1 - 0.06 * near;
+					const lift = -20 * (1 - near);
+					card.style.transform =
+						`translate3d(${(o * spacing).toFixed(1)}px, ${(a * 9 + lift).toFixed(1)}px, 0) ` +
+						`rotateZ(${(o * 7).toFixed(2)}deg) rotateX(${(near * 7).toFixed(2)}deg) scale(${scale.toFixed(3)})`;
+					card.style.zIndex = String(Math.round(100 - a * 10));
+				}
+				if (count) count.textContent = String(Math.min(n, Math.round(t) + 1));
+				return;
+			}
 			let kOut = 0;
 			let kIn = 0;
 			if (mode === 'swing') {
@@ -361,7 +396,10 @@ const REPEAT = 6;
 			render();
 			if (moving && inView) raf = requestAnimationFrame(tick);
 		};
-		const kick = () => { if (!raf) raf = requestAnimationFrame(tick); };
+		// The fan maps scroll straight to a transform in measure(), so it must not
+		// run the easing loop; that loop renders flip and swing only and would
+		// overwrite the fan's transforms.
+		const kick = () => { if (mode === 'fan') return; if (!raf) raf = requestAnimationFrame(tick); };
 
 		if (reduce) {
 			cards.forEach((c) => { c.style.transform = ''; c.style.zIndex = ''; c.style.visibility = ''; c.style.opacity = ''; c.style.setProperty('--dim', '0'); });
@@ -375,8 +413,10 @@ const REPEAT = 6;
 		window.addEventListener('scroll', () => { measure(); kick(); }, { passive: true });
 		window.addEventListener('resize', () => { measure(); kick(); });
 		measure();
-		for (let j = 0; j < n; j++) current[j] = target[j];
-		render();
+		if (mode !== 'fan') {
+			for (let j = 0; j < n; j++) current[j] = target[j];
+			render();
+		}
 	});
 
 	// Case study modal. A card click flips the case study in over the blurred page
@@ -676,11 +716,42 @@ const REPEAT = 6;
 	.deck__more:hover { color: var(--accent); }
 	.deck__more:hover .arrow { transform: translateX(6px); }
 
-	/* ---------- Recommendations, a fanned card stack ---------- */
-	.section--recs { padding: var(--space-4xl) 0 var(--space-3xl); overflow: hidden; }
-	.recs__head { text-align: center; margin-bottom: var(--space-xl); }
-	.recs__lede { font-size: clamp(48px, 8vw, 128px); margin: 0; line-height: 0.95; }
-	.recs__stack { width: 100%; }
+	/* ---------- Recommendations: a fanned deck, driven by scroll ---------- */
+	.deck--recs { --rec-w: 440px; --rec-h: 330px; }
+	.deck--recs .deck__track { height: calc((var(--n) - 1) * var(--per, 1) * 100svh + 100svh); }
+	.recs__stage { gap: var(--space-lg); perspective: 1500px; }
+	.recs__lede { font-size: clamp(40px, 6vw, 92px); line-height: 0.95; margin: 0; text-align: center; }
+	.recs__fan { list-style: none; margin: 0; padding: 0; position: relative; width: 100%; height: var(--rec-h); }
+	.recs__card {
+		position: absolute;
+		left: 50%;
+		top: 0;
+		width: var(--rec-w);
+		height: var(--rec-h);
+		margin-left: calc(var(--rec-w) / -2);
+		transform-style: preserve-3d;
+		will-change: transform;
+	}
+	.quote {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+		padding: clamp(22px, 3.2vw, 36px);
+		background: var(--surface);
+		border-radius: var(--radius);
+		box-shadow: var(--shadow-card);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: var(--space-sm);
+		text-align: center;
+	}
+	.quote__mark { width: 26px; height: auto; color: var(--text); flex: none; }
+	.quote__text { margin: 0; }
+	.quote__text p { margin: 0; font-size: clamp(15px, 1.35vw, 18px); line-height: 1.45; letter-spacing: -0.005em; color: var(--text); font-weight: 500; text-wrap: pretty; }
+	.quote__title { font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; font-size: 11px; color: var(--text-mute); max-width: 34ch; }
+	.recs__progress { margin: 0; font-size: 12px; letter-spacing: 0.1em; color: var(--text-mute); font-variant-numeric: tabular-nums; }
 
 	/* ---------- How I work ---------- */
 	.section--how { padding: var(--space-4xl) var(--gutter) var(--space-3xl); }
@@ -812,6 +883,8 @@ const REPEAT = 6;
 		.awards { flex-direction: column; align-items: flex-start; gap: 12px; }
 		.awards li + li::before, .awards__break { display: none; }
 		.deck__after { padding-top: var(--space-md); }
+		.deck--recs { --rec-w: min(300px, 82vw); --rec-h: 380px; }
+		.recs__stage { gap: var(--space-md); }
 		.modal { padding: 16px; }
 		.modal__close { top: 8px; margin: 8px 8px -56px 0; width: 44px; height: 44px; }
 	}

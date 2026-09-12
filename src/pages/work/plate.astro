@@ -24,8 +24,7 @@ import Site from '../../layouts/Site.astro';
 	<section class="section section--alt section--figure">
 		<div class="section__inner">
 			<div class="cs-figure" data-animate="fade">
-				<img class="theme-img theme-img--dark" src="/images/case-studies/plate/plate-hero.jpg" alt="Plate website on laptop and phone" />
-				<img class="theme-img theme-img--light" src="/images/case-studies/plate/plate-hero-light.png" alt="" aria-hidden="true" />
+				<img src="/images/case-studies/plate/plate-scene.webp" alt="Plate magazine covers and a feature spread beside the responsive site on a phone" width="2000" height="960" />
 			</div>
 		</div>
 	</section>
@@ -116,10 +115,10 @@ import Site from '../../layouts/Site.astro';
 
 	.cs-body { display: grid; gap: var(--space-xl); max-width: var(--max-narrow); }
 	/* Hierarchy: eyebrow + subhead group as the headline, body is support. */
-	.cs-block .eyebrow { margin-bottom: 6px; }
+	.cs-block .eyebrow { margin-bottom: 0; }
 	/* case-study eyebrows: nickel, normal weight, .03em, black */
 	.eyebrow { font-family: var(--font-display); font-weight: 400; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; letter-spacing: 0.03em; }
-	.cs-block__lede { color: var(--text); font-size: clamp(24px, 2.5vw, 32px); font-weight: 600; margin: 0 0 12px; letter-spacing: -0.015em; line-height: 1.25; }
+	.cs-block__lede { color: var(--text); font-size: clamp(24px, 2.5vw, 32px); font-weight: 600; margin: 0; letter-spacing: -0.015em; line-height: 1.25; }
 	.cs-block p { color: #5A6565; margin: 0; font-size: 16px; line-height: 1.65; }
 	.cs-block p + p { margin-top: var(--space-sm); }
 
