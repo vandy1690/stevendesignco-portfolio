@@ -93,7 +93,8 @@ const quotes = [
 			<p class="hero__proof" data-reveal="words">Responsive web in B2B publishing before it was standard. Atomic design before it had a name. Now agentic tooling, on PayPal checkout.</p>
 			<p class="hero__valid" data-reveal="block">Four Jesse H. Neal Awards, one for Best Website.</p>
 			<div class="hero__cta" data-reveal="block">
-				<a class="btn btn--primary" href="#work">View case studies</a>
+				<a class="btn btn--primary" href="#work" aria-describedby="hero-cta-desc">View case studies</a>
+				<span id="hero-cta-desc" class="sr-only">Jumps down this page to five case studies</span>
 				<a class="btn" href="/resume">Resume</a>
 			</div>
 		</div>
@@ -122,13 +123,13 @@ const quotes = [
 					<p class="deck__jump-title">Jump to a case study</p>
 					<ul>
 						{cases.map((c) => (<li><a href={c.href} data-case>{c.head}</a></li>))}
-						<li><a href="/work">All work</a></li>
+						<li><a href="/work" aria-describedby="jump-all-desc">All work</a><span id="jump-all-desc" class="sr-only">Every case study, plus the Pattern Lab and Storybook archives</span></li>
 					</ul>
 				</div>
 				<ol class="deck__cards">
 					{cases.map((c, i) => (
 						<li class="deck__card">
-							<a class="card" href={c.href} data-case aria-labelledby={`case-head-${i} case-cta-${i}`}>
+							<div class="card">
 								<div class={`card__art card__art--${c.art}${c.contain ? ' card__art--contain' : ''}`}>
 									{c.image && <img src={c.image} alt="" loading="lazy" />}
 									{!c.image && c.art === 'plugin' && <PluginPipeline />}
@@ -136,15 +137,15 @@ const quotes = [
 									{!c.image && c.art === 'journey' && <JourneyMap />}
 								</div>
 								<div class="card__body">
-									<h3 class="card__head" id={`case-head-${i}`}>{c.head}</h3>
+									<h3 class="card__head"><a class="card__link" href={c.href} data-case>{c.head}</a></h3>
 									<p class="card__text">{c.text}</p>
 									<dl class="card__meta">
 										<div><dt>Product</dt><dd>{c.product}</dd></div>
 										<div><dt>Objective</dt><dd>{c.objective}</dd></div>
 									</dl>
-									<span class="card__cta" id={`case-cta-${i}`}>Read case study <span class="arrow" aria-hidden="true">→</span></span>
+									<span class="card__cta">Read case study <span class="arrow" aria-hidden="true">→</span></span>
 								</div>
-							</a>
+							</div>
 						</li>
 					))}
 				</ol>
@@ -758,8 +759,18 @@ const quotes = [
 		overflow: hidden;
 		transition: box-shadow 0.25s ease, transform 0.25s ease;
 	}
-	.card:hover, .card:focus-visible { color: var(--text); box-shadow: var(--shadow-card-hover); }
-	.card:hover .arrow, .card:focus-visible .arrow { transform: translateX(6px); }
+	.card { position: relative; }
+	/* Stretched link: the headline is the only link, and its ::after covers the
+	   card so the whole card still clicks. Its name is the visible headline. */
+	.card__link { color: inherit; text-decoration: none; }
+	.card__link::after { content: ''; position: absolute; inset: 0; z-index: 2; border-radius: inherit; }
+	.card__link:hover { color: inherit; }
+	/* The ring belongs to the card, not the headline text. */
+	.card__link:focus-visible { outline: none; }
+	.card:has(.card__link:focus-visible) { outline: 2px solid var(--text); outline-offset: 3px; }
+	.card:has(.card__link.no-ring) { outline: none; }
+	.card:hover, .card:has(.card__link:focus-visible) { color: var(--text); box-shadow: var(--shadow-card-hover); }
+	.card:hover .arrow, .card:has(.card__link:focus-visible) .arrow { transform: translateX(6px); }
 	/* Full-bleed media. Images cover; the drawn stand-ins sit on paper until the images arrive. */
 	.card__art { position: relative; width: 100%; aspect-ratio: 16 / 9; max-height: 50svh; background: var(--bg); overflow: hidden; display: flex; align-items: center; justify-content: center; }
 	.card__art img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
