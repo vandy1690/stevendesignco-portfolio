@@ -20,14 +20,14 @@ const u={title:"Patterns"},e=()=>`
     JavaScript being off lands here too.</p>
   <div style="display:grid;gap:24px;max-width:700px">
     ${[["Nobody asked for this one.","/images/case-studies/merchant-flow-builder/plugin-pipeline.webp","Figma plugin, PayPal"],["Becoming the default at checkout.","/images/case-studies/paypal/one-click.webp","One-click checkout, PayPal"]].map(([h,m,g])=>`
-      <a class="card" href="#0" style="display:flex;flex-direction:column">
+      <div class="card" style="display:flex;flex-direction:column">
         <div class="card__art card__art--image"><img src="${m}" alt="" /></div>
         <div class="card__body">
-          <h3 class="card__head">${h}</h3>
+          <h3 class="card__head"><a class="card__link" href="#0">${h}</a></h3>
           <dl class="card__meta"><div><dt>Product</dt><dd>${g}</dd></div></dl>
-          <span class="card__cta">Read case study <span class="arrow">→</span></span>
+          <span class="card__cta">Read case study <span class="arrow" aria-hidden="true">→</span></span>
         </div>
-      </a>`).join("")}
+      </div>`).join("")}
   </div>`;a.storyName="Deck fallback";const t=()=>`
   <p class="sb-note">Closes the page. Long handles wrap rather than push the layout wide.</p>
   <div style="max-width:700px">
@@ -52,7 +52,7 @@ const u={title:"Patterns"},e=()=>`
       <div><dt>Org</dt><dd>MTG Media Group</dd></div>
       <div><dt>Recognition</dt><dd>2017 Jesse H. Neal Award, Best Website</dd></div>
     </dl>
-  </div>\``,...(d=(i=e.parameters)==null?void 0:i.docs)==null?void 0:d.source}}};var l,r,o;a.parameters={...a.parameters,docs:{...(l=a.parameters)==null?void 0:l.docs,source:{originalSource:`() => \`
+  </div>\``,...(d=(i=e.parameters)==null?void 0:i.docs)==null?void 0:d.source}}};var l,r,c;a.parameters={...a.parameters,docs:{...(l=a.parameters)==null?void 0:l.docs,source:{originalSource:`() => \`
   <p class="sb-note">The home page pins a card to the viewport and flips through five of them on
     scroll. That needs height it does not always have, so the deck degrades to this plain list in
     three cases: the visitor asked for reduced motion, the viewport is under 600px tall, which is
@@ -60,15 +60,15 @@ const u={title:"Patterns"},e=()=>`
     JavaScript being off lands here too.</p>
   <div style="display:grid;gap:24px;max-width:700px">
     \${[['Nobody asked for this one.', '/images/case-studies/merchant-flow-builder/plugin-pipeline.webp', 'Figma plugin, PayPal'], ['Becoming the default at checkout.', '/images/case-studies/paypal/one-click.webp', 'One-click checkout, PayPal']].map(([h, img, product]) => \`
-      <a class="card" href="#0" style="display:flex;flex-direction:column">
+      <div class="card" style="display:flex;flex-direction:column">
         <div class="card__art card__art--image"><img src="\${img}" alt="" /></div>
         <div class="card__body">
-          <h3 class="card__head">\${h}</h3>
+          <h3 class="card__head"><a class="card__link" href="#0">\${h}</a></h3>
           <dl class="card__meta"><div><dt>Product</dt><dd>\${product}</dd></div></dl>
-          <span class="card__cta">Read case study <span class="arrow">→</span></span>
+          <span class="card__cta">Read case study <span class="arrow" aria-hidden="true">→</span></span>
         </div>
-      </a>\`).join('')}
-  </div>\``,...(o=(r=a.parameters)==null?void 0:r.docs)==null?void 0:o.source}}};var c,n,p;t.parameters={...t.parameters,docs:{...(c=t.parameters)==null?void 0:c.docs,source:{originalSource:`() => \`
+      </div>\`).join('')}
+  </div>\``,...(c=(r=a.parameters)==null?void 0:r.docs)==null?void 0:c.source}}};var o,n,p;t.parameters={...t.parameters,docs:{...(o=t.parameters)==null?void 0:o.docs,source:{originalSource:`() => \`
   <p class="sb-note">Closes the page. Long handles wrap rather than push the layout wide.</p>
   <div style="max-width:700px">
     <h2 class="contact__title display" style="font-size:clamp(40px,6vw,88px);line-height:.95;margin:0 0 32px">Let's talk.</h2>

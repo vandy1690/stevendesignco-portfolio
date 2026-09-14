@@ -22,12 +22,11 @@ export const Pager = {
   },
   render: ({ label, direction }) => `
     <p class="sb-note">Moves between case studies. The visible text is the destination only; the
-      arrow carries direction, and an <code>aria-label</code> states both so the link still makes
-      sense read on its own. On phones two pagers share one row and wrap their own labels.</p>
+      arrow carries direction, and hidden text states both, so the link makes sense read on its own
+      without a label overriding what is on screen. On phones two pagers share one row and wrap their own labels.</p>
     <div class="sb-stack">
-      <a class="pager ${direction === 'prev' ? 'pager--prev' : ''}" href="#0"
-         aria-label="${direction === 'prev' ? 'Previous' : 'Next'} case study: ${label}">
-        ${direction === 'prev' ? chevron('prev') + label : label + chevron('next')}
+      <a class="pager ${direction === 'prev' ? 'pager--prev' : ''}" href="#0">
+        ${direction === 'prev' ? chevron('prev') : ''}<span class="sr-only">${direction === 'prev' ? 'Previous' : 'Next'} case study: </span>${label}${direction === 'next' ? chevron('next') : ''}
       </a>
     </div>`,
 };
@@ -35,8 +34,8 @@ export const Pager = {
 export const PagerPair = () => `
   <p class="sb-note">How the pair sits at the foot of every case study.</p>
   <div class="cs-back" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between;align-items:center;max-width:800px">
-    <a class="pager pager--prev" href="#0" aria-label="Back to all case studies">${chevron('prev')}All case studies</a>
-    <a class="pager" href="#0" aria-label="Next case study: Plate">Plate${chevron('next')}</a>
+    <a class="pager pager--prev" href="#0">${chevron('prev')}<span class="sr-only">Back to </span>All case studies</a>
+    <a class="pager" href="#0"><span class="sr-only">Next case study: </span>Plate${chevron('next')}</a>
   </div>`;
 PagerPair.storyName = 'Pager pair';
 
@@ -62,20 +61,22 @@ export const CaseCard = {
   render: ({ head, text, product, objective, image }) => `
     <p class="sb-note">The unit the home page deck is built from. Art is 16:9 and full bleed; the
       body is a grid so the meta and the call to action share the last row on desktop and stack
-      on phones. Labels read Product and Objective, not Client and Service.</p>
+      on phones. Labels read Product and Objective, not Client and Service. The headline is the only link;
+      a stretched ::after covers the card, so the whole card clicks while its accessible name is
+      exactly the visible headline rather than a hand-written label.</p>
     <div style="max-width:760px">
-      <a class="card" href="#0" aria-label="${head} Read case study." style="display:flex;flex-direction:column">
+      <div class="card" style="display:flex;flex-direction:column">
         <div class="card__art card__art--image"><img src="${image}" alt="" /></div>
         <div class="card__body">
-          <h3 class="card__head">${head}</h3>
+          <h3 class="card__head"><a class="card__link" href="#0">${head}</a></h3>
           <p class="card__text">${text}</p>
           <dl class="card__meta">
             <div><dt>Product</dt><dd>${product}</dd></div>
             <div><dt>Objective</dt><dd>${objective}</dd></div>
           </dl>
-          <span class="card__cta">Read case study <span class="arrow">→</span></span>
+          <span class="card__cta">Read case study <span class="arrow" aria-hidden="true">→</span></span>
         </div>
-      </a>
+      </div>
     </div>`,
 };
 CaseCard.storyName = 'Case study card';

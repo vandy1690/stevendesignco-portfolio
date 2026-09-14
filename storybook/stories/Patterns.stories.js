@@ -27,14 +27,14 @@ export const DeckFallback = () => `
     ${[['Nobody asked for this one.', '/images/case-studies/merchant-flow-builder/plugin-pipeline.webp', 'Figma plugin, PayPal'],
        ['Becoming the default at checkout.', '/images/case-studies/paypal/one-click.webp', 'One-click checkout, PayPal']]
       .map(([h, img, product]) => `
-      <a class="card" href="#0" style="display:flex;flex-direction:column">
+      <div class="card" style="display:flex;flex-direction:column">
         <div class="card__art card__art--image"><img src="${img}" alt="" /></div>
         <div class="card__body">
-          <h3 class="card__head">${h}</h3>
+          <h3 class="card__head"><a class="card__link" href="#0">${h}</a></h3>
           <dl class="card__meta"><div><dt>Product</dt><dd>${product}</dd></div></dl>
-          <span class="card__cta">Read case study <span class="arrow">→</span></span>
+          <span class="card__cta">Read case study <span class="arrow" aria-hidden="true">→</span></span>
         </div>
-      </a>`).join('')}
+      </div>`).join('')}
   </div>`;
 DeckFallback.storyName = 'Deck fallback';
 

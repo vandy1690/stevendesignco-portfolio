@@ -4,44 +4,45 @@ const p=e=>`<span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16"
     <div class="sb-stack">
       <a class="btn btn--primary" href="#0">${e}</a>
       <a class="btn" href="#0">Resume</a>
-    </div>`},d={args:{label:"Default at checkout",direction:"next"},argTypes:{label:{control:"text"},direction:{control:"inline-radio",options:["prev","next"]}},render:({label:e,direction:a})=>`
+    </div>`},d={args:{label:"Default at checkout",direction:"next"},argTypes:{label:{control:"text"},direction:{control:"inline-radio",options:["prev","next"]}},render:({label:e,direction:t})=>`
     <p class="sb-note">Moves between case studies. The visible text is the destination only; the
-      arrow carries direction, and an <code>aria-label</code> states both so the link still makes
-      sense read on its own. On phones two pagers share one row and wrap their own labels.</p>
+      arrow carries direction, and hidden text states both, so the link makes sense read on its own
+      without a label overriding what is on screen. On phones two pagers share one row and wrap their own labels.</p>
     <div class="sb-stack">
-      <a class="pager ${a==="prev"?"pager--prev":""}" href="#0"
-         aria-label="${a==="prev"?"Previous":"Next"} case study: ${e}">
-        ${a==="prev"?p("prev")+e:e+p("next")}
+      <a class="pager ${t==="prev"?"pager--prev":""}" href="#0">
+        ${t==="prev"?p("prev"):""}<span class="sr-only">${t==="prev"?"Previous":"Next"} case study: </span>${e}${t==="next"?p("next"):""}
       </a>
-    </div>`},t=()=>`
+    </div>`},a=()=>`
   <p class="sb-note">How the pair sits at the foot of every case study.</p>
   <div class="cs-back" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between;align-items:center;max-width:800px">
-    <a class="pager pager--prev" href="#0" aria-label="Back to all case studies">${p("prev")}All case studies</a>
-    <a class="pager" href="#0" aria-label="Next case study: Plate">Plate${p("next")}</a>
-  </div>`;t.storyName="Pager pair";const s={args:{head:"Nobody asked for this one.",text:"A Figma plugin, built on my own initiative, that cut merchant flow setup from most of a day to 10 to 15 minutes, across the 38-merchant program.",product:"Figma plugin, PayPal",objective:"Faster merchant flow setup",image:"/images/case-studies/merchant-flow-builder/plugin-pipeline.webp"},argTypes:{head:{control:"text"},text:{control:"text"},product:{control:"text"},objective:{control:"text"},image:{control:"select",options:["/images/case-studies/merchant-flow-builder/plugin-pipeline.webp","/images/case-studies/paypal/one-click.webp","/images/case-studies/paypal/journey-dead-end.webp","/images/case-studies/plate/plate-scene.webp","/images/case-studies/design-systems/pattern-lab.webp"]}},render:({head:e,text:a,product:D,objective:H,image:I})=>`
+    <a class="pager pager--prev" href="#0">${p("prev")}<span class="sr-only">Back to </span>All case studies</a>
+    <a class="pager" href="#0"><span class="sr-only">Next case study: </span>Plate${p("next")}</a>
+  </div>`;a.storyName="Pager pair";const s={args:{head:"Nobody asked for this one.",text:"A Figma plugin, built on my own initiative, that cut merchant flow setup from most of a day to 10 to 15 minutes, across the 38-merchant program.",product:"Figma plugin, PayPal",objective:"Faster merchant flow setup",image:"/images/case-studies/merchant-flow-builder/plugin-pipeline.webp"},argTypes:{head:{control:"text"},text:{control:"text"},product:{control:"text"},objective:{control:"text"},image:{control:"select",options:["/images/case-studies/merchant-flow-builder/plugin-pipeline.webp","/images/case-studies/paypal/one-click.webp","/images/case-studies/paypal/journey-dead-end.webp","/images/case-studies/plate/plate-scene.webp","/images/case-studies/design-systems/pattern-lab.webp"]}},render:({head:e,text:t,product:D,objective:H,image:I})=>`
     <p class="sb-note">The unit the home page deck is built from. Art is 16:9 and full bleed; the
       body is a grid so the meta and the call to action share the last row on desktop and stack
-      on phones. Labels read Product and Objective, not Client and Service.</p>
+      on phones. Labels read Product and Objective, not Client and Service. The headline is the only link;
+      a stretched ::after covers the card, so the whole card clicks while its accessible name is
+      exactly the visible headline rather than a hand-written label.</p>
     <div style="max-width:760px">
-      <a class="card" href="#0" aria-label="${e} Read case study." style="display:flex;flex-direction:column">
+      <div class="card" style="display:flex;flex-direction:column">
         <div class="card__art card__art--image"><img src="${I}" alt="" /></div>
         <div class="card__body">
-          <h3 class="card__head">${e}</h3>
-          <p class="card__text">${a}</p>
+          <h3 class="card__head"><a class="card__link" href="#0">${e}</a></h3>
+          <p class="card__text">${t}</p>
           <dl class="card__meta">
             <div><dt>Product</dt><dd>${D}</dd></div>
             <div><dt>Objective</dt><dd>${H}</dd></div>
           </dl>
-          <span class="card__cta">Read case study <span class="arrow">→</span></span>
+          <span class="card__cta">Read case study <span class="arrow" aria-hidden="true">→</span></span>
         </div>
-      </a>
-    </div>`};s.storyName="Case study card";const c={args:{quote:"He is one of those uncommon designers who can move fluidly between strategy, design, prototyping, and code.",title:"Product Designer, PayPal Merchant Enablement"},argTypes:{quote:{control:"text"},title:{control:"text"}},render:({quote:e,title:a})=>`
+      </div>
+    </div>`};s.storyName="Case study card";const c={args:{quote:"He is one of those uncommon designers who can move fluidly between strategy, design, prototyping, and code.",title:"Product Designer, PayPal Merchant Enablement"},argTypes:{quote:{control:"text"},title:{control:"text"}},render:({quote:e,title:t})=>`
     <p class="sb-note">One verbatim sentence from a LinkedIn recommendation. Titles only, never
       names. Twelve of these run in the scroll-driven fan under "On the record."</p>
     <div style="width:440px;max-width:100%">
       <figure class="quote" style="height:330px;display:flex;flex-direction:column;justify-content:center;background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow-card);padding:34px 30px;margin:0;text-align:center">
         <blockquote class="quote__text" style="margin:0"><p>${e}</p></blockquote>
-        <figcaption class="quote__title" style="margin-top:18px">${a}</figcaption>
+        <figcaption class="quote__title" style="margin-top:18px">${t}</figcaption>
       </figure>
     </div>`},n=()=>`
   <p class="sb-note">Key and value, with a pipe between them. The pipe is a CSS pseudo-element with
@@ -90,7 +91,7 @@ const p=e=>`<span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16"
       <a class="btn btn--primary" href="#0">\${label}</a>
       <a class="btn" href="#0">Resume</a>
     </div>\`
-}`,...(m=(u=l.parameters)==null?void 0:u.docs)==null?void 0:m.source}}};var b,g,v;d.parameters={...d.parameters,docs:{...(b=d.parameters)==null?void 0:b.docs,source:{originalSource:`{
+}`,...(m=(u=l.parameters)==null?void 0:u.docs)==null?void 0:m.source}}};var g,b,v;d.parameters={...d.parameters,docs:{...(g=d.parameters)==null?void 0:g.docs,source:{originalSource:`{
   args: {
     label: 'Default at checkout',
     direction: 'next'
@@ -109,20 +110,19 @@ const p=e=>`<span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16"
     direction
   }) => \`
     <p class="sb-note">Moves between case studies. The visible text is the destination only; the
-      arrow carries direction, and an <code>aria-label</code> states both so the link still makes
-      sense read on its own. On phones two pagers share one row and wrap their own labels.</p>
+      arrow carries direction, and hidden text states both, so the link makes sense read on its own
+      without a label overriding what is on screen. On phones two pagers share one row and wrap their own labels.</p>
     <div class="sb-stack">
-      <a class="pager \${direction === 'prev' ? 'pager--prev' : ''}" href="#0"
-         aria-label="\${direction === 'prev' ? 'Previous' : 'Next'} case study: \${label}">
-        \${direction === 'prev' ? chevron('prev') + label : label + chevron('next')}
+      <a class="pager \${direction === 'prev' ? 'pager--prev' : ''}" href="#0">
+        \${direction === 'prev' ? chevron('prev') : ''}<span class="sr-only">\${direction === 'prev' ? 'Previous' : 'Next'} case study: </span>\${label}\${direction === 'next' ? chevron('next') : ''}
       </a>
     </div>\`
-}`,...(v=(g=d.parameters)==null?void 0:g.docs)==null?void 0:v.source}}};var w,y,x;t.parameters={...t.parameters,docs:{...(w=t.parameters)==null?void 0:w.docs,source:{originalSource:`() => \`
+}`,...(v=(b=d.parameters)==null?void 0:b.docs)==null?void 0:v.source}}};var w,y,x;a.parameters={...a.parameters,docs:{...(w=a.parameters)==null?void 0:w.docs,source:{originalSource:`() => \`
   <p class="sb-note">How the pair sits at the foot of every case study.</p>
   <div class="cs-back" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between;align-items:center;max-width:800px">
-    <a class="pager pager--prev" href="#0" aria-label="Back to all case studies">\${chevron('prev')}All case studies</a>
-    <a class="pager" href="#0" aria-label="Next case study: Plate">Plate\${chevron('next')}</a>
-  </div>\``,...(x=(y=t.parameters)==null?void 0:y.docs)==null?void 0:x.source}}};var f,k,_;s.parameters={...s.parameters,docs:{...(f=s.parameters)==null?void 0:f.docs,source:{originalSource:`{
+    <a class="pager pager--prev" href="#0">\${chevron('prev')}<span class="sr-only">Back to </span>All case studies</a>
+    <a class="pager" href="#0"><span class="sr-only">Next case study: </span>Plate\${chevron('next')}</a>
+  </div>\``,...(x=(y=a.parameters)==null?void 0:y.docs)==null?void 0:x.source}}};var f,k,_;s.parameters={...s.parameters,docs:{...(f=s.parameters)==null?void 0:f.docs,source:{originalSource:`{
   args: {
     head: 'Nobody asked for this one.',
     text: 'A Figma plugin, built on my own initiative, that cut merchant flow setup from most of a day to 10 to 15 minutes, across the 38-merchant program.',
@@ -157,22 +157,24 @@ const p=e=>`<span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16"
   }) => \`
     <p class="sb-note">The unit the home page deck is built from. Art is 16:9 and full bleed; the
       body is a grid so the meta and the call to action share the last row on desktop and stack
-      on phones. Labels read Product and Objective, not Client and Service.</p>
+      on phones. Labels read Product and Objective, not Client and Service. The headline is the only link;
+      a stretched ::after covers the card, so the whole card clicks while its accessible name is
+      exactly the visible headline rather than a hand-written label.</p>
     <div style="max-width:760px">
-      <a class="card" href="#0" aria-label="\${head} Read case study." style="display:flex;flex-direction:column">
+      <div class="card" style="display:flex;flex-direction:column">
         <div class="card__art card__art--image"><img src="\${image}" alt="" /></div>
         <div class="card__body">
-          <h3 class="card__head">\${head}</h3>
+          <h3 class="card__head"><a class="card__link" href="#0">\${head}</a></h3>
           <p class="card__text">\${text}</p>
           <dl class="card__meta">
             <div><dt>Product</dt><dd>\${product}</dd></div>
             <div><dt>Objective</dt><dd>\${objective}</dd></div>
           </dl>
-          <span class="card__cta">Read case study <span class="arrow">→</span></span>
+          <span class="card__cta">Read case study <span class="arrow" aria-hidden="true">→</span></span>
         </div>
-      </a>
+      </div>
     </div>\`
-}`,...(_=(k=s.parameters)==null?void 0:k.docs)==null?void 0:_.source}}};var P,$,T;c.parameters={...c.parameters,docs:{...(P=c.parameters)==null?void 0:P.docs,source:{originalSource:`{
+}`,...(_=(k=s.parameters)==null?void 0:k.docs)==null?void 0:_.source}}};var P,T,$;c.parameters={...c.parameters,docs:{...(P=c.parameters)==null?void 0:P.docs,source:{originalSource:`{
   args: {
     quote: 'He is one of those uncommon designers who can move fluidly between strategy, design, prototyping, and code.',
     title: 'Product Designer, PayPal Merchant Enablement'
@@ -197,7 +199,7 @@ const p=e=>`<span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16"
         <figcaption class="quote__title" style="margin-top:18px">\${title}</figcaption>
       </figure>
     </div>\`
-}`,...(T=($=c.parameters)==null?void 0:$.docs)==null?void 0:T.source}}};var C,S,j;n.parameters={...n.parameters,docs:{...(C=n.parameters)==null?void 0:C.docs,source:{originalSource:`() => \`
+}`,...($=(T=c.parameters)==null?void 0:T.docs)==null?void 0:$.source}}};var C,S,j;n.parameters={...n.parameters,docs:{...(C=n.parameters)==null?void 0:C.docs,source:{originalSource:`() => \`
   <p class="sb-note">Key and value, with a pipe between them. The pipe is a CSS pseudo-element with
     empty alt text, so assistive tech never announces it, and it is suppressed on phones where the
     label stacks above the value.</p>
@@ -226,4 +228,4 @@ const p=e=>`<span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16"
     frame to bring it in.</p>
   <div style="position:relative;height:90px">
     <a class="skip-link" href="#0" style="position:absolute;top:12px;left:0">Skip to content</a>
-  </div>\``,...(M=(L=i.parameters)==null?void 0:L.docs)==null?void 0:M.source}}};const z=["Buttons","Pager","PagerPair","CaseCard","Recommendation","MetaRow","RowList","CaseBlock","SkipLink"];export{l as Buttons,r as CaseBlock,s as CaseCard,n as MetaRow,d as Pager,t as PagerPair,c as Recommendation,o as RowList,i as SkipLink,z as __namedExportsOrder,E as default};
+  </div>\``,...(M=(L=i.parameters)==null?void 0:L.docs)==null?void 0:M.source}}};const z=["Buttons","Pager","PagerPair","CaseCard","Recommendation","MetaRow","RowList","CaseBlock","SkipLink"];export{l as Buttons,r as CaseBlock,s as CaseCard,n as MetaRow,d as Pager,a as PagerPair,c as Recommendation,o as RowList,i as SkipLink,z as __namedExportsOrder,E as default};
