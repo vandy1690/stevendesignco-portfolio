@@ -45,7 +45,7 @@ const labs = [
 							<span class="wk-row__meta">{w.meta}</span>
 							<span class="wk-row__title display">{w.title}</span>
 							<span class="wk-row__note">{w.note}</span>
-							<span class="wk-row__cta">Read <span class="arrow">→</span></span>
+							<span class="wk-row__cta">Read <span class="arrow" aria-hidden="true">→</span></span>
 						</a>
 					</li>
 				))}
@@ -62,7 +62,7 @@ const labs = [
 						<a class="wk-row" href={w.href} target={w.href.startsWith('/labs') ? '_blank' : undefined} rel={w.href.startsWith('/labs') ? 'noopener' : undefined}>
 							<span class="wk-row__title display">{w.title}</span>
 							<span class="wk-row__note">{w.note}</span>
-							<span class="wk-row__cta">Open <span class="arrow">→</span></span>
+							<span class="wk-row__cta">Open <span class="arrow" aria-hidden="true">→</span></span>
 						</a>
 					</li>
 				))}

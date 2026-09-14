@@ -93,7 +93,7 @@ const quotes = [
 			<p class="hero__proof" data-reveal="words">Responsive web in B2B publishing before it was standard. Atomic design before it had a name. Now agentic tooling, on PayPal checkout.</p>
 			<p class="hero__valid" data-reveal="block">Four Jesse H. Neal Awards, one for Best Website.</p>
 			<div class="hero__cta" data-reveal="block">
-				<a class="btn btn--primary" href="#work">View work</a>
+				<a class="btn btn--primary" href="#work">View case studies</a>
 				<a class="btn" href="/resume">Resume</a>
 			</div>
 		</div>
@@ -126,9 +126,9 @@ const quotes = [
 					</ul>
 				</div>
 				<ol class="deck__cards">
-					{cases.map((c) => (
+					{cases.map((c, i) => (
 						<li class="deck__card">
-							<a class="card" href={c.href} data-case aria-label={`${c.head} Read case study.`}>
+							<a class="card" href={c.href} data-case aria-labelledby={`case-head-${i} case-cta-${i}`}>
 								<div class={`card__art card__art--${c.art}${c.contain ? ' card__art--contain' : ''}`}>
 									{c.image && <img src={c.image} alt="" loading="lazy" />}
 									{!c.image && c.art === 'plugin' && <PluginPipeline />}
@@ -136,13 +136,13 @@ const quotes = [
 									{!c.image && c.art === 'journey' && <JourneyMap />}
 								</div>
 								<div class="card__body">
-									<h3 class="card__head">{c.head}</h3>
+									<h3 class="card__head" id={`case-head-${i}`}>{c.head}</h3>
 									<p class="card__text">{c.text}</p>
 									<dl class="card__meta">
 										<div><dt>Product</dt><dd>{c.product}</dd></div>
 										<div><dt>Objective</dt><dd>{c.objective}</dd></div>
 									</dl>
-									<span class="card__cta">Read case study <span class="arrow">→</span></span>
+									<span class="card__cta" id={`case-cta-${i}`}>Read case study <span class="arrow" aria-hidden="true">→</span></span>
 								</div>
 							</a>
 						</li>
@@ -249,7 +249,7 @@ const quotes = [
 		<div class="wrap contact">
 			<h2 class="contact__title display" data-reveal="words">Let's talk.</h2>
 			<ul class="contact__list" data-reveal="block">
-				<li><a class="js-email" data-eml="73746576656e4073746576656e64657369676e636f2e636f6d" href="#" aria-label="Email Steven">steven [at] stevendesignco [dot] com</a></li>
+				<li><a class="js-email" data-eml="73746576656e4073746576656e64657369676e636f2e636f6d" href="#">steven [at] stevendesignco [dot] com</a></li>
 				<li><a href="https://www.linkedin.com/in/stevendesignco" target="_blank" rel="noopener">linkedin.com/in/stevendesignco<span class="sr-only"> (opens in a new tab)</span></a></li>
 				<li><a href="https://www.instagram.com/stevendesignservices/" target="_blank" rel="noopener">instagram.com/stevendesignservices<span class="sr-only"> (opens in a new tab)</span></a></li>
 			</ul>
@@ -716,7 +716,10 @@ const quotes = [
 	/* One measure for everything on this page: the card width. */
 	:root { --content: min(800px, 100vw - 48px); --shadow-card: 0 1px 2px rgba(45, 52, 54, 0.08), 0 6px 12px -4px rgba(45, 52, 54, 0.14), 0 18px 32px -12px rgba(45, 52, 54, 0.24), 0 36px 64px -24px rgba(45, 52, 54, 0.32); --shadow-card-hover: 0 1px 2px rgba(45, 52, 54, 0.08), 0 10px 18px -6px rgba(45, 52, 54, 0.18), 0 26px 44px -14px rgba(45, 52, 54, 0.3), 0 48px 80px -28px rgba(45, 52, 54, 0.38); }
 	.wrap { width: var(--content); margin: 0 auto; }
-	#work, #recommendations, #how, #about, #contact { scroll-margin-top: var(--nav-h); }
+	#how, #about, #contact { scroll-margin-top: 0; }
+	/* The pinned decks pad their own stage for the header, so they cancel the
+	   page-wide scroll-padding and land flush, exactly as before. */
+	#work, #recommendations { scroll-margin-top: calc(-1 * var(--nav-h)); }
 
 	/* ---------- Reveal ---------- */
 	:global(.rw) { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.1em; margin-bottom: -0.1em; }
@@ -790,7 +793,7 @@ const quotes = [
 	.deck { position: relative; }
 	.deck__track { position: relative; height: calc(var(--n) * var(--per, 1) * 100svh + 100svh); }
 	/* One per card, at the scroll offset where that card sits centered. */
-	.deck__anchor { position: absolute; left: 0; top: calc(var(--j) * var(--per, 1) * 100svh); width: 1px; height: 1px; scroll-margin-top: 0; }
+	.deck__anchor { position: absolute; left: 0; top: calc(var(--j) * var(--per, 1) * 100svh); width: 1px; height: 1px; scroll-margin-top: calc(-1 * var(--nav-h)); }
 	.deck__stage {
 		position: sticky;
 		top: 0;

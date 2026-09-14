@@ -180,7 +180,7 @@ const jsonLd = {
 				</a>
 				<div class="site-footer__meta">
 					<span>© Steven Vanden Heuvel</span>
-					<a class="js-email" data-eml="73746576656e4073746576656e64657369676e636f2e636f6d" href="#" aria-label="Email Steven">steven [at] stevendesignco [dot] com</a>
+					<a class="js-email" data-eml="73746576656e4073746576656e64657369676e636f2e636f6d" href="#">steven [at] stevendesignco [dot] com</a>
 				</div>
 			</div>
 		</footer>
@@ -242,6 +242,10 @@ const jsonLd = {
 				}
 				a.href = 'mailto:' + email;
 				a.textContent = email;
+				const note = document.createElement('span');
+				note.className = 'sr-only';
+				note.textContent = ' (opens your email app)';
+				a.appendChild(note);
 			});
 		</script>
 
@@ -400,6 +404,9 @@ const jsonLd = {
 				text-size-adjust: 100%;
 				scroll-behavior: smooth;
 			}
+			/* The header is sticky, so anything scrolled into view (a focused link,
+			   an anchor target) is offset below it rather than hidden behind it. */
+			html { scroll-padding-top: var(--nav-h); }
 			@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 			body {
 				/* Dot-grid page grain, ported from the 21st.dev noise texture to the
