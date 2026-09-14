@@ -143,8 +143,8 @@ const jsonLd = {
 	<body>
 		<a class="skip-link" href="#main">Skip to content</a>
 		<header class="site-header">
-			<a class="brand" href="/" aria-label="Steven Vanden Heuvel home">
-				<img class="brand__mark" src="/images/brand/SDC_initialLogo.svg" alt="" width="40" height="24" />
+			<a class="brand" href="/">
+				<img class="brand__mark" src="/images/brand/SDC_initialLogo.svg" alt="Steven Vanden Heuvel home" width="40" height="24" />
 			</a>
 			<nav class="nav" aria-label="Main">
 				<a href={isHome ? '#work' : '/#work'}>Work</a>
@@ -362,7 +362,7 @@ const jsonLd = {
 					--text-mute: #5A6160;                /* muted charcoal, 5.9:1 on paper; was #6E7574 at 4.06:1 */
 					--rule: rgba(45, 52, 54, 0.20);
 					--rule-soft: rgba(45, 52, 54, 0.10);
-					--rule-strong: rgba(45, 52, 54, 0.46);   /* control borders, clears 3:1 */
+					--rule-strong: rgba(45, 52, 54, 0.58);   /* control borders, clears 3:1 */
 					--texture-dot: rgba(45, 52, 54, 0.10);   /* page grain */
 					--texture-size: 20px;
 					--accent: #3F5F92;                     /* Regatta, accent */
@@ -381,7 +381,7 @@ const jsonLd = {
 				--text-mute: #5A6160;                /* muted charcoal, 5.9:1 on paper; was #6E7574 at 4.06:1 */
 				--rule: rgba(45, 52, 54, 0.20);
 				--rule-soft: rgba(45, 52, 54, 0.10);
-				--rule-strong: rgba(45, 52, 54, 0.46);   /* control borders, clears 3:1 */
+				--rule-strong: rgba(45, 52, 54, 0.58);   /* control borders, clears 3:1 */
 				--texture-dot: rgba(45, 52, 54, 0.10);   /* page grain */
 				--texture-size: 20px;
 				--accent: #3F5F92;                     /* Regatta, accent */
@@ -431,12 +431,14 @@ const jsonLd = {
 				.pager__cap { forced-color-adjust: none; background: transparent; border-left: 1px solid ButtonText; }
 				.pager--prev .pager__cap { border-left: 0; border-right: 1px solid ButtonText; }
 				a[target="_blank"]::after { forced-color-adjust: none; background: LinkText; }
-				.skip-link { forced-color-adjust: none; background: ButtonFace; color: ButtonText; border: 1px solid ButtonText; }
+			.skip-link { forced-color-adjust: none; background: ButtonFace; color: ButtonText; border: 1px solid ButtonText; }
 			}
 			/* Users asking for more contrast get the muted tones collapsed into the ink. */
 			@media (prefers-contrast: more) {
 				:root, :root[data-theme="light"] { --text-mute: var(--text); --rule: var(--rule-strong); }
 			}
+			/* Text for assistive tech only: visually removed, still read aloud. */
+			.sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
 			.skip-link {
 				position: absolute; left: 12px; top: -64px; z-index: 200;
 				display: inline-flex; align-items: center; height: 44px; padding: 0 18px;
