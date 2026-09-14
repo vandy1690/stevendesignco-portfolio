@@ -110,6 +110,7 @@ const quotes = [
 			.recs__card { position: static !important; width: auto !important; height: auto !important; margin-left: 0 !important; transform: none !important; visibility: visible !important; opacity: 1 !important; }
 			[data-animate], [data-reveal] { opacity: 1 !important; transform: none !important; }
 			.rw, .rw__i { overflow: visible !important; transform: none !important; }
+			.deck__dots { display: none !important; }
 		</style>
 	</noscript>
 	<section id="work" class="deck deck--work" data-mode="flip" aria-labelledby="work-title" style={`--n: ${cases.length}`}>
@@ -147,6 +148,7 @@ const quotes = [
 						</li>
 					))}
 				</ol>
+				<div class="deck__dots" aria-hidden="true">{cases.map(() => <span class="deck__dot"></span>)}</div>
 			</div>
 		</div>
 	</section>
@@ -166,6 +168,7 @@ const quotes = [
 						</li>
 					))}
 				</ol>
+				<div class="deck__dots" aria-hidden="true">{quotes.map(() => <span class="deck__dot"></span>)}</div>
 			</div>
 		</div>
 	</section>
@@ -363,6 +366,17 @@ const quotes = [
 		const ease = mode === 'swing' ? 0.065 : 1;
 		const n = cards.length;
 		if (!track || !n) return;
+		/* Progress dots. Purely visual and aria-hidden: the cards are already a
+		   list to assistive tech, and the jump list covers keyboard navigation. */
+		const dots = Array.from(deck.querySelectorAll<HTMLElement>('.deck__dot'));
+		let activeDot = -1;
+		const setActive = (idx: number) => {
+			if (idx === activeDot || !dots.length) return;
+			if (activeDot >= 0 && dots[activeDot]) dots[activeDot].classList.remove('is-active');
+			activeDot = Math.max(0, Math.min(dots.length - 1, idx));
+			dots[activeDot].classList.add('is-active');
+		};
+		setActive(0);
 		const target = cards.map((_, j) => (j === 0 ? 0 : 1));
 		const current = target.slice();
 		let raf = 0;
@@ -374,6 +388,7 @@ const quotes = [
 			const i = Math.floor(t);
 			const lp = t - i;
 			if (mode === 'fan') {
+				setActive(Math.round(t));
 				// Continuous fan: card j sits at slot (j - t), so the whole spread
 				// slides one slot per card as the page scrolls. The centered card is
 				// lifted, upright and on top; the rest lean away and sit behind it.
@@ -407,6 +422,8 @@ const quotes = [
 				const hold = 0.55;
 				kOut = i < n - 1 ? smooth(clamp((lp - hold) / (1 - hold), 0, 1)) : 0;
 				kIn = kOut;
+				// The dot moves when the incoming card is past edge-on, so it tracks what you see.
+				setActive(kOut > 0.5 ? i + 1 : i);
 			}
 			for (let j = 0; j < n; j++) {
 				if (j < i) target[j] = -1;
@@ -787,6 +804,14 @@ const quotes = [
 		perspective: 1800px;
 		overflow: hidden;
 	}
+	/* Progress dots: discreet, below the cards. Inactive dots use the control
+	   border tone; the active one stretches into a short ink pill so position
+	   reads by shape as well as tone. */
+	.deck__dots { position: relative; z-index: 120; display: flex; align-items: center; justify-content: center; gap: 8px; height: 6px; flex: none; pointer-events: none; }
+	.deck__dot { width: 6px; height: 6px; border-radius: 3px; background: var(--rule-strong); transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease; }
+	.deck__dot.is-active { width: 18px; background: var(--text); }
+	/* The fanned side cards dip below the fan box, so the row clears them. */
+	.deck--recs .deck__dots { margin-top: 14px; }
 	.deck__label { position: relative; z-index: 3; margin: 0; font-family: var(--font-body); font-size: var(--text-label); font-weight: 700; letter-spacing: 0.16em; line-height: 1.2; }
 	.deck__cards { list-style: none; margin: 0; padding: 0; display: grid; place-items: center; width: var(--content); }
 	.deck__card {
@@ -940,6 +965,8 @@ const quotes = [
 
 	/* ---------- Reduced motion: decks become lists ---------- */
 	@media (prefers-reduced-motion: reduce), (max-height: 599px) {
+		/* A list shows every card at once, so a position indicator means nothing. */
+		.deck__dots { display: none; }
 		.deck__track, .deck--recs .deck__track { height: auto; }
 		/* The cards stop being height-capped, or the copy is clipped. */
 		.deck--work .card { max-height: none; }
@@ -950,6 +977,7 @@ const quotes = [
 		.modal__body { transform: none; transition: none; }
 		.modal, .modal.is-open { transition: none; }
 		.card, .arrow { transition: none; }
+		.deck__dot { transition: none; }
 		.deck__stage { position: static; height: auto; padding: var(--space-3xl) 0 0; overflow: visible; perspective: none; }
 		.deck__cards { display: grid; gap: var(--space-md); place-items: stretch; }
 		.deck__card { grid-area: auto; transform: none !important; visibility: visible !important; }
@@ -960,6 +988,7 @@ const quotes = [
 	   pinned deck measurably cannot fit this device, and the layout becomes the
 	   same plain list the reduced-motion path uses. */
 	:root.deck-static .deck__track { height: auto; }
+	:root.deck-static .deck__dots { display: none; }
 
 		:root.deck-static .deck--recs .deck__track { height: auto; }
 		/* The cards stop being height-capped, or the copy is clipped. */
@@ -1000,6 +1029,7 @@ const quotes = [
 		.card__meta div { flex-direction: column; gap: 2px; align-items: flex-start; }
 		.card__meta dt { font-size: 12px; letter-spacing: 0.1em; color: var(--text); }
 		.card__meta dt::after { content: none; }
+		.deck--work .deck__dots { margin-top: -18px; }
 		.card__meta dd { font-size: 14px; line-height: 1.4; }
 		.how__list li, .rec__list li { grid-template-columns: 1fr; gap: 8px; }
 		.deck--recs { --rec-w: min(300px, 82vw); --rec-h: 380px; }
