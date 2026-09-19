@@ -2,13 +2,17 @@ import '../src/sdc.css';
 import './storybook.css';
 
 export default {
+  // One scrolling docs page per section, built from the stories.
+  tags: ['autodocs'],
   parameters: {
     layout: 'padded',
     options: {
       storySort: { order: ['Introduction', 'Foundations', 'Components', 'Patterns'] },
     },
-    backgrounds: { disable: true },
     controls: { expanded: true },
+    // The HTML panel shows the markup inside the canvas wrapper, not the wrapper.
+    html: { root: '.sb-canvas', removeComments: true },
+    docs: { toc: true },
   },
   globalTypes: {
     theme: {

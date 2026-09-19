@@ -1,4 +1,4 @@
-const u={title:"Patterns"},e=()=>`
+import{a as u}from"./design-links-Seer4HjQ.js";const y={title:"Patterns"},e=()=>`
   <p class="sb-note">Order is fixed across all seven case studies: back link, kicker, title, deck,
     figure, then the stats. The figure sits between the deck and the stats at full width.</p>
   <div style="max-width:900px">
@@ -38,7 +38,7 @@ const u={title:"Patterns"},e=()=>`
       <li><a href="#0">instagram.com/stevendesignservices</a></li>
     </ul>
     <p class="contact__based" style="margin-top:24px">Aurora, IL · Chicago area · Open to remote</p>
-  </div>`;t.storyName="Contact block";var s,i,d;e.parameters={...e.parameters,docs:{...(s=e.parameters)==null?void 0:s.docs,source:{originalSource:`() => \`
+  </div>`;t.storyName="Contact block";u({CaseStudyHero:e,DeckFallback:a,ContactBlock:t});var s,i,d;e.parameters={...e.parameters,docs:{...(s=e.parameters)==null?void 0:s.docs,source:{originalSource:`() => \`
   <p class="sb-note">Order is fixed across all seven case studies: back link, kicker, title, deck,
     figure, then the stats. The figure sits between the deck and the stats at full width.</p>
   <div style="max-width:900px">
@@ -52,7 +52,7 @@ const u={title:"Patterns"},e=()=>`
       <div><dt>Org</dt><dd>MTG Media Group</dd></div>
       <div><dt>Recognition</dt><dd>2017 Jesse H. Neal Award, Best Website</dd></div>
     </dl>
-  </div>\``,...(d=(i=e.parameters)==null?void 0:i.docs)==null?void 0:d.source}}};var l,r,c;a.parameters={...a.parameters,docs:{...(l=a.parameters)==null?void 0:l.docs,source:{originalSource:`() => \`
+  </div>\``,...(d=(i=e.parameters)==null?void 0:i.docs)==null?void 0:d.source}}};var l,r,o;a.parameters={...a.parameters,docs:{...(l=a.parameters)==null?void 0:l.docs,source:{originalSource:`() => \`
   <p class="sb-note">The home page pins a card to the viewport and flips through five of them on
     scroll. That needs height it does not always have, so the deck degrades to this plain list in
     three cases: the visitor asked for reduced motion, the viewport is under 600px tall, which is
@@ -68,7 +68,7 @@ const u={title:"Patterns"},e=()=>`
           <span class="card__cta">Read case study <span class="arrow" aria-hidden="true">→</span></span>
         </div>
       </div>\`).join('')}
-  </div>\``,...(c=(r=a.parameters)==null?void 0:r.docs)==null?void 0:c.source}}};var o,n,p;t.parameters={...t.parameters,docs:{...(o=t.parameters)==null?void 0:o.docs,source:{originalSource:`() => \`
+  </div>\``,...(o=(r=a.parameters)==null?void 0:r.docs)==null?void 0:o.source}}};var c,n,p;t.parameters={...t.parameters,docs:{...(c=t.parameters)==null?void 0:c.docs,source:{originalSource:`() => \`
   <p class="sb-note">Closes the page. Long handles wrap rather than push the layout wide.</p>
   <div style="max-width:700px">
     <h2 class="contact__title display" style="font-size:clamp(40px,6vw,88px);line-height:.95;margin:0 0 32px">Let's talk.</h2>
@@ -78,4 +78,4 @@ const u={title:"Patterns"},e=()=>`
       <li><a href="#0">instagram.com/stevendesignservices</a></li>
     </ul>
     <p class="contact__based" style="margin-top:24px">Aurora, IL · Chicago area · Open to remote</p>
-  </div>\``,...(p=(n=t.parameters)==null?void 0:n.docs)==null?void 0:p.source}}};const v=["CaseStudyHero","DeckFallback","ContactBlock"];export{e as CaseStudyHero,t as ContactBlock,a as DeckFallback,v as __namedExportsOrder,u as default};
+  </div>\``,...(p=(n=t.parameters)==null?void 0:n.docs)==null?void 0:p.source}}};const f=["CaseStudyHero","DeckFallback","ContactBlock"];export{e as CaseStudyHero,t as ContactBlock,a as DeckFallback,f as __namedExportsOrder,y as default};

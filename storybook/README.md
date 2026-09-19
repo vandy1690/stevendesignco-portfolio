@@ -16,6 +16,19 @@ Plain HTML stories on `@storybook/html-vite`. No React, which matches the site:
 Astro with vanilla CSS custom properties. Stories are functions returning HTML
 strings using the same class names the pages use.
 
+## Add-ons
+
+- `addon-essentials`: the toolbar the theme switch lives in, Controls, Viewport,
+  Measure, Outline, and one autodocs page per section. Actions and Backgrounds
+  are switched off.
+- `addon-a11y`: axe checks per story. Every story passes in both themes.
+- `@whitespace/storybook-addon-html`: the rendered markup for each story.
+- `addon-designs`: the Figma frame beside the story. Paste share links into
+  `stories/design-links.js`; the Design tab stays off until one is filled in.
+
+All pinned to Storybook 8 releases. Docs pages render several stories in one
+document, so story scripts must be block scoped and must not rely on ids.
+
 ## Commands
 
     npm install

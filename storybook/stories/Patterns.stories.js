@@ -1,3 +1,5 @@
+import { attachDesigns } from './design-links.js';
+
 export default { title: 'Patterns' };
 
 export const CaseStudyHero = () => `
@@ -50,3 +52,5 @@ export const ContactBlock = () => `
     <p class="contact__based" style="margin-top:24px">Aurora, IL · Chicago area · Open to remote</p>
   </div>`;
 ContactBlock.storyName = 'Contact block';
+
+attachDesigns({ CaseStudyHero, DeckFallback, ContactBlock });

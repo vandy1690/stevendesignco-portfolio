@@ -1,4 +1,4 @@
-const p=e=>`<span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="${e==="prev"?"M10 3.5 5.5 8l4.5 4.5":"m6 3.5 4.5 4.5L6 12.5"}"/></svg></span>`,E={title:"Components"},l={args:{label:"View work"},argTypes:{label:{control:"text"}},render:({label:e})=>`
+import{a as E}from"./design-links-Seer4HjQ.js";const p=e=>`<span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="${e==="prev"?"M10 3.5 5.5 8l4.5 4.5":"m6 3.5 4.5 4.5L6 12.5"}"/></svg></span>`,K={title:"Components"},l={args:{label:"View work"},argTypes:{label:{control:"text"}},render:({label:e})=>`
     <p class="sb-note">Two weights only. Both take the 10px control radius, and the secondary
       border uses <code>--rule-strong</code> so the boundary clears 3 to 1.</p>
     <div class="sb-stack">
@@ -73,7 +73,7 @@ const p=e=>`<span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16"
     frame to bring it in.</p>
   <div style="position:relative;height:90px">
     <a class="skip-link" href="#0" style="position:absolute;top:12px;left:0">Skip to content</a>
-  </div>`;i.storyName="Skip link";var h,u,m;l.parameters={...l.parameters,docs:{...(h=l.parameters)==null?void 0:h.docs,source:{originalSource:`{
+  </div>`;i.storyName="Skip link";E({Buttons:l,Pager:d,PagerPair:a,CaseCard:s,Recommendation:c,MetaRow:n,RowList:o,CaseBlock:r,SkipLink:i});var h,u,m;l.parameters={...l.parameters,docs:{...(h=l.parameters)==null?void 0:h.docs,source:{originalSource:`{
   args: {
     label: 'View work'
   },
@@ -228,4 +228,4 @@ const p=e=>`<span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16"
     frame to bring it in.</p>
   <div style="position:relative;height:90px">
     <a class="skip-link" href="#0" style="position:absolute;top:12px;left:0">Skip to content</a>
-  </div>\``,...(M=(L=i.parameters)==null?void 0:L.docs)==null?void 0:M.source}}};const z=["Buttons","Pager","PagerPair","CaseCard","Recommendation","MetaRow","RowList","CaseBlock","SkipLink"];export{l as Buttons,r as CaseBlock,s as CaseCard,n as MetaRow,d as Pager,a as PagerPair,c as Recommendation,o as RowList,i as SkipLink,z as __namedExportsOrder,E as default};
+  </div>\``,...(M=(L=i.parameters)==null?void 0:L.docs)==null?void 0:M.source}}};const V=["Buttons","Pager","PagerPair","CaseCard","Recommendation","MetaRow","RowList","CaseBlock","SkipLink"];export{l as Buttons,r as CaseBlock,s as CaseCard,n as MetaRow,d as Pager,a as PagerPair,c as Recommendation,o as RowList,i as SkipLink,V as __namedExportsOrder,K as default};

@@ -9,6 +9,8 @@
   margin: -16px;
   min-height: 220px;
 }
+/* Docs pages pad the story frame more than the canvas does. */
+.docs-story .sb-canvas { margin: -30px -20px; }
 .sb-stack { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
 .sb-col { display: grid; gap: 20px; }
 .sb-note {
@@ -26,7 +28,7 @@
 .sb-swatch__name { font-size: 13px; font-weight: 700; }
 .sb-swatch__val { font-size: 12px; color: var(--text-mute); font-variant-numeric: tabular-nums; }
 .sb-swatch__ratio { font-size: 12px; margin-top: 4px; font-variant-numeric: tabular-nums; }
-.sb-pass { color: #1F7A4C; font-weight: 700; }
+.sb-pass { color: #17633D; font-weight: 700; }
 .sb-fail { color: #B3261E; font-weight: 700; }
 :root[data-theme="dark"] .sb-pass { color: #6EE7A8; }
 :root[data-theme="dark"] .sb-fail { color: #FF9B93; }
