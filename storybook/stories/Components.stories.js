@@ -1,3 +1,5 @@
+import { attachDesigns } from './design-links.js';
+
 const chevron = (dir) => `<span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="${dir === 'prev' ? 'M10 3.5 5.5 8l4.5 4.5' : 'm6 3.5 4.5 4.5L6 12.5'}"/></svg></span>`;
 
 export default { title: 'Components' };
@@ -138,3 +140,5 @@ export const SkipLink = () => `
     <a class="skip-link" href="#0" style="position:absolute;top:12px;left:0">Skip to content</a>
   </div>`;
 SkipLink.storyName = 'Skip link';
+
+attachDesigns({ Buttons, Pager, PagerPair, CaseCard, Recommendation, MetaRow, RowList, CaseBlock, SkipLink });

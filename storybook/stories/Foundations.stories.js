@@ -22,15 +22,17 @@ export const Colour = () => {
     <p class="sb-note">Light is the shipped default; dark is the alternate. Ratios are against
       the page ground and the card surface. AA needs 4.5 for body text and 3 for large text
       and control boundaries.</p>
-    <div class="sb-grid" id="sw"></div>`;
+    <div class="sb-grid"></div>`;
   const run = () => {
     const script = document.createElement('script');
-    script.textContent = `${helpers}
+    /* Block scoped, and the host is found from the script itself: a docs page
+       renders this story more than once in the same document. */
+    script.textContent = `{ ${helpers}
       /* Borders and dividers are non-text contrast: the bar is 3, not 4.5. */
       const TOKENS = [['--bg',0],['--surface',0],['--surface-2',0],['--text',4.5],['--text-mute',4.5],
                       ['--accent',4.5],['--accent-hover',4.5],['--accent-text',0],
                       ['--rule',0],['--rule-strong',3]];
-      const host = document.getElementById('sw');
+      const host = document.currentScript.parentElement.querySelector('.sb-grid');
       if (host) host.innerHTML = TOKENS.map(([t, bar]) => {
         const v = read(t);
         const onBg = ratio(v, read('--bg')), onSurf = ratio(v, read('--surface'));
@@ -41,7 +43,7 @@ export const Colour = () => {
         return '<div class="sb-swatch"><div class="sb-swatch__chip" style="background:' + v + '"></div>' +
           '<div class="sb-swatch__meta"><div class="sb-swatch__name">' + t + '</div>' +
           '<div class="sb-swatch__val">' + v + '</div>' + line + '</div></div>';
-      }).join('');`;
+      }).join(''); }`;
     el.appendChild(script);
   };
   requestAnimationFrame(run);

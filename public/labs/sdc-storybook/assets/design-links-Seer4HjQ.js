@@ -1,0 +1,1 @@
+const e={Buttons:"",Pager:"",PagerPair:"",CaseCard:"",Recommendation:"",MetaRow:"",RowList:"",CaseBlock:"",SkipLink:"",CaseStudyHero:"",DeckFallback:"",ContactBlock:""};Object.values(e).some(Boolean);function s(o){for(const[a,t]of Object.entries(o))e[a]&&(t.parameters={...t.parameters,design:{type:"figma",url:e[a]}})}export{s as a};
