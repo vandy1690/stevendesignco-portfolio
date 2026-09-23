@@ -4,7 +4,7 @@ import PluginPipeline from '../components/art/PluginPipeline.astro';
 import OneClickCheckout from '../components/art/OneClickCheckout.astro';
 import JourneyMap from '../components/art/JourneyMap.astro';
 
-// Four case studies, one argument each. Order is a data decision: swap entries here.
+// Six case studies, one argument each. Order is a data decision: swap entries here.
 // `image` is the full-bleed card image (16:9, 1600 by 900 or larger, object-fit cover).
 // Card art is flat editorial art in the site palette, generated Sept 12 2026. The
 // labelled SVG diagrams still live on the case study pages, where the facts belong.
@@ -13,6 +13,9 @@ const cases = [
 		href: '/work/merchant-flow-builder',
 		art: 'image',
 		image: '/images/case-studies/merchant-flow-builder/plugin-pipeline.webp',
+		// A drawn diagram: every node has to survive, so it fits rather than crops.
+		contain: true,
+		field: '#EEEAE7',
 		head: 'Nobody asked for this one.',
 		text: 'A Figma plugin, built on my own initiative, that cut merchant flow setup from most of a day to 10 to 15 minutes, across the 38-merchant program.',
 		product: 'Figma plugin, PayPal',
@@ -52,10 +55,27 @@ const cases = [
 		href: '/work/paypal#checkout-dead-end',
 		art: 'image',
 		image: '/images/case-studies/paypal/journey-dead-end.webp',
+		// The dead end itself is the dark square at the right-hand end of the
+		// arc, low in the frame. A cropped version of this image loses the point.
+		contain: true,
+		field: '#EEEAE7',
 		head: 'The checkout dead end.',
 		text: 'A saved card stops working, and nothing stops the order until checkout. I mapped the month leading up to it for senior leadership, marking where it could have been resolved instead. Now the team’s template.',
 		product: 'PayPal consumer checkout',
 		objective: 'Show leadership where the dead end starts',
+	},
+	{
+		href: '/work/artistic-eye',
+		art: 'image',
+		image: '/images/case-studies/artistic-eye/cover.webp',
+		// The reversed lockup on its own charcoal ground. A logo, so it fits inside
+		// the box rather than cropping, and the field is the artwork's own.
+		contain: true,
+		field: '#2B2C2B',
+		head: 'A brand, from the letterform out.',
+		text: 'A full identity for an art and eyewear shop in Door County: a custom wordmark, a stacked monogram in six colorways, printed cards, and 11.2 ft double-sided street flags. The guidelines are published.',
+		product: 'The Artistic Eye, Steven Design Services',
+		objective: 'One brand two printers cannot split',
 	},
 ];
 
@@ -94,7 +114,7 @@ const quotes = [
 			<p class="hero__valid" data-reveal="block">Four Jesse H. Neal Awards, one for Best Website.</p>
 			<div class="hero__cta" data-reveal="block">
 				<a class="btn btn--primary" href="#work" aria-describedby="hero-cta-desc">View case studies</a>
-				<span id="hero-cta-desc" class="sr-only">Jumps down this page to five case studies</span>
+				<span id="hero-cta-desc" class="sr-only">Jumps down this page to six case studies</span>
 				<a class="btn" href="/resume">Resume</a>
 			</div>
 		</div>
@@ -130,7 +150,7 @@ const quotes = [
 					{cases.map((c, i) => (
 						<li class="deck__card">
 							<div class="card">
-								<div class={`card__art card__art--${c.art}${c.contain ? ' card__art--contain' : ''}`}>
+								<div class={`card__art card__art--${c.art}${c.contain ? ' card__art--contain' : ''}`} style={c.field ? `--field: ${c.field}` : undefined}>
 									{c.image && <img src={c.image} alt="" loading="lazy" />}
 									{!c.image && c.art === 'plugin' && <PluginPipeline />}
 									{!c.image && c.art === 'checkout' && <OneClickCheckout />}
@@ -704,7 +724,7 @@ const quotes = [
 
 <style>
 	.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-	/* The deck keeps only the face-on card visible, so four of five case study
+	/* The deck keeps only the face-on card visible, so all but one case study
 	   links are not tabbable. This list carries the same links for keyboard and
 	   screen reader users and shows itself the moment one of them is focused. */
 	.deck__jump { position: fixed; left: 12px; top: 12px; z-index: 150; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
@@ -774,9 +794,13 @@ const quotes = [
 	/* Full-bleed media. Images cover; the drawn stand-ins sit on paper until the images arrive. */
 	.card__art { position: relative; width: 100%; aspect-ratio: 16 / 9; max-height: 50svh; background: var(--bg); overflow: hidden; display: flex; align-items: center; justify-content: center; }
 	.card__art img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
-	/* Logo lockups must show every mark, so they fit inside the box and the box
-	   takes the artwork's own ground, which makes the letterbox invisible. */
-	.card__art--contain { background: #F2F1EC; }
+	/* Two kinds of art must never be cropped: logo lockups, which would lose a
+	   mark, and the flat diagrams, which would lose the thing they are drawing.
+	   Both fit inside the box, and the box takes the artwork's own ground, which
+	   makes the letterbox invisible. This matters most on a short viewport, where
+	   the max-height caps below squeeze the 16:9 box toward 2.8:1 and `cover`
+	   would take the difference off the bottom of the image. */
+	.card__art--contain { background: var(--field, #F2F1EC); }
 	.card__art--contain img { object-fit: contain; object-position: center; }
 	.card__body { padding: clamp(22px, 3vw, 32px) clamp(22px, 3.2vw, 36px) clamp(22px, 3vw, 30px); display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "head head" "text text" "meta cta"; gap: 10px var(--space-lg); align-items: end; }
 	.card__head {

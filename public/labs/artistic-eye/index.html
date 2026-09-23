@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="color-scheme" content="light only" />
+<title>The Artistic Eye · Brand Guidelines</title>
+<meta name="description" content="Brand guidelines for The Artistic Eye, an art and eyewear shop in Sturgeon Bay, Wisconsin. Logo, monogram, colour, typography, misuse, and applications." />
+<meta name="robots" content="index, follow" />
+<meta property="og:title" content="The Artistic Eye · Brand Guidelines" />
+<meta property="og:description" content="Logo, monogram, colour, typography, misuse, and applications for an art and eyewear shop in Door County, Wisconsin." />
+<meta property="og:type" content="article" />
+
+<!-- Aziga and Neue Haas Grotesk Text, the brand's two faces, via Adobe Fonts. -->
+<link rel="preconnect" href="https://use.typekit.net" crossorigin />
+<link rel="stylesheet" href="https://use.typekit.net/efe0etu.css" />
+
+<style>
+:root{
+  /* Values read from the delivered vector artwork, not retyped from a spec. */
+  --pink:#DF248E;
+  --pink-hot:#EC008C;
+  --charcoal:#2B2C2B;
+  --cream:#FBF6F0;
+  --beige:#FBF6F0;
+  --ltpink:#F9DCEC;
+  --blue:#1E56C8;
+  --yellow:#F6A724;
+
+  --ink:#2B2C2B;
+  --ink-soft:#6A6A68;
+  --rule:#DCD5CC;
+  --rule-soft:#E8E2D9;
+  --panel:#F5EFE7;
+
+  --display:"aziga","Bodoni 72",Didot,"Playfair Display",Georgia,serif;
+  --body:"neue-haas-grotesk-text","Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;
+
+  --gutter:clamp(20px,5vw,72px);
+  --maxw:1120px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--cream);color:var(--ink);
+  font-family:var(--body);font-size:17px;line-height:1.62;
+  font-weight:400;letter-spacing:0.002em;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{max-width:100%;height:auto;display:block}
+a{color:inherit}
+
+/* The brand's own tracking table, applied to the page that states it. */
+.display{font-family:var(--display);font-weight:400;line-height:1.02}
+h1.display{font-size:clamp(46px,8.2vw,72px);letter-spacing:0.015em}
+h2.display{font-size:clamp(30px,4.4vw,40px);letter-spacing:0.02em}
+h3.display{font-size:clamp(24px,2.6vw,30px);letter-spacing:0.025em}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+
+.eyebrow{
+  font-size:11.5px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--pink);margin:0 0 14px;
+}
+.num{color:var(--ink-soft);font-variant-numeric:tabular-nums}
+
+/* ---------- Cover ---------- */
+.cover{background:var(--charcoal);color:var(--cream);padding:clamp(56px,11vw,120px) 0 clamp(44px,8vw,86px)}
+.cover .wrap{display:grid;gap:clamp(30px,5vw,54px)}
+.cover__mark{max-width:min(640px,86%)}
+.cover__line{
+  font-family:var(--display);font-size:clamp(23px,3.4vw,34px);letter-spacing:0.025em;
+  color:var(--pink);margin:0;line-height:1.16;
+}
+.cover__meta{
+  display:flex;flex-wrap:wrap;gap:8px 30px;margin:0;padding:clamp(22px,3vw,30px) 0 0;
+  border-top:1px solid rgba(251,246,240,.22);
+  font-size:13px;letter-spacing:0.055em;text-transform:uppercase;color:rgba(251,246,240,.66);
+}
+
+/* ---------- Contents ---------- */
+.toc{
+  position:sticky;top:0;z-index:20;background:rgba(251,246,240,.93);
+  backdrop-filter:saturate(180%) blur(12px);-webkit-backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--rule);
+}
+.toc ol{
+  display:flex;gap:clamp(13px,1.6vw,20px);margin:0;padding:13px 0;list-style:none;
+  overflow-x:auto;scrollbar-width:none;
+}
+.toc ol::-webkit-scrollbar{display:none}
+.toc a{
+  white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:500;
+  letter-spacing:0.07em;text-transform:uppercase;color:var(--ink-soft);
+  padding-bottom:2px;border-bottom:1.5px solid transparent;transition:color .18s,border-color .18s;
+}
+.toc a:hover,.toc a:focus-visible{color:var(--pink);border-bottom-color:var(--pink)}
+
+/* ---------- Sections ---------- */
+.sec{padding:clamp(54px,8.5vw,104px) 0;border-bottom:1px solid var(--rule-soft)}
+.sec:last-of-type{border-bottom:0}
+.sec__head{max-width:62ch;margin:0 0 clamp(30px,4.5vw,46px)}
+.sec__head h2{margin:0 0 16px}
+.lede{font-size:clamp(18px,2vw,20.5px);line-height:1.56;color:var(--ink);margin:0}
+p{margin:0 0 1.05em;max-width:66ch}
+p:last-child{margin-bottom:0}
+
+.rule-list{margin:0;padding:0;list-style:none;display:grid;gap:14px;max-width:70ch}
+.rule-list li{padding-left:26px;position:relative}
+.rule-list li::before{
+  content:"";position:absolute;left:0;top:.62em;width:11px;height:1.5px;background:var(--pink)
+}
+
+/* ---------- Tables ---------- */
+.tbl{width:100%;border-collapse:collapse;margin:8px 0 0;font-size:15.5px}
+.tbl caption{text-align:left;font-size:13px;color:var(--ink-soft);padding:0 0 12px}
+.tbl th,.tbl td{text-align:left;padding:13px 18px 13px 0;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+.tbl th{
+  font-size:11.5px;font-weight:600;letter-spacing:0.13em;text-transform:uppercase;
+  color:var(--ink-soft);border-bottom-color:var(--rule);
+}
+.tbl td:first-child{font-weight:600;white-space:nowrap}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:14px;letter-spacing:0.01em}
+
+/* ---------- Specimen panels ---------- */
+.panel{background:var(--panel);border:1px solid var(--rule-soft);border-radius:2px;padding:clamp(24px,4vw,46px)}
+.panel--dark{background:var(--charcoal);border-color:var(--charcoal)}
+.panel__cap{
+  margin:14px 0 0;font-size:12.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-soft)
+}
+.panel--dark + .panel__cap{color:var(--ink-soft)}
+
+.grid{display:grid;gap:clamp(18px,2.6vw,28px)}
+.grid--2{grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.grid--3{grid-template-columns:repeat(auto-fit,minmax(215px,1fr))}
+.grid--6{grid-template-columns:repeat(auto-fit,minmax(135px,1fr))}
+.grid--8{grid-template-columns:repeat(auto-fit,minmax(178px,1fr))}
+
+.spec{display:grid;gap:0}
+.spec__box{
+  display:flex;align-items:center;justify-content:center;
+  min-height:170px;padding:30px;border:1px solid var(--rule-soft);border-radius:2px;background:var(--panel);
+}
+.spec__box img{max-height:110px;width:auto}
+.spec__box--dark{background:var(--charcoal);border-color:var(--charcoal)}
+.spec__box--pink{background:var(--pink);border-color:var(--pink)}
+.spec__name{margin:13px 0 3px;font-weight:600;font-size:15px}
+.spec__use{margin:0;font-size:14.5px;line-height:1.5;color:var(--ink-soft)}
+
+/* Monogram tiles: each sits on the ground it is drawn for. */
+.mono-tile{display:flex;align-items:center;justify-content:center;min-height:150px;padding:26px;border-radius:2px}
+.mono-tile img{max-height:96px;width:auto}
+.mono-tile--onDark{background:var(--charcoal)}
+.mono-tile--onCream{background:var(--panel);border:1px solid var(--rule-soft)}
+
+/* ---------- Clear space ---------- */
+.clear{position:relative;padding:clamp(30px,6vw,64px);background:var(--panel);border:1px solid var(--rule-soft);border-radius:2px}
+.clear__inner{position:relative;max-width:560px;margin:0 auto;padding:11.83%} /* = 15.5% of the mark itself, solved for border-box */
+.clear__zone{position:absolute;inset:0;border:1.5px dashed var(--pink);opacity:.62}
+.clear__mark{position:relative;display:block;width:100%}
+
+/* ---------- Colour ---------- */
+.swatch{border:1px solid var(--rule-soft);border-radius:2px;overflow:hidden;background:var(--panel);display:flex;flex-direction:column}
+.swatch__chip{height:132px}
+.swatch__body{padding:16px 18px 20px;background:var(--panel);flex:1}
+.swatch__name{margin:0 0 4px;font-weight:600;font-size:15.5px}
+.swatch__hex{margin:0 0 8px}
+.swatch__note{margin:0;font-size:14px;line-height:1.5;color:var(--ink-soft)}
+
+.bar{display:flex;height:58px;border-radius:2px;overflow:hidden;border:1px solid var(--rule-soft)}
+.bar span{display:block}
+.bar__key{
+  display:flex;flex-wrap:wrap;gap:8px 26px;margin:14px 0 0;padding:0;list-style:none;
+  font-size:13.5px;color:var(--ink-soft)
+}
+.bar__key li{display:flex;align-items:center;gap:8px}
+.bar__key i{width:11px;height:11px;border-radius:2px;border:1px solid rgba(43,44,43,.16)}
+
+/* ---------- Open decision ---------- */
+.open{
+  border:1.5px solid var(--pink);border-radius:2px;padding:clamp(24px,3.6vw,38px);
+  background:rgba(223,36,142,.045);max-width:74ch
+}
+.open h3{margin:0 0 14px;font-size:20px;font-weight:600;font-family:var(--body);letter-spacing:0}
+.open .eyebrow{margin-bottom:10px}
+.open__pair{display:flex;flex-wrap:wrap;gap:22px;margin:20px 0 0;padding:0;list-style:none}
+.open__pair li{display:flex;align-items:center;gap:11px;font-size:15px}
+.open__pair i{width:32px;height:32px;border-radius:2px;flex:0 0 auto}
+
+/* ---------- Type specimens ---------- */
+.type-spec{padding:clamp(24px,3.6vw,40px);background:var(--panel);border:1px solid var(--rule-soft);border-radius:2px}
+.type-spec__face{font-family:var(--display);font-size:clamp(40px,7vw,68px);letter-spacing:0.015em;line-height:1.05;margin:0}
+.type-spec__face--body{font-family:var(--body);font-size:clamp(26px,4vw,40px);letter-spacing:0;font-weight:400}
+.type-spec__meta{margin:20px 0 0;font-size:14px;color:var(--ink-soft);line-height:1.55}
+.type-scale{margin:26px 0 0;display:grid;gap:18px}
+.type-scale div{border-top:1px solid var(--rule-soft);padding-top:14px}
+.type-scale span{display:block;font-size:11.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+.t72{font-family:var(--display);font-size:clamp(34px,5.4vw,52px);letter-spacing:0.015em;line-height:1.05}
+.t40{font-family:var(--display);font-size:clamp(26px,3.4vw,34px);letter-spacing:0.02em;line-height:1.1}
+.t30{font-family:var(--display);font-size:clamp(21px,2.5vw,26px);letter-spacing:0.025em;line-height:1.15}
+
+/* ---------- Misuse ---------- */
+.dont{position:relative;border:1px solid var(--rule-soft);border-radius:2px;background:var(--panel);overflow:hidden}
+.dont__stage{display:flex;align-items:center;justify-content:center;height:122px;padding:20px;overflow:hidden}
+.dont__stage img{max-height:52px;width:auto}
+.dont__label{
+  display:flex;gap:9px;align-items:flex-start;padding:14px 16px 16px;
+  border-top:1px solid var(--rule-soft);font-size:14px;line-height:1.45
+}
+.dont__x{
+  flex:0 0 auto;width:17px;height:17px;border-radius:50%;background:var(--pink);color:#fff;
+  font-size:11px;line-height:17px;text-align:center;font-weight:700;margin-top:1px
+}
+.d-stretch img{transform:scaleX(1.55)}
+.d-squash img{transform:scaleY(.52)}
+.d-rotate img{transform:rotate(-13deg)}
+.d-recolor img{filter:hue-rotate(115deg) saturate(1.5)}
+.d-shadow img{filter:drop-shadow(5px 6px 4px rgba(43,44,43,.5))}
+.d-outline img{filter:drop-shadow(1.5px 0 0 var(--pink)) drop-shadow(-1.5px 0 0 var(--pink)) drop-shadow(0 1.5px 0 var(--pink)) drop-shadow(0 -1.5px 0 var(--pink))}
+.d-busy{background:
+  repeating-linear-gradient(48deg,#8d7f72 0 13px,#b9ad9d 13px 26px,#6d6257 26px 39px)}
+.d-small img{max-height:15px}
+
+/* ---------- Applications ---------- */
+.app{display:grid;gap:0}
+.app__shot{border:1px solid var(--rule-soft);border-radius:2px;overflow:hidden;background:var(--panel)}
+.app__shot img{width:100%}
+.app__shot--flag{display:flex;justify-content:center;padding:26px;background:var(--panel)}
+.app__shot--flag img{width:auto;max-height:420px}
+.app__name{margin:14px 0 4px;font-weight:600;font-size:15.5px}
+.app__note{margin:0;font-size:14.5px;line-height:1.55;color:var(--ink-soft)}
+
+/* ---------- Assets ---------- */
+.assets{margin:0;padding:0;list-style:none;display:grid;gap:12px;max-width:70ch}
+.assets li{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;padding-bottom:12px;border-bottom:1px solid var(--rule-soft)}
+.assets .mono{font-weight:600;color:var(--ink)}
+.assets em{font-style:normal;font-size:14px;color:var(--ink-soft)}
+
+.callout{
+  border-left:2.5px solid var(--pink);padding:4px 0 4px 20px;margin:26px 0 0;max-width:68ch;
+  font-size:16.5px;line-height:1.58
+}
+
+/* ---------- Footer ---------- */
+.foot{background:var(--charcoal);color:rgba(251,246,240,.74);padding:clamp(44px,7vw,74px) 0;font-size:14.5px}
+.foot .wrap{display:grid;gap:26px}
+.foot__mark{max-width:186px;opacity:.94}
+.foot p{max-width:64ch;margin:0 0 .8em}
+.foot a{color:var(--cream);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.foot a:hover{color:var(--pink)}
+.foot__meta{font-size:13px;color:rgba(251,246,240,.5);letter-spacing:0.04em}
+
+@media (max-width:1099px){
+  .toc{position:static;backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--cream)}
+  .toc ol{flex-wrap:wrap;overflow-x:visible;gap:9px 18px;padding:14px 0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.toc{display:none}.sec{break-inside:avoid}}
+</style>
+</head>
+
+<body>
+
+<header class="cover">
+  <div class="wrap">
+    <img class="cover__mark" src="assets/reversed-lockup.webp" alt="The Artistic Eye logo: the word artistic in pink above the word eye in cream, drawn as a pair of glasses with a temple arm extending from the final letter" width="1320" height="659" />
+    <p class="cover__line">art and art for the eye</p>
+    <p class="cover__meta">
+      <span>Brand Guidelines</span>
+      <span>Version 2026</span>
+      <span>Sturgeon Bay, Wisconsin</span>
+    </p>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Contents">
+  <div class="wrap">
+    <ol>
+      <li><a href="#brand">01 Brand</a></li>
+      <li><a href="#logo">02 Logo</a></li>
+      <li><a href="#monogram">03 Monogram</a></li>
+      <li><a href="#colour">04 Colour</a></li>
+      <li><a href="#type">05 Typography</a></li>
+      <li><a href="#misuse">06 Misuse</a></li>
+      <li><a href="#applications">07 Applications</a></li>
+      <li><a href="#voice">08 Voice</a></li>
+      <li><a href="#assets">09 Assets</a></li>
+    </ol>
+  </div>
+</nav>
+
+<main>
+
+<!-- 01 ---------------------------------------------------------------- -->
+<section class="sec" id="brand">
+  <div class="wrap">
+    <div class="sec__head">
+      <p class="eyebrow"><span class="num">01</span> &nbsp;The brand</p>
+      <h2 class="display">An unusual art and eyewear shop.</h2>
+      <p class="lede">The Artistic Eye is an eyewear shop in Door County, Wisconsin, carrying high-end designer frames alongside original artwork by the artist who runs it.</p>
+    </div>
+    <div class="grid grid--2">
+      <div>
+        <h3 class="display">What it is not</h3>
+        <p>It is deliberately not a conventional optical shop and not a conventional gallery. There is no doctor and no eye exam. The shop sells frames. The identity should always read closer to a boutique or a gallery than to a clinic.</p>
+        <p>Never describe the shop in a way that suggests a full-scale optical operation. It is a curated shop of roughly 300 frames alongside original artwork.</p>
+      </div>
+      <div>
+        <h3 class="display">Tone</h3>
+        <p>Clean, confident, gallery-like. Never busy, never clinical, never cute.</p>
+        <p>This document states the rules in words so they can be quoted in an email, pasted into a print order, or handed to a vendor. It is written for anyone producing work in the brand's name: printers, sign shops, partner boutiques, and staff.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 ---------------------------------------------------------------- -->
+<section class="sec" id="logo">
+  <div class="wrap">
+    <div class="sec__head">
+      <p class="eyebrow"><span class="num">02</span> &nbsp;Logo</p>
+      <h2 class="display">One piece of artwork.</h2>
+      <p class="lede">The primary logo is a two-line lockup. The word <em>artistic</em> sits on the upper line, <em>eye</em> tucks beneath it, and a temple arm extends from the final letter so that <em>eye</em> reads as a pair of glasses.</p>
+    </div>
+
+    <p>The lettering is custom, drawn from Aziga and modified. It is supplied as outlines and must never be re-set from live type. The proportions, the spacing, and the position of the temple arm are fixed. Do not rebuild the mark, re-space it, or separate the arm from the lettering.</p>
+
+    <h3 class="display" style="margin:clamp(38px,5vw,56px) 0 22px">Approved versions</h3>
+    <div class="grid grid--3">
+      <div class="spec">
+        <div class="spec__box"><img src="assets/ae2026_logo_pink.svg" alt="The lockup in pink on a cream field" /></div>
+        <p class="spec__name">Pink</p>
+        <p class="spec__use">Primary. The default on light and cream backgrounds.</p>
+      </div>
+      <div class="spec">
+        <div class="spec__box"><img src="assets/ae2026_logo_black.svg" alt="The lockup in black on a cream field" /></div>
+        <p class="spec__name">Black</p>
+        <p class="spec__use">One-colour work: stamps, engraving, faxes, any single-colour print.</p>
+      </div>
+      <div class="spec">
+        <div class="spec__box"><img src="assets/ae2026_logo_Duotone.svg" alt="The lockup with artistic in pink and eye in black, on a cream field" /></div>
+        <p class="spec__name">Duotone</p>
+        <p class="spec__use">Where two-colour printing is available and the field is light.</p>
+      </div>
+      <div class="spec">
+        <div class="spec__box spec__box--dark"><img src="assets/reversed-lockup.webp" alt="The lockup reversed, with artistic in pink and eye in cream, on charcoal" /></div>
+        <p class="spec__name">Reversed</p>
+        <p class="spec__use">On the pink field or on charcoal. Use the supplied reversed art. Do not invert the positive art by hand.</p>
+      </div>
+    </div>
+
+    <h3 class="display" style="margin:clamp(38px,5vw,56px) 0 22px">Clear space</h3>
+    <p>Keep clear space on all four sides equal to the height of the <em>a</em> in <em>artistic</em>. Measured against the supplied artwork, that is <strong>15.5 percent of the mark's width</strong>. Nothing enters that zone: no type, no rules, no photography, no edge of the sheet.</p>
+    <div class="clear">
+      <div class="clear__inner">
+        <div class="clear__zone" aria-hidden="true"></div>
+        <img class="clear__mark" src="assets/ae2026_logo_black.svg" alt="The lockup with a dashed rectangle around it showing the clear space zone, set one a-height out from every edge" />
+      </div>
+    </div>
+    <p class="panel__cap">The dashed rule sits one <em>a</em>-height out from the artwork on every side.</p>
+
+    <h3 class="display" style="margin:clamp(38px,5vw,56px) 0 22px">Minimum sizes</h3>
+    <p>The lettering is high contrast, so the hairlines are the first thing to fail when the mark is reduced or cut in vinyl. At the fifth percentile the thinnest stroke measures 0.70 percent of the logo's width, and every floor below is set from that stroke rather than from taste.</p>
+    <table class="tbl">
+      <caption>Below these widths, use the monogram instead.</caption>
+      <thead><tr><th scope="col">Where</th><th scope="col">Minimum width</th><th scope="col">Hairline at that size</th></tr></thead>
+      <tbody>
+        <tr><td>Screen</td><td>180 px</td><td>1.3 px, so it survives a 1&times; display</td></tr>
+        <tr><td>Print</td><td>1.25 in / 32 mm</td><td>0.63 pt, clear of the 0.25 pt offset floor</td></tr>
+        <tr><td>Cut vinyl</td><td>2 in / 51 mm</td><td>1.0 pt, about the floor for weeding</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 03 ---------------------------------------------------------------- -->
+<section class="sec" id="monogram">
+  <div class="wrap">
+    <div class="sec__head">
+      <p class="eyebrow"><span class="num">03</span> &nbsp;Monogram</p>
+      <h2 class="display">A stacked ae, for everywhere the lockup will not fit.</h2>
+      <p class="lede">Social profile images, favicons, hang tags, the shop door, stamps, packaging seals, and small merchandise.</p>
+    </div>
+
+    <div class="grid grid--6">
+      <div><div class="mono-tile mono-tile--onCream"><img src="assets/ae2026_monogram_pink.svg" alt="The ae monogram in pink" /></div><p class="spec__name">Pink</p><p class="spec__use mono">#DF248E</p></div>
+      <div><div class="mono-tile mono-tile--onCream"><img src="assets/ae2026_monogram_black.svg" alt="The ae monogram in charcoal" /></div><p class="spec__name">Black</p><p class="spec__use mono">#2B2C2B</p></div>
+      <div><div class="mono-tile mono-tile--onDark"><img src="assets/ae2026_monogram_beige.svg" alt="The ae monogram in beige on charcoal" /></div><p class="spec__name">Beige</p><p class="spec__use mono">#FBF6F0</p></div>
+      <div><div class="mono-tile mono-tile--onCream"><img src="assets/ae2026_monogram_ltpink.svg" alt="The ae monogram in light pink" /></div><p class="spec__name">Light pink</p><p class="spec__use mono">#F9DCEC</p></div>
+      <div><div class="mono-tile mono-tile--onCream"><img src="assets/ae2026_monogram_blue.svg" alt="The ae monogram in blue" /></div><p class="spec__name">Blue</p><p class="spec__use mono">#1E56C8</p></div>
+      <div><div class="mono-tile mono-tile--onCream"><img src="assets/ae2026_monogram_yellow.svg" alt="The ae monogram in yellow" /></div><p class="spec__name">Yellow</p><p class="spec__use mono">#F6A724</p></div>
+    </div>
+
+    <div class="callout">Pink and black are the primaries. The other four appear one at a time, never mixed together in a single piece, and never competing with the pink. Beige carries the same value as the cream field, which is what makes it the reversing colourway rather than a colour of its own.</div>
+
+    <h3 class="display" style="margin:clamp(38px,5vw,56px) 0 22px">Rules</h3>
+    <ul class="rule-list">
+      <li>The monogram is a substitute for the logo, not an addition. Do not place the monogram and the full lockup side by side in the same lockup.</li>
+      <li>Same clear-space discipline as the logo.</li>
+      <li>Do not add a container, circle, or badge around it unless a supplied version already includes one.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 04 ---------------------------------------------------------------- -->
+<section class="sec" id="colour">
+  <div class="wrap">
+    <div class="sec__head">
+      <p class="eyebrow"><span class="num">04</span> &nbsp;Colour</p>
+      <h2 class="display">Pink, charcoal, and a warm field.</h2>
+      <p class="lede">Every value below is read from the delivered vector artwork rather than retyped from a specification, which is how the two of them drifted apart in the first place.</p>
+    </div>
+
+    <div class="grid grid--3">
+      <div class="swatch">
+        <div class="swatch__chip" style="background:#DF248E"></div>
+        <div class="swatch__body">
+          <p class="swatch__name">Artistic Pink</p>
+          <p class="swatch__hex mono">#DF248E</p>
+          <p class="swatch__note">The signature. Carried by every supplied vector: the pink lockup, the duotone, and the pink monogram.</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__chip" style="background:#2B2C2B"></div>
+        <div class="swatch__body">
+          <p class="swatch__name">Charcoal</p>
+          <p class="swatch__hex mono">#2B2C2B</p>
+          <p class="swatch__note">Type, the mark, and structure. Not pure black. Where older artwork carries pure black or #2B2B2B, correct it to this value.</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__chip" style="background:#FBF6F0;box-shadow:inset 0 0 0 1px rgba(43,44,43,.1)"></div>
+        <div class="swatch__body">
+          <p class="swatch__name">Cream field</p>
+          <p class="swatch__hex mono">#FBF6F0</p>
+          <p class="swatch__note">The default background. Warm and gallery-like, never stark white.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="display" style="margin:clamp(38px,5vw,56px) 0 22px">Supporting colours</h3>
+    <p>These exist for the monogram colourways and for accents in applications. They are a supporting cast, never a palette to mix from.</p>
+    <div class="grid grid--3">
+      <div class="swatch"><div class="swatch__chip" style="background:#F9DCEC;height:96px"></div><div class="swatch__body"><p class="swatch__name">Light pink</p><p class="swatch__hex mono">#F9DCEC</p></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:#1E56C8;height:96px"></div><div class="swatch__body"><p class="swatch__name">Blue</p><p class="swatch__hex mono">#1E56C8</p></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:#F6A724;height:96px"></div><div class="swatch__body"><p class="swatch__name">Yellow</p><p class="swatch__hex mono">#F6A724</p></div></div>
+    </div>
+
+    <div class="callout">The rule that keeps this brand clean: accents appear one at a time. A piece may use pink, charcoal, the cream field, and at most one supporting colour. Never a rainbow.</div>
+
+    <h3 class="display" style="margin:clamp(38px,5vw,56px) 0 22px">Proportion</h3>
+    <div class="bar" aria-hidden="true">
+      <span style="flex:60;background:#FBF6F0"></span>
+      <span style="flex:30;background:#2B2C2B"></span>
+      <span style="flex:10;background:#DF248E"></span>
+    </div>
+    <ul class="bar__key">
+      <li><i style="background:#FBF6F0"></i> 60 percent field</li>
+      <li><i style="background:#2B2C2B"></i> 30 percent charcoal</li>
+      <li><i style="background:#DF248E"></i> 10 percent pink</li>
+    </ul>
+    <p style="margin-top:20px">A supporting colour appears only as a garnish on top of that split.</p>
+
+    <h3 class="display" style="margin:clamp(38px,5vw,56px) 0 22px">The pink is not settled</h3>
+    <div class="open">
+      <p class="eyebrow">Open decision</p>
+      <h3>Two pinks are in circulation, and one of them has to win.</h3>
+      <p>The supplied vectors and the reverse of the business card carry <span class="mono">#DF248E</span>. The face of the same business card carries a hotter process pink, <span class="mono">#EC008C</span>. Neither is wrong on its own. Together they mean two printers can each follow the files and hand back two different brands.</p>
+      <ul class="open__pair">
+        <li><i style="background:#DF248E"></i> <span><strong class="mono">#DF248E</strong><br />Vectors, card reverse</span></li>
+        <li><i style="background:#EC008C"></i> <span><strong class="mono">#EC008C</strong><br />Card face</span></li>
+      </ul>
+      <p style="margin-top:20px">Until it is settled, specify <span class="mono">#DF248E</span> on anything new, because that is what the master artwork contains. This guide states the conflict rather than quietly picking one, because a guide that hides an undecided colour is how the split happened.</p>
+    </div>
+
+    <h3 class="display" style="margin:clamp(38px,5vw,56px) 0 22px">Before any spot or vinyl run</h3>
+    <ul class="rule-list">
+      <li>The Pantone match on the pink is an estimate. Confirm it against a physical chip before any spot-colour print run, and record the result here.</li>
+      <li>Sign shops cut vinyl to 3M or Oracal numbers, not to Pantone. Specify the vinyl equivalent for the pink and get a physical sample before any window graphic or flag is produced.</li>
+      <li>Do not let a shop eyeball the pink from a screen.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 05 ---------------------------------------------------------------- -->
+<section class="sec" id="type">
+  <div class="wrap">
+    <div class="sec__head">
+      <p class="eyebrow"><span class="num">05</span> &nbsp;Typography</p>
+      <h2 class="display">One face with all the personality, one with none.</h2>
+      <p class="lede">Aziga carries the brand. Neue Haas Grotesk Text is deliberately quiet, which is what lets Aziga do its job.</p>
+    </div>
+
+    <div class="grid grid--2">
+      <div class="type-spec">
+        <p class="type-spec__face">Aziga</p>
+        <p class="type-spec__meta"><strong>Display and headings only.</strong><br />Dave Rowland, Schizotype, via Adobe Fonts. A high-contrast, mostly serifless fashion didone. Nothing else in the system should compete with it.</p>
+      </div>
+      <div class="type-spec">
+        <p class="type-spec__face type-spec__face--body">Neue Haas Grotesk Text</p>
+        <p class="type-spec__meta"><strong>Body copy, labels, captions, and all small text.</strong><br />Quiet on purpose. Everything that has to be read rather than looked at is set here.</p>
+      </div>
+    </div>
+
+    <h3 class="display" style="margin:clamp(38px,5vw,56px) 0 22px">Aziga letterspacing is required</h3>
+    <p>Aziga is drawn tight and becomes hard to read set solid. The smaller it gets, the more it needs to open up. This page follows its own table.</p>
+    <div class="type-spec">
+      <div class="type-scale">
+        <div><span>72 and 64 px &middot; tracking +0.015em</span><p class="t72" style="margin:0">art and art for the eye</p></div>
+        <div><span>40 px &middot; tracking +0.02em</span><p class="t40" style="margin:0">art and art for the eye</p></div>
+        <div><span>30 px &middot; tracking +0.025em</span><p class="t30" style="margin:0">art and art for the eye</p></div>
+      </div>
+    </div>
+
+    <h3 class="display" style="margin:clamp(38px,5vw,56px) 0 22px">Size floors and small format</h3>
+    <div class="grid grid--2">
+      <div>
+        <p>Do not set Aziga below roughly 10 pt in print. Its hairlines thin out and drop out entirely in offset, in digital, and especially in cut vinyl. Anything below that size is set in Neue Haas Grotesk Text.</p>
+        <div class="callout" style="margin-top:22px">Set contact details at the upper end of the range below. This is an eyewear brand, and a meaningful share of the audience is reading without their glasses on. Legibility is a brand value here, not a nicety.</div>
+      </div>
+      <div>
+        <table class="tbl">
+          <caption>Business card and small format.</caption>
+          <thead><tr><th scope="col">Element</th><th scope="col">Size</th></tr></thead>
+          <tbody>
+            <tr><td>Name</td><td>10 to 12 pt</td></tr>
+            <tr><td>Title</td><td>7 to 9 pt</td></tr>
+            <tr><td>Contact details</td><td>8 to 9 pt</td></tr>
+            <tr><td>Absolute floor</td><td>7 pt</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <h3 class="display" style="margin:clamp(38px,5vw,56px) 0 22px">Licensing</h3>
+    <p>Both faces are served through Adobe Fonts. Web projects there are licensed per domain, so every domain that needs live text has to be added to the project before it will render. The licence sits with the subscription holder and does not transfer with the files.</p>
+    <p>The logo and the monogram are outlined artwork and carry no font dependency, so a vendor can always produce the mark without the fonts.</p>
+  </div>
+</section>
+
+<!-- 06 ---------------------------------------------------------------- -->
+<section class="sec" id="misuse">
+  <div class="wrap">
+    <div class="sec__head">
+      <p class="eyebrow"><span class="num">06</span> &nbsp;Misuse</p>
+      <h2 class="display">Eight ways to break it.</h2>
+      <p class="lede">Each tile below shows the mark doing something it must never do.</p>
+    </div>
+
+    <div class="grid grid--8">
+      <div class="dont"><div class="dont__stage d-stretch"><img src="assets/ae2026_logo_black.svg" alt="The lockup stretched horizontally" /></div><p class="dont__label"><span class="dont__x" aria-hidden="true">&times;</span> Do not stretch or condense the mark.</p></div>
+      <div class="dont"><div class="dont__stage d-squash"><img src="assets/ae2026_logo_black.svg" alt="The lockup squashed vertically" /></div><p class="dont__label"><span class="dont__x" aria-hidden="true">&times;</span> Do not distort its proportions.</p></div>
+      <div class="dont"><div class="dont__stage d-rotate"><img src="assets/ae2026_logo_black.svg" alt="The lockup rotated at an angle" /></div><p class="dont__label"><span class="dont__x" aria-hidden="true">&times;</span> Do not rotate it.</p></div>
+      <div class="dont"><div class="dont__stage d-recolor"><img src="assets/ae2026_logo_pink.svg" alt="The lockup in an unapproved green" /></div><p class="dont__label"><span class="dont__x" aria-hidden="true">&times;</span> Do not recolour it outside the approved colourways.</p></div>
+      <div class="dont"><div class="dont__stage d-shadow"><img src="assets/ae2026_logo_black.svg" alt="The lockup with a drop shadow" /></div><p class="dont__label"><span class="dont__x" aria-hidden="true">&times;</span> Do not add shadows, glows, bevels, or gradients.</p></div>
+      <div class="dont"><div class="dont__stage d-outline"><img src="assets/ae2026_logo_black.svg" alt="The lockup with an added outline" /></div><p class="dont__label"><span class="dont__x" aria-hidden="true">&times;</span> Do not outline it or rebuild it from live type.</p></div>
+      <div class="dont"><div class="dont__stage d-busy"><img src="assets/ae2026_logo_black.svg" alt="The lockup placed on a busy striped background" /></div><p class="dont__label"><span class="dont__x" aria-hidden="true">&times;</span> Do not place it on a busy field or one that kills contrast.</p></div>
+      <div class="dont"><div class="dont__stage d-small"><img src="assets/ae2026_logo_black.svg" alt="The lockup reproduced far below its minimum size" /></div><p class="dont__label"><span class="dont__x" aria-hidden="true">&times;</span> Do not go below the minimum size, or into the clear space.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 ---------------------------------------------------------------- -->
+<section class="sec" id="applications">
+  <div class="wrap">
+    <div class="sec__head">
+      <p class="eyebrow"><span class="num">07</span> &nbsp;Applications</p>
+      <h2 class="display">Where it lives.</h2>
+      <p class="lede">The shop sits inside the Tambourine Lounge at 59 N Second Ave, Sturgeon Bay, and is not visible from the street. Any exterior application has to solve findability, not just branding.</p>
+    </div>
+
+    <div class="grid grid--2">
+      <div class="app">
+        <div class="app__shot"><img src="assets/card-front.webp" alt="The business card face: contact details at left in charcoal, the pink and charcoal lockup at right, and the brand line across the foot" width="1400" height="800" loading="lazy" /></div>
+        <p class="app__name">Business card, face</p>
+        <p class="app__note">3.5 by 2 inches. Keep all content at least 1/8 inch from trim, with 1/8 inch bleed.</p>
+      </div>
+      <div class="app">
+        <div class="app__shot"><img src="assets/card-back.webp" alt="The business card reverse: the reversed lockup in pink and cream on a charcoal field" width="1400" height="800" loading="lazy" /></div>
+        <p class="app__name">Business card, reverse</p>
+        <p class="app__note">The reversed lockup on charcoal, with nothing else on the field.</p>
+      </div>
+    </div>
+
+    <h3 class="display" style="margin:clamp(38px,5vw,56px) 0 22px">Vertical formats</h3>
+    <div class="grid grid--2" style="align-items:start">
+      <div class="app">
+        <div class="app__shot app__shot--flag"><img src="assets/flag.webp" alt="One face of a double-sided teardrop flag: the pink ae monogram above the descriptor ART and EYEWEAR set vertically in cream on charcoal" width="760" height="1799" loading="lazy" /></div>
+        <p class="app__name">Teardrop flag, one face of two</p>
+      </div>
+      <div>
+        <p>Feather flags, teardrop flags, and banners are tall and narrow while the primary lockup is horizontal. For these, use a stacked arrangement: monogram, then wordmark, then descriptor.</p>
+        <p>Keep all wording and logos 2 inches from the edge on flag templates. Background colour may bleed to the edge.</p>
+        <div class="callout" style="margin-top:24px">
+          <strong>The descriptor rule.</strong> When the mark is paired with a descriptor, the descriptor has to represent both halves of the business. <em>Eyewear</em> alone is not approved, because it misrepresents a shop built on art and frames together. Use a paired construction such as <em>Art &amp; Eyewear</em>, or the brand line.
+        </div>
+      </div>
+    </div>
+
+    <h3 class="display" style="margin:clamp(38px,5vw,56px) 0 22px">Storefront and signage</h3>
+    <ul class="rule-list">
+      <li>Name the Tambourine Lounge on any directional piece. A passer-by cannot find the shop from the brand alone.</li>
+      <li>The brand line is too long for roadside signage. A short paired descriptor works better at that distance.</li>
+      <li>Send SVG or EPS to a sign shop. Never a JPG or PNG.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 08 ---------------------------------------------------------------- -->
+<section class="sec" id="voice">
+  <div class="wrap">
+    <div class="sec__head">
+      <p class="eyebrow"><span class="num">08</span> &nbsp;Voice</p>
+      <h2 class="display">art and art for the eye</h2>
+    </div>
+    <p>The brand line exists because the name spans tangible art through eyeglasses, and the line does the explaining so the mark does not have to. Use it on the card, the website, and stationery.</p>
+    <p>It is too long for roadside signage, where a short paired descriptor works better.</p>
+    <div class="callout">Never describe the shop in a way that suggests a full-scale optical operation or a clinic. It is a curated shop of roughly 300 frames alongside original artwork, run by the artist who made the work on the walls.</div>
+  </div>
+</section>
+
+<!-- 09 ---------------------------------------------------------------- -->
+<section class="sec" id="assets">
+  <div class="wrap">
+    <div class="sec__head">
+      <p class="eyebrow"><span class="num">09</span> &nbsp;Assets</p>
+      <h2 class="display">What you were sent.</h2>
+      <p class="lede">Supplied files follow the <span class="mono">ae2026_</span> naming convention.</p>
+    </div>
+    <ul class="assets">
+      <li><span class="mono">ae2026_logo_pink</span> <em>svg</em></li>
+      <li><span class="mono">ae2026_logo_black</span> <em>svg, png, jpg</em></li>
+      <li><span class="mono">ae2026_logo_Duotone</span> <em>svg, png, jpg</em></li>
+      <li><span class="mono">ae2026_monogram_[colourway]</span> <em>svg, png, jpg &mdash; beige, black, blue, light pink, pink, yellow</em></li>
+      <li><span class="mono">ae2026_BusinessCard_final</span> <em>pdf, front and back</em></li>
+      <li><span class="mono">ae2026_sign_[variant]</span> <em>pdf &mdash; including the 9 ft teardrop flag</em></li>
+    </ul>
+    <div class="callout">Use SVG or EPS for anything printed, cut, or enlarged. JPG and PNG are for screen only and must never be sent to a sign shop or a printer.</div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <img class="foot__mark" src="assets/ae2026_monogram_pink.svg" alt="" width="132" height="203" />
+    <p>Brand, artwork, and these guidelines for The Artistic Eye were designed by <a href="https://www.stevendesignco.com/">Steven Design Services</a>. The build is ongoing, and this document is revised as applications ship.</p>
+    <p><a href="https://www.stevendesignco.com/work/artistic-eye">Read the case study behind this brand</a></p>
+    <p class="foot__meta">Version 2026 &nbsp;&middot;&nbsp; The Artistic Eye, 59 N Second Ave, Sturgeon Bay, Wisconsin</p>
+  </div>
+</footer>
+
+</body>
+</html>
