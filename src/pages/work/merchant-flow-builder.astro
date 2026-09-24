@@ -22,6 +22,16 @@ import Site from '../../layouts/Site.astro';
 		</div>
 	</section>
 
+	<section class="section section--figure">
+		<div class="cs-figure" data-animate="fade">
+			<img
+				src="/images/case-studies/merchant-flow-builder/merchant-surfaces.webp"
+				alt="Merchant logos from the program, among them LEGO, Disney+, Home Depot, Canva, Target, Nintendo and Best Buy, linked by arrows to the same storefront and checkout screen shown on three different phones."
+				width="2400" height="971" loading="lazy" />
+			<p class="cs-figure__cap">The program ran across 38 merchants. Every one of them needed the same flows rebuilt against its own screens. Storefront shown generically.</p>
+		</div>
+	</section>
+
 	<section class="section section--alt">
 		<div class="section__inner cs-body" data-animate="fade">
 			<div class="cs-block">
@@ -182,6 +192,10 @@ import Site from '../../layouts/Site.astro';
 	.cs-block .eyebrow { margin-bottom: 0; }
 	/* case-study eyebrows: nickel, normal weight, .03em, black */
 	.eyebrow { font-family: var(--font-display); font-weight: 400; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; letter-spacing: 0.03em; }
+	.section--figure { padding-top: 0; }
+	.cs-figure { max-width: 100%; margin: var(--space-lg) 0 var(--space-xl); }
+	.cs-figure img { width: 100%; height: auto; display: block; }
+	.cs-figure__cap { margin: var(--space-sm) 0 0; color: var(--text-muted, #5A6160); font-size: 15px; line-height: 1.5; max-width: 62ch; }
 	.cs-block__lede { color: var(--text); font-size: clamp(24px, 2.5vw, 32px); font-weight: 600; margin: 0; letter-spacing: -0.015em; line-height: 1.25; }
 	.cs-block p { color: var(--text-mute); margin: 0; font-size: 16px; line-height: 1.65; }
 	.cs-block p + p { margin-top: 0; }
