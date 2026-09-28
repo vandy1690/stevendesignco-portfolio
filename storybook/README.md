@@ -167,7 +167,7 @@ The site ships in light mode. Dark is the alternate.
 
 | Theme | Ground | Accent |
 |-------|--------|--------|
-| Light (default) | warm off white `#F0EEE9` | slate blue `#4A6FA8` |
+| Light (default) | warm off white `#F0EEE9` | Regatta blue `#3F5F92` |
 | Dark | black | neon lime `#CCFF00` |
 
 The toolbar switch sets `data-theme` on the document root, the same attribute
