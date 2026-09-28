@@ -85,7 +85,9 @@
 .sdc-dd h4 { margin: 0 0 0.5rem; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; }
 .sdc-dd ul { margin: 0; padding-left: 1.1rem; }
 .sdc-dd li + li { margin-top: 0.4rem; }
-.sdc-dd--do h4 { color: #1F7A4C; }
+/* 5.48:1 on the card surface. #1F7A4C measured 4.07 and failed the standard
+   these pages document. */
+.sdc-dd--do h4 { color: #176440; }
 .sdc-dd--dont h4 { color: #B3261E; }
 :root[data-theme='dark'] .sdc-dd > div { background: transparent; }
 :root[data-theme='dark'] .sdc-dd--do h4 { color: #6EE7A8; }
