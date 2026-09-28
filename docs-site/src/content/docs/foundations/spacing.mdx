@@ -1,0 +1,46 @@
+---
+title: Spacing and layout
+description: One scale, two measures, and the radius split.
+sidebar:
+  order: 3
+---
+
+## The scale
+
+Nine steps from 8px to 160px, on tokens. Every gap, padding and section rhythm
+comes from it. A value not on the scale is a decision someone will have to
+justify later.
+
+## Measures
+
+The page caps at 1280px. Reading columns cap at 800px. The gutter is 24px.
+
+Those two maximums are the whole layout system. A card is the page measure; a
+paragraph is the reading measure. Mixing them is what makes a page feel like two
+pages.
+
+## Radius
+
+18px for surfaces, 10px for controls. A card and a button should not look like
+the same kind of object, and radius is the cheapest way to say so. Buttons used
+to be full pills and were changed: a pill reads as a tag or a status, not a
+control.
+
+## Elevation
+
+Cards carry a four-stop shadow and deepen on hover. Nothing else on the site is
+elevated. If a new element needs a shadow, check first whether it should be a
+card.
+
+## The viewport unit that matters
+
+Pinned sections use `svh`, the small viewport height, not `vh`. On mobile
+browsers `vh` ignores the address bar, so a full-height section is taller than
+the visible window and its content gets cut. This is the single most common
+cause of "it looks fine on my laptop" bugs on this site.
+
+## Checks before you ship
+
+1. Every new spacing value is on the scale.
+2. Reading columns use the narrow measure, not the page measure.
+3. Any full-height section uses svh.

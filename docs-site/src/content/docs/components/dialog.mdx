@@ -1,0 +1,84 @@
+---
+title: Case study dialog
+description: The in-place panel that opens a case study without leaving the home page.
+sidebar:
+  order: 9
+---
+
+<dl class="sdc-hww">
+	<div><dt>How</dt><dd>A <code>role="dialog"</code> panel that fetches the real
+	case study page, injects its <code>&lt;main&gt;</code>, and flips in over a
+	blurred backdrop. The URL updates, so Back closes it.</dd></div>
+	<div><dt>When</dt><dd>Only for case studies opened from the home page deck.
+	Never for confirmations, forms or messages; the site has none.</dd></div>
+	<div><dt>Where</dt><dd>The home page only. Case study pages themselves never
+	open a dialog.</dd></div>
+</dl>
+
+## Why it fetches a real page
+
+The dialog does not hold a copy of the content. It requests the case study URL
+and lifts the main element out of the response. That means the standalone page
+stays the source of truth, keeps working when sent as a link, and cannot drift
+from what the dialog shows.
+
+## Why it looks different from the page
+
+The same content in a narrower container. The panel is 960px wide against the
+page's 1232, so the headline, which scales to its container, renders smaller.
+The page's back link is hidden because the close button does that job, and the
+page texture is absent because the panel is a flat surface over a blurred
+backdrop. All three are deliberate.
+
+## The obligations it carries
+
+A dialog is the most demanding thing on this site. It owes four behaviours.
+
+**Focus moves in.** When it opens, focus lands on the close button. This failed
+silently for a while: focus was called while the panel was still
+`visibility: hidden`, which makes focusing a no-op, so the dialog opened with
+focus still behind it.
+
+**Focus cannot leave.** Everything outside the dialog is made `inert` while it
+is open, and Tab wraps inside it.
+
+**Escape closes it**, and focus returns to the card that opened it.
+
+**The background must not include the dialog.** The dialog is rendered inside
+`<main>`, so making `<main>` inert also made the dialog inert. The result was
+4016 pixels of case study in an 860 pixel window with a dead scroll wheel and
+dead keyboard. Inert now walks from the dialog up to the body, marking each
+ancestor's *other* children, which leaves the dialog's own chain live.
+
+## Naming and announcements
+
+The panel takes its name from the case study it loads, set after the fetch
+resolves. The injected `h1` is demoted to a level-2 heading so the document does
+not end up with two `h1` elements. The content region is a polite live region, so
+"Loading" and any failure message are announced.
+
+<div class="sdc-dd">
+	<div class="sdc-dd--do">
+		<h4>Do</h4>
+		<ul>
+			<li>Move focus in only after the panel is visible.</li>
+			<li>Inert the dialog's siblings, never its ancestors wholesale.</li>
+			<li>Keep the standalone URL working.</li>
+		</ul>
+	</div>
+	<div class="sdc-dd--dont">
+		<h4>Don't</h4>
+		<ul>
+			<li>Duplicate case study content into the dialog.</li>
+			<li>Use a dialog for anything that is not a case study.</li>
+			<li>Trap a visitor without Escape and a close button.</li>
+		</ul>
+	</div>
+</div>
+
+## Checks before you ship
+
+1. Open it and scroll with the wheel, then with the End key. Both move the content.
+2. Tab fourteen times. Focus never leaves the panel.
+3. Escape closes it and the ring returns to the card you came from.
+4. Open, close, repeat twice. No `inert` attributes are left behind on the page.

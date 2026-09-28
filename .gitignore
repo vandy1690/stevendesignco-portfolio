@@ -36,3 +36,7 @@ claude-code-handoff_*.md
 # Storybook source deps; the built library is committed under public/labs/sdc-storybook
 storybook/node_modules
 storybook/storybook-static
+
+# Docs site dependencies; the built output under public/docs is committed
+docs-site/node_modules
+docs-site/.astro

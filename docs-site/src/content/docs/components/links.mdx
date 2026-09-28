@@ -1,0 +1,85 @@
+---
+title: Links
+description: Inline links, artifact links, and anything that opens a new tab.
+sidebar:
+  order: 11
+---
+
+<dl class="sdc-hww">
+	<div><dt>How</dt><dd>Inline links take the accent colour. Artifact links
+	inside a case study are underlined text at weight 600, not buttons. Anything
+	with <code>target="_blank"</code> gets a small glyph drawn with a CSS mask
+	and a hidden "(opens in a new tab)".</dd></div>
+	<div><dt>When</dt><dd>Inline for a reference inside a sentence. Artifact
+	style for opening a lab, a library or an external working file. A
+	<a href="/docs/components/button/">Button</a> only for the one action a page
+	wants you to take.</dd></div>
+	<div><dt>Where</dt><dd>Anywhere in body copy. Artifact links live in
+	<code>.cs-artifacts</code> rows at the end of a case study section.</dd></div>
+</dl>
+
+## The rule that governs every link on this site
+
+**The accessible name must contain the visible text.** Not replace it, not
+paraphrase it. Someone using voice control says what they can read.
+
+This is why hidden text is used to add context, and `aria-label` is not. Hidden
+text extends the name; a label overwrites it. The site has broken this rule
+twice, on the pagers and on the case study cards, and both were caught by audit
+rather than by review.
+
+`aria-label` is correct in exactly one situation: the element has no visible
+text at all. The dialog's close button and the pipeline diagram qualify. Nothing
+with words in it does.
+
+## Ambiguous link text
+
+A link's purpose has to survive being read on its own, because that is how
+screen reader users navigate by links.
+
+"Learn more", "Read more", "Click here" and a bare "View" all fail. Where the
+visible text has to stay short for design reasons, add an `aria-describedby`
+description rather than changing the name.
+
+## New tabs
+
+Anything that opens a new tab says so, in two ways: a small glyph for people who
+can see it, and hidden text for people who cannot. Opening a new tab without
+warning takes away the back button with no notice.
+
+The glyph is drawn with `background: currentColor` and a mask, which disappears
+in Windows High Contrast Mode, so that mode gets an explicit override.
+
+## The email link
+
+The address is stored as hex and assembled by script, so it is not sitting in
+the markup for scrapers. The script sets the link text to the real address and
+then appends hidden text reading "(opens your email app)".
+
+The order matters: the script overwrites the link's text, so anything added
+before it runs is destroyed.
+
+<div class="sdc-dd">
+	<div class="sdc-dd--do">
+		<h4>Do</h4>
+		<ul>
+			<li>Add context with hidden text inside the link.</li>
+			<li>Describe a short generic label with aria-describedby.</li>
+			<li>Say when a link opens a new tab.</li>
+		</ul>
+	</div>
+	<div class="sdc-dd--dont">
+		<h4>Don't</h4>
+		<ul>
+			<li>Use aria-label on anything with visible text.</li>
+			<li>Ship "Learn more" or a bare verb.</li>
+			<li>Use a button for an artifact link.</li>
+		</ul>
+	</div>
+</div>
+
+## Checks before you ship
+
+1. Read each new link's text alone. Does it say where it goes?
+2. No element with visible text has an aria-label.
+3. Every new-tab link announces that it opens a new tab.

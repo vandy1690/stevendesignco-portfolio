@@ -1,0 +1,61 @@
+---
+title: The home page deck
+description: How five case study cards become a scroll-driven sequence, and what it costs.
+sidebar:
+  order: 1
+---
+
+<dl class="sdc-hww">
+	<div><dt>How</dt><dd>A tall track with a sticky stage. Scroll position is
+	turned into a transform per card: the work deck flips cards on the X axis,
+	the recommendations fan slides a spread one slot per card.</dd></div>
+	<div><dt>When</dt><dd>For a small, ordered set where each item deserves a
+	full screen. Five case studies, twelve recommendations. It would be the wrong
+	choice for thirty items or for anything a visitor needs to compare side by
+	side.</dd></div>
+	<div><dt>Where</dt><dd>The home page only. The work index shows the same
+	case studies as rows because that page is for scanning.</dd></div>
+</dl>
+
+## The trade it makes
+
+Pinning a card to the viewport buys focus and costs flexibility. The card must
+fit the window, so copy length, image ratio and viewport height all become
+layout constraints rather than content decisions.
+
+Everything below follows from that.
+
+## Height budget
+
+The stage holds a heading, the card and the dot row. The card is capped at the
+viewport height minus what sits above it. Change any part and the others must be
+re-measured.
+
+Two failures came from this. Taking twenty pixels from the card cap to fit the
+dot row pushed the two longest cards over their limit and dropped several common
+phone sizes into the fallback list. And the card art, being the only flexible
+item, silently absorbed every shortfall: at 402 by 660 it rendered 61 pixels
+tall against an intended 199, a sliver instead of a picture.
+
+The art is now pinned to its ratio and the body gives up the space instead.
+
+## How it degrades
+
+The deck becomes a plain list in four cases, described in
+[Degradation](/docs/practices/degradation/). The important one is the runtime
+check: after layout, the page measures whether a card actually fits and drops to
+the list if not. Media queries only know the viewport; they do not know that
+this visitor's text is larger or this card's copy is longer.
+
+## Keyboard access
+
+Only the face-on card is visible, so only one of five links is reachable by Tab.
+A hidden list inside the section carries all five, revealed when focused. Without
+it, a keyboard user could reach exactly one case study from the home page.
+
+## Checks before you ship
+
+1. Scroll through all five. Each card is fully visible with its call to action.
+2. At 402 by 660 and 402 by 874, the deck runs and the art holds its ratio.
+3. Below 600 pixels tall, the list appears instead.
+4. Tab into the section. The hidden jump list appears and reaches every case study.

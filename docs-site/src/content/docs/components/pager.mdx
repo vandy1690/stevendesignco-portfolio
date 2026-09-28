@@ -1,0 +1,86 @@
+---
+title: Pager
+description: The previous and next control that moves between case studies.
+sidebar:
+  order: 2
+---
+
+<dl class="sdc-hww">
+	<div><dt>How</dt><dd>A dark anchor 42px tall with the destination as its
+	visible text and a chevron in a tinted end cap. <code>.pager</code> points
+	forward with the cap on the right; <code>.pager.pager--prev</code> points back
+	with the cap on the left.</dd></div>
+	<div><dt>When</dt><dd>To move between case studies in a fixed reading order.
+	Not for general navigation, and not for links that open an artifact or leave
+	the site.</dd></div>
+	<div><dt>Where</dt><dd>The foot of every case study page and the design
+	systems page, always as a pair inside <code>.cs-back</code>. Never in the
+	header, never mid-page, never alone.</dd></div>
+</dl>
+
+## Anatomy
+
+The visible text is the destination name only: "Plate", not "Next: Plate". The
+arrow carries the direction, so repeating it in words is noise for people who
+can see it.
+
+For people who cannot, the direction is supplied as screen-reader-only text
+inside the link: hidden text reading "Next case study: " sits before the
+destination, so the link announces as "Next case study: Plate" while showing
+"Plate".
+
+That distinction matters and was got wrong once. The direction was originally an
+`aria-label` on the link, which replaces the visible text rather than adding to
+it. An audit flagged it, correctly: a person using voice control who says
+"click Plate" must be able to activate what they can read. Hidden text extends
+the name; a label replaces it. Only one of those is safe.
+
+## States
+
+Rest is charcoal with paper-coloured text. Hover inverts to the slate accent
+with white text. The end cap is a translucent panel over the button fill, so it
+shifts with the button rather than being its own colour.
+
+In Windows High Contrast Mode the fill and cap are forced to system colours and
+the cap becomes a border, since a background-painted divider disappears there.
+
+## Responsive behaviour
+
+On phones the pair stays on one row. Each pager takes half the width, grows
+taller as needed, and wraps its own label across two lines rather than dropping
+the pair into a stack. Minimum height on phones is 44px.
+
+## Content
+
+The destination name, exactly as that case study is titled elsewhere. Shorten a
+long title rather than letting it wrap three times: "Becoming the Default at
+Checkout" is "Default at checkout" on the pager.
+
+The last case study in the chain points back to the index instead, labelled
+"Back to all work".
+
+<div class="sdc-dd">
+	<div class="sdc-dd--do">
+		<h4>Do</h4>
+		<ul>
+			<li>Ship them in pairs, previous on the left.</li>
+			<li>Put direction in hidden text inside the link.</li>
+			<li>Match the destination's own title.</li>
+		</ul>
+	</div>
+	<div class="sdc-dd--dont">
+		<h4>Don't</h4>
+		<ul>
+			<li>Add an aria-label that replaces the visible text.</li>
+			<li>Write the direction in visible text next to the arrow.</li>
+			<li>Use a pager to open a lab, a PDF or an external site.</li>
+		</ul>
+	</div>
+</div>
+
+## Checks before you ship
+
+1. The visible text is a destination name with no "Next" or "Previous" in it.
+2. A screen reader announces the direction before the name.
+3. At 390px wide, both pagers sit on one row and no label is cut off.
+4. The pair reads previous on the left, next on the right.

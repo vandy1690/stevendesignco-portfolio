@@ -1,0 +1,81 @@
+---
+title: Progress dots
+description: The position indicator under the case study deck and the recommendations fan.
+sidebar:
+  order: 3
+---
+
+<dl class="sdc-hww">
+	<div><dt>How</dt><dd>A row of 6px dots, one per card, in
+	<code>.deck__dots</code>. The current one stretches to an 18px ink pill;
+	the rest use the stronger rule token. The whole row is
+	<code>aria-hidden</code>.</dd></div>
+	<div><dt>When</dt><dd>Only where a scroll-driven deck shows one card at a
+	time and a visitor cannot otherwise tell how many there are or where they
+	are. Never as a control: these are an indicator, not pagination you can
+	click.</dd></div>
+	<div><dt>Where</dt><dd>Directly under the cards inside a pinned deck stage.
+	They are hidden wherever the deck falls back to a plain list, because a list
+	already shows every card at once.</dd></div>
+</dl>
+
+## How position is decided
+
+The dots read the same scroll value the deck already computes, so there is no
+second scroll listener.
+
+For the fan of recommendations, the active dot is the card nearest the centre.
+For the flip deck of case studies, the dot moves once the incoming card has
+passed edge-on, not when the scroll begins. That means the dot always matches
+the card you can actually read, rather than running ahead of the animation.
+
+## Why they are hidden from screen readers
+
+The cards are already a list in the accessibility tree, and the page offers a
+keyboard route to every case study. A position indicator on top of that is
+noise, not information. Position by shape and tone is a convenience for people
+watching the animation.
+
+## Where they disappear
+
+The row is removed, not just faded, in four situations, all of which replace the
+deck with a plain list:
+
+- The visitor asked for reduced motion.
+- The viewport is under 600px tall, which is also what 400 percent zoom looks like.
+- A runtime check found a card does not fit, so the deck degraded.
+- JavaScript did not run.
+
+## A trap worth knowing
+
+The dot row costs vertical space inside a stage that is already tight on phones.
+The first attempt took that space from the card height cap, which pushed the two
+longest cards past their limit and tripped the fit check, dropping common phone
+sizes into the list fallback. The stage already had the room. If you change the
+dot row's height or spacing, re-run the phone height checks in
+[Degradation](/docs/practices/degradation/) before shipping.
+
+<div class="sdc-dd">
+	<div class="sdc-dd--do">
+		<h4>Do</h4>
+		<ul>
+			<li>Derive position from the deck's existing scroll value.</li>
+			<li>Keep the row aria-hidden.</li>
+			<li>Hide it wherever the deck becomes a list.</li>
+		</ul>
+	</div>
+	<div class="sdc-dd--dont">
+		<h4>Don't</h4>
+		<ul>
+			<li>Make them clickable.</li>
+			<li>Take height from the card cap to fit them.</li>
+			<li>Use them on a section that shows all its items at once.</li>
+		</ul>
+	</div>
+</div>
+
+## Checks before you ship
+
+1. Scroll the deck. The filled dot matches the card you can read, not the one arriving.
+2. Turn on reduced motion. The row is gone and every card is visible.
+3. At 402 by 660, the deck still scrolls and the dots still show.

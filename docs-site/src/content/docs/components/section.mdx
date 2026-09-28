@@ -1,0 +1,68 @@
+---
+title: Section and figure
+description: The page-level container, its variants, and how images and captions sit inside it.
+sidebar:
+  order: 12
+---
+
+<dl class="sdc-hww">
+	<div><dt>How</dt><dd><code>.section</code> supplies vertical rhythm;
+	<code>.section__inner</code> supplies the measure and gutters.
+	<code>.section--alt</code> shifts the ground to the card surface,
+	<code>.section--ink</code> inverts it.</dd></div>
+	<div><dt>When</dt><dd>Every band of content on a page. Alternate the tone only
+	to separate ideas, not for variety.</dd></div>
+	<div><dt>Where</dt><dd>All pages except the pinned decks, which manage their
+	own stage.</dd></div>
+</dl>
+
+## Measure
+
+Body copy is capped near 800px, not the full 1280px page width. A line of text
+longer than about 75 characters is measurably harder to track back from. Use
+`.section__inner--narrow` where the content is pure reading.
+
+## Figures
+
+A case study figure sits between the deck and the stats, at full width of the
+measure. It used to sit at 75 percent and below the stats; both were changed
+because the image is evidence for the claim above it and belongs next to it.
+
+Images are decorative by default: `alt=""`. An image earns alt text only when it
+carries information the surrounding copy does not. On this site that is true of
+exactly one image, the headshot.
+
+## Captions
+
+`.cs-note` and `.wk-note` are captions: 14px, muted, no rule, no accent bar.
+They are for a qualification, a disclosure or a credit. The PayPal proprietary
+disclosure is a caption.
+
+A caption is not a pull quote. `.cs-quote` is the display-type treatment for a
+sentence worth stopping on. Using the caption style for emphasis makes a
+disclosure look like a design flourish.
+
+<div class="sdc-dd">
+	<div class="sdc-dd--do">
+		<h4>Do</h4>
+		<ul>
+			<li>Keep reading columns near the narrow measure.</li>
+			<li>Put the figure directly under the claim it supports.</li>
+			<li>Use a caption for disclosures and credits.</li>
+		</ul>
+	</div>
+	<div class="sdc-dd--dont">
+		<h4>Don't</h4>
+		<ul>
+			<li>Alternate section tone for visual variety.</li>
+			<li>Write alt text that repeats the caption.</li>
+			<li>Use the caption style to emphasise a sentence.</li>
+		</ul>
+	</div>
+</div>
+
+## Checks before you ship
+
+1. No line of body copy runs much past 75 characters at 1440 wide.
+2. Every new image has either empty alt text or a reason for its description.
+3. Tone alternation marks a change of idea, not decoration.

@@ -1,0 +1,54 @@
+---
+title: Focus
+description: One ring, everywhere, and the rules about when it appears.
+sidebar:
+  order: 4
+---
+
+## The ring
+
+Two pixels of the page's own ink, offset three pixels, on `:focus-visible` only.
+Charcoal on the light theme, white on dark. It clears contrast comfortably in
+both and, unlike the browser default, it belongs to the design.
+
+Before this existed, the browser drew its own blue ring. On a case study card
+that looked like a selection state, which is what prompted the change.
+
+## Only for keyboard use
+
+`:focus-visible` means the ring appears for keyboard and assistive technology,
+not for a mouse click. That distinction has to survive programmatic focus too.
+
+When the case study dialog closes, focus is moved back to the card that opened
+it. The browser treats that as keyboard focus and draws the ring, even if the
+visitor closed it with the mouse. The site tracks which input was last used and
+suppresses the ring for pointer interactions, while keeping it for the keyboard.
+
+Focus still moves in both cases. Only the ring is conditional. Never suppress
+the move.
+
+## Where the ring lives
+
+Usually on the element itself. Two exceptions:
+
+**Case study cards** put the ring on the card while the headline link holds
+focus, through `:has()`. Focusing a headline and ringing only those few words
+would misrepresent what activating it does.
+
+**The dialog's close button** suppresses its own ring when the dialog was opened
+with a mouse, for the same reason as above.
+
+## Do not remove it
+
+`outline: none` without a replacement is the single most damaging line of CSS
+you can write here. If a ring looks wrong somewhere, change its shape or offset,
+never its existence.
+
+In Windows High Contrast Mode the ring is handed over to the system highlight
+colour.
+
+## Checks before you ship
+
+1. Tab through the page. Every stop is visibly ringed.
+2. Click the same elements. No ring appears.
+3. Open and close the dialog with the mouse. No ring on return; focus still moved.

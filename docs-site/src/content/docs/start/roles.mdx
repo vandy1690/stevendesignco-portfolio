@@ -1,0 +1,48 @@
+---
+title: Who does what
+description: What each person needs from this documentation, and where to start.
+sidebar:
+  order: 2
+---
+
+Four kinds of people touch this product. Each needs a different slice, and the
+component pages are written so none of them has to ask another.
+
+## If you design
+
+Start with [Foundations](/docs/foundations/colour/). The palette, type ramp and
+spacing scale are fixed, and the components are assembled from them. Before
+proposing a new component, check whether an existing one covers the job. Most
+new requests turn out to be an existing component with different content.
+
+The **When** section on each page is yours. It is the reasoning that would
+otherwise live only in someone's head.
+
+## If you build
+
+The **How** and **Anatomy** sections carry the class names and structure. The
+**Accessibility** section is not optional reading: several components carry
+obligations that are invisible in the browser but enforced by the checks in
+[the accessibility standard](/docs/practices/accessibility/).
+
+The stylesheet is not here. It ships from the site, and the Storybook generates
+its copy from the running pages, so there is no second version to update.
+
+## If you write
+
+Go to the **Content** section on any component page, then
+[the content rules](/docs/practices/content/). Length limits are real: several
+components clip or fall back to a simpler layout when copy runs long, and the
+page says which.
+
+There is also a list of phrases that must never appear on the site. It is short
+and it is absolute.
+
+## If you test
+
+Use **Checks before you ship** on each page, and
+[the accessibility standard](/docs/practices/accessibility/) for the
+site-wide rules. Every check is written to be runnable without reading code.
+
+The site is held to zero automated accessibility errors on every page, from two
+independent scanners. That is a pass or fail, not a target.

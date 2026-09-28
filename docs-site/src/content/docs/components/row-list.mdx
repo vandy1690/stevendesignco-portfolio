@@ -1,0 +1,63 @@
+---
+title: Row list
+description: The key and description list used for tools and recognition.
+sidebar:
+  order: 7
+---
+
+<dl class="sdc-hww">
+	<div><dt>How</dt><dd>An unordered list where each item is a two-column grid:
+	a 220px key column in display type, then a description. A rule sits under
+	every row. Classes are <code>.how__list</code> and
+	<code>.rec__list</code>.</dd></div>
+	<div><dt>When</dt><dd>For a set of named things that each need a sentence of
+	explanation, where the names are the scannable part. Four to six items. Past
+	six it becomes a page of its own.</dd></div>
+	<div><dt>Where</dt><dd>The How I work and Recognition sections on the home
+	page. The same treatment is reused in the docs and the deck.</dd></div>
+</dl>
+
+## Why one treatment for both
+
+How I work lists tools. Recognition lists awards. They are different content
+with the same shape: a name you might scan for, and a line explaining it to
+someone who would not recognise the name.
+
+Using one treatment for both is a deliberate signal that they are the same kind
+of thing. Giving awards a fancier style would be the site congratulating itself.
+
+## Content
+
+The key is a proper noun or a short phrase. The description is one sentence, no
+full stop needed, explaining the thing to someone outside the field.
+
+For awards, explain what the award is rather than which piece won it. "The Neals
+are the top honour in American business media" tells a reader from another
+industry what they are looking at.
+
+On phones the two columns collapse to one, key above description.
+
+<div class="sdc-dd">
+	<div class="sdc-dd--do">
+		<h4>Do</h4>
+		<ul>
+			<li>Keep descriptions to one sentence.</li>
+			<li>Explain a name a stranger would not know.</li>
+			<li>Keep the list to six items or fewer.</li>
+		</ul>
+	</div>
+	<div class="sdc-dd--dont">
+		<h4>Don't</h4>
+		<ul>
+			<li>Style recognition differently from tools.</li>
+			<li>Put a paragraph in the description column.</li>
+			<li>Use it for two items; use prose instead.</li>
+		</ul>
+	</div>
+</div>
+
+## Checks before you ship
+
+1. Every row has both a key and a description.
+2. At 390px wide the description sits under its key, not beside it.
+3. No description runs past two lines on desktop.

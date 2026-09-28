@@ -1,0 +1,47 @@
+---
+title: How to read a component page
+description: Every component page answers the same three questions in the same order.
+sidebar:
+  order: 1
+---
+
+Every component page opens with the same three answers, in the same order. If
+you only read one thing, read those.
+
+<dl class="sdc-hww">
+	<div><dt>How</dt><dd>What it is made of and what it does. The markup, the
+	classes, the states it can be in.</dd></div>
+	<div><dt>When</dt><dd>The situation that calls for it, and the situations
+	that do not. This is the part people skip and then get wrong.</dd></div>
+	<div><dt>Where</dt><dd>The places it is allowed to appear, and the places it
+	must not. Some components only make sense inside one pattern.</dd></div>
+</dl>
+
+After those, a page carries whatever else is true of that component:
+
+**Anatomy** names the parts, so a conversation about a change can be specific.
+
+**States** lists rest, hover, focus, active and disabled where they differ, and
+says which are deliberate omissions.
+
+**Accessibility** states what the component is responsible for. Some components
+carry an obligation you cannot see, such as a name for screen readers or a
+minimum target size, and skipping it breaks a rule the whole site is held to.
+
+**Content** gives the writing rules for any text inside it: length, tone, what
+is barred.
+
+**Do and Don't** is the short version for someone in a hurry.
+
+**Checks before you ship** is what to verify, phrased so a tester who has never
+opened the code can run it.
+
+## What a component page is not
+
+It is not a live render. The
+[Storybook](https://stevendesignco.com/labs/sdc-storybook/) does that, from the
+site's own stylesheet. It is not a token list either, for the same reason: one
+source, not two.
+
+If a page here and the running site disagree, the site is right and this page
+is a bug. Say so and it gets fixed.
