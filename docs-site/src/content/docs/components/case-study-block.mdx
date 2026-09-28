@@ -1,0 +1,76 @@
+---
+title: Case study block
+description: The kicker, heading and body that make one unit of a case study.
+sidebar:
+  order: 8
+---
+
+<dl class="sdc-hww">
+	<div><dt>How</dt><dd>A <code>.cs-block</code> holding a
+	<code>p.eyebrow</code> kicker, an <code>h2.cs-block__lede</code> heading and
+	body paragraphs. The three sit on line height alone with no margins between
+	them.</dd></div>
+	<div><dt>When</dt><dd>For each step of the argument in a case study: what was
+	unclear, what was done, who was involved, what changed. One block, one
+	step.</dd></div>
+	<div><dt>Where</dt><dd>Case study pages and the design systems page, one per
+	section, inside <code>.cs-body</code>.</dd></div>
+</dl>
+
+## The spacing rule
+
+The kicker, the heading and the first paragraph carry no margin between them, so
+they read as one object. The space between blocks is what separates ideas.
+
+This was wrong for a while and looked it. A rule matching "paragraph following a
+paragraph" was adding space above the heading and the first line of body,
+splitting each block into three floating pieces. The gap between blocks was then
+reduced by a quarter to compensate for how loose everything looked. If you are
+adjusting spacing here, adjust the space between blocks, never inside one.
+
+## The heading is a real heading
+
+`.cs-block__lede` is an `h2`. It used to be a styled paragraph, which meant a
+screen reader user navigating a case study by heading found exactly one stop:
+the page title. Seven pages had a single heading each.
+
+It is styled by class, not by tag, so making it a real `h2` changed the document
+outline and not a single pixel.
+
+## Content
+
+**Kicker** is two to four words naming the step: "What was unclear", "What I
+led", "What changed". It is not a section number and not a label like
+"Overview".
+
+**Heading** is the claim of the section in one line. It should be arguable, not
+descriptive: "A whole brand online, reduced to recipes" rather than
+"Background".
+
+**Body** is one to three sentences. Two paragraphs maximum. A block that needs
+more is two blocks.
+
+<div class="sdc-dd">
+	<div class="sdc-dd--do">
+		<h4>Do</h4>
+		<ul>
+			<li>Keep the heading arguable, not a label.</li>
+			<li>Split a long block into two.</li>
+			<li>Leave the internal spacing alone.</li>
+		</ul>
+	</div>
+	<div class="sdc-dd--dont">
+		<h4>Don't</h4>
+		<ul>
+			<li>Use a paragraph where the heading belongs.</li>
+			<li>Add margin between kicker, heading and body.</li>
+			<li>Number the sections.</li>
+		</ul>
+	</div>
+</div>
+
+## Checks before you ship
+
+1. The page outline shows one h1 and an h2 per section.
+2. Kicker, heading and body read as one group with clear space between blocks.
+3. No block runs past two paragraphs.

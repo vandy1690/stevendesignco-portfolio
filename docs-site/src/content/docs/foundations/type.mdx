@@ -1,0 +1,54 @@
+---
+title: Type
+description: Two faces, one ramp, and the axis that does not exist.
+sidebar:
+  order: 2
+---
+
+## Two faces
+
+**Nickel Gothic Variable** for display, from Adobe Fonts. **Inter** for
+everything else, self-hosted.
+
+Nickel has a width axis from 25 to 150 and a slant axis. **It has no weight
+axis.** A `font-weight` or a `"wght"` variation setting on it does nothing at
+all. This has confused more than one person, including in the portfolio deck,
+where display styles were set in a stand-in face because the real one was not
+loading.
+
+The named widths are Compressed 25, Extra Condensed 38, Condensed 50, Narrow 75,
+Regular 100, Semi Wide 125, Wide 150. Site headlines sit around 62, between
+Condensed and Narrow.
+
+## The ramp
+
+Display sizes are fluid, clamped between a floor and a ceiling so they scale with
+the viewport without a media query. Body sizes are fixed, because body copy that
+grows with the window gets harder to read on a large screen, not easier.
+
+Sizes live in tokens. If you find yourself typing a pixel value for type, the
+ramp is missing a step and that is the thing to fix.
+
+## Weights
+
+Inter ships in six weights here. 800 is used for labels and meta keys, and it
+must be loaded: at one point the CSS asked for 800 without it being present, so
+the browser was synthesising the weight by smearing the 700.
+
+## Rules that are not negotiable
+
+**No em dashes or en dashes anywhere on the site.** This is a voice rule, not a
+typographic one, and it applies to every word including quotes.
+
+**Sentence case for headings.** Title Case appears only where it is part of a
+proper name.
+
+**No contractions in professional writing.** The site relaxes this where a
+sentence would otherwise sound stiff, but the resume and any application
+material do not.
+
+## Checks before you ship
+
+1. No new hard-coded pixel font size.
+2. No weight setting applied to the display face.
+3. No em dash or en dash in any new copy.

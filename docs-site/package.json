@@ -1,0 +1,15 @@
+{
+  "name": "sdc-docs",
+  "private": true,
+  "type": "module",
+  "description": "The stevendesignco.com design system documentation. Builds static into ../public/docs.",
+  "scripts": {
+    "dev": "astro dev --port 4331",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.42.4",
+    "astro": "^7.3.5"
+  }
+}

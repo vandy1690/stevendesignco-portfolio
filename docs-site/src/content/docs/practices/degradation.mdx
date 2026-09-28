@@ -1,0 +1,54 @@
+---
+title: Degradation
+description: What the site does when the thing it assumed is not true.
+sidebar:
+  order: 2
+---
+
+Every effect on this site has a stated answer to "what if this cannot run".
+That is the difference between a site that breaks and one that gets simpler.
+
+## The four fallbacks for the decks
+
+A pinned deck needs height and JavaScript. It gives up in four situations, all
+landing on the same plain list:
+
+1. **Reduced motion.** The visitor asked.
+2. **Under 600 pixels of viewport height.** Also what 400 percent zoom looks like.
+3. **A runtime measurement.** After layout, the page checks whether a card
+   actually fits. Media queries know the viewport; they do not know this
+   visitor's text size or this card's copy length.
+4. **No JavaScript.** A `noscript` block renders the list. Without it, all
+   seventeen cards stack in a single grid cell.
+
+## Other planned degradations
+
+**JavaScript blocked entirely.** A class is added to the root only when the
+bundle runs, and every JavaScript-dependent starting state is gated on it, so a
+blocked script leaves a usable page rather than invisible content.
+
+**Assets blocked.** All page CSS is inlined rather than served from a separate
+asset path, because a corporate proxy on one of Steve's machines blocked those
+requests and broke the styling. Inline styles cannot be blocked.
+
+**Fonts unavailable.** Both faces have real fallback stacks, and
+`font-synthesis: none` on the display face so a missing Nickel is not faked by
+smearing Inter.
+
+**Windows High Contrast Mode.** Anything painted with a background rather than a
+border is given an explicit override, because HCM forces backgrounds.
+
+## The measured fallback is the important idea
+
+The first three are conditions you can predict. The fourth is not: it measures
+the actual rendered result and reacts.
+
+That is what catches the case nobody listed, and it is the reason the deck
+survives a visitor with larger text on a phone size nobody tested.
+
+## Checks before you ship
+
+1. Turn off JavaScript. Every card and quote is visible.
+2. Turn on reduced motion. Same.
+3. Resize to 402 by 590. The list appears; nothing is clipped.
+4. Resize from 280 to 1920. No horizontal scrolling at any width.

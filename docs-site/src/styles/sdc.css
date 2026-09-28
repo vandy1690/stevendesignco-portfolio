@@ -1,0 +1,104 @@
+/* The docs wear the system they document. Values come from the light theme in
+   src/layouts/Site.astro, which is the theme the site ships. */
+@import url('https://use.typekit.net/uic8bwd.css');
+
+:root {
+	--sdc-bg: #F0EEE9;
+	--sdc-surface: #E4E1DA;
+	--sdc-surface-2: #D8D4CB;
+	--sdc-text: #2D3436;
+	--sdc-text-mute: #5A6160;
+	--sdc-accent: #3F5F92;
+	--sdc-rule: rgba(45, 52, 54, 0.20);
+	--sdc-rule-strong: rgba(45, 52, 54, 0.58);
+	--sdc-texture-dot: rgba(45, 52, 54, 0.10);
+
+	--sl-font: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+
+/* Light is the site's default, so it is the docs' default too. */
+:root[data-theme='light'] {
+	--sl-color-accent-low: #d5ddea;
+	--sl-color-accent: var(--sdc-accent);
+	--sl-color-accent-high: #2b4368;
+	/* Starlight inverts its scale for light mode: the "white" token is the
+	   darkest ink, used for headings. Setting it to real white hides them. */
+	--sl-color-white: var(--sdc-text);
+	--sl-color-gray-1: var(--sdc-text);
+	--sl-color-gray-2: #434a4c;
+	--sl-color-gray-3: var(--sdc-text-mute);
+	--sl-color-gray-4: #8b918f;
+	--sl-color-gray-5: var(--sdc-surface-2);
+	--sl-color-gray-6: var(--sdc-surface);
+	--sl-color-gray-7: #eceae4;
+	--sl-color-black: var(--sdc-bg);
+	--sl-color-text: var(--sdc-text);
+	--sl-color-text-accent: var(--sdc-accent);
+	--sl-color-bg: var(--sdc-bg);
+	--sl-color-bg-nav: rgba(240, 238, 233, 0.86);
+	--sl-color-bg-sidebar: var(--sdc-bg);
+	--sl-color-hairline: var(--sdc-rule);
+	--sl-color-hairline-shade: var(--sdc-rule);
+}
+
+:root[data-theme='dark'] {
+	--sl-color-accent-low: #16233a;
+	--sl-color-accent: #7ea2d8;
+	--sl-color-accent-high: #cfdcf0;
+}
+
+/* The page grain, same 20px step as the site. */
+:root[data-theme='light'] body {
+	background-image: radial-gradient(circle at 1px 1px, var(--sdc-texture-dot) 1px, transparent 0);
+	background-size: 20px 20px;
+}
+
+/* Display face for page titles only, as on the site. Nickel Gothic has width
+   and slant axes and no weight axis, so weight settings on it do nothing. */
+.content-panel h1,
+.site-title {
+	font-family: 'nickel-gothic-variable', var(--sl-font);
+	font-variation-settings: 'wdth' 62, 'slnt' 0;
+	font-synthesis: none;
+	font-weight: 400;
+	letter-spacing: 0;
+}
+.site-title { font-size: 1.1rem; }
+
+/* How / When / Where headings carry the system's eyebrow treatment. */
+.sl-markdown-content h2 { letter-spacing: -0.015em; }
+
+/* The three answer blocks every component page opens with. */
+.sdc-hww { display: grid; gap: 0; margin: 1.5rem 0 2rem; border-top: 1px solid var(--sdc-rule); }
+.sdc-hww > div { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 1.25rem;
+	padding: 0.85rem 0; border-bottom: 1px solid var(--sdc-rule); }
+.sdc-hww dt { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+	font-weight: 800; color: var(--sdc-text-mute); margin: 0; }
+.sdc-hww dd { margin: 0; }
+@media (max-width: 50rem) {
+	.sdc-hww > div { grid-template-columns: 1fr; gap: 0.25rem; }
+}
+
+/* Do and Don't, side by side. */
+.sdc-dd { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+.sdc-dd > div { border: 1px solid var(--sdc-rule); border-radius: 12px; padding: 1rem 1.1rem; background: var(--sdc-surface); }
+.sdc-dd h4 { margin: 0 0 0.5rem; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; }
+.sdc-dd ul { margin: 0; padding-left: 1.1rem; }
+.sdc-dd li + li { margin-top: 0.4rem; }
+.sdc-dd--do h4 { color: #1F7A4C; }
+.sdc-dd--dont h4 { color: #B3261E; }
+:root[data-theme='dark'] .sdc-dd > div { background: transparent; }
+:root[data-theme='dark'] .sdc-dd--do h4 { color: #6EE7A8; }
+:root[data-theme='dark'] .sdc-dd--dont h4 { color: #FF9B93; }
+
+/* The system's own rules applied to its documentation. Controls take the 10px
+   control radius; pills were removed from the site deliberately, because a pill
+   reads as a tag or a status rather than a control. */
+.sl-link-button { border-radius: 10px; }
+.sl-link-button.primary { background: var(--sdc-accent); border-color: var(--sdc-accent); }
+.sl-link-button.minimal { color: var(--sdc-text); }
+
+/* Card icons take the accent rather than Starlight's multi-hue defaults, so the
+   page uses one accent at a time, as the palette requires. */
+.card .icon { color: var(--sdc-accent); background: transparent; border: 1px solid var(--sdc-rule); }
+:root[data-theme='dark'] .card .icon { color: var(--sl-color-accent); }

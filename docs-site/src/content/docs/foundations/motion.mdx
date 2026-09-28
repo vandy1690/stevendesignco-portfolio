@@ -1,0 +1,42 @@
+---
+title: Motion
+description: What moves, why, and what happens when someone asks it not to.
+sidebar:
+  order: 6
+---
+
+## What moves
+
+Smooth scrolling, the scroll-driven card deck and recommendations fan, the
+dialog's flip, per-letter rolls on nav links, and fade-ins on scroll.
+
+Motion on this site is doing one of two jobs: showing that two things are the
+same object in different places, or pacing a sequence so one idea lands before
+the next. Motion that is only decorative should not survive review.
+
+## Reduced motion is a hard stop, not a dimmer
+
+When someone asks for reduced motion, the decks stop being decks. The pinned
+stage releases, cards become a plain vertical list, the fan becomes a stack, the
+dialog stops flipping and smooth scrolling is off.
+
+This has to be checked, not assumed. The reduced-motion block was in place for
+months while missing two selectors that outranked it, and the result was
+severe: all twelve recommendation cards landed in the same absolute position, so
+eleven were invisible, behind roughly five screens of empty scroll track.
+
+The cause was specificity. A media query adds none, so a two-class rule
+elsewhere beat the single-class reset inside the block.
+
+## Things that must stay still
+
+Anything auto-playing over five seconds needs a way to pause, for everyone, not
+only people who set the reduced-motion flag. The animated logo rings are the
+open question on this site: they loop indefinitely and are decorative, and the
+honest answer is they should be marked decorative and treated as background.
+
+## Checks before you ship
+
+1. Turn on reduced motion in the operating system. Every deck is a list and every item is visible.
+2. Compute, do not eyeball: no element in a reduced-motion list shares a position with another.
+3. Nothing new loops forever without a way to stop it.

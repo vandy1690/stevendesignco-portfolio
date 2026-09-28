@@ -1,0 +1,84 @@
+---
+title: Button
+description: The two-weight action control used for the hero and the case study artifact links.
+sidebar:
+  order: 1
+---
+
+<dl class="sdc-hww">
+	<div><dt>How</dt><dd>An anchor with <code>.btn</code>, or <code>.btn.btn--primary</code>
+	for the filled version. There is no third weight, no size variants and no
+	disabled state. Filled means slate blue with white text; plain means a
+	transparent fill with a charcoal border.</dd></div>
+	<div><dt>When</dt><dd>For the one action you want a visitor to take next.
+	Use the filled version once per screenful, at most. If two buttons sit
+	together, one is filled and the other is not; two filled buttons means the
+	page has not decided what it wants.</dd></div>
+	<div><dt>Where</dt><dd>The hero, and nowhere else on the home page. Inside a
+	case study, links to artifacts render as underlined text instead, not
+	buttons. Navigation between case studies uses the <a href="/docs/components/pager/">Pager</a>.</dd></div>
+</dl>
+
+## Anatomy
+
+A button is a single anchor. Its label is its own text, so it also becomes the
+name a screen reader announces. There is no icon slot. The corner radius is the
+control radius, 10px, which is deliberately not the card radius of 18px: cards
+are surfaces, buttons are controls, and the two should not be confused.
+
+## States
+
+**Rest** and **hover** only. Hover lifts the button one pixel and darkens the
+border, or deepens the fill on the primary. Focus is not a button-level style:
+it comes from the site-wide focus ring, described in
+[Focus](/docs/foundations/focus/).
+
+There is no disabled state because there is nothing on this site a visitor is
+not allowed to do. If you find yourself needing one, that is a signal the page
+is doing something it should not.
+
+## Accessibility
+
+The border on the plain button uses the stronger of the two rule tokens, so the
+boundary clears the 3 to 1 minimum for a control edge. The weaker rule token
+measures about 2.5 to 1 and must never be used for a control border. This
+mistake has been made on this site once already and was caught by a contrast
+check, not by eye.
+
+Label text must say what happens, not where you are going in the abstract. See
+Content below.
+
+## Content
+
+Two to four words. Sentence case. A verb first if the button does something, a
+noun if it goes somewhere specific.
+
+Avoid a bare verb on its own. "View work" was flagged by an automated audit as
+ambiguous because the label alone does not say what you would be viewing; it is
+now "View case studies". The test is whether the label still makes sense read
+aloud with no surrounding page.
+
+<div class="sdc-dd">
+	<div class="sdc-dd--do">
+		<h4>Do</h4>
+		<ul>
+			<li>Pair one filled button with one plain one.</li>
+			<li>Name the destination: "View case studies", "Resume".</li>
+			<li>Let the label be the accessible name.</li>
+		</ul>
+	</div>
+	<div class="sdc-dd--dont">
+		<h4>Don't</h4>
+		<ul>
+			<li>Use a button for an artifact link inside a case study.</li>
+			<li>Write "Learn more", "Read more" or "Click here".</li>
+			<li>Add an aria-label that differs from the visible text.</li>
+		</ul>
+	</div>
+</div>
+
+## Checks before you ship
+
+1. Read the label out loud with no other page context. Does it say where you land?
+2. Tab to it. A charcoal ring appears around it, not a browser-blue one.
+3. Only one filled button is visible at a time.

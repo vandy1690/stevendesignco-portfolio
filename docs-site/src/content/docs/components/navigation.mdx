@@ -1,0 +1,78 @@
+---
+title: Navigation
+description: The header nav, the mobile panel and the skip link.
+sidebar:
+  order: 10
+---
+
+<dl class="sdc-hww">
+	<div><dt>How</dt><dd>Two landmarks. <code>nav.nav</code> labelled "Main" shows
+	on desktop; <code>nav.nav-mobile</code> labelled "Mobile" is a panel toggled
+	by a button. A skip link precedes both.</dd></div>
+	<div><dt>When</dt><dd>Always. Both are part of the layout, not a per-page
+	choice.</dd></div>
+	<div><dt>Where</dt><dd>Every page, from <code>Site.astro</code>. The header is
+	sticky.</dd></div>
+</dl>
+
+## The skip link
+
+The first focusable element on every page, offscreen until focused, then a real
+button at the top left. Without it, reaching the content by keyboard means
+passing the logo and five nav links on every page.
+
+## The sticky header has a cost
+
+Because the header stays fixed, anything scrolled into view can land behind it.
+This was a live failure: a keyboard user tabbing to a link that sat just under
+the header got it scrolled to the top of the window, where the header covered
+it.
+
+The fix is `scroll-padding-top` on the root equal to the header height. Anything
+the browser scrolls into view, focus included, now stops below the header.
+
+Two places cancel that padding with a matching negative `scroll-margin`: the
+pinned decks, whose stage already pads for the header. If you add a new pinned
+section, it needs the same cancel or its anchor will land low.
+
+## The mobile panel
+
+The toggle carries `aria-expanded` and `aria-controls`, and its label swaps
+between "Open menu" and "Close menu". Opening moves focus to the first link;
+closing returns it to the toggle. Escape closes it.
+
+The panel is hidden with `display: none`, which already removes it from the
+accessibility tree, so it carries no `aria-hidden`. A redundant `aria-hidden`
+becomes a real violation the moment someone switches the hiding mechanism to
+opacity.
+
+## The logo link
+
+The name lives in the image's alt text, not in a label on the link. Both produce
+the same name, but scanners checking image-only links look for the alt, and an
+empty alt reads as an unlabelled image inside a link.
+
+<div class="sdc-dd">
+	<div class="sdc-dd--do">
+		<h4>Do</h4>
+		<ul>
+			<li>Keep the skip link first in the document.</li>
+			<li>Label both nav landmarks.</li>
+			<li>Return focus to the toggle when the panel closes.</li>
+		</ul>
+	</div>
+	<div class="sdc-dd--dont">
+		<h4>Don't</h4>
+		<ul>
+			<li>Add aria-hidden to something already display: none.</li>
+			<li>Add a pinned section without cancelling the scroll padding.</li>
+			<li>Put the site name on the link instead of the image.</li>
+		</ul>
+	</div>
+</div>
+
+## Checks before you ship
+
+1. Tab once from the top. The skip link appears.
+2. Scroll a link under the header and Tab to it. It moves clear of the header.
+3. Open the mobile panel with the keyboard. Focus enters, Escape returns it.

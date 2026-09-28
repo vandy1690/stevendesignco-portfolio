@@ -1,0 +1,71 @@
+---
+title: Meta row
+description: The key and value pairs that label a card or a case study hero.
+sidebar:
+  order: 6
+---
+
+<dl class="sdc-hww">
+	<div><dt>How</dt><dd>A description list. The key is 11px uppercase at weight
+	800 in muted charcoal, followed by a pipe, then the value. On cards the class
+	is <code>.card__meta</code>; in a case study hero it is
+	<code>.cs-meta</code>.</dd></div>
+	<div><dt>When</dt><dd>For two to three facts that frame a piece of work:
+	what it was, who it was for, what it was trying to do. Not for a list of
+	features, and not for prose.</dd></div>
+	<div><dt>Where</dt><dd>Under the text on a case study card, and under the
+	deck in a case study hero.</dd></div>
+</dl>
+
+## The pipe
+
+A pipe separates key from value. It is a CSS pseudo-element with empty
+alternative text, so it is drawn but never spoken. A screen reader hears
+"Product, Figma plugin, PayPal", not "Product pipe Figma plugin".
+
+On phones the pair stacks, key above value, and the pipe is removed. A separator
+between two things on one line is a separator; the same character at the end of
+a line is a stray mark.
+
+## The labels
+
+On cards: **Product** and **Objective**.
+
+In a case study hero: **Role**, **Org** and **Recognition**, or **Role**,
+**Team** and **Scope** depending on the case.
+
+These are deliberate. "Client" and "Service" were the original labels and were
+replaced: they describe an agency relationship, and they invite a reader to sort
+work by who paid rather than by what it did.
+
+## Content
+
+Values are fragments, not sentences. No trailing full stop. Six words is long.
+
+"One tap in each merchant's own checkout" is at the limit. "Faster merchant flow
+setup" is right.
+
+<div class="sdc-dd">
+	<div class="sdc-dd--do">
+		<h4>Do</h4>
+		<ul>
+			<li>Use two pairs on a card, three in a hero.</li>
+			<li>Keep values to a short fragment.</li>
+			<li>Leave the pipe to CSS.</li>
+		</ul>
+	</div>
+	<div class="sdc-dd--dont">
+		<h4>Don't</h4>
+		<ul>
+			<li>Type a pipe character into the content.</li>
+			<li>Write a sentence in a value.</li>
+			<li>Reintroduce Client or Service as labels.</li>
+		</ul>
+	</div>
+</div>
+
+## Checks before you ship
+
+1. At 390px wide the key sits above the value and no pipe is visible.
+2. A screen reader reads key then value with no punctuation between.
+3. No value wraps past two lines on a card.

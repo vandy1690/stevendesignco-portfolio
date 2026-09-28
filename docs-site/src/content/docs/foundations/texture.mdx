@@ -1,0 +1,44 @@
+---
+title: Texture
+description: The dot grid on the page ground.
+sidebar:
+  order: 5
+---
+
+## What it is
+
+A one pixel dot on a twenty pixel grid, drawn as a single background image on
+the body. Not an overlay element, not an image file, no extra request. Turn it
+up or down with one token.
+
+It comes from an open-source component that was a black dot grid at 35 percent
+opacity. At that strength on a warm ground it read as polka dots and fought the
+cards, so the geometry was kept and the colour moved onto the site's own ink at
+10 percent.
+
+## Where it appears and does not
+
+The page ground has it. Cards do not: a card is a surface sitting on the page,
+and the flat fill is what makes it read as lifted.
+
+The case study dialog does not have it either, which is one of the three reasons
+the same case study looks slightly different opened in place versus visited
+directly.
+
+The generated card artwork carries its own paper texture at a slightly different
+off-white. That is deliberate, not a mismatch: the images are opaque panels, not
+a continuation of the page.
+
+## Contrast implications
+
+Text sitting over the grid is technically sitting over two colours. The dot is
+about 4.4 to 1 against the old hard-coded body grey, which is one of the reasons
+that grey was replaced with the muted token.
+
+If you darken the dot, re-check body copy contrast against the dot, not just
+against the ground.
+
+## Checks before you ship
+
+1. Cards still read as lifted, with no grid inside them.
+2. Body copy over the grid still clears 4.5 to 1 against the dot.

@@ -1,0 +1,51 @@
+---
+title: Shipping a change
+description: How a change reaches the live site, and how to undo it.
+sidebar:
+  order: 4
+---
+
+## The one thing to know
+
+**The `dev` branch is production.** Pushing it deploys to stevendesignco.com
+with no gate and no approval step. `main` is stale and deploys nothing.
+
+Work happens on a branch. A branch deploys to a password-protected review URL.
+Merging into `dev` is the act of publishing.
+
+## The sequence
+
+1. Build locally and check the page you changed.
+2. Push the branch. Read it on the review URL.
+3. Run the checks for whatever you touched.
+4. Merge to `dev` only when asked to publish.
+5. Confirm on the live site rather than assuming the deploy matched.
+
+## Before merging
+
+- Both accessibility scanners return zero on every page.
+- No horizontal scrolling from 280 to 1920.
+- Reduced motion and no-JavaScript both render everything.
+- Anything visual was compared against the live site, pixel for pixel where it was meant to be unchanged.
+
+## Undoing
+
+Vercel keeps the previous production deployment as an instant rollback. Before a
+significant release, tag the current state so there is a named point to return
+to:
+
+```
+git tag -a live-backup-YYYY-MM-DD dev -m "state before <change>"
+git push origin live-backup-YYYY-MM-DD
+```
+
+Rolling back is then a reset to that tag and a force-with-lease push.
+
+## The documentation and the Storybook
+
+The [Storybook](https://stevendesignco.com/labs/sdc-storybook/) generates its
+stylesheet from the running site. After a change that touches shared CSS,
+rebuild it so its rendering and its contrast figures stay true.
+
+This documentation is prose and does not regenerate. If you change a component's
+behaviour, the page describing it is part of the change, not a follow-up.

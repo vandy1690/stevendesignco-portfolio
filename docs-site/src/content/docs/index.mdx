@@ -1,0 +1,51 @@
+---
+title: SDC Design System
+description: How, when and where to use every component on stevendesignco.com.
+template: splash
+hero:
+  tagline: How, when and where to use every component on stevendesignco.com. Written so a designer, an engineer, a writer and a tester can all answer the same question without asking each other.
+  actions:
+    - text: How to read a component page
+      link: /docs/start/how-to-read/
+      icon: right-arrow
+    - text: See the components live
+      link: https://stevendesignco.com/labs/sdc-storybook/
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid stagger>
+	<Card title="Foundations" icon="setting">
+		Colour, type, spacing, elevation, focus and texture. The decisions every
+		component inherits, and the rules that keep them honest.
+	</Card>
+	<Card title="Components" icon="puzzle">
+		One page each. Every page answers how it is built, when to reach for it,
+		and where it is allowed to appear, in that order.
+	</Card>
+	<Card title="Patterns" icon="document">
+		Whole compositions assembled from components: the home deck, a case study
+		page, the work index.
+	</Card>
+	<Card title="Practices" icon="approve-check">
+		The accessibility standard the site holds itself to, how it degrades, how
+		content is written, and how a change reaches production.
+	</Card>
+</CardGrid>
+
+## Why this exists
+
+A design system is only as good as the next person's ability to use it
+correctly without being told. This documentation is the test of that: every component
+answers the same three questions, in the same order, in language that does not
+assume you write CSS.
+
+## What is documented elsewhere
+
+This site does not repeat the token values or render live components. The
+[Storybook](https://stevendesignco.com/labs/sdc-storybook/) does both, and it
+generates its stylesheet from the running site, so it cannot drift. When you
+need to see a component working, go there. When you need to know whether to use
+it, stay here.

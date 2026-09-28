@@ -1,0 +1,73 @@
+---
+title: The accessibility standard
+description: What the site commits to, how it is measured, and what is deliberately not fixed.
+sidebar:
+  order: 1
+---
+
+## The commitment
+
+**WCAG 2.2 AA, and zero automated errors on every page from two independent
+scanners.** Not a target, a pass or fail.
+
+Two scanners because they disagree. axe-core and HTML_CodeSniffer catch
+different things: when the site had zero axe violations, HTML_CodeSniffer found
+eleven errors axe does not report.
+
+Automated checks catch perhaps a third of what matters. The manual checks below
+are not optional.
+
+## What is measured
+
+| Check | Standard |
+|---|---|
+| Automated scans | Zero errors, axe and HTML_CodeSniffer, every page |
+| Text contrast | 4.5 to 1 against the ground it sits on |
+| Control boundaries | 3 to 1 |
+| Keyboard | Every function reachable; focus always visible |
+| Reflow | No horizontal scrolling from 280px to 1920px |
+| Reduced motion | Every deck becomes a list; nothing hidden |
+| No JavaScript | Every card and quote still renders |
+
+## The manual checks
+
+**Tab the whole page.** Focus visible at every stop, order matches the visual
+order, nothing behind the sticky header, no traps.
+
+**Open and close the dialog both ways.** Mouse and keyboard. Focus moves in,
+cannot leave, returns on close.
+
+**Turn on reduced motion.** Count the items in each deck. Compute positions
+rather than eyeballing them.
+
+**Zoom to 400 percent.** The decks should fall back to lists.
+
+## Named failures worth remembering
+
+Each of these passed review and was caught later by a tool.
+
+**The reduced-motion block missed the recommendations fan.** Eleven of twelve
+quotes invisible. Cause: specificity, not a missing rule.
+
+**Inert was applied to `main`, which contains the dialog.** The dialog inherited
+it and stopped scrolling entirely.
+
+**A token's comment claimed 3 to 1 and measured 2.49.** The Storybook displayed
+the failure publicly for weeks.
+
+**`aria-label` replaced visible text** on the pagers and the cards. Both were
+added during an accessibility pass. Fixing accessibility can break accessibility.
+
+## What is not fixed, on purpose
+
+Automated scanners flag the decorative quote marks and the progress dots as
+visible content hidden from screen readers. Both are correctly hidden. Exposing
+them would add noise for screen reader users to satisfy a tool.
+
+Documenting a deliberate exception is part of the standard. An unexplained
+ignore is indistinguishable from an oversight.
+
+## Do not install an accessibility overlay
+
+Tools that scan a site and offer a widget to "fix" it do not fix it. The site
+meets the standard in its markup.

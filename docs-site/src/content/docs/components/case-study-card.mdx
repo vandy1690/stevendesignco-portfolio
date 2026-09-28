@@ -1,0 +1,95 @@
+---
+title: Case study card
+description: The unit the home page deck is built from.
+sidebar:
+  order: 4
+---
+
+<dl class="sdc-hww">
+	<div><dt>How</dt><dd>A <code>div.card</code> holding full-bleed art above a
+	body grid. The headline contains the only link,
+	<code>.card__link</code>, whose <code>::after</code> stretches over the whole
+	card so all of it clicks.</dd></div>
+	<div><dt>When</dt><dd>To put one case study forward as a single claim. One
+	card makes one argument: a headline that could stand alone, a sentence of
+	support, two facts, one way in.</dd></div>
+	<div><dt>Where</dt><dd>Inside the home page deck. The work index uses rows
+	instead, because a list of fourteen things is a list, not a deck.</dd></div>
+</dl>
+
+## Why the link is the headline, not the card
+
+The obvious build is to wrap the whole card in an anchor. It was built that way
+first, and it was wrong.
+
+A link's name comes from its content. Wrapping everything means the link
+announces the headline, the paragraph, both meta labels and their values, and
+the call to action, as one long string. Replacing that with a written label is
+worse: the name then no longer matches the words on screen, which breaks voice
+control and was flagged by an audit.
+
+The stretched link solves both. The headline is the link, so its name is exactly
+the visible headline. An invisible layer extends its click area over the card, so
+nothing changes for a mouse. Hover and the focus ring move to the card through
+`:has()`, so the card still responds as one object.
+
+## Anatomy
+
+**Art** sits at the top, 16 by 9, full bleed, cropped to fill. A logo lockup is
+the exception: it fits inside the box instead of cropping, because cropping a row
+of marks cuts marks off.
+
+**Headline** is display type and carries the link. It is the argument, not a
+label. "Nobody asked for this one." not "Merchant Flow Builder".
+
+**Text** is one or two sentences of support.
+
+**Meta** is two pairs, Product and Objective. Not Client and Service: the work is
+described by what it was and what it was for, not by who paid.
+
+**Call to action** reads "Read case study" and is plain text, not a second link.
+Two links to the same place in one card is a duplicate for anyone navigating by
+links.
+
+## Content limits that are real
+
+Card height is capped so the deck can pin a card to the viewport. Copy that runs
+long does not overflow; it trips a fit check and drops the whole deck into the
+plain list fallback. The Plate card is 18 pixels over on a 600px-tall phone
+today, which is why that size gets the list.
+
+Keep the text to two sentences. Keep the objective under about six words.
+
+## Accessibility
+
+The card's accessible name is the headline alone. The arrow in the call to
+action is `aria-hidden`, because "arrow" in a name is noise.
+
+Art is decorative: `alt=""` always. The headline already says what the card is
+about, so describing the picture repeats it.
+
+<div class="sdc-dd">
+	<div class="sdc-dd--do">
+		<h4>Do</h4>
+		<ul>
+			<li>Write a headline that works with nothing around it.</li>
+			<li>Keep the stretched link on the headline.</li>
+			<li>Give art empty alt text.</li>
+		</ul>
+	</div>
+	<div class="sdc-dd--dont">
+		<h4>Don't</h4>
+		<ul>
+			<li>Wrap the whole card in an anchor.</li>
+			<li>Make the call to action a second link.</li>
+			<li>Let the copy run past two sentences.</li>
+		</ul>
+	</div>
+</div>
+
+## Checks before you ship
+
+1. A screen reader announces the card as its headline and nothing else.
+2. Clicking the picture opens the case study.
+3. Tab to it: the ring is around the card, not just the headline text.
+4. At 402 by 660 the deck still scrolls rather than falling back to a list.
