@@ -41,6 +41,38 @@ git push origin live-backup-YYYY-MM-DD
 
 Rolling back is then a reset to that tag and a force-with-lease push.
 
+## Keeping the docs in step
+
+The Storybook cannot drift: it regenerates its stylesheet from the running site
+every build. Prose can, so there is a check rather than a good intention.
+
+```
+npm run check:docs
+```
+
+It compares your branch against `dev` and fails when the layout, a component, a
+Storybook story or the Storybook's own CSS changed and no documentation page
+did. It also fails when stories changed without the Storybook being rebuilt.
+
+### The order to work in
+
+1. Change the component.
+2. Change its page under `docs-site/src/content/docs/components/`. If the change
+   alters how, when or where it is used, that page is part of the change, not a
+   follow-up.
+3. Rebuild both: `cd storybook && npm run build`, then
+   `cd docs-site && npm run build`. Both need the site running on :4321, because
+   the Storybook pulls its CSS from it.
+4. Run `npm run check:docs`.
+5. Commit the component, the page and both builds together.
+
+### When nothing needs documenting
+
+Some changes are genuinely invisible to the people the docs serve: a refactor
+with identical output, a typo in a comment. Set `SKIP_DOCS_CHECK=1` and say why
+in the commit message. An override with a reason is a decision; a skipped step
+is an accident.
+
 ## The documentation and the Storybook
 
 The [Storybook](https://stevendesignco.com/labs/sdc-storybook/) generates its

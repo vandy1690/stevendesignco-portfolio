@@ -86,3 +86,23 @@ The repo is public. `.gitignore` already covers these, so do not force add them.
 Found a bug or an accessibility problem on the site? Open an issue on GitHub, or
 email steven [at] stevendesignco [dot] com. Say which page, which browser, and
 what you expected.
+
+## Documentation stays in step
+
+The design system is documented in three places, and they are not
+interchangeable:
+
+| Where | Holds | Drifts? |
+|---|---|---|
+| `public/labs/sdc-storybook` | Live rendering, token values, computed contrast | No. Regenerated from the running site each build. |
+| `docs-site/` published at `/docs` | How, when, where, content rules, accessibility obligations | Yes, if nobody updates it. |
+| `docs/` | Repo notes: architecture, deployment, labs | Yes. |
+
+Before pushing a change that touches `src/layouts/Site.astro`,
+`src/components/`, or the Storybook stories:
+
+    npm run check:docs
+
+It fails when the system changed and no documentation page did, and when
+stories changed without the Storybook being rebuilt. Genuine exceptions use
+`SKIP_DOCS_CHECK=1` with the reason in the commit message.

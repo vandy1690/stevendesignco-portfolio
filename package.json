@@ -9,7 +9,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check:docs": "node scripts/check-docs-in-step.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^5.0.4",
