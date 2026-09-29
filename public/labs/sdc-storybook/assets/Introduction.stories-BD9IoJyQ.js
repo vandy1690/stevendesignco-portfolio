@@ -17,11 +17,27 @@ const o={title:"Introduction"},e=()=>`
       <li><strong>Components</strong> are the pieces that repeat across pages.</li>
       <li><strong>Patterns</strong> are whole compositions assembled from them.</li>
     </ul>
+    <div style="border:1px solid var(--rule-strong);border-radius:12px;padding:18px 20px;background:var(--surface)">
+      <p class="sb-label" style="margin:0 0 6px">The written documentation</p>
+      <p style="font-size:16px;line-height:1.6;margin:0 0 12px">
+        This library shows what a component looks like and how it behaves. It does not say
+        when to reach for it, where it is allowed to appear, what the copy rules are, or what
+        it owes for accessibility. That lives in the documentation, one page per component.
+      </p>
+      <a href="https://stevendesignco.com/docs/" target="_blank" rel="noopener"
+         style="display:inline-flex;align-items:center;gap:8px;min-height:24px;font-size:15px;font-weight:600;color:var(--text);text-decoration:underline;text-underline-offset:5px">
+        Open the documentation<span aria-hidden="true">→</span><span class="sr-only"> (opens in a new tab)</span>
+      </a>
+    </div>
+    <p style="font-size:14px;color:var(--text-mute);margin:0">
+      The two stay in step on purpose: changing a component here means updating its page there
+      in the same commit. See <em>Shipping a change</em> in the documentation.
+    </p>
     <p style="font-size:14px;color:var(--text-mute);margin:0">
       Contrast figures shown in Foundations are computed live in the browser against the
       current theme, so they stay honest when a token changes.
     </p>
-  </div>`;e.storyName="Read me";var t,s,n;e.parameters={...e.parameters,docs:{...(t=e.parameters)==null?void 0:t.docs,source:{originalSource:`() => \`
+  </div>`;e.storyName="Read me";var t,n,s;e.parameters={...e.parameters,docs:{...(t=e.parameters)==null?void 0:t.docs,source:{originalSource:`() => \`
   <div class="sb-col" style="max-width:64ch">
     <p class="eyebrow" style="font-family:var(--font-display);letter-spacing:.03em">Steven Design Co.</p>
     <h1 class="display" style="font-size:clamp(36px,5vw,64px);line-height:.98;margin:0">The component library.</h1>
@@ -40,8 +56,24 @@ const o={title:"Introduction"},e=()=>`
       <li><strong>Components</strong> are the pieces that repeat across pages.</li>
       <li><strong>Patterns</strong> are whole compositions assembled from them.</li>
     </ul>
+    <div style="border:1px solid var(--rule-strong);border-radius:12px;padding:18px 20px;background:var(--surface)">
+      <p class="sb-label" style="margin:0 0 6px">The written documentation</p>
+      <p style="font-size:16px;line-height:1.6;margin:0 0 12px">
+        This library shows what a component looks like and how it behaves. It does not say
+        when to reach for it, where it is allowed to appear, what the copy rules are, or what
+        it owes for accessibility. That lives in the documentation, one page per component.
+      </p>
+      <a href="https://stevendesignco.com/docs/" target="_blank" rel="noopener"
+         style="display:inline-flex;align-items:center;gap:8px;min-height:24px;font-size:15px;font-weight:600;color:var(--text);text-decoration:underline;text-underline-offset:5px">
+        Open the documentation<span aria-hidden="true">→</span><span class="sr-only"> (opens in a new tab)</span>
+      </a>
+    </div>
+    <p style="font-size:14px;color:var(--text-mute);margin:0">
+      The two stay in step on purpose: changing a component here means updating its page there
+      in the same commit. See <em>Shipping a change</em> in the documentation.
+    </p>
     <p style="font-size:14px;color:var(--text-mute);margin:0">
       Contrast figures shown in Foundations are computed live in the browser against the
       current theme, so they stay honest when a token changes.
     </p>
-  </div>\``,...(n=(s=e.parameters)==null?void 0:s.docs)==null?void 0:n.source}}};const i=["ReadMe"];export{e as ReadMe,i as __namedExportsOrder,o as default};
+  </div>\``,...(s=(n=e.parameters)==null?void 0:n.docs)==null?void 0:s.source}}};const i=["ReadMe"];export{e as ReadMe,i as __namedExportsOrder,o as default};
