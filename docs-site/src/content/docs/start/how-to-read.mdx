@@ -63,16 +63,18 @@ The library lives in **SDC Fall of 2026**. It carries the token collections, nin
 components, the home and case study screens assembled from them, and a flow of
 the routes.
 
-Every value in it is read from the stylesheet this site ships. Two things in it
-are deliberately not faithful, and the cover page says so:
+Every value in it is read from the stylesheet this site ships. The font families
+are variables too, `font/display` and `font/body`, bound to the text styles.
 
-The display face is `nickel-gothic-variable`, licensed through Adobe Fonts.
-Figma cannot load it, so the display styles use Inter Black, which is the
-fallback the stylesheet itself declares.
+One thing in it is not faithful, and the cover page says so: the web type scale
+is fluid, `clamp(min, viewport, max)`, and Figma has no fluid value, so the Type
+scale collection carries the two ends as Mobile and Desktop modes.
 
-The web type scale is fluid, `clamp(min, viewport, max)`. Figma has no fluid
-value, so the Type scale collection carries the two ends as Mobile and Desktop
-modes.
+Worth knowing about the display face. `nickel-gothic-variable` has a width axis
+and a slant axis and **no weight axis**, so Regular is its only weight. That is
+why the Figma display styles are Regular rather than Black, and it means the
+`font-variation-settings: "wght" 900` in the stylesheet does nothing on that
+face. It is inert, not wrong, but it reads like a setting that matters.
 
 An earlier library, **SDC Design Tokens**, was last touched 17 April 2026. It is
 colour only, it predates the live v2 site and the decision to ship light as the
