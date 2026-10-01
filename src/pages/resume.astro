@@ -111,7 +111,9 @@ import Site from '../layouts/Site.astro';
 	.rs-role { font-size: clamp(20px, 2vw, 26px); font-weight: 600; color: var(--text); margin: 0 0 var(--space-sm); letter-spacing: -0.01em; }
 	.rs-loc { color: var(--text-mute); font-size: 15px; margin: 0 0 var(--space-md); }
 	.rs-contact { list-style: none; margin: 0 0 var(--space-lg); padding: 0; display: flex; flex-wrap: wrap; gap: 12px var(--space-md); font-size: 15px; font-weight: 500; }
-	.rs-contact a { color: var(--text); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; transition: color 0.14s ease; }
+	/* Same 24px minimum as the home page contact list. It sat at 19. Reset in
+	   print below, where the type is 9.5px and target size does not apply. */
+	.rs-contact a { color: var(--text); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; transition: color 0.14s ease; padding-block: 3px; }
 	.rs-contact a:hover { color: var(--accent); }
 	.rs-pdf { margin-top: var(--space-xs); }
 
@@ -162,7 +164,7 @@ import Site from '../layouts/Site.astro';
 		.rs-role { font-size: 13px !important; margin: 0 0 2px !important; }
 		.rs-loc { font-size: 9.5px !important; margin: 0 0 3px !important; color: #444 !important; }
 		.rs-contact { font-size: 9.5px !important; gap: 1px 12px !important; margin: 0 !important; }
-		.rs-contact a { text-decoration: none !important; }
+		.rs-contact a { text-decoration: none !important; padding-block: 0 !important; }
 		.rs-sec { margin-top: 10px !important; padding-top: 8px !important; }
 		.rs-sec > .eyebrow { font-size: 8px !important; letter-spacing: 0.14em !important; margin-bottom: 5px !important; }
 		.rs-summary { font-size: 10px !important; font-weight: 500 !important; line-height: 1.4 !important; letter-spacing: 0 !important; max-width: none !important; }

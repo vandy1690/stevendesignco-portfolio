@@ -67,6 +67,21 @@ a page that documented it as doing so. The block now sits last in the sheet.
 Both of those passed every automated scan. A scanner cannot tell you that a rule
 you wrote is being overridden by a rule you also wrote.
 
+**An inline link measured 1.02:1 against the text around it.** The accent and
+the muted body ink sit at almost the same luminance, and prose links had no
+underline, at rest or on hover. The one inline link in the case studies was
+invisible as a link to everybody. Colour-only link styling is not a
+colour-blindness edge case here; it failed for every reader.
+
+**Four links were under the 24px minimum target size**, between 19 and 22px: the
+footer wordmark and email, and the contact lists on the home page and the
+resume.
+
+**The PayPal logo orbit pushed the page sideways below 390px.** The orbit is
+680px scaled to half, so 340px, and a 320px screen has 272px of room between the
+gutters. Two-dimensional scrolling at 320px is a Reflow failure. The orbit is
+clipped now, so it bleeds off the edges instead of widening the document.
+
 **The case study styles disappeared inside the dialog.** The styles were scoped
 to `.case` on `<main>`, and the dialog injects a case page's `<main>` contents
 without the element itself. The pages were right, the dialog showing the same

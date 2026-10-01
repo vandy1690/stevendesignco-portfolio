@@ -872,8 +872,25 @@ const jsonLd = {
 			@media (max-width: 880px) {
 				.case .cs-figure { max-width: 100%; }
 				.case .cs-hero__title { font-size: clamp(32px, 9vw, 56px); }
-				.case .cs-orbit__art { width: 100%; aspect-ratio: 1 / 1; overflow: visible; margin-top: var(--space-md); }
+				/* The orbit is 680px wide and scaled to half below 880px, so it lands at
+				   340px. Narrower than about 390px the page has less room than that and
+				   the orbit used to push the whole document sideways, which is a reflow
+				   failure. Clip rather than scroll. `clip` does not create a scroll port
+				   the way `hidden` does; `hidden` is the fallback for older Safari. */
+				.case .cs-orbit__art { width: 100%; aspect-ratio: 1 / 1; overflow: hidden; overflow: clip; margin-top: var(--space-md); }
 			}
+
+			/* An inline link inside prose is underlined. The accent and the body ink
+			   measure 1.02:1 against each other, so colour alone leaves a link in a
+			   sentence indistinguishable from the sentence. Links that are the whole
+			   content of their row are not affected; there is no surrounding text to
+			   confuse them with. */
+			.case .cs-block p a:not(.btn):not(.pager) {
+				text-decoration: underline;
+				text-decoration-thickness: 1px;
+				text-underline-offset: 3px;
+			}
+			.case .cs-block p a:not(.btn):not(.pager):hover { color: var(--text); }
 
 			/* Anything opening in a new tab says so. */
 			.cs-body a[target="_blank"]::after,
@@ -904,10 +921,11 @@ const jsonLd = {
 				gap: var(--space-md);
 				flex-wrap: wrap;
 			}
-			.brand--footer { font-size: var(--text-body-sm); color: var(--text-mute); font-weight: 500; }
+			/* min-height carries these to the 24px minimum target size. Both sat at 22. */
+			.brand--footer { font-size: var(--text-body-sm); color: var(--text-mute); font-weight: 500; min-height: 24px; }
 			.brand--footer:hover { color: var(--text); }
 			.site-footer__meta { display: flex; gap: var(--space-md); color: var(--text-mute); font-size: var(--text-body-sm); }
-			.site-footer__meta a { color: var(--text-mute); }
+			.site-footer__meta a { color: var(--text-mute); display: inline-flex; align-items: center; min-height: 24px; }
 			.site-footer__meta a:hover { color: var(--accent); }
 			@media (max-width: 600px) {
 				.site-footer__inner { flex-direction: column; align-items: flex-start; gap: var(--space-md); }
