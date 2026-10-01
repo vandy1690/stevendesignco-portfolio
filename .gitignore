@@ -40,3 +40,4 @@ storybook/storybook-static
 # Docs site dependencies; the built output under public/docs is committed
 docs-site/node_modules
 docs-site/.astro
+qa/.shots/

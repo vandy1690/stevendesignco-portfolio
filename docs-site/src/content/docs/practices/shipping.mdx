@@ -16,17 +16,46 @@ Merging into `dev` is the act of publishing.
 ## The sequence
 
 1. Build locally and check the page you changed.
-2. Push the branch. Read it on the review URL.
-3. Run the checks for whatever you touched.
+2. Run the Q&A pass.
+3. Push the branch. Read it on the review URL.
 4. Merge to `dev` only when asked to publish.
-5. Confirm on the live site rather than assuming the deploy matched.
+5. Run the Q&A pass again against the live site, rather than assuming the deploy matched.
 
-## Before merging
+## The Q&A pass
 
-- Both accessibility scanners return zero on every page.
-- No horizontal scrolling from 280 to 1920.
-- Reduced motion and no-JavaScript both render everything.
-- Anything visual was compared against the live site, pixel for pixel where it was meant to be unchanged.
+One command, and it is not optional for anything that touches the layout, the
+stylesheet or a component.
+
+```
+npm run dev     # in one terminal
+npm run qa      # in another
+```
+
+Or `npm run ship`, which runs the documentation check, the build and the Q&A
+pass in order.
+
+It covers reflow and target size across eleven pages and eleven widths, axe on
+every page and with every dialog open, the dialog's keyboard behaviour, text
+spacing overrides, High Contrast Mode, and inline link distinction. `--pixel`
+adds a comparison against the live site and is worth the wait on any change that
+was supposed to be invisible.
+
+Each check is in `qa/checks/`, and each one opens with the defect it was written
+for. They are all regressions that reached production or nearly did. The
+repository's `qa/README.md` has the list and the reasoning.
+
+Three habits sit underneath it:
+
+**Check the pages you did not touch.** The worst regression in the component
+refactor landed on three pages nobody was editing.
+
+**Check where content is reused, not only where it lives.** The case study pages
+were correct while the dialog showing the same content was broken.
+
+**Prove a check can fail.** Break the thing deliberately, watch the check name
+it, then put it back. A check that has only ever passed is not evidence. This is
+also how we learned that axe passes a link with 1.02:1 contrast and no
+underline, which is why there is a separate check for that.
 
 ## Undoing
 
