@@ -58,6 +58,21 @@ the failure publicly for weeks.
 **`aria-label` replaced visible text** on the pagers and the cards. Both were
 added during an accessibility pass. Fixing accessibility can break accessibility.
 
+**The High Contrast Mode rules were written and never applied.** The
+`@media (forced-colors: active)` block sat near the top of the stylesheet, and
+`.pager__cap` set its own background further down. A media query adds no
+specificity, so the later rule simply won and the cap never became a border, on
+a page that documented it as doing so. The block now sits last in the sheet.
+
+Both of those passed every automated scan. A scanner cannot tell you that a rule
+you wrote is being overridden by a rule you also wrote.
+
+**The case study styles disappeared inside the dialog.** The styles were scoped
+to `.case` on `<main>`, and the dialog injects a case page's `<main>` contents
+without the element itself. The pages were right, the dialog showing the same
+content was not. Anything scoped to an ancestor has to be checked everywhere that
+content gets reused.
+
 ## What is not fixed, on purpose
 
 Automated scanners flag the decorative quote marks and the progress dots as

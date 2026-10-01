@@ -432,16 +432,6 @@ const jsonLd = {
 			:focus:not(:focus-visible) { outline: none; }
 			.no-ring:focus, .no-ring:focus-visible { outline: none; }
 			/* Windows High Contrast: let the system draw its own ring. */
-			@media (forced-colors: active) {
-				:focus-visible { outline: 3px solid Highlight; outline-offset: 3px; }
-				/* These are painted with background, which HCM forces. */
-				.nav-toggle__bar { forced-color-adjust: none; background: ButtonText; }
-				.pager { forced-color-adjust: none; background: ButtonFace; color: ButtonText; border: 1px solid ButtonText; }
-				.pager__cap { forced-color-adjust: none; background: transparent; border-left: 1px solid ButtonText; }
-				.pager--prev .pager__cap { border-left: 0; border-right: 1px solid ButtonText; }
-				a[target="_blank"]::after { forced-color-adjust: none; background: LinkText; }
-			.skip-link { forced-color-adjust: none; background: ButtonFace; color: ButtonText; border: 1px solid ButtonText; }
-			}
 			/* Users asking for more contrast get the muted tones collapsed into the ink. */
 			@media (prefers-contrast: more) {
 				:root, :root[data-theme="light"] { --text-mute: var(--text); --rule: var(--rule-strong); }
@@ -934,6 +924,22 @@ const jsonLd = {
 			   sheet on purpose: the responsive .section rules above use the padding
 			   shorthand, which would otherwise put the top padding back. */
 			.case .section--flush { padding-top: 0; }
+
+			/* Windows High Contrast Mode. Last in the sheet because these override
+			   painted backgrounds that are declared later than this block used to sit:
+			   .pager__cap set its own background after it, so the cap never became a
+			   border the way it is documented to. Media queries add no specificity, so
+			   source order is the whole fight. */
+			@media (forced-colors: active) {
+				:focus-visible { outline: 3px solid Highlight; outline-offset: 3px; }
+				/* These are painted with background, which HCM forces. */
+				.nav-toggle__bar { forced-color-adjust: none; background: ButtonText; }
+				.pager { forced-color-adjust: none; background: ButtonFace; color: ButtonText; border: 1px solid ButtonText; }
+				.pager__cap { forced-color-adjust: none; background: transparent; border-left: 1px solid ButtonText; }
+				.pager--prev .pager__cap { border-left: 0; border-right: 1px solid ButtonText; }
+				a[target="_blank"]::after { forced-color-adjust: none; background: LinkText; }
+			.skip-link { forced-color-adjust: none; background: ButtonFace; color: ButtonText; border: 1px solid ButtonText; }
+			}
 		</style>
 	</body>
 </html>

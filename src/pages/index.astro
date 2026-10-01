@@ -284,7 +284,10 @@ const quotes = [
 			<button class="modal__close" type="button" aria-label="Close case study">
 				<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 1L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M1 15L15 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
 			</button>
-			<div class="modal__content" aria-live="polite"></div>
+			<!-- .case carries the case study styles. The dialog injects a case page's
+			     <main> contents without the <main> element itself, so the class has to
+			     live here or every one of those rules misses. -->
+			<div class="modal__content case" aria-live="polite"></div>
 		</div>
 	</div>
 </Site>

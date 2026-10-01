@@ -137,6 +137,18 @@ it and stopped scrolling entirely.</p>
 the failure publicly for weeks.</p>
 <p><strong><code dir="auto">aria-label</code> replaced visible text</strong> on the pagers and the cards. Both were
 added during an accessibility pass. Fixing accessibility can break accessibility.</p>
+<p><strong>The High Contrast Mode rules were written and never applied.</strong> The
+<code dir="auto">@media (forced-colors: active)</code> block sat near the top of the stylesheet, and
+<code dir="auto">.pager__cap</code> set its own background further down. A media query adds no
+specificity, so the later rule simply won and the cap never became a border, on
+a page that documented it as doing so. The block now sits last in the sheet.</p>
+<p>Both of those passed every automated scan. A scanner cannot tell you that a rule
+you wrote is being overridden by a rule you also wrote.</p>
+<p><strong>The case study styles disappeared inside the dialog.</strong> The styles were scoped
+to <code dir="auto">.case</code> on <code dir="auto">&lt;main&gt;</code>, and the dialog injects a case page’s <code dir="auto">&lt;main&gt;</code> contents
+without the element itself. The pages were right, the dialog showing the same
+content was not. Anything scoped to an ancestor has to be checked everywhere that
+content gets reused.</p>
 <div class="sl-heading-wrapper level-h2"><h2 id="what-is-not-fixed-on-purpose">What is not fixed, on purpose</h2><a class="sl-anchor-link" href="#what-is-not-fixed-on-purpose"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “What is not fixed, on purpose”</span></a></div>
 <p>Automated scanners flag the decorative quote marks and the progress dots as
 visible content hidden from screen readers. Both are correctly hidden. Exposing
