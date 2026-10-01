@@ -48,9 +48,12 @@ function compare(a, b) {
 			}
 		}
 	}
-	// Confetti across many rows is rasterisation. A filled band is a shift.
+	// Confetti is rasterisation. A shift fills many pixels across many rows, so
+	// it takes both a dense average and enough rows to call it one. A single
+	// dense row is a rule or an underline moving, not the layout.
 	const perRow = rows.size ? differing / rows.size : 0;
-	return { differing, rows: rows.size, perRow: Math.round(perRow) };
+	const band = rows.size >= 5 && perRow > 40;
+	return { differing, rows: rows.size, perRow: Math.round(perRow), band };
 }
 
 export default async function pixel(browser, base) {
@@ -68,11 +71,15 @@ export default async function pixel(browser, base) {
 			if (r.size) {
 				findings.push(finding(`${path} @${width}`, `different height: ${r.size}`));
 			} else if (r.differing > 0) {
-				const shape = r.perRow > 40 ? 'solid band, likely a real shift' : 'scattered, likely glyph rasterisation';
+				const shape = r.band
+					? 'dense across many rows, look at this one'
+					: r.rows <= 2
+						? 'one or two rows, likely a rule or an underline'
+						: 'scattered, likely glyph rasterisation';
 				findings.push(finding(`${path} @${width}`, `${r.differing} px over ${r.rows} rows — ${shape}`));
 			}
 		}
 	}
-	report('Pixel against production (report only)', findings, `${PAGES.length} pages x ${KEY_WIDTHS.length} widths`);
+	report('Pixel against production (report only)', findings, `${PAGES.length} pages x ${KEY_WIDTHS.length} widths`, 'note');
 	return true; // never fails the run
 }

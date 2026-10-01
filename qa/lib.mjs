@@ -72,9 +72,14 @@ export function finding(where, what) {
 	return { where, what };
 }
 
-export function report(name, findings, note = '') {
+/**
+ * `severity: 'note'` is for a check that reports and never fails, so the label
+ * does not say FAIL on a line that the run is going to pass anyway.
+ */
+export function report(name, findings, note = '', severity = 'fail') {
 	const ok = findings.length === 0;
-	console.log(`\n${ok ? 'PASS' : 'FAIL'}  ${name}${note ? '  (' + note + ')' : ''}`);
+	const label = ok ? 'PASS' : severity === 'note' ? 'DIFF' : 'FAIL';
+	console.log(`\n${label}  ${name}${note ? '  (' + note + ')' : ''}`);
 	for (const f of findings) console.log(`      ${f.where}  ${f.what}`);
 	return ok;
 }
