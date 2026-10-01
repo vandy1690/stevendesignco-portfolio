@@ -88,9 +88,12 @@ Work on a feature branch, check the Vercel preview, then merge to `dev`. The
 details are in [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
 
 **Run `npm run qa` before you merge.** GitHub Actions runs it on every push and
-pull request as well, so a branch tells you either way, but on `dev` that
-feedback arrives after the deploy rather than before it. The checks and the
-defect each one was written for are listed in [qa/README.md](qa/README.md).
+pull request as well. `dev` is protected: the Q&A check has to pass before a
+merge lands, force pushes are off, and the branch cannot be deleted. Admins are
+exempt on purpose, so you are never locked out of your own repository.
+
+The checks and the defect each one was written for are listed in
+[qa/README.md](qa/README.md).
 
 ## Folder layout
 

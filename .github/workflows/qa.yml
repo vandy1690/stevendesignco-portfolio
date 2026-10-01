@@ -79,6 +79,16 @@ jobs:
       - name: Q&A
         run: npm run qa
 
+      - name: Documentation builds
+        # Catches broken frontmatter and MDX before it reaches the docs site.
+        # It does not diff the built output against what is committed: Pagefind
+        # rewrites its index filenames on every build, so that comparison would
+        # fail constantly and teach everyone to ignore it.
+        run: |
+          cd docs-site
+          npm ci
+          npm run build
+
       - name: Documentation in step
         # Compares against origin/dev, so it only means something off that branch.
         if: github.ref != 'refs/heads/dev'
