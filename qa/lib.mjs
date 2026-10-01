@@ -9,8 +9,15 @@
  */
 import { chromium } from 'playwright';
 
+/**
+ * Locally this drives the installed Chrome, because that is the browser the
+ * pixel baselines were taken in. CI has no Chrome, so it sets QA_CHANNEL to
+ * 'chromium' and gets the one Playwright ships, which is also the reproducible
+ * choice for a machine nobody is looking at.
+ */
 export async function launch() {
-	return chromium.launch({ channel: 'chrome' });
+	const channel = process.env.QA_CHANNEL || (process.env.CI ? 'chromium' : 'chrome');
+	return chromium.launch(channel === 'chromium' ? {} : { channel });
 }
 
 /**
@@ -33,7 +40,10 @@ export async function open(browser, url, { width = 1280, height = 900, forcedCol
 	}
 	const page = await ctx.newPage();
 	page.on('pageerror', (e) => page.__errors?.push(String(e)) ?? (page.__errors = [String(e)]));
-	await page.goto(url, { waitUntil: 'networkidle' });
+	// 'load' rather than 'networkidle'. Analytics beacons and a dev server's
+	// HMR socket mean the network may never go quiet, which timed out the whole
+	// run against production. settle() does the waiting that actually matters.
+	await page.goto(url, { waitUntil: 'load', timeout: 45000 });
 	if (theme) {
 		const got = await page.evaluate(() => document.documentElement.getAttribute('data-theme'));
 		if (got !== theme) throw new Error(`asked for the ${theme} theme, got ${got}`);

@@ -34,6 +34,11 @@ npm run qa      # in another
 Or `npm run ship`, which runs the documentation check, the build and the Q&A
 pass in order.
 
+GitHub Actions runs the same pass on every push and every pull request, so a
+branch reports for itself. That is a second pair of eyes, not a replacement for
+the first: on `dev` the result lands after the deploy, because `dev` is
+production. Run it on your branch before you merge.
+
 It covers reflow and target size across eleven pages and eleven widths, axe on
 every page and with every dialog open, the dialog's keyboard behaviour, text
 spacing overrides, High Contrast Mode, and inline link distinction. `--pixel`

@@ -1,0 +1,87 @@
+# The Q&A pass, on every push and every pull request.
+#
+# These checks used to run only when somebody remembered to type the command.
+# Three regressions reached production that way, including a stylesheet that
+# stopped applying to pages nobody was editing. Now the branch tells you.
+#
+# What runs here is the dev build, because this project uses the Vercel adapter
+# and `astro preview` does not support it. The checks are about semantics
+# (contrast, reflow, target size, keyboard, High Contrast Mode), which hold the
+# same in either build. The one check that genuinely needs the production output
+# is the pixel comparison, and that one compares against the live site, so it
+# stays a local step rather than a CI step.
+
+name: Q&A
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  # A second push to the same branch makes the first run pointless.
+  group: qa-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qa:
+    name: Accessibility, reflow and contrast
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # check:docs diffs against origin/dev. A shallow clone does not have
+          # it, and the check would fail on a branch for the wrong reason.
+          fetch-depth: 0
+
+      - name: Fetch dev for the documentation check
+        run: git fetch origin dev:refs/remotes/origin/dev --depth=200 || true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Install the browser
+        # Only chromium, and only its own dependencies. Installing all three
+        # engines triples the time for no extra coverage.
+        run: npx playwright install --with-deps chromium
+
+      - name: Build
+        # Not what the checks run against, but a build failure should fail here
+        # rather than surface as a confusing timeout further down.
+        run: npm run build
+
+      - name: Start the site
+        run: |
+          npm run dev > /tmp/dev.log 2>&1 &
+          echo $! > /tmp/dev.pid
+          # Wait for the server rather than sleeping a guessed number of seconds.
+          for i in $(seq 1 60); do
+            if curl -sf -o /dev/null http://localhost:4321/; then
+              echo "up after ${i}s"
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "the dev server never came up"
+          cat /tmp/dev.log
+          exit 1
+
+      - name: Q&A
+        run: npm run qa
+
+      - name: Documentation in step
+        # Compares against origin/dev, so it only means something off that branch.
+        if: github.ref != 'refs/heads/dev'
+        run: npm run check:docs
+
+      - name: Dev server log
+        if: failure()
+        run: tail -60 /tmp/dev.log
