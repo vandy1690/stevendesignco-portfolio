@@ -47,8 +47,39 @@ proper name.
 sentence would otherwise sound stiff, but the resume and any application
 material do not.
 
+## What the ramp does not cover
+
+Nine tokens are not enough for what the site actually does, and pretending
+otherwise would make this page a lie.
+
+Alongside `--text-display-1` through `--text-label`, the stylesheet carries
+**fifteen one-off `clamp()` sizes** that belong to no token. Eleven of them are
+on the home page. The rest are in the layout: the case study hero title at
+`clamp(32px, 9vw, 56px)`, the block claim at `clamp(24px, 2.5vw, 32px)`, the
+pulled quote at `clamp(20px, 2vw, 28px)`.
+
+The Figma library makes the gap visible rather than hiding it. Binding the type
+scale across the components and the screens matched most sizes to a token and
+left five that match nothing: 22, 28, 56, 64 and 72. Those are bound to nothing
+and are literal values in both places. Spacing has the same shape of gap, with
+12, 14, 18, 20, 22, 28, 40 and 56 sitting outside the scale.
+
+Two honest readings of this, and the decision has not been made:
+
+**The ramp is too small.** The hero sizes and the block claim are used in enough
+places to deserve tokens of their own.
+
+**The one-offs are art direction.** A hero that is tuned to its own sentence is
+not a reusable size, and forcing it into a scale would make it worse.
+
+What is not defensible is the current state, where the checklist below says no
+new hard-coded font size and fifteen of them already ship.
+
 ## Checks before you ship
 
-1. No new hard-coded pixel font size.
-2. No weight setting applied to the display face.
+1. No new hard-coded pixel font size, and if one is genuinely needed, it goes in
+   the list above rather than quietly into a rule.
+2. No weight setting applied to the display face. The stylesheet still sets
+   `wght` 400, 700 and 900 on it in three places; the face has no weight axis, so
+   all three are inert. Do not copy that pattern into anything new.
 3. No em dash or en dash in any new copy.
