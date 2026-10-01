@@ -14,8 +14,10 @@
 name: Q&A
 
 on:
+  # Only dev on push. Every other branch is covered by its pull request, and
+  # listening to both fired this workflow twice for every PR.
   push:
-    branches: ['**']
+    branches: [dev]
   pull_request:
   workflow_dispatch:
 
