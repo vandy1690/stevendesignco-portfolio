@@ -27,11 +27,13 @@ concurrency:
 jobs:
   qa:
     name: Accessibility, reflow and contrast
+    # ubuntu-latest moves to Ubuntu 26 from 19 October 2026. Staying on latest
+    # is deliberate: a runner that drifts from current is its own problem.
     runs-on: ubuntu-latest
     timeout-minutes: 25
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           # check:docs diffs against origin/dev. A shallow clone does not have
           # it, and the check would fail on a branch for the wrong reason.
@@ -40,7 +42,7 @@ jobs:
       - name: Fetch dev for the documentation check
         run: git fetch origin dev:refs/remotes/origin/dev --depth=200 || true
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
