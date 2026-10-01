@@ -455,6 +455,15 @@ const jsonLd = {
 				--text-nav: 15px;                           /* navigation */
 				--text-body-sm: 14px;                       /* captions */
 				--text-label: 11px;                         /* tags, metadata */
+
+				/* Sizes the layout actually ships that the nine above did not cover.
+				   Same clamps, named. Added after binding the Figma library left
+				   them matching no token. */
+				--text-case-title: clamp(32px, 9vw, 56px);    /* case study hero title */
+				--text-block-lede: clamp(24px, 2.5vw, 32px);  /* the claim in a case block */
+				--text-quote: clamp(20px, 2vw, 28px);         /* pulled quote */
+				--text-stat: clamp(40px, 5vw, 64px);          /* stat number */
+				--text-stat-lg: clamp(48px, 6vw, 72px);       /* stat number, closing statement */
 			}
 
 			/* Light theme: applied when system requests light AND user has not
@@ -905,7 +914,7 @@ const jsonLd = {
 			.case .cs-body { display: grid; gap: var(--space-xl); max-width: var(--max-narrow); }
 			.case .cs-block .eyebrow { margin-bottom: 0; }
 			.case .eyebrow { font-family: var(--font-display); font-weight: 400; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; letter-spacing: 0.03em; }
-			.case .cs-block__lede { color: var(--text); font-size: clamp(24px, 2.5vw, 32px); font-weight: 600; margin: 0; letter-spacing: -0.015em; line-height: 1.25; }
+			.case .cs-block__lede { color: var(--text); font-size: var(--text-block-lede); font-weight: 600; margin: 0; letter-spacing: -0.015em; line-height: 1.25; }
 			.case .cs-block p { color: var(--text-mute); margin: 0; font-size: 16px; line-height: 1.65; }
 			.case .cs-block p + p { margin-top: 0; }
 			.case .cs-block p:not(.eyebrow):not(.cs-block__lede) + p:not(.eyebrow):not(.cs-block__lede) { margin-top: var(--space-sm); }
@@ -937,7 +946,7 @@ const jsonLd = {
 			.case .cs-orbit__art { margin-top: var(--space-md); }
 			.case .cs-h2 { max-width: 22ch; margin: 0 0 var(--space-sm); }
 			.case .cs-block .cs-caption { margin-top: var(--space-md); color: var(--text-mute); font-size: 14px; letter-spacing: 0.04em; }
-			.case .cs-quote { margin: var(--space-lg) 0 0; padding: 0; border: 0; font-family: var(--font-display); font-weight: 400; font-style: normal; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; font-size: clamp(20px, 2vw, 28px); line-height: 1.4; color: var(--text); max-width: 64ch; }
+			.case .cs-quote { margin: var(--space-lg) 0 0; padding: 0; border: 0; font-family: var(--font-display); font-weight: 400; font-style: normal; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; font-size: var(--text-quote); line-height: 1.4; color: var(--text); max-width: 64ch; }
 			.case .cs-block code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.92em; color: var(--text); }
 			@media (max-width: 700px) {
 				.case .cs-back { flex-wrap: nowrap; gap: 10px; align-items: stretch; }
@@ -950,7 +959,7 @@ const jsonLd = {
 			}
 			@media (max-width: 880px) {
 				.case .cs-figure { max-width: 100%; }
-				.case .cs-hero__title { font-size: clamp(32px, 9vw, 56px); }
+				.case .cs-hero__title { font-size: var(--text-case-title); }
 				/* The orbit is 680px wide and scaled to half below 880px, so it lands at
 				   340px. Narrower than about 390px the page has less room than that and
 				   the orbit used to push the whole document sideways, which is a reflow

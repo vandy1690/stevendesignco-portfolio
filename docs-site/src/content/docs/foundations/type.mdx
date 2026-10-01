@@ -47,33 +47,36 @@ proper name.
 sentence would otherwise sound stiff, but the resume and any application
 material do not.
 
-## What the ramp does not cover
+## The ramp is fourteen, not nine
 
-Nine tokens are not enough for what the site actually does, and pretending
-otherwise would make this page a lie.
+Nine tokens did not cover what the site ships, and binding the Figma library made
+that impossible to ignore: five sizes in the components matched no token at all.
 
-Alongside `--text-display-1` through `--text-label`, the stylesheet carries
-**fifteen one-off `clamp()` sizes** that belong to no token. Eleven of them are
-on the home page. The rest are in the layout: the case study hero title at
-`clamp(32px, 9vw, 56px)`, the block claim at `clamp(24px, 2.5vw, 32px)`, the
-pulled quote at `clamp(20px, 2vw, 28px)`.
+Five of the one-offs were not art direction. They are shared sizes the layout
+uses on every case study, so they are tokens now, with the same clamps they
+always had:
 
-The Figma library makes the gap visible rather than hiding it. Binding the type
-scale across the components and the screens matched most sizes to a token and
-left five that match nothing: 22, 28, 56, 64 and 72. Those are bound to nothing
-and are literal values in both places. Spacing has the same shape of gap, with
-12, 14, 18, 20, 22, 28, 40 and 56 sitting outside the scale.
+| Token | Size | Where |
+|---|---|---|
+| `--text-case-title` | `clamp(32px, 9vw, 56px)` | Case study hero title |
+| `--text-block-lede` | `clamp(24px, 2.5vw, 32px)` | The claim inside a case block |
+| `--text-quote` | `clamp(20px, 2vw, 28px)` | Pulled quote |
+| `--text-stat` | `clamp(40px, 5vw, 64px)` | Stat number |
+| `--text-stat-lg` | `clamp(48px, 6vw, 72px)` | Stat number, where the numbers are the closing statement |
 
-Two honest readings of this, and the decision has not been made:
+`--text-block-lede` looks like a duplicate of `--text-heading`: both run 24 to 32.
+They are not the same. The lede climbs at 2.5vw and the heading at 3.2vw, so
+between roughly 750 and 1000px they differ. Collapsing them would quietly change
+the rendering at those widths, so they stay separate.
 
-**The ramp is too small.** The hero sizes and the block claim are used in enough
-places to deserve tokens of their own.
+The home page keeps its own one-off sizes, and that is deliberate. Eleven `clamp()`
+values there are tuned to specific sentences on a single page. A hero sized to its
+own headline is not a reusable step on a scale, and forcing it into one would make
+it worse.
 
-**The one-offs are art direction.** A hero that is tuned to its own sentence is
-not a reusable size, and forcing it into a scale would make it worse.
-
-What is not defensible is the current state, where the checklist below says no
-new hard-coded font size and fifteen of them already ship.
+So the rule is not "never a one-off". It is: **if two pages use the same size, it
+is a token.** If one page uses it to solve one composition, it is art direction
+and it stays local.
 
 ## Checks before you ship
 
