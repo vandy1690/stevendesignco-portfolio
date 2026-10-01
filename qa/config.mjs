@@ -45,5 +45,12 @@ export const WIDTHS = [320, 360, 390, 430, 600, 768, 880, 1024, 1280, 1440, 1920
 /** A shorter list for checks that are slow and not width sensitive. */
 export const KEY_WIDTHS = [390, 880, 1440];
 
+/**
+ * Both themes are real and reachable, so both get checked. The dark palette went
+ * years without a scanner ever seeing it, which is how a caption sat at 3.31:1
+ * on black behind a one-letter typo in a token name.
+ */
+export const THEMES = ['light', 'dark'];
+
 export const LOCAL = 'http://localhost:4321';
 export const PROD = 'https://stevendesignco.com';

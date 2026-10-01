@@ -804,6 +804,10 @@ const quotes = [
 	   makes the letterbox invisible. This matters most on a short viewport, where
 	   the max-height caps below squeeze the 16:9 box toward 2.8:1 and `cover`
 	   would take the difference off the bottom of the image. */
+	/* --field is set per card from the artwork it sits behind, so it is card
+	   content rather than a palette value. Three of the six cards set one; this
+	   literal is the backdrop for the ones that do not, and it is deliberately
+	   not a token: it belongs to the artwork, not to the theme. */
 	.card__art--contain { background: var(--field, #F2F1EC); }
 	.card__art--contain img { object-fit: contain; object-position: center; }
 	.card__body { padding: clamp(22px, 3vw, 32px) clamp(22px, 3.2vw, 36px) clamp(22px, 3vw, 30px); display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "head head" "text text" "meta cta"; gap: 10px var(--space-lg); align-items: end; }
@@ -863,7 +867,7 @@ const quotes = [
 		will-change: transform, opacity;
 	}
 	.deck--work .deck__card { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
-	.deck__dim { position: absolute; inset: 0; border-radius: inherit; background: #000; opacity: calc(var(--dim) * 0.5); pointer-events: none; }
+	.deck__dim { position: absolute; inset: 0; border-radius: inherit; background: var(--ink-black); opacity: calc(var(--dim) * 0.5); pointer-events: none; }
 	.work__lede { font-size: clamp(40px, 6vw, 92px); line-height: 0.95; margin: 0; text-align: center; }
 	.deck--work .deck__stage { gap: var(--space-lg); }
 	.deck--work .card { max-height: calc(100svh - var(--nav-h) - 200px); }

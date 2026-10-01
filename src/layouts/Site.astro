@@ -102,11 +102,35 @@ const jsonLd = {
 <html lang="en" data-theme="light">
 	<head>
 		<meta charset="utf-8" />
+		<!-- Resolve the theme before anything paints. The attribute on <html> is
+		     "light" so a blocked script still renders a finished page; this script
+		     replaces it with the stored choice, or the operating system preference
+		     when there is no choice yet. It is inline and synchronous on purpose:
+		     deferring it means a visible flash of the wrong palette. -->
+		<script is:inline>
+			(function () {
+				try {
+					var stored = localStorage.getItem('theme');
+					var theme =
+						stored === 'light' || stored === 'dark'
+							? stored
+							: window.matchMedia('(prefers-color-scheme: dark)').matches
+								? 'dark'
+								: 'light';
+					document.documentElement.setAttribute('data-theme', theme);
+				} catch (e) {
+					/* Private mode can throw on localStorage. The markup default stands. */
+				}
+			})();
+		</script>
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
+		<!-- Starting value only. The theme script rewrites this from the computed
+		     --bg whenever the theme changes, so the browser chrome cannot drift from
+		     the palette the way a second hard-coded hex would. -->
 		<meta name="theme-color" content="#F0EEE9" />
 		<meta name="author" content="Steven Vanden Heuvel" />
 		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -187,12 +211,55 @@ const jsonLd = {
 			</div>
 		</footer>
 
+		<!-- The icon shows the theme you would switch TO, which is why the sun
+		     appears in dark mode. There is no visible text, so the name comes from
+		     aria-label, and the script keeps that label in step with the state.
+		     Hidden entirely without JavaScript, since it would do nothing. -->
+		<button class="theme-toggle theme-toggle--float" type="button" id="theme-toggle" aria-label="Switch to dark theme">
+			<svg class="theme-toggle__sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2 12h2M20 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+			<svg class="theme-toggle__moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z"/></svg>
+			<span class="theme-toggle__label">Theme</span>
+		</button>
+
 		<script>
 			// Planned degradation: this class only exists when the bundled JS
 			// actually loads. Every JS-dependent initial state (hidden fade
 			// sections, hidden nav links, dead controls) is gated on html.js in
 			// the CSS, so a blocked or failed script leaves a usable page.
 			document.documentElement.classList.add('js');
+
+			// Theme toggle. The pre-paint script in <head> has already set the
+			// attribute; this only handles changing it and remembering the choice.
+			const themeToggle = document.getElementById('theme-toggle');
+			if (themeToggle) {
+				const labelFor = (theme: string) =>
+					theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme';
+				const apply = (theme: string, remember: boolean) => {
+					document.documentElement.setAttribute('data-theme', theme);
+					themeToggle.setAttribute('aria-label', labelFor(theme));
+					const meta = document.querySelector('meta[name="theme-color"]');
+					if (meta) {
+						const bg = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim();
+						if (bg) meta.setAttribute('content', bg);
+					}
+					if (remember) {
+						try { localStorage.setItem('theme', theme); } catch (e) { /* private mode */ }
+					}
+				};
+				apply(document.documentElement.getAttribute('data-theme') || 'light', false);
+				themeToggle.addEventListener('click', () => {
+					const next =
+						document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+					apply(next, true);
+				});
+				// Follow the system until someone states a preference of their own.
+				const os = window.matchMedia('(prefers-color-scheme: dark)');
+				os.addEventListener('change', (e) => {
+					let stored = null;
+					try { stored = localStorage.getItem('theme'); } catch (err) { /* private mode */ }
+					if (stored !== 'light' && stored !== 'dark') apply(e.matches ? 'dark' : 'light', false);
+				});
+			}
 
 			// Fade-in on scroll
 			const els = document.querySelectorAll<HTMLElement>('[data-animate="fade"]');
@@ -300,25 +367,62 @@ const jsonLd = {
 		</script>
 
 		<style is:global>
+			/* ---------- Tier 1: primitives ----------
+			   Raw values, named for what they are rather than where they are used.
+			   Nothing in the stylesheet may reference these directly except the
+			   semantic tokens below. Changing the brand means changing a value
+			   here, once.
+
+			   The -rgb pairs exist because a rule or a glow needs the channels
+			   without the alpha, so a translucent value can be built from the same
+			   source as its solid one instead of being written out again. */
+			:root {
+				--ink-black: #000000;
+				--ink-near-black: #111111;
+				--ink-near-black-2: #1a1a1a;
+				--ink-charcoal: #2D3436;
+				--ink-charcoal-mute: #5A6160;   /* 5.9:1 on paper */
+				--ink-grey-mute: #8A8F8C;       /* 5.6:1 on black */
+				--paper-white: #ffffff;
+				--paper-cloud: #F0EEE9;         /* Cloud Dancer */
+				--paper-cloud-2: #E4E1DA;       /* warm card */
+				--paper-cloud-3: #D8D4CB;       /* hover */
+				--brand-regatta: #3F5F92;
+				--brand-regatta-deep: #3D5C8C;
+				--brand-citron: #CCFF00;
+				--brand-citron-light: #d8ff33;
+
+				--ink-charcoal-rgb: 45, 52, 54;
+				--paper-white-rgb: 255, 255, 255;
+				--paper-cloud-rgb: 240, 238, 233;
+				--brand-regatta-rgb: 63, 95, 146;
+				--brand-citron-rgb: 204, 255, 0;
+				--ink-black-rgb: 0, 0, 0;
+			}
+
+			/* ---------- Tier 2: semantic ----------
+			   What a thing is for, not what colour it is. Every rule in this
+			   stylesheet uses these. Each theme maps them onto the primitives
+			   above and introduces no new values of its own. */
 			:root {
 				color-scheme: light dark;
 
-				/* color tokens — dark theme (default) */
-				--bg: #000000;            /* color/background */
-				--surface: #111111;       /* color/surface */
-				--surface-2: #1a1a1a;     /* derived */
-				--text: #ffffff;          /* color/text/heading + body + secondary + action */
-				--text-mute: #8A8F8C;     /* 5.6:1 on black; was #666 at 3.6:1 */
-				--rule: rgba(255, 255, 255, 0.20);   /* color/divider */
-				--rule-soft: rgba(255, 255, 255, 0.10);
-				--rule-strong: rgba(255, 255, 255, 0.42);   /* control borders, clears 3:1 */
-				--texture-dot: rgba(255, 255, 255, 0.07);   /* page grain */
+				/* dark theme, the base */
+				--bg: var(--ink-black);
+				--surface: var(--ink-near-black);
+				--surface-2: var(--ink-near-black-2);
+				--text: var(--paper-white);
+				--text-mute: var(--ink-grey-mute);
+				--rule: rgba(var(--paper-white-rgb), 0.20);
+				--rule-soft: rgba(var(--paper-white-rgb), 0.10);
+				--rule-strong: rgba(var(--paper-white-rgb), 0.42);   /* clears 3:1 */
+				--texture-dot: rgba(var(--paper-white-rgb), 0.07);
 				--texture-size: 20px;
-				--accent: #CCFF00;          /* color/primary + accent */
-				--accent-text: #000000;     /* color/accent-text */
-				--accent-hover: #d8ff33;    /* derived hover state */
-				--accent-glow: rgba(204, 255, 0, 0.20);
-				--header-bg: rgba(0, 0, 0, 0.78);
+				--accent: var(--brand-citron);
+				--accent-text: var(--ink-black);
+				--accent-hover: var(--brand-citron-light);
+				--accent-glow: rgba(var(--brand-citron-rgb), 0.20);
+				--header-bg: rgba(var(--ink-black-rgb), 0.78);
 
 				/* layout tokens (from Layout Tokens) */
 				--max: 1280px;            /* layout/content-width */
@@ -358,43 +462,27 @@ const jsonLd = {
 			/* Light theme: Atmospheric palette (Pantone candidate, June 2026).
 			   Warm Cloud Dancer paper, charcoal body text, Regatta blue as the
 			   single accent. Dusky Citron #E2C56E is the optional warm pop. */
-			@media (prefers-color-scheme: light) {
-				:root:not([data-theme="dark"]) {
-					color-scheme: light;
-					--bg: #F0EEE9;                       /* Cloud Dancer */
-					--surface: #E4E1DA;                  /* warm card, derived */
-					--surface-2: #D8D4CB;                /* hover */
-					--text: #2D3436;                     /* charcoal body */
-					--text-mute: #5A6160;                /* muted charcoal, 5.9:1 on paper; was #6E7574 at 4.06:1 */
-					--rule: rgba(45, 52, 54, 0.20);
-					--rule-soft: rgba(45, 52, 54, 0.10);
-					--rule-strong: rgba(45, 52, 54, 0.58);   /* control borders, clears 3:1 */
-					--texture-dot: rgba(45, 52, 54, 0.10);   /* page grain */
-					--texture-size: 20px;
-					--accent: #3F5F92;                     /* Regatta, accent */
-					--accent-text: #ffffff;
-					--accent-hover: #3D5C8C;
-					--accent-glow: rgba(63, 95, 146, 0.22);
-					--header-bg: rgba(240, 238, 233, 0.82);
-				}
-			}
+			/* Light theme. Warm Cloud Dancer paper, charcoal body text, Regatta blue
+			   as the single accent. Written once: the attribute is always present,
+			   set before paint by the script in <head>, so there is no second copy
+			   behind a prefers-color-scheme query to keep in step. */
 			:root[data-theme="light"] {
 				color-scheme: light;
-				--bg: #F0EEE9;                       /* Cloud Dancer */
-				--surface: #E4E1DA;                  /* warm card, derived */
-				--surface-2: #D8D4CB;                /* hover */
-				--text: #2D3436;                     /* charcoal body */
-				--text-mute: #5A6160;                /* muted charcoal, 5.9:1 on paper; was #6E7574 at 4.06:1 */
-				--rule: rgba(45, 52, 54, 0.20);
-				--rule-soft: rgba(45, 52, 54, 0.10);
-				--rule-strong: rgba(45, 52, 54, 0.58);   /* control borders, clears 3:1 */
-				--texture-dot: rgba(45, 52, 54, 0.10);   /* page grain */
+				--bg: var(--paper-cloud);
+				--surface: var(--paper-cloud-2);
+				--surface-2: var(--paper-cloud-3);
+				--text: var(--ink-charcoal);
+				--text-mute: var(--ink-charcoal-mute);
+				--rule: rgba(var(--ink-charcoal-rgb), 0.20);
+				--rule-soft: rgba(var(--ink-charcoal-rgb), 0.10);
+				--rule-strong: rgba(var(--ink-charcoal-rgb), 0.58);   /* clears 3:1 */
+				--texture-dot: rgba(var(--ink-charcoal-rgb), 0.10);
 				--texture-size: 20px;
-				--accent: #3F5F92;                     /* Regatta, accent */
-				--accent-text: #ffffff;
-				--accent-hover: #3D5C8C;
-				--accent-glow: rgba(63, 95, 146, 0.22);
-				--header-bg: rgba(240, 238, 233, 0.82);
+				--accent: var(--brand-regatta);
+				--accent-text: var(--paper-white);
+				--accent-hover: var(--brand-regatta-deep);
+				--accent-glow: rgba(var(--brand-regatta-rgb), 0.22);
+				--header-bg: rgba(var(--paper-cloud-rgb), 0.82);
 			}
 			* { box-sizing: border-box; }
 			html, body { margin: 0; padding: 0; }
@@ -523,9 +611,6 @@ const jsonLd = {
 			.brand:hover { color: var(--text); }
 			.brand__mark { display: block; height: 24px; width: auto; }
 			/* SDC mark SVG has hardcoded lime fills — invert to black in light mode */
-			@media (prefers-color-scheme: light) {
-				:root:not([data-theme="dark"]) .brand img { filter: brightness(0); }
-			}
 			:root[data-theme="light"] .brand img { filter: brightness(0); }
 			.nav { display: flex; align-items: center; gap: var(--space-lg); }
 			.nav a {
@@ -580,10 +665,6 @@ const jsonLd = {
 			/* Dark theme: show sun icon (click → switch to light) */
 			.theme-toggle__moon { display: none; }
 			/* Light theme: show moon icon (click → switch to dark) */
-			@media (prefers-color-scheme: light) {
-				:root:not([data-theme="dark"]) .theme-toggle__sun { display: none; }
-				:root:not([data-theme="dark"]) .theme-toggle__moon { display: block; }
-			}
 			:root[data-theme="light"] .theme-toggle__sun { display: none; }
 			:root[data-theme="light"] .theme-toggle__moon { display: block; }
 			:root[data-theme="dark"] .theme-toggle__sun { display: block; }
@@ -698,10 +779,6 @@ const jsonLd = {
 			   the browser will paint whichever matches the active theme.
 			   !important is used so these win over scoped page styles that target img. */
 			.theme-img--light { display: none !important; }
-			@media (prefers-color-scheme: light) {
-				:root:not([data-theme="dark"]) .theme-img--dark { display: none !important; }
-				:root:not([data-theme="dark"]) .theme-img--light { display: block !important; }
-			}
 			:root[data-theme="light"] .theme-img--dark { display: none !important; }
 			:root[data-theme="light"] .theme-img--light { display: block !important; }
 			:root[data-theme="dark"] .theme-img--dark { display: block !important; }
@@ -765,7 +842,9 @@ const jsonLd = {
 
 			@media print {
 				.site-header, .site-footer, .nav-mobile, .theme-toggle { display: none !important; }
-				html, body { background: #ffffff !important; color: #000000; }
+				/* Paper is white and ink is black whatever the screen theme is, so these
+				   name the primitives directly rather than the semantic tokens. */
+				html, body { background: var(--paper-white) !important; color: var(--ink-black); }
 				a { color: inherit; text-decoration: none; }
 			}
 
@@ -844,7 +923,7 @@ const jsonLd = {
 			.case .cs-note { margin: var(--space-md) 0 0; padding: 0; border: 0; font-family: var(--font-body); font-weight: 400; font-size: 14px; line-height: 1.6; letter-spacing: 0.04em; color: var(--text-mute); max-width: 64ch; }
 			.case .cs-block strong { color: var(--text); font-weight: 600; }
 			.case .cs-caption { margin: var(--space-md) 0 0; color: var(--text-mute); font-size: 14px; letter-spacing: 0.04em; }
-			.case .cs-figure__cap { margin: var(--space-sm) 0 0; color: var(--text-muted, #5A6160); font-size: 15px; line-height: 1.5; max-width: 62ch; }
+			.case .cs-figure__cap { margin: var(--space-sm) 0 0; color: var(--text-mute); font-size: 15px; line-height: 1.5; max-width: 62ch; }
 			.case .cs-diagram { overflow-x: auto; padding-bottom: var(--space-xs); }
 			.case .cs-diagram__svg { display: block; width: 100%; min-width: 640px; max-width: 960px; height: auto; color: var(--text); }
 			.case .dg-panel rect, .case .dg-panel line { fill: none; stroke: currentColor; stroke-width: 1.25; opacity: 0.45; }

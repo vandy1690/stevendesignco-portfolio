@@ -12,7 +12,7 @@
  * how this stays worth running.
  */
 import { launch } from './lib.mjs';
-import { LOCAL, PROD } from './config.mjs';
+import { LOCAL, PROD, PAGES } from './config.mjs';
 
 import reflow from './checks/reflow.mjs';
 import axe from './checks/axe.mjs';
@@ -20,6 +20,7 @@ import dialog from './checks/dialog.mjs';
 import textSpacing from './checks/text-spacing.mjs';
 import forcedColors from './checks/forced-colors.mjs';
 import linkDistinction from './checks/link-distinction.mjs';
+import contrast from './checks/contrast.mjs';
 
 const CHECKS = {
 	reflow,
@@ -28,6 +29,7 @@ const CHECKS = {
 	'text-spacing': textSpacing,
 	'forced-colors': forcedColors,
 	'link-distinction': linkDistinction,
+	contrast,
 };
 
 const args = process.argv.slice(2);
@@ -51,6 +53,24 @@ if (!reachable) {
 }
 
 console.log(`\nQ&A against ${base}`);
+
+// Warm every page first. The dev server compiles a route on its first request
+// after an edit, which can take longer than a check's navigation timeout and
+// shows up as a failure that has nothing to do with the page. Three false
+// failures in one afternoon earned this loop.
+if (base === LOCAL) {
+	process.stdout.write('warming routes');
+	for (const path of PAGES) {
+		try {
+			await fetch(base + path, { signal: AbortSignal.timeout(120000) });
+			process.stdout.write('.');
+		} catch {
+			process.stdout.write('!');
+		}
+	}
+	console.log('');
+}
+
 const browser = await launch();
 const failed = [];
 try {

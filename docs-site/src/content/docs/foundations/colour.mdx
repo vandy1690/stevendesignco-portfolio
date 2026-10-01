@@ -5,10 +5,31 @@ sidebar:
   order: 1
 ---
 
-Colour is ten variables. The live values are in the
+Colour is two tiers. The live values are in the
 [Storybook](https://stevendesignco.com/labs/sdc-storybook/), which computes each
 contrast ratio in the browser against the current tokens, so the numbers there
 are never stale. This page is what the tokens are *for*.
+
+## Two tiers
+
+**Primitives** hold the raw values and are named for what they are:
+`--paper-cloud`, `--ink-charcoal`, `--brand-regatta`. Fourteen of them, defined
+once on `:root`, the same in every theme. Nothing in the stylesheet may use one
+directly except the semantic tokens below.
+
+**Semantic tokens** are named for what they are *for*: `--bg`, `--text`,
+`--accent`. Each theme maps them onto primitives and introduces no values of its
+own. If you find yourself writing a hex here, the primitive you need does not
+exist yet. Add it rather than inlining the value.
+
+The split exists because the palette used to be written out in full three times:
+once for dark, and twice for light, since the light block was duplicated behind
+a `prefers-color-scheme` query. Three copies of the same fifteen declarations
+with nothing keeping them in step. A colour change is now one line in one place.
+
+A primitive also carries its channels where a translucent version is needed, as
+`--ink-charcoal-rgb`, so `--rule` can be built from the same source as `--text`
+instead of repeating the numbers.
 
 ## The roles
 
@@ -52,14 +73,32 @@ claims, and claims need checking.
 
 ## Dark mode
 
-A full dark palette exists: black ground, near-white ink, a neon lime accent. It
-is the alternate, not the default, and there is currently no control rendered to
-switch to it. Keep both palettes in step anyway. A token added to one and not
-the other is a bug waiting for the toggle to come back.
+A full dark palette: black ground, near-white ink, a neon lime accent. It is the
+alternate, not the default.
+
+The toggle is real again. It sits bottom right, follows the operating system on
+a first visit, remembers a choice once one is made, and resolves before the page
+paints so switching never flashes the wrong palette. Without JavaScript it hides
+itself and the page stays light.
+
+For a long stretch it was not real: `data-theme="light"` was fixed in the markup,
+nothing ever changed it, and the toggle had styling but no button. Roughly forty
+rules served a mode nobody could reach, and the whole dark palette went without a
+scanner ever seeing it. That is how a figure caption came to sit at 3.31 to 1 on
+black: its rule named `--text-muted`, a token that does not exist, and fell back
+to a hard-coded light-theme hex. In the only theme anyone could load, the
+fallback happened to be the right colour.
+
+Both themes are checked now, on every page, by `npm run qa`.
 
 ## Checks before you ship
 
-1. Any new text colour clears 4.5 to 1 against both the page and a card.
+1. Any new text colour clears 4.5 to 1 against both the page and a card, **in
+   both themes**. `npm run qa -- contrast` measures it on the rendered page.
 2. Any new control border clears 3 to 1.
-3. The token exists in both the light and dark blocks.
-4. The Storybook colour page shows the new token passing, not failing.
+3. The token exists in both the light and dark blocks, and points at a
+   primitive rather than a literal value.
+4. A new raw value was added as a primitive, not inlined into a semantic token.
+5. The Storybook colour page shows the new token passing, not failing.
+6. The token name is spelled the way it is defined. A typo in a `var()` is
+   silent: it falls through to the fallback, or to nothing.

@@ -144,6 +144,12 @@ specificity, so the later rule simply won and the cap never became a border, on
 a page that documented it as doing so. The block now sits last in the sheet.</p>
 <p>Both of those passed every automated scan. A scanner cannot tell you that a rule
 you wrote is being overridden by a rule you also wrote.</p>
+<p><strong>A caption sat at 3.31:1 on black because of a one-letter typo.</strong> Its rule
+named <code dir="auto">--text-muted</code>; the token is <code dir="auto">--text-mute</code>. CSS does not warn about an
+undefined custom property, it silently uses the fallback, and the fallback here
+was a hard-coded light-theme hex. It read correctly in the only theme anyone
+could reach, which is why nobody saw it. Found by restoring the theme toggle and
+scanning the palette that had never been scanned.</p>
 <p><strong>An inline link measured 1.02:1 against the text around it.</strong> The accent and
 the muted body ink sit at almost the same luminance, and prose links had no
 underline, at rest or on hover. The one inline link in the case studies was
