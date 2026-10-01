@@ -57,6 +57,29 @@ Saying which is which is the point. A documented class that looks like a
 component is how two slightly different versions of the same thing end up in a
 codebase.
 
+## The Figma library
+
+The library lives in **SDC Fall of 2026**. It carries the token collections, nine
+components, the home and case study screens assembled from them, and a flow of
+the routes.
+
+Every value in it is read from the stylesheet this site ships. Two things in it
+are deliberately not faithful, and the cover page says so:
+
+The display face is `nickel-gothic-variable`, licensed through Adobe Fonts.
+Figma cannot load it, so the display styles use Inter Black, which is the
+fallback the stylesheet itself declares.
+
+The web type scale is fluid, `clamp(min, viewport, max)`. Figma has no fluid
+value, so the Type scale collection carries the two ends as Mobile and Desktop
+modes.
+
+An earlier library, **SDC Design Tokens**, was last touched 17 April 2026. It is
+colour only, it predates the live v2 site and the decision to ship light as the
+default, and every variable in it is `ALL_SCOPES`. It is superseded. Two token
+libraries with nothing to say which one is current is the same drift this whole
+practice exists to prevent, so archive it rather than leave it sitting there.
+
 ## What a component page is not
 
 It is not a live render. The
