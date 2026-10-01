@@ -7,8 +7,16 @@ sidebar:
 
 ## The one thing to know
 
-**The `dev` branch is production.** Pushing it deploys to stevendesignco.com
-with no gate and no approval step. `main` is stale and deploys nothing.
+**The `dev` branch is production.** Pushing it deploys to stevendesignco.com.
+`main` is stale and deploys nothing.
+
+There is a gate now. `dev` is protected and the Q&A check has to pass before a
+merge lands, so a change that breaks accessibility, reflow or contrast cannot
+reach the live site by accident. Force pushes and branch deletion are off.
+
+The protection does not apply to repository admins, which is deliberate: this is
+a one-person repository and locking yourself out at the wrong moment is its own
+risk. The gate is there to stop a mistake, not to stop you.
 
 Work happens on a branch. A branch deploys to a password-protected review URL.
 Merging into `dev` is the act of publishing.
@@ -18,8 +26,11 @@ Merging into `dev` is the act of publishing.
 1. Build locally and check the page you changed.
 2. Run the Q&A pass.
 3. Push the branch. Read it on the review URL.
-4. Merge to `dev` only when asked to publish.
-5. Run the Q&A pass again against the live site, rather than assuming the deploy matched.
+4. Open a pull request. The template carries the checks; CI runs the Q&A pass and
+   has to go green before the merge is allowed.
+5. Merge to `dev` only when asked to publish.
+6. Run the Q&A pass again against the live site, rather than assuming the deploy
+   matched.
 
 ## The Q&A pass
 

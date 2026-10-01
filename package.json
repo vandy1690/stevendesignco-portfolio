@@ -12,7 +12,8 @@
     "astro": "astro",
     "check:docs": "node scripts/check-docs-in-step.mjs",
     "qa": "node qa/run.mjs",
-    "ship": "npm run check:docs && npm run build && npm run qa"
+    "ship": "npm run check:docs && npm run build:docs && npm run build && npm run qa",
+    "build:docs": "cd docs-site && npm run build"
   },
   "dependencies": {
     "@astrojs/react": "^5.0.4",
