@@ -11,6 +11,25 @@ npm run qa -- --pixel # add the pixel comparison, which is slow
 npm run ship         # docs check, build, then the Q&A pass
 ```
 
+## It also runs itself
+
+GitHub Actions runs this on every push and every pull request
+(`.github/workflows/qa.yml`). Typing the command is no longer the only thing
+standing between a regression and the live site.
+
+Two things about the CI run worth knowing:
+
+It tests the **dev build**, because this project uses the Vercel adapter and
+`astro preview` does not support it. Every check here is about semantics —
+contrast, reflow, target size, keyboard, High Contrast Mode — and those hold the
+same in either build. The one check that genuinely needs production output is the
+pixel comparison, and it compares against the live site, so it stays a local
+step.
+
+On `dev` the result arrives **after** the deploy, because `dev` is production.
+CI on `dev` is a smoke alarm, not a gate. The gate is running `npm run qa` on
+your branch before you merge.
+
 ## What is in here, and why
 
 Every check exists because something got through. None of them are speculative.

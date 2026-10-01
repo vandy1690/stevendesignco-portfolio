@@ -54,6 +54,11 @@ password gate and no analytics.
 |---------|--------------|
 | `npm run dev` | Dev server on port 4321 |
 | `npm run build` | Production build into `dist/` and `.vercel/output/` |
+| `npm run qa` | The Q&A pass: accessibility, reflow, contrast, keyboard, both themes. Needs `npm run dev` running |
+| `npm run qa -- --prod` | The same checks against the live site |
+| `npm run qa -- --pixel` | Adds a pixel comparison against the live site |
+| `npm run ship` | Documentation check, build, then the Q&A pass |
+| `npm run check:docs` | Fails if the design system changed and no documentation did |
 | `node scripts/generate-og.mjs` | Rebuild the social cards in `public/og/` and `public/og-image.png` |
 | `node scripts/generate-icons.mjs` | Rebuild the favicon PNGs from `public/favicon.svg` |
 
@@ -70,6 +75,7 @@ The Storybook has its own `package.json` and commands. See
 | [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) | Ship, preview, roll back, or change an environment variable |
 | [docs/ACCESSIBILITY.md](docs/ACCESSIBILITY.md) | See what the site does for accessibility and how to test it |
 | [docs/LABS.md](docs/LABS.md) | Work with the Pattern Labs and Storybooks under `/labs/` |
+| [qa/README.md](qa/README.md) | Run the Q&A pass, add a check, or understand why one exists |
 | [storybook/README.md](storybook/README.md) | Run or extend the site's own component library |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Follow the branch, commit, and writing conventions |
 | [CHANGELOG.md](CHANGELOG.md) | See what changed and when |
@@ -80,6 +86,11 @@ The Storybook has its own `package.json` and commands. See
 stevendesignco.com. There is no staging step between a push and the live site.
 Work on a feature branch, check the Vercel preview, then merge to `dev`. The
 details are in [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
+
+**Run `npm run qa` before you merge.** GitHub Actions runs it on every push and
+pull request as well, so a branch tells you either way, but on `dev` that
+feedback arrives after the deploy rather than before it. The checks and the
+defect each one was written for are listed in [qa/README.md](qa/README.md).
 
 ## Folder layout
 

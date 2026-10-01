@@ -91,6 +91,10 @@ stylesheet or a component.</p>
 <div class="expressive-code"><link rel="stylesheet" href="/docs/_astro/ec.w36nc.css"><script type="module" src="/docs/_astro/ec.0vx5m.js"></script><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">npm run dev     # in one terminal</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">npm run qa      # in another</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="npm run dev     # in one terminalnpm run qa      # in another"><div></div></button></div></figure></div>
 <p>Or <code dir="auto">npm run ship</code>, which runs the documentation check, the build and the Q&amp;A
 pass in order.</p>
+<p>GitHub Actions runs the same pass on every push and every pull request, so a
+branch reports for itself. That is a second pair of eyes, not a replacement for
+the first: on <code dir="auto">dev</code> the result lands after the deploy, because <code dir="auto">dev</code> is
+production. Run it on your branch before you merge.</p>
 <p>It covers reflow and target size across eleven pages and eleven widths, axe on
 every page and with every dialog open, the dialog’s keyboard behaviour, text
 spacing overrides, High Contrast Mode, and inline link distinction. <code dir="auto">--pixel</code>
