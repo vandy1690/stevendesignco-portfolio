@@ -6,10 +6,10 @@ sidebar:
 ---
 
 <dl class="sdc-hww">
-	<div><dt>How</dt><dd>Inline links take the accent colour. Artifact links
-	inside a case study are underlined text at weight 600, not buttons. Anything
-	with <code>target="_blank"</code> gets a small glyph drawn with a CSS mask
-	and a hidden "(opens in a new tab)".</dd></div>
+	<div><dt>How</dt><dd>Inline links take the accent colour <em>and</em> an
+	underline. Artifact links inside a case study are underlined text at weight
+	600, not buttons. Anything with <code>target="_blank"</code> gets a small
+	glyph drawn with a CSS mask and a hidden "(opens in a new tab)".</dd></div>
 	<div><dt>When</dt><dd>Inline for a reference inside a sentence. Artifact
 	style for opening a lab, a library or an external working file. A
 	<a href="/docs/components/button/">Button</a> only for the one action a page
@@ -31,6 +31,36 @@ rather than by review.
 `aria-label` is correct in exactly one situation: the element has no visible
 text at all. The dialog's close button and the pipeline diagram qualify. Nothing
 with words in it does.
+
+## An inline link is underlined, always
+
+Colour alone is not enough and on this palette it is not even close. The accent
+is `#3F5F92` and the muted body ink is `#5A6160`. Those two measure **1.02:1**
+against each other, so a link set in the accent inside a muted paragraph is not
+subtly harder to spot, it is invisible. For a long time the only inline link in
+the case studies was unreadable as a link to everyone, not only to people who
+cannot distinguish the hues.
+
+So prose links carry a 1px underline at a 3px offset, at rest, not on hover.
+Hover changes the colour to the full-strength ink; the underline is what says
+"link" before anyone moves a pointer.
+
+This applies to a link inside a sentence. A link that is the entire contents of
+its row, like the contact list or a work index row, has no surrounding text to
+be confused with and does not need one.
+
+## Every link is at least 24px tall
+
+WCAG 2.2 sets 24 by 24 CSS pixels as the minimum target. A link inside a
+sentence is exempt, because making it taller would push the lines around it
+apart. Everything else has to clear it.
+
+Four links on this site sat between 19 and 22px: the footer wordmark, the footer
+email, the home page contact list and the resume contact list. The fix is
+`min-height` where the element is already a flex box, and `padding-block` where
+it is inline, because vertical padding grows the hit area without moving the
+line. The resume resets that padding in print, where the type is 9.5px and
+target size does not apply.
 
 ## Ambiguous link text
 
