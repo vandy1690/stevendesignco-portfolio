@@ -36,6 +36,27 @@ is barred.
 **Checks before you ship** is what to verify, phrased so a tester who has never
 opened the code can run it.
 
+**In code** names the Astro component that renders it and lists its props. Where a
+page has no "In code" section, that component exists as CSS and markup only: the
+classes are real and documented, but there is nothing to import yet, so the
+markup gets written by hand each time. Those are the ones still to build.
+
+## What is real in code, and what is not
+
+As of October 2026 these render from a component under
+`src/components/ui/`: Button, ButtonGroup, Pager, PagerPair, CaseHero, CaseMeta,
+CaseFigure, CaseSection, CaseBlock, Eyebrow, Note, Quote, StatList, AwardList.
+Every case study page is assembled from those and carries no CSS of its own.
+
+These are still CSS and markup only, written by hand: the case study card, the
+dialog, the navigation, the progress dots and the row list. They live on the home
+page, which has not been converted yet. Their pages describe real, shipped
+classes, but there is no component to import.
+
+Saying which is which is the point. A documented class that looks like a
+component is how two slightly different versions of the same thing end up in a
+codebase.
+
 ## What a component page is not
 
 It is not a live render. The

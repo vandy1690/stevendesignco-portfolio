@@ -17,6 +17,27 @@ sidebar:
 	deck in a case study hero.</dd></div>
 </dl>
 
+## In code
+
+`src/components/ui/CaseMeta.astro`, which `CaseHero` already renders from its
+own `meta` prop. Call it directly only outside a hero.
+
+```astro
+---
+import CaseMeta from '../../components/ui/CaseMeta.astro';
+---
+<CaseMeta
+	items={[
+		{ term: 'Role', value: 'Principal Designer &middot; PayPal' },
+		{ term: 'Team', value: 'Merchant Enablement' },
+	]}
+/>
+```
+
+`items` is an array of `{ term, value }`. Two or three pairs. Four wraps badly on
+a phone. It renders a description list, so each label stays tied to its value
+rather than only sitting above it.
+
 ## The pipe
 
 A pipe separates key from value. It is a CSS pseudo-element with empty

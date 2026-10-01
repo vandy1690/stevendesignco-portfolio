@@ -1,0 +1,37 @@
+---
+/**
+ * CaseFigure
+ * A full width image inside a case study.
+ *
+ * Pass `light` for art that needs a separate light theme file. The light copy
+ * is decorative, because the dark copy already carries the alt text and only
+ * one of the two is ever visible.
+ *
+ * Pass `width` and `height` on a single image so the browser reserves the space
+ * and the page does not jump while it loads.
+ */
+interface Props {
+	src: string;
+	alt: string;
+	/** Light theme version of the same art. */
+	light?: string;
+	width?: number;
+	height?: number;
+	/** Pass "lazy" for a figure below the first screen. */
+	loading?: 'lazy' | 'eager';
+	class?: string;
+}
+const { src, alt, light, width, height, loading, class: cls } = Astro.props;
+---
+
+<div class:list={['cs-figure', cls]} data-animate="fade">
+	{light ? (
+		<>
+			<img class="theme-img theme-img--dark" src={src} alt={alt} />
+			<img class="theme-img theme-img--light" src={light} alt="" aria-hidden="true" />
+		</>
+	) : (
+		<img src={src} alt={alt} width={width} height={height} loading={loading} />
+	)}
+	<slot />
+</div>

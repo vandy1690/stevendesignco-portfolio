@@ -16,6 +16,38 @@ sidebar:
 	own stage.</dd></div>
 </dl>
 
+## In code
+
+`src/components/ui/CaseSection.astro` for the band, `CaseFigure.astro` for the
+image inside it.
+
+```astro
+---
+import CaseSection from '../../components/ui/CaseSection.astro';
+import CaseFigure from '../../components/ui/CaseFigure.astro';
+---
+<CaseSection alt>
+	<CaseBlock eyebrow="What I led" lede="Two tools, one pipeline." />
+</CaseSection>
+
+<CaseSection figure flush inner={false}>
+	<CaseFigure src="/images/example.webp" alt="..." width={2400} height={971} loading="lazy" />
+</CaseSection>
+```
+
+| Prop | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `alt` | boolean | `false` | The darker surface. Alternate it, never two in a row. |
+| `figure` | boolean | `false` | A full bleed figure band. |
+| `flush` | boolean | `false` | No top padding, so the band sits tight against the one above. |
+| `id` | string | none | Anchor target for a link that jumps here. |
+| `inner` | string or `false` | `'cs-body'` | The layout class on the inner element, or `false` for a band with no measure. |
+| `animate` | boolean | `true` | Fades in on scroll. Turn it off for a band that must be readable immediately. |
+
+The case study styles live under `.case`, which `Site.astro` puts on `<main>`
+when a page passes `variant="case"`. A case study page that forgets that prop
+renders unstyled, which is the loud failure rather than the quiet one.
+
 ## Measure
 
 Body copy is capped near 800px, not the full 1280px page width. A line of text

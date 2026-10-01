@@ -1,0 +1,38 @@
+---
+/**
+ * StatList
+ * The numbers at the end of a case study. Two or three, never more: the point
+ * is that each one is large enough to read as a headline.
+ *
+ * The number is the <strong> and the label is the <span> under it. A screen
+ * reader reads the pair in that order, so write the label as the thing the
+ * number counts, not as a sentence.
+ *
+ * `large` sets the numbers at the bigger display size. Use it on a page where
+ * the stats are the closing statement rather than a supporting detail.
+ */
+interface Props {
+	items: { value: string; label: string }[];
+	/** Three across instead of two. */
+	three?: boolean;
+	/** The bigger display size for the numbers. */
+	large?: boolean;
+}
+const { items, three = false, large = false } = Astro.props;
+---
+
+<ul class:list={['cs-stats', three && 'cs-stats--three', large && 'cs-stats--large']}>
+	{items.map((i) => <li><strong>{i.value}</strong><span>{i.label}</span></li>)}
+</ul>
+
+<style>
+	.cs-stats { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); }
+	.cs-stats--three { grid-template-columns: repeat(3, 1fr); }
+	.cs-stats li { padding: var(--space-lg) 0; border-top: 1px solid var(--rule); }
+	.cs-stats strong { display: block; font-family: var(--font-display); font-weight: 900; font-style: normal; font-variation-settings: "wght" 900, "slnt" 0, "ital" 0; font-synthesis: none; font-size: clamp(40px, 5vw, 64px); color: var(--text); line-height: 1; letter-spacing: -0.02em; margin-bottom: var(--space-xs); }
+	.cs-stats--large strong { font-size: clamp(48px, 6vw, 72px); }
+	.cs-stats span { color: var(--text-mute); font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; }
+	@media (max-width: 700px) {
+		.cs-stats, .cs-stats--three { grid-template-columns: 1fr; }
+	}
+</style>

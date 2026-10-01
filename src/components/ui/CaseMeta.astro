@@ -1,0 +1,18 @@
+---
+/**
+ * CaseMeta
+ * The role, org and recognition list under a case study hero. It is a
+ * description list, so each label is tied to its value for a screen reader
+ * rather than only sitting above it visually.
+ *
+ * Two or three pairs. Four wraps badly on a phone.
+ */
+interface Props {
+	items: { term: string; value: string }[];
+}
+const { items } = Astro.props;
+---
+
+<dl class="cs-meta">
+	{items.map((i) => <div><dt>{i.term}</dt><dd set:html={i.value} /></div>)}
+</dl>

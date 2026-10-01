@@ -1,123 +1,99 @@
 ---
 import Site from '../../layouts/Site.astro';
+import CaseHero from '../../components/ui/CaseHero.astro';
+import CaseFigure from '../../components/ui/CaseFigure.astro';
+import CaseSection from '../../components/ui/CaseSection.astro';
+import CaseBlock from '../../components/ui/CaseBlock.astro';
+import StatList from '../../components/ui/StatList.astro';
+import ButtonGroup from '../../components/ui/ButtonGroup.astro';
+import Button from '../../components/ui/Button.astro';
+import PagerPair from '../../components/ui/PagerPair.astro';
 
-// IN PROGRESS. This page grows as the brand build does. Add a new cs-block
-// section for each application as it ships; do not rewrite the ones above it.
-// Artwork goes in /public/images/case-studies/artistic-eye/. The figure slots
-// below are commented out until the files exist, so the page builds either way.
+// IN PROGRESS. This page grows as the brand build does. Add a new CaseSection
+// with a CaseBlock for each application as it ships; do not rewrite the ones
+// above it. Artwork goes in /public/images/case-studies/artistic-eye/.
 ---
 
 <Site
 	title="The Artistic Eye: A Brand for a Gallery That Sells Glasses · Steven Vanden Heuvel"
 	description="A full brand build, in progress, for a small gallery and eyewear shop in Sturgeon Bay, Wisconsin: wordmark, monogram, color, type, and applications from business cards to 11.2 ft double-sided street flags."
 	image="/og/work.png"
+	variant="case"
 >
-	<section class="cs-hero">
-		<div class="cs-hero__inner">
-			<a class="cs-back-top" href="/#work">← Case studies</a>
-			<p class="eyebrow">Case study · In progress</p>
-			<h1 class="cs-hero__title display">The Artistic Eye: A Brand for a Gallery That Sells Glasses</h1>
-			<p class="cs-hero__lede">The Artistic Eye is two businesses in one room: an art gallery and an optical shop. I am building the whole brand through my LLC, and it has to work on a business card and on an 11.2 ft flag.</p>
-			<dl class="cs-meta">
-				<div><dt>Role</dt><dd>Sole designer · Steven Design Services</dd></div>
-				<div><dt>Client</dt><dd>The Artistic Eye, Sturgeon Bay, WI</dd></div>
-				<div><dt>Status</dt><dd>In progress, 2026</dd></div>
-			</dl>
-			<p class="cs-note">This page is updated as the work ships. What is here is what has been made; what is still being decided is marked as open.</p>
-		</div>
-	</section>
+	<CaseHero
+		eyebrow="Case study · In progress"
+		title="The Artistic Eye: A Brand for a Gallery That Sells Glasses"
+		lede="The Artistic Eye is two businesses in one room: an art gallery and an optical shop. I am building the whole brand through my LLC, and it has to work on a business card and on an 11.2 ft flag."
+		meta={[
+			{ term: 'Role', value: 'Sole designer · Steven Design Services' },
+			{ term: 'Client', value: 'The Artistic Eye, Sturgeon Bay, WI' },
+			{ term: 'Status', value: 'In progress, 2026' },
+		]}
+		note="This page is updated as the work ships. What is here is what has been made; what is still being decided is marked as open."
+	/>
 
-	<section class="section section--figure">
-		<div class="cs-figure" data-animate="fade">
-			<img src="/images/case-studies/artistic-eye/hero.webp" alt="The Artistic Eye wordmark in pink and charcoal beside the stacked a-e monogram on a pink field" width="2000" height="960" />
-		</div>
-	</section>
+	<CaseSection figure inner={false}>
+		<CaseFigure
+			src="/images/case-studies/artistic-eye/hero.webp"
+			alt="The Artistic Eye wordmark in pink and charcoal beside the stacked a-e monogram on a pink field"
+			width={2000}
+			height={960}
+		/>
+	</CaseSection>
 
-	<section class="section section--alt">
-		<div class="section__inner cs-body" data-animate="fade">
-			<div class="cs-block">
-				<p class="eyebrow">The client</p>
-				<h2 class="cs-block__lede">A gallery first, and an eyewear shop inside it.</h2>
-				<p>The shop sits inside the Tambourine Lounge, a retro building in Sturgeon Bay full of working artists and recording studios. It is run by Naomi Moes, an artist who sells the frames alongside her own work. Original artwork and studio space share the room with designer frames and a wall of more than two hundred vintage frames from the 1950s through the 1990s. Visits are by appointment.</p>
-				<p>That was the brief in one sentence: it should feel like a gallery, not a clinic. The brand had to hold art and eyewear at the same time.</p>
-			</div>
-		</div>
-	</section>
+	<CaseSection alt>
+		<CaseBlock eyebrow="The client" lede="A gallery first, and an eyewear shop inside it.">
+			<p>The shop sits inside the Tambourine Lounge, a retro building in Sturgeon Bay full of working artists and recording studios. It is run by Naomi Moes, an artist who sells the frames alongside her own work. Original artwork and studio space share the room with designer frames and a wall of more than two hundred vintage frames from the 1950s through the 1990s. Visits are by appointment.</p>
+			<p>That was the brief in one sentence: it should feel like a gallery, not a clinic. The brand had to hold art and eyewear at the same time.</p>
+		</CaseBlock>
+	</CaseSection>
 
-	<section class="section">
-		<div class="section__inner cs-body" data-animate="fade">
-			<div class="cs-block">
-				<p class="eyebrow">What I built</p>
-				<h2 class="cs-block__lede">A wordmark, a monogram, and the rules that keep them consistent.</h2>
-				<p><strong>The wordmark.</strong> "artistic" set large in pink, with "eye" in charcoal below it, wearing a pair of frames.</p>
-				<p><strong>The monogram.</strong> A stacked a and e. It carries the brand anywhere the full wordmark will not fit or would be too much, like the card back and the flags. It is documented in six colorways.</p>
-				<p><strong>Color and type.</strong> The palette is built on one pink and one charcoal. Aziga for display, set with a little added letterspacing, and Neue Haas Grotesk Text for everything that has to be read.</p>
-				<p><strong>The guidelines.</strong> Lockups, clear space, eight misuse rules, and an asset index, written for the people who will produce work in the brand's name without me in the room: printers, sign shops, partner boutiques, and staff.</p>
-			</div>
-			<ul class="cs-stats cs-stats--three">
-				<li><strong>6</strong><span>Monogram colorways</span></li>
-				<li><strong>8</strong><span>Misuse rules</span></li>
-				<li><strong>11.2 ft</strong><span>Double-sided street flags</span></li>
-			</ul>
-		</div>
-	</section>
+	<CaseSection>
+		<CaseBlock eyebrow="What I built" lede="A wordmark, a monogram, and the rules that keep them consistent.">
+			<p><strong>The wordmark.</strong> "artistic" set large in pink, with "eye" in charcoal below it, wearing a pair of frames.</p>
+			<p><strong>The monogram.</strong> A stacked a and e. It carries the brand anywhere the full wordmark will not fit or would be too much, like the card back and the flags. It is documented in six colorways.</p>
+			<p><strong>Color and type.</strong> The palette is built on one pink and one charcoal. Aziga for display, set with a little added letterspacing, and Neue Haas Grotesk Text for everything that has to be read.</p>
+			<p><strong>The guidelines.</strong> Lockups, clear space, eight misuse rules, and an asset index, written for the people who will produce work in the brand's name without me in the room: printers, sign shops, partner boutiques, and staff.</p>
+		</CaseBlock>
+		<StatList
+			three
+			items={[
+				{ value: '6', label: 'Monogram colorways' },
+				{ value: '8', label: 'Misuse rules' },
+				{ value: '11.2 ft', label: 'Double-sided street flags' },
+			]}
+		/>
+	</CaseSection>
 
-	<section class="section section--alt">
-		<div class="section__inner cs-body" data-animate="fade">
-			<div class="cs-block">
-				<p class="eyebrow">Where it lives so far</p>
-				<h2 class="cs-block__lede">From a 3.5 inch card to an 11.2 ft flag.</h2>
-				<p><strong>Business cards.</strong> A card back carrying the monogram, and three front options for Naomi's card, which differ in the pink and in the typeface for her name.</p>
-				<p><strong>Social.</strong> Graphics built in the same system.</p>
-				<p><strong>Teardrop flags.</strong> Double-sided, 11.2 ft tall, with pink monograms and stacked letterforms in white. At that size the monogram is the whole message, so it had to read from the street before anyone gets close enough to read a word.</p>
-			</div>
-			<!--
-			<div class="cs-figure">
-				<img src="/images/case-studies/artistic-eye/applications.webp" alt="Business card fronts and back, a social post, and a teardrop flag mechanical" width="2000" height="1200" />
-			</div>
-			-->
-		</div>
-	</section>
+	<CaseSection alt>
+		<CaseBlock eyebrow="Where it lives so far" lede="From a 3.5 inch card to an 11.2 ft flag.">
+			<p><strong>Business cards.</strong> A card back carrying the monogram, and three front options for Naomi's card, which differ in the pink and in the typeface for her name.</p>
+			<p><strong>Social.</strong> Graphics built in the same system.</p>
+			<p><strong>Teardrop flags.</strong> Double-sided, 11.2 ft tall, with pink monograms and stacked letterforms in white. At that size the monogram is the whole message, so it had to read from the street before anyone gets close enough to read a word.</p>
+		</CaseBlock>
+		<!-- Applications artwork goes here once the file exists:
+		<CaseFigure src="/images/case-studies/artistic-eye/applications.webp" alt="Business card fronts and back, a social post, and a teardrop flag mechanical" width={2000} height={1200} />
+		-->
+	</CaseSection>
 
-	<section class="section">
-		<div class="section__inner cs-body" data-animate="fade">
-			<div class="cs-block">
-				<p class="eyebrow">What I had to work around</p>
-				<h2 class="cs-block__lede">The files did not agree on what black is.</h2>
-				<p>Pulling the brand into one guide turned up a mismatch. The logo masters and one card front used a charcoal, #2B2C2B, and a pink, #DF248E. A second card front and the card back used pure black and a hotter process pink, #EC008C. Neither set was wrong on its own. Together they meant two printers could each follow the files and hand back two different brands.</p>
-				<p>The dark ink is settled: #2B2C2B everywhere, and pure black gets corrected wherever the artwork carries it. The pink is still open, and the guide says so in writing rather than quietly picking one. A guide that hides an undecided color is how the mismatch happened in the first place.</p>
-			</div>
-		</div>
-	</section>
+	<CaseSection>
+		<CaseBlock eyebrow="What I had to work around" lede="The files did not agree on what black is.">
+			<p>Pulling the brand into one guide turned up a mismatch. The logo masters and one card front used a charcoal, #2B2C2B, and a pink, #DF248E. A second card front and the card back used pure black and a hotter process pink, #EC008C. Neither set was wrong on its own. Together they meant two printers could each follow the files and hand back two different brands.</p>
+			<p>The dark ink is settled: #2B2C2B everywhere, and pure black gets corrected wherever the artwork carries it. The pink is still open, and the guide says so in writing rather than quietly picking one. A guide that hides an undecided color is how the mismatch happened in the first place.</p>
+		</CaseBlock>
+	</CaseSection>
 
-	<section class="section section--alt">
-		<div class="section__inner cs-body" data-animate="fade">
-			<div class="cs-block">
-				<p class="eyebrow">What is next</p>
-				<h2 class="cs-block__lede">The work is still going.</h2>
-				<p>The next decision is the pink. After that, more of the shop's surfaces get made in the system, and this page picks them up as they ship.</p>
-			</div>
-			<div class="cs-artifacts">
-				<a class="btn" href="/labs/artistic-eye/" target="_blank" rel="noopener">Read the brand guidelines<span class="sr-only"> (opens in a new tab)</span></a>
-			</div>
-		</div>
-	</section>
+	<CaseSection alt>
+		<CaseBlock eyebrow="What is next" lede="The work is still going.">
+			<p>The next decision is the pink. After that, more of the shop's surfaces get made in the system, and this page picks them up as they ship.</p>
+		</CaseBlock>
+		<ButtonGroup>
+			<Button href="/labs/artistic-eye/" external>Read the brand guidelines</Button>
+		</ButtonGroup>
+	</CaseSection>
 
-	<section class="section section--alt">
-		<div class="section__inner cs-back">
-			<a class="pager pager--prev" href="/#work"><span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg></span><span class="sr-only">Back to </span>All case studies</a>
-			<a class="pager" href="/work/alt-meat"><span class="sr-only">Next case study: </span>Alt-Meat<span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 3.5 4.5 4.5L6 12.5"/></svg></span></a>
-		</div>
-	</section>
+	<PagerPair
+		prev={{ href: '/#work', label: 'All case studies', hidden: 'Back to ' }}
+		next={{ href: '/work/alt-meat', label: 'Alt-Meat', hidden: 'Next case study: ' }}
+	/>
 </Site>
-
-<style>
-	.cs-stats { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); }
-	.cs-stats--three { grid-template-columns: repeat(3, 1fr); }
-	.cs-stats li { padding: var(--space-lg) 0; border-top: 1px solid var(--rule); }
-	.cs-stats strong { display: block; font-family: var(--font-display); font-weight: 900; font-style: normal; font-variation-settings: "wght" 900, "slnt" 0, "ital" 0; font-synthesis: none; font-size: clamp(40px, 5vw, 64px); color: var(--text); line-height: 1; letter-spacing: -0.02em; margin-bottom: var(--space-xs); }
-	.cs-stats span { color: var(--text-mute); font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; }
-	@media (max-width: 700px) {
-		.cs-stats, .cs-stats--three { grid-template-columns: 1fr; }
-	}
-</style>

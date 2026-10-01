@@ -17,6 +17,27 @@ sidebar:
 	section, inside <code>.cs-body</code>.</dd></div>
 </dl>
 
+## In code
+
+`src/components/ui/CaseBlock.astro`. The paragraphs go in the slot.
+
+```astro
+---
+import CaseBlock from '../../components/ui/CaseBlock.astro';
+---
+<CaseBlock eyebrow="What was unclear" lede="PayPal showed up differently at every checkout.">
+	<p>Each merchant integration carried its own patterns.</p>
+</CaseBlock>
+```
+
+| Prop | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `eyebrow` | string | required | The small label above the claim. |
+| `lede` | string | none | The one line claim. Becomes the `h2`. Omit it for a block that is body copy only. |
+
+The eyebrow is rendered by `Eyebrow.astro`, so it cannot drift from the eyebrow
+anywhere else.
+
 ## The spacing rule
 
 The kicker, the heading and the first paragraph carry no margin between them, so

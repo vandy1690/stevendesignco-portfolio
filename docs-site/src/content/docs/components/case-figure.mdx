@@ -1,0 +1,86 @@
+---
+title: Case study figure
+description: A full width image inside a case study, including the two-theme pair.
+sidebar:
+  order: 14
+---
+
+<dl class="sdc-hww">
+	<div><dt>How</dt><dd>A full width image that fades in on scroll. Art that needs
+	a separate light theme file ships as a pair, and only one of the two is ever
+	visible.</dd></div>
+	<div><dt>When</dt><dd>When the artifact is worth showing at size. Not for
+	decoration, and not for anything that has to be read, because an image of text
+	is not text.</dd></div>
+	<div><dt>Where</dt><dd>In the hero's <code>figure</code> slot, or inside a band
+	with <code>figure</code> and <code>inner=&#123;false&#125;</code> set.</dd></div>
+</dl>
+
+## In code
+
+`src/components/ui/CaseFigure.astro`.
+
+```astro
+---
+import CaseFigure from '../../components/ui/CaseFigure.astro';
+---
+<CaseFigure
+	src="/images/merchant-surfaces.webp"
+	alt="Merchant logos linked by arrows to the same checkout screen on three phones."
+	width={2400}
+	height={971}
+	loading="lazy"
+>
+	<p class="cs-figure__cap">The program ran across 38 merchants.</p>
+</CaseFigure>
+```
+
+| Prop | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `src` | string | required | The image. |
+| `alt` | string | required | What the image says. Write it even when a caption follows. |
+| `light` | string | none | A light theme version of the same art. Switches to the pair. |
+| `width` | number | none | Intrinsic width, so the browser reserves the space. |
+| `height` | number | none | Intrinsic height, same reason. |
+| `loading` | `'lazy'` or `'eager'` | none | `lazy` for a figure below the first screen. |
+| `class` | string | none | Extra classes. |
+
+A caption goes in the slot, as `p.cs-figure__cap`.
+
+## The theme pair
+
+When `light` is set, the dark copy carries the alt text and the light copy is
+marked decorative with an empty `alt` and `aria-hidden`. Only one is visible, so
+describing both would announce the same image twice.
+
+## Width and height
+
+Pass them. Without them the page reflows when the image arrives, which moves the
+text someone is already reading. The two numbers are the file's real pixel
+dimensions, not the display size.
+
+<div class="sdc-dd">
+	<div class="sdc-dd--do">
+		<h4>Do</h4>
+		<ul>
+			<li>Pass <code>width</code> and <code>height</code> on a single image.</li>
+			<li>Use <code>loading="lazy"</code> below the first screen.</li>
+			<li>Describe what the image shows, not that it is an image.</li>
+		</ul>
+	</div>
+	<div class="sdc-dd--dont">
+		<h4>Don't</h4>
+		<ul>
+			<li>Ship an image of text that matters.</li>
+			<li>Describe both halves of a theme pair.</li>
+			<li>Leave <code>alt</code> empty on art that carries meaning.</li>
+		</ul>
+	</div>
+</div>
+
+## Checks before you ship
+
+1. The page does not jump when the image loads.
+2. A screen reader announces the image once, not twice.
+3. Anything below the first screen is lazy loaded.
+4. The alt text would make sense to someone who cannot see the file.

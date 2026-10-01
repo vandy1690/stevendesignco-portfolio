@@ -1,90 +1,76 @@
 ---
 import Site from '../../layouts/Site.astro';
+import CaseHero from '../../components/ui/CaseHero.astro';
+import CaseFigure from '../../components/ui/CaseFigure.astro';
+import CaseSection from '../../components/ui/CaseSection.astro';
+import CaseBlock from '../../components/ui/CaseBlock.astro';
+import Note from '../../components/ui/Note.astro';
+import ButtonGroup from '../../components/ui/ButtonGroup.astro';
+import Button from '../../components/ui/Button.astro';
+import PagerPair from '../../components/ui/PagerPair.astro';
 ---
 
 <Site
 	title="Meatingplace: Rebuilding MTG's Highest-Traffic Site as a Responsive Product · Steven Vanden Heuvel"
 	description="As Creative Director at MTG, I led the responsive rebuild of Meatingplace, the flagship daily news site for U.S. meat and poultry professionals and the largest audience in the portfolio."
 	image="/og/meatingplace.png"
+	variant="case"
 >
-	<section class="cs-hero">
-		<div class="cs-hero__inner">
-			<a class="cs-back-top" href="/#work">← Case studies</a>
-			<p class="eyebrow">Case study</p>
-			<h1 class="cs-hero__title display">Meatingplace: Rebuilding MTG's Highest-Traffic Site as a Responsive Product</h1>
-			<p class="cs-hero__lede">MTG's flagship and largest audience was running on a 2007 build. The work was to rebuild it as a responsive product for a daily newsroom.</p>
-			<div class="cs-figure" data-animate="fade">
-				<img class="theme-img theme-img--dark" src="/images/case-studies/meatingplace/meatingplace-hero.jpg" alt="Meatingplace responsive site on mobile and desktop" />
-				<img class="theme-img theme-img--light" src="/images/case-studies/meatingplace/meatingplace-hero-light.png" alt="" aria-hidden="true" />
-			</div>
-			<dl class="cs-meta">
-				<div><dt>Role</dt><dd>Creative Director</dd></div>
-				<div><dt>Org</dt><dd>MTG Media Group</dd></div>
-				<div><dt>Scope</dt><dd>Responsive rebuild</dd></div>
-			</dl>
-		</div>
-	</section>
+	<CaseHero
+		eyebrow="Case study"
+		title="Meatingplace: Rebuilding MTG's Highest-Traffic Site as a Responsive Product"
+		lede="MTG's flagship and largest audience was running on a 2007 build. The work was to rebuild it as a responsive product for a daily newsroom."
+		meta={[
+			{ term: 'Role', value: 'Creative Director' },
+			{ term: 'Org', value: 'MTG Media Group' },
+			{ term: 'Scope', value: 'Responsive rebuild' },
+		]}
+	>
+		<CaseFigure
+			slot="figure"
+			src="/images/case-studies/meatingplace/meatingplace-hero.jpg"
+			light="/images/case-studies/meatingplace/meatingplace-hero-light.png"
+			alt="Meatingplace responsive site on mobile and desktop"
+		/>
+	</CaseHero>
 
+	<CaseSection>
+		<CaseBlock eyebrow="What was unclear" lede="The biggest audience, on a 2007 build.">
+			<p>Meatingplace, MTG's flagship daily news site for U.S. meat and poultry professionals and the largest audience in the portfolio, was running on a 2007 build with a dated interface and no responsive experience.</p>
+		</CaseBlock>
+	</CaseSection>
 
-	<section class="section">
-		<div class="section__inner cs-body" data-animate="fade">
-			<div class="cs-block">
-				<p class="eyebrow">What was unclear</p>
-				<h2 class="cs-block__lede">The biggest audience, on a 2007 build.</h2>
-				<p>Meatingplace, MTG's flagship daily news site for U.S. meat and poultry professionals and the largest audience in the portfolio, was running on a 2007 build with a dated interface and no responsive experience.</p>
-			</div>
-		</div>
-	</section>
+	<CaseSection alt>
+		<CaseBlock eyebrow="What I led" lede="A modern, responsive product for a daily newsroom.">
+			<p>I gave it a modern UI and UX as a responsive product: a daily-news information architecture and layouts built for current devices.</p>
+		</CaseBlock>
+	</CaseSection>
 
-	<section class="section section--alt">
-		<div class="section__inner cs-body" data-animate="fade">
-			<div class="cs-block">
-				<p class="eyebrow">What I led</p>
-				<h2 class="cs-block__lede">A modern, responsive product for a daily newsroom.</h2>
-				<p>I gave it a modern UI and UX as a responsive product: a daily-news information architecture and layouts built for current devices.</p>
-			</div>
-		</div>
-	</section>
+	<CaseSection>
+		<CaseBlock eyebrow="Who I influenced" lede="The redesign, across the business.">
+			<p>I led the redesign, working with the owner and president, the finance president, the Content Director, the Publisher, the editors, and the developers.</p>
+		</CaseBlock>
+	</CaseSection>
 
-	<section class="section">
-		<div class="section__inner cs-body" data-animate="fade">
-			<div class="cs-block">
-				<p class="eyebrow">Who I influenced</p>
-				<h2 class="cs-block__lede">The redesign, across the business.</h2>
-				<p>I led the redesign, working with the owner and president, the finance president, the Content Director, the Publisher, the editors, and the developers.</p>
-			</div>
-		</div>
-	</section>
+	<CaseSection alt>
+		<CaseBlock eyebrow="What changed" lede="A finished rebuild that did not ship under MTG.">
+			<p>The modernization was design-complete and approved for launch. MTG was acquired before it shipped, and the new ownership pursued a separate redesign.</p>
+		</CaseBlock>
+	</CaseSection>
 
-	<section class="section section--alt">
-		<div class="section__inner cs-body" data-animate="fade">
-			<div class="cs-block">
-				<p class="eyebrow">What changed</p>
-				<h2 class="cs-block__lede">A finished rebuild that did not ship under MTG.</h2>
-				<p>The modernization was design-complete and approved for launch. MTG was acquired before it shipped, and the new ownership pursued a separate redesign.</p>
-			</div>
-		</div>
-	</section>
+	<CaseSection>
+		<CaseBlock eyebrow="Design system" lede="The library survived the rebuild.">
+			<p>Roughly 600 component variants in Figma, desktop and mobile across the whole product: multi step registration with processing states, the supplier directory, the equipment exchange with its own ad creation and checkout, and the paywall and sponsorship states. Forty two tokens underneath it covering color, type, border, spacing and the eight column grid.</p>
+			<Note>The eleven brand color styles are original. I added the variable layer recently, generated from those styles, since Figma variables did not exist when this was built. The file is password protected. Ask me and I will send it.</Note>
+		</CaseBlock>
+		<ButtonGroup>
+			<Button href="https://www.figma.com/design/aSlwmciAvHgoreg68ddVtq/meatingplace.com" external>Open the Figma library</Button>
+			<Button href="/design-systems">The full practice →</Button>
+		</ButtonGroup>
+	</CaseSection>
 
-	<section class="section">
-		<div class="section__inner cs-body" data-animate="fade">
-			<div class="cs-block">
-				<p class="eyebrow">Design system</p>
-				<h2 class="cs-block__lede">The library survived the rebuild.</h2>
-				<p>Roughly 600 component variants in Figma, desktop and mobile across the whole product: multi step registration with processing states, the supplier directory, the equipment exchange with its own ad creation and checkout, and the paywall and sponsorship states. Forty two tokens underneath it covering color, type, border, spacing and the eight column grid.</p>
-				<p class="cs-note">The eleven brand color styles are original. I added the variable layer recently, generated from those styles, since Figma variables did not exist when this was built. The file is password protected. Ask me and I will send it.</p>
-			</div>
-			<div class="cs-artifacts">
-				<a class="btn" href="https://www.figma.com/design/aSlwmciAvHgoreg68ddVtq/meatingplace.com" target="_blank" rel="noopener">Open the Figma library<span class="sr-only"> (opens in a new tab)</span></a>
-				<a class="btn" href="/design-systems">The full practice →</a>
-			</div>
-		</div>
-	</section>
-
-	<section class="section section--alt">
-		<div class="section__inner cs-back">
-			<a class="pager pager--prev" href="/work/alt-meat"><span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg></span><span class="sr-only">Previous case study: </span>Alt-Meat</a>
-			<a class="pager" href="/#work">Back to all work<span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 3.5 4.5 4.5L6 12.5"/></svg></span></a>
-		</div>
-	</section>
+	<PagerPair
+		prev={{ href: '/work/alt-meat', label: 'Alt-Meat', hidden: 'Previous case study: ' }}
+		next={{ href: '/#work', label: 'Back to all work' }}
+	/>
 </Site>

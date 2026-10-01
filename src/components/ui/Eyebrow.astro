@@ -1,0 +1,17 @@
+---
+/**
+ * Eyebrow
+ * The small uppercase label that sits above a heading. It names the section
+ * so the heading does not have to repeat the label.
+ *
+ * Use it once per block, directly before the heading. It is not a heading
+ * itself, so it stays a <p> and never enters the heading outline.
+ */
+interface Props {
+	/** Extra classes, for the rare page that needs to position it. */
+	class?: string;
+}
+const { class: cls } = Astro.props;
+---
+
+<p class:list={['eyebrow', cls]}><slot /></p>

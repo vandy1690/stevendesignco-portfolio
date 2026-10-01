@@ -19,6 +19,30 @@ sidebar:
 	buttons. Navigation between case studies uses the <a href="/docs/components/pager/">Pager</a>.</dd></div>
 </dl>
 
+## In code
+
+`src/components/ui/Button.astro`, with `ButtonGroup.astro` for a row of them.
+
+```astro
+---
+import Button from '../../components/ui/Button.astro';
+import ButtonGroup from '../../components/ui/ButtonGroup.astro';
+---
+<ButtonGroup>
+	<Button href="/labs/plate/" external>Open the Pattern Lab</Button>
+	<Button href="/design-systems">The full practice &rarr;</Button>
+</ButtonGroup>
+```
+
+| Prop | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `href` | string | required | Where it goes. Every button on this site is a link. |
+| `external` | boolean | `false` | Adds `target="_blank"`, `rel="noopener"` and the hidden "(opens in a new tab)" warning together. |
+| `class` | string | none | Extra classes, for the rare caller that needs to position it. |
+
+`external` is one prop on purpose. The three things it adds have to travel
+together, and when they were written by hand they did not always.
+
 ## Anatomy
 
 A button is a single anchor. Its label is its own text, so it also becomes the
