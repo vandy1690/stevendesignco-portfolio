@@ -1,0 +1,24 @@
+---
+/**
+ * Button
+ * A link styled as a button. Everything on this site that looks like a button
+ * is a navigation, so this renders an <a> and there is no <button> variant.
+ *
+ * Pass `external` for anything that leaves the site or opens a new tab. It adds
+ * target, rel and the hidden "(opens in a new tab)" warning together, so the
+ * three can never drift apart.
+ */
+interface Props {
+	href: string;
+	/** Opens in a new tab and says so to a screen reader. */
+	external?: boolean;
+	class?: string;
+}
+const { href, external = false, class: cls } = Astro.props;
+---
+
+{external ? (
+	<a class:list={['btn', cls]} href={href} target="_blank" rel="noopener"><slot /><span class="sr-only"> (opens in a new tab)</span></a>
+) : (
+	<a class:list={['btn', cls]} href={href}><slot /></a>
+)}

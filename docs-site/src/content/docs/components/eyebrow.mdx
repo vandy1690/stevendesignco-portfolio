@@ -1,0 +1,71 @@
+---
+title: Eyebrow
+description: The small label that names a section above its heading.
+sidebar:
+  order: 17
+---
+
+<dl class="sdc-hww">
+	<div><dt>How</dt><dd>A short label in the display face with added letterspacing,
+	set above a heading.</dd></div>
+	<div><dt>When</dt><dd>Once per block, to name what the block is for, so the
+	heading can be a claim instead of a label.</dd></div>
+	<div><dt>Where</dt><dd>Directly before the heading it belongs to. Never on its
+	own, and never twice in one block.</dd></div>
+</dl>
+
+## In code
+
+`src/components/ui/Eyebrow.astro`. `CaseBlock` and `CaseHero` already render it
+from their `eyebrow` prop, so call it directly only outside those.
+
+```astro
+---
+import Eyebrow from '../../components/ui/Eyebrow.astro';
+---
+<Eyebrow>The stage</Eyebrow>
+<h2 class="cs-h2 display">PayPal partners with the top 100 merchants.</h2>
+```
+
+| Prop | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `class` | string | none | Extra classes, for the rare caller that needs to position it. |
+
+## It is not a heading
+
+It renders a `p`, so it stays out of the heading outline. Someone navigating by
+headings gets the claims, which is the useful list. If the eyebrow were an `h3`
+they would get "What was unclear", "What I led", "Who I directed" on every page,
+which tells them nothing about the page they are on.
+
+## Content
+
+Two to four words, no terminal punctuation. It names the kind of thing the block
+says: "What was unclear", "What I led", "What changed". The same few labels
+repeat across case studies on purpose, so the shape of each page is recognisable.
+
+<div class="sdc-dd">
+	<div class="sdc-dd--do">
+		<h4>Do</h4>
+		<ul>
+			<li>Keep it to two to four words.</li>
+			<li>Reuse the established labels across case studies.</li>
+			<li>Follow it immediately with the heading.</li>
+		</ul>
+	</div>
+	<div class="sdc-dd--dont">
+		<h4>Don't</h4>
+		<ul>
+			<li>Mark it up as a heading.</li>
+			<li>Use two in one block.</li>
+			<li>End it with a period or a colon.</li>
+		</ul>
+	</div>
+</div>
+
+## Checks before you ship
+
+1. The heading outline contains claims, not eyebrow labels.
+2. Each block has at most one.
+3. It is two to four words with no terminal punctuation.
+4. A heading follows it immediately.

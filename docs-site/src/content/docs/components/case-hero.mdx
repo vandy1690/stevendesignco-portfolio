@@ -1,0 +1,89 @@
+---
+title: Case study hero
+description: "The top of a case study: the way back, the label, the title, the one paragraph, the credits."
+sidebar:
+  order: 13
+---
+
+<dl class="sdc-hww">
+	<div><dt>How</dt><dd>A back link, an eyebrow, the page's only <code>h1</code>,
+	one lede paragraph, an optional figure, then the credits as a description
+	list. A disclosure note can follow the credits.</dd></div>
+	<div><dt>When</dt><dd>Once at the top of every case study and the design
+	systems page. Never twice on a page, because it carries the
+	<code>h1</code>.</dd></div>
+	<div><dt>Where</dt><dd>The first thing inside <code>&lt;Site&gt;</code>, before
+	any band. Nothing sits above it.</dd></div>
+</dl>
+
+## In code
+
+`src/components/ui/CaseHero.astro`.
+
+```astro
+---
+import CaseHero from '../../components/ui/CaseHero.astro';
+import CaseFigure from '../../components/ui/CaseFigure.astro';
+---
+<CaseHero
+	eyebrow="Case study"
+	title="Project Blackbird"
+	lede="An oral history of the Chicago restaurant that changed the city's dining."
+	meta={[
+		{ term: 'Role', value: 'Creative Director / Design Lead' },
+		{ term: 'Org', value: 'MTG Media Group' },
+	]}
+>
+	<CaseFigure slot="figure" src="/images/hero.jpg" light="/images/hero-light.png" alt="..." />
+</CaseHero>
+```
+
+| Prop | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `eyebrow` | string | required | The label above the title. |
+| `title` | string | required | Becomes the `h1`. |
+| `lede` | string | required | The one paragraph that says what the work was. Inline HTML is allowed. |
+| `meta` | array | required | `{ term, value }` pairs, passed through to the meta row. |
+| `note` | string | none | A disclosure under the credits. |
+| `backHref` | string | `'/#work'` | Where the way back points. |
+| `backLabel` | string | `'← Case studies'` | What the way back says. |
+
+Hero art goes in the `figure` slot rather than a prop, so the hero does not have
+to know anything about image shapes.
+
+## The way back
+
+It is a real link at the top of the page, not a reliance on the browser back
+button. Someone arriving from a search result has no history to go back to, and
+that is the most common way these pages get opened.
+
+## The lede
+
+One paragraph, and it says what the work was rather than selling it. It is the
+first thing a hiring manager reads, and it is often the only thing they read.
+
+<div class="sdc-dd">
+	<div class="sdc-dd--do">
+		<h4>Do</h4>
+		<ul>
+			<li>Use it once per page.</li>
+			<li>Say what the work was in the lede.</li>
+			<li>Put a disclosure in <code>note</code> when the work is proprietary.</li>
+		</ul>
+	</div>
+	<div class="sdc-dd--dont">
+		<h4>Don't</h4>
+		<ul>
+			<li>Write a second <code>h1</code> anywhere on the page.</li>
+			<li>Pass four or more meta pairs.</li>
+			<li>Hide an unresolved fact instead of noting it.</li>
+		</ul>
+	</div>
+</div>
+
+## Checks before you ship
+
+1. There is exactly one `h1` on the page, and it is the hero title.
+2. The back link works from a cold page load with no history.
+3. At 390px wide the credits stack and nothing is cut off.
+4. Proprietary work carries a `note` saying what is not being shown.

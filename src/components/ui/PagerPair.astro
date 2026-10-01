@@ -1,0 +1,29 @@
+---
+/**
+ * PagerPair
+ * The band that closes every case study: back or previous on the left, the
+ * next case study on the right. It owns its own section so a page cannot
+ * forget the surrounding markup or put it in the wrong band.
+ *
+ * The two sit side by side at every width, including phones.
+ */
+import Pager from './Pager.astro';
+
+interface Link {
+	href: string;
+	label: string;
+	hidden?: string;
+}
+interface Props {
+	prev: Link;
+	next: Link;
+}
+const { prev, next } = Astro.props;
+---
+
+<section class="section section--alt">
+	<div class="section__inner cs-back">
+		<Pager dir="prev" href={prev.href} label={prev.label} hidden={prev.hidden} />
+		<Pager dir="next" href={next.href} label={next.label} hidden={next.hidden} />
+	</div>
+</section>

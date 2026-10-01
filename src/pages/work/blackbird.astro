@@ -1,75 +1,62 @@
 ---
 import Site from '../../layouts/Site.astro';
+import CaseHero from '../../components/ui/CaseHero.astro';
+import CaseFigure from '../../components/ui/CaseFigure.astro';
+import CaseSection from '../../components/ui/CaseSection.astro';
+import CaseBlock from '../../components/ui/CaseBlock.astro';
+import PagerPair from '../../components/ui/PagerPair.astro';
 ---
 
 <Site
 	title="Project Blackbird · Steven Vanden Heuvel"
 	description="A responsive longform site telling the oral history of the Chicago restaurant that changed the city's dining. Grand Jesse H. Neal Finalist, top 4 nationally."
 	image="/og/blackbird.png"
+	variant="case"
 >
-	<section class="cs-hero">
-		<div class="cs-hero__inner">
-			<a class="cs-back-top" href="/#work">← Case studies</a>
-			<p class="eyebrow">Case study</p>
-			<h1 class="cs-hero__title display">Project Blackbird</h1>
-			<p class="cs-hero__lede">An oral history of the Chicago restaurant that changed the city's dining, built as a responsive longform site that did the story justice.</p>
-			<div class="cs-figure" data-animate="fade">
-				<img class="theme-img theme-img--dark" src="/images/case-studies/blackbird/blackbird-hero.jpg" alt="Project Blackbird longform feature" />
-				<img class="theme-img theme-img--light" src="/images/case-studies/blackbird/blackbird-hero-light.png" alt="" aria-hidden="true" />
-			</div>
-			<dl class="cs-meta">
-				<div><dt>Role</dt><dd>Creative Director / Design Lead</dd></div>
-				<div><dt>Org</dt><dd>MTG Media Group</dd></div>
-				<div><dt>Recognition</dt><dd>Grand Neal Finalist, top 4 nationally</dd></div>
-			</dl>
-		</div>
-	</section>
+	<CaseHero
+		eyebrow="Case study"
+		title="Project Blackbird"
+		lede="An oral history of the Chicago restaurant that changed the city's dining, built as a responsive longform site that did the story justice."
+		meta={[
+			{ term: 'Role', value: 'Creative Director / Design Lead' },
+			{ term: 'Org', value: 'MTG Media Group' },
+			{ term: 'Recognition', value: 'Grand Neal Finalist, top 4 nationally' },
+		]}
+	>
+		<CaseFigure
+			slot="figure"
+			src="/images/case-studies/blackbird/blackbird-hero.jpg"
+			light="/images/case-studies/blackbird/blackbird-hero-light.png"
+			alt="Project Blackbird longform feature"
+		/>
+	</CaseHero>
 
+	<CaseSection>
+		<CaseBlock eyebrow="What was unclear" lede="A long story with no online form that did it justice.">
+			<p>Blackbird, the Chicago restaurant that changed the city's dining, had a story worth telling at length. There was no online form that did it justice.</p>
+		</CaseBlock>
+	</CaseSection>
 
-	<section class="section">
-		<div class="section__inner cs-body" data-animate="fade">
-			<div class="cs-block">
-				<p class="eyebrow">What was unclear</p>
-				<h2 class="cs-block__lede">A long story with no online form that did it justice.</h2>
-				<p>Blackbird, the Chicago restaurant that changed the city's dining, had a story worth telling at length. There was no online form that did it justice.</p>
-			</div>
-		</div>
-	</section>
+	<CaseSection alt>
+		<CaseBlock eyebrow="What I led" lede="A responsive longform site, told as an oral history.">
+			<p>I designed and built a dynamically responsive site for longform content, told as an oral history. The layout carries the voices and the timeline across screen sizes.</p>
+		</CaseBlock>
+	</CaseSection>
 
-	<section class="section section--alt">
-		<div class="section__inner cs-body" data-animate="fade">
-			<div class="cs-block">
-				<p class="eyebrow">What I led</p>
-				<h2 class="cs-block__lede">A responsive longform site, told as an oral history.</h2>
-				<p>I designed and built a dynamically responsive site for longform content, told as an oral history. The layout carries the voices and the timeline across screen sizes.</p>
-			</div>
-		</div>
-	</section>
+	<CaseSection>
+		<CaseBlock eyebrow="Who I directed" lede="A small team, around a site I built myself.">
+			<p>I built the entire site myself. My editor supplied the content. I hired and directed an illustrator, a photographer, and a videographer, and directed the video editor.</p>
+		</CaseBlock>
+	</CaseSection>
 
-	<section class="section">
-		<div class="section__inner cs-body" data-animate="fade">
-			<div class="cs-block">
-				<p class="eyebrow">Who I directed</p>
-				<h2 class="cs-block__lede">A small team, around a site I built myself.</h2>
-				<p>I built the entire site myself. My editor supplied the content. I hired and directed an illustrator, a photographer, and a videographer, and directed the video editor.</p>
-			</div>
-		</div>
-	</section>
+	<CaseSection alt>
+		<CaseBlock eyebrow="What changed" lede="It put a B2B trade title on the national stage.">
+			<p>🏆 Project Blackbird was named a Grand Jesse H. Neal Finalist, top 4 nationally.</p>
+		</CaseBlock>
+	</CaseSection>
 
-	<section class="section section--alt">
-		<div class="section__inner cs-body" data-animate="fade">
-			<div class="cs-block">
-				<p class="eyebrow">What changed</p>
-				<h2 class="cs-block__lede">It put a B2B trade title on the national stage.</h2>
-				<p>🏆 Project Blackbird was named a Grand Jesse H. Neal Finalist, top 4 nationally.</p>
-			</div>
-		</div>
-	</section>
-
-	<section class="section section--alt">
-		<div class="section__inner cs-back">
-			<a class="pager pager--prev" href="/work/plate"><span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg></span><span class="sr-only">Previous case study: </span>Plate</a>
-			<a class="pager" href="/work/alt-meat"><span class="sr-only">Next case study: </span>Alt-Meat<span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 3.5 4.5 4.5L6 12.5"/></svg></span></a>
-		</div>
-	</section>
+	<PagerPair
+		prev={{ href: '/work/plate', label: 'Plate', hidden: 'Previous case study: ' }}
+		next={{ href: '/work/alt-meat', label: 'Alt-Meat', hidden: 'Next case study: ' }}
+	/>
 </Site>

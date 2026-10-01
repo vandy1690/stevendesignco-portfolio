@@ -1,0 +1,87 @@
+---
+title: Stat list
+description: The two or three numbers that close a case study.
+sidebar:
+  order: 15
+---
+
+<dl class="sdc-hww">
+	<div><dt>How</dt><dd>A list where each item is a large display number over a
+	small uppercase label, divided by a rule above each one.</dd></div>
+	<div><dt>When</dt><dd>At the end of a case study, for numbers that are already
+	stated in the prose above. Never to introduce a number the reader has not been
+	given context for.</dd></div>
+	<div><dt>Where</dt><dd>Inside a band, after the block it summarises. Two or
+	three items, never more, because the point is that each one reads as a
+	headline.</dd></div>
+</dl>
+
+## In code
+
+`src/components/ui/StatList.astro`.
+
+```astro
+---
+import StatList from '../../components/ui/StatList.astro';
+---
+<StatList
+	three
+	items={[
+		{ value: '15 min', label: 'Per merchant, from most of a day' },
+		{ value: '17', label: 'Payment flows supported' },
+		{ value: '38', label: 'Merchant program' },
+	]}
+/>
+```
+
+| Prop | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `items` | array | required | `{ value, label }` pairs. Two or three. |
+| `three` | boolean | `false` | Three across instead of two. |
+| `large` | boolean | `false` | The bigger display size for the numbers. |
+
+## The two sizes
+
+`large` exists because one page runs its numbers bigger than the rest. That used
+to be a copy of the whole rule block in that page's own stylesheet, which is how
+two sizes become three. It is a named variant now, so the difference is a
+decision someone made rather than a divergence nobody noticed.
+
+Use `large` where the stats are the closing statement of the page. Leave it off
+where they support a point the prose already made.
+
+## Content
+
+The value is short enough to read at display size: `20+`, `15 min`, `38`. The
+label says what the number counts, as a fragment rather than a sentence, because
+a screen reader reads the pair in order and "38" then "Merchant program" already
+reads correctly.
+
+Every number here has to be one that can be said out loud in an interview. A
+number that needs a caveat belongs in the prose, with the caveat.
+
+<div class="sdc-dd">
+	<div class="sdc-dd--do">
+		<h4>Do</h4>
+		<ul>
+			<li>Repeat numbers the prose above already gave.</li>
+			<li>Keep values short enough to read at display size.</li>
+			<li>Write labels as fragments, not sentences.</li>
+		</ul>
+	</div>
+	<div class="sdc-dd--dont">
+		<h4>Don't</h4>
+		<ul>
+			<li>Ship four or more items.</li>
+			<li>Introduce a number that has no context above it.</li>
+			<li>Copy the rule block into a page to change the size.</li>
+		</ul>
+	</div>
+</div>
+
+## Checks before you ship
+
+1. Two or three items, not four.
+2. Every number appears in the prose above as well.
+3. At 390px wide the items stack to one column.
+4. Reading value then label out loud makes sense.

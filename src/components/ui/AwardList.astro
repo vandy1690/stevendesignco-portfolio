@@ -1,0 +1,17 @@
+---
+/**
+ * AwardList
+ * The starred list of outcomes at the end of a case study.
+ *
+ * The star is decoration, not content, so it is a separate span that a screen
+ * reader skips over the symbol of rather than reading as part of the line.
+ */
+interface Props {
+	items: string[];
+}
+const { items } = Astro.props;
+---
+
+<ul class="cs-awards">
+	{items.map((i) => <li><span class="cs-awards__mark">★</span><span set:html={i} /></li>)}
+</ul>

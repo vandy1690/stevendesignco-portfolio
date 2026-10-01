@@ -1,0 +1,73 @@
+---
+title: Award list
+description: The starred list of outcomes at the end of a case study.
+sidebar:
+  order: 18
+---
+
+<dl class="sdc-hww">
+	<div><dt>How</dt><dd>A list of outcomes, each on its own row with a rule above
+	it, with the star mark hidden at the shipped size.</dd></div>
+	<div><dt>When</dt><dd>For outcomes that are statements rather than numbers.
+	Where the outcome is a number, use the stat list instead.</dd></div>
+	<div><dt>Where</dt><dd>Inside a band, after the block it closes. Two or three
+	rows.</dd></div>
+</dl>
+
+## In code
+
+`src/components/ui/AwardList.astro`.
+
+```astro
+---
+import AwardList from '../../components/ui/AwardList.astro';
+---
+<AwardList
+	items={[
+		'Brand, magazine, enewsletters, and responsive site shipped together',
+		'Built in under 8 weeks, from a standing start',
+	]}
+/>
+```
+
+| Prop | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `items` | array of strings | required | One outcome per row. Inline HTML is allowed. |
+
+## The star
+
+The mark is a separate element, not part of the text, and it is hidden at the
+shipped size. It exists so the row can carry a mark where the design calls for
+one without that symbol ending up inside the sentence a screen reader reads.
+
+## Content
+
+Each row is a statement that could stand on its own in a conversation. It says
+what happened, not how it felt about it. Anything that needs a caveat goes in the
+prose above with the caveat attached, not into a row here.
+
+<div class="sdc-dd">
+	<div class="sdc-dd--do">
+		<h4>Do</h4>
+		<ul>
+			<li>Write each row as a complete, checkable statement.</li>
+			<li>Keep it to two or three rows.</li>
+			<li>Use the stat list when the outcome is a number.</li>
+		</ul>
+	</div>
+	<div class="sdc-dd--dont">
+		<h4>Don't</h4>
+		<ul>
+			<li>Put the star character into the text.</li>
+			<li>List a claim that needs a caveat to be accurate.</li>
+			<li>Use it as a general purpose bullet list.</li>
+		</ul>
+	</div>
+</div>
+
+## Checks before you ship
+
+1. A screen reader reads the statement without a stray symbol.
+2. Every row is a statement someone could verify.
+3. Two or three rows, not six.
+4. Numeric outcomes are in a stat list instead.

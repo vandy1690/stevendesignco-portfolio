@@ -1,0 +1,75 @@
+---
+title: Note
+description: The smaller aside where a page says what it is not showing.
+sidebar:
+  order: 16
+---
+
+<dl class="sdc-hww">
+	<div><dt>How</dt><dd>A smaller paragraph in the muted ink, under the block it
+	qualifies.</dd></div>
+	<div><dt>When</dt><dd>When something about the work needs a caveat: it is
+	proprietary, the file is password protected, a decision is still open. Not for
+	emphasis, and not for anything the reader needs in order to follow the
+	page.</dd></div>
+	<div><dt>Where</dt><dd>After the paragraphs inside a block, or after a button
+	row. In a hero it comes from <code>CaseHero</code>'s <code>note</code> prop
+	instead.</dd></div>
+</dl>
+
+## In code
+
+`src/components/ui/Note.astro`.
+
+```astro
+---
+import Note from '../../components/ui/Note.astro';
+---
+<Note>Password protected. Ask me and I will send it.</Note>
+```
+
+No props. In a hero, pass the text as `CaseHero`'s `note` prop rather than
+rendering this directly.
+
+## It is not a warning
+
+It carries no `role`, no icon and no colour other than the muted ink, so a
+screen reader reads it in the flow of the page like any other paragraph. That is
+deliberate. A caveat on a portfolio page is information, not an alert, and
+dressing it as an alert makes the page look like it is apologising.
+
+## What goes in one
+
+The honest limits of what is being shown. The PayPal pages use it to say the work
+is proprietary and the flows are generic. The Meatingplace sections use it to say
+the Figma file is password protected. The Artistic Eye page uses it to say the
+pink is still undecided.
+
+A note that hides an unresolved fact defeats the point. If a colour is not
+settled, the note says so.
+
+<div class="sdc-dd">
+	<div class="sdc-dd--do">
+		<h4>Do</h4>
+		<ul>
+			<li>Say plainly what is not being shown, and why.</li>
+			<li>Name a decision that is still open.</li>
+			<li>Keep it to one or two sentences.</li>
+		</ul>
+	</div>
+	<div class="sdc-dd--dont">
+		<h4>Don't</h4>
+		<ul>
+			<li>Use it for emphasis or for a pull quote.</li>
+			<li>Put information the reader needs in it.</li>
+			<li>Give it a role, an icon or an alert colour.</li>
+		</ul>
+	</div>
+</div>
+
+## Checks before you ship
+
+1. The page still reads correctly if the note is skipped.
+2. It states a limit or a caveat, not a selling point.
+3. It is one or two sentences.
+4. Nothing in it is dressed up as an alert.

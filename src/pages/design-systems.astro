@@ -1,130 +1,107 @@
 ---
 import Site from '../layouts/Site.astro';
+import CaseHero from '../components/ui/CaseHero.astro';
+import CaseSection from '../components/ui/CaseSection.astro';
+import CaseBlock from '../components/ui/CaseBlock.astro';
+import Note from '../components/ui/Note.astro';
+import Quote from '../components/ui/Quote.astro';
+import ButtonGroup from '../components/ui/ButtonGroup.astro';
+import Button from '../components/ui/Button.astro';
+import PagerPair from '../components/ui/PagerPair.astro';
 ---
 
 <Site
 	title="Design Systems · Steven Vanden Heuvel"
 	description="One component library under seven brands in Pattern Lab, a Figma library of roughly 600 components, and the Storybook conversion. The practice behind the case studies, with the working artifacts still browsable."
 	image="/og/design-systems.png"
+	variant="case"
 >
-	<section class="cs-hero">
-		<div class="cs-hero__inner">
-			<a class="cs-back-top" href="/#work">← Case studies</a>
-			<p class="eyebrow">Practice</p>
-			<h1 class="cs-hero__title display">Design Systems</h1>
-			<p class="cs-hero__lede">One library underneath seven brands, a Figma library for a rebuild that never launched, and the Storybook conversion I went back and finished. The tools changed. The problem did not.</p>
-			<dl class="cs-meta">
-				<div><dt>Method</dt><dd>Atomic design</dd></div>
-				<div><dt>Tools</dt><dd>Pattern Lab, Figma, Storybook</dd></div>
-				<div><dt>Org</dt><dd>MTG Media Group, PayPal</dd></div>
-			</dl>
-		</div>
-	</section>
+	<CaseHero
+		eyebrow="Practice"
+		title="Design Systems"
+		lede="One library underneath seven brands, a Figma library for a rebuild that never launched, and the Storybook conversion I went back and finished. The tools changed. The problem did not."
+		meta={[
+			{ term: 'Method', value: 'Atomic design' },
+			{ term: 'Tools', value: 'Pattern Lab, Figma, Storybook' },
+			{ term: 'Org', value: 'MTG Media Group, PayPal' },
+		]}
+	/>
 
-	<section class="section">
-		<div class="section__inner cs-body" data-animate="fade">
-			<div class="cs-block">
-				<p class="eyebrow">Where it started</p>
-				<h2 class="cs-block__lede">I got here through Brad Frost, before "design system" was the phrase everybody used.</h2>
-				<p>Atomic design and Pattern Lab, two workshops, and more talks than I can count. I brought both into MTG Media Group, a print publisher that had not built a responsive site yet. Plate came first, then Alt-Meat. Hotels and Meatingplace were in progress when the company was acquired and the sites were sunsetted.</p>
-				<p>Changing how a team works is a persuasion problem before it is a craft problem. Nobody asked for any of this.</p>
-			</div>
-		</div>
-	</section>
+	<CaseSection>
+		<CaseBlock eyebrow="Where it started" lede={'I got here through Brad Frost, before "design system" was the phrase everybody used.'}>
+			<p>Atomic design and Pattern Lab, two workshops, and more talks than I can count. I brought both into MTG Media Group, a print publisher that had not built a responsive site yet. Plate came first, then Alt-Meat. Hotels and Meatingplace were in progress when the company was acquired and the sites were sunsetted.</p>
+			<p>Changing how a team works is a persuasion problem before it is a craft problem. Nobody asked for any of this.</p>
+		</CaseBlock>
+	</CaseSection>
 
-	<section class="section section--alt">
-		<div class="section__inner cs-body" data-animate="fade">
-			<div class="cs-block">
-				<p class="eyebrow">Pattern Lab</p>
-				<h2 class="cs-block__lede">One component library sat underneath seven publication brands and six responsive web products.</h2>
-				<p>Both instances below still run. Plate carries eleven brand colors with a semantic layer aliased on top, so a section reads <code>food</code> or <code>chefs</code> and a state reads <code>error</code> or <code>warning</code> rather than a hex or a hue name. In the Sass, <code>$error</code> points at <code>$red</code> rather than at a value, so the brand color changes in one place and everything naming it follows. Sixty four documented patterns climb from color and type through buttons, bylines and comment threads out to the assembled page templates. Alt-Meat runs its own palette and typeface on the same structure.</p>
-				<p>Drag the viewport control. The whole library was built mobile first, which was not a settled argument in B2B publishing at the time.</p>
-			</div>
-			<div class="cs-artifacts">
-				<a class="btn" href="/labs/plate/" target="_blank" rel="noopener">Plate Pattern Lab<span class="sr-only"> (opens in a new tab)</span></a>
-				<a class="btn" href="/labs/altmeat/" target="_blank" rel="noopener">Alt-Meat Pattern Lab<span class="sr-only"> (opens in a new tab)</span></a>
-			</div>
-		</div>
-	</section>
+	<CaseSection alt>
+		<CaseBlock eyebrow="Pattern Lab" lede="One component library sat underneath seven publication brands and six responsive web products.">
+			<p>Both instances below still run. Plate carries eleven brand colors with a semantic layer aliased on top, so a section reads <code>food</code> or <code>chefs</code> and a state reads <code>error</code> or <code>warning</code> rather than a hex or a hue name. In the Sass, <code>$error</code> points at <code>$red</code> rather than at a value, so the brand color changes in one place and everything naming it follows. Sixty four documented patterns climb from color and type through buttons, bylines and comment threads out to the assembled page templates. Alt-Meat runs its own palette and typeface on the same structure.</p>
+			<p>Drag the viewport control. The whole library was built mobile first, which was not a settled argument in B2B publishing at the time.</p>
+		</CaseBlock>
+		<ButtonGroup>
+			<Button href="/labs/plate/" external>Plate Pattern Lab</Button>
+			<Button href="/labs/altmeat/" external>Alt-Meat Pattern Lab</Button>
+		</ButtonGroup>
+	</CaseSection>
 
-	<section class="section">
-		<div class="section__inner cs-body" data-animate="fade">
-			<div class="cs-block">
-				<p class="eyebrow">Figma</p>
-				<h2 class="cs-block__lede">Meatingplace was the flagship daily news site and the last thing I worked on there. The rebuild was finished. It never launched.</h2>
-				<p>The library runs to roughly 600 component variants with desktop and mobile across the whole product: multi step registration with processing states, the supplier directory, the equipment exchange with its own ad creation and checkout, and the paywall and sponsorship states that paid for the place. Forty two tokens underneath it, covering color, type, border, spacing and the eight column grid.</p>
-				<p>Private equity acquired MTG, brought their own site, and the rebuild was shelved. The library is the only part of it that survived.</p>
-				<p class="cs-note">The eleven brand color styles are original. I added the variable layer recently, generated from those styles, since Figma variables did not exist when this was built.</p>
-			</div>
-			<div class="cs-artifacts">
-				<a class="btn" href="https://www.figma.com/design/aSlwmciAvHgoreg68ddVtq/meatingplace.com" target="_blank" rel="noopener">Meatingplace library in Figma<span class="sr-only"> (opens in a new tab)</span></a>
-			</div>
-			<p class="cs-note">Password protected. Ask me and I will send it.</p>
-		</div>
-	</section>
+	<CaseSection>
+		<CaseBlock eyebrow="Figma" lede="Meatingplace was the flagship daily news site and the last thing I worked on there. The rebuild was finished. It never launched.">
+			<p>The library runs to roughly 600 component variants with desktop and mobile across the whole product: multi step registration with processing states, the supplier directory, the equipment exchange with its own ad creation and checkout, and the paywall and sponsorship states that paid for the place. Forty two tokens underneath it, covering color, type, border, spacing and the eight column grid.</p>
+			<p>Private equity acquired MTG, brought their own site, and the rebuild was shelved. The library is the only part of it that survived.</p>
+			<Note>The eleven brand color styles are original. I added the variable layer recently, generated from those styles, since Figma variables did not exist when this was built.</Note>
+		</CaseBlock>
+		<ButtonGroup>
+			<Button href="https://www.figma.com/design/aSlwmciAvHgoreg68ddVtq/meatingplace.com" external>Meatingplace library in Figma</Button>
+		</ButtonGroup>
+		<Note>Password protected. Ask me and I will send it.</Note>
+	</CaseSection>
 
-	<section class="section section--alt">
-		<div class="section__inner cs-body" data-animate="fade">
-			<div class="cs-block">
-				<p class="eyebrow">Storybook</p>
-				<h2 class="cs-block__lede">I had started moving all of these libraries to Storybook by hand before the acquisition. I never finished.</h2>
-				<p>I went back recently and finished the Plate and Alt-Meat conversions with Cursor, generated from the Pattern Labs. The buttons and form fields are real stories with working controls, so the states are something you change rather than something you read about.</p>
-				<p>Same components, same decisions, a decade of tooling apart. That is the part worth noticing.</p>
-			</div>
-			<div class="cs-artifacts">
-				<a class="btn" href="/labs/plate-storybook/" target="_blank" rel="noopener">Plate Storybook<span class="sr-only"> (opens in a new tab)</span></a>
-				<a class="btn" href="/labs/altmeat-storybook/" target="_blank" rel="noopener">Alt-Meat Storybook<span class="sr-only"> (opens in a new tab)</span></a>
-			</div>
-		</div>
-	</section>
+	<CaseSection alt>
+		<CaseBlock eyebrow="Storybook" lede="I had started moving all of these libraries to Storybook by hand before the acquisition. I never finished.">
+			<p>I went back recently and finished the Plate and Alt-Meat conversions with Cursor, generated from the Pattern Labs. The buttons and form fields are real stories with working controls, so the states are something you change rather than something you read about.</p>
+			<p>Same components, same decisions, a decade of tooling apart. That is the part worth noticing.</p>
+		</CaseBlock>
+		<ButtonGroup>
+			<Button href="/labs/plate-storybook/" external>Plate Storybook</Button>
+			<Button href="/labs/altmeat-storybook/" external>Alt-Meat Storybook</Button>
+		</ButtonGroup>
+	</CaseSection>
 
-	<section class="section">
-		<div class="section__inner cs-body" data-animate="fade">
-			<div class="cs-block">
-				<p class="eyebrow">This site</p>
-				<h2 class="cs-block__lede">The library behind the page you are reading.</h2>
-				<p>Tokens, components and patterns for stevendesignco.com, with the contrast ratios computed live in the browser and a theme switch in the toolbar.</p>
-				<p>Its stylesheet is not a copy. A sync step pulls the CSS this site actually ships and writes it into the Storybook at build time, so the library cannot quietly drift from production. That is the same problem the Pattern Labs above were built to solve, handled with the tooling I have now.</p>
-				<p>Alongside it, written documentation answers how, when and where to use every component, for designers, engineers, writers and testers. A library tells you what exists. Documentation is what lets someone use it correctly without asking.</p>
-			</div>
-			<div class="cs-artifacts">
-				<a class="btn" href="/labs/sdc-storybook/" target="_blank" rel="noopener">Steven Design Co. Storybook<span class="sr-only"> (opens in a new tab)</span></a>
-				<a class="btn" href="/docs/" target="_blank" rel="noopener">The written documentation<span class="sr-only"> (opens in a new tab)</span></a>
-			</div>
-		</div>
-	</section>
+	<CaseSection>
+		<CaseBlock eyebrow="This site" lede="The library behind the page you are reading.">
+			<p>Tokens, components and patterns for stevendesignco.com, with the contrast ratios computed live in the browser and a theme switch in the toolbar.</p>
+			<p>Its stylesheet is not a copy. A sync step pulls the CSS this site actually ships and writes it into the Storybook at build time, so the library cannot quietly drift from production. That is the same problem the Pattern Labs above were built to solve, handled with the tooling I have now.</p>
+			<p>Alongside it, written documentation answers how, when and where to use every component, for designers, engineers, writers and testers. A library tells you what exists. Documentation is what lets someone use it correctly without asking.</p>
+		</CaseBlock>
+		<ButtonGroup>
+			<Button href="/labs/sdc-storybook/" external>Steven Design Co. Storybook</Button>
+			<Button href="/docs/" external>The written documentation</Button>
+		</ButtonGroup>
+	</CaseSection>
 
-	<section class="section">
-		<div class="section__inner cs-body" data-animate="fade">
-			<div class="cs-block">
-				<p class="eyebrow">At PayPal</p>
-				<h2 class="cs-block__lede">Three versions of the design library were live at the same time, with a fourth coming, and checkout was locked to the oldest one.</h2>
-				<p>Engineering could not move off it. So a real part of that job was telling product managers which ideas were presentable now and which ones were years from shipping. Every merchant proposal I built came out of that constrained library.</p>
-				<p>I also built content tokens that connected the engineering Storybook to Figma so content designers worked from the same source, and a Figma plugin that assembles a merchant's full set of checkout flows out of the published library components. That took setup from most of a day to ten or fifteen minutes across a 38 merchant program.</p>
-			</div>
-			<div class="cs-artifacts">
-				<a class="btn" href="/work/merchant-flow-builder">The Figma plugin</a>
-				<a class="btn" href="/work/paypal">PayPal case study</a>
-			</div>
-		</div>
-	</section>
+	<CaseSection>
+		<CaseBlock eyebrow="At PayPal" lede="Three versions of the design library were live at the same time, with a fourth coming, and checkout was locked to the oldest one.">
+			<p>Engineering could not move off it. So a real part of that job was telling product managers which ideas were presentable now and which ones were years from shipping. Every merchant proposal I built came out of that constrained library.</p>
+			<p>I also built content tokens that connected the engineering Storybook to Figma so content designers worked from the same source, and a Figma plugin that assembles a merchant's full set of checkout flows out of the published library components. That took setup from most of a day to ten or fifteen minutes across a 38 merchant program.</p>
+		</CaseBlock>
+		<ButtonGroup>
+			<Button href="/work/merchant-flow-builder">The Figma plugin</Button>
+			<Button href="/work/paypal">PayPal case study</Button>
+		</ButtonGroup>
+	</CaseSection>
 
-	<section class="section section--alt">
-		<div class="section__inner cs-body" data-animate="fade">
-			<div class="cs-block">
-				<p class="eyebrow">What I actually think</p>
-				<p>A component library is the easy half. The hard half is the version nobody can upgrade off, the pattern two teams named differently, and the argument about whether a new component is a new component. Most of what I have learned about design systems came from the things that could not be built.</p>
-			</div>
-			<blockquote class="cs-quote">
-				Naming is the part that decides whether anybody else can use it.
-			</blockquote>
-		</div>
-	</section>
+	<CaseSection alt>
+		<CaseBlock eyebrow="What I actually think">
+			<p>A component library is the easy half. The hard half is the version nobody can upgrade off, the pattern two teams named differently, and the argument about whether a new component is a new component. Most of what I have learned about design systems came from the things that could not be built.</p>
+		</CaseBlock>
+		<Quote>
+			Naming is the part that decides whether anybody else can use it.
+		</Quote>
+	</CaseSection>
 
-	<section class="section section--alt">
-		<div class="section__inner cs-back">
-			<a class="pager pager--prev" href="/#work"><span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg></span><span class="sr-only">Back to all </span>Case studies</a>
-			<a class="pager" href="/work/merchant-flow-builder"><span class="sr-only">Next case study: </span>Merchant Flow Builder<span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 3.5 4.5 4.5L6 12.5"/></svg></span></a>
-		</div>
-	</section>
+	<PagerPair
+		prev={{ href: '/#work', label: 'Case studies', hidden: 'Back to all ' }}
+		next={{ href: '/work/merchant-flow-builder', label: 'Merchant Flow Builder', hidden: 'Next case study: ' }}
+	/>
 </Site>

@@ -18,6 +18,28 @@ sidebar:
 	header, never mid-page, never alone.</dd></div>
 </dl>
 
+## In code
+
+`src/components/ui/Pager.astro`, and `PagerPair.astro` which owns the whole
+closing band so a page cannot put it in the wrong place.
+
+```astro
+---
+import PagerPair from '../../components/ui/PagerPair.astro';
+---
+<PagerPair
+	prev={{ href: '/work/plate', label: 'Plate', hidden: 'Previous case study: ' }}
+	next={{ href: '/work/alt-meat', label: 'Alt-Meat', hidden: 'Next case study: ' }}
+/>
+```
+
+Each link takes `href`, `label` and `hidden`. `label` is the visible text and
+stays the visible text. `hidden` is read before it, which is how the direction
+reaches a screen reader without an `aria-label` replacing what is on screen.
+
+`Pager` on its own takes `dir` of `prev` or `next`, which picks the chevron and
+the side it sits on. Use `PagerPair` unless you have a reason not to.
+
 ## Anatomy
 
 The visible text is the destination name only: "Plate", not "Next: Plate". The

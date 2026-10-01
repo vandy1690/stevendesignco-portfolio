@@ -1,0 +1,46 @@
+---
+/**
+ * CaseHero
+ * The top of a case study: the way back, the label, the title, the one
+ * paragraph that says what the work was, then the credits.
+ *
+ * The title is the page's only h1. The way back is a real link at the top of
+ * the page rather than a browser back button, so the page works when it is
+ * opened from a search result.
+ *
+ * Pass a CaseFigure into the `figure` slot when the work has hero art. Pass
+ * `note` for a disclosure, which is where proprietary work says what is not
+ * being shown.
+ */
+import Eyebrow from './Eyebrow.astro';
+import CaseMeta from './CaseMeta.astro';
+
+interface Props {
+	/** The label above the title. */
+	eyebrow: string;
+	title: string;
+	/** The one paragraph that says what the work was. */
+	lede: string;
+	/** Role, org, recognition. Two or three pairs. */
+	meta: { term: string; value: string }[];
+	/** A disclosure under the credits. */
+	note?: string;
+	/** Where the way back points. */
+	backHref?: string;
+	/** What the way back says. */
+	backLabel?: string;
+}
+const { eyebrow, title, lede, meta, note, backHref = '/#work', backLabel = '← Case studies' } = Astro.props;
+---
+
+<section class="cs-hero">
+	<div class="cs-hero__inner">
+		<a class="cs-back-top" href={backHref}>{backLabel}</a>
+		<Eyebrow>{eyebrow}</Eyebrow>
+		<h1 class="cs-hero__title display">{title}</h1>
+		<p class="cs-hero__lede" set:html={lede} />
+		<slot name="figure" />
+		<CaseMeta items={meta} />
+		{note && <p class="cs-note" set:html={note} />}
+	</div>
+</section>

@@ -1,0 +1,26 @@
+---
+/**
+ * Pager
+ * One of the two links at the foot of a case study. The arrow is decorative:
+ * direction is carried by the chevron for a sighted reader and by `hidden`
+ * for a screen reader, which is why the arrow is aria-hidden.
+ *
+ * `label` is the visible text and stays the visible text. `hidden` is read
+ * before it, so the accessible name reads "Previous case study: Plate" without
+ * an aria-label overriding what is on screen.
+ */
+interface Props {
+	/** Which way the chevron points, and which side it sits on. */
+	dir: 'prev' | 'next';
+	href: string;
+	/** The visible text. */
+	label: string;
+	/** Read before the visible text by a screen reader. Omit for none. */
+	hidden?: string;
+}
+const { dir, href, label, hidden } = Astro.props;
+const prev = dir === 'prev';
+const path = prev ? 'M10 3.5 5.5 8l4.5 4.5' : 'm6 3.5 4.5 4.5L6 12.5';
+---
+
+<a class:list={['pager', prev && 'pager--prev']} href={href}>{prev && <span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d={path} /></svg></span>}{hidden && <span class="sr-only">{hidden}</span>}{label}{!prev && <span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d={path} /></svg></span>}</a>

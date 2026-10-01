@@ -1,0 +1,25 @@
+---
+/**
+ * CaseBlock
+ * The prose unit a case study is written in: a label, a one line claim, then
+ * the paragraphs that back it up.
+ *
+ * The claim is the heading, so it carries the page outline and should read as
+ * a sentence a reader could skim on its own. Put the detail in the slot.
+ */
+import Eyebrow from './Eyebrow.astro';
+
+interface Props {
+	/** The small label above the claim. */
+	eyebrow: string;
+	/** The one line claim. Becomes the heading. */
+	lede?: string;
+}
+const { eyebrow, lede } = Astro.props;
+---
+
+<div class="cs-block">
+	<Eyebrow>{eyebrow}</Eyebrow>
+	{lede && <h2 class="cs-block__lede">{lede}</h2>}
+	<slot />
+</div>
