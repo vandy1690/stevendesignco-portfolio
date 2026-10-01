@@ -35,6 +35,7 @@ function compare(a, b) {
 	}
 	let differing = 0;
 	const rows = new Set();
+	let x0 = Infinity, y0 = Infinity, x1 = -1, y1 = -1;
 	for (let y = 0; y < A.height; y++) {
 		for (let x = 0; x < A.width; x++) {
 			const i = (A.width * y + x) << 2;
@@ -45,6 +46,10 @@ function compare(a, b) {
 			) {
 				differing++;
 				rows.add(y);
+				if (x < x0) x0 = x;
+				if (x > x1) x1 = x;
+				if (y < y0) y0 = y;
+				if (y > y1) y1 = y;
 			}
 		}
 	}
@@ -53,7 +58,15 @@ function compare(a, b) {
 	// dense row is a rule or an underline moving, not the layout.
 	const perRow = rows.size ? differing / rows.size : 0;
 	const band = rows.size >= 5 && perRow > 40;
-	return { differing, rows: rows.size, perRow: Math.round(perRow), band };
+	// Where the differences sit says more than how dense they are. Everything
+	// inside one small box is a single element: the first run after the theme
+	// toggle was added reported every page as "scattered rasterisation" when in
+	// fact every difference was the new 48px button in the corner.
+	const box = differing
+		? { x: x0, y: y0, w: x1 - x0 + 1, h: y1 - y0 + 1 }
+		: null;
+	const localised = box && box.w <= 200 && box.h <= 200;
+	return { differing, rows: rows.size, perRow: Math.round(perRow), band, box, localised };
 }
 
 export default async function pixel(browser, base) {
@@ -71,11 +84,13 @@ export default async function pixel(browser, base) {
 			if (r.size) {
 				findings.push(finding(`${path} @${width}`, `different height: ${r.size}`));
 			} else if (r.differing > 0) {
-				const shape = r.band
-					? 'dense across many rows, look at this one'
-					: r.rows <= 2
-						? 'one or two rows, likely a rule or an underline'
-						: 'scattered, likely glyph rasterisation';
+				const shape = r.localised
+					? `all inside ${r.box.w}x${r.box.h} at ${r.box.x},${r.box.y} — one element`
+					: r.band
+						? 'dense across many rows, look at this one'
+						: r.rows <= 2
+							? 'one or two rows, likely a rule or an underline'
+							: 'scattered across the page, likely glyph rasterisation';
 				findings.push(finding(`${path} @${width}`, `${r.differing} px over ${r.rows} rows — ${shape}`));
 			}
 		}

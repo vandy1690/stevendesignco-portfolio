@@ -17,16 +17,27 @@ export async function launch() {
  * Open a page and put it in a state worth measuring: no dev toolbar, no
  * in-flight animation, fonts loaded.
  */
-export async function open(browser, url, { width = 1280, height = 900, forcedColors } = {}) {
+export async function open(browser, url, { width = 1280, height = 900, forcedColors, theme } = {}) {
 	const ctx = await browser.newContext({
 		viewport: { width, height },
 		deviceScaleFactor: 1,
 		reducedMotion: 'reduce',
 		...(forcedColors ? { forcedColors } : {}),
 	});
+	// Set the stored choice before the page runs, so the pre-paint script picks
+	// the theme we are testing and nothing flips after load.
+	if (theme) {
+		await ctx.addInitScript((t) => {
+			try { localStorage.setItem('theme', t); } catch (e) { /* private mode */ }
+		}, theme);
+	}
 	const page = await ctx.newPage();
 	page.on('pageerror', (e) => page.__errors?.push(String(e)) ?? (page.__errors = [String(e)]));
 	await page.goto(url, { waitUntil: 'networkidle' });
+	if (theme) {
+		const got = await page.evaluate(() => document.documentElement.getAttribute('data-theme'));
+		if (got !== theme) throw new Error(`asked for the ${theme} theme, got ${got}`);
+	}
 	await settle(page);
 	return page;
 }

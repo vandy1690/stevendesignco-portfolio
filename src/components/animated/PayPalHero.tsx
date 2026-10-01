@@ -77,10 +77,6 @@ const PayPalHero: React.FC<PayPalHeroProps> = ({ className = '' }) => {
           display: block;
         }
         /* Light mode: PayPal logo black, no glow */
-        @media (prefers-color-scheme: light) {
-          :root:not([data-theme="dark"]) .pp-center { filter: none; }
-          :root:not([data-theme="dark"]) .pp-center .pp-logo { filter: brightness(0); }
-        }
         :root[data-theme="light"] .pp-center { filter: none; }
         :root[data-theme="light"] .pp-center .pp-logo { filter: brightness(0); }
         .pp-ring {
