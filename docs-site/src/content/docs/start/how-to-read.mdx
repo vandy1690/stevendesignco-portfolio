@@ -76,11 +76,19 @@ why the Figma display styles are Regular rather than Black, and it means the
 `font-variation-settings: "wght" 900` in the stylesheet does nothing on that
 face. It is inert, not wrong, but it reads like a setting that matters.
 
-An earlier library, **SDC Design Tokens**, was last touched 17 April 2026. It is
-colour only, it predates the live v2 site and the decision to ship light as the
-default, and every variable in it is `ALL_SCOPES`. It is superseded. Two token
-libraries with nothing to say which one is current is the same drift this whole
-practice exists to prevent, so archive it rather than leave it sitting there.
+There are two SDC libraries in Figma and they are versioned rather than one
+replacing the other:
+
+**1.0** is **SDC Design Tokens**, last touched 17 April 2026. Colour only, every
+variable `ALL_SCOPES`, and it predates both the live v2 site and the decision to
+ship light as the default. It stays published; anything already pointing at it
+keeps working.
+
+**2.0** is this one. It is what the site ships today, and it is what new work
+should use.
+
+If the two disagree, 2.0 is right. The version in the name is what tells you
+which, so do not drop it.
 
 ## What a component page is not
 
