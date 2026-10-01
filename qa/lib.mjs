@@ -45,16 +45,42 @@ export async function open(browser, url, { width = 1280, height = 900, forcedCol
 	// run against production. settle() does the waiting that actually matters.
 	await page.goto(url, { waitUntil: 'load', timeout: 45000 });
 	if (theme) {
-		const got = await page.evaluate(() => document.documentElement.getAttribute('data-theme'));
+		const got = await evaluateThroughReloads(page, () =>
+			document.documentElement.getAttribute('data-theme'),
+		);
 		if (got !== theme) throw new Error(`asked for the ${theme} theme, got ${got}`);
 	}
 	await settle(page);
 	return page;
 }
 
+/**
+ * Run an evaluate, and run it again if the page navigated underneath it.
+ *
+ * Astro's dev server compiles a route on demand and then pushes a full reload
+ * over HMR when it finishes. On a slow runner that lands between the navigation
+ * and the measurement, and Playwright reports "Execution context was destroyed".
+ * It is not a defect in the page, so retrying once after the reload settles is
+ * the right answer rather than failing the run.
+ */
+async function evaluateThroughReloads(page, fn, arg) {
+	for (let attempt = 0; attempt < 3; attempt++) {
+		try {
+			return await page.evaluate(fn, arg);
+		} catch (err) {
+			const destroyed = /Execution context was destroyed|Target closed|frame was detached/i.test(
+				String(err && err.message),
+			);
+			if (!destroyed || attempt === 2) throw err;
+			await page.waitForLoadState('load', { timeout: 30000 }).catch(() => {});
+			await page.waitForTimeout(500);
+		}
+	}
+}
+
 /** Remove the dev toolbar, finish every reveal, wait for fonts. */
 export async function settle(page) {
-	await page.evaluate(() => {
+	await evaluateThroughReloads(page, () => {
 		document
 			.querySelectorAll('astro-dev-toolbar, astro-dev-overlay, #dev-toolbar-root')
 			.forEach((el) => el.remove());
@@ -68,9 +94,11 @@ export async function settle(page) {
 			'[data-animate],[data-reveal]{opacity:1!important;transform:none!important}';
 		document.head.appendChild(s);
 	});
-	await page.evaluate(() => document.fonts.ready);
+	await evaluateThroughReloads(page, () => document.fonts.ready);
 	await page.waitForTimeout(350);
 }
+
+export { evaluateThroughReloads };
 
 /** Open a case study in the home page dialog and wait for it to be readable. */
 export async function openDialog(page, href) {

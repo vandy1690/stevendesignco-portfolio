@@ -68,7 +68,10 @@ if (base === LOCAL) {
 			process.stdout.write('!');
 		}
 	}
-	console.log('');
+	// Compiling a route makes the dev server push a full reload over HMR. Let
+	// those land before the first measurement rather than during it.
+	await new Promise((r) => setTimeout(r, 3000));
+	console.log(' ready');
 }
 
 const browser = await launch();
