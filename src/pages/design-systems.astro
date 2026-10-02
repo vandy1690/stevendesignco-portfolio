@@ -82,6 +82,19 @@ import PagerPair from '../components/ui/PagerPair.astro';
 		</ButtonGroup>
 	</CaseSection>
 
+	<CaseSection alt>
+		<CaseBlock eyebrow="Keeping it correct" lede="A library is the easy half. The hard half is the day after.">
+			<p>Every design system I have worked on was correct the week it shipped. The interesting question is what happens eighteen months later, when four people have touched it, the person who wrote the rule has left, and nobody can tell a decision from an accident.</p>
+			<p>So this site is gated. Seven automated checks run on every change: reflow and target size across eleven pages and eleven widths, accessibility on every page and inside the dialog that opens a case study in place, text contrast in both themes, High Contrast Mode, text-spacing overrides, and inline link distinction. A change that fails any of them cannot reach the live site. Documentation that falls out of step with the code fails the build.</p>
+			<p>The checks are not theoretical. Each one exists because something got through. A stylesheet that quietly started applying to three pages nobody was editing. A caption sitting at 3.31 to 1 on black, hidden behind a one-letter typo in a token name, in a theme no visitor could reach. A High Contrast rule that had never once applied, because a media query adds no specificity and a later rule won. An inline link measuring 1.02 to 1 against the paragraph around it, which the scanner called clean.</p>
+			<p>That last one is the part worth saying out loud. Automated tools pass things that are plainly broken. The link was invisible to everybody, not only to people with a colour vision deficiency, and axe reported the page as fine. So the rule here is that a new check has to be proven: break the thing on purpose, watch the check name it, then put it back. A check that has only ever passed is not evidence.</p>
+		</CaseBlock>
+		<ButtonGroup>
+			<Button href="/docs/practices/shipping/" external>How a change ships</Button>
+			<Button href="/docs/practices/accessibility/" external>The failures, written down</Button>
+		</ButtonGroup>
+	</CaseSection>
+
 	<CaseSection>
 		<CaseBlock eyebrow="At PayPal" lede="Three versions of the design library were live at the same time, with a fourth coming, and checkout was locked to the oldest one.">
 			<p>Engineering could not move off it. So a real part of that job was telling product managers which ideas were presentable now and which ones were years from shipping. Every merchant proposal I built came out of that constrained library.</p>
