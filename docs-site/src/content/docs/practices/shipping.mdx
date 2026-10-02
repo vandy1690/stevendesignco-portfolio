@@ -73,6 +73,28 @@ it, then put it back. A check that has only ever passed is not evidence. This is
 also how we learned that axe passes a link with 1.02:1 contrast and no
 underline, which is why there is a separate check for that.
 
+## The resume PDF is the one thing that can drift
+
+`public/resume.pdf` is a copy of the master built in the Job Hunt folder, not
+something this repository generates. The build there writes a .docx and converts
+it with LibreOffice; nothing in this project can reproduce that.
+
+So when the master changes, the site does not follow. Someone has to copy the
+file across:
+
+```
+cp "~/Documents/claude/Projects/Job Hunt/resume-master-docx/Steven-Vanden-Heuvel-Resume-MASTER.pdf" public/resume.pdf
+```
+
+The resume page's title line has to be changed by hand to match at the same time.
+It is the one place in this project where two copies of the same thing exist and
+nothing checks them, which is worth knowing rather than discovering.
+
+It used to be worse. The PDF was a print of the resume page, which meant it had
+the site's display font and brand styling instead of the plain ATS layout every
+other resume uses. A resume that looks different from the one attached to an
+application is not a style choice, it is a mistake.
+
 ## Undoing
 
 Vercel keeps the previous production deployment as an instant rollback. Before a
