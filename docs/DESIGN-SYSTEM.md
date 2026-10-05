@@ -11,10 +11,11 @@ the CSS the site ships, so it cannot drift. See
 
 ## Themes
 
-The site ships in **light**. `<html>` carries `data-theme="light"`, and there is
-no theme switch in the interface today. The dark palette is still in the CSS as
-the `:root` default and applies if `data-theme` is set to `dark`. The Storybook
-toolbar is the easy way to look at it.
+The site ships in **light**. `<html>` carries `data-theme="light"`, and a toggle
+sits at the bottom right of every page: it follows the operating system on a first
+visit and remembers a choice once one is made. The dark palette is the `:root`
+default in the CSS and applies when `data-theme` is `dark`. The Storybook toolbar
+is another way to look at it.
 
 How the CSS resolves a theme:
 
@@ -128,7 +129,10 @@ All global, in `Site.astro`.
 | `[data-animate="fade"]` | Fade in on scroll. Only hidden when `html.js` is present |
 
 The case study classes (`cs-hero`, `cs-meta`, `cs-block`, `cs-figure`,
-`cs-body`) are defined per page, not globally. See
+`cs-body`) are defined once in `src/layouts/Site.astro`, scoped under `.case`.
+A page turns them on by passing `variant="case"` to the layout, which puts `.case`
+on `<main>`. They used to be defined per page; they are not any more, so a case
+study page carries no CSS of its own. See
 [ARCHITECTURE.md](ARCHITECTURE.md#case-study-pages).
 
 ## Motion
