@@ -16,6 +16,7 @@ No station scored red. Two items below behave like reds because they are silent-
 - **Station:** 3 and 6 · **Evidence:** [verified] `--ink-charcoal-mute` changed from `#5A6160` to `#545B5A` in code on 2026-10-05. The Figma primitive stayed `#5a6160` for two days. For that window the design library carried a WCAG 1.4.3 failure on `surface-2` (4.29:1) that the code had already fixed (4.70:1). Corrected by hand during this inspection.
 - **Why it's first:** the 2026-10-03 report predicted this in writing and it happened within 48 hours, to the person who wrote it. Both token lists are hand-maintained with no pipeline, so this recurs on every value change until something watches it.
 - **First move:** a script in `qa/` that reads the Figma variables through the bridge, resolves aliases per mode, and diffs them against the custom properties in `src/layouts/Site.astro` on names and values. This inspection wrote that diff twice as a throwaway; make it a file.
+- **Scope it wider than colour.** Both of my passes verified colour and nothing else. FigmaLint found the dimensional gap neither pass looked for (item 12). The parity check should cover spacing, radius and stroke bindings too, or it will keep certifying the one axis that already works.
 - **AI assist:** an agent can write the script and wire it into `npm run qa`. A human decides which side wins when they disagree.
 - **Done when:** changing a colour on one side and not the other fails a check.
 - **Effort:** M
@@ -85,10 +86,25 @@ No station scored red. Two items below behave like reds because they are silent-
 - **Station 10:** three published Figma libraries, nothing marking the canonical one. Rename the two superseded ones, since the query surface returns library names.
 - **Station 6:** `Button` now has a `variant` prop; Figma's `Direction=Previous|Next` still disagrees with code's `dir='prev'|'next'`. The pull request template still does not mention the design library at all.
 
+### 12. Dimensional properties are mostly not bound to variables
+- **Station:** 2 · **Evidence:** [verified] found by FigmaLint, then confirmed directly against the file. **110 of 504** dimensional properties across the library are bound: 21.8%. On the Components page, 52 of 115 (45%); on the Site page, 68 of 122 (56%). FigmaLint reported 29% with 20 hard-coded values, 16 spacing and 4 borders, on a narrower scope.
+- **Why it is not as bad as the number:** every Button and Pager variant has its radius bound to `radius-sm`, resolving to 10px and matching the shipped CSS exactly. Most of the unbound bulk is documentation furniture on the Cover and Foundations pages.
+- **Why it still matters:** the Spacing collection has nine tokens and the Foundations page itself uses 32, 24, 16 and 6 as literals. The library demonstrates the tokens without using them.
+- **The real blocker underneath it:** Button's padding is 14/22 and Pager's is 18, in Figma *and* in the stylesheet, and none of 14, 22 or 18 is in the spacing scale (8, 16, 24, 32, 48, 64, 96, 128, 160). Binding them is impossible until the scale either gains those values or the buttons change shape. **That is a decision for Steve, not a cleanup.**
+- **First move:** decide the padding question, then bind the documentation furniture, which needs no decision at all.
+- **Done when:** the Components page clears 80% bound, and every value a component uses exists in a scale.
+- **Effort:** M
+
+### 13. The design file is silent on focus state
+- **Station:** 3 · **Evidence:** [verified] FigmaLint's accessibility panel passes touch target size and minimum font size and flags **focus state**. Independently, Station 3 found no annotation kit, no page for specifying focus order or keyboard behaviour, and 9 of 12 component descriptions silent on accessibility. Two methods, one conclusion.
+- **First move:** copy the keyboard and focus notes that already exist in the component docs into the matching Figma descriptions, and add a focus variant or an annotation layer to Button and Pager.
+- **Effort:** S
+
 ## 🔧 Access upgrades (sharper next inspection)
 
 Access was complete again this pass, including a write to the design library. Two things would still sharpen the next one.
 
+- **Keep running FigmaLint.** It found in one pass a real gap that two of my inspections missed entirely, because it measures dimensional binding and I only ever measured colour. It also produced one false positive, the detached Button, which is a frame named after a component. Run it, then verify what it flags; that combination is stronger than either alone.
 - **Connect a design-systems knowledge MCP**, so comparative claims can be cited rather than asserted from the technician's own knowledge.
 - **Commit the throwaway scripts.** This inspection wrote a token parity diff, a hex-literal census, a physical-versus-logical property count and a page-height comparison, then discarded all four. As files in `qa/` they turn three stations from an inspection activity into a continuous one, and item 1 depends on the first of them.
 
