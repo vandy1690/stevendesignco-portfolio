@@ -1,0 +1,181 @@
+{
+  "$description": "Tier 1 primitives, the raw palette. Figma is the source of truth: the file SDC Fall of 2026 (TJjqs7XSz21Y72GRPnVAQB), collection Primitives. Regenerate the CSS with `node scripts/build-tokens.mjs`. Do not hand-edit the generated block in src/layouts/Site.astro.",
+  "$extensions": {
+    "com.stevendesignco.source": {
+      "tool": "figma-console-mcp",
+      "fileKey": "TJjqs7XSz21Y72GRPnVAQB",
+      "fileName": "SDC Fall of 2026",
+      "collection": "Primitives"
+    }
+  },
+  "brand": {
+    "citron": {
+      "$type": "color",
+      "$value": "#CCFF00",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:3:15",
+          "name": "brand/citron"
+        }
+      }
+    },
+    "citron-light": {
+      "$type": "color",
+      "$value": "#F1FFB8",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:3:16",
+          "name": "brand/citron-light"
+        }
+      }
+    },
+    "focus": {
+      "$type": "color",
+      "$value": "#233552",
+      "$description": "Keyboard focus ring, light theme. Independent of brand hover values.",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:60:159",
+          "name": "brand/focus"
+        }
+      }
+    },
+    "focus-dark": {
+      "$type": "color",
+      "$value": "#F1FFB8",
+      "$description": "Keyboard focus ring, dark theme. Independent of brand hover values.",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:60:160",
+          "name": "brand/focus-dark"
+        }
+      }
+    },
+    "regatta": {
+      "$type": "color",
+      "$value": "#3F5F92",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:3:13",
+          "name": "brand/regatta"
+        }
+      }
+    },
+    "regatta-deep": {
+      "$type": "color",
+      "$value": "#233552",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:3:14",
+          "name": "brand/regatta-deep"
+        }
+      }
+    }
+  },
+  "ink": {
+    "black": {
+      "$type": "color",
+      "$value": "#000000",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:3:3",
+          "name": "ink/black"
+        }
+      }
+    },
+    "charcoal": {
+      "$type": "color",
+      "$value": "#2D3436",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:3:6",
+          "name": "ink/charcoal"
+        }
+      }
+    },
+    "charcoal-mute": {
+      "$type": "color",
+      "$value": "#545B5A",
+      "$description": "Muted body text in the light theme. Darkened from #5A6160 on 2026-10-05 so it clears 4.5:1 on surface-2, the deepest light ground, and not only on the page background.",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:3:7",
+          "name": "ink/charcoal-mute"
+        }
+      }
+    },
+    "gray-mute": {
+      "$type": "color",
+      "$value": "#8A8F8C",
+      "$description": "Muted body text in the dark theme. US spelling: gray, not grey.",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:3:8",
+          "name": "ink/gray-mute"
+        }
+      }
+    },
+    "near-black": {
+      "$type": "color",
+      "$value": "#111111",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:3:4",
+          "name": "ink/near-black"
+        }
+      }
+    },
+    "near-black-2": {
+      "$type": "color",
+      "$value": "#1A1A1A",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:3:5",
+          "name": "ink/near-black-2"
+        }
+      }
+    }
+  },
+  "paper": {
+    "cloud": {
+      "$type": "color",
+      "$value": "#F0EEE9",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:3:10",
+          "name": "paper/cloud"
+        }
+      }
+    },
+    "cloud-2": {
+      "$type": "color",
+      "$value": "#E4E1DA",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:3:11",
+          "name": "paper/cloud-2"
+        }
+      }
+    },
+    "cloud-3": {
+      "$type": "color",
+      "$value": "#D8D4CB",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:3:12",
+          "name": "paper/cloud-3"
+        }
+      }
+    },
+    "white": {
+      "$type": "color",
+      "$value": "#FFFFFF",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:3:9",
+          "name": "paper/white"
+        }
+      }
+    }
+  }
+}

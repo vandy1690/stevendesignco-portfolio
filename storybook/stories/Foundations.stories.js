@@ -16,7 +16,7 @@ const helpers = `
     const a = Math.max(L1, L2), b = Math.min(L1, L2); return (a + 0.05) / (b + 0.05); };
 `;
 
-export const Colour = () => {
+export const Color = () => {
   const el = document.createElement('div');
   el.innerHTML = `
     <p class="sb-note">Light is the shipped default; dark is the alternate. Ratios are against
@@ -99,9 +99,11 @@ export const Elevation = () => `
   </div>`;
 
 export const Focus = () => `
-  <p class="sb-note">The ring is the page's own ink, never the browser blue, and it appears only for
+  <p class="sb-note">The ring has its own token, <code>--focus-ring</code>, rather than borrowing the body
+    ink, so focus can be retuned without moving hover or text with it. It appears only for
     <code>:focus-visible</code>. Tab into these to see it; clicking them shows nothing.
-    Ink on paper is about 11 to 1, far past the 3 to 1 minimum for a focus indicator.</p>
+    It measures 10.6 to 1 against the page in light and 19.7 to 1 in dark, both far past the
+    3 to 1 minimum for a focus indicator.</p>
   <div class="sb-stack">
     <a class="btn btn--primary" href="#0">Primary button</a>
     <a class="btn" href="#0">Secondary button</a>

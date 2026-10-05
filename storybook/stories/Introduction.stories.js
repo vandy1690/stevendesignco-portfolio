@@ -15,7 +15,7 @@ export const ReadMe = () => `
       the pages use. Switch the theme in the toolbar to check both palettes.
     </p>
     <ul style="font-size:16px;line-height:1.8;padding-left:1.1em;margin:0">
-      <li><strong>Foundations</strong> are the tokens: colour, type, spacing, elevation, focus, texture.</li>
+      <li><strong>Foundations</strong> are the tokens: color, type, spacing, elevation, focus, texture.</li>
       <li><strong>Components</strong> are the pieces that repeat across pages.</li>
       <li><strong>Patterns</strong> are whole compositions assembled from them.</li>
     </ul>

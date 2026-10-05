@@ -7,7 +7,7 @@ export default {
   stories: ['../stories/**/*.stories.js'],
   // Essentials carries the toolbar the theme switch lives in and the Controls
   // panel the args need. Actions and backgrounds are off: no story fires an
-  // action, and the theme switch owns the canvas colour. The rest are panels:
+  // action, and the theme switch owns the canvas color. The rest are panels:
   // axe checks, the rendered markup, and the Figma frame. The Design tab only
   // registers once stories/design-links.js has a link, so it never shows empty.
   addons: [
