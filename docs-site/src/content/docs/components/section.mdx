@@ -24,6 +24,7 @@ image inside it.
 ```astro
 ---
 import CaseSection from '../../components/ui/CaseSection.astro';
+import CaseBlock from '../../components/ui/CaseBlock.astro';
 import CaseFigure from '../../components/ui/CaseFigure.astro';
 ---
 <CaseSection alt>
@@ -60,9 +61,16 @@ A case study figure sits between the deck and the stats, at full width of the
 measure. It used to sit at 75 percent and below the stats; both were changed
 because the image is evidence for the claim above it and belongs next to it.
 
-Images are decorative by default: `alt=""`. An image earns alt text only when it
-carries information the surrounding copy does not. On this site that is true of
-exactly one image, the headshot.
+**Figure art is evidence, so it gets real alt text.** Every one of the seven case
+study figures on the site carries a description and none is empty, because a
+figure in a case study is there to show something the prose claimed. See
+[Case study figure](/design-system/components/case-figure/), which is the
+authority on this, and write the alt even when a caption follows: a caption is
+read by everyone and says something different.
+
+`alt=""` is for art that carries nothing, such as a background texture or the
+decorative quote mark on a recommendation card. If you cannot say what an image
+is evidence of, that is usually a sign it should not be on the page.
 
 ## Captions
 

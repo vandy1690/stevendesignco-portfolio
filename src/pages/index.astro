@@ -61,7 +61,7 @@ const cases = [
 		contain: true,
 		field: '#EEEAE7',
 		head: 'The checkout dead end.',
-		text: 'A saved card stops working, and nothing stops the order until checkout. I mapped the month leading up to it for senior leadership, marking where it could have been resolved instead. Now the team’s template.',
+		text: 'A saved card stops working, and nothing stops the order until checkout. I mapped the month leading up to it for senior leadership, marking where it could have been resolved instead. It became the team’s template.',
 		product: 'PayPal consumer checkout',
 		objective: 'Show leadership where the dead end starts',
 	},
@@ -111,7 +111,7 @@ const quotes = [
 		<div class="hero__inner">
 			<p class="hero__name display" data-reveal="words">Steven Vanden Heuvel</p>
 			<h1 class="hero__claim display" data-reveal="words">I make products feel considered, and I build the systems that keep them that way, usually before anyone asks.</h1>
-			<p class="hero__proof" data-reveal="words">Responsive web in B2B publishing before it was standard. Atomic design before it had a name. Now agentic tooling, on PayPal checkout.</p>
+			<p class="hero__proof" data-reveal="words">Responsive web in B2B publishing before it was standard. Atomic design before it had a name. Most recently, agentic tooling on PayPal checkout.</p>
 			<p class="hero__valid" data-reveal="block">Four Jesse H. Neal Awards, one for Best Website.</p>
 			<div class="hero__cta" data-reveal="block">
 				<a class="btn btn--primary" href="#work" aria-describedby="hero-cta-desc">View case studies</a>
@@ -739,7 +739,10 @@ const quotes = [
 	.deck__jump a:hover { color: var(--accent); }
 
 	/* One measure for everything on this page: the card width. */
-	:root { --content: min(800px, 100vw - 48px); --shadow-card: 0 1px 2px rgba(45, 52, 54, 0.08), 0 6px 12px -4px rgba(45, 52, 54, 0.14), 0 18px 32px -12px rgba(45, 52, 54, 0.24), 0 36px 64px -24px rgba(45, 52, 54, 0.32); --shadow-card-hover: 0 1px 2px rgba(45, 52, 54, 0.08), 0 10px 18px -6px rgba(45, 52, 54, 0.18), 0 26px 44px -14px rgba(45, 52, 54, 0.3), 0 48px 80px -28px rgba(45, 52, 54, 0.38); }
+	/* --shadow-card and --shadow-card-hover used to be defined here, on :root,
+	   from inside one page. They are tokens, so they now live with the rest of
+	   them in Site.astro. */
+	:root { --content: min(800px, 100vw - 48px); }
 	.wrap { width: var(--content); margin: 0 auto; }
 	#how, #about, #contact { scroll-margin-top: 0; }
 	/* The pinned decks pad their own stage for the header, so they cancel the
