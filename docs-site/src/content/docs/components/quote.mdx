@@ -5,20 +5,35 @@ sidebar:
   order: 5
 ---
 
+## Two things, one page
+
+Quoting someone takes two different forms on this site and they are documented
+together because the rules on the words are identical. They are not the same
+markup.
+
+1. **The recommendation card**, a `figure.quote` with a decorative quote mark, a
+   blockquote and a figcaption holding the speaker's title. Fixed size, so a row
+   of them can be fanned. It is page-level markup in `src/pages/index.astro` and
+   there is no component for it.
+2. **The case study pull quote**, a bare `blockquote.cs-quote` set larger than the
+   prose around it. This one is the `Quote` component, and it carries no caption.
+
+Everything below about the words applies to both. Everything about captions and
+fixed height applies to the card only.
+
 <dl class="sdc-hww">
-	<div><dt>How</dt><dd>A <code>figure.quote</code> with a decorative quote mark,
-	a blockquote and a figcaption holding the speaker's title. Fixed size, so a
-	row of them can be fanned.</dd></div>
+	<div><dt>How</dt><dd>See the two forms above.</dd></div>
 	<div><dt>When</dt><dd>To let someone else make a claim that would sound like
 	boasting in the first person. Only for words actually written by that person,
 	quoted exactly.</dd></div>
-	<div><dt>Where</dt><dd>The recommendations fan on the home page. Also
-	available as a single pull quote inside a case study.</dd></div>
+	<div><dt>Where</dt><dd>The card is the recommendations fan on the home page.
+	The pull quote sits inside a case study body.</dd></div>
 </dl>
 
 ## In code
 
-`src/components/ui/Quote.astro`. The words go in the slot.
+`src/components/ui/Quote.astro` is **the case study pull quote**, not the fan
+card. The words go in the slot.
 
 ```astro
 ---
@@ -29,17 +44,19 @@ import Quote from '../../components/ui/Quote.astro';
 </Quote>
 ```
 
-No props. It carries no attribution line, so only use it where the prose around
-it has already said who is speaking.
+No props. It carries no attribution line, which is why the caption rules below
+do not apply to it: only use it where the prose around it has already said who is
+speaking.
 
 ## The rules on the words
 
 **Verbatim or not at all.** One sentence, copied exactly from the source.
 Trimming for length is allowed; rewording is not, including fixing grammar.
 
-**Titles, never names.** The caption is the person's role and company, such as
-"Product Designer, PayPal Merchant Enablement". Naming people turns a portfolio
-into a reference list they did not agree to.
+**Titles, never names.** On the fan card, the caption is the person's role and
+company, such as "Product Designer, PayPal Merchant Enablement". Naming people
+turns a portfolio into a reference list they did not agree to. The pull quote has
+no caption, so the attribution goes in the prose above it, under the same rule.
 
 **Nothing the rest of the site cannot back up.** A quote is not a loophole for a
 claim that is otherwise barred. If a recommender praised a number the site does
@@ -56,15 +73,17 @@ should not be "fixed". The mark carries no information the blockquote does not.
 
 ## Content length
 
-The card is a fixed height. A sentence beyond roughly 180 characters will not
+The fan card is a fixed height. A sentence beyond roughly 180 characters will not
 fit at the fan's size. Choose a shorter sentence rather than shrinking the type.
+The pull quote is not height constrained, but a pull quote running past two lines
+has stopped being a pull quote.
 
 <div class="sdc-dd">
 	<div class="sdc-dd--do">
 		<h4>Do</h4>
 		<ul>
 			<li>Quote one sentence exactly as written.</li>
-			<li>Caption with a title and company.</li>
+			<li>Caption the fan card with a title and company.</li>
 			<li>Pick the sentence that carries evidence, not praise.</li>
 		</ul>
 	</div>
@@ -81,5 +100,5 @@ fit at the fan's size. Choose a shorter sentence rather than shrinking the type.
 ## Checks before you ship
 
 1. The sentence matches the source word for word.
-2. The caption has no personal name in it.
-3. The text fits the card at 1440 and at 390 wide without clipping.
+2. No personal name appears, in the card's caption or in a pull quote's lead-in.
+3. A fan card's text fits at 1440 and at 390 wide without clipping.

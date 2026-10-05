@@ -121,14 +121,23 @@ Each file in `src/pages/work/` is self contained and follows one shape:
    elements with an eyebrow, a lede heading, and body copy.
 3. A pager pair at the foot.
 
-The `cs-*` classes are not global. Each case study page defines them in its
-own scoped `<style>` block, so the pages carry near identical copies. The upside
-is that a page can diverge without touching the others, and the home page modal
-can lift one page's styles along with its content. The cost is drift. When you
-change a `cs-*` rule that should apply everywhere, change it in every file in
-`src/pages/work/` and in `design-systems.astro`. The truly shared pieces
-(`pager`, `btn`, `eyebrow`, `display`, `skip-link`, `sr-only`) are global, in
-`Site.astro`.
+The `cs-*` classes are global. They are defined once in `src/layouts/Site.astro`,
+scoped under `.case`, and a page turns them on by passing `variant="case"` to the
+layout, which puts `.case` on `<main>`. Case study pages carry no CSS of their own.
+
+They used to be per page, with each file holding a near identical copy of the same
+rules. That is why `.case` exists: change a `cs-*` rule once and every case study
+page and the home page dialog pick it up together. Two things follow from the
+scoping:
+
+- **A page that forgets `variant="case"` renders unstyled.** It is a loud failure
+  and the pixel check in `npm run qa` catches it.
+- **The dialog needs `.case` too.** It injects the contents of a case study's
+  `<main>` without the `<main>` element, so `.modal__content` carries `case` as a
+  class. Without it the dialog shows the right content with none of the styles.
+
+The pieces that are global and not under `.case` (`pager`, `btn`, `eyebrow`,
+`display`, `skip-link`, `sr-only`) are also in `Site.astro`.
 
 ## Components
 
