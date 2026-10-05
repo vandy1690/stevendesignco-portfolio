@@ -7,7 +7,69 @@ also the day the change went live, give or take a few minutes.
 Add a line here when you ship something a visitor or a future maintainer would
 notice.
 
+## October 2026
+
+**October 5**
+- Reconciled the documentation with the code after the first design system
+  inspection. The agent-facing `claude-context/design-system.md` had the fonts
+  inverted, named the dark palette as the locked system, and still described the
+  Figma library as missing; `docs/ARCHITECTURE.md` still told you to copy case
+  study CSS into every page by hand. Both now match what ships.
+- Elevation moved into the token tier. The two card shadows were defined on
+  `:root` from inside the home page's own style block.
+- `Button` takes a `variant` prop, so primary no longer means remembering a class
+  name.
+- Muted text in the light theme darkened a step, from `#5A6160` to `#545B5A`, so
+  it clears 4.5:1 on every light surface rather than only on the page background.
+- Four documentation defects fixed: an example that did not run, a component page
+  documenting two different components as one, two pages giving opposite rules on
+  image alt text, and the word "Stats" meaning two different things.
+
+**October 2**
+- The resume PDF is the real document again rather than a print of the web page,
+  and the title line on the resume page broadened.
+- Positioning opened up on the home page, the design systems card refreshed, and
+  the governance story added to it.
+
+**October 1**
+- Case study pages are built from real components now. Fourteen of them live in
+  `src/components/ui/`, and the CSS that each page used to carry its own copy of
+  is centralized in the layout under `.case`.
+- Colour tokens tiered into primitives and semantic values, and the dark theme is
+  reachable again: the toggle sits bottom right, follows the operating system on
+  a first visit, and remembers a choice once one is made.
+- Five type sizes the layout was already shipping became tokens, after binding
+  the Figma library showed they matched nothing. Font family variables added.
+- The Q&A pass is in the repo: seven checks covering reflow, target size, axe,
+  the dialog, text spacing, High Contrast Mode, link distinction and contrast in
+  both themes. It runs in CI on every push and every pull request, and `dev` is
+  gated behind it. Pull requests get a template.
+- Three defects fixed: an image overflowing its frame, touch targets under the
+  minimum size, and a prose link that was invisible against its background.
+- Case study styles fixed inside the home page dialog, which was showing the right
+  content with none of the styling, and in High Contrast Mode.
+- Storybook rebuilt against the current stylesheet, shown on the design systems
+  card, and linked to the Figma library.
+- The Figma library recorded and versioned as 2.0. The previous library stays
+  published as 1.0 rather than being retired.
+
 ## September 2026
+
+**September 29**
+- Documentation drift is a build failure rather than a good intention. A change
+  that touches the design system without touching its documentation now fails.
+- The documentation linked from the Storybook introduction.
+
+**September 28**
+- The design system documentation site, at `/docs`.
+- The repo documentation: the README, `docs/`, and the Storybook README.
+- Fixed the contrast of a "Do" heading in the documentation.
+
+**September 24**
+- The merchant surfaces figure added to the Merchant Flow Builder case study.
+
+**September 23**
+- The Artistic Eye brand guidelines and case study published.
 
 **September 19**
 - Storybook add-ons for the SDC library: Controls, the theme toolbar, Viewport,
