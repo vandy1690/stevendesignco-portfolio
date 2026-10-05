@@ -377,27 +377,42 @@ const jsonLd = {
 			   without the alpha, so a translucent value can be built from the same
 			   source as its solid one instead of being written out again. */
 			:root {
-				--ink-black: #000000;
-				--ink-near-black: #111111;
-				--ink-near-black-2: #1a1a1a;
-				--ink-charcoal: #2D3436;
-				--ink-charcoal-mute: #545B5A;   /* 6.0:1 on paper, and 4.7:1 on --surface-2, the deepest light ground */
-				--ink-grey-mute: #8A8F8C;       /* 5.6:1 on black */
-				--paper-white: #ffffff;
-				--paper-cloud: #F0EEE9;         /* Cloud Dancer */
-				--paper-cloud-2: #E4E1DA;       /* warm card */
-				--paper-cloud-3: #D8D4CB;       /* hover */
-				--brand-regatta: #3F5F92;
-				--brand-regatta-deep: #3D5C8C;
+				/* TOKENS:START — generated from Figma by scripts/build-tokens.mjs. Do not edit. */
 				--brand-citron: #CCFF00;
-				--brand-citron-light: #d8ff33;
+				--brand-citron-light: #F1FFB8;
+				--brand-focus: #233552;   /* Keyboard focus ring, light theme. Independent of brand hover values. */
+				--brand-focus-dark: #F1FFB8;   /* Keyboard focus ring, dark theme. Independent of brand hover values. */
+				--brand-regatta: #3F5F92;
+				--brand-regatta-deep: #233552;
+				--ink-black: #000000;
+				--ink-charcoal: #2D3436;
+				--ink-charcoal-mute: #545B5A;   /* Muted body text in the light theme. Darkened from #5A6160 on 2026-10-05 so it clears 4.5:1 on surface-2, the deepest light ground, and not only on the page background. */
+				--ink-gray-mute: #8A8F8C;   /* Muted body text in the dark theme. US spelling: gray, not grey. */
+				--ink-near-black: #111111;
+				--ink-near-black-2: #1A1A1A;
+				--paper-cloud: #F0EEE9;
+				--paper-cloud-2: #E4E1DA;
+				--paper-cloud-3: #D8D4CB;
+				--paper-white: #FFFFFF;
 
-				--ink-charcoal-rgb: 45, 52, 54;
-				--paper-white-rgb: 255, 255, 255;
-				--paper-cloud-rgb: 240, 238, 233;
-				--brand-regatta-rgb: 63, 95, 146;
+				/* rgb triples for rgba() in the semantic tier */
 				--brand-citron-rgb: 204, 255, 0;
+				--brand-citron-light-rgb: 241, 255, 184;
+				--brand-focus-rgb: 35, 53, 82;
+				--brand-focus-dark-rgb: 241, 255, 184;
+				--brand-regatta-rgb: 63, 95, 146;
+				--brand-regatta-deep-rgb: 35, 53, 82;
 				--ink-black-rgb: 0, 0, 0;
+				--ink-charcoal-rgb: 45, 52, 54;
+				--ink-charcoal-mute-rgb: 84, 91, 90;
+				--ink-gray-mute-rgb: 138, 143, 140;
+				--ink-near-black-rgb: 17, 17, 17;
+				--ink-near-black-2-rgb: 26, 26, 26;
+				--paper-cloud-rgb: 240, 238, 233;
+				--paper-cloud-2-rgb: 228, 225, 218;
+				--paper-cloud-3-rgb: 216, 212, 203;
+				--paper-white-rgb: 255, 255, 255;
+				/* TOKENS:END */
 			}
 
 			/* ---------- Tier 2: semantic ----------
@@ -412,7 +427,7 @@ const jsonLd = {
 				--surface: var(--ink-near-black);
 				--surface-2: var(--ink-near-black-2);
 				--text: var(--paper-white);
-				--text-mute: var(--ink-grey-mute);
+				--text-mute: var(--ink-gray-mute);
 				--rule: rgba(var(--paper-white-rgb), 0.20);
 				--rule-soft: rgba(var(--paper-white-rgb), 0.10);
 				--rule-strong: rgba(var(--paper-white-rgb), 0.42);   /* clears 3:1 */
@@ -421,6 +436,7 @@ const jsonLd = {
 				--accent: var(--brand-citron);
 				--accent-text: var(--ink-black);
 				--accent-hover: var(--brand-citron-light);
+				--focus-ring: var(--brand-focus-dark);
 				--accent-glow: rgba(var(--brand-citron-rgb), 0.20);
 				--header-bg: rgba(var(--ink-black-rgb), 0.78);
 
@@ -503,6 +519,7 @@ const jsonLd = {
 				--accent: var(--brand-regatta);
 				--accent-text: var(--paper-white);
 				--accent-hover: var(--brand-regatta-deep);
+				--focus-ring: var(--brand-focus);
 				--accent-glow: rgba(var(--brand-regatta-rgb), 0.22);
 				--header-bg: rgba(var(--paper-cloud-rgb), 0.82);
 			}
@@ -538,7 +555,7 @@ const jsonLd = {
 			   state and is off-palette, so the ring is the page's own ink: high
 			   contrast against both grounds and identical in both themes. Only
 			   :focus-visible, so a mouse click never draws it. */
-			:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
+			:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 3px; }
 			:focus:not(:focus-visible) { outline: none; }
 			.no-ring:focus, .no-ring:focus-visible { outline: none; }
 			/* Windows High Contrast: let the system draw its own ring. */

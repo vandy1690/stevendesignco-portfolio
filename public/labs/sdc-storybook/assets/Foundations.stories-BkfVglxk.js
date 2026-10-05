@@ -64,9 +64,11 @@ const L={title:"Foundations"},E=`
     <div style="width:230px;height:130px;border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow-card-hover);display:grid;place-items:center;font-size:13px;color:var(--text-mute)">--shadow-card-hover</div>
     <div style="width:230px;height:130px;border-radius:var(--radius-sm);background:var(--surface);border:1px solid var(--rule-strong);display:grid;place-items:center;font-size:13px;color:var(--text-mute)">--radius-sm, --rule-strong</div>
   </div>`,d=()=>`
-  <p class="sb-note">The ring is the page's own ink, never the browser blue, and it appears only for
+  <p class="sb-note">The ring has its own token, <code>--focus-ring</code>, rather than borrowing the body
+    ink, so focus can be retuned without moving hover or text with it. It appears only for
     <code>:focus-visible</code>. Tab into these to see it; clicking them shows nothing.
-    Ink on paper is about 11 to 1, far past the 3 to 1 minimum for a focus indicator.</p>
+    It measures 10.6 to 1 against the page in light and 19.7 to 1 in dark, both far past the
+    3 to 1 minimum for a focus indicator.</p>
   <div class="sb-stack">
     <a class="btn btn--primary" href="#0">Primary button</a>
     <a class="btn" href="#0">Secondary button</a>
@@ -114,7 +116,7 @@ const L={title:"Foundations"},E=`
   };
   requestAnimationFrame(run);
   return el;
-}`,...(v=(p=r.parameters)==null?void 0:p.docs)==null?void 0:v.source}}};var h,b,u;n.parameters={...n.parameters,docs:{...(h=n.parameters)==null?void 0:h.docs,source:{originalSource:`() => \`
+}`,...(v=(p=r.parameters)==null?void 0:p.docs)==null?void 0:v.source}}};var h,u,b;n.parameters={...n.parameters,docs:{...(h=n.parameters)==null?void 0:h.docs,source:{originalSource:`() => \`
   <p class="sb-note">Display is Nickel Gothic Variable from Typekit. Its axes are width 25 to 150
     and slant −15 to 15. There is no weight axis, so a weight setting on the display face does
     nothing. Body is Inter, 400 through 900.</p>
@@ -131,7 +133,7 @@ const L={title:"Foundations"},E=`
       <div style="font-size:var(--text-body);line-height:1.65;color:var(--text-mute);max-width:68ch">I ported the recipe database and grew it into a full content platform, organized into Recipes, Trends, Food News, and Magazine content.</div></div>
     <div><p class="sb-label">Label · 11px, .14em, 800</p>
       <div style="font-size:var(--text-label);letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--text-mute)">Product</div></div>
-  </div>\``,...(u=(b=n.parameters)==null?void 0:b.docs)==null?void 0:u.source}}};var g,m,x;a.parameters={...a.parameters,docs:{...(g=a.parameters)==null?void 0:g.docs,source:{originalSource:`() => {
+  </div>\``,...(b=(u=n.parameters)==null?void 0:u.docs)==null?void 0:b.source}}};var g,m,x;a.parameters={...a.parameters,docs:{...(g=a.parameters)==null?void 0:g.docs,source:{originalSource:`() => {
   const widths = [['Compressed', 25], ['Extra Condensed', 38], ['Condensed', 50], ['Narrow', 75], ['Regular', 100], ['Semi Wide', 125], ['Wide', 150]];
   return \`<p class="sb-note">The named widths on the <code>wdth</code> axis. Headlines on the site sit
     around 62, between Condensed and Narrow.</p>
@@ -154,9 +156,11 @@ const L={title:"Foundations"},E=`
     <div style="width:230px;height:130px;border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow-card-hover);display:grid;place-items:center;font-size:13px;color:var(--text-mute)">--shadow-card-hover</div>
     <div style="width:230px;height:130px;border-radius:var(--radius-sm);background:var(--surface);border:1px solid var(--rule-strong);display:grid;place-items:center;font-size:13px;color:var(--text-mute)">--radius-sm, --rule-strong</div>
   </div>\``,...(T=(_=i.parameters)==null?void 0:_.docs)==null?void 0:T.source}}};var S,z,$;d.parameters={...d.parameters,docs:{...(S=d.parameters)==null?void 0:S.docs,source:{originalSource:`() => \`
-  <p class="sb-note">The ring is the page's own ink, never the browser blue, and it appears only for
+  <p class="sb-note">The ring has its own token, <code>--focus-ring</code>, rather than borrowing the body
+    ink, so focus can be retuned without moving hover or text with it. It appears only for
     <code>:focus-visible</code>. Tab into these to see it; clicking them shows nothing.
-    Ink on paper is about 11 to 1, far past the 3 to 1 minimum for a focus indicator.</p>
+    It measures 10.6 to 1 against the page in light and 19.7 to 1 in dark, both far past the
+    3 to 1 minimum for a focus indicator.</p>
   <div class="sb-stack">
     <a class="btn btn--primary" href="#0">Primary button</a>
     <a class="btn" href="#0">Secondary button</a>
@@ -172,4 +176,4 @@ const L={title:"Foundations"},E=`
         <div style="height:120px;border-radius:12px;border:1px solid var(--rule);background-color:var(--bg);background-image:radial-gradient(circle at 1px 1px, rgba(45,52,54,\${o}) 1px, transparent 0);background-size:20px 20px"></div>
         <p class="sb-label" style="margin-top:8px">\${n} · \${o}</p>
       </div>\`).join('')}
-  </div>\``,...(N=(C=c.parameters)==null?void 0:C.docs)==null?void 0:N.source}}};const R=["Colour","Typography","DisplayWidths","Spacing","Elevation","Focus","Texture"];export{r as Colour,a as DisplayWidths,i as Elevation,d as Focus,o as Spacing,c as Texture,n as Typography,R as __namedExportsOrder,L as default};
+  </div>\``,...(N=(C=c.parameters)==null?void 0:C.docs)==null?void 0:N.source}}};const R=["Color","Typography","DisplayWidths","Spacing","Elevation","Focus","Texture"];export{r as Color,a as DisplayWidths,i as Elevation,d as Focus,o as Spacing,c as Texture,n as Typography,R as __namedExportsOrder,L as default};

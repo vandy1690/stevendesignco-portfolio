@@ -13,14 +13,14 @@ Three of the five stations held their score rather than rising, and that is the 
 
 The most useful finding is a failure of my own, and Friday's report predicted it in writing. Station 6 said: "Change a value on either side and the other is silently wrong, and nothing in the system would notice." On Sunday I changed a colour in code, left the Figma primitive stale, and nothing noticed for two days. For that window the design library was the side carrying a WCAG failure the code had already fixed. I also shipped a 404 link into the live documentation and left two stale tables in a file I was actively editing. Everything in that paragraph passed a green Q&A run and a merged pull request.
 
-**Overall: 38/50 across the five stations inspected.** With the five carried forward unchanged, the system total moves from 71/100 to **72/100** — a conversation starter, not a grade.
+**Overall: 38/50 across the five stations inspected.** With four carried forward unchanged and Station 2 revised down one on later evidence, the system total moves from 71/100 to **71/100** — a conversation starter, not a grade.
 
 ## Inspection sheet
 
 |  # | Station                         | Quality      | Light |      Score |         2026-10-03 |
 |---:|:--------------------------------|:-------------|:-----:|-----------:|-------------------:|
 |  1 | Coverage & gaps                 | Complete     |  🟡   |       7/10 |               7/10 |
-|  2 | Best practices                  | Sound        |  🟢   |   8/10 *   |               8/10 |
+|  2 | Best practices                  | Sound        |  🟡   |   7/10 †   |               8/10 |
 |  3 | Accessibility                   | Sound        |  🟢   |       9/10 |               9/10 |
 |  4 | Shared language                 | Sound        |  🟡   |   6/10 *   |               6/10 |
 |  5 | Testing & validation            | Sound        |  🟡   |   7/10 *   |               7/10 |
@@ -29,11 +29,12 @@ The most useful finding is a failure of my own, and Friday's report predicted it
 |  8 | Feedback & adoption             | Extensible   |  🟡   |   7/10 *   |               7/10 |
 |  9 | Machine-readable docs & context | AI-Ready     |  🟡   |       7/10 |               7/10 |
 | 10 | Agent access                    | AI-Ready     |  🟢   |       8/10 |               7/10 |
-|    | **Overall**                     |              |       | **72/100** |         **71/100** |
+|    | **Overall**                     |              |       | **71/100** |         **71/100** |
 
 `*` not inspected this pass; 2026-10-03 score carried forward.
+`†` not re-inspected in full, but revised down on new evidence from FigmaLint (see the addendum below).
 
-**Lights:** 🟢 3 green · 🟡 7 yellow · 🔴 0 red · 0 not inspected (5 carried forward)
+**Lights:** 🟢 2 green · 🟡 8 yellow · 🔴 0 red · 0 not inspected (5 carried forward)
 
 **Key:** 🔴 Red (0–3) — broken or missing; the light is ON · 🟡 Yellow (4–7) — drift or gaps; schedule a fix · 🟢 Green (8–10) — healthy, no action needed
 
@@ -143,3 +144,28 @@ The most useful finding is a failure of my own, and Friday's report predicted it
 - Recommended cadence unchanged: deep inspection quarterly, so **early January 2027**. The partial pass proved its worth and is cheap; worth repeating after any remediation batch rather than waiting for the quarter.
 - Everyday checks worth adding, each of which would have caught something this pass found by hand: a token parity diff between Figma and the stylesheet, an internal link check on the documentation, and a published-versus-source check on `public/docs/`.
 - Re-inspect by: 2027-01-05
+
+
+## Addendum, 2026-10-05: an independent tool checked my homework
+
+Steve ran **FigmaLint** against the library after this report was written. It is the second opinion the evidence basis asked for, and it found something I did not, because I never looked for it.
+
+**It is right about tokens, and my Station 2 finding was scoped too narrowly.** FigmaLint reported token usage at 8 of 28 properties (29%) with 20 hard-coded values, 16 of them spacing and 4 borders. Verified against the file directly:
+
+- **110 of 504** dimensional properties across the library are bound to variables: **21.8%**
+- On the **Components** page specifically: **52 of 115**, 45%
+- On the **Site** page: **68 of 122**, 56%
+
+My 2026-10-03 Station 2 record said "fills bound to variables, 15 of 16 in the sample". That was true and it was only ever about **colour**. I never checked whether padding, spacing, radius or stroke were bound, and then scored the station green on design craft. This is the third instance of the same methodological flaw the re-inspection already found twice in Station 1: measuring one dimension and writing the claim as though it covered all of them. Station 2 is revised from 8 to 7 on this evidence, with only the binding dimension re-measured.
+
+**Three things temper it, each verified rather than assumed:**
+
+1. **The components are better than 22% suggests.** Every Button and Pager variant has `cornerRadius` **bound** to `radius-sm`, and all eight resolve to 10px, matching the shipped `border-radius: 10px` exactly. Pager's height of 42 and padding of 18 also match the CSS exactly. The design library is faithfully reproducing what ships.
+2. **What is unbound is padding, and it is off-scale on both sides.** Button is 14/22 and Pager is 18 in Figma, and `padding: 14px 22px` and `padding: 0 54px 0 18px` in the stylesheet. None of 14, 22 or 18 exists in the spacing scale (8, 16, 24, 32, 48, 64, 96, 128, 160). So this is not design drifting from code; it is a scale that does not contain the values the buttons actually use. Fixing it means either extending the scale or changing how the buttons look, which is a decision and not a cleanup.
+3. **Most of the 504 is documentation furniture.** The Cover page, the Foundations swatch grid and the colour chips account for the bulk of the unbound values. They matter least and they drag the headline percentage down hardest.
+
+**It is wrong about the detached instance, and I checked rather than deferring.** FigmaLint reported "Detached instances (1): Button, Component overview". Node 10:24 is a FRAME named "Button" containing a TEXT label and a child frame named "instances". So are the eight beside it: Pager, Eyebrow, Meta pair, Note, Quote, Stat, Award row, Case block. They are labelled display cells on a documentation board, which is correct practice, and the name match is what triggered the flag. My own first sweep used the same crude heuristic and surfaced all nine, which is how I know the shape of the error. FigmaLint shows it as an info icon rather than a failure, so it may intend it as advisory. The 2026-10-03 finding of 23 instances and zero detached on the Site page stands.
+
+**Its accessibility panel agrees with Station 3.** Touch target size and minimum font size pass; **focus state** is flagged. That is the same gap Station 3 scored around: the design file has no annotation kit and no way to specify focus order or keyboard behaviour, and 9 of 12 component descriptions say nothing about accessibility. Two independent methods, one conclusion.
+
+**What this changes in the work order:** a new item 12 for dimensional token binding, and a note on item 1 that a parity check should cover geometry and not only colour, since colour was the only axis either of my passes actually verified.

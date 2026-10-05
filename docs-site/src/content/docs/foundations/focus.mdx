@@ -7,9 +7,19 @@ sidebar:
 
 ## The ring
 
-Two pixels of the page's own ink, offset three pixels, on `:focus-visible` only.
-Charcoal on the light theme, white on dark. It clears contrast comfortably in
-both and, unlike the browser default, it belongs to the design.
+Three pixels of `--focus-ring`, offset three pixels, on `:focus-visible` only.
+
+The ring has its own token rather than borrowing the body ink. That matters for
+governance more than appearance: a focus indicator is an accessibility
+affordance, and it should not move because somebody retuned a hover colour. It
+resolves to `#233552` on the light theme and `#F1FFB8` on dark, measuring 10.6
+to 1 and 19.7 to 1 against their page backgrounds, far past the 3 to 1 minimum.
+
+The offset is not decoration. On the dark Pager pill the ring sits at about
+1.03 to 1 against the fill itself, so without a gap of page background between
+them it would read as the pill growing rather than as a ring. Implement focus
+with `outline` and `outline-offset`, never `border` or `box-shadow`, or the
+layout shifts when the ring appears.
 
 Before this existed, the browser drew its own blue ring. On a case study card
 that looked like a selection state, which is what prompted the change.
@@ -45,7 +55,7 @@ you can write here. If a ring looks wrong somewhere, change its shape or offset,
 never its existence.
 
 In Windows High Contrast Mode the ring is handed over to the system highlight
-colour.
+colour, also at three pixels, so the two rules agree.
 
 ## Checks before you ship
 
