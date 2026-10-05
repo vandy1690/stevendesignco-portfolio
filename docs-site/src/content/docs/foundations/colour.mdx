@@ -13,9 +13,20 @@ are never stale. This page is what the tokens are *for*.
 ## Two tiers
 
 **Primitives** hold the raw values and are named for what they are:
-`--paper-cloud`, `--ink-charcoal`, `--brand-regatta`. Fourteen of them, defined
+`--paper-cloud`, `--ink-charcoal`, `--brand-regatta`. Sixteen of them, defined
 once on `:root`, the same in every theme. Nothing in the stylesheet may use one
 directly except the semantic tokens below.
+
+Primitives are **generated, not hand-written**. Figma is the source of truth for
+their values. The canonical record is `src/styles/tokens/primitives.tokens.json`
+in DTCG format, and `scripts/build-tokens.mjs` is the only thing that writes
+them into the stylesheet, between the `TOKENS:START` and `TOKENS:END` markers in
+`Site.astro`. Edit the block by hand and the next build overwrites you.
+`npm run tokens:check` fails when the two drift, and `ship` runs it first.
+
+The semantic tier stays hand-written on purpose. It uses `rgba()` over the
+`-rgb` channels and `clamp()` fluid type, and a Figma variable can express
+neither. Generating it would flatten the type scale to fixed breakpoint values.
 
 **Semantic tokens** are named for what they are *for*: `--bg`, `--text`,
 `--accent`. Each theme maps them onto primitives and introduces no values of its
@@ -47,6 +58,12 @@ kicker, the filled button, the bar on a social card. It is not a brand wash.
 **Rules.** `--rule` is a divider between content. `--rule-strong` is for the
 boundary of a control. They are not interchangeable, and confusing them is the
 mistake this site has actually made.
+
+**Focus.** `--focus-ring` is the keyboard focus indicator and nothing else. It
+points at its own primitives, `--brand-focus` and `--brand-focus-dark`, rather
+than reusing `--accent-hover`. That separation is deliberate: retuning a hover
+colour should never silently move an accessibility affordance. See
+[Focus](/docs/foundations/focus/).
 
 ## Two contrast rules that decide the values
 
