@@ -56,6 +56,7 @@ Props:
 | `title` | yes | The `<title>`, Open Graph title, and the Article headline (the part before ` · `) |
 | `description` | no | Meta description, Open Graph, Twitter |
 | `image` | no | Path to a social card under `public/`. Falls back to `/og-image.png` |
+| `variant` | no | `"case"` turns on the case study styles by putting `.case` on `<main>`. A case study page that omits it renders unstyled |
 
 What it renders:
 
@@ -113,13 +114,17 @@ dialog.
 
 ## Case study pages
 
-Each file in `src/pages/work/` is self contained and follows one shape:
+Each file in `src/pages/work/` is assembled from the components in
+`src/components/ui/` and follows one shape:
 
-1. `cs-hero`: back link, eyebrow, title, lede, hero figure, and a `cs-meta`
-   list (role, org, recognition).
-2. A run of `section` and `section--alt` bands, each holding `cs-block`
-   elements with an eyebrow, a lede heading, and body copy.
-3. A pager pair at the foot.
+1. `<CaseHero>`: back link, eyebrow, title, lede, a `figure` slot, and the meta
+   row of role, org and recognition, which it renders itself from its `meta` prop.
+2. A run of `<CaseSection>` bands, alternating with `alt`, each holding
+   `<CaseBlock>` with an eyebrow, a lede heading and body copy.
+3. `<PagerPair>` at the foot.
+
+The `cs-*` class names below are what those components render. A page does not
+write them by hand.
 
 The `cs-*` classes are global. They are defined once in `src/layouts/Site.astro`,
 scoped under `.case`, and a page turns them on by passing `variant="case"` to the
@@ -141,8 +146,26 @@ The pieces that are global and not under `.case` (`pager`, `btn`, `eyebrow`,
 
 ## Components
 
+The shared library is the 14 components in `components/ui/`. Every case study
+page is assembled from them and carries no markup of its own for these pieces.
+Each one has a page in the documentation site under `/docs/components/`.
+
 | Component | Type | Used on |
 |-----------|------|---------|
+| `components/ui/CaseHero.astro` | Case study hero; renders `CaseMeta` and `Eyebrow` itself | Every case study |
+| `components/ui/CaseSection.astro` | The page band, with `alt`, `figure`, `flush`, `inner` | Every case study |
+| `components/ui/CaseBlock.astro` | The prose unit: eyebrow, lede heading, paragraphs | Every case study |
+| `components/ui/CaseFigure.astro` | Figure with a caption slot | Case studies with art |
+| `components/ui/CaseMeta.astro` | The role, org, recognition row. Composed inside `CaseHero` | Via `CaseHero` |
+| `components/ui/PagerPair.astro` | The previous and next pair. Composes two `Pager` | Every case study |
+| `components/ui/Pager.astro` | One pager link. Composed inside `PagerPair` | Via `PagerPair` |
+| `components/ui/StatList.astro` | Two or three statistics, `three` and `large` | Selected case studies |
+| `components/ui/Quote.astro` | The case study pull quote, `blockquote.cs-quote` | Selected case studies |
+| `components/ui/Button.astro` | A link styled as a button, `variant="primary"` for the filled one | Several pages |
+| `components/ui/ButtonGroup.astro` | A row of buttons | Several pages |
+| `components/ui/Eyebrow.astro` | The small label above a heading | Via `CaseHero`, `CaseBlock` |
+| `components/ui/Note.astro` | The aside for what a page is not showing | Several case studies |
+| `components/ui/AwardList.astro` | The recognition list | `/work/plate` |
 | `components/art/PluginPipeline.astro` | Inline SVG diagram | Home card stand in |
 | `components/art/OneClickCheckout.astro` | Inline SVG diagram | Home card stand in |
 | `components/art/JourneyMap.astro` | Inline SVG diagram | Home card stand in |
