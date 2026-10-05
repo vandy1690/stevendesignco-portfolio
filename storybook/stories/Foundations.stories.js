@@ -16,7 +16,7 @@ const helpers = `
     const a = Math.max(L1, L2), b = Math.min(L1, L2); return (a + 0.05) / (b + 0.05); };
 `;
 
-export const Colour = () => {
+export const Color = () => {
   const el = document.createElement('div');
   el.innerHTML = `
     <p class="sb-note">Light is the shipped default; dark is the alternate. Ratios are against
