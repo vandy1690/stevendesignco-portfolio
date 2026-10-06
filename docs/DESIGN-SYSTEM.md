@@ -150,8 +150,28 @@ The page ground is a dot grid: a `radial-gradient` on `body`, one dot per
 
 ## Changing a token
 
-1. Change it in `Site.astro`, in every theme block that defines it.
-2. Check contrast. The Colour story in the Storybook computes ratios live
-   against the current tokens.
-3. Run `npm run sync` and rebuild in `storybook/` so the library picks up the change.
-4. If it is a brand colour, check `scripts/generate-og.mjs` too.
+Which token it is decides where you change it. The sixteen colour primitives
+are generated; everything else is hand-authored.
+
+**A colour primitive** (`--ink-*`, `--paper-*`, `--brand-*`):
+
+1. Change the value in `src/styles/tokens/primitives.tokens.json`, and in the
+   Figma Primitives collection so the two agree.
+2. Run `npm run tokens`. That rewrites the block between `TOKENS:START` and
+   `TOKENS:END` in `Site.astro`, including the `-rgb` triples, which are derived
+   rather than written by hand.
+3. **Do not edit that block directly.** The next run overwrites it.
+   `npm run tokens:check` fails when the two drift, and it runs in CI.
+
+**Anything else** (the semantic tier, spacing, radius, layout, type scale):
+
+1. Change it in `Site.astro`, in every theme block that defines it. These stay
+   hand-authored because they use `rgba()` over the `-rgb` helpers and `clamp()`
+   fluid type, neither of which a Figma variable can express.
+2. Change the matching Figma variable too. Nothing detects it if you do not.
+
+**Either way:**
+
+3. Check contrast. The Storybook computes ratios live against the current tokens.
+4. Run `npm run sync` and rebuild in `storybook/` so the library picks up the change.
+5. If it is a brand colour, check `scripts/generate-og.mjs` too.

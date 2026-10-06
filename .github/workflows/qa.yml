@@ -52,6 +52,13 @@ jobs:
       - name: Install
         run: npm ci
 
+      - name: Tokens in step
+        # Cheap and first: a stale generated block fails here in seconds rather
+        # than after a three minute browser install. The primitives in
+        # Site.astro are generated from src/styles/tokens/primitives.tokens.json,
+        # and this is what stops the two drifting.
+        run: npm run tokens:check
+
       - name: Install the browser
         # Only chromium, and only its own dependencies. Installing all three
         # engines triples the time for no extra coverage.
