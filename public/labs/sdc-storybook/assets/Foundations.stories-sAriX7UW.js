@@ -30,7 +30,7 @@ const L={title:"Foundations"},E=`
         return '<div class="sb-swatch"><div class="sb-swatch__chip" style="background:' + v + '"></div>' +
           '<div class="sb-swatch__meta"><div class="sb-swatch__name">' + t + '</div>' +
           '<div class="sb-swatch__val">' + v + '</div>' + line + '</div></div>';
-      }).join(''); }`,e.appendChild(s)}),e},n=()=>`
+      }).join(''); }`,e.appendChild(s)}),e},o=()=>`
   <p class="sb-note">Display is Nickel Gothic Variable from Typekit. Its axes are width 25 to 150
     and slant −15 to 15. There is no weight axis, so a weight setting on the display face does
     nothing. Body is Inter, 400 through 900.</p>
@@ -40,7 +40,7 @@ const L={title:"Foundations"},E=`
     <div><p class="sb-label">Display 2 · clamp(32px, 4.8vw, 48px)</p>
       <div class="display" style="font-size:var(--text-display-2);line-height:1">Nobody asked for this one.</div></div>
     <div><p class="sb-label">Heading · clamp(24px, 3.2vw, 32px)</p>
-      <div style="font-size:var(--text-heading);font-weight:600;letter-spacing:-.015em;line-height:1.25">One library, seven brands.</div></div>
+      <div style="font-size:var(--text-heading);font-weight:600;letter-spacing:-.015em;line-height:1.25">One shared framework, seven brands.</div></div>
     <div><p class="sb-label">Deck · clamp(18px, 1.9vw, 24px)</p>
       <div style="font-size:var(--text-deck);font-weight:500;line-height:1.5;max-width:56ch">Plate's website was only a recipe database. The work was to grow it into a platform that carried the whole brand.</div></div>
     <div><p class="sb-label">Body · 16px / 1.65</p>
@@ -53,7 +53,7 @@ const L={title:"Foundations"},E=`
       <div class="sb-row">
         <div class="sb-row__k">${t} · ${s}</div>
         <div style="font-family:var(--font-display);font-variation-settings:'wdth' ${s},'slnt' 0;font-synthesis:none;font-size:34px;line-height:1.1">Becoming the default</div>
-      </div>`).join("")}</div>`;a.storyName="Display widths";const o=()=>`<p class="sb-note">One scale for every gap, margin and section rhythm.</p>
+      </div>`).join("")}</div>`;a.storyName="Display widths";const n=()=>`<p class="sb-note">One scale for every gap, margin and section rhythm.</p>
     <div class="sb-col">${[["xs",8],["sm",16],["md",24],["lg",32],["xl",48],["2xl",64],["3xl",96],["4xl",128],["5xl",160]].map(([t,s])=>`
       <div class="sb-row"><div class="sb-row__k">--space-${t} · ${s}px</div>
       <div class="sb-bar" style="width:${s}px"></div></div>`).join("")}</div>`,i=()=>`
@@ -116,7 +116,7 @@ const L={title:"Foundations"},E=`
   };
   requestAnimationFrame(run);
   return el;
-}`,...(v=(p=r.parameters)==null?void 0:p.docs)==null?void 0:v.source}}};var h,u,b;n.parameters={...n.parameters,docs:{...(h=n.parameters)==null?void 0:h.docs,source:{originalSource:`() => \`
+}`,...(v=(p=r.parameters)==null?void 0:p.docs)==null?void 0:v.source}}};var h,u,b;o.parameters={...o.parameters,docs:{...(h=o.parameters)==null?void 0:h.docs,source:{originalSource:`() => \`
   <p class="sb-note">Display is Nickel Gothic Variable from Typekit. Its axes are width 25 to 150
     and slant −15 to 15. There is no weight axis, so a weight setting on the display face does
     nothing. Body is Inter, 400 through 900.</p>
@@ -126,14 +126,14 @@ const L={title:"Foundations"},E=`
     <div><p class="sb-label">Display 2 · clamp(32px, 4.8vw, 48px)</p>
       <div class="display" style="font-size:var(--text-display-2);line-height:1">Nobody asked for this one.</div></div>
     <div><p class="sb-label">Heading · clamp(24px, 3.2vw, 32px)</p>
-      <div style="font-size:var(--text-heading);font-weight:600;letter-spacing:-.015em;line-height:1.25">One library, seven brands.</div></div>
+      <div style="font-size:var(--text-heading);font-weight:600;letter-spacing:-.015em;line-height:1.25">One shared framework, seven brands.</div></div>
     <div><p class="sb-label">Deck · clamp(18px, 1.9vw, 24px)</p>
       <div style="font-size:var(--text-deck);font-weight:500;line-height:1.5;max-width:56ch">Plate's website was only a recipe database. The work was to grow it into a platform that carried the whole brand.</div></div>
     <div><p class="sb-label">Body · 16px / 1.65</p>
       <div style="font-size:var(--text-body);line-height:1.65;color:var(--text-mute);max-width:68ch">I ported the recipe database and grew it into a full content platform, organized into Recipes, Trends, Food News, and Magazine content.</div></div>
     <div><p class="sb-label">Label · 11px, .14em, 800</p>
       <div style="font-size:var(--text-label);letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--text-mute)">Product</div></div>
-  </div>\``,...(b=(u=n.parameters)==null?void 0:u.docs)==null?void 0:b.source}}};var g,m,x;a.parameters={...a.parameters,docs:{...(g=a.parameters)==null?void 0:g.docs,source:{originalSource:`() => {
+  </div>\``,...(b=(u=o.parameters)==null?void 0:u.docs)==null?void 0:b.source}}};var g,m,x;a.parameters={...a.parameters,docs:{...(g=a.parameters)==null?void 0:g.docs,source:{originalSource:`() => {
   const widths = [['Compressed', 25], ['Extra Condensed', 38], ['Condensed', 50], ['Narrow', 75], ['Regular', 100], ['Semi Wide', 125], ['Wide', 150]];
   return \`<p class="sb-note">The named widths on the <code>wdth</code> axis. Headlines on the site sit
     around 62, between Condensed and Narrow.</p>
@@ -142,13 +142,13 @@ const L={title:"Foundations"},E=`
         <div class="sb-row__k">\${n} · \${w}</div>
         <div style="font-family:var(--font-display);font-variation-settings:'wdth' \${w},'slnt' 0;font-synthesis:none;font-size:34px;line-height:1.1">Becoming the default</div>
       </div>\`).join('')}</div>\`;
-}`,...(x=(m=a.parameters)==null?void 0:m.docs)==null?void 0:x.source}}};var w,f,y;o.parameters={...o.parameters,docs:{...(w=o.parameters)==null?void 0:w.docs,source:{originalSource:`() => {
+}`,...(x=(m=a.parameters)==null?void 0:m.docs)==null?void 0:x.source}}};var w,f,y;n.parameters={...n.parameters,docs:{...(w=n.parameters)==null?void 0:w.docs,source:{originalSource:`() => {
   const steps = [['xs', 8], ['sm', 16], ['md', 24], ['lg', 32], ['xl', 48], ['2xl', 64], ['3xl', 96], ['4xl', 128], ['5xl', 160]];
   return \`<p class="sb-note">One scale for every gap, margin and section rhythm.</p>
     <div class="sb-col">\${steps.map(([n, px]) => \`
       <div class="sb-row"><div class="sb-row__k">--space-\${n} · \${px}px</div>
       <div class="sb-bar" style="width:\${px}px"></div></div>\`).join('')}</div>\`;
-}`,...(y=(f=o.parameters)==null?void 0:f.docs)==null?void 0:y.source}}};var k,_,T;i.parameters={...i.parameters,docs:{...(k=i.parameters)==null?void 0:k.docs,source:{originalSource:`() => \`
+}`,...(y=(f=n.parameters)==null?void 0:f.docs)==null?void 0:y.source}}};var k,_,T;i.parameters={...i.parameters,docs:{...(k=i.parameters)==null?void 0:k.docs,source:{originalSource:`() => \`
   <p class="sb-note">Cards carry a four-stop shadow and deepen on hover. Radius is 18px for cards
     and 10px for controls.</p>
   <div class="sb-stack" style="gap:28px">
@@ -176,4 +176,4 @@ const L={title:"Foundations"},E=`
         <div style="height:120px;border-radius:12px;border:1px solid var(--rule);background-color:var(--bg);background-image:radial-gradient(circle at 1px 1px, rgba(45,52,54,\${o}) 1px, transparent 0);background-size:20px 20px"></div>
         <p class="sb-label" style="margin-top:8px">\${n} · \${o}</p>
       </div>\`).join('')}
-  </div>\``,...(N=(C=c.parameters)==null?void 0:C.docs)==null?void 0:N.source}}};const R=["Color","Typography","DisplayWidths","Spacing","Elevation","Focus","Texture"];export{r as Color,a as DisplayWidths,i as Elevation,d as Focus,o as Spacing,c as Texture,n as Typography,R as __namedExportsOrder,L as default};
+  </div>\``,...(N=(C=c.parameters)==null?void 0:C.docs)==null?void 0:N.source}}};const R=["Color","Typography","DisplayWidths","Spacing","Elevation","Focus","Texture"];export{r as Color,a as DisplayWidths,i as Elevation,d as Focus,n as Spacing,c as Texture,o as Typography,R as __namedExportsOrder,L as default};
