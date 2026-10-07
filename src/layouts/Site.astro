@@ -866,8 +866,10 @@ const jsonLd = {
 				display: inline-flex;
 				align-items: center;
 				gap: var(--space-xs);
-				padding: 14px 22px;
-				border-radius: 10px;
+				/* 16/24, matching the Figma Button, and on the spacing scale rather
+				   than the old off-scale 14/22. */
+				padding: var(--space-sm) var(--space-md);
+				border-radius: var(--radius-sm);
 				border: 1px solid var(--rule-strong);
 				background: transparent;
 				color: var(--text);
