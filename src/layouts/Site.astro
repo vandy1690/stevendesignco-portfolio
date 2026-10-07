@@ -482,9 +482,11 @@ const jsonLd = {
 				--text-stat-lg: clamp(48px, 6vw, 72px);       /* stat number, closing statement */
 
 				/* ---------- Elevation ----------
-				   Cards carry a four-stop shadow and deepen on hover. Nothing else
-				   on the site is elevated; if something new needs a shadow, ask
-				   first whether it should be a card.
+				   Cards carry a four-stop shadow and deepen on hover. The only other
+				   shadows are the overlay and logo tokens below the card pair
+				   (float, modal, chip, tile, plus the modal scrim), which replaced
+				   raw values on 2026-10-07. If something new needs a shadow, ask
+				   first whether it should be a card or one of those.
 
 				   Both themes use the same charcoal, which is what shipped when
 				   these lived in the home page's own <style> block. On the dark
