@@ -1,0 +1,54 @@
+---
+title: Elevation
+description: The shadow tokens, and the short list of things allowed to cast one.
+sidebar:
+  order: 7
+---
+
+## What it is
+
+Shadows are tokens in `src/layouts/Site.astro`, next to the color tokens and
+outside the block generated from Figma. Nothing on the site writes a shadow or a
+scrim as a raw value. A design system check flags raw colors on every edit, so a
+new shadow starts as a token or it does not start.
+
+## The tokens
+
+| Token | Used by |
+| :-- | :-- |
+| `--shadow-card` | Case study cards at rest |
+| `--shadow-card-hover` | The same cards, lifted on hover |
+| `--shadow-float` | The floating theme toggle |
+| `--shadow-modal` | The case study dialog panel |
+| `--shadow-chip` | The round logo chips in the PayPal hero |
+| `--shadow-tile` | The scattered logo tiles |
+| `--scrim` | The dimmed backdrop behind the case study dialog |
+
+The card pair is charcoal in both themes. On the dark ground it reads as almost
+nothing, and that is correct: in dark mode the lift comes from `--surface` being
+lighter than `--bg`. The float, modal and scrim tokens are black, because they
+sit over anything, photos included. Chip and tile are charcoal.
+
+The last five became tokens on October 7, 2026, with the same values they had as
+raw declarations, except chip and tile. Those carried a slate color left over
+from an imported component and now use the site's own charcoal.
+
+## When something may cast a shadow
+
+Only cards that move cast the card shadow: the scroll deck and the hover lift. A
+static panel stays flat, a `--surface` fill on the dotted ground. That rule came
+from a review where a shadow on panels that never moved added weight and no
+meaning.
+
+Overlays get the overlay tokens. Logos on white get chip or tile, because a white
+shape on the light ground needs an edge to exist at all.
+
+If something new seems to need a shadow, ask first whether it is a card, an
+overlay or a logo. If it is none of those, it probably does not need one.
+
+## Checks before you ship
+
+1. No raw `rgba(` or hex in a `box-shadow` or `background` outside a token
+   definition.
+2. Static panels are flat.
+3. In dark mode, cards still read as lifted from the surface color alone.

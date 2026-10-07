@@ -9,11 +9,11 @@ import { LOGOS } from './logos';
 type Tile = { brand: string; x: number; y: number; w: number };
 
 const CFG: Record<string, { bg?: string; pad?: string }> = {
-  linkedin:         { bg: '#069', pad: '16%' },
-  nintendo:         { bg: '#E60012', pad: '15%' },
-  lego:             { bg: '#E3000B', pad: '20%' },
-  homedepot:        { bg: '#F96302', pad: '20%' },
-  gap:              { bg: '#002A5F', pad: '22%' },
+  linkedin:         { bg: '#069', pad: '16%' }, // ds-allow: the company's own brand color
+  nintendo:         { bg: '#E60012', pad: '15%' }, // ds-allow: the company's own brand color
+  lego:             { bg: '#E3000B', pad: '20%' }, // ds-allow: the company's own brand color
+  homedepot:        { bg: '#F96302', pad: '20%' }, // ds-allow: the company's own brand color
+  gap:              { bg: '#002A5F', pad: '22%' }, // ds-allow: the company's own brand color
   spotify:          { bg: 'transparent', pad: '6%' },
   microsoftsurface: { pad: '26%' },
   fanduel:          { pad: '9%' },
@@ -98,11 +98,11 @@ const LogoScatter: React.FC<LogoScatterProps> = ({ className = '' }) => {
           align-items: center;
           justify-content: center;
           box-sizing: border-box;
-          box-shadow: 0 12px 28px rgba(15, 23, 42, 0.13), 0 1px 3px rgba(15, 23, 42, 0.08);
+          box-shadow: var(--shadow-tile);
           animation: ls-roam var(--ls-dur, 26s) ease-in-out var(--ls-delay, 0s) infinite;
           will-change: transform;
         }
-        .ls-inner .ls-logo { width: 100%; height: 100%; display: block; color: #000; }
+        .ls-inner .ls-logo { width: 100%; height: 100%; display: block; color: #000; } /* ds-allow: logo artwork is black by the brands' own rules */
         .ls-inner .ls-logo svg { width: 100%; height: 100%; display: block; }
 
         .ls-paypal {
@@ -148,7 +148,7 @@ const LogoScatter: React.FC<LogoScatterProps> = ({ className = '' }) => {
             <div
               className="ls-inner"
               style={{
-                background: cfg.bg ?? '#ffffff',
+                background: cfg.bg ?? 'var(--paper-white)',
                 padding: cfg.pad ?? '22%',
                 ['--ls-dur' as string]: `${22 + (i % 6) * 2.5}s`,
                 ['--ls-delay' as string]: `-${((i * 3.3) % 20).toFixed(1)}s`,

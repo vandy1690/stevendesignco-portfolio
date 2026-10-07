@@ -15,6 +15,7 @@ const pages: { path: string; priority: string; lastmod: string }[] = [
 	{ path: '/work/blackbird', priority: '0.8', lastmod: '2026-06-26' },
 	{ path: '/work/alt-meat', priority: '0.8', lastmod: '2026-08-27' },
 	{ path: '/work/meatingplace', priority: '0.8', lastmod: '2026-08-27' },
+	{ path: '/work/artistic-eye', priority: '0.8', lastmod: '2026-10-01' },
 	{ path: '/resume', priority: '0.7', lastmod: '2026-09-11' },
 ];
 
