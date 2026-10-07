@@ -122,7 +122,7 @@ Gothic with a link tag, not inline CSS, so the same Typekit link sits in
 - Read me
 
 **Foundations** (the tokens)
-- Colour, with contrast ratios computed live in the browser against the
+- Color, with contrast ratios computed live in the browser against the
   current theme
 - Typography
 - Display widths (Nickel Gothic has a width axis and a slant axis, no weight axis)
@@ -154,8 +154,8 @@ section on one scrolling page, with controls and source.
 
 | Add-on | What you get |
 |--------|--------------|
-| `@storybook/addon-essentials` | The toolbar the theme switch lives in, Controls, Viewport, Measure, Outline, and autodocs. Actions and Backgrounds are switched off: no story fires an action, and the theme switch owns the canvas colour |
-| `@storybook/addon-a11y` | An Accessibility tab that runs axe on the story, plus a colour blindness simulator in the toolbar |
+| `@storybook/addon-essentials` | The toolbar the theme switch lives in, Controls, Viewport, Measure, Outline, and autodocs. Actions and Backgrounds are switched off: no story fires an action, and the theme switch owns the canvas color |
+| `@storybook/addon-a11y` | An Accessibility tab that runs axe on the story, plus a color blindness simulator in the toolbar |
 | `@whitespace/storybook-addon-html` | An HTML tab with the rendered, formatted markup. Scoped to the inside of the canvas wrapper, so you see the component and not the Storybook chrome |
 | `@storybook/addon-designs` | A Design tab with the Figma frame beside the story. Off until a link is filled in. See [Adding Figma frames](#adding-figma-frames) |
 
@@ -205,13 +205,13 @@ Rules that keep the library honest:
   story. If it needs CSS, that CSS belongs in the site, and the sync brings it in.
 - **Story chrome uses `.sb-*` classes** from `.storybook/storybook.css`:
   `.sb-note` for the explainer line, `.sb-stack` for a row, `.sb-col` for a
-  column, `.sb-grid` for a tile grid, `.sb-row` for a labelled row. Nothing in
+  column, `.sb-grid` for a tile grid, `.sb-row` for a labeled row. Nothing in
   that file ships to the site.
 - **No ids, and scope your scripts.** A Docs page renders several stories, and
   some stories twice, in one document. An id will collide and a top level
   `const` in an injected script will throw on the second render. Wrap injected
   script text in a block and find elements from `document.currentScript`. The
-  Colour story in `Foundations.stories.js` shows the pattern.
+  Color story in `Foundations.stories.js` shows the pattern.
 - **New section?** Add its title to `storySort.order` in `.storybook/preview.js`.
 - **New story in Components or Patterns?** Add its export name to the
   `attachDesigns({...})` call at the foot of the file and to `design-links.js`.
