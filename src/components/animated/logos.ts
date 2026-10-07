@@ -33,7 +33,10 @@ function sanitize(svg: string): string {
 		.replace(/<!--[\s\S]*?-->/g, '')
 		.replace(/<metadata[\s\S]*?<\/metadata>/g, '')
 		.replace(/<sodipodi:namedview[\s\S]*?(?:\/>|<\/sodipodi:namedview>)/g, '')
-		.replace(/<title>\s*<\/title>/g, '')
+		// Any <title> goes too, not only empty ones. Editor exports carry junk like
+		// "Layer 1" or a stock-site credit, and screen readers announce it on top
+		// of the wrapper's aria-label.
+		.replace(/<title>[\s\S]*?<\/title>/g, '')
 		// The wrapper that inlines a logo carries role="img" and the brand name,
 		// so the inner svg is decoration, not a presentation role with children.
 		.replace(/\srole="presentation"/g, ' aria-hidden="true"');

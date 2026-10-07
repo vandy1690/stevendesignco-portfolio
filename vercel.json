@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "stevendesignco.com"
+        }
+      ],
+      "destination": "https://www.stevendesignco.com/$1",
+      "permanent": true
+    }
+  ]
+}

@@ -482,9 +482,11 @@ const jsonLd = {
 				--text-stat-lg: clamp(48px, 6vw, 72px);       /* stat number, closing statement */
 
 				/* ---------- Elevation ----------
-				   Cards carry a four-stop shadow and deepen on hover. Nothing else
-				   on the site is elevated; if something new needs a shadow, ask
-				   first whether it should be a card.
+				   Cards carry a four-stop shadow and deepen on hover. The only other
+				   shadows are the overlay and logo tokens below the card pair
+				   (float, modal, chip, tile, plus the modal scrim), which replaced
+				   raw values on 2026-10-07. If something new needs a shadow, ask
+				   first whether it should be a card or one of those.
 
 				   Both themes use the same charcoal, which is what shipped when
 				   these lived in the home page's own <style> block. On the dark
@@ -493,6 +495,12 @@ const jsonLd = {
 				   lighter than --bg, not from the shadow. */
 				--shadow-card: 0 1px 2px rgba(var(--ink-charcoal-rgb), 0.08), 0 6px 12px -4px rgba(var(--ink-charcoal-rgb), 0.14), 0 18px 32px -12px rgba(var(--ink-charcoal-rgb), 0.24), 0 36px 64px -24px rgba(var(--ink-charcoal-rgb), 0.32);
 				--shadow-card-hover: 0 1px 2px rgba(var(--ink-charcoal-rgb), 0.08), 0 10px 18px -6px rgba(var(--ink-charcoal-rgb), 0.18), 0 26px 44px -14px rgba(var(--ink-charcoal-rgb), 0.3), 0 48px 80px -28px rgba(var(--ink-charcoal-rgb), 0.38);
+				/* Overlays. Added 2026-10-07 to replace raw values; same values as before. */
+				--shadow-float: 0 6px 20px rgba(var(--ink-black-rgb), 0.25);      /* floating theme toggle */
+				--shadow-modal: 0 40px 100px -30px rgba(var(--ink-black-rgb), 0.45); /* case study modal panel */
+				--shadow-chip: 0 6px 14px rgba(var(--ink-charcoal-rgb), 0.10), 0 1px 2px rgba(var(--ink-charcoal-rgb), 0.06); /* logo chips */
+				--shadow-tile: 0 12px 28px rgba(var(--ink-charcoal-rgb), 0.13), 0 1px 3px rgba(var(--ink-charcoal-rgb), 0.08); /* scattered logo tiles */
+				--scrim: rgba(var(--ink-black-rgb), 0.3);                          /* modal backdrop */
 			}
 
 			/* Light theme: applied when system requests light AND user has not
@@ -694,7 +702,7 @@ const jsonLd = {
 				z-index: 40;
 				width: 48px;
 				height: 48px;
-				box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+				box-shadow: var(--shadow-float);
 				-webkit-backdrop-filter: blur(8px);
 				backdrop-filter: blur(8px);
 			}
@@ -917,7 +925,7 @@ const jsonLd = {
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				background: rgba(240, 238, 233, 0.16);
+				background: rgba(var(--paper-cloud-rgb), 0.16);
 			}
 			.pager--prev .pager__cap { right: auto; left: 0; }
 			.pager__cap svg { width: 16px; height: 16px; display: block; opacity: 0.6; }

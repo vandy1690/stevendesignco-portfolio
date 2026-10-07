@@ -16,7 +16,7 @@ const cases = [
 		// Merchant logos and device screens: wider than 16:9, and every logo has to
 		// survive, so it fits rather than crops. Field is this artwork's own ground.
 		contain: true,
-		field: '#F0EEE9',
+		field: '#F0EEE9', // ds-allow: matches this artwork's own background
 		head: 'Nobody asked for this one.',
 		text: 'A Figma plugin, built on my own initiative, that cut merchant flow setup from most of a day to 10 to 15 minutes, across the 38-merchant program.',
 		product: 'Figma plugin, PayPal',
@@ -27,7 +27,7 @@ const cases = [
 		art: 'image',
 		image: '/images/case-studies/design-systems/storybook-type.webp',
 		anchor: 'design-systems',
-		head: 'One library, seven brands.',
+		head: 'One shared framework, seven brands.',
 		text: 'Two Pattern Labs, two Storybook builds, a published Figma library, and the checks that keep all of it honest. Still browsable.',
 		product: 'Design systems, MTG Media Group and PayPal',
 		objective: 'Keep the quality up after the first version ships',
@@ -59,7 +59,7 @@ const cases = [
 		// The dead end itself is the dark square at the right-hand end of the
 		// arc, low in the frame. A cropped version of this image loses the point.
 		contain: true,
-		field: '#EEEAE7',
+		field: '#EEEAE7', // ds-allow: matches this artwork's own background
 		head: 'The checkout dead end.',
 		text: 'A saved card stops working, and nothing stops the order until checkout. I mapped the month leading up to it for senior leadership, marking where it could have been resolved instead. It became the team’s template.',
 		product: 'PayPal consumer checkout',
@@ -72,7 +72,7 @@ const cases = [
 		// The reversed lockup on its own charcoal ground. A logo, so it fits inside
 		// the box rather than cropping, and the field is the artwork's own.
 		contain: true,
-		field: '#2B2C2B',
+		field: '#2B2C2B', // ds-allow: matches this artwork's own background
 		head: 'A brand, from the letterform out.',
 		text: 'A full identity for an art and eyewear shop in Door County: a custom wordmark, a stacked monogram in six colorways, printed cards, and 11.2 ft double-sided street flags. The guidelines are published.',
 		product: 'The Artistic Eye, Steven Design Services',
@@ -955,7 +955,7 @@ const quotes = [
 		overflow: auto;
 		padding: 80px 24px;
 		perspective: 2000px;
-		background: rgba(0, 0, 0, 0);
+		background: transparent;
 		-webkit-backdrop-filter: blur(0);
 		backdrop-filter: blur(0);
 		visibility: hidden;
@@ -964,7 +964,7 @@ const quotes = [
 	.modal[hidden] { display: none; }
 	.modal.is-open {
 		visibility: visible;
-		background: rgba(0, 0, 0, 0.3);
+		background: var(--scrim);
 		-webkit-backdrop-filter: blur(2rem);
 		backdrop-filter: blur(2rem);
 		transition-delay: 0s;
@@ -975,7 +975,7 @@ const quotes = [
 		margin: 0 auto;
 		background: var(--bg);
 		border-radius: var(--radius);
-		box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.45);
+		box-shadow: var(--shadow-modal);
 		padding: 8px 0 32px;
 		transform: rotateY(180deg);
 		transform-style: preserve-3d;

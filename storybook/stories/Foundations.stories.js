@@ -60,7 +60,7 @@ export const Typography = () => `
     <div><p class="sb-label">Display 2 · clamp(32px, 4.8vw, 48px)</p>
       <div class="display" style="font-size:var(--text-display-2);line-height:1">Nobody asked for this one.</div></div>
     <div><p class="sb-label">Heading · clamp(24px, 3.2vw, 32px)</p>
-      <div style="font-size:var(--text-heading);font-weight:600;letter-spacing:-.015em;line-height:1.25">One library, seven brands.</div></div>
+      <div style="font-size:var(--text-heading);font-weight:600;letter-spacing:-.015em;line-height:1.25">One shared framework, seven brands.</div></div>
     <div><p class="sb-label">Deck · clamp(18px, 1.9vw, 24px)</p>
       <div style="font-size:var(--text-deck);font-weight:500;line-height:1.5;max-width:56ch">Plate's website was only a recipe database. The work was to grow it into a platform that carried the whole brand.</div></div>
     <div><p class="sb-label">Body · 16px / 1.65</p>

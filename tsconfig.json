@@ -5,7 +5,10 @@
     "**/*"
   ],
   "exclude": [
-    "dist"
+    "dist",
+    "public",
+    "docs-site",
+    ".vercel"
   ],
   "compilerOptions": {
     "jsx": "react-jsx",
