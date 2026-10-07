@@ -1,0 +1,57 @@
+# Never-say list for stevendesignco.com
+#
+# Phrases the site must never say, each with the reason and when it was settled.
+# Checked on every PR by scripts/check-never-say.mjs against the rendered pages and
+# the published docs: visible text, meta descriptions, OG tags, titles, alt text.
+# Matching ignores case. Code comments are not checked.
+#
+# Format:   phrase | why (date settled)
+# To change a rule, edit the line and say why in the commit message.
+# It catches exact wording, not meaning. Add the variants you can think of.
+
+# --- MTG: one shared framework, a separate design system per product (Sept 2, 2026)
+one library | MTG had one shared responsive framework, not one library (2026-09-02)
+one component library | MTG had one shared framework, not one component library (2026-09-02)
+component library sat | MTG had one shared framework, not one component library (2026-09-02)
+one shared component library | MTG had one shared framework, not one component library (2026-09-02)
+one shared design system | each MTG product had its own design system on the shared framework (2026-09-02)
+one design system across | each MTG product had its own design system on the shared framework (2026-09-02)
+token set across | MTG brands did not share one token set (2026-09-02)
+one set of tokens across | MTG brands did not share one token set (2026-09-02)
+
+# --- PayPal: the contract ended August 14, 2026; past tense only
+currently at paypal | PayPal contract ended 2026-08-14; write it in the past tense
+currently a principal designer | PayPal contract ended 2026-08-14; write it in the past tense
+exactly what i do every day at paypal | banned opener, and the role has ended
+
+# --- Punctuation (writing-rules.md)
+— | no em dashes; rewrite, use a comma, or split the sentence
+– | no en dashes; rewrite, use a comma, or split the sentence
+
+# --- Steve's personal banned phrases
+genuinely | personal banned word
+a real problem | personal banned phrase
+worth solving | personal banned phrase
+
+# --- AI and business phrases (writing-rules.md). Multi-word only: single words
+# like "drive" or "robust" have honest uses and would cry wolf.
+proven track record | AI phrase (writing-rules.md)
+passionate about | AI phrase (writing-rules.md)
+resonates deeply | AI phrase (writing-rules.md)
+aligns perfectly | AI phrase (writing-rules.md)
+dedicated to excellence | AI phrase (writing-rules.md)
+thrives in fast-paced | AI phrase (writing-rules.md)
+goes above and beyond | AI phrase (writing-rules.md)
+hit the ground running | AI phrase (writing-rules.md)
+cross-functional collaboration | AI phrase (writing-rules.md)
+stakeholder engagement | AI phrase (writing-rules.md)
+best-in-class | buzzword (writing-rules.md)
+world-class | buzzword (writing-rules.md)
+cutting-edge | buzzword (writing-rules.md)
+game-changing | buzzword (writing-rules.md)
+paradigm shift | business jargon (writing-rules.md)
+low-hanging fruit | business jargon (writing-rules.md)
+move the needle | business jargon (writing-rules.md)
+think outside the box | business jargon (writing-rules.md)
+circle back | business jargon (writing-rules.md)
+deep dive | business jargon (writing-rules.md)

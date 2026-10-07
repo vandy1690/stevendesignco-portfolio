@@ -11,8 +11,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "check:docs": "node scripts/check-docs-in-step.mjs",
+    "check:claims": "node scripts/check-claims.mjs",
     "qa": "node qa/run.mjs",
-    "ship": "npm run tokens:check && npm run check:docs && npm run build:docs && npm run build && npm run qa",
+    "ship": "npm run tokens:check && npm run check:docs && npm run build:docs && npm run build && npm run qa && npm run check:claims",
     "build:docs": "cd docs-site && npm run build",
     "tokens": "node scripts/build-tokens.mjs",
     "tokens:check": "node scripts/build-tokens.mjs --check"

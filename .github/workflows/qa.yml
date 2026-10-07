@@ -88,6 +88,11 @@ jobs:
       - name: Q&A
         run: npm run qa
 
+      - name: Never-say list
+        # Phrases the site has decided it must never say: never-say.txt.
+        # Added 2026-10-07 after the MTG "one library" claim survived a deploy.
+        run: npm run check:claims
+
       - name: Documentation builds
         # Catches broken frontmatter and MDX before it reaches the docs site.
         # It does not diff the built output against what is committed: Pagefind
