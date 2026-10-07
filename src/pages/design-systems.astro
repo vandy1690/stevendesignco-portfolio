@@ -12,14 +12,14 @@ import PagerPair from '../components/ui/PagerPair.astro';
 
 <Site
 	title="Design Systems · Steven Vanden Heuvel"
-	description="One component library under seven brands in Pattern Lab, a Figma library of roughly 600 components, and the Storybook conversion. The practice behind the case studies, with the artifacts browsable."
+	description="One shared framework under seven brands in Pattern Lab, a Figma library of roughly 600 components, and the Storybook conversion. The practice behind the case studies, with the artifacts browsable."
 	image="/og/design-systems.png"
 	variant="case"
 >
 	<CaseHero
 		eyebrow="Practice"
 		title="Design Systems"
-		lede="One library underneath seven brands, a Figma library for a rebuild that never launched, and the Storybook conversion I went back and finished. The tools changed. The problem did not."
+		lede="One shared framework underneath seven brands, a Figma library for a rebuild that never launched, and the Storybook conversion I went back and finished. The tools changed. The problem did not."
 		meta={[
 			{ term: 'Method', value: 'Atomic design' },
 			{ term: 'Tools', value: 'Pattern Lab, Figma, Storybook' },
@@ -35,7 +35,7 @@ import PagerPair from '../components/ui/PagerPair.astro';
 	</CaseSection>
 
 	<CaseSection alt>
-		<CaseBlock eyebrow="Pattern Lab" lede="One component library sat underneath seven publication brands and six responsive web products.">
+		<CaseBlock eyebrow="Pattern Lab" lede="One shared responsive framework sat underneath seven publication brands and six responsive web products, with a separate design system for each product built on top of it.">
 			<p>Both instances below still run. Plate carries eleven brand colors with a semantic layer aliased on top, so a section reads <code>food</code> or <code>chefs</code> and a state reads <code>error</code> or <code>warning</code> rather than a hex or a hue name. In the Sass, <code>$error</code> points at <code>$red</code> rather than at a value, so the brand color changes in one place and everything naming it follows. Sixty four documented patterns climb from color and type through buttons, bylines and comment threads out to the assembled page templates. Alt-Meat runs its own palette and typeface on the same structure.</p>
 			<p>Drag the viewport control. The whole library was built mobile first, which was not a settled argument in B2B publishing at the time.</p>
 		</CaseBlock>
