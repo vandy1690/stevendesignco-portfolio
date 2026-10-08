@@ -1,4 +1,5 @@
 ---
+import sdc from '../styles/tokens/sdc-version.json';
 import '@fontsource/inter/400.css';
 import '@fontsource/inter/500.css';
 import '@fontsource/inter/600.css';
@@ -133,6 +134,7 @@ const jsonLd = {
 		     the palette the way a second hard-coded hex would. -->
 		<meta name="theme-color" content="#F0EEE9" />
 		<meta name="author" content="Steven Vanden Heuvel" />
+		<meta name="sdc-version" content={sdc.version} />
 		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 		<link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 		{ADOBE_KIT_ID && <link rel="stylesheet" href={`https://use.typekit.net/${ADOBE_KIT_ID}.css`} />}

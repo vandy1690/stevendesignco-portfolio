@@ -9,6 +9,13 @@ To see everything rendered, open the
 the CSS the site ships, so it cannot drift. See
 [storybook/README.md](../storybook/README.md).
 
+## Versions
+
+SDC is versioned major.minor.patch, two digits each (`01.00.01`). The number
+lives in `src/styles/tokens/sdc-version.json`; the rules and the log are on the
+docs site at `/docs/start/releases/`. Bump it in the same pull request as the
+change.
+
 ## Token names
 
 Every system token starts with `--sdc-`: `--sdc-accent`, `--sdc-space-md`,

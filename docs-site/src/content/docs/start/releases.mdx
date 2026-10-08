@@ -1,0 +1,51 @@
+---
+title: Releases
+description: How SDC versions are numbered, and what changed in each one.
+sidebar:
+  order: 3
+---
+
+import sdc from '../../../../../src/styles/tokens/sdc-version.json';
+
+The current version is **SDC {sdc.version}**. The number lives in one file,
+`src/styles/tokens/sdc-version.json`, and the site, the Storybook and these docs
+all read it from there. The live site carries it too, in
+`<meta name="sdc-version">`, so one request tells you which version is in
+production.
+
+## How the number works
+
+Three parts, two digits each: **major.minor.patch**, for example `01.00.01`. A
+version with no third part, such as `01.00`, means patch `00`.
+
+| Part | Goes up when | Example |
+| :-- | :-- | :-- |
+| Major | The look changes as a whole: palette, type families, the layout system. | A rebrand. |
+| Minor | A component, token or pattern is added, removed, or changes how it looks. | Button padding moving onto the spacing scale. |
+| Patch | Nothing a visitor can see changes: refactors, renames, documentation, a fix that restores the intended look. | Namespacing every token with `--sdc-`. |
+
+The test is what a visitor sees, because the site is the system's one consumer.
+When the system gets a second consumer, a rename that breaks its code becomes a
+major change for that consumer, and this rule should be revisited.
+
+Each release gets a git tag, `sdc-` plus the number, on the commit that reached
+production.
+
+## Log
+
+### 01.00.01 · unreleased
+
+- Every system token namespaced: `--accent` is now `--sdc-accent`, `--space-md`
+  is `--sdc-space-md`, and so on for all 86. Anything without the prefix is
+  private to one component. Figma keeps the plain names; the token build adds
+  the prefix.
+- The version number added, in one file, shown here, in the Storybook and in a
+  meta tag on every page.
+- No visual change.
+
+### 01.00 · October 7, 2026
+
+The baseline: the system as it stood in production on October 7, 2026, at
+commit `3b062e4`. It includes everything built before versions existed, among
+it the Figma-generated primitive tokens, the overlay and logo shadow tokens,
+Button padding on the spacing scale, and the documentation site.

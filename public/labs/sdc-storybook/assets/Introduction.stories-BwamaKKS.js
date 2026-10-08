@@ -1,6 +1,6 @@
-const o={title:"Introduction"},e=()=>`
+const o="01.00.01",i={version:o},a={title:"Introduction"},e=()=>`
   <div class="sb-col" style="max-width:64ch">
-    <p class="eyebrow" style="font-family:var(--sdc-font-display);letter-spacing:.03em">Steven Design Co.</p>
+    <p class="eyebrow" style="font-family:var(--sdc-font-display);letter-spacing:.03em">Steven Design Co. &middot; SDC ${i.version}</p>
     <h1 class="display" style="font-size:clamp(36px,5vw,64px);line-height:.98;margin:0">The component library.</h1>
     <p style="font-size:18px;line-height:1.6;margin:0">
       Every story on this page renders with the CSS stevendesignco.com actually ships.
@@ -39,7 +39,7 @@ const o={title:"Introduction"},e=()=>`
     </p>
   </div>`;e.storyName="Read me";var t,n,s;e.parameters={...e.parameters,docs:{...(t=e.parameters)==null?void 0:t.docs,source:{originalSource:`() => \`
   <div class="sb-col" style="max-width:64ch">
-    <p class="eyebrow" style="font-family:var(--sdc-font-display);letter-spacing:.03em">Steven Design Co.</p>
+    <p class="eyebrow" style="font-family:var(--sdc-font-display);letter-spacing:.03em">Steven Design Co. &middot; SDC \${sdc.version}</p>
     <h1 class="display" style="font-size:clamp(36px,5vw,64px);line-height:.98;margin:0">The component library.</h1>
     <p style="font-size:18px;line-height:1.6;margin:0">
       Every story on this page renders with the CSS stevendesignco.com actually ships.
@@ -76,4 +76,4 @@ const o={title:"Introduction"},e=()=>`
       Contrast figures shown in Foundations are computed live in the browser against the
       current theme, so they stay honest when a token changes.
     </p>
-  </div>\``,...(s=(n=e.parameters)==null?void 0:n.docs)==null?void 0:s.source}}};const i=["ReadMe"];export{e as ReadMe,i as __namedExportsOrder,o as default};
+  </div>\``,...(s=(n=e.parameters)==null?void 0:n.docs)==null?void 0:s.source}}};const r=["ReadMe"];export{e as ReadMe,r as __namedExportsOrder,a as default};

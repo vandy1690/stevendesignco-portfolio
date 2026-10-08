@@ -1,0 +1,5 @@
+{
+  "version": "01.00.01",
+  "released": null,
+  "notes": "The one place the SDC version lives. Rules and log: docs-site/src/content/docs/start/releases.mdx. Set released to the date the version reaches production, and tag that commit sdc-<version>."
+}

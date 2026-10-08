@@ -1,8 +1,10 @@
+import sdc from '../../src/styles/tokens/sdc-version.json';
+
 export default { title: 'Introduction' };
 
 export const ReadMe = () => `
   <div class="sb-col" style="max-width:64ch">
-    <p class="eyebrow" style="font-family:var(--sdc-font-display);letter-spacing:.03em">Steven Design Co.</p>
+    <p class="eyebrow" style="font-family:var(--sdc-font-display);letter-spacing:.03em">Steven Design Co. &middot; SDC ${sdc.version}</p>
     <h1 class="display" style="font-size:clamp(36px,5vw,64px);line-height:.98;margin:0">The component library.</h1>
     <p style="font-size:18px;line-height:1.6;margin:0">
       Every story on this page renders with the CSS stevendesignco.com actually ships.
