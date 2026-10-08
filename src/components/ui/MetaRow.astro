@@ -1,6 +1,6 @@
 ---
 /**
- * CaseMeta
+ * MetaRow
  * The role, org and recognition list under a case study hero. It is a
  * description list, so each label is tied to its value for a screen reader
  * rather than only sitting above it visually.
@@ -13,6 +13,6 @@ interface Props {
 const { items } = Astro.props;
 ---
 
-<dl class="sdc-cs-meta">
+<dl class="sdc-meta-row">
 	{items.map((i) => <div><dt>{i.term}</dt><dd set:html={i.value} /></div>)}
 </dl>

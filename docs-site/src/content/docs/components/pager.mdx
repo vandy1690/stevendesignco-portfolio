@@ -40,6 +40,22 @@ reaches a screen reader without an `aria-label` replacing what is on screen.
 `Pager` on its own takes `direction` of `prev` or `next`, which picks the chevron and
 the side it sits on. Use `PagerPair` unless you have a reason not to.
 
+`PagerPair` props:
+
+| Prop | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `prev` | `{ href, label, prefix? }` | required | The link on the left. `prefix` is read before the label by a screen reader. |
+| `next` | `{ href, label, prefix? }` | required | The link on the right. |
+
+`Pager` props, for the rare page that places one on its own:
+
+| Prop | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `direction` | `'prev'` \| `'next'` | required | Which way the chevron points, and which side it sits on. |
+| `href` | string | required | Where it goes. |
+| `label` | string | required | The visible text. |
+| `prefix` | string | unset | Read before the visible text by a screen reader. Renamed from `hidden`, which collided with the HTML attribute. |
+
 ## Anatomy
 
 The visible text is the destination name only: "Plate", not "Next: Plate". The

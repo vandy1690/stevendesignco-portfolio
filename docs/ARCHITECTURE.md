@@ -152,11 +152,11 @@ Each one has a page in the documentation site under `/docs/components/`.
 
 | Component | Type | Used on |
 |-----------|------|---------|
-| `components/ui/CaseHero.astro` | Case study hero; renders `CaseMeta` and `Eyebrow` itself | Every case study |
+| `components/ui/CaseHero.astro` | Case study hero; renders `MetaRow` and `Eyebrow` itself | Every case study |
 | `components/ui/CaseSection.astro` | The page band, with `alt`, `figure`, `flush`, `inner` | Every case study |
 | `components/ui/CaseBlock.astro` | The prose unit: eyebrow, lede heading, paragraphs | Every case study |
 | `components/ui/CaseFigure.astro` | Figure with a caption slot | Case studies with art |
-| `components/ui/CaseMeta.astro` | The role, org, recognition row. Composed inside `CaseHero` | Via `CaseHero` |
+| `components/ui/MetaRow.astro` | The role, org, recognition row. Composed inside `CaseHero` | Via `CaseHero` |
 | `components/ui/PagerPair.astro` | The previous and next pair. Composes two `Pager` | Every case study |
 | `components/ui/Pager.astro` | One pager link. Composed inside `PagerPair` | Via `PagerPair` |
 | `components/ui/StatList.astro` | Two or three statistics, `three` and `large` | Selected case studies |

@@ -7,7 +7,36 @@ also the day the change went live, give or take a few minutes.
 Add a line here when you ship something a visitor or a future maintainer would
 notice.
 
+## Unreleased: SDC 02.00.00
+
+On branch `chore/sdc-token-prefix`, not yet on `dev`. The design system's first
+major version since numbering began. Every name the system owns gains the `sdc-`
+namespace, tokens and classes alike, and the containers render as light-DOM
+custom elements (`<sdc-section tone="alt">`, `<sdc-card>`) with attributes for
+variants. A written naming convention, a validator in CI, a generated
+`custom-elements.json`, a version number in one file and a release log at
+/docs/start/releases/. Two new components, Case study card and Text passage,
+lifted from markup the home page carried inline. No visual change except a Note
+inside a case block now rendering at its documented 14px.
+
 ## October 2026
+
+**October 7**
+- The MTG description on /design-systems and the home page says one shared
+  framework under seven brands, with a separate design system per product,
+  as settled on September 2. Four places had said one library.
+- Button padding moved onto the spacing scale, 16 by 24 from `--space-sm` and
+  `--space-md`, matching the Figma Button. Every button is 2px taller and 4px
+  wider.
+- The overlay and logo shadows became tokens next to the card shadows, with an
+  Elevation page in the docs. Same values as before, except the chip and tile
+  shadows now use the site's charcoal instead of a slate left over from an
+  imported component.
+- A never-say list (`never-say.txt`) and a check that fails CI when a page
+  says something the site decided it must not. Its first run found three class
+  names rendered with an en dash in the docs and two banned filler words.
+- `SITE-CONTEXT.md` at the repo root: where each kind of truth lives, the
+  settled content rules, and what has to pass before anything ships.
 
 **October 5**
 - Reconciled the documentation with the code after the first design system

@@ -20,3 +20,5 @@
 
 <!-- Shortcuts, assumptions, things left half-finished. Say them here rather
      than letting someone find them later. -->
+
+The full definition of done is the "Before you merge" list in `CONTRIBUTING.md`; the habits above are the ones most often skipped.

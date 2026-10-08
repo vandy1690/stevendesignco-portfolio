@@ -144,7 +144,7 @@ All global, in `Site.astro`.
 | `.sdc-theme-img--light`, `.sdc-theme-img--dark` | Swap an image by theme |
 | `[data-animate="fade"]` | Fade in on scroll. Only hidden when `html.js` is present |
 
-The case study pieces (`<sdc-case-hero>`, `.sdc-cs-meta`, `<sdc-case-block>`, `<sdc-case-figure>`,
+The case study pieces (`<sdc-case-hero>`, `.sdc-meta-row`, `<sdc-case-block>`, `<sdc-case-figure>`,
 `<sdc-layout-container layout="prose">`) are styled once in `src/layouts/Site.astro`, scoped under `.sdc-case`.
 A page turns them on by passing `variant="case"` to the layout, which puts `.sdc-case`
 on `<main>`. They used to be defined per page; they are not any more, so a case

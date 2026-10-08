@@ -7,7 +7,7 @@ import{a as u}from"./design-links-Seer4HjQ.js";const f={title:"Patterns"},e=()=>
     <h1 class="sdc-case-hero__title sdc-display" style="font-size:clamp(36px,6vw,72px);line-height:.98;margin:8px 0 32px;max-width:20ch">Plate: Repositioning a Print Brand as a Digital Platform</h1>
     <p class="sdc-case-hero__lede" style="font-size:var(--sdc-text-deck);line-height:1.5;max-width:56ch;font-weight:500;margin-bottom:64px">Plate's website was only a recipe database. The work was to grow it into a platform that carried the whole brand.</p>
     <sdc-case-figure style="margin:32px 0 48px"><img src="/images/case-studies/plate/plate-scene.webp" alt="" style="width:100%;height:auto;display:block" /></sdc-case-figure>
-    <dl class="sdc-cs-meta" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:0;padding:32px 0 0;border-top:1px solid var(--sdc-rule)">
+    <dl class="sdc-meta-row" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:0;padding:32px 0 0;border-top:1px solid var(--sdc-rule)">
       <div><dt>Role</dt><dd>Creative Director</dd></div>
       <div><dt>Org</dt><dd>MTG Media Group</dd></div>
       <div><dt>Recognition</dt><dd>2017 Jesse H. Neal Award, Best Website</dd></div>
@@ -47,7 +47,7 @@ import{a as u}from"./design-links-Seer4HjQ.js";const f={title:"Patterns"},e=()=>
     <h1 class="sdc-case-hero__title sdc-display" style="font-size:clamp(36px,6vw,72px);line-height:.98;margin:8px 0 32px;max-width:20ch">Plate: Repositioning a Print Brand as a Digital Platform</h1>
     <p class="sdc-case-hero__lede" style="font-size:var(--sdc-text-deck);line-height:1.5;max-width:56ch;font-weight:500;margin-bottom:64px">Plate's website was only a recipe database. The work was to grow it into a platform that carried the whole brand.</p>
     <sdc-case-figure style="margin:32px 0 48px"><img src="/images/case-studies/plate/plate-scene.webp" alt="" style="width:100%;height:auto;display:block" /></sdc-case-figure>
-    <dl class="sdc-cs-meta" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:0;padding:32px 0 0;border-top:1px solid var(--sdc-rule)">
+    <dl class="sdc-meta-row" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:0;padding:32px 0 0;border-top:1px solid var(--sdc-rule)">
       <div><dt>Role</dt><dd>Creative Director</dd></div>
       <div><dt>Org</dt><dd>MTG Media Group</dd></div>
       <div><dt>Recognition</dt><dd>2017 Jesse H. Neal Award, Best Website</dd></div>
@@ -78,4 +78,4 @@ import{a as u}from"./design-links-Seer4HjQ.js";const f={title:"Patterns"},e=()=>
       <li><a href="#0">instagram.com/stevendesignservices</a></li>
     </ul>
     <p class="contact__based" style="margin-top:24px">Aurora, IL · Chicago area · Open to remote</p>
-  </div>\``,...(p=(n=s.parameters)==null?void 0:n.docs)==null?void 0:p.source}}};const y=["CaseStudyHero","DeckFallback","ContactBlock"];export{e as CaseStudyHero,s as ContactBlock,a as DeckFallback,y as __namedExportsOrder,f as default};
+  </div>\``,...(p=(n=s.parameters)==null?void 0:n.docs)==null?void 0:p.source}}};const w=["CaseStudyHero","DeckFallback","ContactBlock"];export{e as CaseStudyHero,s as ContactBlock,a as DeckFallback,w as __namedExportsOrder,f as default};

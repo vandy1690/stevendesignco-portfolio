@@ -24,7 +24,7 @@ export default async function dialog(browser, base) {
 			}
 			const r = await page.evaluate(() => {
 				const content = document.querySelector('.sdc-modal__content');
-				const meta = content.querySelector('.sdc-cs-meta');
+				const meta = content.querySelector('.sdc-meta-row');
 				const hero = content.querySelector('sdc-case-hero');
 				return {
 					scoped: content.classList.contains('sdc-case'),

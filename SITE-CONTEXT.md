@@ -54,4 +54,5 @@ npm run ship       # tokens, manifest, names, docs in step, docs build, build, Q
 ```
 
 `npm run check:claims` runs the never-say list on its own. CI runs all of it on
-every pull request.
+every pull request. The human half of the definition of done, the part no check
+sees, is the "Before you merge" list in `CONTRIBUTING.md`.

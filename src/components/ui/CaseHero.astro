@@ -15,7 +15,7 @@
  * @element sdc-case-hero
  */
 import Eyebrow from './Eyebrow.astro';
-import CaseMeta from './CaseMeta.astro';
+import MetaRow from './MetaRow.astro';
 
 interface Props {
 	/** The label above the title. */
@@ -43,7 +43,7 @@ const { eyebrow, heading, lede, meta, note, backHref = '/#work', backLabel = 'â†
 		<h1 class="sdc-case-hero__title sdc-display">{heading}</h1>
 		<p class="sdc-case-hero__lede" set:html={lede} />
 		<slot name="figure" />
-		<CaseMeta items={meta} />
+		<MetaRow items={meta} />
 		{note && <p class="sdc-cs-note" set:html={note} />}
 	</div>
 </sdc-case-hero>

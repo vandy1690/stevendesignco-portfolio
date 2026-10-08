@@ -13,6 +13,7 @@
     "check:docs": "node scripts/check-docs-in-step.mjs",
     "check:claims": "node scripts/check-claims.mjs",
     "check:names": "node scripts/check-names.mjs",
+    "adoption": "node scripts/adoption.mjs",
     "build:manifest": "node scripts/build-manifest.mjs",
     "manifest:check": "node scripts/build-manifest.mjs --check",
     "qa": "node qa/run.mjs",
