@@ -1,10 +1,10 @@
-import{a as E}from"./design-links-Seer4HjQ.js";const p=e=>`<span class="sdc-pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="${e==="prev"?"M10 3.5 5.5 8l4.5 4.5":"m6 3.5 4.5 4.5L6 12.5"}"/></svg></span>`,K={title:"Components"},d={args:{label:"View work"},argTypes:{label:{control:"text"}},render:({label:e})=>`
+import{a as E}from"./design-links-Seer4HjQ.js";const p=e=>`<span class="sdc-pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="${e==="prev"?"M10 3.5 5.5 8l4.5 4.5":"m6 3.5 4.5 4.5L6 12.5"}"/></svg></span>`,K={title:"Components"},c={args:{label:"View work"},argTypes:{label:{control:"text"}},render:({label:e})=>`
     <p class="sb-note">Two weights only. Both take the 10px control radius, and the secondary
       border uses <code>--sdc-rule-strong</code> so the boundary clears 3 to 1.</p>
     <div class="sb-stack">
       <a class="sdc-btn sdc-btn--primary" href="#0">${e}</a>
       <a class="sdc-btn" href="#0">Resume</a>
-    </div>`},c={args:{label:"Default at checkout",direction:"next"},argTypes:{label:{control:"text"},direction:{control:"inline-radio",options:["prev","next"]}},render:({label:e,direction:s})=>`
+    </div>`},d={args:{label:"Default at checkout",direction:"next"},argTypes:{label:{control:"text"},direction:{control:"inline-radio",options:["prev","next"]}},render:({label:e,direction:s})=>`
     <p class="sb-note">Moves between case studies. The visible text is the destination only; the
       arrow carries direction, and hidden text states both, so the link makes sense read on its own
       without a label overriding what is on screen. On phones two pagers share one row and wrap their own labels.</p>
@@ -14,17 +14,17 @@ import{a as E}from"./design-links-Seer4HjQ.js";const p=e=>`<span class="sdc-page
       </a>
     </div>`},t=()=>`
   <p class="sb-note">How the pair sits at the foot of every case study.</p>
-  <div class="sdc-cs-back" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between;align-items:center;max-width:800px">
+  <sdc-layout-container layout="pager" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between;align-items:center;max-width:800px">
     <a class="sdc-pager sdc-pager--prev" href="#0">${p("prev")}<span class="sdc-u-sr-only">Back to </span>All case studies</a>
     <a class="sdc-pager" href="#0"><span class="sdc-u-sr-only">Next case study: </span>Plate${p("next")}</a>
-  </div>`;t.storyName="Pager pair";const a={args:{head:"Nobody asked for this one.",text:"A Figma plugin, built on my own initiative, that cut merchant flow setup from most of a day to 10 to 15 minutes, across the 38-merchant program.",product:"Figma plugin, PayPal",objective:"Faster merchant flow setup",image:"/images/case-studies/merchant-flow-builder/plugin-pipeline.webp"},argTypes:{head:{control:"text"},text:{control:"text"},product:{control:"text"},objective:{control:"text"},image:{control:"select",options:["/images/case-studies/merchant-flow-builder/plugin-pipeline.webp","/images/case-studies/paypal/one-click.webp","/images/case-studies/paypal/journey-dead-end.webp","/images/case-studies/plate/plate-scene.webp","/images/case-studies/design-systems/pattern-lab.webp"]}},render:({head:e,text:s,product:D,objective:H,image:I})=>`
+  </sdc-layout-container>`;t.storyName="Pager pair";const a={args:{head:"Nobody asked for this one.",text:"A Figma plugin, built on my own initiative, that cut merchant flow setup from most of a day to 10 to 15 minutes, across the 38-merchant program.",product:"Figma plugin, PayPal",objective:"Faster merchant flow setup",image:"/images/case-studies/merchant-flow-builder/plugin-pipeline.webp"},argTypes:{head:{control:"text"},text:{control:"text"},product:{control:"text"},objective:{control:"text"},image:{control:"select",options:["/images/case-studies/merchant-flow-builder/plugin-pipeline.webp","/images/case-studies/paypal/one-click.webp","/images/case-studies/paypal/journey-dead-end.webp","/images/case-studies/plate/plate-scene.webp","/images/case-studies/design-systems/pattern-lab.webp"]}},render:({head:e,text:s,product:D,objective:H,image:I})=>`
     <p class="sb-note">The unit the home page deck is built from. Art is 16:9 and full bleed; the
       body is a grid so the meta and the call to action share the last row on desktop and stack
       on phones. Labels read Product and Objective, not Client and Service. The headline is the only link;
       a stretched ::after covers the card, so the whole card clicks while its accessible name is
       exactly the visible headline rather than a hand-written label.</p>
     <div style="max-width:760px">
-      <div class="sdc-card" style="display:flex;flex-direction:column">
+      <sdc-card style="display:flex;flex-direction:column">
         <div class="sdc-card__art sdc-card__art--image"><img src="${I}" alt="" /></div>
         <div class="sdc-card__body">
           <h3 class="sdc-card__head"><a class="sdc-card__link" href="#0">${e}</a></h3>
@@ -35,7 +35,7 @@ import{a as E}from"./design-links-Seer4HjQ.js";const p=e=>`<span class="sdc-page
           </dl>
           <span class="sdc-card__cta">Read case study <span class="arrow" aria-hidden="true">→</span></span>
         </div>
-      </div>
+      </sdc-card>
     </div>`};a.storyName="Case study card";const l={args:{quote:"He is one of those uncommon designers who can move fluidly between strategy, design, prototyping, and code.",title:"Product Designer, PayPal Merchant Enablement"},argTypes:{quote:{control:"text"},title:{control:"text"}},render:({quote:e,title:s})=>`
     <p class="sb-note">One verbatim sentence from a LinkedIn recommendation. Titles only, never
       names. Twelve of these run in the scroll-driven fan under "On the record."</p>
@@ -62,18 +62,18 @@ import{a as E}from"./design-links-Seer4HjQ.js";const p=e=>`<span class="sdc-page
   <p class="sb-note">One organism: a kicker, the section heading, and its body. They sit on line
     height alone with no margins between them, so the three read as a single unit. The heading is a
     real h2, styled to look like the paragraph it used to be.</p>
-  <div class="sdc-cs-body" style="display:grid;gap:48px;max-width:800px">
-    <div class="sdc-cs-block">
+  <sdc-layout-container layout="prose" style="display:grid;gap:48px;max-width:800px">
+    <sdc-case-block>
       <p class="sdc-eyebrow">What was unclear</p>
-      <h2 class="sdc-cs-block__lede">A whole brand online, reduced to recipes.</h2>
+      <h2 class="sdc-case-block__lede">A whole brand online, reduced to recipes.</h2>
       <p>Plate's website was only a recipe database. The brand also had magazine content, daily news, and blogs, but none of it lived online in a usable structure.</p>
-    </div>
-  </div>`;r.storyName="Case study block";const i=()=>`
+    </sdc-case-block>
+  </sdc-layout-container>`;r.storyName="Case study block";const i=()=>`
   <p class="sb-note">First focusable element on every page, offscreen until focused. Tab into the
     frame to bring it in.</p>
   <div style="position:relative;height:90px">
     <a class="sdc-skip-link" href="#0" style="position:absolute;top:12px;left:0">Skip to content</a>
-  </div>`;i.storyName="Skip link";E({Buttons:d,Pager:c,PagerPair:t,CaseCard:a,Recommendation:l,MetaRow:n,RowList:o,CaseBlock:r,SkipLink:i});var h,u,m;d.parameters={...d.parameters,docs:{...(h=d.parameters)==null?void 0:h.docs,source:{originalSource:`{
+  </div>`;i.storyName="Skip link";E({Buttons:c,Pager:d,PagerPair:t,CaseCard:a,Recommendation:l,MetaRow:n,RowList:o,CaseBlock:r,SkipLink:i});var h,u,m;c.parameters={...c.parameters,docs:{...(h=c.parameters)==null?void 0:h.docs,source:{originalSource:`{
   args: {
     label: 'View work'
   },
@@ -91,7 +91,7 @@ import{a as E}from"./design-links-Seer4HjQ.js";const p=e=>`<span class="sdc-page
       <a class="sdc-btn sdc-btn--primary" href="#0">\${label}</a>
       <a class="sdc-btn" href="#0">Resume</a>
     </div>\`
-}`,...(m=(u=d.parameters)==null?void 0:u.docs)==null?void 0:m.source}}};var g,b,v;c.parameters={...c.parameters,docs:{...(g=c.parameters)==null?void 0:g.docs,source:{originalSource:`{
+}`,...(m=(u=c.parameters)==null?void 0:u.docs)==null?void 0:m.source}}};var g,b,y;d.parameters={...d.parameters,docs:{...(g=d.parameters)==null?void 0:g.docs,source:{originalSource:`{
   args: {
     label: 'Default at checkout',
     direction: 'next'
@@ -117,12 +117,12 @@ import{a as E}from"./design-links-Seer4HjQ.js";const p=e=>`<span class="sdc-page
         \${direction === 'prev' ? chevron('prev') : ''}<span class="sdc-u-sr-only">\${direction === 'prev' ? 'Previous' : 'Next'} case study: </span>\${label}\${direction === 'next' ? chevron('next') : ''}
       </a>
     </div>\`
-}`,...(v=(b=c.parameters)==null?void 0:b.docs)==null?void 0:v.source}}};var w,y,x;t.parameters={...t.parameters,docs:{...(w=t.parameters)==null?void 0:w.docs,source:{originalSource:`() => \`
+}`,...(y=(b=d.parameters)==null?void 0:b.docs)==null?void 0:y.source}}};var w,v,x;t.parameters={...t.parameters,docs:{...(w=t.parameters)==null?void 0:w.docs,source:{originalSource:`() => \`
   <p class="sb-note">How the pair sits at the foot of every case study.</p>
-  <div class="sdc-cs-back" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between;align-items:center;max-width:800px">
+  <sdc-layout-container layout="pager" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between;align-items:center;max-width:800px">
     <a class="sdc-pager sdc-pager--prev" href="#0">\${chevron('prev')}<span class="sdc-u-sr-only">Back to </span>All case studies</a>
     <a class="sdc-pager" href="#0"><span class="sdc-u-sr-only">Next case study: </span>Plate\${chevron('next')}</a>
-  </div>\``,...(x=(y=t.parameters)==null?void 0:y.docs)==null?void 0:x.source}}};var f,k,_;a.parameters={...a.parameters,docs:{...(f=a.parameters)==null?void 0:f.docs,source:{originalSource:`{
+  </sdc-layout-container>\``,...(x=(v=t.parameters)==null?void 0:v.docs)==null?void 0:x.source}}};var f,k,_;a.parameters={...a.parameters,docs:{...(f=a.parameters)==null?void 0:f.docs,source:{originalSource:`{
   args: {
     head: 'Nobody asked for this one.',
     text: 'A Figma plugin, built on my own initiative, that cut merchant flow setup from most of a day to 10 to 15 minutes, across the 38-merchant program.',
@@ -161,7 +161,7 @@ import{a as E}from"./design-links-Seer4HjQ.js";const p=e=>`<span class="sdc-page
       a stretched ::after covers the card, so the whole card clicks while its accessible name is
       exactly the visible headline rather than a hand-written label.</p>
     <div style="max-width:760px">
-      <div class="sdc-card" style="display:flex;flex-direction:column">
+      <sdc-card style="display:flex;flex-direction:column">
         <div class="sdc-card__art sdc-card__art--image"><img src="\${image}" alt="" /></div>
         <div class="sdc-card__body">
           <h3 class="sdc-card__head"><a class="sdc-card__link" href="#0">\${head}</a></h3>
@@ -172,7 +172,7 @@ import{a as E}from"./design-links-Seer4HjQ.js";const p=e=>`<span class="sdc-page
           </dl>
           <span class="sdc-card__cta">Read case study <span class="arrow" aria-hidden="true">→</span></span>
         </div>
-      </div>
+      </sdc-card>
     </div>\`
 }`,...(_=(k=a.parameters)==null?void 0:k.docs)==null?void 0:_.source}}};var P,T,$;l.parameters={...l.parameters,docs:{...(P=l.parameters)==null?void 0:P.docs,source:{originalSource:`{
   args: {
@@ -217,15 +217,15 @@ import{a as E}from"./design-links-Seer4HjQ.js";const p=e=>`<span class="sdc-page
   <p class="sb-note">One organism: a kicker, the section heading, and its body. They sit on line
     height alone with no margins between them, so the three read as a single unit. The heading is a
     real h2, styled to look like the paragraph it used to be.</p>
-  <div class="sdc-cs-body" style="display:grid;gap:48px;max-width:800px">
-    <div class="sdc-cs-block">
+  <sdc-layout-container layout="prose" style="display:grid;gap:48px;max-width:800px">
+    <sdc-case-block>
       <p class="sdc-eyebrow">What was unclear</p>
-      <h2 class="sdc-cs-block__lede">A whole brand online, reduced to recipes.</h2>
+      <h2 class="sdc-case-block__lede">A whole brand online, reduced to recipes.</h2>
       <p>Plate's website was only a recipe database. The brand also had magazine content, daily news, and blogs, but none of it lived online in a usable structure.</p>
-    </div>
-  </div>\``,...(A=(B=r.parameters)==null?void 0:B.docs)==null?void 0:A.source}}};var F,L,M;i.parameters={...i.parameters,docs:{...(F=i.parameters)==null?void 0:F.docs,source:{originalSource:`() => \`
+    </sdc-case-block>
+  </sdc-layout-container>\``,...(A=(B=r.parameters)==null?void 0:B.docs)==null?void 0:A.source}}};var F,L,M;i.parameters={...i.parameters,docs:{...(F=i.parameters)==null?void 0:F.docs,source:{originalSource:`() => \`
   <p class="sb-note">First focusable element on every page, offscreen until focused. Tab into the
     frame to bring it in.</p>
   <div style="position:relative;height:90px">
     <a class="sdc-skip-link" href="#0" style="position:absolute;top:12px;left:0">Skip to content</a>
-  </div>\``,...(M=(L=i.parameters)==null?void 0:L.docs)==null?void 0:M.source}}};const V=["Buttons","Pager","PagerPair","CaseCard","Recommendation","MetaRow","RowList","CaseBlock","SkipLink"];export{d as Buttons,r as CaseBlock,a as CaseCard,n as MetaRow,c as Pager,t as PagerPair,l as Recommendation,o as RowList,i as SkipLink,V as __namedExportsOrder,K as default};
+  </div>\``,...(M=(L=i.parameters)==null?void 0:L.docs)==null?void 0:M.source}}};const V=["Buttons","Pager","PagerPair","CaseCard","Recommendation","MetaRow","RowList","CaseBlock","SkipLink"];export{c as Buttons,r as CaseBlock,a as CaseCard,n as MetaRow,d as Pager,t as PagerPair,l as Recommendation,o as RowList,i as SkipLink,V as __namedExportsOrder,K as default};

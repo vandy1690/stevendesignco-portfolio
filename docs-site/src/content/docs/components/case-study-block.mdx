@@ -6,15 +6,15 @@ sidebar:
 ---
 
 <dl class="sdc-hww">
-	<div><dt>How</dt><dd>A <code>.sdc-cs-block</code> holding a
-	<code>p.sdc-eyebrow</code> kicker, an <code>h2.sdc-cs-block__lede</code> heading and
+	<div><dt>How</dt><dd>An <code>&lt;sdc-case-block&gt;</code> holding a
+	<code>p.sdc-eyebrow</code> kicker, an <code>h2.sdc-case-block__lede</code> heading and
 	body paragraphs. The three sit on line height alone with no margins between
 	them.</dd></div>
 	<div><dt>When</dt><dd>For each step of the argument in a case study: what was
 	unclear, what was done, who was involved, what changed. One block, one
 	step.</dd></div>
 	<div><dt>Where</dt><dd>Case study pages and the design systems page, one per
-	section, inside <code>.sdc-cs-body</code>.</dd></div>
+	section, inside its prose container.</dd></div>
 </dl>
 
 ## In code
@@ -51,7 +51,7 @@ adjusting spacing here, adjust the space between blocks, never inside one.
 
 ## The heading is a real heading
 
-`.sdc-cs-block__lede` is an `h2`. It used to be a styled paragraph, which meant a
+`.sdc-case-block__lede` is an `h2`. It used to be a styled paragraph, which meant a
 screen reader user navigating a case study by heading found exactly one stop:
 the page title. Seven pages had a single heading each.
 

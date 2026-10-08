@@ -16,7 +16,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 >
 	<CaseHero
 		eyebrow="Case study"
-		title="Merchant Flow Builder: Making the Brief the Spec"
+		heading="Merchant Flow Builder: Making the Brief the Spec"
 		lede="Nobody asked me to build this. The weekly pace was the reason I started. The reason I kept going was that no one could be certain the designer was building the right flow."
 		meta={[
 			{ term: 'Role', value: 'Principal Designer · PayPal' },
@@ -26,7 +26,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 		note="Built inside PayPal, and the code lives in PayPal's internal repository. Tool names here are generic and the interfaces are not reproduced."
 	/>
 
-	<CaseSection figure flush inner={false}>
+	<CaseSection figure flush layout={false}>
 		<CaseFigure
 			src="/images/case-studies/merchant-flow-builder/merchant-surfaces.webp"
 			alt="Merchant logos from the program, among them LEGO, Disney+, Home Depot, Canva, Target, Nintendo and Best Buy, linked by arrows to the same storefront and checkout screen shown on three different phones."
@@ -34,11 +34,11 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 			height={971}
 			loading="lazy"
 		>
-			<p class="sdc-cs-figure__cap">The program ran across 38 merchants. Every one of them needed the same flows rebuilt against its own screens. Storefront shown generically.</p>
+			<p class="sdc-case-figure__cap">The program ran across 38 merchants. Every one of them needed the same flows rebuilt against its own screens. Storefront shown generically.</p>
 		</CaseFigure>
 	</CaseSection>
 
-	<CaseSection alt>
+	<CaseSection tone="alt">
 		<CaseBlock eyebrow="What was unclear" lede="The handoff was a Slack message, and there was no way to check it.">
 			<p>A product manager would describe the flows a merchant needed in a message or a set of meeting notes. The designer would go find what they believed was the matching section of the checkout guide and build from that. Nothing in the process closed the loop between what was asked for and what got built.</p>
 			<p>The cost landed in two places. Time, because finding the right reference and assembling the flows by hand was most of the work of preparing a package. And risk, because nothing in the process verified that the section the designer found was the section the product manager meant. On a weekly sprint across a 38-merchant program, a loose handoff is not a small tax.</p>
@@ -53,7 +53,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 		</CaseBlock>
 	</CaseSection>
 
-	<CaseSection alt>
+	<CaseSection tone="alt">
 		<CaseBlock eyebrow="How it fits together" lede="The link is the thing that travels." />
 	<div class="sdc-cs-diagram" tabindex="0" role="img" aria-label="Diagram. A brief form captures each flow request as a link to a section of the checkout guide. That link is carried through structured JSON into a Figma plugin, which assembles a flow page where every placeholder frame still points back to the same guide section.">
 		<svg class="sdc-cs-diagram__svg" viewBox="0 0 960 340" xmlns="http://www.w3.org/2000/svg">
@@ -114,7 +114,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 		</CaseBlock>
 	</CaseSection>
 
-	<CaseSection alt>
+	<CaseSection tone="alt">
 		<CaseBlock eyebrow="What I had to work around" lede="The tooling was not ready either.">
 			<p>I built this early against Figma's MCP server, before it could read a full file. That ruled out the approach I wanted, which was to let the model look at the merchant's file and work out the structure. Instead I wrote my own scheme for identifying frames and instances so the plugin could find its way around a file it could not be told about.</p>
 			<p>That is the part I would redo now. The capability landed later, and a version built today would be shorter and less clever. I would rather have the version that shipped than the elegant one that did not exist yet.</p>
@@ -128,7 +128,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 		</CaseBlock>
 	</CaseSection>
 
-	<CaseSection alt>
+	<CaseSection tone="alt">
 		<CaseBlock eyebrow="What changed" lede="Most of a day became 10 to 15 minutes.">
 			<p>Building a merchant's full set of checkout flows by hand took most of a day. With the pipeline it takes 10 to 15 minutes, across the 38-merchant program. I recorded video tutorials covering install, the form, storage, and browsing the library, and published the whole thing to the internal company GitHub so another team could fork it.</p>
 			<p>The honest ending: it was adopted and in active use when my contract finished, and I handed it to another designer to broaden. It was not fully scaled before I left. I would rather tell you that than claim the whole organization was on it.</p>
@@ -144,7 +144,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 	</CaseSection>
 
 	<PagerPair
-		prev={{ href: '/#work', label: 'All case studies', hidden: 'Back to ' }}
-		next={{ href: '/work/paypal', label: 'Default at checkout', hidden: 'Next case study: ' }}
+		prev={{ href: '/#work', label: 'All case studies', prefix: 'Back to ' }}
+		next={{ href: '/work/paypal', label: 'Default at checkout', prefix: 'Next case study: ' }}
 	/>
 </Site>

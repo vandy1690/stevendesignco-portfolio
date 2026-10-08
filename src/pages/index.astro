@@ -3,6 +3,8 @@ import Site from '../layouts/Site.astro';
 import PluginPipeline from '../components/art/PluginPipeline.astro';
 import OneClickCheckout from '../components/art/OneClickCheckout.astro';
 import JourneyMap from '../components/art/JourneyMap.astro';
+import CaseStudyCard from '../components/ui/CaseStudyCard.astro';
+import TextPassage from '../components/ui/TextPassage.astro';
 
 // Six case studies, one argument each. Order is a data decision: swap entries here.
 // `image` is the full-bleed card image (16:9, 1600 by 900 or larger, object-fit cover).
@@ -127,7 +129,6 @@ const quotes = [
 			.sdc-deck__stage { position: static !important; height: auto !important; overflow: visible !important; padding: var(--sdc-space-3xl) 0 0 !important; }
 			.sdc-deck__cards { display: grid !important; gap: var(--sdc-space-md) !important; }
 			.sdc-deck__card { grid-area: auto !important; transform: none !important; visibility: visible !important; }
-			.sdc-deck--work .sdc-card, .sdc-card__art { max-height: none !important; }
 			.sdc-recs__fan { position: static !important; height: auto !important; display: grid !important; gap: var(--sdc-space-md) !important; }
 			.sdc-recs__card { position: static !important; width: auto !important; height: auto !important; margin-left: 0 !important; transform: none !important; visibility: visible !important; opacity: 1 !important; }
 			[data-animate], [data-reveal] { opacity: 1 !important; transform: none !important; }
@@ -150,23 +151,13 @@ const quotes = [
 				<ol class="sdc-deck__cards">
 					{cases.map((c, i) => (
 						<li class="sdc-deck__card">
-							<div class="sdc-card">
-								<div class={`sdc-card__art sdc-card__art--${c.art}${c.contain ? ' sdc-card__art--contain' : ''}`} style={c.field ? `--field: ${c.field}` : undefined}>
-									{c.image && <img src={c.image} alt="" loading="lazy" />}
+							<CaseStudyCard href={c.href} head={c.head} text={c.text} product={c.product} objective={c.objective} art={c.art} image={c.image} contain={c.contain} field={c.field}>
+								<Fragment slot="art">
 									{!c.image && c.art === 'plugin' && <PluginPipeline />}
 									{!c.image && c.art === 'checkout' && <OneClickCheckout />}
 									{!c.image && c.art === 'journey' && <JourneyMap />}
-								</div>
-								<div class="sdc-card__body">
-									<h3 class="sdc-card__head"><a class="sdc-card__link" href={c.href} data-case>{c.head}</a></h3>
-									<p class="sdc-card__text">{c.text}</p>
-									<dl class="sdc-card__meta">
-										<div><dt>Product</dt><dd>{c.product}</dd></div>
-										<div><dt>Objective</dt><dd>{c.objective}</dd></div>
-									</dl>
-									<span class="sdc-card__cta">Read case study <span class="arrow" aria-hidden="true">→</span></span>
-								</div>
-							</div>
+								</Fragment>
+							</CaseStudyCard>
 						</li>
 					))}
 				</ol>
@@ -195,7 +186,7 @@ const quotes = [
 		</div>
 	</section>
 
-	<section id="how" class="sdc-section sdc-section--how">
+	<sdc-section id="how">
 		<div class="wrap">
 			<p class="sdc-eyebrow" data-reveal="block">How I work</p>
 			<h2 class="sdc-how__lede sdc-display" data-reveal="words">The tools got me to the real problem faster. They did not have the idea.</h2>
@@ -218,9 +209,9 @@ const quotes = [
 				</li>
 			</ul>
 		</div>
-	</section>
+	</sdc-section>
 
-	<section class="sdc-section sdc-section--awards">
+	<sdc-section class="awards">
 		<div class="wrap">
 			<p class="sdc-eyebrow" data-reveal="block">Recognition</p>
 			<h2 class="sdc-rec__lede sdc-display" data-reveal="words">What the awards actually are.</h2>
@@ -251,23 +242,23 @@ const quotes = [
 				</li>
 			</ul>
 		</div>
-	</section>
+	</sdc-section>
 
-	<section id="about" class="sdc-section sdc-section--about">
+	<sdc-section id="about">
 		<div class="wrap about">
 			<img class="about__photo" src="/images/about/headshot.jpg" alt="Steven Vanden Heuvel" width="500" height="500" loading="lazy" data-reveal="block" />
 			<p class="sdc-eyebrow" data-reveal="block">About</p>
 			<h2 class="about__lede sdc-display" data-reveal="words">Where the habits come from.</h2>
-			<div class="about__copy sdc-prose" data-reveal="block">
+			<TextPassage width="narrow" reveal="block">
 				<p>I design product flows end to end, and I build the design systems and tools that keep the quality up after the first version ships. Most of the time nobody asked me to build them.</p>
 				<p>Eighteen years as VP and Creative Director at MTG Media Group is where the product habits come from. I ran the content strategy workshop that set Plate&rsquo;s taxonomy, built the Pattern Lab one level at a time so the room approved atoms before pages, themed the Drupal site myself, tested it on UserTesting.com before launch, and directed the photography, video, and illustration the system had to hold.</p>
 				<p class="about__seat">What I am looking for: a seat where one person holds the whole flow, design systems are part of the job rather than the whole job, and tooling is wanted. Product design and creative direction both fit that, and the title matters less to me than the scope. In house, remote or Chicago.</p>
 				<p class="about__seat">Outside of work you can find me on the trail, at a football game, at live performances, in a museum, or hanging out with my family.</p>
-			</div>
+			</TextPassage>
 		</div>
-	</section>
+	</sdc-section>
 
-	<section id="contact" class="sdc-section sdc-section--contact">
+	<sdc-section id="contact">
 		<div class="wrap contact">
 			<h2 class="contact__title sdc-display" data-reveal="words">Let's talk.</h2>
 			<ul class="contact__list" data-reveal="block">
@@ -277,7 +268,7 @@ const quotes = [
 			</ul>
 			<p class="contact__based" data-reveal="block">Aurora, IL · Chicago area · Open to remote</p>
 		</div>
-	</section>
+	</sdc-section>
 
 	<div class="sdc-modal" id="case-modal" role="dialog" aria-modal="true" aria-label="Case study" data-lenis-prevent hidden>
 		<div class="sdc-modal__body">
@@ -314,7 +305,7 @@ const quotes = [
 		const deck = document.querySelector<HTMLElement>('.sdc-deck--work');
 		if (!deck) return;
 		root.classList.remove('sdc-deck-static');
-		const cards = Array.from(deck.querySelectorAll<HTMLElement>('.sdc-card'));
+		const cards = Array.from(deck.querySelectorAll<HTMLElement>('sdc-card'));
 		if (!cards.length) return;
 		const clips = cards.some((c) => c.scrollHeight - c.clientHeight > 4);
 		const stage = deck.querySelector<HTMLElement>('.sdc-deck__stage');
@@ -773,68 +764,6 @@ const quotes = [
 	.hero__proof { font-size: clamp(17px, 1.4vw, 20px); line-height: 1.5; color: var(--sdc-text); max-width: 58ch; margin: 0 0 var(--sdc-space-sm); text-wrap: pretty; }
 	.hero__valid { font-size: 15px; color: var(--sdc-text-mute); margin: 0 0 var(--sdc-space-xl); letter-spacing: 0.01em; }
 	.hero__cta { display: flex; gap: var(--sdc-space-sm); flex-wrap: wrap; }
-
-	/* ---------- Card ---------- */
-	.sdc-card {
-		display: flex;
-		flex-direction: column;
-		width: var(--content);
-		background: var(--sdc-surface);
-		border-radius: var(--sdc-radius);
-		box-shadow: var(--sdc-shadow-card);
-		color: var(--sdc-text);
-		overflow: hidden;
-		transition: box-shadow 0.25s ease, transform 0.25s ease;
-	}
-	.sdc-card { position: relative; }
-	/* Stretched link: the headline is the only link, and its ::after covers the
-	   card so the whole card still clicks. Its name is the visible headline. */
-	.sdc-card__link { color: inherit; text-decoration: none; }
-	.sdc-card__link::after { content: ''; position: absolute; inset: 0; z-index: 2; border-radius: inherit; }
-	.sdc-card__link:hover { color: inherit; }
-	/* The ring belongs to the card, not the headline text. */
-	.sdc-card__link:focus-visible { outline: none; }
-	.sdc-card:has(.sdc-card__link:focus-visible) { outline: 2px solid var(--sdc-text); outline-offset: 3px; }
-	.sdc-card:has(.sdc-card__link.sdc-u-no-ring) { outline: none; }
-	.sdc-card:hover, .sdc-card:has(.sdc-card__link:focus-visible) { color: var(--sdc-text); box-shadow: var(--sdc-shadow-card-hover); }
-	.sdc-card:hover .arrow, .sdc-card:has(.sdc-card__link:focus-visible) .arrow { transform: translateX(6px); }
-	/* Full-bleed media. Images cover; the drawn stand-ins sit on paper until the images arrive. */
-	.sdc-card__art { position: relative; width: 100%; aspect-ratio: 16 / 9; max-height: 50svh; background: var(--sdc-bg); overflow: hidden; display: flex; align-items: center; justify-content: center; }
-	.sdc-card__art img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
-	/* Two kinds of art must never be cropped: logo lockups, which would lose a
-	   mark, and the flat diagrams, which would lose the thing they are drawing.
-	   Both fit inside the box, and the box takes the artwork's own ground, which
-	   makes the letterbox invisible. This matters most on a short viewport, where
-	   the max-height caps below squeeze the 16:9 box toward 2.8:1 and `cover`
-	   would take the difference off the bottom of the image. */
-	/* --field is set per card from the artwork it sits behind, so it is card
-	   content rather than a palette value. Three of the six cards set one; this
-	   literal is the backdrop for the ones that do not, and it is deliberately
-	   not a token: it belongs to the artwork, not to the theme. */
-	.sdc-card__art--contain { background: var(--field, #F2F1EC); }
-	.sdc-card__art--contain img { object-fit: contain; object-position: center; }
-	.sdc-card__body { padding: clamp(22px, 3vw, 32px) clamp(22px, 3.2vw, 36px) clamp(22px, 3vw, 30px); display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "head head" "text text" "meta cta"; gap: 10px var(--sdc-space-lg); align-items: end; }
-	.sdc-card__head {
-		grid-area: head;
-		font-family: var(--sdc-font-display);
-		font-weight: 400;
-		font-variation-settings: "wght" 400, "slnt" 0, "ital" 0;
-		font-synthesis: none;
-		font-size: clamp(22px, 2.3vw, 30px);
-		line-height: 1.05;
-		letter-spacing: 0;
-		color: var(--sdc-text);
-		margin: 0;
-	}
-	.sdc-card__text { grid-area: text; margin: 0 0 6px; font-size: 16px; line-height: 1.5; color: var(--sdc-text); max-width: 60ch; text-wrap: pretty; }
-	.sdc-card__meta { grid-area: meta; display: flex; flex-wrap: wrap; gap: 4px var(--sdc-space-lg); margin: 0; }
-	.sdc-card__meta div { display: flex; gap: 8px; align-items: baseline; min-width: 0; }
-	.sdc-card__meta dt { font-size: var(--sdc-text-label); letter-spacing: 0.14em; text-transform: uppercase; color: var(--sdc-text-mute); font-weight: 800; }
-	.sdc-card__meta dt::after { content: '|' / ''; margin-left: 8px; font-weight: 400; letter-spacing: 0; opacity: 0.55; }
-	.sdc-card__meta dd { margin: 0; font-size: 13px; color: var(--sdc-text); font-weight: 500; }
-	.sdc-card__cta { grid-area: cta; font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
-	.arrow { display: inline-block; transition: transform 0.22s ease; }
-
 	/* ---------- Flip deck ---------- */
 	.sdc-deck { position: relative; }
 	.sdc-deck__track { position: relative; height: calc(var(--n) * var(--per, 1) * 100svh + 100svh); }
@@ -873,7 +802,6 @@ const quotes = [
 	.sdc-deck__dim { position: absolute; inset: 0; border-radius: inherit; background: var(--sdc-ink-black); opacity: calc(var(--dim) * 0.5); pointer-events: none; }
 	.work__lede { font-size: clamp(40px, 6vw, 92px); line-height: 0.95; margin: 0; text-align: center; }
 	.sdc-deck--work .sdc-deck__stage { gap: var(--sdc-space-lg); }
-	.sdc-deck--work .sdc-card { max-height: calc(100svh - var(--sdc-nav-h) - 200px); }
 
 
 	/* ---------- Recommendations: a fanned deck, driven by scroll ---------- */
@@ -913,7 +841,7 @@ const quotes = [
 	.sdc-quote__title { font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; font-size: 11px; color: var(--sdc-text-mute); max-width: 34ch; }
 
 	/* ---------- How I work ---------- */
-	.sdc-section--how { padding: var(--sdc-space-4xl) var(--sdc-gutter) var(--sdc-space-3xl); }
+	sdc-section#how { padding: var(--sdc-space-4xl) var(--sdc-gutter) var(--sdc-space-3xl); }
 	.sdc-how__lede { font-size: clamp(26px, 3vw, 40px); max-width: 22ch; margin: 0 0 var(--sdc-space-xl); text-wrap: pretty; }
 	/* One row treatment, shared by How I work and Recognition. */
 	.sdc-how__list, .sdc-rec__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--sdc-rule); }
@@ -922,21 +850,19 @@ const quotes = [
 	.sdc-how__list p, .sdc-rec__list p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--sdc-text); text-wrap: pretty; }
 
 	/* ---------- Recognition ---------- */
-	.sdc-section--awards { padding: var(--sdc-space-2xl) var(--sdc-gutter) var(--sdc-space-3xl); }
+	sdc-section.awards { padding: var(--sdc-space-2xl) var(--sdc-gutter) var(--sdc-space-3xl); }
 	.sdc-rec__lede { font-size: clamp(26px, 3vw, 40px); max-width: 22ch; margin: 0 0 var(--sdc-space-xl); text-wrap: pretty; }
 
 	/* ---------- About, the end ---------- */
-	.sdc-section--about { padding: var(--sdc-space-4xl) var(--sdc-gutter) var(--sdc-space-2xl); }
+	sdc-section#about { padding: var(--sdc-space-4xl) var(--sdc-gutter) var(--sdc-space-2xl); }
 	.about { display: flex; flex-direction: column; align-items: center; text-align: center; }
 	.about__photo { width: 160px; height: 160px; object-fit: cover; border-radius: 50%; display: block; margin-bottom: var(--sdc-space-lg); }
 	.about__lede { font-size: clamp(28px, 3.4vw, 48px); margin: 0 0 var(--sdc-space-lg); text-wrap: pretty; }
 	.about .sdc-eyebrow { margin-bottom: var(--sdc-space-md); }
-	.about__copy { max-width: 62ch; }
-	.about__copy p { text-wrap: pretty; }
 	.about__seat { color: var(--sdc-text-mute); }
 
 	/* ---------- Contact ---------- */
-	.sdc-section--contact { padding: var(--sdc-space-3xl) var(--sdc-gutter) var(--sdc-space-5xl); text-align: center; }
+	sdc-section#contact { padding: var(--sdc-space-3xl) var(--sdc-gutter) var(--sdc-space-5xl); text-align: center; }
 	.contact { display: flex; flex-direction: column; align-items: center; gap: var(--sdc-space-xl); }
 	.contact__title { font-size: clamp(56px, 7vw, 112px); margin: 0; }
 	.contact__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: clamp(18px, 1.6vw, 22px); font-weight: 600; }
@@ -1010,9 +936,9 @@ const quotes = [
 	.sdc-modal__loading { padding: var(--sdc-space-3xl) var(--sdc-space-xl); color: var(--sdc-text-mute); }
 	/* The loaded case page inside the card: no back link, a title sized for the card. */
 	.sdc-modal__content :global(.sdc-cs-back-top) { display: none; }
-	.sdc-modal__content :global(.sdc-cs-hero) { padding-top: var(--sdc-space-xl); }
-	.sdc-modal__content :global(.sdc-cs-hero__title) { font-size: clamp(32px, 4.6vw, 60px); }
-	.sdc-modal__content :global(.sdc-cs-back .sdc-btn--primary) { background: var(--sdc-text); color: var(--sdc-bg); }
+	.sdc-modal__content :global(sdc-case-hero) { padding-top: var(--sdc-space-xl); }
+	.sdc-modal__content :global(.sdc-case-hero__title) { font-size: clamp(32px, 4.6vw, 60px); }
+	.sdc-modal__content :global(sdc-layout-container[layout="pager"] .sdc-btn--primary) { background: var(--sdc-text); color: var(--sdc-bg); }
 	:global(body.modal-open) { overflow: hidden; }
 
 	/* ---------- Reduced motion: decks become lists ---------- */
@@ -1020,21 +946,17 @@ const quotes = [
 		/* A list shows every card at once, so a position indicator means nothing. */
 		.sdc-deck__dots { display: none; }
 		.sdc-deck__track, .sdc-deck--recs .sdc-deck__track { height: auto; }
-		/* The cards stop being height-capped, or the copy is clipped. */
-		.sdc-deck--work .sdc-card { max-height: none; }
 		/* The fan stacked all twelve quotes in one absolute slot. */
 		.sdc-recs__fan { position: static; height: auto; display: grid; gap: var(--sdc-space-md); }
 		.sdc-recs__card { position: static; width: auto; height: auto; margin-left: 0; transform: none !important; visibility: visible !important; opacity: 1 !important; }
 		/* A full-screen 3D flip is the classic vestibular trigger. */
 		.sdc-modal__body { transform: none; transition: none; }
 		.sdc-modal, .sdc-modal.is-open { transition: none; }
-		.sdc-card, .arrow { transition: none; }
 		.sdc-deck__dot { transition: none; }
 		.sdc-deck__stage { position: static; height: auto; padding: var(--sdc-space-3xl) 0 0; overflow: visible; perspective: none; }
 		.sdc-deck__cards { display: grid; gap: var(--sdc-space-md); place-items: stretch; }
 		.sdc-deck__card { grid-area: auto; transform: none !important; visibility: visible !important; }
 			.sdc-deck__dim { display: none; }
-			.sdc-card__art { max-height: none; }
 	}
 	/* Graceful degradation. The script adds .sdc-deck-static to the root when the
 	   pinned deck measurably cannot fit this device, and the layout becomes the
@@ -1043,46 +965,26 @@ const quotes = [
 	:root.sdc-deck-static .sdc-deck__dots { display: none; }
 
 		:root.sdc-deck-static .sdc-deck--recs .sdc-deck__track { height: auto; }
-		/* The cards stop being height-capped, or the copy is clipped. */
-		:root.sdc-deck-static .sdc-deck--work .sdc-card { max-height: none; }
 		/* The fan stacked all twelve quotes in one absolute slot. */
 		:root.sdc-deck-static .sdc-recs__fan { position: static; height: auto; display: grid; gap: var(--sdc-space-md); }
 		:root.sdc-deck-static .sdc-recs__card { position: static; width: auto; height: auto; margin-left: 0; transform: none !important; visibility: visible !important; opacity: 1 !important; }
 		/* A full-screen 3D flip is the classic vestibular trigger. */
 		:root.sdc-deck-static .sdc-modal__body { transform: none; transition: none; }
 		:root.sdc-deck-static .sdc-modal, :root.sdc-deck-static .sdc-modal.is-open { transition: none; }
-		:root.sdc-deck-static .sdc-card, :root.sdc-deck-static .arrow { transition: none; }
 		:root.sdc-deck-static .sdc-deck__stage { position: static; height: auto; padding: var(--sdc-space-3xl) 0 0; overflow: visible; perspective: none; }
 		:root.sdc-deck-static .sdc-deck__cards { display: grid; gap: var(--sdc-space-md); place-items: stretch; }
 		:root.sdc-deck-static .sdc-deck__card { grid-area: auto; transform: none !important; visibility: visible !important; }
 		:root.sdc-deck-static .sdc-deck__dim { display: none; }
-		:root.sdc-deck-static .sdc-card__art { max-height: none; }
 	
 
 	/* ---------- Phones: same decks, tighter cards ---------- */
 	@media (max-width: 880px) {
 		.sdc-deck__stage { padding-top: calc(var(--sdc-nav-h) + 8px); gap: 14px; perspective: 1200px; }
-		/* The art is the only flexible item in the card, so any height shortfall
-		   used to come out of it and left a sliver. Pin it to its ratio and take
-		   the room out of the body instead. */
-		.sdc-card__art { flex: 0 0 auto; max-height: none; }
-		/* Reserve only what actually sits above the card: nav, stage padding,
-		   the Case studies headline and one gap. */
-		.sdc-deck--work .sdc-card { max-height: calc(100svh - var(--sdc-nav-h) - 120px); }
-		.sdc-card__body { gap: 8px; }
-		.sdc-card__text { font-size: 15px; line-height: 1.45; margin-bottom: 2px; }
 		.sdc-quote { padding: 28px 22px; }
 		.sdc-quote__text p { font-size: 17px; }
 		.hero { padding-top: var(--sdc-space-2xl); padding-bottom: var(--sdc-space-3xl); }
 		.hero__claim { font-size: clamp(30px, 7.2vw, 44px); }
-		.sdc-card__body { grid-template-columns: 1fr; grid-template-areas: "head" "text" "meta" "cta"; padding: 18px 20px; align-items: start; }
-		/* Labels read as subheads on phones: above the value, not beside it. */
-		.sdc-card__meta { flex-direction: column; gap: 10px; }
-		.sdc-card__meta div { flex-direction: column; gap: 2px; align-items: flex-start; }
-		.sdc-card__meta dt { font-size: 12px; letter-spacing: 0.1em; color: var(--sdc-text); }
-		.sdc-card__meta dt::after { content: none; }
 		.sdc-deck--work .sdc-deck__dots { margin-top: -18px; }
-		.sdc-card__meta dd { font-size: 14px; line-height: 1.4; }
 		.sdc-how__list li, .sdc-rec__list li { grid-template-columns: 1fr; gap: 8px; }
 		.sdc-deck--recs { --rec-w: min(300px, 82vw); --rec-h: 380px; }
 		.sdc-recs__stage { gap: var(--sdc-space-md); }
@@ -1094,24 +996,9 @@ const quotes = [
 	@media (max-width: 880px) and (min-height: 600px) and (max-height: 720px) {
 		.sdc-deck--work .sdc-deck__stage { padding-top: calc(var(--sdc-nav-h) + 2px); gap: 8px; }
 		.work__lede { font-size: 30px; }
-		.sdc-deck--work .sdc-card { max-height: calc(100svh - var(--sdc-nav-h) - 78px); }
-		.sdc-card__head { font-size: 20px; }
-		.sdc-card__text { font-size: 14px; }
-		.sdc-card__body { padding: 14px 18px; }
-	}
-	/* Smallest phones with full browser chrome: a wider crop gives height back
+	}/* Smallest phones with full browser chrome: a wider crop gives height back
 	   to the copy while the image still reads as an image. */
-	@media (max-width: 880px) and (min-height: 600px) and (max-height: 620px) {
-		.sdc-card__art { aspect-ratio: 2 / 1; }
-		.sdc-card__body { gap: 6px; padding: 12px 16px; }
-		.sdc-card__text { font-size: 13.5px; }
-		.sdc-card__meta { gap: 8px; }
-		.sdc-deck--work .sdc-card { max-height: calc(100svh - var(--sdc-nav-h) - 70px); }
-	}
-	@media (max-height: 760px) and (min-width: 881px) {
-		.sdc-card__art { max-height: 44svh; }
-		.sdc-card__text { font-size: 15px; }
-	}
+
 	@media (prefers-reduced-motion: reduce) {
 		:global(.rw__i) { transition: none; transform: none; }
 		[data-reveal="block"] { transition: none; }

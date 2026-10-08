@@ -8,9 +8,9 @@ export const CaseStudyHero = () => `
   <div style="max-width:900px">
     <a class="sdc-cs-back-top" href="#0">← Case studies</a>
     <p class="sdc-eyebrow">Case study</p>
-    <h1 class="sdc-cs-hero__title sdc-display" style="font-size:clamp(36px,6vw,72px);line-height:.98;margin:8px 0 32px;max-width:20ch">Plate: Repositioning a Print Brand as a Digital Platform</h1>
-    <p class="sdc-cs-hero__lede" style="font-size:var(--sdc-text-deck);line-height:1.5;max-width:56ch;font-weight:500;margin-bottom:64px">Plate's website was only a recipe database. The work was to grow it into a platform that carried the whole brand.</p>
-    <div class="sdc-cs-figure" style="margin:32px 0 48px"><img src="/images/case-studies/plate/plate-scene.webp" alt="" style="width:100%;height:auto;display:block" /></div>
+    <h1 class="sdc-case-hero__title sdc-display" style="font-size:clamp(36px,6vw,72px);line-height:.98;margin:8px 0 32px;max-width:20ch">Plate: Repositioning a Print Brand as a Digital Platform</h1>
+    <p class="sdc-case-hero__lede" style="font-size:var(--sdc-text-deck);line-height:1.5;max-width:56ch;font-weight:500;margin-bottom:64px">Plate's website was only a recipe database. The work was to grow it into a platform that carried the whole brand.</p>
+    <sdc-case-figure style="margin:32px 0 48px"><img src="/images/case-studies/plate/plate-scene.webp" alt="" style="width:100%;height:auto;display:block" /></sdc-case-figure>
     <dl class="sdc-cs-meta" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:0;padding:32px 0 0;border-top:1px solid var(--sdc-rule)">
       <div><dt>Role</dt><dd>Creative Director</dd></div>
       <div><dt>Org</dt><dd>MTG Media Group</dd></div>
@@ -29,14 +29,14 @@ export const DeckFallback = () => `
     ${[['Nobody asked for this one.', '/images/case-studies/merchant-flow-builder/plugin-pipeline.webp', 'Figma plugin, PayPal'],
        ['Becoming the default at checkout.', '/images/case-studies/paypal/one-click.webp', 'One-click checkout, PayPal']]
       .map(([h, img, product]) => `
-      <div class="sdc-card" style="display:flex;flex-direction:column">
+      <sdc-card style="display:flex;flex-direction:column">
         <div class="sdc-card__art sdc-card__art--image"><img src="${img}" alt="" /></div>
         <div class="sdc-card__body">
           <h3 class="sdc-card__head"><a class="sdc-card__link" href="#0">${h}</a></h3>
           <dl class="sdc-card__meta"><div><dt>Product</dt><dd>${product}</dd></div></dl>
           <span class="sdc-card__cta">Read case study <span class="arrow" aria-hidden="true">→</span></span>
         </div>
-      </div>`).join('')}
+      </sdc-card>`).join('')}
   </div>`;
 DeckFallback.storyName = 'Deck fallback';
 

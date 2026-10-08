@@ -140,12 +140,12 @@ All global, in `Site.astro`.
 | `.sdc-u-sr-only` | Text for assistive tech only |
 | `.sdc-site-header`, `.sdc-nav`, `.sdc-nav-mobile`, `.sdc-nav-toggle` | Header and both navs |
 | `.sdc-site-footer` | Footer |
-| `.sdc-section`, `.sdc-section--alt`, `.sdc-section__inner` | Page bands and their content width |
+| `<sdc-section tone="alt">`, `<sdc-layout-container width="narrow">` | Page bands and their content width |
 | `.sdc-theme-img--light`, `.sdc-theme-img--dark` | Swap an image by theme |
 | `[data-animate="fade"]` | Fade in on scroll. Only hidden when `html.js` is present |
 
-The case study classes (`sdc-cs-hero`, `sdc-cs-meta`, `sdc-cs-block`, `sdc-cs-figure`,
-`sdc-cs-body`) are defined once in `src/layouts/Site.astro`, scoped under `.sdc-case`.
+The case study pieces (`<sdc-case-hero>`, `.sdc-cs-meta`, `<sdc-case-block>`, `<sdc-case-figure>`,
+`<sdc-layout-container layout="prose">`) are styled once in `src/layouts/Site.astro`, scoped under `.sdc-case`.
 A page turns them on by passing `variant="case"` to the layout, which puts `.sdc-case`
 on `<main>`. They used to be defined per page; they are not any more, so a case
 study page carries no CSS of its own. See

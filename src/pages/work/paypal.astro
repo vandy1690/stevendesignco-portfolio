@@ -17,7 +17,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 >
 	<CaseHero
 		eyebrow="Case study"
-		title="PayPal: Becoming the Default at Checkout"
+		heading="PayPal: Becoming the Default at Checkout"
 		lede="PayPal is competing with Apple Pay and Google Pay to be the default payment method at mobile checkout. The way to win it is one-click checkout: save a customer's payment details securely so buying takes one tap instead of filling a form. My work was showing enterprise merchants what that looks like inside their own checkout, in their own brand, mostly on mobile."
 		meta={[
 			{ term: 'Role', value: 'Principal Designer · PayPal' },
@@ -26,7 +26,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 		note="This work is proprietary to PayPal. Flows are shown generically, so they are not reproduced here."
 	/>
 
-	<CaseSection alt inner="sdc-cs-orbit">
+	<CaseSection tone="alt" layout="orbit">
 		<Eyebrow>The stage</Eyebrow>
 		<h2 class="sdc-cs-h2 sdc-display">PayPal partners with the top 100 merchants. The job was the checkout in front of them.</h2>
 		<div class="sdc-cs-orbit__art">
@@ -40,7 +40,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 		</CaseBlock>
 	</CaseSection>
 
-	<CaseSection alt>
+	<CaseSection tone="alt">
 		<CaseBlock eyebrow="What I clarified" lede="One proposal per merchant, on a weekly sprint.">
 			<p>On the Merchant Enablement team I produced a proposal package for each merchant. Each one mapped the current checkout against a clearer target state across the four entry contexts, Wallet, Express, Standard first time, and Standard return, and the major variants: app switch versus web, Pay Later versus Pay in Full, passkey, and vaulting.</p>
 			<p>Every package was the same stack: a screen audit, the complete checkout flows, a working prototype, a prototype video, and the decks for the merchant conversation.</p>
@@ -54,13 +54,13 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 		</CaseBlock>
 	</CaseSection>
 
-	<CaseSection alt>
+	<CaseSection tone="alt">
 		<CaseBlock eyebrow="Who I influenced" lede="The package was what the team took into the room.">
 			<p>PMs and design leads used it in merchant conversations. I worked from PM briefs, with Principal Designer review and peer review inside a senior team. The proposals fed the merchant pitch for brands including Home Depot, Nintendo, Target, Best Buy, TikTok Shop, Chewy, and Microsoft.</p>
 		</CaseBlock>
 	</CaseSection>
 
-	<CaseSection alt id="checkout-dead-end">
+	<CaseSection tone="alt" id="checkout-dead-end">
 		<CaseBlock eyebrow="The consumer side" lede="The checkout dead end">
 			<p>A customer reaches checkout and finds there is no card that can pay. The card expired, or it was declined, or it was removed, or it was never added in the first place. The order stops there.</p>
 			<p>I built the Figma board that mapped that dead end back to every earlier moment the customer could have fixed the card. The board traced the touchpoints across roughly a month before checkout, marked which ones send a message today and which ones send nothing, and ended on the checkout experience itself.</p>
@@ -84,7 +84,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 	</CaseSection>
 
 	<PagerPair
-		prev={{ href: '/#work', label: 'All case studies', hidden: 'Back to ' }}
-		next={{ href: '/work/plate', label: 'Plate', hidden: 'Next case study: ' }}
+		prev={{ href: '/#work', label: 'All case studies', prefix: 'Back to ' }}
+		next={{ href: '/work/plate', label: 'Plate', prefix: 'Next case study: ' }}
 	/>
 </Site>

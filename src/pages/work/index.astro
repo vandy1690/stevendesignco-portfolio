@@ -29,15 +29,15 @@ const labs = [
 	image="/og/work.png"
 >
 	<section class="wk-hero">
-		<div class="sdc-section__inner">
+		<sdc-layout-container>
 			<p class="sdc-eyebrow">Work</p>
 			<h1 class="wk-title sdc-display">All of it.</h1>
 			<p class="wk-lede">Six case studies carry the home page. The rest of the record is here, with the libraries you can open.</p>
-		</div>
+		</sdc-layout-container>
 	</section>
 
-	<section class="sdc-section">
-		<div class="sdc-section__inner">
+	<sdc-section>
+		<sdc-layout-container>
 			<p class="sdc-eyebrow">Case studies</p>
 			<ul class="wk-list">
 				{[...featured, ...more].map((w) => (
@@ -51,11 +51,11 @@ const labs = [
 					</li>
 				))}
 			</ul>
-		</div>
-	</section>
+		</sdc-layout-container>
+	</sdc-section>
 
-	<section class="sdc-section">
-		<div class="sdc-section__inner">
+	<sdc-section>
+		<sdc-layout-container>
 			<p class="sdc-eyebrow">Labs and libraries</p>
 			<ul class="wk-list wk-list--labs">
 				{labs.map((w) => (
@@ -69,8 +69,8 @@ const labs = [
 				))}
 			</ul>
 			<p class="wk-note">PayPal work is proprietary. Flows are shown generically and the plugin interface is not reproduced. The Meatingplace Figma library is password protected; ask and I will send it.</p>
-		</div>
-	</section>
+		</sdc-layout-container>
+	</sdc-section>
 </Site>
 
 <style>

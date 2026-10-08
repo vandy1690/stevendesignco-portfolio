@@ -15,7 +15,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 >
 	<CaseHero
 		eyebrow="Case study"
-		title="Project Blackbird"
+		heading="Project Blackbird"
 		lede="An oral history of the Chicago restaurant that changed the city's dining, built as a responsive longform site that did the story justice."
 		meta={[
 			{ term: 'Role', value: 'Creative Director / Design Lead' },
@@ -37,7 +37,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 		</CaseBlock>
 	</CaseSection>
 
-	<CaseSection alt>
+	<CaseSection tone="alt">
 		<CaseBlock eyebrow="What I led" lede="A responsive longform site, told as an oral history.">
 			<p>I designed and built a dynamically responsive site for longform content, told as an oral history. The layout carries the voices and the timeline across screen sizes.</p>
 		</CaseBlock>
@@ -49,14 +49,14 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 		</CaseBlock>
 	</CaseSection>
 
-	<CaseSection alt>
+	<CaseSection tone="alt">
 		<CaseBlock eyebrow="What changed" lede="It put a B2B trade title on the national stage.">
 			<p>🏆 Project Blackbird was named a Grand Jesse H. Neal Finalist, top 4 nationally.</p>
 		</CaseBlock>
 	</CaseSection>
 
 	<PagerPair
-		prev={{ href: '/work/plate', label: 'Plate', hidden: 'Previous case study: ' }}
-		next={{ href: '/work/alt-meat', label: 'Alt-Meat', hidden: 'Next case study: ' }}
+		prev={{ href: '/work/plate', label: 'Plate', prefix: 'Previous case study: ' }}
+		next={{ href: '/work/alt-meat', label: 'Alt-Meat', prefix: 'Next case study: ' }}
 	/>
 </Site>

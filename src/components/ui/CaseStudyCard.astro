@@ -1,0 +1,48 @@
+---
+/**
+ * CaseStudyCard
+ * One case study in the home page deck: art above, then the claim as a link,
+ * one paragraph, the product and objective pairs, and the call to read.
+ *
+ * The whole card is clickable through the link's stretched pseudo-element, so
+ * the link is the only interactive element and the card never nests two. The
+ * `data-case` attribute is what the home page's dialog listens for.
+ *
+ * Pass `image` for photographic art. For drawn art, leave `image` off, set
+ * `art` to the drawing's name and put the drawing in the `art` slot.
+ *
+ * @element sdc-card
+ */
+interface Props {
+	href: string;
+	/** The claim. Becomes the heading and the link text. */
+	head: string;
+	/** One paragraph under the claim. */
+	text: string;
+	product: string;
+	objective: string;
+	/** Which art treatment the card carries. Styles the art area. */
+	art: 'image' | 'plugin' | 'checkout' | 'journey';
+	/** Photographic art. Decorative: the claim carries the meaning. */
+	image?: string;
+	/** Fit the art inside the area instead of cropping it. */
+	contain?: boolean;
+	/** The art's own ground color, when it should match the artwork. */
+	field?: string;
+}
+const { href, head, text, product, objective, art, image, contain = false, field } = Astro.props;
+---
+<sdc-card>
+	<div class:list={['sdc-card__art', `sdc-card__art--${art}`, contain && 'sdc-card__art--contain']} style={field ? `--field: ${field}` : undefined}>
+		{image ? <img src={image} alt="" loading="lazy" /> : <slot name="art" />}
+	</div>
+	<div class="sdc-card__body">
+		<h3 class="sdc-card__head"><a class="sdc-card__link" href={href} data-case>{head}</a></h3>
+		<p class="sdc-card__text">{text}</p>
+		<dl class="sdc-card__meta">
+			<div><dt>Product</dt><dd>{product}</dd></div>
+			<div><dt>Objective</dt><dd>{objective}</dd></div>
+		</dl>
+		<span class="sdc-card__cta">Read case study <span class="sdc-card__arrow" aria-hidden="true">→</span></span>
+	</div>
+</sdc-card>

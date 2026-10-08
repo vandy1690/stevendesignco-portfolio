@@ -35,10 +35,10 @@ export const Pager = {
 
 export const PagerPair = () => `
   <p class="sb-note">How the pair sits at the foot of every case study.</p>
-  <div class="sdc-cs-back" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between;align-items:center;max-width:800px">
+  <sdc-layout-container layout="pager" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between;align-items:center;max-width:800px">
     <a class="sdc-pager sdc-pager--prev" href="#0">${chevron('prev')}<span class="sdc-u-sr-only">Back to </span>All case studies</a>
     <a class="sdc-pager" href="#0"><span class="sdc-u-sr-only">Next case study: </span>Plate${chevron('next')}</a>
-  </div>`;
+  </sdc-layout-container>`;
 PagerPair.storyName = 'Pager pair';
 
 export const CaseCard = {
@@ -67,7 +67,7 @@ export const CaseCard = {
       a stretched ::after covers the card, so the whole card clicks while its accessible name is
       exactly the visible headline rather than a hand-written label.</p>
     <div style="max-width:760px">
-      <div class="sdc-card" style="display:flex;flex-direction:column">
+      <sdc-card style="display:flex;flex-direction:column">
         <div class="sdc-card__art sdc-card__art--image"><img src="${image}" alt="" /></div>
         <div class="sdc-card__body">
           <h3 class="sdc-card__head"><a class="sdc-card__link" href="#0">${head}</a></h3>
@@ -78,7 +78,7 @@ export const CaseCard = {
           </dl>
           <span class="sdc-card__cta">Read case study <span class="arrow" aria-hidden="true">→</span></span>
         </div>
-      </div>
+      </sdc-card>
     </div>`,
 };
 CaseCard.storyName = 'Case study card';
@@ -124,13 +124,13 @@ export const CaseBlock = () => `
   <p class="sb-note">One organism: a kicker, the section heading, and its body. They sit on line
     height alone with no margins between them, so the three read as a single unit. The heading is a
     real h2, styled to look like the paragraph it used to be.</p>
-  <div class="sdc-cs-body" style="display:grid;gap:48px;max-width:800px">
-    <div class="sdc-cs-block">
+  <sdc-layout-container layout="prose" style="display:grid;gap:48px;max-width:800px">
+    <sdc-case-block>
       <p class="sdc-eyebrow">What was unclear</p>
-      <h2 class="sdc-cs-block__lede">A whole brand online, reduced to recipes.</h2>
+      <h2 class="sdc-case-block__lede">A whole brand online, reduced to recipes.</h2>
       <p>Plate's website was only a recipe database. The brand also had magazine content, daily news, and blogs, but none of it lived online in a usable structure.</p>
-    </div>
-  </div>`;
+    </sdc-case-block>
+  </sdc-layout-container>`;
 CaseBlock.storyName = 'Case study block';
 
 export const SkipLink = () => `

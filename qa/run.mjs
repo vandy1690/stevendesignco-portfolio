@@ -71,6 +71,24 @@ if (base === LOCAL) {
 	// Compiling a route makes the dev server push a full reload over HMR. Let
 	// those land before the first measurement rather than during it.
 	await new Promise((r) => setTimeout(r, 3000));
+	// A fetch warms the route, not its dependencies. Vite discovers client
+	// dependencies lazily, re-optimizes, and answers "504 Outdated Optimize
+	// Dep" to any context that loaded the page before it finished, which
+	// broke the dialog check on 2026-10-08 with no error in the page. Load
+	// every page in a real browser, twice, so the dependency set has settled
+	// before anything is measured.
+	process.stdout.write(' warming dependencies');
+	const warm = await launch();
+	for (let round = 0; round < 2; round++) {
+		for (const path of PAGES) {
+			const page = await warm.newPage();
+			await page.goto(base + path, { waitUntil: 'networkidle', timeout: 60000 }).catch(() => {});
+			await page.close();
+			process.stdout.write('.');
+		}
+		await new Promise((r) => setTimeout(r, 2000));
+	}
+	await warm.close();
 	console.log(' ready');
 }
 

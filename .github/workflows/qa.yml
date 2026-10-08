@@ -52,6 +52,16 @@ jobs:
       - name: Install
         run: npm ci
 
+      - name: Manifest in step
+        # custom-elements.json is generated from the components. A stale copy
+        # would describe elements that do not exist.
+        run: npm run manifest:check
+
+      - name: Naming convention
+        # The sdc- namespace on elements, classes, tokens and props. Added
+        # 2026-10-08, after the namespace was applied by hand with no check.
+        run: npm run check:names
+
       - name: Tokens in step
         # Cheap and first: a stale generated block fails here in seconds rather
         # than after a three minute browser install. The primitives in

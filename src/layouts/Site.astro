@@ -533,6 +533,9 @@ const jsonLd = {
 				--sdc-accent-glow: rgba(var(--sdc-brand-regatta-rgb), 0.22);
 				--sdc-header-bg: rgba(var(--sdc-paper-cloud-rgb), 0.82);
 			}
+			/* Custom elements render inline until told otherwise. Every system
+			   container is a block; each one's own rule, further down, adds the rest. */
+			sdc-section, sdc-layout-container, sdc-case-block, sdc-case-figure, sdc-button-group, sdc-case-hero, sdc-card, sdc-text-passage { display: block; }
 			* { box-sizing: border-box; }
 			html, body { margin: 0; padding: 0; }
 			/* Stop Android/iOS from auto-inflating text, which on some phones
@@ -814,15 +817,166 @@ const jsonLd = {
 			.sdc-cflip-char { position: relative; display: inline-block; overflow: hidden; vertical-align: top; }
 			.sdc-cflip-char > span { display: block; transition: transform 0.42s cubic-bezier(0.76, 0, 0.24, 1); transition-delay: calc(var(--i) * 16ms); }
 			.sdc-cflip-char > span:last-child { position: absolute; left: 0; top: 0; transform: translateY(100%); color: var(--sdc-accent); }
-			.sdc-card:hover .sdc-cflip-char > span:first-child,
-			.sdc-card:focus-visible .sdc-cflip-char > span:first-child { transform: translateY(-100%); }
-			.sdc-card:hover .sdc-cflip-char > span:last-child,
-			.sdc-card:focus-visible .sdc-cflip-char > span:last-child { transform: translateY(0); }
+			sdc-card:hover .sdc-cflip-char > span:first-child,
+			sdc-card:focus-visible .sdc-cflip-char > span:first-child { transform: translateY(-100%); }
+			sdc-card:hover .sdc-cflip-char > span:last-child,
+			sdc-card:focus-visible .sdc-cflip-char > span:last-child { transform: translateY(0); }
 			@media (prefers-reduced-motion: reduce) { .sdc-cflip-char > span { transition: none; } }
 
 			/* Sections (shared) */
-			.sdc-section { padding: var(--sdc-space-2xl) var(--sdc-gutter); }
-			.sdc-section--alt { background: var(--sdc-bg); }
+			.sdc-card__arrow { display: inline-block; transition: transform 0.22s ease; }
+
+			/* ---------- Case study card ----------
+			   Moved here from the home page on 2026-10-08 when the card became a
+			   component: a page's <style> is scoped to that page's own markup, so
+			   it stopped reaching the card the moment the card rendered from
+			   src/components/ui/CaseStudyCard.astro. System components are styled
+			   in the system stylesheet. */
+			.sdc-deck--work sdc-card, .sdc-card__art { max-height: none !important; }
+			/* ---------- Card ---------- */
+	sdc-card {
+		display: flex;
+		flex-direction: column;
+		width: var(--content);
+		background: var(--sdc-surface);
+		border-radius: var(--sdc-radius);
+		box-shadow: var(--sdc-shadow-card);
+		color: var(--sdc-text);
+		overflow: hidden;
+		transition: box-shadow 0.25s ease, transform 0.25s ease;
+	}
+			sdc-card { position: relative; }
+			/* Stretched link: the headline is the only link, and its ::after covers the
+	   card so the whole card still clicks. Its name is the visible headline. */
+	.sdc-card__link { color: inherit; text-decoration: none; }
+			.sdc-card__link::after { content: ''; position: absolute; inset: 0; z-index: 2; border-radius: inherit; }
+			.sdc-card__link:hover { color: inherit; }
+			/* The ring belongs to the card, not the headline text. */
+	.sdc-card__link:focus-visible { outline: none; }
+			sdc-card:has(.sdc-card__link:focus-visible) { outline: 2px solid var(--sdc-text); outline-offset: 3px; }
+			sdc-card:has(.sdc-card__link.sdc-u-no-ring) { outline: none; }
+			sdc-card:hover, sdc-card:has(.sdc-card__link:focus-visible) { color: var(--sdc-text); box-shadow: var(--sdc-shadow-card-hover); }
+			sdc-card:hover .sdc-card__arrow, sdc-card:has(.sdc-card__link:focus-visible) .sdc-card__arrow { transform: translateX(6px); }
+			/* Full-bleed media. Images cover; the drawn stand-ins sit on paper until the images arrive. */
+	.sdc-card__art { position: relative; width: 100%; aspect-ratio: 16 / 9; max-height: 50svh; background: var(--sdc-bg); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+			.sdc-card__art img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+			/* Two kinds of art must never be cropped: logo lockups, which would lose a
+	   mark, and the flat diagrams, which would lose the thing they are drawing.
+	   Both fit inside the box, and the box takes the artwork's own ground, which
+	   makes the letterbox invisible. This matters most on a short viewport, where
+	   the max-height caps below squeeze the 16:9 box toward 2.8:1 and `cover`
+	   would take the difference off the bottom of the image. */
+	/* --field is set per card from the artwork it sits behind, so it is card
+	   content rather than a palette value. Three of the six cards set one; this
+	   literal is the backdrop for the ones that do not, and it is deliberately
+	   not a token: it belongs to the artwork, not to the theme. */
+	.sdc-card__art--contain { background: var(--field, #F2F1EC); }
+			.sdc-card__art--contain img { object-fit: contain; object-position: center; }
+			.sdc-card__body { padding: clamp(22px, 3vw, 32px) clamp(22px, 3.2vw, 36px) clamp(22px, 3vw, 30px); display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "head head" "text text" "meta cta"; gap: 10px var(--sdc-space-lg); align-items: end; }
+			.sdc-card__head {
+		grid-area: head;
+		font-family: var(--sdc-font-display);
+		font-weight: 400;
+		font-variation-settings: "wght" 400, "slnt" 0, "ital" 0;
+		font-synthesis: none;
+		font-size: clamp(22px, 2.3vw, 30px);
+		line-height: 1.05;
+		letter-spacing: 0;
+		color: var(--sdc-text);
+		margin: 0;
+	}
+			.sdc-card__text { grid-area: text; margin: 0 0 6px; font-size: 16px; line-height: 1.5; color: var(--sdc-text); max-width: 60ch; text-wrap: pretty; }
+			.sdc-card__meta { grid-area: meta; display: flex; flex-wrap: wrap; gap: 4px var(--sdc-space-lg); margin: 0; }
+			.sdc-card__meta div { display: flex; gap: 8px; align-items: baseline; min-width: 0; }
+			.sdc-card__meta dt { font-size: var(--sdc-text-label); letter-spacing: 0.14em; text-transform: uppercase; color: var(--sdc-text-mute); font-weight: 800; }
+			.sdc-card__meta dt::after { content: '|' / ''; margin-left: 8px; font-weight: 400; letter-spacing: 0; opacity: 0.55; }
+			.sdc-card__meta dd { margin: 0; font-size: 13px; color: var(--sdc-text); font-weight: 500; }
+			.sdc-card__cta { grid-area: cta; font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+			.sdc-deck--work sdc-card { max-height: calc(100svh - var(--sdc-nav-h) - 200px); }
+			/* The cards stop being height-capped, or the copy is clipped. */
+		:root.sdc-deck-static .sdc-deck--work sdc-card { max-height: none; }
+			:root.sdc-deck-static sdc-card, :root.sdc-deck-static .sdc-card__arrow { transition: none; }
+			:root.sdc-deck-static .sdc-card__art { max-height: none; }
+			@media (max-height: 760px) and (min-width: 881px) {
+		.sdc-card__art { max-height: 44svh; }
+		.sdc-card__text { font-size: 15px; }
+	}
+
+			@media (prefers-reduced-motion: reduce), (max-height: 599px) {
+			/* The cards stop being height-capped, or the copy is clipped. */
+					.sdc-deck--work sdc-card { max-height: none; }
+			}
+			@media (prefers-reduced-motion: reduce), (max-height: 599px) {
+			sdc-card, .sdc-card__arrow { transition: none; }
+			}
+			@media (prefers-reduced-motion: reduce), (max-height: 599px) {
+			.sdc-card__art { max-height: none; }
+			}
+			@media (max-width: 880px) {
+			/* The art is the only flexible item in the card, so any height shortfall
+					   used to come out of it and left a sliver. Pin it to its ratio and take
+					   the room out of the body instead. */
+					.sdc-card__art { flex: 0 0 auto; max-height: none; }
+			}
+			@media (max-width: 880px) {
+			/* Reserve only what actually sits above the card: nav, stage padding,
+					   the Case studies headline and one gap. */
+					.sdc-deck--work sdc-card { max-height: calc(100svh - var(--sdc-nav-h) - 120px); }
+			}
+			@media (max-width: 880px) {
+			.sdc-card__body { gap: 8px; }
+			}
+			@media (max-width: 880px) {
+			.sdc-card__text { font-size: 15px; line-height: 1.45; margin-bottom: 2px; }
+			}
+			@media (max-width: 880px) {
+			.sdc-card__body { grid-template-columns: 1fr; grid-template-areas: "head" "text" "meta" "cta"; padding: 18px 20px; align-items: start; }
+			}
+			@media (max-width: 880px) {
+			/* Labels read as subheads on phones: above the value, not beside it. */
+					.sdc-card__meta { flex-direction: column; gap: 10px; }
+			}
+			@media (max-width: 880px) {
+			.sdc-card__meta div { flex-direction: column; gap: 2px; align-items: flex-start; }
+			}
+			@media (max-width: 880px) {
+			.sdc-card__meta dt { font-size: 12px; letter-spacing: 0.1em; color: var(--sdc-text); }
+			}
+			@media (max-width: 880px) {
+			.sdc-card__meta dt::after { content: none; }
+			}
+			@media (max-width: 880px) {
+			.sdc-card__meta dd { font-size: 14px; line-height: 1.4; }
+			}
+			@media (max-width: 880px) and (min-height: 600px) and (max-height: 720px) {
+			.sdc-deck--work sdc-card { max-height: calc(100svh - var(--sdc-nav-h) - 78px); }
+			}
+			@media (max-width: 880px) and (min-height: 600px) and (max-height: 720px) {
+			.sdc-card__head { font-size: 20px; }
+			}
+			@media (max-width: 880px) and (min-height: 600px) and (max-height: 720px) {
+			.sdc-card__text { font-size: 14px; }
+			}
+			@media (max-width: 880px) and (min-height: 600px) and (max-height: 720px) {
+			.sdc-card__body { padding: 14px 18px; }
+			}
+			@media (max-width: 880px) and (min-height: 600px) and (max-height: 620px) {
+			.sdc-card__art { aspect-ratio: 2 / 1; }
+			}
+			@media (max-width: 880px) and (min-height: 600px) and (max-height: 620px) {
+			.sdc-card__body { gap: 6px; padding: 12px 16px; }
+			}
+			@media (max-width: 880px) and (min-height: 600px) and (max-height: 620px) {
+			.sdc-card__text { font-size: 13.5px; }
+			}
+			@media (max-width: 880px) and (min-height: 600px) and (max-height: 620px) {
+			.sdc-card__meta { gap: 8px; }
+			}
+			@media (max-width: 880px) and (min-height: 600px) and (max-height: 620px) {
+			.sdc-deck--work sdc-card { max-height: calc(100svh - var(--sdc-nav-h) - 70px); }
+			}
+			sdc-section { padding: var(--sdc-space-2xl) var(--sdc-gutter); }
+			sdc-section[tone="alt"] { background: var(--sdc-bg); }
 
 			/* Theme-aware image swap: pair a .sdc-theme-img--dark with .sdc-theme-img--light,
 			   the browser will paint whichever matches the active theme.
@@ -856,12 +1010,13 @@ const jsonLd = {
 			html:not(.js) .sdc-nav-toggle { display: none; }
 			html:not(.js) .sdc-theme-toggle { display: none; }
 			html:not(.js) a.sdc-js-email { pointer-events: none; text-decoration: none; cursor: default; }
-			.sdc-section--ink { background: var(--sdc-bg); }
-			.sdc-section__inner { max-width: var(--sdc-max); margin: 0 auto; }
-			.sdc-section__inner--narrow { max-width: var(--sdc-max-narrow); }
-			.sdc-prose { max-width: var(--sdc-max-narrow); font-size: 18px; color: var(--sdc-text); line-height: 1.7; font-weight: 400; }
-			.sdc-prose p { margin: 0 0 1.2em; }
-			.sdc-prose strong { color: var(--sdc-text); font-weight: 600; }
+			sdc-section[tone="ink"] { background: var(--sdc-bg); }
+			sdc-layout-container { max-width: var(--sdc-max); margin: 0 auto; }
+			sdc-layout-container[width="narrow"] { max-width: var(--sdc-max-narrow); }
+			sdc-text-passage { max-width: var(--sdc-max-narrow); font-size: 18px; color: var(--sdc-text); line-height: 1.7; font-weight: 400; }
+			sdc-text-passage[width="narrow"] { max-width: 62ch; }
+			sdc-text-passage p { margin: 0 0 1.2em; text-wrap: pretty; }
+			sdc-text-passage strong { color: var(--sdc-text); font-weight: 600; }
 
 			/* Buttons */
 			.sdc-btn {
@@ -939,42 +1094,42 @@ const jsonLd = {
 
 			   Everything here is under .sdc-case, which Site puts on <main> when a page
 			   passes variant="case". Without it these selectors would reach the home
-			   page, the work index and the resume, which use .sdc-section and .sdc-eyebrow
+			   page, the work index and the resume, which use sdc-section and .sdc-eyebrow
 			   too and style them differently. */
-			.sdc-case .sdc-cs-hero { max-width: var(--sdc-max); margin: 0 auto; padding: var(--sdc-space-2xl) var(--sdc-gutter); }
+			.sdc-case sdc-case-hero { max-width: var(--sdc-max); margin: 0 auto; padding: var(--sdc-space-2xl) var(--sdc-gutter); }
 			.sdc-case .sdc-cs-back-top { display: inline-flex; align-items: center; min-height: 24px; margin-bottom: var(--sdc-space-lg); color: var(--sdc-text-mute); font-size: var(--sdc-text-body-sm); }
 			.sdc-case .sdc-cs-back-top:hover { color: var(--sdc-accent); }
-			.sdc-case .sdc-cs-hero__title { margin: var(--sdc-space-xs) 0 var(--sdc-space-lg); max-width: 20ch; }
-			.sdc-case .sdc-cs-hero__lede { font-size: var(--sdc-text-deck); color: var(--sdc-text); line-height: 1.5; max-width: 56ch; margin-bottom: var(--sdc-space-2xl); font-weight: 500; }
+			.sdc-case .sdc-case-hero__title { margin: var(--sdc-space-xs) 0 var(--sdc-space-lg); max-width: 20ch; }
+			.sdc-case .sdc-case-hero__lede { font-size: var(--sdc-text-deck); color: var(--sdc-text); line-height: 1.5; max-width: 56ch; margin-bottom: var(--sdc-space-2xl); font-weight: 500; }
 			.sdc-case .sdc-cs-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sdc-space-md); margin: 0; padding: var(--sdc-space-lg) 0 0; border-top: 1px solid var(--sdc-rule); }
 			.sdc-case .sdc-cs-meta div { margin: 0; }
 			.sdc-case .sdc-cs-meta dt { font-size: var(--sdc-text-label); letter-spacing: 0.14em; text-transform: uppercase; color: var(--sdc-text-mute); font-weight: 800; margin-bottom: var(--sdc-space-xs); }
 			.sdc-case .sdc-cs-meta dd { margin: 0; color: var(--sdc-text); font-size: var(--sdc-text-body); font-weight: 500; }
-			.sdc-case .sdc-cs-figure { max-width: 100%; margin: var(--sdc-space-lg) 0 var(--sdc-space-xl); }
-			.sdc-case .sdc-cs-figure img { width: 100%; height: auto; display: block; }
-			.sdc-case .sdc-section { padding-top: var(--sdc-space-xl); padding-bottom: var(--sdc-space-xl); }
-			.sdc-case .sdc-cs-body { display: grid; gap: var(--sdc-space-xl); max-width: var(--sdc-max-narrow); }
-			.sdc-case .sdc-cs-block .sdc-eyebrow { margin-bottom: 0; }
+			.sdc-case sdc-case-figure { max-width: 100%; margin: var(--sdc-space-lg) 0 var(--sdc-space-xl); }
+			.sdc-case sdc-case-figure img { width: 100%; height: auto; display: block; }
+			.sdc-case sdc-section { padding-top: var(--sdc-space-xl); padding-bottom: var(--sdc-space-xl); }
+			.sdc-case sdc-layout-container[layout="prose"] { display: grid; gap: var(--sdc-space-xl); max-width: var(--sdc-max-narrow); }
+			.sdc-case sdc-case-block .sdc-eyebrow { margin-bottom: 0; }
 			.sdc-case .sdc-eyebrow { font-family: var(--sdc-font-display); font-weight: 400; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; letter-spacing: 0.03em; }
-			.sdc-case .sdc-cs-block__lede { color: var(--sdc-text); font-size: var(--sdc-text-block-lede); font-weight: 600; margin: 0; letter-spacing: -0.015em; line-height: 1.25; }
-			.sdc-case .sdc-cs-block p { color: var(--sdc-text-mute); margin: 0; font-size: 16px; line-height: 1.65; }
-			.sdc-case .sdc-cs-block p + p { margin-top: 0; }
-			.sdc-case .sdc-cs-block p:not(.sdc-eyebrow):not(.sdc-cs-block__lede) + p:not(.sdc-eyebrow):not(.sdc-cs-block__lede) { margin-top: var(--sdc-space-sm); }
+			.sdc-case .sdc-case-block__lede { color: var(--sdc-text); font-size: var(--sdc-text-block-lede); font-weight: 600; margin: 0; letter-spacing: -0.015em; line-height: 1.25; }
+			.sdc-case sdc-case-block p { color: var(--sdc-text-mute); margin: 0; font-size: 16px; line-height: 1.65; }
+			.sdc-case sdc-case-block p + p { margin-top: 0; }
+			.sdc-case sdc-case-block p:not(.sdc-eyebrow):not(.sdc-case-block__lede) + p:not(.sdc-eyebrow):not(.sdc-case-block__lede) { margin-top: var(--sdc-space-sm); }
 			.sdc-case .sdc-cs-awards { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
 			.sdc-case .sdc-cs-awards li { display: flex; gap: var(--sdc-space-md); align-items: center; padding: var(--sdc-space-md) 0; border-top: 1px solid var(--sdc-rule); font-size: 18px; }
 			.sdc-case .sdc-cs-awards li:last-child { border-bottom: 1px solid var(--sdc-rule); }
 			.sdc-case .sdc-cs-awards__mark { display: none; }
-			.sdc-case .sdc-cs-artifacts { display: flex; gap: var(--sdc-space-lg); flex-wrap: wrap; margin-top: var(--sdc-space-md); }
-			.sdc-case .sdc-cs-artifacts .sdc-btn { min-height: 24px; display: inline-flex; align-items: center; }
-			.sdc-case .sdc-cs-back { display: flex; gap: var(--sdc-space-sm); flex-wrap: wrap; justify-content: space-between; align-items: center; }
-			.sdc-case .sdc-cs-back .sdc-btn--primary { background: var(--sdc-text); color: var(--sdc-bg); border-color: var(--sdc-text); }
-			.sdc-case .sdc-cs-back .sdc-btn--primary:hover { background: var(--sdc-text); border-color: var(--sdc-text); color: var(--sdc-bg); box-shadow: none; }
-			.sdc-case .sdc-cs-artifacts .sdc-btn, .sdc-case .sdc-cs-back .sdc-btn, .sdc-case .sdc-cs-back .sdc-btn--primary { padding: 0; border: 0; border-radius: 0; background: transparent; color: var(--sdc-text); font-family: var(--sdc-font-body); font-weight: 600; font-size: 15px; letter-spacing: 0; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; transform: none; box-shadow: none; }
-			.sdc-case .sdc-cs-artifacts .sdc-btn:hover, .sdc-case .sdc-cs-back .sdc-btn:hover, .sdc-case .sdc-cs-back .sdc-btn--primary:hover { color: var(--sdc-accent); background: transparent; border: 0; transform: none; box-shadow: none; }
+			.sdc-case sdc-button-group { display: flex; gap: var(--sdc-space-lg); flex-wrap: wrap; margin-top: var(--sdc-space-md); }
+			.sdc-case sdc-button-group .sdc-btn { min-height: 24px; display: inline-flex; align-items: center; }
+			.sdc-case sdc-layout-container[layout="pager"] { display: flex; gap: var(--sdc-space-sm); flex-wrap: wrap; justify-content: space-between; align-items: center; }
+			.sdc-case sdc-layout-container[layout="pager"] .sdc-btn--primary { background: var(--sdc-text); color: var(--sdc-bg); border-color: var(--sdc-text); }
+			.sdc-case sdc-layout-container[layout="pager"] .sdc-btn--primary:hover { background: var(--sdc-text); border-color: var(--sdc-text); color: var(--sdc-bg); box-shadow: none; }
+			.sdc-case sdc-button-group .sdc-btn, .sdc-case sdc-layout-container[layout="pager"] .sdc-btn, .sdc-case sdc-layout-container[layout="pager"] .sdc-btn--primary { padding: 0; border: 0; border-radius: 0; background: transparent; color: var(--sdc-text); font-family: var(--sdc-font-body); font-weight: 600; font-size: 15px; letter-spacing: 0; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; transform: none; box-shadow: none; }
+			.sdc-case sdc-button-group .sdc-btn:hover, .sdc-case sdc-layout-container[layout="pager"] .sdc-btn:hover, .sdc-case sdc-layout-container[layout="pager"] .sdc-btn--primary:hover { color: var(--sdc-accent); background: transparent; border: 0; transform: none; box-shadow: none; }
 			.sdc-case .sdc-cs-note { margin: var(--sdc-space-md) 0 0; padding: 0; border: 0; font-family: var(--sdc-font-body); font-weight: 400; font-size: 14px; line-height: 1.6; letter-spacing: 0.04em; color: var(--sdc-text-mute); max-width: 64ch; }
-			.sdc-case .sdc-cs-block strong { color: var(--sdc-text); font-weight: 600; }
+			.sdc-case sdc-case-block strong { color: var(--sdc-text); font-weight: 600; }
 			.sdc-case .sdc-cs-caption { margin: var(--sdc-space-md) 0 0; color: var(--sdc-text-mute); font-size: 14px; letter-spacing: 0.04em; }
-			.sdc-case .sdc-cs-figure__cap { margin: var(--sdc-space-sm) 0 0; color: var(--sdc-text-mute); font-size: 15px; line-height: 1.5; max-width: 62ch; }
+			.sdc-case .sdc-case-figure__cap { margin: var(--sdc-space-sm) 0 0; color: var(--sdc-text-mute); font-size: 15px; line-height: 1.5; max-width: 62ch; }
 			.sdc-case .sdc-cs-diagram { overflow-x: auto; padding-bottom: var(--sdc-space-xs); }
 			.sdc-case .sdc-cs-diagram__svg { display: block; width: 100%; min-width: 640px; max-width: 960px; height: auto; color: var(--sdc-text); }
 			.sdc-case .sdc-dg-panel rect, .sdc-case .sdc-dg-panel line { fill: none; stroke: currentColor; stroke-width: 1.25; opacity: 0.45; }
@@ -984,24 +1139,24 @@ const jsonLd = {
 			.sdc-case .sdc-dg-title { fill: currentColor; font-family: var(--sdc-font-display); font-size: 17px; font-weight: 400; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; letter-spacing: 0.03em; }
 			.sdc-case .sdc-dg-note { fill: var(--sdc-text-mute); font-family: var(--sdc-font-body); font-size: 13.5px; }
 			.sdc-case .sdc-dg-arrow line, .sdc-case .sdc-dg-arrow polyline { fill: none; stroke: currentColor; stroke-width: 1.5; opacity: 0.5; stroke-linecap: round; stroke-linejoin: round; }
-			.sdc-case .sdc-cs-orbit { display: grid; gap: var(--sdc-space-md); }
+			.sdc-case sdc-layout-container[layout="orbit"] { display: grid; gap: var(--sdc-space-md); }
 			.sdc-case .sdc-cs-orbit__art { margin-top: var(--sdc-space-md); }
 			.sdc-case .sdc-cs-h2 { max-width: 22ch; margin: 0 0 var(--sdc-space-sm); }
-			.sdc-case .sdc-cs-block .sdc-cs-caption { margin-top: var(--sdc-space-md); color: var(--sdc-text-mute); font-size: 14px; letter-spacing: 0.04em; }
+			.sdc-case sdc-case-block .sdc-cs-caption { margin-top: var(--sdc-space-md); color: var(--sdc-text-mute); font-size: 14px; letter-spacing: 0.04em; }
 			.sdc-case .sdc-cs-quote { margin: var(--sdc-space-lg) 0 0; padding: 0; border: 0; font-family: var(--sdc-font-display); font-weight: 400; font-style: normal; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; font-size: var(--sdc-text-quote); line-height: 1.4; color: var(--sdc-text); max-width: 64ch; }
-			.sdc-case .sdc-cs-block code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.92em; color: var(--sdc-text); }
+			.sdc-case sdc-case-block code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.92em; color: var(--sdc-text); }
 			@media (max-width: 700px) {
-				.sdc-case .sdc-cs-back { flex-wrap: nowrap; gap: 10px; align-items: stretch; }
-				.sdc-case .sdc-cs-back .sdc-pager { flex: 1 1 0; min-width: 0; height: auto; min-height: 44px; padding: 9px 40px 9px 12px; font-size: 13px; line-height: 1.25; white-space: normal; }
-				.sdc-case .sdc-cs-back .sdc-pager--prev { padding: 9px 12px 9px 40px; }
-				.sdc-case .sdc-cs-back .sdc-pager__cap { width: 32px; }
+				.sdc-case sdc-layout-container[layout="pager"] { flex-wrap: nowrap; gap: 10px; align-items: stretch; }
+				.sdc-case sdc-layout-container[layout="pager"] .sdc-pager { flex: 1 1 0; min-width: 0; height: auto; min-height: 44px; padding: 9px 40px 9px 12px; font-size: 13px; line-height: 1.25; white-space: normal; }
+				.sdc-case sdc-layout-container[layout="pager"] .sdc-pager--prev { padding: 9px 12px 9px 40px; }
+				.sdc-case sdc-layout-container[layout="pager"] .sdc-pager__cap { width: 32px; }
 				.sdc-case .sdc-cs-meta { grid-template-columns: 1fr; gap: var(--sdc-space-lg); }
 				.sdc-case .sdc-cs-meta dt { font-size: 13px; letter-spacing: 0.1em; color: var(--sdc-text); margin-bottom: 2px; }
 				.sdc-case .sdc-cs-meta dd { font-size: 17px; }
 			}
 			@media (max-width: 880px) {
-				.sdc-case .sdc-cs-figure { max-width: 100%; }
-				.sdc-case .sdc-cs-hero__title { font-size: var(--sdc-text-case-title); }
+				.sdc-case sdc-case-figure { max-width: 100%; }
+				.sdc-case .sdc-case-hero__title { font-size: var(--sdc-text-case-title); }
 				/* The orbit is 680px wide and scaled to half below 880px, so it lands at
 				   340px. Narrower than about 390px the page has less room than that and
 				   the orbit used to push the whole document sideways, which is a reflow
@@ -1015,16 +1170,16 @@ const jsonLd = {
 			   sentence indistinguishable from the sentence. Links that are the whole
 			   content of their row are not affected; there is no surrounding text to
 			   confuse them with. */
-			.sdc-case .sdc-cs-block p a:not(.sdc-btn):not(.sdc-pager) {
+			.sdc-case sdc-case-block p a:not(.sdc-btn):not(.sdc-pager) {
 				text-decoration: underline;
 				text-decoration-thickness: 1px;
 				text-underline-offset: 3px;
 			}
-			.sdc-case .sdc-cs-block p a:not(.sdc-btn):not(.sdc-pager):hover { color: var(--sdc-text); }
+			.sdc-case sdc-case-block p a:not(.sdc-btn):not(.sdc-pager):hover { color: var(--sdc-text); }
 
 			/* Anything opening in a new tab says so. */
-			.sdc-cs-body a[target="_blank"]::after,
-			.sdc-cs-artifacts a[target="_blank"]::after,
+			sdc-layout-container[layout="prose"] a[target="_blank"]::after,
+			sdc-button-group a[target="_blank"]::after,
 			.sdc-wk-row[target="_blank"] .sdc-wk-row__cta::after {
 				content: "";
 				display: inline-block;
@@ -1065,13 +1220,13 @@ const jsonLd = {
 			@media (max-width: 880px) {
 				.sdc-nav { display: none; }
 				.sdc-nav-toggle { display: flex; }
-				.sdc-section { padding: var(--sdc-space-xl) var(--sdc-gutter); }
+				sdc-section { padding: var(--sdc-space-xl) var(--sdc-gutter); }
 			}
 
 			/* A figure band that sits flush against the band above it. Last in the
-			   sheet on purpose: the responsive .sdc-section rules above use the padding
+			   sheet on purpose: the responsive sdc-section rules above use the padding
 			   shorthand, which would otherwise put the top padding back. */
-			.sdc-case .sdc-section--flush { padding-top: 0; }
+			.sdc-case sdc-section[flush] { padding-top: 0; }
 
 			/* Windows High Contrast Mode. Last in the sheet because these override
 			   painted backgrounds that are declared later than this block used to sit:

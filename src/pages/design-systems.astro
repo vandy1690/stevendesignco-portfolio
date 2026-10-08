@@ -18,7 +18,7 @@ import PagerPair from '../components/ui/PagerPair.astro';
 >
 	<CaseHero
 		eyebrow="Practice"
-		title="Design Systems"
+		heading="Design Systems"
 		lede="One shared framework underneath seven brands, a Figma library for a rebuild that never launched, and the Storybook conversion I went back and finished. The tools changed. The problem did not."
 		meta={[
 			{ term: 'Method', value: 'Atomic design' },
@@ -34,7 +34,7 @@ import PagerPair from '../components/ui/PagerPair.astro';
 		</CaseBlock>
 	</CaseSection>
 
-	<CaseSection alt>
+	<CaseSection tone="alt">
 		<CaseBlock eyebrow="Pattern Lab" lede="One shared responsive framework sat underneath seven publication brands and six responsive web products, with a separate design system for each product built on top of it.">
 			<p>Both instances below still run. Plate carries eleven brand colors with a semantic layer aliased on top, so a section reads <code>food</code> or <code>chefs</code> and a state reads <code>error</code> or <code>warning</code> rather than a hex or a hue name. In the Sass, <code>$error</code> points at <code>$red</code> rather than at a value, so the brand color changes in one place and everything naming it follows. Sixty four documented patterns climb from color and type through buttons, bylines and comment threads out to the assembled page templates. Alt-Meat runs its own palette and typeface on the same structure.</p>
 			<p>Drag the viewport control. The whole library was built mobile first, which was not a settled argument in B2B publishing at the time.</p>
@@ -57,7 +57,7 @@ import PagerPair from '../components/ui/PagerPair.astro';
 		<Note>Password protected. Ask me and I will send it.</Note>
 	</CaseSection>
 
-	<CaseSection alt>
+	<CaseSection tone="alt">
 		<CaseBlock eyebrow="Storybook" lede="I had started moving all of these libraries to Storybook by hand before the acquisition. I never finished.">
 			<p>I went back recently and finished the Plate and Alt-Meat conversions with Cursor, generated from the Pattern Labs. The buttons and form fields are real stories with working controls, so the states are something you change rather than something you read about.</p>
 			<p>Same components, same decisions, a decade of tooling apart. That is the part worth noticing.</p>
@@ -82,7 +82,7 @@ import PagerPair from '../components/ui/PagerPair.astro';
 		</ButtonGroup>
 	</CaseSection>
 
-	<CaseSection alt>
+	<CaseSection tone="alt">
 		<CaseBlock eyebrow="Keeping it correct" lede="A library is the easy half. The hard half is the day after.">
 			<p>Every design system I have worked on was correct the week it shipped. The interesting question is what happens eighteen months later, when four people have touched it, the person who wrote the rule has left, and nobody can tell a decision from an accident.</p>
 			<p>So this site is gated. Seven automated checks run on every change: reflow and target size across eleven pages and eleven widths, accessibility on every page and inside the dialog that opens a case study in place, text contrast in both themes, High Contrast Mode, text-spacing overrides, and inline link distinction. A change that fails any of them cannot reach the live site. Documentation that falls out of step with the code fails the build.</p>
@@ -106,7 +106,7 @@ import PagerPair from '../components/ui/PagerPair.astro';
 		</ButtonGroup>
 	</CaseSection>
 
-	<CaseSection alt>
+	<CaseSection tone="alt">
 		<CaseBlock eyebrow="What I actually think">
 			<p>A component library is the easy half. The hard half is the version nobody can upgrade off, the pattern two teams named differently, and the argument about whether a new component is a new component. Most of what I have learned about design systems came from the things that could not be built.</p>
 		</CaseBlock>
@@ -116,7 +116,7 @@ import PagerPair from '../components/ui/PagerPair.astro';
 	</CaseSection>
 
 	<PagerPair
-		prev={{ href: '/#work', label: 'Case studies', hidden: 'Back to all ' }}
-		next={{ href: '/work/merchant-flow-builder', label: 'Merchant Flow Builder', hidden: 'Next case study: ' }}
+		prev={{ href: '/#work', label: 'Case studies', prefix: 'Back to all ' }}
+		next={{ href: '/work/merchant-flow-builder', label: 'Merchant Flow Builder', prefix: 'Next case study: ' }}
 	/>
 </Site>
