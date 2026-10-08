@@ -9,6 +9,15 @@ To see everything rendered, open the
 the CSS the site ships, so it cannot drift. See
 [storybook/README.md](../storybook/README.md).
 
+## Token names
+
+Every system token starts with `--sdc-`: `--sdc-accent`, `--sdc-space-md`,
+`--sdc-shadow-card`. The prefix marks what belongs to the system, so anything
+without it is private to one component (`--pp-size` in the PayPal hero,
+`--content` on the home page) and must not be used elsewhere. Figma keeps the
+plain names; `scripts/build-tokens.mjs` adds the prefix when it generates the
+primitives, and the semantic tier is written with it by hand.
+
 ## Themes
 
 The site ships in **light**. `<html>` carries `data-theme="light"`, and a toggle
@@ -29,20 +38,20 @@ When you add a token, add it in all three places, or the themes fall out of step
 
 | Token | Light (shipped) | Dark (alternate) | Use |
 |-------|-----------------|------------------|-----|
-| `--bg` | `#F0EEE9` | `#000000` | Page ground |
-| `--surface` | `#E4E1DA` | `#111111` | Cards |
-| `--surface-2` | `#D8D4CB` | `#1A1A1A` | Card hover |
-| `--text` | `#2D3436` | `#FFFFFF` | Headings and body |
-| `--text-mute` | `#5A6160` | `#8A8F8C` | Secondary text. 5.9 to 1 on paper, 5.6 to 1 on black |
-| `--accent` | `#3F5F92` | `#CCFF00` | Links, primary button, selection |
-| `--accent-text` | `#FFFFFF` | `#000000` | Text on the accent |
-| `--accent-hover` | `#3D5C8C` | `#D8FF33` | Accent hover |
-| `--accent-glow` | accent at 22% | accent at 20% | Soft glow |
-| `--rule` | ink at 20% | white at 20% | Dividers |
-| `--rule-soft` | ink at 10% | white at 10% | Quiet dividers |
-| `--rule-strong` | ink at 58% | white at 42% | Control borders. Clears 3 to 1 |
-| `--texture-dot` | ink at 10% | white at 7% | The dot grid page grain |
-| `--header-bg` | paper at 82% | black at 78% | Sticky header, blurred |
+| `--sdc-bg` | `#F0EEE9` | `#000000` | Page ground |
+| `--sdc-surface` | `#E4E1DA` | `#111111` | Cards |
+| `--sdc-surface-2` | `#D8D4CB` | `#1A1A1A` | Card hover |
+| `--sdc-text` | `#2D3436` | `#FFFFFF` | Headings and body |
+| `--sdc-text-mute` | `#5A6160` | `#8A8F8C` | Secondary text. 5.9 to 1 on paper, 5.6 to 1 on black |
+| `--sdc-accent` | `#3F5F92` | `#CCFF00` | Links, primary button, selection |
+| `--sdc-accent-text` | `#FFFFFF` | `#000000` | Text on the accent |
+| `--sdc-accent-hover` | `#3D5C8C` | `#D8FF33` | Accent hover |
+| `--sdc-accent-glow` | accent at 22% | accent at 20% | Soft glow |
+| `--sdc-rule` | ink at 20% | white at 20% | Dividers |
+| `--sdc-rule-soft` | ink at 10% | white at 10% | Quiet dividers |
+| `--sdc-rule-strong` | ink at 58% | white at 42% | Control borders. Clears 3 to 1 |
+| `--sdc-texture-dot` | ink at 10% | white at 7% | The dot grid page grain |
+| `--sdc-header-bg` | paper at 82% | black at 78% | Sticky header, blurred |
 
 The light palette has names in the comments: Cloud Dancer paper, charcoal text,
 Regatta blue as the single accent.
@@ -55,27 +64,27 @@ palette and uses `#4A6FA8` for the accent, a lighter blue than the site's
 
 | Token | Value | Use |
 |-------|-------|-----|
-| `--max` | 1280px | Content width |
-| `--max-narrow` | 800px | Reading width, case study body |
-| `--gutter` | 24px | Side padding |
-| `--nav-h` | 56px | Header height. Also the scroll padding, so anchors clear the sticky header |
-| `--radius` | 18px | Cards |
-| `--radius-sm` | 10px | Buttons and controls |
-| `--texture-size` | 20px | Dot grid pitch |
+| `--sdc-max` | 1280px | Content width |
+| `--sdc-max-narrow` | 800px | Reading width, case study body |
+| `--sdc-gutter` | 24px | Side padding |
+| `--sdc-nav-h` | 56px | Header height. Also the scroll padding, so anchors clear the sticky header |
+| `--sdc-radius` | 18px | Cards |
+| `--sdc-radius-sm` | 10px | Buttons and controls |
+| `--sdc-texture-size` | 20px | Dot grid pitch |
 
 ## Spacing scale
 
 | Token | Value |
 |-------|-------|
-| `--space-xs` | 8px |
-| `--space-sm` | 16px |
-| `--space-md` | 24px |
-| `--space-lg` | 32px |
-| `--space-xl` | 48px |
-| `--space-2xl` | 64px |
-| `--space-3xl` | 96px |
-| `--space-4xl` | 128px |
-| `--space-5xl` | 160px |
+| `--sdc-space-xs` | 8px |
+| `--sdc-space-sm` | 16px |
+| `--sdc-space-md` | 24px |
+| `--sdc-space-lg` | 32px |
+| `--sdc-space-xl` | 48px |
+| `--sdc-space-2xl` | 64px |
+| `--sdc-space-3xl` | 96px |
+| `--sdc-space-4xl` | 128px |
+| `--sdc-space-5xl` | 160px |
 
 ## Type
 
@@ -88,15 +97,15 @@ If the Adobe kit fails to load, display text falls back to Inter.
 
 | Token | Value | Use |
 |-------|-------|-----|
-| `--text-display-1` | clamp(48px, 8vw, 96px) | Hero headlines |
-| `--text-display-2` | clamp(32px, 4.8vw, 48px) | Section titles |
-| `--text-heading` | clamp(24px, 3.2vw, 32px) | Case study titles |
-| `--text-deck` | clamp(18px, 1.9vw, 24px) | Taglines and intros |
-| `--text-subheading` | 20px | Section labels |
-| `--text-body` | 16px | Paragraphs, line height 1.6 |
-| `--text-nav` | 15px | Navigation |
-| `--text-body-sm` | 14px | Captions |
-| `--text-label` | 11px | Tags and metadata, uppercase, tracked out |
+| `--sdc-text-display-1` | clamp(48px, 8vw, 96px) | Hero headlines |
+| `--sdc-text-display-2` | clamp(32px, 4.8vw, 48px) | Section titles |
+| `--sdc-text-heading` | clamp(24px, 3.2vw, 32px) | Case study titles |
+| `--sdc-text-deck` | clamp(18px, 1.9vw, 24px) | Taglines and intros |
+| `--sdc-text-subheading` | 20px | Section labels |
+| `--sdc-text-body` | 16px | Paragraphs, line height 1.6 |
+| `--sdc-text-nav` | 15px | Navigation |
+| `--sdc-text-body-sm` | 14px | Captions |
+| `--sdc-text-label` | 11px | Tags and metadata, uppercase, tracked out |
 
 Rules worth knowing:
 
@@ -116,7 +125,7 @@ All global, in `Site.astro`.
 |-------|------------|
 | `.display` | Nickel Gothic, upright, tight line height. Add it to a heading |
 | `.eyebrow` | The small uppercase label above a heading |
-| `.btn`, `.btn--primary` | Two button weights only. 10px radius. The secondary border uses `--rule-strong` |
+| `.btn`, `.btn--primary` | Two button weights only. 10px radius. The secondary border uses `--sdc-rule-strong` |
 | `.pager`, `.pager--prev`, `.pager__cap` | The solid next and previous button with a chevron end cap |
 | `.cta-row` | The row of links in the hero and contact. Stacks and drops its separators when it wraps |
 | `.flip`, `.flip__row`, `.flip__char` | The letter flip on hover for menu and CTA links. Built by script |
@@ -146,7 +155,7 @@ study page carries no CSS of its own. See
 ## Texture
 
 The page ground is a dot grid: a `radial-gradient` on `body`, one dot per
-`--texture-size`. Turn it up or down with `--texture-dot`.
+`--sdc-texture-size`. Turn it up or down with `--sdc-texture-dot`.
 
 ## Changing a token
 

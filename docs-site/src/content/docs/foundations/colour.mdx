@@ -10,10 +10,16 @@ Colour is two tiers. The live values are in the
 contrast ratio in the browser against the current tokens, so the numbers there
 are never stale. This page is what the tokens are *for*.
 
+## Token names
+
+Every system token starts with `--sdc-`. Anything without the prefix is private
+to one component and is not part of the system. Figma keeps the plain names; the
+prefix is added when the tokens are generated.
+
 ## Two tiers
 
 **Primitives** hold the raw values and are named for what they are:
-`--paper-cloud`, `--ink-charcoal`, `--brand-regatta`. Sixteen of them, defined
+`--sdc-paper-cloud`, `--sdc-ink-charcoal`, `--sdc-brand-regatta`. Sixteen of them, defined
 once on `:root`, the same in every theme. Nothing in the stylesheet may use one
 directly except the semantic tokens below.
 
@@ -28,8 +34,8 @@ The semantic tier stays hand-written on purpose. It uses `rgba()` over the
 `-rgb` channels and `clamp()` fluid type, and a Figma variable can express
 neither. Generating it would flatten the type scale to fixed breakpoint values.
 
-**Semantic tokens** are named for what they are *for*: `--bg`, `--text`,
-`--accent`. Each theme maps them onto primitives and introduces no values of its
+**Semantic tokens** are named for what they are *for*: `--sdc-bg`, `--sdc-text`,
+`--sdc-accent`. Each theme maps them onto primitives and introduces no values of its
 own. If you find yourself writing a hex here, the primitive you need does not
 exist yet. Add it rather than inlining the value.
 
@@ -39,29 +45,29 @@ a `prefers-color-scheme` query. Three copies of the same fifteen declarations
 with nothing keeping them in step. A colour change is now one line in one place.
 
 A primitive also carries its channels where a translucent version is needed, as
-`--ink-charcoal-rgb`, so `--rule` can be built from the same source as `--text`
+`--sdc-ink-charcoal-rgb`, so `--sdc-rule` can be built from the same source as `--sdc-text`
 instead of repeating the numbers.
 
 ## The roles
 
-**Ground and surface.** `--bg` is the page, a warm off-white. `--surface` is a
-card sitting on it, `--surface-2` a hover. The difference between them is small
+**Ground and surface.** `--sdc-bg` is the page, a warm off-white. `--sdc-surface` is a
+card sitting on it, `--sdc-surface-2` a hover. The difference between them is small
 on purpose: cards are lifted by shadow, not by colour.
 
-**Ink.** `--text` is charcoal, never pure black. `--text-mute` is for supporting
+**Ink.** `--sdc-text` is charcoal, never pure black. `--sdc-text-mute` is for supporting
 copy and labels, and is the darkest muted tone that still clears AA on both the
 page and a card.
 
-**Accent.** `--accent` is a slate blue. It marks one thing at a time: a link, a
+**Accent.** `--sdc-accent` is a slate blue. It marks one thing at a time: a link, a
 kicker, the filled button, the bar on a social card. It is not a brand wash.
 
-**Rules.** `--rule` is a divider between content. `--rule-strong` is for the
+**Rules.** `--sdc-rule` is a divider between content. `--sdc-rule-strong` is for the
 boundary of a control. They are not interchangeable, and confusing them is the
 mistake this site has actually made.
 
-**Focus.** `--focus-ring` is the keyboard focus indicator and nothing else. It
-points at its own primitives, `--brand-focus` and `--brand-focus-dark`, rather
-than reusing `--accent-hover`. That separation is deliberate: retuning a hover
+**Focus.** `--sdc-focus-ring` is the keyboard focus indicator and nothing else. It
+points at its own primitives, `--sdc-brand-focus` and `--sdc-brand-focus-dark`, rather
+than reusing `--sdc-accent-hover`. That separation is deliberate: retuning a hover
 colour should never silently move an accessibility affordance. See
 [Focus](/docs/foundations/focus/).
 
@@ -73,14 +79,14 @@ surface, not the page.
 
 Two tokens have already moved because of this:
 
-`--text-mute` was lightened at some point and measured 4.06 to 1. It is now a
+`--sdc-text-mute` was lightened at some point and measured 4.06 to 1. It is now a
 darker charcoal at about 5.5.
 
-`--accent` was a brighter blue measuring 4.38 on the page and 3.89 on a card, so
+`--sdc-accent` was a brighter blue measuring 4.38 on the page and 3.89 on a card, so
 every inline link inside a card failed. It is now slightly deeper and clears 4.5
 on both.
 
-`--rule-strong` is the cautionary one. It was introduced specifically so control
+`--sdc-rule-strong` is the cautionary one. It was introduced specifically so control
 borders would clear 3 to 1, with a comment in the code saying so, and the value
 chosen measured 2.49. The comment was wrong for weeks and the Storybook was
 publicly showing it as a failure. It now measures about 3.3 on the page.

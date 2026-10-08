@@ -9,7 +9,7 @@ export const Buttons = {
   argTypes: { label: { control: 'text' } },
   render: ({ label }) => `
     <p class="sb-note">Two weights only. Both take the 10px control radius, and the secondary
-      border uses <code>--rule-strong</code> so the boundary clears 3 to 1.</p>
+      border uses <code>--sdc-rule-strong</code> so the boundary clears 3 to 1.</p>
     <div class="sb-stack">
       <a class="btn btn--primary" href="#0">${label}</a>
       <a class="btn" href="#0">Resume</a>
@@ -93,7 +93,7 @@ export const Recommendation = {
     <p class="sb-note">One verbatim sentence from a LinkedIn recommendation. Titles only, never
       names. Twelve of these run in the scroll-driven fan under "On the record."</p>
     <div style="width:440px;max-width:100%">
-      <figure class="quote" style="height:330px;display:flex;flex-direction:column;justify-content:center;background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow-card);padding:34px 30px;margin:0;text-align:center">
+      <figure class="quote" style="height:330px;display:flex;flex-direction:column;justify-content:center;background:var(--sdc-surface);border-radius:var(--sdc-radius);box-shadow:var(--sdc-shadow-card);padding:34px 30px;margin:0;text-align:center">
         <blockquote class="quote__text" style="margin:0"><p>${quote}</p></blockquote>
         <figcaption class="quote__title" style="margin-top:18px">${title}</figcaption>
       </figure>

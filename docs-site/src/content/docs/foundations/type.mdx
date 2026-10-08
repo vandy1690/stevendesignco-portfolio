@@ -58,13 +58,13 @@ always had:
 
 | Token | Size | Where |
 |---|---|---|
-| `--text-case-title` | `clamp(32px, 9vw, 56px)` | Case study hero title |
-| `--text-block-lede` | `clamp(24px, 2.5vw, 32px)` | The claim inside a case block |
-| `--text-quote` | `clamp(20px, 2vw, 28px)` | Pulled quote |
-| `--text-stat` | `clamp(40px, 5vw, 64px)` | Stat number |
-| `--text-stat-lg` | `clamp(48px, 6vw, 72px)` | Stat number, where the numbers are the closing statement |
+| `--sdc-text-case-title` | `clamp(32px, 9vw, 56px)` | Case study hero title |
+| `--sdc-text-block-lede` | `clamp(24px, 2.5vw, 32px)` | The claim inside a case block |
+| `--sdc-text-quote` | `clamp(20px, 2vw, 28px)` | Pulled quote |
+| `--sdc-text-stat` | `clamp(40px, 5vw, 64px)` | Stat number |
+| `--sdc-text-stat-lg` | `clamp(48px, 6vw, 72px)` | Stat number, where the numbers are the closing statement |
 
-`--text-block-lede` looks like a duplicate of `--text-heading`: both run 24 to 32.
+`--sdc-text-block-lede` looks like a duplicate of `--sdc-text-heading`: both run 24 to 32.
 They are not the same. The lede climbs at 2.5vw and the heading at 3.2vw, so
 between roughly 750 and 1000px they differ. Collapsing them would quietly change
 the rendering at those widths, so they stay separate.

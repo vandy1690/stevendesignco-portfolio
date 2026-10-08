@@ -87,45 +87,45 @@ new shadow starts as a token or it does not start.</p>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left"><code dir="auto">--shadow-card</code></td>
+<td style="text-align: left"><code dir="auto">--sdc-shadow-card</code></td>
 <td style="text-align: left">Case study cards at rest</td>
 </tr>
 <tr>
-<td style="text-align: left"><code dir="auto">--shadow-card-hover</code></td>
+<td style="text-align: left"><code dir="auto">--sdc-shadow-card-hover</code></td>
 <td style="text-align: left">The same cards, lifted on hover</td>
 </tr>
 <tr>
-<td style="text-align: left"><code dir="auto">--shadow-float</code></td>
+<td style="text-align: left"><code dir="auto">--sdc-shadow-float</code></td>
 <td style="text-align: left">The floating theme toggle</td>
 </tr>
 <tr>
-<td style="text-align: left"><code dir="auto">--shadow-modal</code></td>
+<td style="text-align: left"><code dir="auto">--sdc-shadow-modal</code></td>
 <td style="text-align: left">The case study dialog panel</td>
 </tr>
 <tr>
-<td style="text-align: left"><code dir="auto">--shadow-chip</code></td>
+<td style="text-align: left"><code dir="auto">--sdc-shadow-chip</code></td>
 <td style="text-align: left">The round logo chips in the PayPal hero</td>
 </tr>
 <tr>
-<td style="text-align: left"><code dir="auto">--shadow-tile</code></td>
+<td style="text-align: left"><code dir="auto">--sdc-shadow-tile</code></td>
 <td style="text-align: left">The scattered logo tiles</td>
 </tr>
 <tr>
-<td style="text-align: left"><code dir="auto">--scrim</code></td>
+<td style="text-align: left"><code dir="auto">--sdc-scrim</code></td>
 <td style="text-align: left">The dimmed backdrop behind the case study dialog</td>
 </tr>
 </tbody>
 </table>
 <p>The card pair is charcoal in both themes. On the dark ground it reads as almost
-nothing, and that is correct: in dark mode the lift comes from <code dir="auto">--surface</code> being
-lighter than <code dir="auto">--bg</code>. The float, modal and scrim tokens are black, because they
+nothing, and that is correct: in dark mode the lift comes from <code dir="auto">--sdc-surface</code> being
+lighter than <code dir="auto">--sdc-bg</code>. The float, modal and scrim tokens are black, because they
 sit over anything, photos included. Chip and tile are charcoal.</p>
 <p>The last five became tokens on October 7, 2026, with the same values they had as
 raw declarations, except chip and tile. Those carried a slate color left over
 from an imported component and now use the site’s own charcoal.</p>
 <div class="sl-heading-wrapper level-h2"><h2 id="when-something-may-cast-a-shadow">When something may cast a shadow</h2><a class="sl-anchor-link" href="#when-something-may-cast-a-shadow"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “When something may cast a shadow”</span></a></div>
 <p>Only cards that move cast the card shadow: the scroll deck and the hover lift. A
-static panel stays flat, a <code dir="auto">--surface</code> fill on the dotted ground. That rule came
+static panel stays flat, a <code dir="auto">--sdc-surface</code> fill on the dotted ground. That rule came
 from a review where a shadow on panels that never moved added weight and no
 meaning.</p>
 <p>Overlays get the overlay tokens. Logos on white get chip or tile, because a white

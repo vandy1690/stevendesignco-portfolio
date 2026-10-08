@@ -1,10 +1,10 @@
-import{a as E}from"./design-links-Seer4HjQ.js";const p=e=>`<span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="${e==="prev"?"M10 3.5 5.5 8l4.5 4.5":"m6 3.5 4.5 4.5L6 12.5"}"/></svg></span>`,K={title:"Components"},l={args:{label:"View work"},argTypes:{label:{control:"text"}},render:({label:e})=>`
+import{a as E}from"./design-links-Seer4HjQ.js";const p=e=>`<span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="${e==="prev"?"M10 3.5 5.5 8l4.5 4.5":"m6 3.5 4.5 4.5L6 12.5"}"/></svg></span>`,K={title:"Components"},d={args:{label:"View work"},argTypes:{label:{control:"text"}},render:({label:e})=>`
     <p class="sb-note">Two weights only. Both take the 10px control radius, and the secondary
-      border uses <code>--rule-strong</code> so the boundary clears 3 to 1.</p>
+      border uses <code>--sdc-rule-strong</code> so the boundary clears 3 to 1.</p>
     <div class="sb-stack">
       <a class="btn btn--primary" href="#0">${e}</a>
       <a class="btn" href="#0">Resume</a>
-    </div>`},d={args:{label:"Default at checkout",direction:"next"},argTypes:{label:{control:"text"},direction:{control:"inline-radio",options:["prev","next"]}},render:({label:e,direction:t})=>`
+    </div>`},l={args:{label:"Default at checkout",direction:"next"},argTypes:{label:{control:"text"},direction:{control:"inline-radio",options:["prev","next"]}},render:({label:e,direction:t})=>`
     <p class="sb-note">Moves between case studies. The visible text is the destination only; the
       arrow carries direction, and hidden text states both, so the link makes sense read on its own
       without a label overriding what is on screen. On phones two pagers share one row and wrap their own labels.</p>
@@ -40,7 +40,7 @@ import{a as E}from"./design-links-Seer4HjQ.js";const p=e=>`<span class="pager__c
     <p class="sb-note">One verbatim sentence from a LinkedIn recommendation. Titles only, never
       names. Twelve of these run in the scroll-driven fan under "On the record."</p>
     <div style="width:440px;max-width:100%">
-      <figure class="quote" style="height:330px;display:flex;flex-direction:column;justify-content:center;background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow-card);padding:34px 30px;margin:0;text-align:center">
+      <figure class="quote" style="height:330px;display:flex;flex-direction:column;justify-content:center;background:var(--sdc-surface);border-radius:var(--sdc-radius);box-shadow:var(--sdc-shadow-card);padding:34px 30px;margin:0;text-align:center">
         <blockquote class="quote__text" style="margin:0"><p>${e}</p></blockquote>
         <figcaption class="quote__title" style="margin-top:18px">${t}</figcaption>
       </figure>
@@ -73,7 +73,7 @@ import{a as E}from"./design-links-Seer4HjQ.js";const p=e=>`<span class="pager__c
     frame to bring it in.</p>
   <div style="position:relative;height:90px">
     <a class="skip-link" href="#0" style="position:absolute;top:12px;left:0">Skip to content</a>
-  </div>`;i.storyName="Skip link";E({Buttons:l,Pager:d,PagerPair:a,CaseCard:s,Recommendation:c,MetaRow:n,RowList:o,CaseBlock:r,SkipLink:i});var h,u,m;l.parameters={...l.parameters,docs:{...(h=l.parameters)==null?void 0:h.docs,source:{originalSource:`{
+  </div>`;i.storyName="Skip link";E({Buttons:d,Pager:l,PagerPair:a,CaseCard:s,Recommendation:c,MetaRow:n,RowList:o,CaseBlock:r,SkipLink:i});var h,u,m;d.parameters={...d.parameters,docs:{...(h=d.parameters)==null?void 0:h.docs,source:{originalSource:`{
   args: {
     label: 'View work'
   },
@@ -86,12 +86,12 @@ import{a as E}from"./design-links-Seer4HjQ.js";const p=e=>`<span class="pager__c
     label
   }) => \`
     <p class="sb-note">Two weights only. Both take the 10px control radius, and the secondary
-      border uses <code>--rule-strong</code> so the boundary clears 3 to 1.</p>
+      border uses <code>--sdc-rule-strong</code> so the boundary clears 3 to 1.</p>
     <div class="sb-stack">
       <a class="btn btn--primary" href="#0">\${label}</a>
       <a class="btn" href="#0">Resume</a>
     </div>\`
-}`,...(m=(u=l.parameters)==null?void 0:u.docs)==null?void 0:m.source}}};var g,b,v;d.parameters={...d.parameters,docs:{...(g=d.parameters)==null?void 0:g.docs,source:{originalSource:`{
+}`,...(m=(u=d.parameters)==null?void 0:u.docs)==null?void 0:m.source}}};var g,b,v;l.parameters={...l.parameters,docs:{...(g=l.parameters)==null?void 0:g.docs,source:{originalSource:`{
   args: {
     label: 'Default at checkout',
     direction: 'next'
@@ -117,7 +117,7 @@ import{a as E}from"./design-links-Seer4HjQ.js";const p=e=>`<span class="pager__c
         \${direction === 'prev' ? chevron('prev') : ''}<span class="sr-only">\${direction === 'prev' ? 'Previous' : 'Next'} case study: </span>\${label}\${direction === 'next' ? chevron('next') : ''}
       </a>
     </div>\`
-}`,...(v=(b=d.parameters)==null?void 0:b.docs)==null?void 0:v.source}}};var w,y,x;a.parameters={...a.parameters,docs:{...(w=a.parameters)==null?void 0:w.docs,source:{originalSource:`() => \`
+}`,...(v=(b=l.parameters)==null?void 0:b.docs)==null?void 0:v.source}}};var w,y,x;a.parameters={...a.parameters,docs:{...(w=a.parameters)==null?void 0:w.docs,source:{originalSource:`() => \`
   <p class="sb-note">How the pair sits at the foot of every case study.</p>
   <div class="cs-back" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between;align-items:center;max-width:800px">
     <a class="pager pager--prev" href="#0">\${chevron('prev')}<span class="sr-only">Back to </span>All case studies</a>
@@ -194,7 +194,7 @@ import{a as E}from"./design-links-Seer4HjQ.js";const p=e=>`<span class="pager__c
     <p class="sb-note">One verbatim sentence from a LinkedIn recommendation. Titles only, never
       names. Twelve of these run in the scroll-driven fan under "On the record."</p>
     <div style="width:440px;max-width:100%">
-      <figure class="quote" style="height:330px;display:flex;flex-direction:column;justify-content:center;background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow-card);padding:34px 30px;margin:0;text-align:center">
+      <figure class="quote" style="height:330px;display:flex;flex-direction:column;justify-content:center;background:var(--sdc-surface);border-radius:var(--sdc-radius);box-shadow:var(--sdc-shadow-card);padding:34px 30px;margin:0;text-align:center">
         <blockquote class="quote__text" style="margin:0"><p>\${quote}</p></blockquote>
         <figcaption class="quote__title" style="margin-top:18px">\${title}</figcaption>
       </figure>
@@ -228,4 +228,4 @@ import{a as E}from"./design-links-Seer4HjQ.js";const p=e=>`<span class="pager__c
     frame to bring it in.</p>
   <div style="position:relative;height:90px">
     <a class="skip-link" href="#0" style="position:absolute;top:12px;left:0">Skip to content</a>
-  </div>\``,...(M=(L=i.parameters)==null?void 0:L.docs)==null?void 0:M.source}}};const V=["Buttons","Pager","PagerPair","CaseCard","Recommendation","MetaRow","RowList","CaseBlock","SkipLink"];export{l as Buttons,r as CaseBlock,s as CaseCard,n as MetaRow,d as Pager,a as PagerPair,c as Recommendation,o as RowList,i as SkipLink,V as __namedExportsOrder,K as default};
+  </div>\``,...(M=(L=i.parameters)==null?void 0:L.docs)==null?void 0:M.source}}};const V=["Buttons","Pager","PagerPair","CaseCard","Recommendation","MetaRow","RowList","CaseBlock","SkipLink"];export{d as Buttons,r as CaseBlock,s as CaseCard,n as MetaRow,l as Pager,a as PagerPair,c as Recommendation,o as RowList,i as SkipLink,V as __namedExportsOrder,K as default};

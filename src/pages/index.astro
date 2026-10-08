@@ -124,11 +124,11 @@ const quotes = [
 	<noscript>
 		<style>
 			.deck__track, .deck--recs .deck__track { height: auto !important; }
-			.deck__stage { position: static !important; height: auto !important; overflow: visible !important; padding: var(--space-3xl) 0 0 !important; }
-			.deck__cards { display: grid !important; gap: var(--space-md) !important; }
+			.deck__stage { position: static !important; height: auto !important; overflow: visible !important; padding: var(--sdc-space-3xl) 0 0 !important; }
+			.deck__cards { display: grid !important; gap: var(--sdc-space-md) !important; }
 			.deck__card { grid-area: auto !important; transform: none !important; visibility: visible !important; }
 			.deck--work .card, .card__art { max-height: none !important; }
-			.recs__fan { position: static !important; height: auto !important; display: grid !important; gap: var(--space-md) !important; }
+			.recs__fan { position: static !important; height: auto !important; display: grid !important; gap: var(--sdc-space-md) !important; }
 			.recs__card { position: static !important; width: auto !important; height: auto !important; margin-left: 0 !important; transform: none !important; visibility: visible !important; opacity: 1 !important; }
 			[data-animate], [data-reveal] { opacity: 1 !important; transform: none !important; }
 			.rw, .rw__i { overflow: visible !important; transform: none !important; }
@@ -732,14 +732,14 @@ const quotes = [
 	   links are not tabbable. This list carries the same links for keyboard and
 	   screen reader users and shows itself the moment one of them is focused. */
 	.deck__jump { position: fixed; left: 12px; top: 12px; z-index: 150; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-	.deck__jump:focus-within { width: auto; height: auto; overflow: visible; clip: auto; background: var(--surface); border: 1px solid var(--rule-strong); border-radius: 12px; padding: 14px 18px; box-shadow: var(--shadow-card); max-width: min(380px, calc(100vw - 24px)); }
-	.deck__jump-title { margin: 0 0 8px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 800; color: var(--text-mute); }
+	.deck__jump:focus-within { width: auto; height: auto; overflow: visible; clip: auto; background: var(--sdc-surface); border: 1px solid var(--sdc-rule-strong); border-radius: 12px; padding: 14px 18px; box-shadow: var(--sdc-shadow-card); max-width: min(380px, calc(100vw - 24px)); }
+	.deck__jump-title { margin: 0 0 8px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 800; color: var(--sdc-text-mute); }
 	.deck__jump ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
-	.deck__jump a { display: block; padding: 8px 4px; min-height: 24px; color: var(--text); font-size: 15px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
-	.deck__jump a:hover { color: var(--accent); }
+	.deck__jump a { display: block; padding: 8px 4px; min-height: 24px; color: var(--sdc-text); font-size: 15px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+	.deck__jump a:hover { color: var(--sdc-accent); }
 
 	/* One measure for everything on this page: the card width. */
-	/* --shadow-card and --shadow-card-hover used to be defined here, on :root,
+	/* --sdc-shadow-card and --sdc-shadow-card-hover used to be defined here, on :root,
 	   from inside one page. They are tokens, so they now live with the rest of
 	   them in Site.astro. */
 	:root { --content: min(800px, 100vw - 48px); }
@@ -747,7 +747,7 @@ const quotes = [
 	#how, #about, #contact { scroll-margin-top: 0; }
 	/* The pinned decks pad their own stage for the header, so they cancel the
 	   page-wide scroll-padding and land flush, exactly as before. */
-	#work, #recommendations { scroll-margin-top: calc(-1 * var(--nav-h)); }
+	#work, #recommendations { scroll-margin-top: calc(-1 * var(--sdc-nav-h)); }
 
 	/* ---------- Reveal ---------- */
 	:global(.rw) { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.1em; margin-bottom: -0.1em; }
@@ -762,27 +762,27 @@ const quotes = [
 		position: relative;
 		width: var(--content);
 		margin: 0 auto;
-		padding: var(--space-3xl) 0 var(--space-4xl);
-		min-height: calc(100svh - var(--nav-h));
+		padding: var(--sdc-space-3xl) 0 var(--sdc-space-4xl);
+		min-height: calc(100svh - var(--sdc-nav-h));
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 	}
-	.hero__name { font-size: 16px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text); margin: 0 0 var(--space-lg); }
-	.hero__claim { font-size: clamp(32px, 4.1vw, 56px); line-height: 1.04; letter-spacing: -0.012em; margin: 0 0 var(--space-xl); text-wrap: pretty; }
-	.hero__proof { font-size: clamp(17px, 1.4vw, 20px); line-height: 1.5; color: var(--text); max-width: 58ch; margin: 0 0 var(--space-sm); text-wrap: pretty; }
-	.hero__valid { font-size: 15px; color: var(--text-mute); margin: 0 0 var(--space-xl); letter-spacing: 0.01em; }
-	.hero__cta { display: flex; gap: var(--space-sm); flex-wrap: wrap; }
+	.hero__name { font-size: 16px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sdc-text); margin: 0 0 var(--sdc-space-lg); }
+	.hero__claim { font-size: clamp(32px, 4.1vw, 56px); line-height: 1.04; letter-spacing: -0.012em; margin: 0 0 var(--sdc-space-xl); text-wrap: pretty; }
+	.hero__proof { font-size: clamp(17px, 1.4vw, 20px); line-height: 1.5; color: var(--sdc-text); max-width: 58ch; margin: 0 0 var(--sdc-space-sm); text-wrap: pretty; }
+	.hero__valid { font-size: 15px; color: var(--sdc-text-mute); margin: 0 0 var(--sdc-space-xl); letter-spacing: 0.01em; }
+	.hero__cta { display: flex; gap: var(--sdc-space-sm); flex-wrap: wrap; }
 
 	/* ---------- Card ---------- */
 	.card {
 		display: flex;
 		flex-direction: column;
 		width: var(--content);
-		background: var(--surface);
-		border-radius: var(--radius);
-		box-shadow: var(--shadow-card);
-		color: var(--text);
+		background: var(--sdc-surface);
+		border-radius: var(--sdc-radius);
+		box-shadow: var(--sdc-shadow-card);
+		color: var(--sdc-text);
 		overflow: hidden;
 		transition: box-shadow 0.25s ease, transform 0.25s ease;
 	}
@@ -794,12 +794,12 @@ const quotes = [
 	.card__link:hover { color: inherit; }
 	/* The ring belongs to the card, not the headline text. */
 	.card__link:focus-visible { outline: none; }
-	.card:has(.card__link:focus-visible) { outline: 2px solid var(--text); outline-offset: 3px; }
+	.card:has(.card__link:focus-visible) { outline: 2px solid var(--sdc-text); outline-offset: 3px; }
 	.card:has(.card__link.no-ring) { outline: none; }
-	.card:hover, .card:has(.card__link:focus-visible) { color: var(--text); box-shadow: var(--shadow-card-hover); }
+	.card:hover, .card:has(.card__link:focus-visible) { color: var(--sdc-text); box-shadow: var(--sdc-shadow-card-hover); }
 	.card:hover .arrow, .card:has(.card__link:focus-visible) .arrow { transform: translateX(6px); }
 	/* Full-bleed media. Images cover; the drawn stand-ins sit on paper until the images arrive. */
-	.card__art { position: relative; width: 100%; aspect-ratio: 16 / 9; max-height: 50svh; background: var(--bg); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+	.card__art { position: relative; width: 100%; aspect-ratio: 16 / 9; max-height: 50svh; background: var(--sdc-bg); overflow: hidden; display: flex; align-items: center; justify-content: center; }
 	.card__art img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
 	/* Two kinds of art must never be cropped: logo lockups, which would lose a
 	   mark, and the flat diagrams, which would lose the thing they are drawing.
@@ -813,25 +813,25 @@ const quotes = [
 	   not a token: it belongs to the artwork, not to the theme. */
 	.card__art--contain { background: var(--field, #F2F1EC); }
 	.card__art--contain img { object-fit: contain; object-position: center; }
-	.card__body { padding: clamp(22px, 3vw, 32px) clamp(22px, 3.2vw, 36px) clamp(22px, 3vw, 30px); display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "head head" "text text" "meta cta"; gap: 10px var(--space-lg); align-items: end; }
+	.card__body { padding: clamp(22px, 3vw, 32px) clamp(22px, 3.2vw, 36px) clamp(22px, 3vw, 30px); display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "head head" "text text" "meta cta"; gap: 10px var(--sdc-space-lg); align-items: end; }
 	.card__head {
 		grid-area: head;
-		font-family: var(--font-display);
+		font-family: var(--sdc-font-display);
 		font-weight: 400;
 		font-variation-settings: "wght" 400, "slnt" 0, "ital" 0;
 		font-synthesis: none;
 		font-size: clamp(22px, 2.3vw, 30px);
 		line-height: 1.05;
 		letter-spacing: 0;
-		color: var(--text);
+		color: var(--sdc-text);
 		margin: 0;
 	}
-	.card__text { grid-area: text; margin: 0 0 6px; font-size: 16px; line-height: 1.5; color: var(--text); max-width: 60ch; text-wrap: pretty; }
-	.card__meta { grid-area: meta; display: flex; flex-wrap: wrap; gap: 4px var(--space-lg); margin: 0; }
+	.card__text { grid-area: text; margin: 0 0 6px; font-size: 16px; line-height: 1.5; color: var(--sdc-text); max-width: 60ch; text-wrap: pretty; }
+	.card__meta { grid-area: meta; display: flex; flex-wrap: wrap; gap: 4px var(--sdc-space-lg); margin: 0; }
 	.card__meta div { display: flex; gap: 8px; align-items: baseline; min-width: 0; }
-	.card__meta dt { font-size: var(--text-label); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); font-weight: 800; }
+	.card__meta dt { font-size: var(--sdc-text-label); letter-spacing: 0.14em; text-transform: uppercase; color: var(--sdc-text-mute); font-weight: 800; }
 	.card__meta dt::after { content: '|' / ''; margin-left: 8px; font-weight: 400; letter-spacing: 0; opacity: 0.55; }
-	.card__meta dd { margin: 0; font-size: 13px; color: var(--text); font-weight: 500; }
+	.card__meta dd { margin: 0; font-size: 13px; color: var(--sdc-text); font-weight: 500; }
 	.card__cta { grid-area: cta; font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
 	.arrow { display: inline-block; transition: transform 0.22s ease; }
 
@@ -839,7 +839,7 @@ const quotes = [
 	.deck { position: relative; }
 	.deck__track { position: relative; height: calc(var(--n) * var(--per, 1) * 100svh + 100svh); }
 	/* One per card, at the scroll offset where that card sits centered. */
-	.deck__anchor { position: absolute; left: 0; top: calc(var(--j) * var(--per, 1) * 100svh); width: 1px; height: 1px; scroll-margin-top: calc(-1 * var(--nav-h)); }
+	.deck__anchor { position: absolute; left: 0; top: calc(var(--j) * var(--per, 1) * 100svh); width: 1px; height: 1px; scroll-margin-top: calc(-1 * var(--sdc-nav-h)); }
 	.deck__stage {
 		position: sticky;
 		top: 0;
@@ -849,7 +849,7 @@ const quotes = [
 		align-items: center;
 		justify-content: center;
 		gap: 18px;
-		padding-top: var(--nav-h);
+		padding-top: var(--sdc-nav-h);
 		perspective: 1800px;
 		overflow: hidden;
 	}
@@ -857,11 +857,11 @@ const quotes = [
 	   border tone; the active one stretches into a short ink pill so position
 	   reads by shape as well as tone. */
 	.deck__dots { position: relative; z-index: 120; display: flex; align-items: center; justify-content: center; gap: 8px; height: 6px; flex: none; pointer-events: none; }
-	.deck__dot { width: 6px; height: 6px; border-radius: 3px; background: var(--rule-strong); transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease; }
-	.deck__dot.is-active { width: 18px; background: var(--text); }
+	.deck__dot { width: 6px; height: 6px; border-radius: 3px; background: var(--sdc-rule-strong); transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease; }
+	.deck__dot.is-active { width: 18px; background: var(--sdc-text); }
 	/* The fanned side cards dip below the fan box, so the row clears them. */
 	.deck--recs .deck__dots { margin-top: 14px; }
-	.deck__label { position: relative; z-index: 3; margin: 0; font-family: var(--font-body); font-size: var(--text-label); font-weight: 700; letter-spacing: 0.16em; line-height: 1.2; }
+	.deck__label { position: relative; z-index: 3; margin: 0; font-family: var(--sdc-font-body); font-size: var(--sdc-text-label); font-weight: 700; letter-spacing: 0.16em; line-height: 1.2; }
 	.deck__cards { list-style: none; margin: 0; padding: 0; display: grid; place-items: center; width: var(--content); }
 	.deck__card {
 		--dim: 0;
@@ -870,16 +870,16 @@ const quotes = [
 		will-change: transform, opacity;
 	}
 	.deck--work .deck__card { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
-	.deck__dim { position: absolute; inset: 0; border-radius: inherit; background: var(--ink-black); opacity: calc(var(--dim) * 0.5); pointer-events: none; }
+	.deck__dim { position: absolute; inset: 0; border-radius: inherit; background: var(--sdc-ink-black); opacity: calc(var(--dim) * 0.5); pointer-events: none; }
 	.work__lede { font-size: clamp(40px, 6vw, 92px); line-height: 0.95; margin: 0; text-align: center; }
-	.deck--work .deck__stage { gap: var(--space-lg); }
-	.deck--work .card { max-height: calc(100svh - var(--nav-h) - 200px); }
+	.deck--work .deck__stage { gap: var(--sdc-space-lg); }
+	.deck--work .card { max-height: calc(100svh - var(--sdc-nav-h) - 200px); }
 
 
 	/* ---------- Recommendations: a fanned deck, driven by scroll ---------- */
 	.deck--recs { --rec-w: 440px; --rec-h: 330px; }
 	.deck--recs .deck__track { height: calc((var(--n) - 1) * var(--per, 1) * 100svh + 100svh); }
-	.recs__stage { gap: var(--space-lg); perspective: 1500px; }
+	.recs__stage { gap: var(--sdc-space-lg); perspective: 1500px; }
 	.recs__lede { font-size: clamp(40px, 6vw, 92px); line-height: 0.95; margin: 0; text-align: center; }
 	.recs__fan { list-style: none; margin: 0; padding: 0; position: relative; width: 100%; height: var(--rec-h); }
 	.recs__card {
@@ -897,55 +897,55 @@ const quotes = [
 		width: 100%;
 		height: 100%;
 		padding: clamp(22px, 3.2vw, 36px);
-		background: var(--surface);
-		border-radius: var(--radius);
-		box-shadow: var(--shadow-card);
+		background: var(--sdc-surface);
+		border-radius: var(--sdc-radius);
+		box-shadow: var(--sdc-shadow-card);
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		gap: var(--space-sm);
+		gap: var(--sdc-space-sm);
 		text-align: center;
 	}
-	.quote__mark { width: 26px; height: auto; color: var(--text); flex: none; }
+	.quote__mark { width: 26px; height: auto; color: var(--sdc-text); flex: none; }
 	.quote__text { margin: 0; }
-	.quote__text p { margin: 0; font-size: clamp(15px, 1.35vw, 18px); line-height: 1.45; letter-spacing: -0.005em; color: var(--text); font-weight: 500; text-wrap: pretty; }
-	.quote__title { font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; font-size: 11px; color: var(--text-mute); max-width: 34ch; }
+	.quote__text p { margin: 0; font-size: clamp(15px, 1.35vw, 18px); line-height: 1.45; letter-spacing: -0.005em; color: var(--sdc-text); font-weight: 500; text-wrap: pretty; }
+	.quote__title { font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; font-size: 11px; color: var(--sdc-text-mute); max-width: 34ch; }
 
 	/* ---------- How I work ---------- */
-	.section--how { padding: var(--space-4xl) var(--gutter) var(--space-3xl); }
-	.how__lede { font-size: clamp(26px, 3vw, 40px); max-width: 22ch; margin: 0 0 var(--space-xl); text-wrap: pretty; }
+	.section--how { padding: var(--sdc-space-4xl) var(--sdc-gutter) var(--sdc-space-3xl); }
+	.how__lede { font-size: clamp(26px, 3vw, 40px); max-width: 22ch; margin: 0 0 var(--sdc-space-xl); text-wrap: pretty; }
 	/* One row treatment, shared by How I work and Recognition. */
-	.how__list, .rec__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
-	.how__list li, .rec__list li { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: var(--space-lg); padding: var(--space-md) 0; border-bottom: 1px solid var(--rule); }
+	.how__list, .rec__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--sdc-rule); }
+	.how__list li, .rec__list li { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: var(--sdc-space-lg); padding: var(--sdc-space-md) 0; border-bottom: 1px solid var(--sdc-rule); }
 	.how__tool, .rec__name { font-size: 20px; letter-spacing: 0.02em; margin: 0; }
-	.how__list p, .rec__list p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--text); text-wrap: pretty; }
+	.how__list p, .rec__list p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--sdc-text); text-wrap: pretty; }
 
 	/* ---------- Recognition ---------- */
-	.section--awards { padding: var(--space-2xl) var(--gutter) var(--space-3xl); }
-	.rec__lede { font-size: clamp(26px, 3vw, 40px); max-width: 22ch; margin: 0 0 var(--space-xl); text-wrap: pretty; }
+	.section--awards { padding: var(--sdc-space-2xl) var(--sdc-gutter) var(--sdc-space-3xl); }
+	.rec__lede { font-size: clamp(26px, 3vw, 40px); max-width: 22ch; margin: 0 0 var(--sdc-space-xl); text-wrap: pretty; }
 
 	/* ---------- About, the end ---------- */
-	.section--about { padding: var(--space-4xl) var(--gutter) var(--space-2xl); }
+	.section--about { padding: var(--sdc-space-4xl) var(--sdc-gutter) var(--sdc-space-2xl); }
 	.about { display: flex; flex-direction: column; align-items: center; text-align: center; }
-	.about__photo { width: 160px; height: 160px; object-fit: cover; border-radius: 50%; display: block; margin-bottom: var(--space-lg); }
-	.about__lede { font-size: clamp(28px, 3.4vw, 48px); margin: 0 0 var(--space-lg); text-wrap: pretty; }
-	.about .eyebrow { margin-bottom: var(--space-md); }
+	.about__photo { width: 160px; height: 160px; object-fit: cover; border-radius: 50%; display: block; margin-bottom: var(--sdc-space-lg); }
+	.about__lede { font-size: clamp(28px, 3.4vw, 48px); margin: 0 0 var(--sdc-space-lg); text-wrap: pretty; }
+	.about .eyebrow { margin-bottom: var(--sdc-space-md); }
 	.about__copy { max-width: 62ch; }
 	.about__copy p { text-wrap: pretty; }
-	.about__seat { color: var(--text-mute); }
+	.about__seat { color: var(--sdc-text-mute); }
 
 	/* ---------- Contact ---------- */
-	.section--contact { padding: var(--space-3xl) var(--gutter) var(--space-5xl); text-align: center; }
-	.contact { display: flex; flex-direction: column; align-items: center; gap: var(--space-xl); }
+	.section--contact { padding: var(--sdc-space-3xl) var(--sdc-gutter) var(--sdc-space-5xl); text-align: center; }
+	.contact { display: flex; flex-direction: column; align-items: center; gap: var(--sdc-space-xl); }
 	.contact__title { font-size: clamp(56px, 7vw, 112px); margin: 0; }
 	.contact__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: clamp(18px, 1.6vw, 22px); font-weight: 600; }
 	/* padding-block carries the hit area to the 24px minimum target size. It sat
 	   at 21. Vertical padding on an inline element grows the box without moving
 	   the line, so nothing reflows. */
-	.contact__list a { color: var(--text); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; transition: color 0.14s ease; overflow-wrap: anywhere; padding-block: 2px; }
-	.contact__list a:hover { color: var(--accent); }
-	.contact__based { color: var(--text-mute); font-size: 14px; margin: 0; letter-spacing: 0.04em; }
+	.contact__list a { color: var(--sdc-text); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; transition: color 0.14s ease; overflow-wrap: anywhere; padding-block: 2px; }
+	.contact__list a:hover { color: var(--sdc-accent); }
+	.contact__based { color: var(--sdc-text-mute); font-size: 14px; margin: 0; letter-spacing: 0.04em; }
 
 	/* ---------- Case study modal ---------- */
 	.modal {
@@ -964,7 +964,7 @@ const quotes = [
 	.modal[hidden] { display: none; }
 	.modal.is-open {
 		visibility: visible;
-		background: var(--scrim);
+		background: var(--sdc-scrim);
 		-webkit-backdrop-filter: blur(2rem);
 		backdrop-filter: blur(2rem);
 		transition-delay: 0s;
@@ -973,9 +973,9 @@ const quotes = [
 		position: relative;
 		width: min(960px, 100%);
 		margin: 0 auto;
-		background: var(--bg);
-		border-radius: var(--radius);
-		box-shadow: var(--shadow-modal);
+		background: var(--sdc-bg);
+		border-radius: var(--sdc-radius);
+		box-shadow: var(--sdc-shadow-modal);
 		padding: 8px 0 32px;
 		transform: rotateY(180deg);
 		transform-style: preserve-3d;
@@ -994,25 +994,25 @@ const quotes = [
 		margin: 8px 16px -64px 0;
 		border: 0;
 		border-radius: 12px;
-		background: var(--text);
-		color: var(--bg);
+		background: var(--sdc-text);
+		color: var(--sdc-bg);
 		cursor: pointer;
 		display: grid;
 		place-items: center;
 		transition: transform 0.15s ease, background 0.15s ease;
 	}
 	.modal__close:hover { transform: scale(1.06); }
-	.modal__close:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
+	.modal__close:focus-visible { outline: 2px solid var(--sdc-text); outline-offset: 3px; }
 	/* Opened with a mouse, the dialog should not show a ring on its own X. */
 	.modal__close.no-ring:focus, .modal__close.no-ring:focus-visible { outline: none; }
 	.modal__close svg { width: 16px; height: 16px; display: block; }
 	.modal__content { clear: none; }
-	.modal__loading { padding: var(--space-3xl) var(--space-xl); color: var(--text-mute); }
+	.modal__loading { padding: var(--sdc-space-3xl) var(--sdc-space-xl); color: var(--sdc-text-mute); }
 	/* The loaded case page inside the card: no back link, a title sized for the card. */
 	.modal__content :global(.cs-back-top) { display: none; }
-	.modal__content :global(.cs-hero) { padding-top: var(--space-xl); }
+	.modal__content :global(.cs-hero) { padding-top: var(--sdc-space-xl); }
 	.modal__content :global(.cs-hero__title) { font-size: clamp(32px, 4.6vw, 60px); }
-	.modal__content :global(.cs-back .btn--primary) { background: var(--text); color: var(--bg); }
+	.modal__content :global(.cs-back .btn--primary) { background: var(--sdc-text); color: var(--sdc-bg); }
 	:global(body.modal-open) { overflow: hidden; }
 
 	/* ---------- Reduced motion: decks become lists ---------- */
@@ -1023,15 +1023,15 @@ const quotes = [
 		/* The cards stop being height-capped, or the copy is clipped. */
 		.deck--work .card { max-height: none; }
 		/* The fan stacked all twelve quotes in one absolute slot. */
-		.recs__fan { position: static; height: auto; display: grid; gap: var(--space-md); }
+		.recs__fan { position: static; height: auto; display: grid; gap: var(--sdc-space-md); }
 		.recs__card { position: static; width: auto; height: auto; margin-left: 0; transform: none !important; visibility: visible !important; opacity: 1 !important; }
 		/* A full-screen 3D flip is the classic vestibular trigger. */
 		.modal__body { transform: none; transition: none; }
 		.modal, .modal.is-open { transition: none; }
 		.card, .arrow { transition: none; }
 		.deck__dot { transition: none; }
-		.deck__stage { position: static; height: auto; padding: var(--space-3xl) 0 0; overflow: visible; perspective: none; }
-		.deck__cards { display: grid; gap: var(--space-md); place-items: stretch; }
+		.deck__stage { position: static; height: auto; padding: var(--sdc-space-3xl) 0 0; overflow: visible; perspective: none; }
+		.deck__cards { display: grid; gap: var(--sdc-space-md); place-items: stretch; }
 		.deck__card { grid-area: auto; transform: none !important; visibility: visible !important; }
 			.deck__dim { display: none; }
 			.card__art { max-height: none; }
@@ -1046,14 +1046,14 @@ const quotes = [
 		/* The cards stop being height-capped, or the copy is clipped. */
 		:root.deck-static .deck--work .card { max-height: none; }
 		/* The fan stacked all twelve quotes in one absolute slot. */
-		:root.deck-static .recs__fan { position: static; height: auto; display: grid; gap: var(--space-md); }
+		:root.deck-static .recs__fan { position: static; height: auto; display: grid; gap: var(--sdc-space-md); }
 		:root.deck-static .recs__card { position: static; width: auto; height: auto; margin-left: 0; transform: none !important; visibility: visible !important; opacity: 1 !important; }
 		/* A full-screen 3D flip is the classic vestibular trigger. */
 		:root.deck-static .modal__body { transform: none; transition: none; }
 		:root.deck-static .modal, :root.deck-static .modal.is-open { transition: none; }
 		:root.deck-static .card, :root.deck-static .arrow { transition: none; }
-		:root.deck-static .deck__stage { position: static; height: auto; padding: var(--space-3xl) 0 0; overflow: visible; perspective: none; }
-		:root.deck-static .deck__cards { display: grid; gap: var(--space-md); place-items: stretch; }
+		:root.deck-static .deck__stage { position: static; height: auto; padding: var(--sdc-space-3xl) 0 0; overflow: visible; perspective: none; }
+		:root.deck-static .deck__cards { display: grid; gap: var(--sdc-space-md); place-items: stretch; }
 		:root.deck-static .deck__card { grid-area: auto; transform: none !important; visibility: visible !important; }
 		:root.deck-static .deck__dim { display: none; }
 		:root.deck-static .card__art { max-height: none; }
@@ -1061,40 +1061,40 @@ const quotes = [
 
 	/* ---------- Phones: same decks, tighter cards ---------- */
 	@media (max-width: 880px) {
-		.deck__stage { padding-top: calc(var(--nav-h) + 8px); gap: 14px; perspective: 1200px; }
+		.deck__stage { padding-top: calc(var(--sdc-nav-h) + 8px); gap: 14px; perspective: 1200px; }
 		/* The art is the only flexible item in the card, so any height shortfall
 		   used to come out of it and left a sliver. Pin it to its ratio and take
 		   the room out of the body instead. */
 		.card__art { flex: 0 0 auto; max-height: none; }
 		/* Reserve only what actually sits above the card: nav, stage padding,
 		   the Case studies headline and one gap. */
-		.deck--work .card { max-height: calc(100svh - var(--nav-h) - 120px); }
+		.deck--work .card { max-height: calc(100svh - var(--sdc-nav-h) - 120px); }
 		.card__body { gap: 8px; }
 		.card__text { font-size: 15px; line-height: 1.45; margin-bottom: 2px; }
 		.quote { padding: 28px 22px; }
 		.quote__text p { font-size: 17px; }
-		.hero { padding-top: var(--space-2xl); padding-bottom: var(--space-3xl); }
+		.hero { padding-top: var(--sdc-space-2xl); padding-bottom: var(--sdc-space-3xl); }
 		.hero__claim { font-size: clamp(30px, 7.2vw, 44px); }
 		.card__body { grid-template-columns: 1fr; grid-template-areas: "head" "text" "meta" "cta"; padding: 18px 20px; align-items: start; }
 		/* Labels read as subheads on phones: above the value, not beside it. */
 		.card__meta { flex-direction: column; gap: 10px; }
 		.card__meta div { flex-direction: column; gap: 2px; align-items: flex-start; }
-		.card__meta dt { font-size: 12px; letter-spacing: 0.1em; color: var(--text); }
+		.card__meta dt { font-size: 12px; letter-spacing: 0.1em; color: var(--sdc-text); }
 		.card__meta dt::after { content: none; }
 		.deck--work .deck__dots { margin-top: -18px; }
 		.card__meta dd { font-size: 14px; line-height: 1.4; }
 		.how__list li, .rec__list li { grid-template-columns: 1fr; gap: 8px; }
 		.deck--recs { --rec-w: min(300px, 82vw); --rec-h: 380px; }
-		.recs__stage { gap: var(--space-md); }
+		.recs__stage { gap: var(--sdc-space-md); }
 		.modal { padding: 16px; }
 		.modal__close { top: 8px; margin: 8px 8px -56px 0; width: 44px; height: 44px; }
 	}
 	/* Short phones: the headline and stage padding are the only things left to
 	   give, so they shrink before the card does. */
 	@media (max-width: 880px) and (min-height: 600px) and (max-height: 720px) {
-		.deck--work .deck__stage { padding-top: calc(var(--nav-h) + 2px); gap: 8px; }
+		.deck--work .deck__stage { padding-top: calc(var(--sdc-nav-h) + 2px); gap: 8px; }
 		.work__lede { font-size: 30px; }
-		.deck--work .card { max-height: calc(100svh - var(--nav-h) - 78px); }
+		.deck--work .card { max-height: calc(100svh - var(--sdc-nav-h) - 78px); }
 		.card__head { font-size: 20px; }
 		.card__text { font-size: 14px; }
 		.card__body { padding: 14px 18px; }
@@ -1106,7 +1106,7 @@ const quotes = [
 		.card__body { gap: 6px; padding: 12px 16px; }
 		.card__text { font-size: 13.5px; }
 		.card__meta { gap: 8px; }
-		.deck--work .card { max-height: calc(100svh - var(--nav-h) - 70px); }
+		.deck--work .card { max-height: calc(100svh - var(--sdc-nav-h) - 70px); }
 	}
 	@media (max-height: 760px) and (min-width: 881px) {
 		.card__art { max-height: 44svh; }

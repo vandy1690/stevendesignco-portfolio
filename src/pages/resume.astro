@@ -103,51 +103,51 @@ import Site from '../layouts/Site.astro';
 </Site>
 
 <style>
-	.rs { max-width: var(--max-narrow); margin: 0 auto; padding: var(--space-3xl) var(--gutter) var(--space-4xl); }
+	.rs { max-width: var(--sdc-max-narrow); margin: 0 auto; padding: var(--sdc-space-3xl) var(--sdc-gutter) var(--sdc-space-4xl); }
 
 	/* Header */
-	.rs-head .eyebrow { margin-bottom: var(--space-sm); }
-	.rs-name { font-size: clamp(40px, 6vw, 72px); letter-spacing: -0.02em; margin: 0 0 var(--space-md); }
-	.rs-role { font-size: clamp(20px, 2vw, 26px); font-weight: 600; color: var(--text); margin: 0 0 var(--space-sm); letter-spacing: -0.01em; }
-	.rs-loc { color: var(--text-mute); font-size: 15px; margin: 0 0 var(--space-md); }
-	.rs-contact { list-style: none; margin: 0 0 var(--space-lg); padding: 0; display: flex; flex-wrap: wrap; gap: 12px var(--space-md); font-size: 15px; font-weight: 500; }
+	.rs-head .eyebrow { margin-bottom: var(--sdc-space-sm); }
+	.rs-name { font-size: clamp(40px, 6vw, 72px); letter-spacing: -0.02em; margin: 0 0 var(--sdc-space-md); }
+	.rs-role { font-size: clamp(20px, 2vw, 26px); font-weight: 600; color: var(--sdc-text); margin: 0 0 var(--sdc-space-sm); letter-spacing: -0.01em; }
+	.rs-loc { color: var(--sdc-text-mute); font-size: 15px; margin: 0 0 var(--sdc-space-md); }
+	.rs-contact { list-style: none; margin: 0 0 var(--sdc-space-lg); padding: 0; display: flex; flex-wrap: wrap; gap: 12px var(--sdc-space-md); font-size: 15px; font-weight: 500; }
 	/* Same 24px minimum as the home page contact list. It sat at 19. Reset in
 	   print below, where the type is 9.5px and target size does not apply. */
-	.rs-contact a { color: var(--text); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; transition: color 0.14s ease; padding-block: 3px; }
-	.rs-contact a:hover { color: var(--accent); }
-	.rs-pdf { margin-top: var(--space-xs); }
+	.rs-contact a { color: var(--sdc-text); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; transition: color 0.14s ease; padding-block: 3px; }
+	.rs-contact a:hover { color: var(--sdc-accent); }
+	.rs-pdf { margin-top: var(--sdc-space-xs); }
 
 	/* Sections, divided by rules */
-	.rs-sec { margin-top: var(--space-2xl); padding-top: var(--space-2xl); border-top: 1px solid var(--rule); }
-	.rs-sec > .eyebrow { margin-bottom: var(--space-md); }
+	.rs-sec { margin-top: var(--sdc-space-2xl); padding-top: var(--sdc-space-2xl); border-top: 1px solid var(--sdc-rule); }
+	.rs-sec > .eyebrow { margin-bottom: var(--sdc-space-md); }
 
 	/* Summary: eyebrow + this lead read as the headline */
-	.rs-summary { font-size: clamp(22px, 2.4vw, 30px); font-weight: 600; color: var(--text); line-height: 1.3; letter-spacing: -0.015em; margin: 0; max-width: 40ch; }
+	.rs-summary { font-size: clamp(22px, 2.4vw, 30px); font-weight: 600; color: var(--sdc-text); line-height: 1.3; letter-spacing: -0.015em; margin: 0; max-width: 40ch; }
 
 	/* Experience */
-	.rs-jobs { display: grid; gap: var(--space-2xl); }
-	.rs-job__role { font-size: clamp(20px, 2.2vw, 24px); font-weight: 700; color: var(--text); line-height: 1.2; letter-spacing: -0.015em; margin: 0 0 var(--space-xs); }
-	.rs-job__org { color: var(--text); font-size: 16px; font-weight: 600; margin: 0; }
-	.rs-job__meta { color: var(--text-mute); font-size: 13px; letter-spacing: 0.02em; margin: var(--space-xs) 0 0; }
-	.rs-points { list-style: none; margin: var(--space-md) 0 0; padding: 0; display: grid; gap: var(--space-sm); }
-	.rs-points li { position: relative; padding-left: var(--space-md); color: var(--text-mute); font-size: 16px; line-height: 1.6; }
-	.rs-points li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+	.rs-jobs { display: grid; gap: var(--sdc-space-2xl); }
+	.rs-job__role { font-size: clamp(20px, 2.2vw, 24px); font-weight: 700; color: var(--sdc-text); line-height: 1.2; letter-spacing: -0.015em; margin: 0 0 var(--sdc-space-xs); }
+	.rs-job__org { color: var(--sdc-text); font-size: 16px; font-weight: 600; margin: 0; }
+	.rs-job__meta { color: var(--sdc-text-mute); font-size: 13px; letter-spacing: 0.02em; margin: var(--sdc-space-xs) 0 0; }
+	.rs-points { list-style: none; margin: var(--sdc-space-md) 0 0; padding: 0; display: grid; gap: var(--sdc-space-sm); }
+	.rs-points li { position: relative; padding-left: var(--sdc-space-md); color: var(--sdc-text-mute); font-size: 16px; line-height: 1.6; }
+	.rs-points li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 6px; height: 6px; border-radius: 50%; background: var(--sdc-accent); }
 
 	/* Skills: pills, matching the homepage capability tags */
 	.rs-skills { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
-	.rs-skills li { padding: 10px 16px; border: 1px solid var(--rule); border-radius: 999px; font-size: 14px; color: var(--text); font-weight: 500; }
+	.rs-skills li { padding: 10px 16px; border: 1px solid var(--sdc-rule); border-radius: 999px; font-size: 14px; color: var(--sdc-text); font-weight: 500; }
 
 	/* Recognition: flowing list with accent dot separators */
-	.rs-recognition { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 0; font-size: 16px; color: var(--text); }
+	.rs-recognition { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 0; font-size: 16px; color: var(--sdc-text); }
 	.rs-recognition li { display: inline-flex; align-items: center; }
-	.rs-recognition li:not(:last-child)::after { content: "·"; color: var(--accent); margin: 0 12px; font-weight: 700; }
+	.rs-recognition li:not(:last-child)::after { content: "·"; color: var(--sdc-accent); margin: 0 12px; font-weight: 700; }
 
 	/* Education */
-	.rs-education { margin: 0; font-size: 16px; color: var(--text); }
+	.rs-education { margin: 0; font-size: 16px; color: var(--sdc-text); }
 
 	@media (max-width: 700px) {
-		.rs { padding-top: var(--space-2xl); }
-		.rs-recognition { display: grid; gap: var(--space-xs); }
+		.rs { padding-top: var(--sdc-space-2xl); }
+		.rs-recognition { display: grid; gap: var(--sdc-space-xs); }
 		.rs-recognition li:not(:last-child)::after { content: none; }
 	}
 

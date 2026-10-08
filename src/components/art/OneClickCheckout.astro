@@ -56,32 +56,32 @@ const marks = ['Nintendo', 'HomeDepot', 'Target', 'BestBuy', 'Chewy', 'Canva', '
 </div>
 
 <style>
-	.occ { width: 100%; height: 100%; display: grid; grid-template-rows: 1fr auto; gap: 14px; padding: clamp(14px, 4%, 28px); color: var(--text); }
+	.occ { width: 100%; height: 100%; display: grid; grid-template-rows: 1fr auto; gap: 14px; padding: clamp(14px, 4%, 28px); color: var(--sdc-text); }
 	.occ__stage { display: flex; align-items: center; justify-content: center; gap: clamp(16px, 4%, 36px); min-height: 0; }
 
 	.occ__phone {
 		position: relative;
 		width: clamp(150px, 42%, 200px);
 		aspect-ratio: 9 / 17.5;
-		border: 1.5px solid var(--text);
+		border: 1.5px solid var(--sdc-text);
 		border-radius: 26px;
 		padding: 30px 14px 14px;
 		display: flex;
 		flex-direction: column;
 		gap: 10px;
-		background: var(--bg);
+		background: var(--sdc-bg);
 		flex: none;
 	}
-	.occ__notch { position: absolute; top: 10px; left: 50%; width: 40%; height: 6px; transform: translateX(-50%); border-radius: 999px; background: var(--text); opacity: 0.35; }
+	.occ__notch { position: absolute; top: 10px; left: 50%; width: 40%; height: 6px; transform: translateX(-50%); border-radius: 999px; background: var(--sdc-text); opacity: 0.35; }
 	.occ__row { display: flex; align-items: center; gap: 8px; }
 	.occ__row--head { justify-content: space-between; margin-bottom: 2px; }
 	.occ__row--item { gap: 10px; }
-	.occ__row--total { justify-content: space-between; padding-top: 8px; border-top: 1px solid var(--rule); margin-top: auto; }
+	.occ__row--total { justify-content: space-between; padding-top: 8px; border-top: 1px solid var(--sdc-rule); margin-top: auto; }
 	.occ__stack { display: flex; flex-direction: column; gap: 6px; flex: 1; }
-	.occ__thumb { width: 30px; height: 30px; border-radius: 7px; background: var(--surface-2); flex: none; }
-	.occ__dot { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid var(--text); opacity: 0.5; }
-	.occ__line { display: block; height: 6px; border-radius: 999px; background: var(--surface-2); }
-	.occ__line--dark { background: var(--text); opacity: 0.55; }
+	.occ__thumb { width: 30px; height: 30px; border-radius: 7px; background: var(--sdc-surface-2); flex: none; }
+	.occ__dot { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid var(--sdc-text); opacity: 0.5; }
+	.occ__line { display: block; height: 6px; border-radius: 999px; background: var(--sdc-surface-2); }
+	.occ__line--dark { background: var(--sdc-text); opacity: 0.55; }
 	.occ__line--w24 { width: 24%; } .occ__line--w28 { width: 28%; } .occ__line--w32 { width: 32%; } .occ__line--w36 { width: 36%; }
 	.occ__line--w44 { width: 44%; } .occ__line--w60 { width: 60%; } .occ__line--w72 { width: 72%; }
 
@@ -89,21 +89,21 @@ const marks = ['Nintendo', 'HomeDepot', 'Target', 'BestBuy', 'Chewy', 'Canva', '
 		position: relative;
 		height: 34px;
 		border-radius: 999px;
-		background: var(--accent);
+		background: var(--sdc-accent);
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		box-shadow: 0 10px 24px -12px var(--accent-glow);
+		box-shadow: 0 10px 24px -12px var(--sdc-accent-glow);
 	}
 	.occ__pplogo { display: block; width: 56%; }
 	.occ__pplogo :global(svg) { width: 100%; height: auto; display: block; filter: brightness(0) invert(1); }
-	.occ__ghost { height: 34px; border-radius: 999px; border: 1px solid var(--rule); }
+	.occ__ghost { height: 34px; border-radius: 999px; border: 1px solid var(--sdc-rule); }
 
 	/* the tap: a fingertip ring landing on the button */
 	.occ__tap { position: absolute; left: 58%; top: 66.5%; width: 30px; height: 30px; transform: translate(-50%, -50%); }
 	.occ__ring {
 		position: absolute; inset: 0; border-radius: 50%;
-		border: 2px solid var(--text);
+		border: 2px solid var(--sdc-text);
 		animation: occ-pulse 2.6s ease-out infinite;
 	}
 	.occ__ring--2 { animation-delay: 1.3s; }
@@ -115,18 +115,18 @@ const marks = ['Nintendo', 'HomeDepot', 'Target', 'BestBuy', 'Chewy', 'Canva', '
 
 	.occ__note { display: flex; align-items: baseline; gap: 12px; max-width: 19ch; }
 	.occ__num {
-		font-family: var(--font-display);
+		font-family: var(--sdc-font-display);
 		font-weight: 400;
 		font-variation-settings: "wght" 400, "slnt" 0, "ital" 0;
 		font-synthesis: none;
 		font-size: clamp(64px, 12vw, 120px);
 		line-height: 0.85;
-		color: var(--text);
+		color: var(--sdc-text);
 	}
-	.occ__txt { font-family: var(--font-body); font-size: 14px; line-height: 1.35; color: var(--text-mute); font-weight: 500; }
+	.occ__txt { font-family: var(--sdc-font-body); font-size: 14px; line-height: 1.35; color: var(--sdc-text-mute); font-weight: 500; }
 
 	/* quiet merchant row: monochrome, small, evenly spaced */
-	.occ__marks { list-style: none; margin: 0; padding: 12px 4px 0; border-top: 1px solid var(--rule-soft); display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+	.occ__marks { list-style: none; margin: 0; padding: 12px 4px 0; border-top: 1px solid var(--sdc-rule-soft); display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 	.occ__mark { flex: 1 1 0; max-width: 64px; height: 24px; display: flex; align-items: center; justify-content: center; filter: grayscale(1) contrast(1.1); opacity: 0.5; }
 	.occ__mark :global(svg) { width: 100%; height: 100%; display: block; }
 	.occ__mark--homedepot :global(svg), .occ__mark--target :global(svg) { height: 26px; width: auto; }

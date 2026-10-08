@@ -44,9 +44,9 @@ more.
 
 ## Colour and contrast
 
-- Body text and muted text clear 4.5 to 1 in both themes. `--text-mute` was
+- Body text and muted text clear 4.5 to 1 in both themes. `--sdc-text-mute` was
   darkened in light and lightened in dark to get there.
-- Control borders use `--rule-strong`, which clears 3 to 1.
+- Control borders use `--sdc-rule-strong`, which clears 3 to 1.
 - `prefers-contrast: more` collapses muted text into the full ink colour and
   swaps dividers for the strong rule.
 - `forced-colors: active` (Windows High Contrast) gets a system colour focus

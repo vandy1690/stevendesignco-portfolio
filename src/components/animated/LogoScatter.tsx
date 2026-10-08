@@ -98,7 +98,7 @@ const LogoScatter: React.FC<LogoScatterProps> = ({ className = '' }) => {
           align-items: center;
           justify-content: center;
           box-sizing: border-box;
-          box-shadow: var(--shadow-tile);
+          box-shadow: var(--sdc-shadow-tile);
           animation: ls-roam var(--ls-dur, 26s) ease-in-out var(--ls-delay, 0s) infinite;
           will-change: transform;
         }
@@ -148,7 +148,7 @@ const LogoScatter: React.FC<LogoScatterProps> = ({ className = '' }) => {
             <div
               className="ls-inner"
               style={{
-                background: cfg.bg ?? 'var(--paper-white)',
+                background: cfg.bg ?? 'var(--sdc-paper-white)',
                 padding: cfg.pad ?? '22%',
                 ['--ls-dur' as string]: `${22 + (i % 6) * 2.5}s`,
                 ['--ls-delay' as string]: `-${((i * 3.3) % 20).toFixed(1)}s`,
