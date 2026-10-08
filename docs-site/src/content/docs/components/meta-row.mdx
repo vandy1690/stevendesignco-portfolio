@@ -8,8 +8,8 @@ sidebar:
 <dl class="sdc-hww">
 	<div><dt>How</dt><dd>A description list. The key is 11px uppercase at weight
 	800 in muted charcoal, followed by a pipe, then the value. On cards the class
-	is <code>.card__meta</code>; in a case study hero it is
-	<code>.cs-meta</code>.</dd></div>
+	is <code>.sdc-card__meta</code>; in a case study hero it is
+	<code>.sdc-meta-row</code>.</dd></div>
 	<div><dt>When</dt><dd>For two to three facts that frame a piece of work:
 	what it was, who it was for, what it was trying to do. Not for a list of
 	features, and not for prose.</dd></div>
@@ -19,14 +19,14 @@ sidebar:
 
 ## In code
 
-`src/components/ui/CaseMeta.astro`, which `CaseHero` already renders from its
+`src/components/ui/MetaRow.astro`, which `CaseHero` already renders from its
 own `meta` prop. Call it directly only outside a hero.
 
 ```astro
 ---
-import CaseMeta from '../../components/ui/CaseMeta.astro';
+import MetaRow from '../../components/ui/MetaRow.astro';
 ---
-<CaseMeta
+<MetaRow
 	items={[
 		{ term: 'Role', value: 'Principal Designer &middot; PayPal' },
 		{ term: 'Team', value: 'Merchant Enablement' },
@@ -37,6 +37,10 @@ import CaseMeta from '../../components/ui/CaseMeta.astro';
 `items` is an array of `{ term, value }`. Two or three pairs. Four wraps badly on
 a phone. It renders a description list, so each label stays tied to its value
 rather than only sitting above it.
+
+| Prop | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `items` | `{ term: string; value: string }[]` | required | The pairs, in reading order. Two or three; four wraps badly on a phone. `value` may carry inline HTML. |
 
 ## The pipe
 

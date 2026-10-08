@@ -1,0 +1,19 @@
+---
+/**
+ * TextPassage
+ * A run of reading prose outside a case study: the paragraphs on the home
+ * page's About band. It sets the measure and the paragraph rhythm and nothing
+ * else, so the words inside it are plain <p> elements.
+ *
+ * @element sdc-text-passage
+ */
+interface Props {
+	/** The measure. "narrow" is 62 characters, for a single column of reading. */
+	width?: 'narrow';
+	/** Reveal on scroll: "block" fades and lifts the passage as one. */
+	reveal?: 'block';
+	class?: string;
+}
+const { width, reveal, class: cls } = Astro.props;
+---
+<sdc-text-passage width={width} class={cls} data-reveal={reveal}><slot /></sdc-text-passage>

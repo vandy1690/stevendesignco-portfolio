@@ -7,14 +7,14 @@ sidebar:
 
 <dl class="sdc-hww">
 	<div><dt>How</dt><dd>A dark anchor 42px tall with the destination as its
-	visible text and a chevron in a tinted end cap. <code>.pager</code> points
-	forward with the cap on the right; <code>{'.pager.pager--prev'}</code> points back
+	visible text and a chevron in a tinted end cap. <code>.sdc-pager</code> points
+	forward with the cap on the right; <code>{'.sdc-pager.sdc-pager--prev'}</code> points back
 	with the cap on the left.</dd></div>
 	<div><dt>When</dt><dd>To move between case studies in a fixed reading order.
 	Not for general navigation, and not for links that open an artifact or leave
 	the site.</dd></div>
 	<div><dt>Where</dt><dd>The foot of every case study page and the design
-	systems page, always as a pair inside <code>.cs-back</code>. Never in the
+	systems page, always as a pair inside the pager container. Never in the
 	header, never mid-page, never alone.</dd></div>
 </dl>
 
@@ -28,17 +28,33 @@ closing band so a page cannot put it in the wrong place.
 import PagerPair from '../../components/ui/PagerPair.astro';
 ---
 <PagerPair
-	prev={{ href: '/work/plate', label: 'Plate', hidden: 'Previous case study: ' }}
-	next={{ href: '/work/alt-meat', label: 'Alt-Meat', hidden: 'Next case study: ' }}
+	prev={{ href: '/work/plate', label: 'Plate', prefix: 'Previous case study: ' }}
+	next={{ href: '/work/alt-meat', label: 'Alt-Meat', prefix: 'Next case study: ' }}
 />
 ```
 
-Each link takes `href`, `label` and `hidden`. `label` is the visible text and
-stays the visible text. `hidden` is read before it, which is how the direction
+Each link takes `href`, `label` and `prefix`. `label` is the visible text and
+stays the visible text. `prefix` is read before it, which is how the direction
 reaches a screen reader without an `aria-label` replacing what is on screen.
 
-`Pager` on its own takes `dir` of `prev` or `next`, which picks the chevron and
+`Pager` on its own takes `direction` of `prev` or `next`, which picks the chevron and
 the side it sits on. Use `PagerPair` unless you have a reason not to.
+
+`PagerPair` props:
+
+| Prop | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `prev` | `{ href, label, prefix? }` | required | The link on the left. `prefix` is read before the label by a screen reader. |
+| `next` | `{ href, label, prefix? }` | required | The link on the right. |
+
+`Pager` props, for the rare page that places one on its own:
+
+| Prop | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `direction` | `'prev'` \| `'next'` | required | Which way the chevron points, and which side it sits on. |
+| `href` | string | required | Where it goes. |
+| `label` | string | required | The visible text. |
+| `prefix` | string | unset | Read before the visible text by a screen reader. Renamed from `hidden`, which collided with the HTML attribute. |
 
 ## Anatomy
 

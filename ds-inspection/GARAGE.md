@@ -1,5 +1,5 @@
 # GARAGE.md — Steven Design Co. Design System 2.0
-_Checked in: 2026-10-03 · Re-confirmed 2026-10-05 after the easy-wins remediation (PR #5) · Re-confirm at next inspection_
+_Checked in: 2026-10-03 · Re-confirmed 2026-10-05 after the easy-wins remediation (PR #5) · Re-confirmed 2026-10-08 after the 02.00.00 namespace and custom element work (branch `chore/sdc-token-prefix`, unreleased) · Re-confirm at next inspection_
 
 ## Vehicle
 - System: Steven Design Co. design system 2.0, serving stevendesignco.com (one property, 11 routes) plus five browsable labs under /labs
@@ -9,15 +9,15 @@ _Checked in: 2026-10-03 · Re-confirmed 2026-10-05 after the easy-wins remediati
 
 ## Assets
 - Design library: Figma, "SDC Fall of 2026" (file key TJjqs7XSz21Y72GRPnVAQB), published. 5 pages (Cover, Foundations, Components, Site, UX flow). 6 variable collections, 59 variables, 10 text styles, 12 components. A separate 1.0 library, "SDC Design Tokens" (April 2026, colour only, every variable ALL_SCOPES), is still published.
-- Code library: Astro 6.2.1 + a small amount of React, repo `portfolio-astro`, deployed on Vercel. 14 components in `src/components/ui/`. No package: components are consumed in-repo only, not distributed. Tokens are CSS custom properties in `src/layouts/Site.astro`, two tiers (primitives → semantic). No Style Dictionary or token pipeline.
-- Docs: Starlight (separate Astro project in `docs-site/`), builds into `public/docs`, published at /docs. 34 pages: 18 components, 6 foundations, 2 patterns, 4 practices, 3 start. **No page documents `Site.astro`**, the layout every page must use. `public/docs` is committed build output, not generated at deploy.
+- Code library: Astro 6.2.1 + a small amount of React, repo `portfolio-astro`, deployed on Vercel. **16 components** in `src/components/ui/` as of 2026-10-08 (CaseStudyCard and TextPassage added; CaseMeta renamed MetaRow). The containers render as light-DOM custom elements (`<sdc-section>`, `<sdc-layout-container>`, `<sdc-case-hero>`, `<sdc-case-block>`, `<sdc-case-figure>`, `<sdc-button-group>`, `<sdc-card>`, `<sdc-text-passage>`), no shadow DOM, no script; native-role elements keep their element plus an `sdc-` class. No package: consumed in-repo only. Tokens are CSS custom properties in `src/layouts/Site.astro`, two tiers, every name `--sdc-*`; primitives generated from `src/styles/tokens/primitives.tokens.json` by `scripts/build-tokens.mjs`. Versioned: `src/styles/tokens/sdc-version.json`, semantic versioning, 01.00.00 tagged on production, 02.00.00 on the branch.
+- Docs: Starlight (separate Astro project in `docs-site/`), builds into `public/docs`, published at /docs. **39 pages** as of 2026-10-08: 19 components, 7 foundations (Elevation added), 2 patterns, 4 practices, 6 start (Naming, Releases, The page shell added). `Site.astro` is documented at /docs/start/page-shell. `public/docs` is committed build output, not generated at deploy.
 - Process: GitHub (vandy1690/stevendesignco-portfolio). `dev` is production. Branch protection requiring the Q&A check, strict mode, force pushes blocked, admins not enforced. PR template. Five PRs, all merged through the gate. Changelog current through 2026-10-05. No issue tracker in use, no support channel (team of one). Three separate pre-merge checklists that do not agree.
-- AI surface: Figma MCP connected; seven-check Q&A suite (`qa/`) run locally and in CI; `CLAUDE.md` agent rules in repo; `check-docs-in-step.mjs` doc-drift gate. No llms.txt, no Code Connect, no component metadata for agents.
+- AI surface: Figma Console MCP (Desktop Bridge) connected and able to write; seven-check Q&A suite (`qa/`) locally and in CI with a real-browser warm-up; `custom-elements.json` generated from the components; `SITE-CONTEXT.md` and `never-say.txt` at the root; `scripts/check-names.mjs` naming validator; `scripts/adoption.mjs`; llms.txt current. `CLAUDE.md` and `claude-context/` remain gitignored by design (private material). No Code Connect (seat).
 
 ## Evidence access map
 | Asset | Access | Verified how |
 |---|---|---|
-| Design library | live — official Figma MCP (`use_figma`) | Probe call 2026-10-03 returned the real library: 12 components, 59 variables, 10 text styles, 6 collections. Can sweep the whole file via `figma.root.children`, not just linked nodes. |
+| Design library | live — Figma Console MCP Desktop Bridge (`figma_execute`), read and write | Probe 2026-10-08, 8ms roundtrip, file "SDC Fall of 2026": 12 components, 73 variables, 17 text styles, 6 collections, 34 instances. Whole-file sweeps via `figma.root.findAll`. Writes used with Steve's go on 2026-10-08: code syntax and four component renames. |
 | Code library | live — repo open | Read and written throughout; `src/components/ui/`, `src/layouts/Site.astro`, `qa/` all read directly |
 | Docs | live — local source + published site | `docs-site/src/content/docs/` read directly; https://stevendesignco.com/docs reachable |
 | Process | live — GitHub API via `gh` | Branch protection, 4 PRs, CI runs, check names all read directly |

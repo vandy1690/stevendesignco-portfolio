@@ -1,0 +1,418 @@
+{
+	"schemaVersion": "1.0.0",
+	"readme": "docs-site/src/content/docs/start/naming.mdx",
+	"modules": [
+		{
+			"kind": "javascript-module",
+			"path": "src/components/ui/ButtonGroup.astro",
+			"declarations": [
+				{
+					"kind": "class",
+					"customElement": true,
+					"tagName": "sdc-button-group",
+					"name": "ButtonGroup",
+					"summary": "The row of artifact links at the end of a case study block. It wraps on",
+					"description": "Rendered by src/components/ui/ButtonGroup.astro. Light DOM, no shadow root, no JavaScript: the element is styled by tag and attribute in src/layouts/Site.astro.",
+					"attributes": [],
+					"slots": [
+						{
+							"name": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/ui/CaseBlock.astro",
+			"declarations": [
+				{
+					"kind": "class",
+					"customElement": true,
+					"tagName": "sdc-case-block",
+					"name": "CaseBlock",
+					"summary": "The prose unit a case study is written in: a label, a one line claim, then",
+					"description": "Rendered by src/components/ui/CaseBlock.astro. Light DOM, no shadow root, no JavaScript: the element is styled by tag and attribute in src/layouts/Site.astro.",
+					"attributes": [
+						{
+							"name": "eyebrow",
+							"type": {
+								"text": "string"
+							},
+							"description": "The small label above the claim.",
+							"required": true
+						},
+						{
+							"name": "lede",
+							"type": {
+								"text": "string"
+							},
+							"description": "The one line claim. Becomes the heading."
+						}
+					],
+					"slots": [
+						{
+							"name": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/ui/CaseFigure.astro",
+			"declarations": [
+				{
+					"kind": "class",
+					"customElement": true,
+					"tagName": "sdc-case-figure",
+					"name": "CaseFigure",
+					"summary": "A full width image inside a case study.",
+					"description": "Rendered by src/components/ui/CaseFigure.astro. Light DOM, no shadow root, no JavaScript: the element is styled by tag and attribute in src/layouts/Site.astro.",
+					"attributes": [
+						{
+							"name": "src",
+							"type": {
+								"text": "string"
+							},
+							"description": "",
+							"required": true
+						},
+						{
+							"name": "alt",
+							"type": {
+								"text": "string"
+							},
+							"description": "",
+							"required": true
+						},
+						{
+							"name": "light",
+							"type": {
+								"text": "string"
+							},
+							"description": "Light theme version of the same art."
+						},
+						{
+							"name": "width",
+							"type": {
+								"text": "number"
+							},
+							"description": ""
+						},
+						{
+							"name": "height",
+							"type": {
+								"text": "number"
+							},
+							"description": ""
+						},
+						{
+							"name": "loading",
+							"type": {
+								"text": "'lazy' | 'eager'"
+							},
+							"description": "Pass \"lazy\" for a figure below the first screen."
+						}
+					],
+					"slots": [
+						{
+							"name": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/ui/CaseHero.astro",
+			"declarations": [
+				{
+					"kind": "class",
+					"customElement": true,
+					"tagName": "sdc-case-hero",
+					"name": "CaseHero",
+					"summary": "The top of a case study: the way back, the label, the title, the one",
+					"description": "Rendered by src/components/ui/CaseHero.astro. Light DOM, no shadow root, no JavaScript: the element is styled by tag and attribute in src/layouts/Site.astro.",
+					"attributes": [
+						{
+							"name": "eyebrow",
+							"type": {
+								"text": "string"
+							},
+							"description": "The label above the title.",
+							"required": true
+						},
+						{
+							"name": "heading",
+							"type": {
+								"text": "string"
+							},
+							"description": "The page's only h1.",
+							"required": true
+						},
+						{
+							"name": "lede",
+							"type": {
+								"text": "string"
+							},
+							"description": "The one paragraph that says what the work was.",
+							"required": true
+						},
+						{
+							"name": "meta",
+							"type": {
+								"text": "{ term: string; value: string }[]"
+							},
+							"description": "Role, org, recognition. Two or three pairs.",
+							"required": true
+						},
+						{
+							"name": "note",
+							"type": {
+								"text": "string"
+							},
+							"description": "A disclosure under the credits."
+						},
+						{
+							"name": "backHref",
+							"type": {
+								"text": "string"
+							},
+							"description": "Where the way back points."
+						},
+						{
+							"name": "backLabel",
+							"type": {
+								"text": "string"
+							},
+							"description": "What the way back says."
+						}
+					],
+					"slots": [
+						{
+							"name": "figure"
+						}
+					]
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/ui/CaseSection.astro",
+			"declarations": [
+				{
+					"kind": "class",
+					"customElement": true,
+					"tagName": "sdc-section",
+					"name": "CaseSection",
+					"summary": "One band of a case study, rendered as <sdc-section> with an",
+					"description": "Rendered by src/components/ui/CaseSection.astro. Light DOM, no shadow root, no JavaScript: the element is styled by tag and attribute in src/layouts/Site.astro.",
+					"attributes": [
+						{
+							"name": "tone",
+							"type": {
+								"text": "'alt' | 'ink'"
+							},
+							"description": "Darker surface (\"alt\") or inverted (\"ink\"). Alternate alt, never two in a row."
+						},
+						{
+							"name": "figure",
+							"type": {
+								"text": "boolean"
+							},
+							"description": "Full bleed figure band."
+						},
+						{
+							"name": "flush",
+							"type": {
+								"text": "boolean"
+							},
+							"description": "No top padding, so the band sits flush against the one above."
+						},
+						{
+							"name": "id",
+							"type": {
+								"text": "string"
+							},
+							"description": "Anchor target, for a link that jumps to this band."
+						},
+						{
+							"name": "labelledby",
+							"type": {
+								"text": "string"
+							},
+							"description": "Id of the band's heading. Makes the band a named region landmark."
+						}
+					],
+					"slots": [
+						{
+							"name": ""
+						}
+					]
+				},
+				{
+					"kind": "class",
+					"customElement": true,
+					"tagName": "sdc-layout-container",
+					"name": "CaseSection",
+					"summary": "One band of a case study, rendered as <sdc-section> with an",
+					"description": "Rendered by src/components/ui/CaseSection.astro. Light DOM, no shadow root, no JavaScript: the element is styled by tag and attribute in src/layouts/Site.astro.",
+					"attributes": [
+						{
+							"name": "layout",
+							"type": {
+								"text": "'prose' | 'pager' | 'orbit' | 'bare' | false"
+							},
+							"description": "What the container lays out, or false for no container."
+						},
+						{
+							"name": "width",
+							"type": {
+								"text": "'narrow'"
+							},
+							"description": "A narrower measure, for pure reading."
+						},
+						{
+							"name": "animate",
+							"type": {
+								"text": "boolean"
+							},
+							"description": "Fades in on scroll. Off for bands that must be readable immediately."
+						}
+					],
+					"slots": [
+						{
+							"name": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/ui/CaseStudyCard.astro",
+			"declarations": [
+				{
+					"kind": "class",
+					"customElement": true,
+					"tagName": "sdc-card",
+					"name": "CaseStudyCard",
+					"summary": "One case study in the home page deck: art above, then the claim as a link,",
+					"description": "Rendered by src/components/ui/CaseStudyCard.astro. Light DOM, no shadow root, no JavaScript: the element is styled by tag and attribute in src/layouts/Site.astro.",
+					"attributes": [
+						{
+							"name": "href",
+							"type": {
+								"text": "string"
+							},
+							"description": "",
+							"required": true
+						},
+						{
+							"name": "head",
+							"type": {
+								"text": "string"
+							},
+							"description": "The claim. Becomes the heading and the link text.",
+							"required": true
+						},
+						{
+							"name": "text",
+							"type": {
+								"text": "string"
+							},
+							"description": "One paragraph under the claim.",
+							"required": true
+						},
+						{
+							"name": "product",
+							"type": {
+								"text": "string"
+							},
+							"description": "",
+							"required": true
+						},
+						{
+							"name": "objective",
+							"type": {
+								"text": "string"
+							},
+							"description": "",
+							"required": true
+						},
+						{
+							"name": "art",
+							"type": {
+								"text": "'image' | 'plugin' | 'checkout' | 'journey'"
+							},
+							"description": "Which art treatment the card carries. Styles the art area.",
+							"required": true
+						},
+						{
+							"name": "image",
+							"type": {
+								"text": "string"
+							},
+							"description": "Photographic art. Decorative: the claim carries the meaning."
+						},
+						{
+							"name": "contain",
+							"type": {
+								"text": "boolean"
+							},
+							"description": "Fit the art inside the area instead of cropping it."
+						},
+						{
+							"name": "field",
+							"type": {
+								"text": "string"
+							},
+							"description": "The art's own ground color, when it should match the artwork."
+						}
+					],
+					"slots": [
+						{
+							"name": "art"
+						}
+					]
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/ui/TextPassage.astro",
+			"declarations": [
+				{
+					"kind": "class",
+					"customElement": true,
+					"tagName": "sdc-text-passage",
+					"name": "TextPassage",
+					"summary": "A run of reading prose outside a case study: the paragraphs on the home",
+					"description": "Rendered by src/components/ui/TextPassage.astro. Light DOM, no shadow root, no JavaScript: the element is styled by tag and attribute in src/layouts/Site.astro.",
+					"attributes": [
+						{
+							"name": "width",
+							"type": {
+								"text": "'narrow'"
+							},
+							"description": "The measure. \"narrow\" is 62 characters, for a single column of reading."
+						},
+						{
+							"name": "reveal",
+							"type": {
+								"text": "'block'"
+							},
+							"description": "Reveal on scroll: \"block\" fades and lifts the passage as one."
+						}
+					],
+					"slots": [
+						{
+							"name": ""
+						}
+					]
+				}
+			]
+		}
+	]
+}

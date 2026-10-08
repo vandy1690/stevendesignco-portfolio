@@ -1,35 +1,49 @@
 ---
 /**
  * CaseSection
- * One band of a case study. Bands alternate between the page background and
- * the slightly darker surface, which is what `alt` controls. Alternate every
- * other band; two in a row reads as one long band.
+ * One band of a case study, rendered as <sdc-section> with an
+ * <sdc-layout-container> inside it that holds the measure.
  *
- * The inner element is what holds the measure. `inner` names the layout inside
- * it: "cs-body" for prose, "cs-back" for the pager row, "" for a bare column.
- * Pass `inner={false}` when the band holds a full bleed figure and needs no
- * measure at all, and `flush` when that figure should sit tight against the
- * band above it instead of carrying its own top padding.
+ * Bands alternate between the page background and the slightly darker surface,
+ * which is what `tone="alt"` does. Alternate every other band; two in a row
+ * reads as one long band. `tone="ink"` inverts the band.
+ *
+ * `layout` names what the container lays out: "prose" for the written body,
+ * "pager" for the row of case study links, "orbit" for the PayPal hero art,
+ * "bare" for a plain column. Pass `layout={false}` when the band holds a full
+ * bleed figure and needs no container at all, and `flush` when that figure
+ * should sit tight against the band above it instead of carrying its own top
+ * padding.
+ *
+ * A band with a heading that should be a landmark passes `labelledby` with the
+ * heading's id; the element then carries role="region" so the landmark survives
+ * the custom tag, which has no role of its own.
+ *
+ * @element sdc-section
+ * @element sdc-layout-container
  */
 interface Props {
-	/** Darker surface. Alternate it, never two in a row. */
-	alt?: boolean;
+	/** Darker surface ("alt") or inverted ("ink"). Alternate alt, never two in a row. */
+	tone?: 'alt' | 'ink';
 	/** Full bleed figure band. */
 	figure?: boolean;
 	/** No top padding, so the band sits flush against the one above. */
 	flush?: boolean;
 	/** Anchor target, for a link that jumps to this band. */
 	id?: string;
-	/** Layout class on the inner element, or false for no inner element. */
-	inner?: string | false;
+	/** What the container lays out, or false for no container. */
+	layout?: 'prose' | 'pager' | 'orbit' | 'bare' | false;
+	/** A narrower measure, for pure reading. */
+	width?: 'narrow';
+	/** Id of the band's heading. Makes the band a named region landmark. */
+	labelledby?: string;
 	/** Fades in on scroll. Off for bands that must be readable immediately. */
 	animate?: boolean;
 }
-const { alt = false, figure = false, flush = false, id, inner = 'cs-body', animate = true } = Astro.props;
+const { tone, figure = false, flush = false, id, layout = 'prose', width, labelledby, animate = true } = Astro.props;
 ---
-
-<section id={id} class:list={['section', alt && 'section--alt', figure && 'section--figure', flush && 'section--flush']}>
-	{inner === false ? <slot /> : (
-		<div class:list={['section__inner', inner]} data-animate={animate ? 'fade' : undefined}><slot /></div>
+<sdc-section id={id} tone={tone} figure={figure || undefined} flush={flush || undefined} role={labelledby ? 'region' : undefined} aria-labelledby={labelledby}>
+	{layout === false ? <slot /> : (
+		<sdc-layout-container layout={layout === 'bare' ? undefined : layout} width={width} data-animate={animate ? 'fade' : undefined}><slot /></sdc-layout-container>
 	)}
-</section>
+</sdc-section>

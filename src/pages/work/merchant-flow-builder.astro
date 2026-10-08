@@ -16,7 +16,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 >
 	<CaseHero
 		eyebrow="Case study"
-		title="Merchant Flow Builder: Making the Brief the Spec"
+		heading="Merchant Flow Builder: Making the Brief the Spec"
 		lede="Nobody asked me to build this. The weekly pace was the reason I started. The reason I kept going was that no one could be certain the designer was building the right flow."
 		meta={[
 			{ term: 'Role', value: 'Principal Designer · PayPal' },
@@ -26,7 +26,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 		note="Built inside PayPal, and the code lives in PayPal's internal repository. Tool names here are generic and the interfaces are not reproduced."
 	/>
 
-	<CaseSection figure flush inner={false}>
+	<CaseSection figure flush layout={false}>
 		<CaseFigure
 			src="/images/case-studies/merchant-flow-builder/merchant-surfaces.webp"
 			alt="Merchant logos from the program, among them LEGO, Disney+, Home Depot, Canva, Target, Nintendo and Best Buy, linked by arrows to the same storefront and checkout screen shown on three different phones."
@@ -34,11 +34,11 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 			height={971}
 			loading="lazy"
 		>
-			<p class="cs-figure__cap">The program ran across 38 merchants. Every one of them needed the same flows rebuilt against its own screens. Storefront shown generically.</p>
+			<p class="sdc-case-figure__cap">The program ran across 38 merchants. Every one of them needed the same flows rebuilt against its own screens. Storefront shown generically.</p>
 		</CaseFigure>
 	</CaseSection>
 
-	<CaseSection alt>
+	<CaseSection tone="alt">
 		<CaseBlock eyebrow="What was unclear" lede="The handoff was a Slack message, and there was no way to check it.">
 			<p>A product manager would describe the flows a merchant needed in a message or a set of meeting notes. The designer would go find what they believed was the matching section of the checkout guide and build from that. Nothing in the process closed the loop between what was asked for and what got built.</p>
 			<p>The cost landed in two places. Time, because finding the right reference and assembling the flows by hand was most of the work of preparing a package. And risk, because nothing in the process verified that the section the designer found was the section the product manager meant. On a weekly sprint across a 38-merchant program, a loose handoff is not a small tax.</p>
@@ -53,50 +53,50 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 		</CaseBlock>
 	</CaseSection>
 
-	<CaseSection alt>
+	<CaseSection tone="alt">
 		<CaseBlock eyebrow="How it fits together" lede="The link is the thing that travels." />
-	<div class="cs-diagram" tabindex="0" role="img" aria-label="Diagram. A brief form captures each flow request as a link to a section of the checkout guide. That link is carried through structured JSON into a Figma plugin, which assembles a flow page where every placeholder frame still points back to the same guide section.">
-		<svg class="cs-diagram__svg" viewBox="0 0 960 340" xmlns="http://www.w3.org/2000/svg">
-			<g class="dg-panel">
+	<div class="sdc-cs-diagram" tabindex="0" role="img" aria-label="Diagram. A brief form captures each flow request as a link to a section of the checkout guide. That link is carried through structured JSON into a Figma plugin, which assembles a flow page where every placeholder frame still points back to the same guide section.">
+		<svg class="sdc-cs-diagram__svg" viewBox="0 0 960 340" xmlns="http://www.w3.org/2000/svg">
+			<g class="sdc-dg-panel">
 				<rect x="8" y="40" width="264" height="180" rx="10" />
 				<line x1="40" y1="80" x2="180" y2="80" />
 				<line x1="40" y1="108" x2="216" y2="108" />
 				<line x1="40" y1="136" x2="150" y2="136" />
 			</g>
-			<rect class="dg-accent-fill" x="40" y="164" width="200" height="26" rx="6" />
-			<text class="dg-accent-label" x="52" y="182">guide section link</text>
-			<text class="dg-title" x="8" y="26">Brief form</text>
-			<text class="dg-note" x="8" y="248">Browser. No install.</text>
-			<text class="dg-note" x="8" y="268">The product manager picks the</text>
-			<text class="dg-note" x="8" y="286">section instead of describing it.</text>
+			<rect class="sdc-dg-accent-fill" x="40" y="164" width="200" height="26" rx="6" />
+			<text class="sdc-dg-accent-label" x="52" y="182">guide section link</text>
+			<text class="sdc-dg-title" x="8" y="26">Brief form</text>
+			<text class="sdc-dg-note" x="8" y="248">Browser. No install.</text>
+			<text class="sdc-dg-note" x="8" y="268">The product manager picks the</text>
+			<text class="sdc-dg-note" x="8" y="286">section instead of describing it.</text>
 
-			<g class="dg-panel">
+			<g class="sdc-dg-panel">
 				<rect x="348" y="40" width="264" height="180" rx="10" />
 				<line x1="380" y1="80" x2="470" y2="80" />
 				<line x1="380" y1="108" x2="520" y2="108" />
 				<line x1="380" y1="136" x2="440" y2="136" />
 			</g>
-			<rect class="dg-accent-fill" x="380" y="164" width="200" height="26" rx="6" />
-			<text class="dg-accent-label" x="392" y="182">guide section link</text>
-			<text class="dg-title" x="348" y="26">Structured JSON</text>
-			<text class="dg-note" x="348" y="248">One clipboard handoff.</text>
-			<text class="dg-note" x="348" y="268">Nothing is retyped, so nothing</text>
-			<text class="dg-note" x="348" y="286">can be mistyped.</text>
+			<rect class="sdc-dg-accent-fill" x="380" y="164" width="200" height="26" rx="6" />
+			<text class="sdc-dg-accent-label" x="392" y="182">guide section link</text>
+			<text class="sdc-dg-title" x="348" y="26">Structured JSON</text>
+			<text class="sdc-dg-note" x="348" y="248">One clipboard handoff.</text>
+			<text class="sdc-dg-note" x="348" y="268">Nothing is retyped, so nothing</text>
+			<text class="sdc-dg-note" x="348" y="286">can be mistyped.</text>
 
-			<g class="dg-panel">
+			<g class="sdc-dg-panel">
 				<rect x="688" y="40" width="264" height="180" rx="10" />
 				<rect x="712" y="66" width="52" height="76" rx="5" />
 				<rect x="776" y="66" width="52" height="76" rx="5" />
 				<rect x="840" y="66" width="52" height="76" rx="5" />
 			</g>
-			<rect class="dg-accent-fill" x="712" y="164" width="180" height="26" rx="6" />
-			<text class="dg-accent-label" x="724" y="182">guide section link</text>
-			<text class="dg-title" x="688" y="26">Assembled flow page</text>
-			<text class="dg-note" x="688" y="248">Every placeholder frame still</text>
-			<text class="dg-note" x="688" y="268">points at the section it came</text>
-			<text class="dg-note" x="688" y="286">from. The file documents itself.</text>
+			<rect class="sdc-dg-accent-fill" x="712" y="164" width="180" height="26" rx="6" />
+			<text class="sdc-dg-accent-label" x="724" y="182">guide section link</text>
+			<text class="sdc-dg-title" x="688" y="26">Assembled flow page</text>
+			<text class="sdc-dg-note" x="688" y="248">Every placeholder frame still</text>
+			<text class="sdc-dg-note" x="688" y="268">points at the section it came</text>
+			<text class="sdc-dg-note" x="688" y="286">from. The file documents itself.</text>
 
-			<g class="dg-arrow">
+			<g class="sdc-dg-arrow">
 				<line x1="286" y1="177" x2="330" y2="177" />
 				<polyline points="320,170 332,177 320,184" />
 				<line x1="626" y1="177" x2="670" y2="177" />
@@ -104,7 +104,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 			</g>
 		</svg>
 	</div>
-		<p class="cs-caption">PayPal, 2026. Browser form, Figma Plugin API, Claude Code and Cursor.</p>
+		<p class="sdc-cs-caption">PayPal, 2026. Browser form, Figma Plugin API, Claude Code and Cursor.</p>
 	</CaseSection>
 
 	<CaseSection>
@@ -114,7 +114,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 		</CaseBlock>
 	</CaseSection>
 
-	<CaseSection alt>
+	<CaseSection tone="alt">
 		<CaseBlock eyebrow="What I had to work around" lede="The tooling was not ready either.">
 			<p>I built this early against Figma's MCP server, before it could read a full file. That ruled out the approach I wanted, which was to let the model look at the merchant's file and work out the structure. Instead I wrote my own scheme for identifying frames and instances so the plugin could find its way around a file it could not be told about.</p>
 			<p>That is the part I would redo now. The capability landed later, and a version built today would be shorter and less clever. I would rather have the version that shipped than the elegant one that did not exist yet.</p>
@@ -128,7 +128,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 		</CaseBlock>
 	</CaseSection>
 
-	<CaseSection alt>
+	<CaseSection tone="alt">
 		<CaseBlock eyebrow="What changed" lede="Most of a day became 10 to 15 minutes.">
 			<p>Building a merchant's full set of checkout flows by hand took most of a day. With the pipeline it takes 10 to 15 minutes, across the 38-merchant program. I recorded video tutorials covering install, the form, storage, and browsing the library, and published the whole thing to the internal company GitHub so another team could fork it.</p>
 			<p>The honest ending: it was adopted and in active use when my contract finished, and I handed it to another designer to broaden. It was not fully scaled before I left. I would rather tell you that than claim the whole organization was on it.</p>
@@ -144,7 +144,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 	</CaseSection>
 
 	<PagerPair
-		prev={{ href: '/#work', label: 'All case studies', hidden: 'Back to ' }}
-		next={{ href: '/work/paypal', label: 'Default at checkout', hidden: 'Next case study: ' }}
+		prev={{ href: '/#work', label: 'All case studies', prefix: 'Back to ' }}
+		next={{ href: '/work/paypal', label: 'Default at checkout', prefix: 'Next case study: ' }}
 	/>
 </Site>

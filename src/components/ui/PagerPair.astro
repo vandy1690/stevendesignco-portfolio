@@ -12,7 +12,8 @@ import Pager from './Pager.astro';
 interface Link {
 	href: string;
 	label: string;
-	hidden?: string;
+	/** Read before the visible text by a screen reader. */
+	prefix?: string;
 }
 interface Props {
 	prev: Link;
@@ -21,9 +22,9 @@ interface Props {
 const { prev, next } = Astro.props;
 ---
 
-<section class="section section--alt">
-	<div class="section__inner cs-back">
-		<Pager dir="prev" href={prev.href} label={prev.label} hidden={prev.hidden} />
-		<Pager dir="next" href={next.href} label={next.label} hidden={next.hidden} />
-	</div>
-</section>
+<sdc-section tone="alt">
+	<sdc-layout-container layout="pager">
+		<Pager direction="prev" href={prev.href} label={prev.label} prefix={prev.prefix} />
+		<Pager direction="next" href={next.href} label={next.label} prefix={next.prefix} />
+	</sdc-layout-container>
+</sdc-section>

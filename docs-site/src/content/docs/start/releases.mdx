@@ -1,0 +1,58 @@
+---
+title: Releases
+description: How SDC versions are numbered, and what changed in each one.
+sidebar:
+  order: 3
+---
+
+import sdc from '../../../../../src/styles/tokens/sdc-version.json';
+
+The current version is **SDC {sdc.version}**. The number lives in one file,
+`src/styles/tokens/sdc-version.json`, and the site, the Storybook and these docs
+all read it from there. The live site carries it too, in
+`<meta name="sdc-version">`, so one request tells you which version is in
+production.
+
+## How the number works
+
+Semantic versioning, the common practice: **major.minor.patch**, written with
+two digits each, for example `02.00.00`.
+
+| Part | Goes up when | Example |
+| :-- | :-- | :-- |
+| Major | Something that used the system before would break: a token, class or component name changes or goes away, or a component's markup contract changes. | Namespacing every token and class with `sdc-`. |
+| Minor | Something is added without breaking what exists: a new token, component, pattern or variant, or a visual change that keeps every name. | Button padding moving onto the spacing scale. |
+| Patch | A fix or a refactor that changes no name and no intended look: documentation, a bug fix that restores the intended rendering. | A docs page correcting a class name. |
+
+The test is the consumer's code, not the visitor's eye. A rename is invisible
+on the page and still a major version, because every selector and every
+`var()` written against the old name stops working.
+
+Each release gets a git tag, `sdc-` plus the number, on the commit that reached
+production.
+
+## Log
+
+### 02.00.00 · unreleased
+
+Breaking: every name the system owns gains the `sdc-` namespace.
+
+- Tokens: `--accent` is now `--sdc-accent`, `--space-md` is `--sdc-space-md`,
+  and so on for all 86. Figma keeps the plain names; the token build adds the
+  prefix.
+- Classes: `sdc-card` is `sdc-card`, `btn btn--primary` is `sdc-btn sdc-btn--primary`,
+  `sdc-deck__track` is `sdc-deck__track`. Utilities take `sdc-u-`: `sdc-u-sr-only` is
+  `sdc-u-sr-only`.
+- Anything without the prefix is not the system's: a page's own layout class,
+  an illustration's internal class, a state class such as `is-open`, or a
+  variable private to one component.
+- The version number added, in one file, shown here, in the Storybook and in a
+  meta tag on every page.
+- No visual change.
+
+### 01.00.00 · October 7, 2026
+
+The baseline: the system as it stood in production on October 7, 2026, at
+commit `3b062e4`. It includes everything built before versions existed, among
+it the Figma-generated primitive tokens, the overlay and logo shadow tokens,
+Button padding on the spacing scale, and the documentation site.

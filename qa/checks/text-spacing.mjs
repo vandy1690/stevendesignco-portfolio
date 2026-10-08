@@ -27,7 +27,7 @@ export default async function textSpacing(browser, base) {
 			const r = await page.evaluate((vw) => {
 				const clipped = [];
 				document
-					.querySelectorAll('p, li, dd, dt, h1, h2, h3, blockquote, .btn, .pager')
+					.querySelectorAll('p, li, dd, dt, h1, h2, h3, blockquote, .sdc-btn, .sdc-pager')
 					.forEach((el) => {
 						const cs = getComputedStyle(el);
 						const hides = ['hidden', 'clip'].includes(cs.overflow) || ['hidden', 'clip'].includes(cs.overflowY);

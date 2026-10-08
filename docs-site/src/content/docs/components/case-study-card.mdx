@@ -6,9 +6,9 @@ sidebar:
 ---
 
 <dl class="sdc-hww">
-	<div><dt>How</dt><dd>A <code>div.card</code> holding full-bleed art above a
+	<div><dt>How</dt><dd>An <code>&lt;sdc-card&gt;</code> holding full-bleed art above a
 	body grid. The headline contains the only link,
-	<code>.card__link</code>, whose <code>::after</code> stretches over the whole
+	<code>.sdc-card__link</code>, whose <code>::after</code> stretches over the whole
 	card so all of it clicks.</dd></div>
 	<div><dt>When</dt><dd>To put one case study forward as a single claim. One
 	card makes one argument: a headline that could stand alone, a sentence of
@@ -93,3 +93,30 @@ about, so describing the picture repeats it.
 2. Clicking the picture opens the case study.
 3. Tab to it: the ring is around the card, not just the headline text.
 4. At 402 by 660 the deck still scrolls rather than falling back to a list.
+
+## In code
+
+`src/components/ui/CaseStudyCard.astro`, rendering `<sdc-card>`. The home page
+maps its case list through it; drawn art goes in the `art` slot.
+
+```astro
+---
+import CaseStudyCard from '../components/ui/CaseStudyCard.astro';
+import JourneyMap from '../components/art/JourneyMap.astro';
+---
+<CaseStudyCard href="/work/paypal" head="The checkout dead end." text="…" product="PayPal consumer checkout" objective="Show leadership where the dead end starts" art="journey">
+	<JourneyMap slot="art" />
+</CaseStudyCard>
+```
+
+| Prop | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `href` | string | required | Where the card goes. The link is the only interactive element in the card. |
+| `head` | string | required | The claim. Becomes the `h3` and the link text. |
+| `text` | string | required | One paragraph under the claim. |
+| `product` | string | required | The first meta pair. |
+| `objective` | string | required | The second meta pair. |
+| `art` | `'image'` \| `'plugin'` \| `'checkout'` \| `'journey'` | required | Which art treatment the card carries. |
+| `image` | string | unset | Photographic art. Decorative, so it carries no alt text; the claim carries the meaning. |
+| `contain` | boolean | `false` | Fit the art inside the area instead of cropping it. |
+| `field` | string | unset | The art's own ground color, when it should match the artwork. |

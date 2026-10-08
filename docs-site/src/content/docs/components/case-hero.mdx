@@ -1,5 +1,5 @@
 ---
-title: Case study hero
+title: Case hero
 description: "The top of a case study: the way back, the label, the title, the one paragraph, the credits."
 sidebar:
   order: 13
@@ -27,7 +27,7 @@ import CaseFigure from '../../components/ui/CaseFigure.astro';
 ---
 <CaseHero
 	eyebrow="Case study"
-	title="Project Blackbird"
+	heading="Project Blackbird"
 	lede="An oral history of the Chicago restaurant that changed the city's dining."
 	meta={[
 		{ term: 'Role', value: 'Creative Director / Design Lead' },
@@ -40,8 +40,8 @@ import CaseFigure from '../../components/ui/CaseFigure.astro';
 
 | Prop | Type | Default | What it does |
 | --- | --- | --- | --- |
-| `eyebrow` | string | required | The label above the title. |
-| `title` | string | required | Becomes the `h1`. |
+| `sdc-eyebrow` | string | required | The label above the title. |
+| `heading` | string | required | Becomes the `h1`. |
 | `lede` | string | required | The one paragraph that says what the work was. Inline HTML is allowed. |
 | `meta` | array | required | `{ term, value }` pairs, passed through to the meta row. |
 | `note` | string | none | A disclosure under the credits. |

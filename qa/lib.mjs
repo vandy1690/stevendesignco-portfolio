@@ -102,13 +102,13 @@ export { evaluateThroughReloads };
 
 /** Open a case study in the home page dialog and wait for it to be readable. */
 export async function openDialog(page, href) {
-	const link = await page.$(`a.card__link[href="${href}"]`);
+	const link = await page.$(`a.sdc-card__link[href="${href}"]`);
 	if (!link) return false;
 	await link.evaluate((el) => el.click());
 	await page.waitForFunction(
 		() => {
 			const m = document.getElementById('case-modal');
-			return m && !m.hidden && m.querySelector('.modal__content')?.children.length > 1;
+			return m && !m.hidden && m.querySelector('.sdc-modal__content')?.children.length > 1;
 		},
 		{ timeout: 15000 },
 	);

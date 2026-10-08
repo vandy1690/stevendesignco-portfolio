@@ -35,7 +35,7 @@ export default async function linkDistinction(browser, base) {
 			const out = [];
 			document.querySelectorAll('p a, li a, dd a, blockquote a').forEach((a) => {
 				if (a.closest('nav, header, footer')) return;
-				if (a.classList.contains('btn') || a.classList.contains('pager') || a.classList.contains('card__link')) return;
+				if (a.classList.contains('sdc-btn') || a.classList.contains('sdc-pager') || a.classList.contains('sdc-card__link')) return;
 				const block = a.closest('p, li, dd, blockquote');
 				if (!block) return;
 				// Only links sitting inside a run of text. A link that is the whole

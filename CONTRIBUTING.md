@@ -59,17 +59,34 @@ More in [docs/CONTENT-GUIDE.md](docs/CONTENT-GUIDE.md).
 
 ## Before you merge to `dev`
 
-- [ ] `npm run build` finishes clean
-- [ ] Checked at phone width and desktop width
-- [ ] Keyboard pass on anything interactive. See
-      [docs/ACCESSIBILITY.md](docs/ACCESSIBILITY.md)
-- [ ] Reduced motion still gives a usable page
-- [ ] No console errors
-- [ ] Sitemap `lastmod` bumped for changed pages
-- [ ] `public/llms.txt` still true
-- [ ] Storybook resynced and rebuilt if shared CSS changed
-- [ ] Docs updated if behaviour or setup changed
-- [ ] `CHANGELOG.md` has a line for it
+This is the one definition of done. The pull request template points here, and
+so does `SITE-CONTEXT.md`.
+
+The machine's half, one command:
+
+```
+npm run dev     # one terminal
+npm run ship    # the other: tokens, manifest, naming, docs in step, docs build,
+                # site build, the seven-check Q&A, never-say
+```
+
+CI runs the same gates on every pull request. If `ship` is green locally and
+CI is red, the difference is the thing to look at.
+
+The human's half, because no check sees it:
+
+- [ ] Anything visual was compared against the live site: `npm run qa -- --pixel`.
+      Every difference is one you meant.
+- [ ] Keyboard pass on anything interactive. See [docs/ACCESSIBILITY.md](docs/ACCESSIBILITY.md).
+- [ ] Both themes still work, and reduced motion still gives a usable page.
+- [ ] The pages you did not touch, and the places this content is reused, were
+      looked at. The worst regressions here landed on pages nobody was editing.
+- [ ] If the design library should change with this, it did, or the pull
+      request says why not. Figma does not fail a check.
+- [ ] Sitemap `lastmod` bumped for changed pages; `public/llms.txt` still true.
+- [ ] `CHANGELOG.md` has a line for it. A design system change also bumps
+      `src/styles/tokens/sdc-version.json` and the release log at
+      `/docs/start/releases/`.
 
 ## Never commit
 

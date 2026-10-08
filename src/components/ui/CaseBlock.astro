@@ -4,6 +4,8 @@
  * The prose unit a case study is written in: a label, a one line claim, then
  * the paragraphs that back it up.
  *
+ * @element sdc-case-block
+ *
  * The claim is the heading, so it carries the page outline and should read as
  * a sentence a reader could skim on its own. Put the detail in the slot.
  */
@@ -18,8 +20,8 @@ interface Props {
 const { eyebrow, lede } = Astro.props;
 ---
 
-<div class="cs-block">
+<sdc-case-block>
 	<Eyebrow>{eyebrow}</Eyebrow>
-	{lede && <h2 class="cs-block__lede">{lede}</h2>}
+	{lede && <h2 class="sdc-case-block__lede">{lede}</h2>}
 	<slot />
-</div>
+</sdc-case-block>

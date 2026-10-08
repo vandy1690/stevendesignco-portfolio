@@ -18,7 +18,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 >
 	<CaseHero
 		eyebrow="Case study"
-		title="Meatingplace: Rebuilding MTG's Highest-Traffic Site as a Responsive Product"
+		heading="Meatingplace: Rebuilding MTG's Highest-Traffic Site as a Responsive Product"
 		lede="MTG's flagship and largest audience was running on a 2007 build. The work was to rebuild it as a responsive product for a daily newsroom."
 		meta={[
 			{ term: 'Role', value: 'Creative Director' },
@@ -40,7 +40,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 		</CaseBlock>
 	</CaseSection>
 
-	<CaseSection alt>
+	<CaseSection tone="alt">
 		<CaseBlock eyebrow="What I led" lede="A modern, responsive product for a daily newsroom.">
 			<p>I gave it a modern UI and UX as a responsive product: a daily-news information architecture and layouts built for current devices.</p>
 		</CaseBlock>
@@ -52,7 +52,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 		</CaseBlock>
 	</CaseSection>
 
-	<CaseSection alt>
+	<CaseSection tone="alt">
 		<CaseBlock eyebrow="What changed" lede="A finished rebuild that did not ship under MTG.">
 			<p>The modernization was design-complete and approved for launch. MTG was acquired before it shipped, and the new ownership pursued a separate redesign.</p>
 		</CaseBlock>
@@ -70,7 +70,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 	</CaseSection>
 
 	<PagerPair
-		prev={{ href: '/work/alt-meat', label: 'Alt-Meat', hidden: 'Previous case study: ' }}
+		prev={{ href: '/work/alt-meat', label: 'Alt-Meat', prefix: 'Previous case study: ' }}
 		next={{ href: '/#work', label: 'Back to all work' }}
 	/>
 </Site>

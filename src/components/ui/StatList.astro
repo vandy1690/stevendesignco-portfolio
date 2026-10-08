@@ -21,18 +21,18 @@ interface Props {
 const { items, three = false, large = false } = Astro.props;
 ---
 
-<ul class:list={['cs-stats', three && 'cs-stats--three', large && 'cs-stats--large']}>
+<ul class:list={['sdc-cs-stats', three && 'sdc-cs-stats--three', large && 'sdc-cs-stats--large']}>
 	{items.map((i) => <li><strong>{i.value}</strong><span>{i.label}</span></li>)}
 </ul>
 
 <style>
-	.cs-stats { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); }
-	.cs-stats--three { grid-template-columns: repeat(3, 1fr); }
-	.cs-stats li { padding: var(--space-lg) 0; border-top: 1px solid var(--rule); }
-	.cs-stats strong { display: block; font-family: var(--font-display); font-weight: 900; font-style: normal; font-variation-settings: "wght" 900, "slnt" 0, "ital" 0; font-synthesis: none; font-size: var(--text-stat); color: var(--text); line-height: 1; letter-spacing: -0.02em; margin-bottom: var(--space-xs); }
-	.cs-stats--large strong { font-size: var(--text-stat-lg); }
-	.cs-stats span { color: var(--text-mute); font-size: var(--text-body-sm); letter-spacing: 0.06em; text-transform: uppercase; }
+	.sdc-cs-stats { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: var(--sdc-space-md); }
+	.sdc-cs-stats--three { grid-template-columns: repeat(3, 1fr); }
+	.sdc-cs-stats li { padding: var(--sdc-space-lg) 0; border-top: 1px solid var(--sdc-rule); }
+	.sdc-cs-stats strong { display: block; font-family: var(--sdc-font-display); font-weight: 900; font-style: normal; font-variation-settings: "wght" 900, "slnt" 0, "ital" 0; font-synthesis: none; font-size: var(--sdc-text-stat); color: var(--sdc-text); line-height: 1; letter-spacing: -0.02em; margin-bottom: var(--sdc-space-xs); }
+	.sdc-cs-stats--large strong { font-size: var(--sdc-text-stat-lg); }
+	.sdc-cs-stats span { color: var(--sdc-text-mute); font-size: var(--sdc-text-body-sm); letter-spacing: 0.06em; text-transform: uppercase; }
 	@media (max-width: 700px) {
-		.cs-stats, .cs-stats--three { grid-template-columns: 1fr; }
+		.sdc-cs-stats, .sdc-cs-stats--three { grid-template-columns: 1fr; }
 	}
 </style>

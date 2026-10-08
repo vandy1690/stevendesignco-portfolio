@@ -3,6 +3,8 @@
  * CaseFigure
  * A full width image inside a case study.
  *
+ * @element sdc-case-figure
+ *
  * Pass `light` for art that needs a separate light theme file. The light copy
  * is decorative, because the dark copy already carries the alt text and only
  * one of the two is ever visible.
@@ -24,14 +26,14 @@ interface Props {
 const { src, alt, light, width, height, loading, class: cls } = Astro.props;
 ---
 
-<div class:list={['cs-figure', cls]} data-animate="fade">
+<sdc-case-figure class={cls} data-animate="fade">
 	{light ? (
 		<>
-			<img class="theme-img theme-img--dark" src={src} alt={alt} />
-			<img class="theme-img theme-img--light" src={light} alt="" aria-hidden="true" />
+			<img class="sdc-theme-img sdc-theme-img--dark" src={src} alt={alt} />
+			<img class="sdc-theme-img sdc-theme-img--light" src={light} alt="" aria-hidden="true" />
 		</>
 	) : (
 		<img src={src} alt={alt} width={width} height={height} loading={loading} />
 	)}
 	<slot />
-</div>
+</sdc-case-figure>

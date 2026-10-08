@@ -22,7 +22,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 >
 	<CaseHero
 		eyebrow="Case study · In progress"
-		title="The Artistic Eye: A Brand for a Gallery That Sells Glasses"
+		heading="The Artistic Eye: A Brand for a Gallery That Sells Glasses"
 		lede="The Artistic Eye is two businesses in one room: an art gallery and an optical shop. I am building the whole brand through my LLC, and it has to work on a business card and on an 11.2 ft flag."
 		meta={[
 			{ term: 'Role', value: 'Sole designer · Steven Design Services' },
@@ -32,7 +32,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 		note="This page is updated as the work ships. What is here is what has been made; what is still being decided is marked as open."
 	/>
 
-	<CaseSection figure inner={false}>
+	<CaseSection figure layout={false}>
 		<CaseFigure
 			src="/images/case-studies/artistic-eye/hero.webp"
 			alt="The Artistic Eye wordmark in pink and charcoal beside the stacked a-e monogram on a pink field"
@@ -41,7 +41,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 		/>
 	</CaseSection>
 
-	<CaseSection alt>
+	<CaseSection tone="alt">
 		<CaseBlock eyebrow="The client" lede="A gallery first, and an eyewear shop inside it.">
 			<p>The shop sits inside the Tambourine Lounge, a retro building in Sturgeon Bay full of working artists and recording studios. It is run by Naomi Moes, an artist who sells the frames alongside her own work. Original artwork and studio space share the room with designer frames and a wall of more than two hundred vintage frames from the 1950s through the 1990s. Visits are by appointment.</p>
 			<p>That was the brief in one sentence: it should feel like a gallery, not a clinic. The brand had to hold art and eyewear at the same time.</p>
@@ -65,7 +65,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 		/>
 	</CaseSection>
 
-	<CaseSection alt>
+	<CaseSection tone="alt">
 		<CaseBlock eyebrow="Where it lives so far" lede="From a 3.5 inch card to an 11.2 ft flag.">
 			<p><strong>Business cards.</strong> A card back carrying the monogram, and three front options for Naomi's card, which differ in the pink and in the typeface for her name.</p>
 			<p><strong>Social.</strong> Graphics built in the same system.</p>
@@ -83,7 +83,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 		</CaseBlock>
 	</CaseSection>
 
-	<CaseSection alt>
+	<CaseSection tone="alt">
 		<CaseBlock eyebrow="What is next" lede="The work is still going.">
 			<p>The next decision is the pink. After that, more of the shop's surfaces get made in the system, and this page picks them up as they ship.</p>
 		</CaseBlock>
@@ -93,7 +93,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 	</CaseSection>
 
 	<PagerPair
-		prev={{ href: '/#work', label: 'All case studies', hidden: 'Back to ' }}
-		next={{ href: '/work/alt-meat', label: 'Alt-Meat', hidden: 'Next case study: ' }}
+		prev={{ href: '/#work', label: 'All case studies', prefix: 'Back to ' }}
+		next={{ href: '/work/alt-meat', label: 'Alt-Meat', prefix: 'Next case study: ' }}
 	/>
 </Site>

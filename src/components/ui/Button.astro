@@ -20,11 +20,11 @@ interface Props {
 	class?: string;
 }
 const { href, variant = 'secondary', external = false, class: cls } = Astro.props;
-const classes = ['btn', variant === 'primary' && 'btn--primary', cls];
+const classes = ['sdc-btn', variant === 'primary' && 'sdc-btn--primary', cls];
 ---
 
 {external ? (
-	<a class:list={classes} href={href} target="_blank" rel="noopener"><slot /><span class="sr-only"> (opens in a new tab)</span></a>
+	<a class:list={classes} href={href} target="_blank" rel="noopener"><slot /><span class="sdc-u-sr-only"> (opens in a new tab)</span></a>
 ) : (
 	<a class:list={classes} href={href}><slot /></a>
 )}

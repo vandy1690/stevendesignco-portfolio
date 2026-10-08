@@ -11,6 +11,9 @@ import { readFileSync, writeFileSync } from 'node:fs';
 
 const TOKENS = 'src/styles/tokens/primitives.tokens.json';
 const TARGET = 'src/layouts/Site.astro';
+// Every system token is namespaced. Figma keeps the plain names; the prefix is
+// added here, the one place names are generated.
+const PREFIX = 'sdc';
 const START = '/* TOKENS:START — generated from Figma by scripts/build-tokens.mjs. Do not edit. */';
 const END = '/* TOKENS:END */';
 const INDENT = '\t\t\t\t';
@@ -25,7 +28,7 @@ const tokens = [];
 for (const [group, members] of Object.entries(doc)) {
 	if (group.startsWith('$')) continue;
 	for (const [leaf, tok] of Object.entries(members)) {
-		tokens.push({ name: `--${group}-${leaf}`, value: tok.$value, desc: tok.$description });
+		tokens.push({ name: `--${PREFIX}-${group}-${leaf}`, value: tok.$value, desc: tok.$description });
 	}
 }
 

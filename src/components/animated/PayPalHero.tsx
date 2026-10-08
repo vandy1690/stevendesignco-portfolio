@@ -68,7 +68,7 @@ const PayPalHero: React.FC<PayPalHeroProps> = ({ className = '' }) => {
           justify-content: center;
           z-index: 5;
           animation: pp-breath 6s ease-in-out infinite alternate;
-          filter: drop-shadow(0 24px 48px var(--accent-glow));
+          filter: drop-shadow(0 24px 48px var(--sdc-accent-glow));
         }
         .pp-center .pp-logo { display: block; width: 100%; }
         .pp-center .pp-logo svg {
@@ -103,8 +103,8 @@ const PayPalHero: React.FC<PayPalHeroProps> = ({ className = '' }) => {
           width: 100%;
           height: 100%;
           border-radius: 9999px;
-          background: var(--paper-white);
-          box-shadow: var(--shadow-chip);
+          background: var(--sdc-paper-white);
+          box-shadow: var(--sdc-shadow-chip);
           display: flex;
           align-items: center;
           justify-content: center;

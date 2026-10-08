@@ -1,4 +1,5 @@
 ---
+import sdc from '../styles/tokens/sdc-version.json';
 import '@fontsource/inter/400.css';
 import '@fontsource/inter/500.css';
 import '@fontsource/inter/600.css';
@@ -9,7 +10,7 @@ import '@fontsource/inter/900-italic.css';
 
 // Adobe Fonts (Typekit) kit for Nickel Gothic Variable.
 // Replace ADOBE_KIT_ID with the kit ID from fonts.adobe.com → Web Projects.
-// Until set, --font-display falls back to Inter Black Italic.
+// Until set, --sdc-font-display falls back to Inter Black Italic.
 const ADOBE_KIT_ID = 'uic8bwd';
 
 interface Props {
@@ -18,7 +19,7 @@ interface Props {
 	/** Path to a page-specific social card under /public, e.g. "/og/plate.png".
 	    Falls back to the site-wide /og-image.png when omitted. */
 	image?: string;
-	/** "case" turns on the case study page styles. See the .case block below. */
+	/** "case" turns on the case study page styles. See the .sdc-case block below. */
 	variant?: 'case';
 }
 
@@ -129,10 +130,11 @@ const jsonLd = {
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
 		<!-- Starting value only. The theme script rewrites this from the computed
-		     --bg whenever the theme changes, so the browser chrome cannot drift from
+		     --sdc-bg whenever the theme changes, so the browser chrome cannot drift from
 		     the palette the way a second hard-coded hex would. -->
 		<meta name="theme-color" content="#F0EEE9" />
 		<meta name="author" content="Steven Vanden Heuvel" />
+		<meta name="sdc-version" content={sdc.version} />
 		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 		<link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 		{ADOBE_KIT_ID && <link rel="stylesheet" href={`https://use.typekit.net/${ADOBE_KIT_ID}.css`} />}
@@ -167,26 +169,26 @@ const jsonLd = {
 		)}
 	</head>
 	<body>
-		<a class="skip-link" href="#main">Skip to content</a>
-		<header class="site-header">
-			<a class="brand" href="/">
-				<img class="brand__mark" src="/images/brand/SDC_initialLogo.svg" alt="Steven Vanden Heuvel home" width="40" height="24" />
+		<a class="sdc-skip-link" href="#main">Skip to content</a>
+		<header class="sdc-site-header">
+			<a class="sdc-brand" href="/">
+				<img class="sdc-brand__mark" src="/images/brand/SDC_initialLogo.svg" alt="Steven Vanden Heuvel home" width="40" height="24" />
 			</a>
-			<nav class="nav" aria-label="Main">
+			<nav class="sdc-nav" aria-label="Main">
 				<a href={isHome ? '#work' : '/#work'}>Work</a>
 				<a href={isHome ? '#design-systems' : '/#design-systems'}>Design systems</a>
 				<a href={isHome ? '#about' : '/#about'}>About</a>
 				<a href={isHome ? '#contact' : '/#contact'}>Contact</a>
-				<a class="nav__cta" href="/resume">Resume</a>
+				<a class="sdc-nav__cta" href="/resume">Resume</a>
 			</nav>
-			<button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
-				<span class="nav-toggle__bar"></span>
-				<span class="nav-toggle__bar"></span>
-				<span class="nav-toggle__bar"></span>
+			<button class="sdc-nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+				<span class="sdc-nav-toggle__bar"></span>
+				<span class="sdc-nav-toggle__bar"></span>
+				<span class="sdc-nav-toggle__bar"></span>
 			</button>
 		</header>
 
-		<nav id="mobile-nav" class="nav-mobile" aria-label="Mobile">
+		<nav id="mobile-nav" class="sdc-nav-mobile" aria-label="Mobile">
 			<a href={isHome ? '#work' : '/#work'}>Work</a>
 			<a href={isHome ? '#design-systems' : '/#design-systems'}>Design systems</a>
 			<a href={isHome ? '#about' : '/#about'}>About</a>
@@ -194,19 +196,19 @@ const jsonLd = {
 			<a href="/resume">Resume</a>
 		</nav>
 
-		<main id="main" class:list={[variant === 'case' && 'case']} tabindex="-1">
+		<main id="main" class:list={[variant === 'case' && 'sdc-case']} tabindex="-1">
 			<slot />
 		</main>
 
-		<footer class="site-footer">
-			<div class="site-footer__inner">
-				<a class="brand brand--footer" href="/">
+		<footer class="sdc-site-footer">
+			<div class="sdc-site-footer__inner">
+				<a class="sdc-brand sdc-brand--footer" href="/">
 					<img src="/images/brand/SDC_initialLogo.svg" alt="" width="36" height="22" />
 					<span>Steven Design Services LLC</span>
 				</a>
-				<div class="site-footer__meta">
+				<div class="sdc-site-footer__meta">
 					<span>© Steven Vanden Heuvel</span>
-					<a class="js-email" data-eml="73746576656e4073746576656e64657369676e636f2e636f6d" href="#">steven [at] stevendesignco [dot] com</a>
+					<a class="sdc-js-email" data-eml="73746576656e4073746576656e64657369676e636f2e636f6d" href="#">steven [at] stevendesignco [dot] com</a>
 				</div>
 			</div>
 		</footer>
@@ -215,10 +217,10 @@ const jsonLd = {
 		     appears in dark mode. There is no visible text, so the name comes from
 		     aria-label, and the script keeps that label in step with the state.
 		     Hidden entirely without JavaScript, since it would do nothing. -->
-		<button class="theme-toggle theme-toggle--float" type="button" id="theme-toggle" aria-label="Switch to dark theme">
-			<svg class="theme-toggle__sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2 12h2M20 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
-			<svg class="theme-toggle__moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z"/></svg>
-			<span class="theme-toggle__label">Theme</span>
+		<button class="sdc-theme-toggle sdc-theme-toggle--float" type="button" id="theme-toggle" aria-label="Switch to dark theme">
+			<svg class="sdc-theme-toggle__sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2 12h2M20 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+			<svg class="sdc-theme-toggle__moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z"/></svg>
+			<span class="sdc-theme-toggle__label">Theme</span>
 		</button>
 
 		<script>
@@ -239,7 +241,7 @@ const jsonLd = {
 					themeToggle.setAttribute('aria-label', labelFor(theme));
 					const meta = document.querySelector('meta[name="theme-color"]');
 					if (meta) {
-						const bg = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim();
+						const bg = getComputedStyle(document.documentElement).getPropertyValue('--sdc-bg').trim();
 						if (bg) meta.setAttribute('content', bg);
 					}
 					if (remember) {
@@ -278,7 +280,7 @@ const jsonLd = {
 			}
 
 			// Mobile nav toggle
-			const navToggle = document.querySelector<HTMLButtonElement>('.nav-toggle');
+			const navToggle = document.querySelector<HTMLButtonElement>('.sdc-nav-toggle');
 			const navMobile = document.querySelector<HTMLElement>('#mobile-nav');
 			if (navToggle && navMobile) {
 				const setOpen = (open: boolean) => {
@@ -302,7 +304,7 @@ const jsonLd = {
 			}
 
 			// Email reveal: hex-decode data-eml at runtime so plain-text scrapers miss it
-			document.querySelectorAll<HTMLAnchorElement>('a.js-email').forEach((a) => {
+			document.querySelectorAll<HTMLAnchorElement>('a.sdc-js-email').forEach((a) => {
 				const hex = a.dataset.eml;
 				if (!hex) return;
 				let email = '';
@@ -312,7 +314,7 @@ const jsonLd = {
 				a.href = 'mailto:' + email;
 				a.textContent = email;
 				const note = document.createElement('span');
-				note.className = 'sr-only';
+				note.className = 'sdc-u-sr-only';
 				note.textContent = ' (opens your email app)';
 				a.appendChild(note);
 			});
@@ -321,17 +323,17 @@ const jsonLd = {
 		<script>
 			// flip-links: wrap each menu + CTA link's text into two stacked letter rows
 			(() => {
-				const links = document.querySelectorAll('.nav-mobile a, .cta-row a');
+				const links = document.querySelectorAll('.sdc-nav-mobile a, .sdc-cta-row a');
 				links.forEach((a) => {
 					const text = (a.textContent || '').trim();
 					if (!text) return;
 					const makeRow = (cls, hidden) => {
 						const row = document.createElement('span');
-						row.className = 'flip__row ' + cls;
+						row.className = 'sdc-flip__row ' + cls;
 						if (hidden) row.setAttribute('aria-hidden', 'true');
 						Array.from(text).forEach((ch, i) => {
 							const s = document.createElement('span');
-							s.className = 'flip__char';
+							s.className = 'sdc-flip__char';
 							s.style.setProperty('--i', String(i));
 							s.textContent = ch === ' ' ? ' ' : ch;
 							row.appendChild(s);
@@ -339,24 +341,24 @@ const jsonLd = {
 						return row;
 					};
 					const flip = document.createElement('span');
-					flip.className = 'flip';
-					flip.appendChild(makeRow('flip__row--top', false));
-					flip.appendChild(makeRow('flip__row--bottom', true));
+					flip.className = 'sdc-flip';
+					flip.appendChild(makeRow('sdc-flip__row--top', false));
+					flip.appendChild(makeRow('sdc-flip__row--bottom', true));
 					a.textContent = '';
 					a.appendChild(flip);
 				});
 
 				// Stack the CTA row and drop the "|" separators when it wraps to >1 line.
-				const cta = document.querySelector('.cta-row');
+				const cta = document.querySelector('.sdc-cta-row');
 				if (cta) {
 					const checkWrap = () => {
-						cta.classList.remove('cta-row--stacked');
+						cta.classList.remove('sdc-cta-row--stacked');
 						const items = cta.querySelectorAll('a');
 						if (items.length < 2) return;
 						const top0 = items[0].offsetTop;
 						let wrapped = false;
 						items.forEach((a) => { if (a.offsetTop !== top0) wrapped = true; });
-						cta.classList.toggle('cta-row--stacked', wrapped);
+						cta.classList.toggle('sdc-cta-row--stacked', wrapped);
 					};
 					checkWrap();
 					window.addEventListener('resize', checkWrap);
@@ -378,40 +380,40 @@ const jsonLd = {
 			   source as its solid one instead of being written out again. */
 			:root {
 				/* TOKENS:START — generated from Figma by scripts/build-tokens.mjs. Do not edit. */
-				--brand-citron: #CCFF00;
-				--brand-citron-light: #F1FFB8;
-				--brand-focus: #233552;   /* Keyboard focus ring, light theme. Independent of brand hover values. */
-				--brand-focus-dark: #F1FFB8;   /* Keyboard focus ring, dark theme. Independent of brand hover values. */
-				--brand-regatta: #3F5F92;
-				--brand-regatta-deep: #233552;
-				--ink-black: #000000;
-				--ink-charcoal: #2D3436;
-				--ink-charcoal-mute: #545B5A;   /* Muted body text in the light theme. Darkened from #5A6160 on 2026-10-05 so it clears 4.5:1 on surface-2, the deepest light ground, and not only on the page background. */
-				--ink-gray-mute: #8A8F8C;   /* Muted body text in the dark theme. US spelling: gray, not grey. */
-				--ink-near-black: #111111;
-				--ink-near-black-2: #1A1A1A;
-				--paper-cloud: #F0EEE9;
-				--paper-cloud-2: #E4E1DA;
-				--paper-cloud-3: #D8D4CB;
-				--paper-white: #FFFFFF;
+				--sdc-brand-citron: #CCFF00;
+				--sdc-brand-citron-light: #F1FFB8;
+				--sdc-brand-focus: #233552;   /* Keyboard focus ring, light theme. Independent of brand hover values. */
+				--sdc-brand-focus-dark: #F1FFB8;   /* Keyboard focus ring, dark theme. Independent of brand hover values. */
+				--sdc-brand-regatta: #3F5F92;
+				--sdc-brand-regatta-deep: #233552;
+				--sdc-ink-black: #000000;
+				--sdc-ink-charcoal: #2D3436;
+				--sdc-ink-charcoal-mute: #545B5A;   /* Muted body text in the light theme. Darkened from #5A6160 on 2026-10-05 so it clears 4.5:1 on surface-2, the deepest light ground, and not only on the page background. */
+				--sdc-ink-gray-mute: #8A8F8C;   /* Muted body text in the dark theme. US spelling: gray, not grey. */
+				--sdc-ink-near-black: #111111;
+				--sdc-ink-near-black-2: #1A1A1A;
+				--sdc-paper-cloud: #F0EEE9;
+				--sdc-paper-cloud-2: #E4E1DA;
+				--sdc-paper-cloud-3: #D8D4CB;
+				--sdc-paper-white: #FFFFFF;
 
 				/* rgb triples for rgba() in the semantic tier */
-				--brand-citron-rgb: 204, 255, 0;
-				--brand-citron-light-rgb: 241, 255, 184;
-				--brand-focus-rgb: 35, 53, 82;
-				--brand-focus-dark-rgb: 241, 255, 184;
-				--brand-regatta-rgb: 63, 95, 146;
-				--brand-regatta-deep-rgb: 35, 53, 82;
-				--ink-black-rgb: 0, 0, 0;
-				--ink-charcoal-rgb: 45, 52, 54;
-				--ink-charcoal-mute-rgb: 84, 91, 90;
-				--ink-gray-mute-rgb: 138, 143, 140;
-				--ink-near-black-rgb: 17, 17, 17;
-				--ink-near-black-2-rgb: 26, 26, 26;
-				--paper-cloud-rgb: 240, 238, 233;
-				--paper-cloud-2-rgb: 228, 225, 218;
-				--paper-cloud-3-rgb: 216, 212, 203;
-				--paper-white-rgb: 255, 255, 255;
+				--sdc-brand-citron-rgb: 204, 255, 0;
+				--sdc-brand-citron-light-rgb: 241, 255, 184;
+				--sdc-brand-focus-rgb: 35, 53, 82;
+				--sdc-brand-focus-dark-rgb: 241, 255, 184;
+				--sdc-brand-regatta-rgb: 63, 95, 146;
+				--sdc-brand-regatta-deep-rgb: 35, 53, 82;
+				--sdc-ink-black-rgb: 0, 0, 0;
+				--sdc-ink-charcoal-rgb: 45, 52, 54;
+				--sdc-ink-charcoal-mute-rgb: 84, 91, 90;
+				--sdc-ink-gray-mute-rgb: 138, 143, 140;
+				--sdc-ink-near-black-rgb: 17, 17, 17;
+				--sdc-ink-near-black-2-rgb: 26, 26, 26;
+				--sdc-paper-cloud-rgb: 240, 238, 233;
+				--sdc-paper-cloud-2-rgb: 228, 225, 218;
+				--sdc-paper-cloud-3-rgb: 216, 212, 203;
+				--sdc-paper-white-rgb: 255, 255, 255;
 				/* TOKENS:END */
 			}
 
@@ -423,63 +425,63 @@ const jsonLd = {
 				color-scheme: light dark;
 
 				/* dark theme, the base */
-				--bg: var(--ink-black);
-				--surface: var(--ink-near-black);
-				--surface-2: var(--ink-near-black-2);
-				--text: var(--paper-white);
-				--text-mute: var(--ink-gray-mute);
-				--rule: rgba(var(--paper-white-rgb), 0.20);
-				--rule-soft: rgba(var(--paper-white-rgb), 0.10);
-				--rule-strong: rgba(var(--paper-white-rgb), 0.42);   /* clears 3:1 */
-				--texture-dot: rgba(var(--paper-white-rgb), 0.07);
-				--texture-size: 20px;
-				--accent: var(--brand-citron);
-				--accent-text: var(--ink-black);
-				--accent-hover: var(--brand-citron-light);
-				--focus-ring: var(--brand-focus-dark);
-				--accent-glow: rgba(var(--brand-citron-rgb), 0.20);
-				--header-bg: rgba(var(--ink-black-rgb), 0.78);
+				--sdc-bg: var(--sdc-ink-black);
+				--sdc-surface: var(--sdc-ink-near-black);
+				--sdc-surface-2: var(--sdc-ink-near-black-2);
+				--sdc-text: var(--sdc-paper-white);
+				--sdc-text-mute: var(--sdc-ink-gray-mute);
+				--sdc-rule: rgba(var(--sdc-paper-white-rgb), 0.20);
+				--sdc-rule-soft: rgba(var(--sdc-paper-white-rgb), 0.10);
+				--sdc-rule-strong: rgba(var(--sdc-paper-white-rgb), 0.42);   /* clears 3:1 */
+				--sdc-texture-dot: rgba(var(--sdc-paper-white-rgb), 0.07);
+				--sdc-texture-size: 20px;
+				--sdc-accent: var(--sdc-brand-citron);
+				--sdc-accent-text: var(--sdc-ink-black);
+				--sdc-accent-hover: var(--sdc-brand-citron-light);
+				--sdc-focus-ring: var(--sdc-brand-focus-dark);
+				--sdc-accent-glow: rgba(var(--sdc-brand-citron-rgb), 0.20);
+				--sdc-header-bg: rgba(var(--sdc-ink-black-rgb), 0.78);
 
 				/* layout tokens (from Layout Tokens) */
-				--max: 1280px;            /* layout/content-width */
-				--max-narrow: 800px;      /* layout/content-narrow */
-				--gutter: 24px;           /* layout/content-padding */
-				--nav-h: 56px;            /* layout/nav-height */
-				--radius: 18px;
-				--radius-sm: 10px;
+				--sdc-max: 1280px;            /* layout/content-width */
+				--sdc-max-narrow: 800px;      /* layout/content-narrow */
+				--sdc-gutter: 24px;           /* layout/content-padding */
+				--sdc-nav-h: 56px;            /* layout/nav-height */
+				--sdc-radius: 18px;
+				--sdc-radius-sm: 10px;
 
 				/* spacing tokens (from Spacing Tokens) */
-				--space-xs: 8px;
-				--space-sm: 16px;
-				--space-md: 24px;
-				--space-lg: 32px;
-				--space-xl: 48px;
-				--space-2xl: 64px;
-				--space-3xl: 96px;
-				--space-4xl: 128px;
-				--space-5xl: 160px;
+				--sdc-space-xs: 8px;
+				--sdc-space-sm: 16px;
+				--sdc-space-md: 24px;
+				--sdc-space-lg: 32px;
+				--sdc-space-xl: 48px;
+				--sdc-space-2xl: 64px;
+				--sdc-space-3xl: 96px;
+				--sdc-space-4xl: 128px;
+				--sdc-space-5xl: 160px;
 
 				/* type-scale tokens (from Typography Tokens) */
-				--font-display: 'nickel-gothic-variable', 'Inter', system-ui, sans-serif;
-				--font-body: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-				--text-display-1: clamp(48px, 8vw, 96px);   /* hero headlines */
-				--text-display-2: clamp(32px, 4.8vw, 48px); /* section titles */
-				--text-heading: clamp(24px, 3.2vw, 32px);   /* case study titles */
-				--text-deck: clamp(18px, 1.9vw, 24px);      /* taglines, intros */
-				--text-subheading: 20px;                    /* section labels */
-				--text-body: 16px;                          /* paragraph */
-				--text-nav: 15px;                           /* navigation */
-				--text-body-sm: 14px;                       /* captions */
-				--text-label: 11px;                         /* tags, metadata */
+				--sdc-font-display: 'nickel-gothic-variable', 'Inter', system-ui, sans-serif;
+				--sdc-font-body: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+				--sdc-text-display-1: clamp(48px, 8vw, 96px);   /* hero headlines */
+				--sdc-text-display-2: clamp(32px, 4.8vw, 48px); /* section titles */
+				--sdc-text-heading: clamp(24px, 3.2vw, 32px);   /* case study titles */
+				--sdc-text-deck: clamp(18px, 1.9vw, 24px);      /* taglines, intros */
+				--sdc-text-subheading: 20px;                    /* section labels */
+				--sdc-text-body: 16px;                          /* paragraph */
+				--sdc-text-nav: 15px;                           /* navigation */
+				--sdc-text-body-sm: 14px;                       /* captions */
+				--sdc-text-label: 11px;                         /* tags, metadata */
 
 				/* Sizes the layout actually ships that the nine above did not cover.
 				   Same clamps, named. Added after binding the Figma library left
 				   them matching no token. */
-				--text-case-title: clamp(32px, 9vw, 56px);    /* case study hero title */
-				--text-block-lede: clamp(24px, 2.5vw, 32px);  /* the claim in a case block */
-				--text-quote: clamp(20px, 2vw, 28px);         /* pulled quote */
-				--text-stat: clamp(40px, 5vw, 64px);          /* stat number */
-				--text-stat-lg: clamp(48px, 6vw, 72px);       /* stat number, closing statement */
+				--sdc-text-case-title: clamp(32px, 9vw, 56px);    /* case study hero title */
+				--sdc-text-block-lede: clamp(24px, 2.5vw, 32px);  /* the claim in a case block */
+				--sdc-text-quote: clamp(20px, 2vw, 28px);         /* pulled quote */
+				--sdc-text-stat: clamp(40px, 5vw, 64px);          /* stat number */
+				--sdc-text-stat-lg: clamp(48px, 6vw, 72px);       /* stat number, closing statement */
 
 				/* ---------- Elevation ----------
 				   Cards carry a four-stop shadow and deepen on hover. The only other
@@ -491,16 +493,16 @@ const jsonLd = {
 				   Both themes use the same charcoal, which is what shipped when
 				   these lived in the home page's own <style> block. On the dark
 				   ground a charcoal shadow reads as almost nothing, and that is
-				   correct: in dark mode the elevation comes from --surface being
-				   lighter than --bg, not from the shadow. */
-				--shadow-card: 0 1px 2px rgba(var(--ink-charcoal-rgb), 0.08), 0 6px 12px -4px rgba(var(--ink-charcoal-rgb), 0.14), 0 18px 32px -12px rgba(var(--ink-charcoal-rgb), 0.24), 0 36px 64px -24px rgba(var(--ink-charcoal-rgb), 0.32);
-				--shadow-card-hover: 0 1px 2px rgba(var(--ink-charcoal-rgb), 0.08), 0 10px 18px -6px rgba(var(--ink-charcoal-rgb), 0.18), 0 26px 44px -14px rgba(var(--ink-charcoal-rgb), 0.3), 0 48px 80px -28px rgba(var(--ink-charcoal-rgb), 0.38);
+				   correct: in dark mode the elevation comes from --sdc-surface being
+				   lighter than --sdc-bg, not from the shadow. */
+				--sdc-shadow-card: 0 1px 2px rgba(var(--sdc-ink-charcoal-rgb), 0.08), 0 6px 12px -4px rgba(var(--sdc-ink-charcoal-rgb), 0.14), 0 18px 32px -12px rgba(var(--sdc-ink-charcoal-rgb), 0.24), 0 36px 64px -24px rgba(var(--sdc-ink-charcoal-rgb), 0.32);
+				--sdc-shadow-card-hover: 0 1px 2px rgba(var(--sdc-ink-charcoal-rgb), 0.08), 0 10px 18px -6px rgba(var(--sdc-ink-charcoal-rgb), 0.18), 0 26px 44px -14px rgba(var(--sdc-ink-charcoal-rgb), 0.3), 0 48px 80px -28px rgba(var(--sdc-ink-charcoal-rgb), 0.38);
 				/* Overlays. Added 2026-10-07 to replace raw values; same values as before. */
-				--shadow-float: 0 6px 20px rgba(var(--ink-black-rgb), 0.25);      /* floating theme toggle */
-				--shadow-modal: 0 40px 100px -30px rgba(var(--ink-black-rgb), 0.45); /* case study modal panel */
-				--shadow-chip: 0 6px 14px rgba(var(--ink-charcoal-rgb), 0.10), 0 1px 2px rgba(var(--ink-charcoal-rgb), 0.06); /* logo chips */
-				--shadow-tile: 0 12px 28px rgba(var(--ink-charcoal-rgb), 0.13), 0 1px 3px rgba(var(--ink-charcoal-rgb), 0.08); /* scattered logo tiles */
-				--scrim: rgba(var(--ink-black-rgb), 0.3);                          /* modal backdrop */
+				--sdc-shadow-float: 0 6px 20px rgba(var(--sdc-ink-black-rgb), 0.25);      /* floating theme toggle */
+				--sdc-shadow-modal: 0 40px 100px -30px rgba(var(--sdc-ink-black-rgb), 0.45); /* case study modal panel */
+				--sdc-shadow-chip: 0 6px 14px rgba(var(--sdc-ink-charcoal-rgb), 0.10), 0 1px 2px rgba(var(--sdc-ink-charcoal-rgb), 0.06); /* logo chips */
+				--sdc-shadow-tile: 0 12px 28px rgba(var(--sdc-ink-charcoal-rgb), 0.13), 0 1px 3px rgba(var(--sdc-ink-charcoal-rgb), 0.08); /* scattered logo tiles */
+				--sdc-scrim: rgba(var(--sdc-ink-black-rgb), 0.3);                          /* modal backdrop */
 			}
 
 			/* Light theme: applied when system requests light AND user has not
@@ -514,46 +516,49 @@ const jsonLd = {
 			   behind a prefers-color-scheme query to keep in step. */
 			:root[data-theme="light"] {
 				color-scheme: light;
-				--bg: var(--paper-cloud);
-				--surface: var(--paper-cloud-2);
-				--surface-2: var(--paper-cloud-3);
-				--text: var(--ink-charcoal);
-				--text-mute: var(--ink-charcoal-mute);
-				--rule: rgba(var(--ink-charcoal-rgb), 0.20);
-				--rule-soft: rgba(var(--ink-charcoal-rgb), 0.10);
-				--rule-strong: rgba(var(--ink-charcoal-rgb), 0.58);   /* clears 3:1 */
-				--texture-dot: rgba(var(--ink-charcoal-rgb), 0.10);
-				--texture-size: 20px;
-				--accent: var(--brand-regatta);
-				--accent-text: var(--paper-white);
-				--accent-hover: var(--brand-regatta-deep);
-				--focus-ring: var(--brand-focus);
-				--accent-glow: rgba(var(--brand-regatta-rgb), 0.22);
-				--header-bg: rgba(var(--paper-cloud-rgb), 0.82);
+				--sdc-bg: var(--sdc-paper-cloud);
+				--sdc-surface: var(--sdc-paper-cloud-2);
+				--sdc-surface-2: var(--sdc-paper-cloud-3);
+				--sdc-text: var(--sdc-ink-charcoal);
+				--sdc-text-mute: var(--sdc-ink-charcoal-mute);
+				--sdc-rule: rgba(var(--sdc-ink-charcoal-rgb), 0.20);
+				--sdc-rule-soft: rgba(var(--sdc-ink-charcoal-rgb), 0.10);
+				--sdc-rule-strong: rgba(var(--sdc-ink-charcoal-rgb), 0.58);   /* clears 3:1 */
+				--sdc-texture-dot: rgba(var(--sdc-ink-charcoal-rgb), 0.10);
+				--sdc-texture-size: 20px;
+				--sdc-accent: var(--sdc-brand-regatta);
+				--sdc-accent-text: var(--sdc-paper-white);
+				--sdc-accent-hover: var(--sdc-brand-regatta-deep);
+				--sdc-focus-ring: var(--sdc-brand-focus);
+				--sdc-accent-glow: rgba(var(--sdc-brand-regatta-rgb), 0.22);
+				--sdc-header-bg: rgba(var(--sdc-paper-cloud-rgb), 0.82);
 			}
+			/* Custom elements render inline until told otherwise. Every system
+			   container is a block; each one's own rule, further down, adds the rest. */
+			sdc-section, sdc-layout-container, sdc-case-block, sdc-case-figure, sdc-button-group, sdc-case-hero, sdc-card, sdc-text-passage { display: block; }
 			* { box-sizing: border-box; }
 			html, body { margin: 0; padding: 0; }
 			/* Stop Android/iOS from auto-inflating text, which on some phones
 			   enlarged the hero name and subhead until they ran off the frame. */
 			html {
-				background: var(--bg);
+				background: var(--sdc-bg);
 				-webkit-text-size-adjust: 100%;
 				text-size-adjust: 100%;
 				scroll-behavior: smooth;
 			}
 			/* The header is sticky, so anything scrolled into view (a focused link,
 			   an anchor target) is offset below it rather than hidden behind it. */
-			html { scroll-padding-top: var(--nav-h); }
+			html { scroll-padding-top: var(--sdc-nav-h); }
 			@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 			body {
 				/* Dot-grid page grain, ported from the 21st.dev noise texture to the
-				   site's own tokens. Turn it up or down with --texture-dot. */
-				background-color: var(--bg);
-				background-image: radial-gradient(circle at 1px 1px, var(--texture-dot) 1px, transparent 0);
-				background-size: var(--texture-size) var(--texture-size);
-				color: var(--text);
-				font-family: var(--font-body);
-				font-size: var(--text-body);
+				   site's own tokens. Turn it up or down with --sdc-texture-dot. */
+				background-color: var(--sdc-bg);
+				background-image: radial-gradient(circle at 1px 1px, var(--sdc-texture-dot) 1px, transparent 0);
+				background-size: var(--sdc-texture-size) var(--sdc-texture-size);
+				color: var(--sdc-text);
+				font-family: var(--sdc-font-body);
+				font-size: var(--sdc-text-body);
 				line-height: 1.6;
 				overflow-x: clip;
 				-webkit-font-smoothing: antialiased;
@@ -563,41 +568,41 @@ const jsonLd = {
 			   state and is off-palette, so the ring is the page's own ink: high
 			   contrast against both grounds and identical in both themes. Only
 			   :focus-visible, so a mouse click never draws it. */
-			:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 3px; }
+			:focus-visible { outline: 3px solid var(--sdc-focus-ring); outline-offset: 3px; }
 			:focus:not(:focus-visible) { outline: none; }
-			.no-ring:focus, .no-ring:focus-visible { outline: none; }
+			.sdc-u-no-ring:focus, .sdc-u-no-ring:focus-visible { outline: none; }
 			/* Windows High Contrast: let the system draw its own ring. */
 			/* Users asking for more contrast get the muted tones collapsed into the ink. */
 			@media (prefers-contrast: more) {
-				:root, :root[data-theme="light"] { --text-mute: var(--text); --rule: var(--rule-strong); }
+				:root, :root[data-theme="light"] { --sdc-text-mute: var(--sdc-text); --sdc-rule: var(--sdc-rule-strong); }
 			}
 			/* Text for assistive tech only: visually removed, still read aloud. */
-			.sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
-			.skip-link {
+			.sdc-u-sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
+			.sdc-skip-link {
 				position: absolute; left: 12px; top: -64px; z-index: 200;
 				display: inline-flex; align-items: center; height: 44px; padding: 0 18px;
-				background: var(--text); color: var(--bg); border-radius: 10px;
-				font-family: var(--font-body); font-size: 15px; font-weight: 600;
+				background: var(--sdc-text); color: var(--sdc-bg); border-radius: 10px;
+				font-family: var(--sdc-font-body); font-size: 15px; font-weight: 600;
 				transition: top 0.12s ease;
 			}
-			.skip-link:focus { top: 12px; color: var(--bg); }
+			.sdc-skip-link:focus { top: 12px; color: var(--sdc-bg); }
 			main:focus { outline: none; }
-			::selection { background: var(--accent); color: var(--accent-text); }
-			a { color: var(--accent); text-decoration: none; }
+			::selection { background: var(--sdc-accent); color: var(--sdc-accent-text); }
+			a { color: var(--sdc-accent); text-decoration: none; }
 			a:hover { text-decoration: none; }
 
-			h1, h2, h3 { color: var(--text); margin: 0; line-height: 1.1; letter-spacing: -0.022em; font-weight: 700; }
-			h1 { font-size: var(--text-display-1); line-height: 0.98; letter-spacing: -0.03em; }
+			h1, h2, h3 { color: var(--sdc-text); margin: 0; line-height: 1.1; letter-spacing: -0.022em; font-weight: 700; }
+			h1 { font-size: var(--sdc-text-display-1); line-height: 0.98; letter-spacing: -0.03em; }
 			h2 {
-				font-family: var(--font-display);
+				font-family: var(--sdc-font-display);
 				font-variation-settings: "wght" 700, "slnt" 0, "ital" 0;
 				font-synthesis: none;
-				font-size: var(--text-display-2);
+				font-size: var(--sdc-text-display-2);
 				line-height: 1.04;
 				letter-spacing: -0.025em;
 			}
 			h3 {
-				font-family: var(--font-display);
+				font-family: var(--sdc-font-display);
 				font-size: 18px;
 				font-weight: 900;
 				font-style: normal;
@@ -605,14 +610,14 @@ const jsonLd = {
 				font-synthesis: none;
 				line-height: 1.1;
 				letter-spacing: 0.01em;
-				color: var(--text);
+				color: var(--sdc-text);
 			}
 			p { margin: 0 0 1em; }
 			img, svg { display: block; max-width: 100%; }
 
 			/* Display style: Nickel Gothic Variable, normal weight, upright */
-			.display {
-				font-family: var(--font-display);
+			.sdc-display {
+				font-family: var(--sdc-font-display);
 				font-weight: 400;
 				font-style: normal;
 				font-variation-settings: "wght" 400, "slnt" 0, "ital" 0;
@@ -621,104 +626,104 @@ const jsonLd = {
 				line-height: 0.96;
 			}
 
-			.eyebrow {
-				font-size: var(--text-label);
+			.sdc-eyebrow {
+				font-size: var(--sdc-text-label);
 				letter-spacing: 0.16em;
 				text-transform: uppercase;
-				color: var(--text);
-				margin: 0 0 var(--space-md);
+				color: var(--sdc-text);
+				margin: 0 0 var(--sdc-space-md);
 				font-weight: 700;
 			}
-			.eyebrow--mute { color: var(--text-mute); }
+			.sdc-eyebrow--mute { color: var(--sdc-text-mute); }
 
 			/* Header */
-			.site-header {
+			.sdc-site-header {
 				position: sticky;
 				top: 0;
 				z-index: 30;
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
-				height: var(--nav-h);
-				padding: 0 var(--gutter);
-				background: var(--header-bg);
+				height: var(--sdc-nav-h);
+				padding: 0 var(--sdc-gutter);
+				background: var(--sdc-header-bg);
 				-webkit-backdrop-filter: saturate(180%) blur(14px);
 				backdrop-filter: saturate(180%) blur(14px);
-				border-bottom: 1px solid var(--rule-soft);
+				border-bottom: 1px solid var(--sdc-rule-soft);
 			}
-			.brand {
+			.sdc-brand {
 				display: inline-flex;
 				align-items: center;
 				gap: 14px;
-				color: var(--text);
+				color: var(--sdc-text);
 				letter-spacing: -0.01em;
 				font-weight: 600;
-				font-size: var(--text-body);
+				font-size: var(--sdc-text-body);
 			}
-			.brand:hover { color: var(--text); }
-			.brand__mark { display: block; height: 24px; width: auto; }
+			.sdc-brand:hover { color: var(--sdc-text); }
+			.sdc-brand__mark { display: block; height: 24px; width: auto; }
 			/* SDC mark SVG has hardcoded lime fills — invert to black in light mode */
-			:root[data-theme="light"] .brand img { filter: brightness(0); }
-			.nav { display: flex; align-items: center; gap: var(--space-lg); }
-			.nav a {
-				color: var(--text);
-				font-size: var(--text-nav);
+			:root[data-theme="light"] .sdc-brand img { filter: brightness(0); }
+			.sdc-nav { display: flex; align-items: center; gap: var(--sdc-space-lg); }
+			.sdc-nav a {
+				color: var(--sdc-text);
+				font-size: var(--sdc-text-nav);
 				font-weight: 500;
 				transition: color 0.12s ease, opacity 0.12s ease;
 				opacity: 0.8;
 			}
-			.nav a:hover { color: var(--text); opacity: 1; }
-			.nav__cta {
+			.sdc-nav a:hover { color: var(--sdc-text); opacity: 1; }
+			.sdc-nav__cta {
 				padding: 8px 16px;
 				border-radius: 10px;
-				border: 1px solid var(--rule-strong);
-				color: var(--text) !important;
+				border: 1px solid var(--sdc-rule-strong);
+				color: var(--sdc-text) !important;
 				opacity: 1 !important;
 				transition: background 0.14s ease, border-color 0.14s ease, color 0.14s ease;
 			}
-			.nav__cta:hover { background: var(--accent); color: var(--accent-text) !important; border-color: var(--accent); }
+			.sdc-nav__cta:hover { background: var(--sdc-accent); color: var(--sdc-accent-text) !important; border-color: var(--sdc-accent); }
 
 			/* Theme toggle (sun/moon) — floating in bottom-right corner */
-			.theme-toggle {
+			.sdc-theme-toggle {
 				display: inline-flex;
 				align-items: center;
 				justify-content: center;
-				background: var(--bg);
-				border: 1px solid var(--rule-strong);
+				background: var(--sdc-bg);
+				border: 1px solid var(--sdc-rule-strong);
 				border-radius: 999px;
-				color: var(--text);
+				color: var(--sdc-text);
 				cursor: pointer;
 				padding: 0;
 				transition: border-color 0.14s ease, color 0.14s ease, background 0.14s ease, transform 0.12s ease;
 			}
-			.theme-toggle:hover { border-color: var(--text); color: var(--text); transform: translateY(-1px); }
-			.theme-toggle__sun, .theme-toggle__moon { display: block; }
-			.theme-toggle__label { display: none; }
+			.sdc-theme-toggle:hover { border-color: var(--sdc-text); color: var(--sdc-text); transform: translateY(-1px); }
+			.sdc-theme-toggle__sun, .sdc-theme-toggle__moon { display: block; }
+			.sdc-theme-toggle__label { display: none; }
 
-			.theme-toggle--float {
+			.sdc-theme-toggle--float {
 				position: fixed;
 				right: 20px;
 				bottom: 20px;
 				z-index: 40;
 				width: 48px;
 				height: 48px;
-				box-shadow: var(--shadow-float);
+				box-shadow: var(--sdc-shadow-float);
 				-webkit-backdrop-filter: blur(8px);
 				backdrop-filter: blur(8px);
 			}
 			@media (max-width: 600px) {
-				.theme-toggle--float { right: 16px; bottom: 16px; width: 44px; height: 44px; }
+				.sdc-theme-toggle--float { right: 16px; bottom: 16px; width: 44px; height: 44px; }
 			}
 			/* Dark theme: show sun icon (click → switch to light) */
-			.theme-toggle__moon { display: none; }
+			.sdc-theme-toggle__moon { display: none; }
 			/* Light theme: show moon icon (click → switch to dark) */
-			:root[data-theme="light"] .theme-toggle__sun { display: none; }
-			:root[data-theme="light"] .theme-toggle__moon { display: block; }
-			:root[data-theme="dark"] .theme-toggle__sun { display: block; }
-			:root[data-theme="dark"] .theme-toggle__moon { display: none; }
+			:root[data-theme="light"] .sdc-theme-toggle__sun { display: none; }
+			:root[data-theme="light"] .sdc-theme-toggle__moon { display: block; }
+			:root[data-theme="dark"] .sdc-theme-toggle__sun { display: block; }
+			:root[data-theme="dark"] .sdc-theme-toggle__moon { display: none; }
 
 			/* Hamburger toggle (mobile) */
-			.nav-toggle {
+			.sdc-nav-toggle {
 				display: none;
 				width: 40px;
 				height: 40px;
@@ -731,105 +736,256 @@ const jsonLd = {
 				justify-content: space-between;
 				align-items: stretch;
 			}
-			.nav-toggle__bar {
+			.sdc-nav-toggle__bar {
 				display: block;
 				height: 2px;
-				background: var(--text);
+				background: var(--sdc-text);
 				border-radius: 2px;
 				transition: transform 0.18s ease, opacity 0.18s ease;
 				transform-origin: center;
 			}
-			.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(1) {
+			.sdc-nav-toggle[aria-expanded="true"] .sdc-nav-toggle__bar:nth-child(1) {
 				transform: translateY(11px) rotate(45deg);
 			}
-			.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(2) { opacity: 0; }
-			.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(3) {
+			.sdc-nav-toggle[aria-expanded="true"] .sdc-nav-toggle__bar:nth-child(2) { opacity: 0; }
+			.sdc-nav-toggle[aria-expanded="true"] .sdc-nav-toggle__bar:nth-child(3) {
 				transform: translateY(-11px) rotate(-45deg);
 			}
 
 			/* Mobile nav overlay */
-			.nav-mobile {
+			.sdc-nav-mobile {
 				display: none;
 				position: fixed;
-				top: var(--nav-h);
+				top: var(--sdc-nav-h);
 				left: 0;
 				right: 0;
 				bottom: 0;
-				background: var(--bg);
+				background: var(--sdc-bg);
 				flex-direction: column;
-				padding: var(--space-md) var(--gutter) var(--space-2xl);
+				padding: var(--sdc-space-md) var(--sdc-gutter) var(--sdc-space-2xl);
 				z-index: 25;
-				border-top: 1px solid var(--rule-soft);
+				border-top: 1px solid var(--sdc-rule-soft);
 				overflow-y: auto;
 			}
-			.nav-mobile[data-open="true"] { display: flex; }
-			.nav-mobile a {
+			.sdc-nav-mobile[data-open="true"] { display: flex; }
+			.sdc-nav-mobile a {
 				display: block;
-				padding: var(--space-md) 0;
-				font-family: var(--font-display);
+				padding: var(--sdc-space-md) 0;
+				font-family: var(--sdc-font-display);
 				font-weight: 400;
 				font-style: normal;
 				font-variation-settings: "wght" 400, "slnt" 0, "ital" 0;
 				font-synthesis: none;
 				font-size: clamp(28px, 6vw, 40px);
-				color: var(--text);
-				border-bottom: 1px solid var(--rule);
+				color: var(--sdc-text);
+				border-bottom: 1px solid var(--sdc-rule);
 				letter-spacing: normal;
 				line-height: 1.1;
 			}
-			.nav-mobile a:hover,
-			.nav-mobile a:focus-visible { color: var(--accent); }
+			.sdc-nav-mobile a:hover,
+			.sdc-nav-mobile a:focus-visible { color: var(--sdc-accent); }
 			body.nav-open { overflow: hidden; }
 
 			/* flip-links: per-letter vertical roll on hover, revealing the accent color */
-			.flip { position: relative; display: inline-block; overflow: hidden; vertical-align: top; }
-			.flip__row { display: flex; }
-			.flip__row--top { color: var(--text); }
-			.flip__row--bottom { position: absolute; left: 0; top: 0; color: var(--accent); }
-			.flip__char {
+			.sdc-flip { position: relative; display: inline-block; overflow: hidden; vertical-align: top; }
+			.sdc-flip__row { display: flex; }
+			.sdc-flip__row--top { color: var(--sdc-text); }
+			.sdc-flip__row--bottom { position: absolute; left: 0; top: 0; color: var(--sdc-accent); }
+			.sdc-flip__char {
 				display: inline-block;
 				white-space: pre;
 				transform: translateY(0);
 				transition: transform .45s cubic-bezier(.76, 0, .24, 1);
 				transition-delay: calc(var(--i) * 18ms);
 			}
-			.flip__row--bottom .flip__char { transform: translateY(105%); }
-			.nav-mobile a:hover .flip__row--top .flip__char,
-			.nav-mobile a:focus-visible .flip__row--top .flip__char,
-			.cta-row a:hover .flip__row--top .flip__char,
-			.cta-row a:focus-visible .flip__row--top .flip__char { transform: translateY(-105%); }
-			.nav-mobile a:hover .flip__row--bottom .flip__char,
-			.nav-mobile a:focus-visible .flip__row--bottom .flip__char,
-			.cta-row a:hover .flip__row--bottom .flip__char,
-			.cta-row a:focus-visible .flip__row--bottom .flip__char { transform: translateY(0); }
-			@media (prefers-reduced-motion: reduce) { .flip__char { transition: none; } }
+			.sdc-flip__row--bottom .sdc-flip__char { transform: translateY(105%); }
+			.sdc-nav-mobile a:hover .sdc-flip__row--top .sdc-flip__char,
+			.sdc-nav-mobile a:focus-visible .sdc-flip__row--top .sdc-flip__char,
+			.sdc-cta-row a:hover .sdc-flip__row--top .sdc-flip__char,
+			.sdc-cta-row a:focus-visible .sdc-flip__row--top .sdc-flip__char { transform: translateY(-105%); }
+			.sdc-nav-mobile a:hover .sdc-flip__row--bottom .sdc-flip__char,
+			.sdc-nav-mobile a:focus-visible .sdc-flip__row--bottom .sdc-flip__char,
+			.sdc-cta-row a:hover .sdc-flip__row--bottom .sdc-flip__char,
+			.sdc-cta-row a:focus-visible .sdc-flip__row--bottom .sdc-flip__char { transform: translateY(0); }
+			@media (prefers-reduced-motion: reduce) { .sdc-flip__char { transition: none; } }
 
 			/* card titles: per-letter roll on card hover (same as CTA links; multi-line safe
 			   because each letter is its own clipped unit and words wrap at spaces) */
-			.cflip { display: inline; }
-			.cflip-word { display: inline-block; white-space: nowrap; vertical-align: top; }
-			.cflip-space { white-space: pre; }
-			.cflip-char { position: relative; display: inline-block; overflow: hidden; vertical-align: top; }
-			.cflip-char > span { display: block; transition: transform 0.42s cubic-bezier(0.76, 0, 0.24, 1); transition-delay: calc(var(--i) * 16ms); }
-			.cflip-char > span:last-child { position: absolute; left: 0; top: 0; transform: translateY(100%); color: var(--accent); }
-			.card:hover .cflip-char > span:first-child,
-			.card:focus-visible .cflip-char > span:first-child { transform: translateY(-100%); }
-			.card:hover .cflip-char > span:last-child,
-			.card:focus-visible .cflip-char > span:last-child { transform: translateY(0); }
-			@media (prefers-reduced-motion: reduce) { .cflip-char > span { transition: none; } }
+			.sdc-cflip { display: inline; }
+			.sdc-cflip-word { display: inline-block; white-space: nowrap; vertical-align: top; }
+			.sdc-cflip-space { white-space: pre; }
+			.sdc-cflip-char { position: relative; display: inline-block; overflow: hidden; vertical-align: top; }
+			.sdc-cflip-char > span { display: block; transition: transform 0.42s cubic-bezier(0.76, 0, 0.24, 1); transition-delay: calc(var(--i) * 16ms); }
+			.sdc-cflip-char > span:last-child { position: absolute; left: 0; top: 0; transform: translateY(100%); color: var(--sdc-accent); }
+			sdc-card:hover .sdc-cflip-char > span:first-child,
+			sdc-card:focus-visible .sdc-cflip-char > span:first-child { transform: translateY(-100%); }
+			sdc-card:hover .sdc-cflip-char > span:last-child,
+			sdc-card:focus-visible .sdc-cflip-char > span:last-child { transform: translateY(0); }
+			@media (prefers-reduced-motion: reduce) { .sdc-cflip-char > span { transition: none; } }
 
 			/* Sections (shared) */
-			.section { padding: var(--space-2xl) var(--gutter); }
-			.section--alt { background: var(--bg); }
+			.sdc-card__arrow { display: inline-block; transition: transform 0.22s ease; }
 
-			/* Theme-aware image swap: pair a .theme-img--dark with .theme-img--light,
+			/* ---------- Case study card ----------
+			   Moved here from the home page on 2026-10-08 when the card became a
+			   component: a page's <style> is scoped to that page's own markup, so
+			   it stopped reaching the card the moment the card rendered from
+			   src/components/ui/CaseStudyCard.astro. System components are styled
+			   in the system stylesheet. */
+			.sdc-deck--work sdc-card, .sdc-card__art { max-height: none !important; }
+			/* ---------- Card ---------- */
+	sdc-card {
+		display: flex;
+		flex-direction: column;
+		width: var(--content);
+		background: var(--sdc-surface);
+		border-radius: var(--sdc-radius);
+		box-shadow: var(--sdc-shadow-card);
+		color: var(--sdc-text);
+		overflow: hidden;
+		transition: box-shadow 0.25s ease, transform 0.25s ease;
+	}
+			sdc-card { position: relative; }
+			/* Stretched link: the headline is the only link, and its ::after covers the
+	   card so the whole card still clicks. Its name is the visible headline. */
+	.sdc-card__link { color: inherit; text-decoration: none; }
+			.sdc-card__link::after { content: ''; position: absolute; inset: 0; z-index: 2; border-radius: inherit; }
+			.sdc-card__link:hover { color: inherit; }
+			/* The ring belongs to the card, not the headline text. */
+	.sdc-card__link:focus-visible { outline: none; }
+			sdc-card:has(.sdc-card__link:focus-visible) { outline: 2px solid var(--sdc-text); outline-offset: 3px; }
+			sdc-card:has(.sdc-card__link.sdc-u-no-ring) { outline: none; }
+			sdc-card:hover, sdc-card:has(.sdc-card__link:focus-visible) { color: var(--sdc-text); box-shadow: var(--sdc-shadow-card-hover); }
+			sdc-card:hover .sdc-card__arrow, sdc-card:has(.sdc-card__link:focus-visible) .sdc-card__arrow { transform: translateX(6px); }
+			/* Full-bleed media. Images cover; the drawn stand-ins sit on paper until the images arrive. */
+	.sdc-card__art { position: relative; width: 100%; aspect-ratio: 16 / 9; max-height: 50svh; background: var(--sdc-bg); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+			.sdc-card__art img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+			/* Two kinds of art must never be cropped: logo lockups, which would lose a
+	   mark, and the flat diagrams, which would lose the thing they are drawing.
+	   Both fit inside the box, and the box takes the artwork's own ground, which
+	   makes the letterbox invisible. This matters most on a short viewport, where
+	   the max-height caps below squeeze the 16:9 box toward 2.8:1 and `cover`
+	   would take the difference off the bottom of the image. */
+	/* --field is set per card from the artwork it sits behind, so it is card
+	   content rather than a palette value. Three of the six cards set one; this
+	   literal is the backdrop for the ones that do not, and it is deliberately
+	   not a token: it belongs to the artwork, not to the theme. */
+	.sdc-card__art--contain { background: var(--field, #F2F1EC); }
+			.sdc-card__art--contain img { object-fit: contain; object-position: center; }
+			.sdc-card__body { padding: clamp(22px, 3vw, 32px) clamp(22px, 3.2vw, 36px) clamp(22px, 3vw, 30px); display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "head head" "text text" "meta cta"; gap: 10px var(--sdc-space-lg); align-items: end; }
+			.sdc-card__head {
+		grid-area: head;
+		font-family: var(--sdc-font-display);
+		font-weight: 400;
+		font-variation-settings: "wght" 400, "slnt" 0, "ital" 0;
+		font-synthesis: none;
+		font-size: clamp(22px, 2.3vw, 30px);
+		line-height: 1.05;
+		letter-spacing: 0;
+		color: var(--sdc-text);
+		margin: 0;
+	}
+			.sdc-card__text { grid-area: text; margin: 0 0 6px; font-size: 16px; line-height: 1.5; color: var(--sdc-text); max-width: 60ch; text-wrap: pretty; }
+			.sdc-card__meta { grid-area: meta; display: flex; flex-wrap: wrap; gap: 4px var(--sdc-space-lg); margin: 0; }
+			.sdc-card__meta div { display: flex; gap: 8px; align-items: baseline; min-width: 0; }
+			.sdc-card__meta dt { font-size: var(--sdc-text-label); letter-spacing: 0.14em; text-transform: uppercase; color: var(--sdc-text-mute); font-weight: 800; }
+			.sdc-card__meta dt::after { content: '|' / ''; margin-left: 8px; font-weight: 400; letter-spacing: 0; opacity: 0.55; }
+			.sdc-card__meta dd { margin: 0; font-size: 13px; color: var(--sdc-text); font-weight: 500; }
+			.sdc-card__cta { grid-area: cta; font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+			.sdc-deck--work sdc-card { max-height: calc(100svh - var(--sdc-nav-h) - 200px); }
+			/* The cards stop being height-capped, or the copy is clipped. */
+		:root.sdc-deck-static .sdc-deck--work sdc-card { max-height: none; }
+			:root.sdc-deck-static sdc-card, :root.sdc-deck-static .sdc-card__arrow { transition: none; }
+			:root.sdc-deck-static .sdc-card__art { max-height: none; }
+			@media (max-height: 760px) and (min-width: 881px) {
+		.sdc-card__art { max-height: 44svh; }
+		.sdc-card__text { font-size: 15px; }
+	}
+
+			@media (prefers-reduced-motion: reduce), (max-height: 599px) {
+			/* The cards stop being height-capped, or the copy is clipped. */
+					.sdc-deck--work sdc-card { max-height: none; }
+			}
+			@media (prefers-reduced-motion: reduce), (max-height: 599px) {
+			sdc-card, .sdc-card__arrow { transition: none; }
+			}
+			@media (prefers-reduced-motion: reduce), (max-height: 599px) {
+			.sdc-card__art { max-height: none; }
+			}
+			@media (max-width: 880px) {
+			/* The art is the only flexible item in the card, so any height shortfall
+					   used to come out of it and left a sliver. Pin it to its ratio and take
+					   the room out of the body instead. */
+					.sdc-card__art { flex: 0 0 auto; max-height: none; }
+			}
+			@media (max-width: 880px) {
+			/* Reserve only what actually sits above the card: nav, stage padding,
+					   the Case studies headline and one gap. */
+					.sdc-deck--work sdc-card { max-height: calc(100svh - var(--sdc-nav-h) - 120px); }
+			}
+			@media (max-width: 880px) {
+			.sdc-card__body { gap: 8px; }
+			}
+			@media (max-width: 880px) {
+			.sdc-card__text { font-size: 15px; line-height: 1.45; margin-bottom: 2px; }
+			}
+			@media (max-width: 880px) {
+			.sdc-card__body { grid-template-columns: 1fr; grid-template-areas: "head" "text" "meta" "cta"; padding: 18px 20px; align-items: start; }
+			}
+			@media (max-width: 880px) {
+			/* Labels read as subheads on phones: above the value, not beside it. */
+					.sdc-card__meta { flex-direction: column; gap: 10px; }
+			}
+			@media (max-width: 880px) {
+			.sdc-card__meta div { flex-direction: column; gap: 2px; align-items: flex-start; }
+			}
+			@media (max-width: 880px) {
+			.sdc-card__meta dt { font-size: 12px; letter-spacing: 0.1em; color: var(--sdc-text); }
+			}
+			@media (max-width: 880px) {
+			.sdc-card__meta dt::after { content: none; }
+			}
+			@media (max-width: 880px) {
+			.sdc-card__meta dd { font-size: 14px; line-height: 1.4; }
+			}
+			@media (max-width: 880px) and (min-height: 600px) and (max-height: 720px) {
+			.sdc-deck--work sdc-card { max-height: calc(100svh - var(--sdc-nav-h) - 78px); }
+			}
+			@media (max-width: 880px) and (min-height: 600px) and (max-height: 720px) {
+			.sdc-card__head { font-size: 20px; }
+			}
+			@media (max-width: 880px) and (min-height: 600px) and (max-height: 720px) {
+			.sdc-card__text { font-size: 14px; }
+			}
+			@media (max-width: 880px) and (min-height: 600px) and (max-height: 720px) {
+			.sdc-card__body { padding: 14px 18px; }
+			}
+			@media (max-width: 880px) and (min-height: 600px) and (max-height: 620px) {
+			.sdc-card__art { aspect-ratio: 2 / 1; }
+			}
+			@media (max-width: 880px) and (min-height: 600px) and (max-height: 620px) {
+			.sdc-card__body { gap: 6px; padding: 12px 16px; }
+			}
+			@media (max-width: 880px) and (min-height: 600px) and (max-height: 620px) {
+			.sdc-card__text { font-size: 13.5px; }
+			}
+			@media (max-width: 880px) and (min-height: 600px) and (max-height: 620px) {
+			.sdc-card__meta { gap: 8px; }
+			}
+			@media (max-width: 880px) and (min-height: 600px) and (max-height: 620px) {
+			.sdc-deck--work sdc-card { max-height: calc(100svh - var(--sdc-nav-h) - 70px); }
+			}
+			sdc-section { padding: var(--sdc-space-2xl) var(--sdc-gutter); }
+			sdc-section[tone="alt"] { background: var(--sdc-bg); }
+
+			/* Theme-aware image swap: pair a .sdc-theme-img--dark with .sdc-theme-img--light,
 			   the browser will paint whichever matches the active theme.
 			   !important is used so these win over scoped page styles that target img. */
-			.theme-img--light { display: none !important; }
-			:root[data-theme="light"] .theme-img--dark { display: none !important; }
-			:root[data-theme="light"] .theme-img--light { display: block !important; }
-			:root[data-theme="dark"] .theme-img--dark { display: block !important; }
-			:root[data-theme="dark"] .theme-img--light { display: none !important; }
+			.sdc-theme-img--light { display: none !important; }
+			:root[data-theme="light"] .sdc-theme-img--dark { display: none !important; }
+			:root[data-theme="light"] .sdc-theme-img--light { display: block !important; }
+			:root[data-theme="dark"] .sdc-theme-img--dark { display: block !important; }
+			:root[data-theme="dark"] .sdc-theme-img--light { display: none !important; }
 
 			/* Fade-in on scroll, observed via tiny script at end of body.
 			   Gated on html.js: if the bundled script never loads (blocked
@@ -850,73 +1006,74 @@ const jsonLd = {
 			/* No-JS fallbacks: plain link nav instead of the dead hamburger,
 			   no dead theme toggle, email link reads as text (the address is
 			   already human readable in the anchor text). */
-			html:not(.js) .nav { display: flex; flex-wrap: wrap; }
-			html:not(.js) .nav-toggle { display: none; }
-			html:not(.js) .theme-toggle { display: none; }
-			html:not(.js) a.js-email { pointer-events: none; text-decoration: none; cursor: default; }
-			.section--ink { background: var(--bg); }
-			.section__inner { max-width: var(--max); margin: 0 auto; }
-			.section__inner--narrow { max-width: var(--max-narrow); }
-			.prose { max-width: var(--max-narrow); font-size: 18px; color: var(--text); line-height: 1.7; font-weight: 400; }
-			.prose p { margin: 0 0 1.2em; }
-			.prose strong { color: var(--text); font-weight: 600; }
+			html:not(.js) .sdc-nav { display: flex; flex-wrap: wrap; }
+			html:not(.js) .sdc-nav-toggle { display: none; }
+			html:not(.js) .sdc-theme-toggle { display: none; }
+			html:not(.js) a.sdc-js-email { pointer-events: none; text-decoration: none; cursor: default; }
+			sdc-section[tone="ink"] { background: var(--sdc-bg); }
+			sdc-layout-container { max-width: var(--sdc-max); margin: 0 auto; }
+			sdc-layout-container[width="narrow"] { max-width: var(--sdc-max-narrow); }
+			sdc-text-passage { max-width: var(--sdc-max-narrow); font-size: 18px; color: var(--sdc-text); line-height: 1.7; font-weight: 400; }
+			sdc-text-passage[width="narrow"] { max-width: 62ch; }
+			sdc-text-passage p { margin: 0 0 1.2em; text-wrap: pretty; }
+			sdc-text-passage strong { color: var(--sdc-text); font-weight: 600; }
 
 			/* Buttons */
-			.btn {
+			.sdc-btn {
 				display: inline-flex;
 				align-items: center;
-				gap: var(--space-xs);
+				gap: var(--sdc-space-xs);
 				/* 16/24, matching the Figma Button, and on the spacing scale rather
 				   than the old off-scale 14/22. */
-				padding: var(--space-sm) var(--space-md);
-				border-radius: var(--radius-sm);
-				border: 1px solid var(--rule-strong);
+				padding: var(--sdc-space-sm) var(--sdc-space-md);
+				border-radius: var(--sdc-radius-sm);
+				border: 1px solid var(--sdc-rule-strong);
 				background: transparent;
-				color: var(--text);
-				font-family: var(--font-body);
-				font-size: var(--text-nav);
+				color: var(--sdc-text);
+				font-family: var(--sdc-font-body);
+				font-size: var(--sdc-text-nav);
 				font-weight: 600;
 				letter-spacing: -0.005em;
 				transition: background 0.14s ease, border-color 0.14s ease, color 0.14s ease, transform 0.12s ease;
 				cursor: pointer;
 			}
-			.btn:hover { border-color: var(--text); transform: translateY(-1px); }
-			.btn--primary { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
-			.btn--primary:hover {
-				background: var(--accent-hover);
-				border-color: var(--accent-hover);
-				color: var(--accent-text);
-				box-shadow: 0 14px 40px -10px var(--accent-glow);
+			.sdc-btn:hover { border-color: var(--sdc-text); transform: translateY(-1px); }
+			.sdc-btn--primary { background: var(--sdc-accent); color: var(--sdc-accent-text); border-color: var(--sdc-accent); }
+			.sdc-btn--primary:hover {
+				background: var(--sdc-accent-hover);
+				border-color: var(--sdc-accent-hover);
+				color: var(--sdc-accent-text);
+				box-shadow: 0 14px 40px -10px var(--sdc-accent-glow);
 			}
 
 			@media print {
-				.site-header, .site-footer, .nav-mobile, .theme-toggle { display: none !important; }
+				.sdc-site-header, .sdc-site-footer, .sdc-nav-mobile, .sdc-theme-toggle { display: none !important; }
 				/* Paper is white and ink is black whatever the screen theme is, so these
 				   name the primitives directly rather than the semantic tokens. */
-				html, body { background: var(--paper-white) !important; color: var(--ink-black); }
+				html, body { background: var(--sdc-paper-white) !important; color: var(--sdc-ink-black); }
 				a { color: inherit; text-decoration: none; }
 			}
 
 			/* Pager: a solid button with the chevron in a tinted end cap. */
-			.pager {
+			.sdc-pager {
 				position: relative;
 				display: inline-flex;
 				align-items: center;
 				height: 42px;
 				padding: 0 54px 0 18px;
 				border-radius: 10px;
-				background: var(--text);
-				color: var(--bg);
-				font-family: var(--font-body);
+				background: var(--sdc-text);
+				color: var(--sdc-bg);
+				font-family: var(--sdc-font-body);
 				font-size: 14px;
 				font-weight: 600;
 				letter-spacing: -0.005em;
 				overflow: hidden;
 				transition: background 0.15s ease, color 0.15s ease;
 			}
-			.pager--prev { padding: 0 18px 0 54px; }
-			.pager:hover { background: var(--accent); color: var(--accent-text); }
-			.pager__cap {
+			.sdc-pager--prev { padding: 0 18px 0 54px; }
+			.sdc-pager:hover { background: var(--sdc-accent); color: var(--sdc-accent-text); }
+			.sdc-pager__cap {
 				position: absolute;
 				top: 0;
 				bottom: 0;
@@ -925,87 +1082,87 @@ const jsonLd = {
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				background: rgba(var(--paper-cloud-rgb), 0.16);
+				background: rgba(var(--sdc-paper-cloud-rgb), 0.16);
 			}
-			.pager--prev .pager__cap { right: auto; left: 0; }
-			.pager__cap svg { width: 16px; height: 16px; display: block; opacity: 0.6; }
+			.sdc-pager--prev .sdc-pager__cap { right: auto; left: 0; }
+			.sdc-pager__cap svg { width: 16px; height: 16px; display: block; opacity: 0.6; }
 
 			/* ---------- Case study pages ----------
 			   Each of these was written out in every case study page file, up to
 			   eight copies. They live here once. Media context is preserved exactly;
 			   moving a rule between breakpoints changes the design.
 
-			   Everything here is under .case, which Site puts on <main> when a page
+			   Everything here is under .sdc-case, which Site puts on <main> when a page
 			   passes variant="case". Without it these selectors would reach the home
-			   page, the work index and the resume, which use .section and .eyebrow
+			   page, the work index and the resume, which use sdc-section and .sdc-eyebrow
 			   too and style them differently. */
-			.case .cs-hero { max-width: var(--max); margin: 0 auto; padding: var(--space-2xl) var(--gutter); }
-			.case .cs-back-top { display: inline-flex; align-items: center; min-height: 24px; margin-bottom: var(--space-lg); color: var(--text-mute); font-size: var(--text-body-sm); }
-			.case .cs-back-top:hover { color: var(--accent); }
-			.case .cs-hero__title { margin: var(--space-xs) 0 var(--space-lg); max-width: 20ch; }
-			.case .cs-hero__lede { font-size: var(--text-deck); color: var(--text); line-height: 1.5; max-width: 56ch; margin-bottom: var(--space-2xl); font-weight: 500; }
-			.case .cs-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); margin: 0; padding: var(--space-lg) 0 0; border-top: 1px solid var(--rule); }
-			.case .cs-meta div { margin: 0; }
-			.case .cs-meta dt { font-size: var(--text-label); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); font-weight: 800; margin-bottom: var(--space-xs); }
-			.case .cs-meta dd { margin: 0; color: var(--text); font-size: var(--text-body); font-weight: 500; }
-			.case .cs-figure { max-width: 100%; margin: var(--space-lg) 0 var(--space-xl); }
-			.case .cs-figure img { width: 100%; height: auto; display: block; }
-			.case .section { padding-top: var(--space-xl); padding-bottom: var(--space-xl); }
-			.case .cs-body { display: grid; gap: var(--space-xl); max-width: var(--max-narrow); }
-			.case .cs-block .eyebrow { margin-bottom: 0; }
-			.case .eyebrow { font-family: var(--font-display); font-weight: 400; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; letter-spacing: 0.03em; }
-			.case .cs-block__lede { color: var(--text); font-size: var(--text-block-lede); font-weight: 600; margin: 0; letter-spacing: -0.015em; line-height: 1.25; }
-			.case .cs-block p { color: var(--text-mute); margin: 0; font-size: 16px; line-height: 1.65; }
-			.case .cs-block p + p { margin-top: 0; }
-			.case .cs-block p:not(.eyebrow):not(.cs-block__lede) + p:not(.eyebrow):not(.cs-block__lede) { margin-top: var(--space-sm); }
-			.case .cs-awards { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
-			.case .cs-awards li { display: flex; gap: var(--space-md); align-items: center; padding: var(--space-md) 0; border-top: 1px solid var(--rule); font-size: 18px; }
-			.case .cs-awards li:last-child { border-bottom: 1px solid var(--rule); }
-			.case .cs-awards__mark { display: none; }
-			.case .cs-artifacts { display: flex; gap: var(--space-lg); flex-wrap: wrap; margin-top: var(--space-md); }
-			.case .cs-artifacts .btn { min-height: 24px; display: inline-flex; align-items: center; }
-			.case .cs-back { display: flex; gap: var(--space-sm); flex-wrap: wrap; justify-content: space-between; align-items: center; }
-			.case .cs-back .btn--primary { background: var(--text); color: var(--bg); border-color: var(--text); }
-			.case .cs-back .btn--primary:hover { background: var(--text); border-color: var(--text); color: var(--bg); box-shadow: none; }
-			.case .cs-artifacts .btn, .case .cs-back .btn, .case .cs-back .btn--primary { padding: 0; border: 0; border-radius: 0; background: transparent; color: var(--text); font-family: var(--font-body); font-weight: 600; font-size: 15px; letter-spacing: 0; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; transform: none; box-shadow: none; }
-			.case .cs-artifacts .btn:hover, .case .cs-back .btn:hover, .case .cs-back .btn--primary:hover { color: var(--accent); background: transparent; border: 0; transform: none; box-shadow: none; }
-			.case .cs-note { margin: var(--space-md) 0 0; padding: 0; border: 0; font-family: var(--font-body); font-weight: 400; font-size: 14px; line-height: 1.6; letter-spacing: 0.04em; color: var(--text-mute); max-width: 64ch; }
-			.case .cs-block strong { color: var(--text); font-weight: 600; }
-			.case .cs-caption { margin: var(--space-md) 0 0; color: var(--text-mute); font-size: 14px; letter-spacing: 0.04em; }
-			.case .cs-figure__cap { margin: var(--space-sm) 0 0; color: var(--text-mute); font-size: 15px; line-height: 1.5; max-width: 62ch; }
-			.case .cs-diagram { overflow-x: auto; padding-bottom: var(--space-xs); }
-			.case .cs-diagram__svg { display: block; width: 100%; min-width: 640px; max-width: 960px; height: auto; color: var(--text); }
-			.case .dg-panel rect, .case .dg-panel line { fill: none; stroke: currentColor; stroke-width: 1.25; opacity: 0.45; }
-			.case .dg-panel line { stroke-width: 6; stroke-linecap: round; opacity: 0.22; }
-			.case .dg-accent-fill { fill: var(--accent); }
-			.case .dg-accent-label { fill: var(--accent-text); font-family: var(--font-body); font-size: 13px; font-weight: 600; letter-spacing: 0.02em; }
-			.case .dg-title { fill: currentColor; font-family: var(--font-display); font-size: 17px; font-weight: 400; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; letter-spacing: 0.03em; }
-			.case .dg-note { fill: var(--text-mute); font-family: var(--font-body); font-size: 13.5px; }
-			.case .dg-arrow line, .case .dg-arrow polyline { fill: none; stroke: currentColor; stroke-width: 1.5; opacity: 0.5; stroke-linecap: round; stroke-linejoin: round; }
-			.case .cs-orbit { display: grid; gap: var(--space-md); }
-			.case .cs-orbit__art { margin-top: var(--space-md); }
-			.case .cs-h2 { max-width: 22ch; margin: 0 0 var(--space-sm); }
-			.case .cs-block .cs-caption { margin-top: var(--space-md); color: var(--text-mute); font-size: 14px; letter-spacing: 0.04em; }
-			.case .cs-quote { margin: var(--space-lg) 0 0; padding: 0; border: 0; font-family: var(--font-display); font-weight: 400; font-style: normal; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; font-size: var(--text-quote); line-height: 1.4; color: var(--text); max-width: 64ch; }
-			.case .cs-block code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.92em; color: var(--text); }
+			.sdc-case sdc-case-hero { max-width: var(--sdc-max); margin: 0 auto; padding: var(--sdc-space-2xl) var(--sdc-gutter); }
+			.sdc-case .sdc-cs-back-top { display: inline-flex; align-items: center; min-height: 24px; margin-bottom: var(--sdc-space-lg); color: var(--sdc-text-mute); font-size: var(--sdc-text-body-sm); }
+			.sdc-case .sdc-cs-back-top:hover { color: var(--sdc-accent); }
+			.sdc-case .sdc-case-hero__title { margin: var(--sdc-space-xs) 0 var(--sdc-space-lg); max-width: 20ch; }
+			.sdc-case .sdc-case-hero__lede { font-size: var(--sdc-text-deck); color: var(--sdc-text); line-height: 1.5; max-width: 56ch; margin-bottom: var(--sdc-space-2xl); font-weight: 500; }
+			.sdc-case .sdc-meta-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sdc-space-md); margin: 0; padding: var(--sdc-space-lg) 0 0; border-top: 1px solid var(--sdc-rule); }
+			.sdc-case .sdc-meta-row div { margin: 0; }
+			.sdc-case .sdc-meta-row dt { font-size: var(--sdc-text-label); letter-spacing: 0.14em; text-transform: uppercase; color: var(--sdc-text-mute); font-weight: 800; margin-bottom: var(--sdc-space-xs); }
+			.sdc-case .sdc-meta-row dd { margin: 0; color: var(--sdc-text); font-size: var(--sdc-text-body); font-weight: 500; }
+			.sdc-case sdc-case-figure { max-width: 100%; margin: var(--sdc-space-lg) 0 var(--sdc-space-xl); }
+			.sdc-case sdc-case-figure img { width: 100%; height: auto; display: block; }
+			.sdc-case sdc-section { padding-top: var(--sdc-space-xl); padding-bottom: var(--sdc-space-xl); }
+			.sdc-case sdc-layout-container[layout="prose"] { display: grid; gap: var(--sdc-space-xl); max-width: var(--sdc-max-narrow); }
+			.sdc-case sdc-case-block .sdc-eyebrow { margin-bottom: 0; }
+			.sdc-case .sdc-eyebrow { font-family: var(--sdc-font-display); font-weight: 400; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; letter-spacing: 0.03em; }
+			.sdc-case .sdc-case-block__lede { color: var(--sdc-text); font-size: var(--sdc-text-block-lede); font-weight: 600; margin: 0; letter-spacing: -0.015em; line-height: 1.25; }
+			.sdc-case sdc-case-block p { color: var(--sdc-text-mute); margin: 0; font-size: 16px; line-height: 1.65; }
+			.sdc-case sdc-case-block p + p { margin-top: 0; }
+			.sdc-case sdc-case-block p:not(.sdc-eyebrow):not(.sdc-case-block__lede) + p:not(.sdc-eyebrow):not(.sdc-case-block__lede) { margin-top: var(--sdc-space-sm); }
+			.sdc-case .sdc-cs-awards { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+			.sdc-case .sdc-cs-awards li { display: flex; gap: var(--sdc-space-md); align-items: center; padding: var(--sdc-space-md) 0; border-top: 1px solid var(--sdc-rule); font-size: 18px; }
+			.sdc-case .sdc-cs-awards li:last-child { border-bottom: 1px solid var(--sdc-rule); }
+			.sdc-case .sdc-cs-awards__mark { display: none; }
+			.sdc-case sdc-button-group { display: flex; gap: var(--sdc-space-lg); flex-wrap: wrap; margin-top: var(--sdc-space-md); }
+			.sdc-case sdc-button-group .sdc-btn { min-height: 24px; display: inline-flex; align-items: center; }
+			.sdc-case sdc-layout-container[layout="pager"] { display: flex; gap: var(--sdc-space-sm); flex-wrap: wrap; justify-content: space-between; align-items: center; }
+			.sdc-case sdc-layout-container[layout="pager"] .sdc-btn--primary { background: var(--sdc-text); color: var(--sdc-bg); border-color: var(--sdc-text); }
+			.sdc-case sdc-layout-container[layout="pager"] .sdc-btn--primary:hover { background: var(--sdc-text); border-color: var(--sdc-text); color: var(--sdc-bg); box-shadow: none; }
+			.sdc-case sdc-button-group .sdc-btn, .sdc-case sdc-layout-container[layout="pager"] .sdc-btn, .sdc-case sdc-layout-container[layout="pager"] .sdc-btn--primary { padding: 0; border: 0; border-radius: 0; background: transparent; color: var(--sdc-text); font-family: var(--sdc-font-body); font-weight: 600; font-size: 15px; letter-spacing: 0; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; transform: none; box-shadow: none; }
+			.sdc-case sdc-button-group .sdc-btn:hover, .sdc-case sdc-layout-container[layout="pager"] .sdc-btn:hover, .sdc-case sdc-layout-container[layout="pager"] .sdc-btn--primary:hover { color: var(--sdc-accent); background: transparent; border: 0; transform: none; box-shadow: none; }
+			.sdc-case .sdc-cs-note { margin: var(--sdc-space-md) 0 0; padding: 0; border: 0; font-family: var(--sdc-font-body); font-weight: 400; font-size: 14px; line-height: 1.6; letter-spacing: 0.04em; color: var(--sdc-text-mute); max-width: 64ch; }
+			.sdc-case sdc-case-block strong { color: var(--sdc-text); font-weight: 600; }
+			.sdc-case .sdc-cs-caption { margin: var(--sdc-space-md) 0 0; color: var(--sdc-text-mute); font-size: 14px; letter-spacing: 0.04em; }
+			.sdc-case .sdc-case-figure__cap { margin: var(--sdc-space-sm) 0 0; color: var(--sdc-text-mute); font-size: 15px; line-height: 1.5; max-width: 62ch; }
+			.sdc-case .sdc-cs-diagram { overflow-x: auto; padding-bottom: var(--sdc-space-xs); }
+			.sdc-case .sdc-cs-diagram__svg { display: block; width: 100%; min-width: 640px; max-width: 960px; height: auto; color: var(--sdc-text); }
+			.sdc-case .sdc-dg-panel rect, .sdc-case .sdc-dg-panel line { fill: none; stroke: currentColor; stroke-width: 1.25; opacity: 0.45; }
+			.sdc-case .sdc-dg-panel line { stroke-width: 6; stroke-linecap: round; opacity: 0.22; }
+			.sdc-case .sdc-dg-accent-fill { fill: var(--sdc-accent); }
+			.sdc-case .sdc-dg-accent-label { fill: var(--sdc-accent-text); font-family: var(--sdc-font-body); font-size: 13px; font-weight: 600; letter-spacing: 0.02em; }
+			.sdc-case .sdc-dg-title { fill: currentColor; font-family: var(--sdc-font-display); font-size: 17px; font-weight: 400; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; letter-spacing: 0.03em; }
+			.sdc-case .sdc-dg-note { fill: var(--sdc-text-mute); font-family: var(--sdc-font-body); font-size: 13.5px; }
+			.sdc-case .sdc-dg-arrow line, .sdc-case .sdc-dg-arrow polyline { fill: none; stroke: currentColor; stroke-width: 1.5; opacity: 0.5; stroke-linecap: round; stroke-linejoin: round; }
+			.sdc-case sdc-layout-container[layout="orbit"] { display: grid; gap: var(--sdc-space-md); }
+			.sdc-case .sdc-cs-orbit__art { margin-top: var(--sdc-space-md); }
+			.sdc-case .sdc-cs-h2 { max-width: 22ch; margin: 0 0 var(--sdc-space-sm); }
+			.sdc-case sdc-case-block .sdc-cs-caption { margin-top: var(--sdc-space-md); color: var(--sdc-text-mute); font-size: 14px; letter-spacing: 0.04em; }
+			.sdc-case .sdc-cs-quote { margin: var(--sdc-space-lg) 0 0; padding: 0; border: 0; font-family: var(--sdc-font-display); font-weight: 400; font-style: normal; font-variation-settings: "wght" 400, "slnt" 0, "ital" 0; font-synthesis: none; font-size: var(--sdc-text-quote); line-height: 1.4; color: var(--sdc-text); max-width: 64ch; }
+			.sdc-case sdc-case-block code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.92em; color: var(--sdc-text); }
 			@media (max-width: 700px) {
-				.case .cs-back { flex-wrap: nowrap; gap: 10px; align-items: stretch; }
-				.case .cs-back .pager { flex: 1 1 0; min-width: 0; height: auto; min-height: 44px; padding: 9px 40px 9px 12px; font-size: 13px; line-height: 1.25; white-space: normal; }
-				.case .cs-back .pager--prev { padding: 9px 12px 9px 40px; }
-				.case .cs-back .pager__cap { width: 32px; }
-				.case .cs-meta { grid-template-columns: 1fr; gap: var(--space-lg); }
-				.case .cs-meta dt { font-size: 13px; letter-spacing: 0.1em; color: var(--text); margin-bottom: 2px; }
-				.case .cs-meta dd { font-size: 17px; }
+				.sdc-case sdc-layout-container[layout="pager"] { flex-wrap: nowrap; gap: 10px; align-items: stretch; }
+				.sdc-case sdc-layout-container[layout="pager"] .sdc-pager { flex: 1 1 0; min-width: 0; height: auto; min-height: 44px; padding: 9px 40px 9px 12px; font-size: 13px; line-height: 1.25; white-space: normal; }
+				.sdc-case sdc-layout-container[layout="pager"] .sdc-pager--prev { padding: 9px 12px 9px 40px; }
+				.sdc-case sdc-layout-container[layout="pager"] .sdc-pager__cap { width: 32px; }
+				.sdc-case .sdc-meta-row { grid-template-columns: 1fr; gap: var(--sdc-space-lg); }
+				.sdc-case .sdc-meta-row dt { font-size: 13px; letter-spacing: 0.1em; color: var(--sdc-text); margin-bottom: 2px; }
+				.sdc-case .sdc-meta-row dd { font-size: 17px; }
 			}
 			@media (max-width: 880px) {
-				.case .cs-figure { max-width: 100%; }
-				.case .cs-hero__title { font-size: var(--text-case-title); }
+				.sdc-case sdc-case-figure { max-width: 100%; }
+				.sdc-case .sdc-case-hero__title { font-size: var(--sdc-text-case-title); }
 				/* The orbit is 680px wide and scaled to half below 880px, so it lands at
 				   340px. Narrower than about 390px the page has less room than that and
 				   the orbit used to push the whole document sideways, which is a reflow
 				   failure. Clip rather than scroll. `clip` does not create a scroll port
 				   the way `hidden` does; `hidden` is the fallback for older Safari. */
-				.case .cs-orbit__art { width: 100%; aspect-ratio: 1 / 1; overflow: hidden; overflow: clip; margin-top: var(--space-md); }
+				.sdc-case .sdc-cs-orbit__art { width: 100%; aspect-ratio: 1 / 1; overflow: hidden; overflow: clip; margin-top: var(--sdc-space-md); }
 			}
 
 			/* An inline link inside prose is underlined. The accent and the body ink
@@ -1013,17 +1170,17 @@ const jsonLd = {
 			   sentence indistinguishable from the sentence. Links that are the whole
 			   content of their row are not affected; there is no surrounding text to
 			   confuse them with. */
-			.case .cs-block p a:not(.btn):not(.pager) {
+			.sdc-case sdc-case-block p a:not(.sdc-btn):not(.sdc-pager) {
 				text-decoration: underline;
 				text-decoration-thickness: 1px;
 				text-underline-offset: 3px;
 			}
-			.case .cs-block p a:not(.btn):not(.pager):hover { color: var(--text); }
+			.sdc-case sdc-case-block p a:not(.sdc-btn):not(.sdc-pager):hover { color: var(--sdc-text); }
 
 			/* Anything opening in a new tab says so. */
-			.cs-body a[target="_blank"]::after,
-			.cs-artifacts a[target="_blank"]::after,
-			.wk-row[target="_blank"] .wk-row__cta::after {
+			sdc-layout-container[layout="prose"] a[target="_blank"]::after,
+			sdc-button-group a[target="_blank"]::after,
+			.sdc-wk-row[target="_blank"] .sdc-wk-row__cta::after {
 				content: "";
 				display: inline-block;
 				width: 0.68em;
@@ -1035,56 +1192,56 @@ const jsonLd = {
 			}
 
 			/* Footer */
-			.site-footer {
-				padding: var(--space-xl) var(--gutter);
-				border-top: 1px solid var(--rule-soft);
-				background: var(--bg);
+			.sdc-site-footer {
+				padding: var(--sdc-space-xl) var(--sdc-gutter);
+				border-top: 1px solid var(--sdc-rule-soft);
+				background: var(--sdc-bg);
 			}
-			.site-footer__inner {
-				max-width: var(--max);
+			.sdc-site-footer__inner {
+				max-width: var(--sdc-max);
 				margin: 0 auto;
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
-				gap: var(--space-md);
+				gap: var(--sdc-space-md);
 				flex-wrap: wrap;
 			}
 			/* min-height carries these to the 24px minimum target size. Both sat at 22. */
-			.brand--footer { font-size: var(--text-body-sm); color: var(--text-mute); font-weight: 500; min-height: 24px; }
-			.brand--footer:hover { color: var(--text); }
-			.site-footer__meta { display: flex; gap: var(--space-md); color: var(--text-mute); font-size: var(--text-body-sm); }
-			.site-footer__meta a { color: var(--text-mute); display: inline-flex; align-items: center; min-height: 24px; }
-			.site-footer__meta a:hover { color: var(--accent); }
+			.sdc-brand--footer { font-size: var(--sdc-text-body-sm); color: var(--sdc-text-mute); font-weight: 500; min-height: 24px; }
+			.sdc-brand--footer:hover { color: var(--sdc-text); }
+			.sdc-site-footer__meta { display: flex; gap: var(--sdc-space-md); color: var(--sdc-text-mute); font-size: var(--sdc-text-body-sm); }
+			.sdc-site-footer__meta a { color: var(--sdc-text-mute); display: inline-flex; align-items: center; min-height: 24px; }
+			.sdc-site-footer__meta a:hover { color: var(--sdc-accent); }
 			@media (max-width: 600px) {
-				.site-footer__inner { flex-direction: column; align-items: flex-start; gap: var(--space-md); }
-				.site-footer__meta { flex-direction: column; align-items: flex-start; gap: 6px; }
+				.sdc-site-footer__inner { flex-direction: column; align-items: flex-start; gap: var(--sdc-space-md); }
+				.sdc-site-footer__meta { flex-direction: column; align-items: flex-start; gap: 6px; }
 			}
 
 			@media (max-width: 880px) {
-				.nav { display: none; }
-				.nav-toggle { display: flex; }
-				.section { padding: var(--space-xl) var(--gutter); }
+				.sdc-nav { display: none; }
+				.sdc-nav-toggle { display: flex; }
+				sdc-section { padding: var(--sdc-space-xl) var(--sdc-gutter); }
 			}
 
 			/* A figure band that sits flush against the band above it. Last in the
-			   sheet on purpose: the responsive .section rules above use the padding
+			   sheet on purpose: the responsive sdc-section rules above use the padding
 			   shorthand, which would otherwise put the top padding back. */
-			.case .section--flush { padding-top: 0; }
+			.sdc-case sdc-section[flush] { padding-top: 0; }
 
 			/* Windows High Contrast Mode. Last in the sheet because these override
 			   painted backgrounds that are declared later than this block used to sit:
-			   .pager__cap set its own background after it, so the cap never became a
+			   .sdc-pager__cap set its own background after it, so the cap never became a
 			   border the way it is documented to. Media queries add no specificity, so
 			   source order is the whole fight. */
 			@media (forced-colors: active) {
 				:focus-visible { outline: 3px solid Highlight; outline-offset: 3px; }
 				/* These are painted with background, which HCM forces. */
-				.nav-toggle__bar { forced-color-adjust: none; background: ButtonText; }
-				.pager { forced-color-adjust: none; background: ButtonFace; color: ButtonText; border: 1px solid ButtonText; }
-				.pager__cap { forced-color-adjust: none; background: transparent; border-left: 1px solid ButtonText; }
-				.pager--prev .pager__cap { border-left: 0; border-right: 1px solid ButtonText; }
+				.sdc-nav-toggle__bar { forced-color-adjust: none; background: ButtonText; }
+				.sdc-pager { forced-color-adjust: none; background: ButtonFace; color: ButtonText; border: 1px solid ButtonText; }
+				.sdc-pager__cap { forced-color-adjust: none; background: transparent; border-left: 1px solid ButtonText; }
+				.sdc-pager--prev .sdc-pager__cap { border-left: 0; border-right: 1px solid ButtonText; }
 				a[target="_blank"]::after { forced-color-adjust: none; background: LinkText; }
-			.skip-link { forced-color-adjust: none; background: ButtonFace; color: ButtonText; border: 1px solid ButtonText; }
+			.sdc-skip-link { forced-color-adjust: none; background: ButtonFace; color: ButtonText; border: 1px solid ButtonText; }
 			}
 		</style>
 	</body>

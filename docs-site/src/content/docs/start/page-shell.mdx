@@ -1,0 +1,114 @@
+---
+title: The page shell
+description: The layout every page uses, what it provides, and a whole case study page built from it.
+sidebar:
+  order: 5
+---
+
+Every page on the site is rendered inside one layout, `src/layouts/Site.astro`.
+It is the thing the component pages assume and never explain, so this page
+explains it.
+
+## What the shell provides
+
+- **The tokens.** Both tiers, both themes, in a global `<style>`: the primitives
+  generated from Figma between `TOKENS:START` and `TOKENS:END`, and the
+  semantic tier written by hand below them. Every `--sdc-*` token on the site
+  is defined here and nowhere else.
+- **The system's styles.** Every `sdc-*` element and class is styled here. A
+  page's own `<style>` is scoped to that page's markup by Astro and does not
+  reach a component's element, which is why a component's rules live here and
+  not on the page that uses it.
+- **The chrome.** The skip link, the site header with the navigation and its
+  mobile takeover, the floating theme toggle, and the site footer. A page never
+  writes these.
+- **The head.** Title, description, canonical URL, the social card, the
+  `sdc-version` meta tag, structured data, and the fonts.
+- **Theme.** The site ships light, follows the operating system on a first
+  visit, and remembers a choice. The toggle and its script are here.
+- **Case study styles**, switched on by `variant="case"`, which puts the
+  `sdc-case` class on `<main>`. Everything under `.sdc-case` in the stylesheet
+  applies only to case study pages and to a case study opened in the home page
+  dialog.
+
+## Props
+
+| Prop | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `title` | string | required | The page title. Becomes the `<title>` with the site name appended. |
+| `description` | string | unset | The meta description and the social card description. |
+| `image` | string | `/og-image.png` | A page-specific social card under `/public`, for example `/og/plate.png`. |
+| `variant` | `'case'` | unset | Turns on the case study styles. Every page under `/work` sets it. |
+
+## A whole case study page
+
+This is the smallest real case study page. Every element is one from the
+component pages, in the order a case study reads: the way back, the title and
+what the work was, then bands that alternate tone, then the numbers, then the
+way forward.
+
+```astro
+---
+import Site from '../../layouts/Site.astro';
+import CaseHero from '../../components/ui/CaseHero.astro';
+import CaseSection from '../../components/ui/CaseSection.astro';
+import CaseBlock from '../../components/ui/CaseBlock.astro';
+import CaseFigure from '../../components/ui/CaseFigure.astro';
+import ButtonGroup from '../../components/ui/ButtonGroup.astro';
+import Button from '../../components/ui/Button.astro';
+import StatList from '../../components/ui/StatList.astro';
+import PagerPair from '../../components/ui/PagerPair.astro';
+---
+<Site title="Plate: a print brand as a platform" description="…" image="/og/plate.png" variant="case">
+	<CaseHero
+		eyebrow="Case study"
+		heading="Plate: Repositioning a Print Brand as a Platform"
+		lede="Plate's website was only a recipe database. The work was to grow it into a platform that carried the whole brand."
+		meta={[{ term: 'Role', value: 'VP, Creative Director' }, { term: 'Org', value: 'MTG Media Group' }]}
+	/>
+
+	<CaseSection figure flush layout={false}>
+		<CaseFigure src="/images/case-studies/plate/plate-scene.webp" alt="Plate's magazine, site and app together" width={1600} height={900} />
+	</CaseSection>
+
+	<CaseSection>
+		<CaseBlock eyebrow="The stage" lede="A whole brand online, reduced to recipes.">
+			<p>…</p>
+		</CaseBlock>
+	</CaseSection>
+
+	<CaseSection tone="alt">
+		<CaseBlock eyebrow="What shipped" lede="A responsive product on its own design system.">
+			<p>…</p>
+			<ButtonGroup>
+				<Button href="/labs/plate/" external>Open the Pattern Lab</Button>
+			</ButtonGroup>
+		</CaseBlock>
+	</CaseSection>
+
+	<CaseSection>
+		<StatList large items={[{ value: '22,000', label: 'registered users' }, { value: '8 weeks', label: 'from zero to launch' }]} />
+	</CaseSection>
+
+	<PagerPair
+		prev={{ href: '/work/paypal', label: 'PayPal', prefix: 'Previous case study: ' }}
+		next={{ href: '/work/blackbird', label: 'Blackbird', prefix: 'Next case study: ' }}
+	/>
+</Site>
+```
+
+What renders: `<main class="sdc-case">` holding `<sdc-case-hero>`, then
+`<sdc-section>` bands, each with an `<sdc-layout-container layout="prose">`
+around its `<sdc-case-block>`, and a last `<sdc-section tone="alt">` holding the
+pager pair. The attribute API of every element is in
+[`custom-elements.json`](/custom-elements.json).
+
+## Checks before you ship
+
+1. `variant="case"` is set on every page under `/work`, or the case study
+   styles do not apply.
+2. The page sets `title` and `description`; the shell has no fallback for them
+   on purpose, so a missing one shows up as a build error rather than a blank
+   social card.
+3. Nothing in the page's own `<style>` targets an `sdc-*` element. It would not
+   reach it, and if it did it would belong in the shell.

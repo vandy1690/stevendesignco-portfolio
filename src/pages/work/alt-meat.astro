@@ -18,7 +18,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 >
 	<CaseHero
 		eyebrow="Case study"
-		title="Alt-Meat: Launching a Brand and Platform in Under 8 Weeks"
+		heading="Alt-Meat: Launching a Brand and Platform in Under 8 Weeks"
 		lede="MTG was entering the alternative protein market and needed a credible brand and publication before the moment passed."
 		meta={[
 			{ term: 'Role', value: 'Creative Director' },
@@ -40,7 +40,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 		</CaseBlock>
 	</CaseSection>
 
-	<CaseSection alt>
+	<CaseSection tone="alt">
 		<CaseBlock eyebrow="What I led" lede="Brand, magazine, enewsletters, and site as one system, in under 8 weeks.">
 			<p>I built the brand identity, the magazine, the enewsletters, and a responsive news site as one system, in under 8 weeks. The visual language tied them together so the new title read as a peer to MTG's other properties.</p>
 		</CaseBlock>
@@ -52,7 +52,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 		</CaseBlock>
 	</CaseSection>
 
-	<CaseSection alt>
+	<CaseSection tone="alt">
 		<CaseBlock eyebrow="What changed" lede="MTG launched a new property on a tight timeline, aimed at a growing audience." />
 		<AwardList
 			items={[
@@ -74,7 +74,7 @@ import PagerPair from '../../components/ui/PagerPair.astro';
 	</CaseSection>
 
 	<PagerPair
-		prev={{ href: '/work/blackbird', label: 'Project Blackbird', hidden: 'Previous case study: ' }}
-		next={{ href: '/work/meatingplace', label: 'Meatingplace', hidden: 'Next case study: ' }}
+		prev={{ href: '/work/blackbird', label: 'Project Blackbird', prefix: 'Previous case study: ' }}
+		next={{ href: '/work/meatingplace', label: 'Meatingplace', prefix: 'Next case study: ' }}
 	/>
 </Site>

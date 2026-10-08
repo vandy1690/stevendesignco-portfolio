@@ -1,6 +1,6 @@
 import { attachDesigns } from './design-links.js';
 
-const chevron = (dir) => `<span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="${dir === 'prev' ? 'M10 3.5 5.5 8l4.5 4.5' : 'm6 3.5 4.5 4.5L6 12.5'}"/></svg></span>`;
+const chevron = (dir) => `<span class="sdc-pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="${dir === 'prev' ? 'M10 3.5 5.5 8l4.5 4.5' : 'm6 3.5 4.5 4.5L6 12.5'}"/></svg></span>`;
 
 export default { title: 'Components' };
 
@@ -9,10 +9,10 @@ export const Buttons = {
   argTypes: { label: { control: 'text' } },
   render: ({ label }) => `
     <p class="sb-note">Two weights only. Both take the 10px control radius, and the secondary
-      border uses <code>--rule-strong</code> so the boundary clears 3 to 1.</p>
+      border uses <code>--sdc-rule-strong</code> so the boundary clears 3 to 1.</p>
     <div class="sb-stack">
-      <a class="btn btn--primary" href="#0">${label}</a>
-      <a class="btn" href="#0">Resume</a>
+      <a class="sdc-btn sdc-btn--primary" href="#0">${label}</a>
+      <a class="sdc-btn" href="#0">Resume</a>
     </div>`,
 };
 
@@ -27,18 +27,18 @@ export const Pager = {
       arrow carries direction, and hidden text states both, so the link makes sense read on its own
       without a label overriding what is on screen. On phones two pagers share one row and wrap their own labels.</p>
     <div class="sb-stack">
-      <a class="pager ${direction === 'prev' ? 'pager--prev' : ''}" href="#0">
-        ${direction === 'prev' ? chevron('prev') : ''}<span class="sr-only">${direction === 'prev' ? 'Previous' : 'Next'} case study: </span>${label}${direction === 'next' ? chevron('next') : ''}
+      <a class="sdc-pager ${direction === 'prev' ? 'sdc-pager--prev' : ''}" href="#0">
+        ${direction === 'prev' ? chevron('prev') : ''}<span class="sdc-u-sr-only">${direction === 'prev' ? 'Previous' : 'Next'} case study: </span>${label}${direction === 'next' ? chevron('next') : ''}
       </a>
     </div>`,
 };
 
 export const PagerPair = () => `
   <p class="sb-note">How the pair sits at the foot of every case study.</p>
-  <div class="cs-back" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between;align-items:center;max-width:800px">
-    <a class="pager pager--prev" href="#0">${chevron('prev')}<span class="sr-only">Back to </span>All case studies</a>
-    <a class="pager" href="#0"><span class="sr-only">Next case study: </span>Plate${chevron('next')}</a>
-  </div>`;
+  <sdc-layout-container layout="pager" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between;align-items:center;max-width:800px">
+    <a class="sdc-pager sdc-pager--prev" href="#0">${chevron('prev')}<span class="sdc-u-sr-only">Back to </span>All case studies</a>
+    <a class="sdc-pager" href="#0"><span class="sdc-u-sr-only">Next case study: </span>Plate${chevron('next')}</a>
+  </sdc-layout-container>`;
 PagerPair.storyName = 'Pager pair';
 
 export const CaseCard = {
@@ -67,18 +67,18 @@ export const CaseCard = {
       a stretched ::after covers the card, so the whole card clicks while its accessible name is
       exactly the visible headline rather than a hand-written label.</p>
     <div style="max-width:760px">
-      <div class="card" style="display:flex;flex-direction:column">
-        <div class="card__art card__art--image"><img src="${image}" alt="" /></div>
-        <div class="card__body">
-          <h3 class="card__head"><a class="card__link" href="#0">${head}</a></h3>
-          <p class="card__text">${text}</p>
-          <dl class="card__meta">
+      <sdc-card style="display:flex;flex-direction:column">
+        <div class="sdc-card__art sdc-card__art--image"><img src="${image}" alt="" /></div>
+        <div class="sdc-card__body">
+          <h3 class="sdc-card__head"><a class="sdc-card__link" href="#0">${head}</a></h3>
+          <p class="sdc-card__text">${text}</p>
+          <dl class="sdc-card__meta">
             <div><dt>Product</dt><dd>${product}</dd></div>
             <div><dt>Objective</dt><dd>${objective}</dd></div>
           </dl>
-          <span class="card__cta">Read case study <span class="arrow" aria-hidden="true">→</span></span>
+          <span class="sdc-card__cta">Read case study <span class="arrow" aria-hidden="true">→</span></span>
         </div>
-      </div>
+      </sdc-card>
     </div>`,
 };
 CaseCard.storyName = 'Case study card';
@@ -93,9 +93,9 @@ export const Recommendation = {
     <p class="sb-note">One verbatim sentence from a LinkedIn recommendation. Titles only, never
       names. Twelve of these run in the scroll-driven fan under "On the record."</p>
     <div style="width:440px;max-width:100%">
-      <figure class="quote" style="height:330px;display:flex;flex-direction:column;justify-content:center;background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow-card);padding:34px 30px;margin:0;text-align:center">
-        <blockquote class="quote__text" style="margin:0"><p>${quote}</p></blockquote>
-        <figcaption class="quote__title" style="margin-top:18px">${title}</figcaption>
+      <figure class="sdc-quote" style="height:330px;display:flex;flex-direction:column;justify-content:center;background:var(--sdc-surface);border-radius:var(--sdc-radius);box-shadow:var(--sdc-shadow-card);padding:34px 30px;margin:0;text-align:center">
+        <blockquote class="sdc-quote__text" style="margin:0"><p>${quote}</p></blockquote>
+        <figcaption class="sdc-quote__title" style="margin-top:18px">${title}</figcaption>
       </figure>
     </div>`,
 };
@@ -104,7 +104,7 @@ export const MetaRow = () => `
   <p class="sb-note">Key and value, with a pipe between them. The pipe is a CSS pseudo-element with
     empty alt text, so assistive tech never announces it, and it is suppressed on phones where the
     label stacks above the value.</p>
-  <dl class="card__meta" style="max-width:640px">
+  <dl class="sdc-card__meta" style="max-width:640px">
     <div><dt>Product</dt><dd>One-click checkout, PayPal</dd></div>
     <div><dt>Objective</dt><dd>One tap in each merchant's own checkout</dd></div>
   </dl>`;
@@ -113,10 +113,10 @@ MetaRow.storyName = 'Meta row';
 export const RowList = () => `
   <p class="sb-note">The shared treatment for How I work and Recognition. A 220px key column, a rule
     under each row, and nothing else.</p>
-  <ul class="how__list" style="max-width:800px">
-    <li><p class="how__tool">Figma</p><p>Design, prototyping, and the component libraries behind the case studies.</p></li>
-    <li><p class="how__tool">Claude Code and Cursor</p><p>Building and extending what the design needs, including the plugin.</p></li>
-    <li><p class="how__tool">Storybook</p><p>Component documentation with interactive controls on the core atoms.</p></li>
+  <ul class="sdc-how__list" style="max-width:800px">
+    <li><p class="sdc-how__tool">Figma</p><p>Design, prototyping, and the component libraries behind the case studies.</p></li>
+    <li><p class="sdc-how__tool">Claude Code and Cursor</p><p>Building and extending what the design needs, including the plugin.</p></li>
+    <li><p class="sdc-how__tool">Storybook</p><p>Component documentation with interactive controls on the core atoms.</p></li>
   </ul>`;
 RowList.storyName = 'Row list';
 
@@ -124,20 +124,20 @@ export const CaseBlock = () => `
   <p class="sb-note">One organism: a kicker, the section heading, and its body. They sit on line
     height alone with no margins between them, so the three read as a single unit. The heading is a
     real h2, styled to look like the paragraph it used to be.</p>
-  <div class="cs-body" style="display:grid;gap:48px;max-width:800px">
-    <div class="cs-block">
-      <p class="eyebrow">What was unclear</p>
-      <h2 class="cs-block__lede">A whole brand online, reduced to recipes.</h2>
+  <sdc-layout-container layout="prose" style="display:grid;gap:48px;max-width:800px">
+    <sdc-case-block>
+      <p class="sdc-eyebrow">What was unclear</p>
+      <h2 class="sdc-case-block__lede">A whole brand online, reduced to recipes.</h2>
       <p>Plate's website was only a recipe database. The brand also had magazine content, daily news, and blogs, but none of it lived online in a usable structure.</p>
-    </div>
-  </div>`;
+    </sdc-case-block>
+  </sdc-layout-container>`;
 CaseBlock.storyName = 'Case study block';
 
 export const SkipLink = () => `
   <p class="sb-note">First focusable element on every page, offscreen until focused. Tab into the
     frame to bring it in.</p>
   <div style="position:relative;height:90px">
-    <a class="skip-link" href="#0" style="position:absolute;top:12px;left:0">Skip to content</a>
+    <a class="sdc-skip-link" href="#0" style="position:absolute;top:12px;left:0">Skip to content</a>
   </div>`;
 SkipLink.storyName = 'Skip link';
 

@@ -1,0 +1,88 @@
+---
+title: Naming
+description: The one convention every name in the system follows, and the check that enforces it.
+sidebar:
+  order: 4
+---
+
+Every name the system owns carries the `sdc-` namespace. A name without it is
+not the system's. That is the whole convention; the rest of this page is how it
+applies to each kind of name, and the check that fails a pull request when a
+name breaks it.
+
+## Elements
+
+A container the system owns is a custom element in the light DOM:
+`<sdc-section>`, `<sdc-layout-container>`, `<sdc-case-hero>`, `<sdc-case-block>`,
+`<sdc-case-figure>`, `<sdc-button-group>`, `<sdc-card>`, `<sdc-text-passage>`.
+No shadow root and no JavaScript: the element exists because the tag name has a
+hyphen, and the global stylesheet styles it by tag and attribute. Every element
+renders inline until its rule says `display: block`, so that is the first
+declaration in each one.
+
+Variants are attributes, not modifier classes: `<sdc-section tone="alt">`,
+`<sdc-layout-container layout="pager" width="narrow">`. An attribute name says
+what the value does (`tone`, `layout`, `width`), never what it looks like.
+
+A custom element has no role of its own, so it never replaces an element that
+carries one. Lists stay `<ul>` and `<dl>`, a pulled quote stays `<blockquote>`,
+a pager stays `<a>`, navigation stays `<nav>`, and the page's main content stays
+`<main>`. Those keep their native element with an `sdc-` class. A band that
+should be a landmark passes `labelledby`, and the element adds `role="region"`
+itself.
+
+The full attribute API of every element is generated from the components into
+[`custom-elements.json`](/custom-elements.json), the standard manifest format,
+so a tool or an agent can read it without opening the source.
+
+## Classes
+
+Classes follow block, element and modifier: `sdc-card`, `sdc-card__link`,
+`sdc-btn--primary`. A utility class takes `sdc-u-`: `sdc-u-sr-only`,
+`sdc-u-no-ring`.
+
+Three kinds of class carry no prefix, on purpose:
+
+- **State**, set by script and read by style: `is-open`, `is-in`, `nav-open`,
+  `modal-open`, `js`, `lenis`.
+- **Page-local layout**, defined in one page's own style block and used nowhere
+  else: `rs-job` on the resume, `wk-note` on the work index, `awards` on the home
+  page.
+- **An illustration's internals**: `jm`, `occ`, `pp-*`, `ls-*`. Those belong to
+  one piece of art, not to the system.
+
+The test for whether a class is the system's: is it defined in the global
+stylesheet in `src/layouts/Site.astro`? If so, it is prefixed. If it is defined
+in a page or a component's own `<style>`, it is not.
+
+## Tokens
+
+Every custom property the system defines starts with `--sdc-`: `--sdc-accent`,
+`--sdc-space-md`, `--sdc-shadow-card`. Figma keeps the plain names; the token
+build adds the prefix when it generates the primitives. A variable private to one
+component (`--pp-size` in the PayPal hero, `--content` on the home page) carries
+no prefix, which is how a reader tells the two apart.
+
+## Props
+
+A component prop never reuses the name of an HTML global attribute. `hidden` on
+the Pager was renamed `prefix` for this reason: it was screen-reader text, and
+the name said the opposite. `alt` on a section was renamed `tone`, because `alt`
+means image alt text everywhere else. The two deliberate pass-throughs are
+`class` and `id`.
+
+The same concept carries the same name in Figma, in code and in these docs. Where
+they differ today, the docs name wins and the other two move to it.
+
+## The check
+
+`npm run check:names` runs `scripts/check-names.mjs`. It fails when:
+
+1. an `<sdc-*>` tag is used that no component declares, or the manifest is stale;
+2. a class the global stylesheet defines appears anywhere without its prefix;
+3. a custom property in the global stylesheet lacks `--sdc-`;
+4. a component prop reuses an HTML global attribute name.
+
+It runs in `npm run ship` and in CI on every pull request, next to the token
+check and the never-say check. The manifest is rebuilt with
+`npm run build:manifest` and checked for drift by `npm run manifest:check`.

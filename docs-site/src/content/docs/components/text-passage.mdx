@@ -1,0 +1,43 @@
+---
+title: Text passage
+description: A run of reading prose outside a case study.
+sidebar:
+  order: 19
+---
+
+<dl class="sdc-hww">
+	<div><dt>How</dt><dd>An <code>&lt;sdc-text-passage&gt;</code> holding plain
+	<code>p</code> elements. It sets the measure and the paragraph rhythm and
+	nothing else: no heading, no label, no color of its own.</dd></div>
+	<div><dt>When</dt><dd>For prose that is not part of a case study, where the
+	<a href="/docs/components/case-study-block/">Case block</a> would bring a
+	label and a claim the passage does not need.</dd></div>
+	<div><dt>Where</dt><dd>The About band on the home page. Inside a case study,
+	prose goes in a Case block instead.</dd></div>
+</dl>
+
+## In code
+
+`src/components/ui/TextPassage.astro`, rendering `<sdc-text-passage>`.
+
+```astro
+---
+import TextPassage from '../components/ui/TextPassage.astro';
+---
+<TextPassage width="narrow" reveal="block">
+	<p>Twenty years in product design, the last three in payments.</p>
+	<p>Before that, publishing, where the design systems started.</p>
+</TextPassage>
+```
+
+| Prop | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `width` | `'narrow'` | unset | A 62-character measure, for a single column of reading. Without it the passage takes the system's narrow page width. |
+| `reveal` | `'block'` | unset | Fades and lifts the passage as one when it scrolls into view. Off by default, and always off under reduced motion. |
+| `class` | string | unset | Extra classes, for the page that positions it. |
+
+## Rules
+
+- Plain paragraphs only. A heading or a label means it is a Case block.
+- One passage per band. Two in a row read as one long passage.
+- Set the measure with `width`, not with a class from the page: a page's own styles do not reach a component's element.
