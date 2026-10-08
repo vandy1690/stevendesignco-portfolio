@@ -56,9 +56,9 @@ export const Typography = () => `
     nothing. Body is Inter, 400 through 900.</p>
   <div class="sb-col">
     <div><p class="sb-label">Display 1 · clamp(48px, 8vw, 96px)</p>
-      <div class="display" style="font-size:var(--sdc-text-display-1);line-height:.95">Case studies</div></div>
+      <div class="sdc-display" style="font-size:var(--sdc-text-display-1);line-height:.95">Case studies</div></div>
     <div><p class="sb-label">Display 2 · clamp(32px, 4.8vw, 48px)</p>
-      <div class="display" style="font-size:var(--sdc-text-display-2);line-height:1">Nobody asked for this one.</div></div>
+      <div class="sdc-display" style="font-size:var(--sdc-text-display-2);line-height:1">Nobody asked for this one.</div></div>
     <div><p class="sb-label">Heading · clamp(24px, 3.2vw, 32px)</p>
       <div style="font-size:var(--sdc-text-heading);font-weight:600;letter-spacing:-.015em;line-height:1.25">One shared framework, seven brands.</div></div>
     <div><p class="sb-label">Deck · clamp(18px, 1.9vw, 24px)</p>
@@ -105,9 +105,9 @@ export const Focus = () => `
     It measures 10.6 to 1 against the page in light and 19.7 to 1 in dark, both far past the
     3 to 1 minimum for a focus indicator.</p>
   <div class="sb-stack">
-    <a class="btn btn--primary" href="#0">Primary button</a>
-    <a class="btn" href="#0">Secondary button</a>
-    <a class="pager" href="#0">Pager<span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 3.5 4.5 4.5L6 12.5"/></svg></span></a>
+    <a class="sdc-btn sdc-btn--primary" href="#0">Primary button</a>
+    <a class="sdc-btn" href="#0">Secondary button</a>
+    <a class="sdc-pager" href="#0">Pager<span class="sdc-pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 3.5 4.5 4.5L6 12.5"/></svg></span></a>
     <a href="#0" style="font-weight:600">A text link</a>
   </div>`;
 

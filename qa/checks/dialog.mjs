@@ -23,16 +23,16 @@ export default async function dialog(browser, base) {
 				continue;
 			}
 			const r = await page.evaluate(() => {
-				const content = document.querySelector('.modal__content');
-				const meta = content.querySelector('.cs-meta');
-				const hero = content.querySelector('.cs-hero');
+				const content = document.querySelector('.sdc-modal__content');
+				const meta = content.querySelector('.sdc-cs-meta');
+				const hero = content.querySelector('.sdc-cs-hero');
 				return {
-					scoped: content.classList.contains('case'),
+					scoped: content.classList.contains('sdc-case'),
 					metaDisplay: meta ? getComputedStyle(meta).display : null,
 					heroPadding: hero ? getComputedStyle(hero).paddingTop : null,
 				};
 			});
-			if (!r.scoped) findings.push(finding(`${href} @${width}`, '.modal__content lost the case scope'));
+			if (!r.scoped) findings.push(finding(`${href} @${width}`, '.sdc-modal__content lost the case scope'));
 			if (r.metaDisplay && r.metaDisplay !== 'grid')
 				findings.push(finding(`${href} @${width}`, `meta row is ${r.metaDisplay}, not grid — the case styles are not reaching the dialog`));
 			if (r.heroPadding === '0px')
@@ -44,7 +44,7 @@ export default async function dialog(browser, base) {
 	// Keyboard.
 	const page = await open(browser, base + '/');
 	const href = DIALOG_CASES[0];
-	const link = await page.$(`a.card__link[href="${href}"]`);
+	const link = await page.$(`a.sdc-card__link[href="${href}"]`);
 	if (!link) {
 		findings.push(finding('keyboard', `no card for ${href}`));
 	} else {

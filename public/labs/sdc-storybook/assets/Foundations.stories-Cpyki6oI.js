@@ -10,11 +10,11 @@ const L={title:"Foundations"},E=`
     return 0.2126*s[0] + 0.7152*s[1] + 0.0722*s[2]; };
   const ratio = (fg, bg) => { const L1 = lum(flatten(fg, bg)), L2 = lum(toRgb(bg).slice(0,3));
     const a = Math.max(L1, L2), b = Math.min(L1, L2); return (a + 0.05) / (b + 0.05); };
-`,r=()=>{const e=document.createElement("div");return e.innerHTML=`
+`,r=()=>{const s=document.createElement("div");return s.innerHTML=`
     <p class="sb-note">Light is the shipped default; dark is the alternate. Ratios are against
       the page ground and the card surface. AA needs 4.5 for body text and 3 for large text
       and control boundaries.</p>
-    <div class="sb-grid"></div>`,requestAnimationFrame(()=>{const s=document.createElement("script");s.textContent=`{ ${E}
+    <div class="sb-grid"></div>`,requestAnimationFrame(()=>{const e=document.createElement("script");e.textContent=`{ ${E}
       /* Borders and dividers are non-text contrast: the bar is 3, not 4.5. */
       const TOKENS = [['--sdc-bg',0],['--sdc-surface',0],['--sdc-surface-2',0],['--sdc-text',4.5],['--sdc-text-mute',4.5],
                       ['--sdc-accent',4.5],['--sdc-accent-hover',4.5],['--sdc-accent-text',0],
@@ -30,15 +30,15 @@ const L={title:"Foundations"},E=`
         return '<div class="sb-swatch"><div class="sb-swatch__chip" style="background:' + v + '"></div>' +
           '<div class="sb-swatch__meta"><div class="sb-swatch__name">' + t + '</div>' +
           '<div class="sb-swatch__val">' + v + '</div>' + line + '</div></div>';
-      }).join(''); }`,e.appendChild(s)}),e},d=()=>`
+      }).join(''); }`,s.appendChild(e)}),s},d=()=>`
   <p class="sb-note">Display is Nickel Gothic Variable from Typekit. Its axes are width 25 to 150
     and slant −15 to 15. There is no weight axis, so a weight setting on the display face does
     nothing. Body is Inter, 400 through 900.</p>
   <div class="sb-col">
     <div><p class="sb-label">Display 1 · clamp(48px, 8vw, 96px)</p>
-      <div class="display" style="font-size:var(--sdc-text-display-1);line-height:.95">Case studies</div></div>
+      <div class="sdc-display" style="font-size:var(--sdc-text-display-1);line-height:.95">Case studies</div></div>
     <div><p class="sb-label">Display 2 · clamp(32px, 4.8vw, 48px)</p>
-      <div class="display" style="font-size:var(--sdc-text-display-2);line-height:1">Nobody asked for this one.</div></div>
+      <div class="sdc-display" style="font-size:var(--sdc-text-display-2);line-height:1">Nobody asked for this one.</div></div>
     <div><p class="sb-label">Heading · clamp(24px, 3.2vw, 32px)</p>
       <div style="font-size:var(--sdc-text-heading);font-weight:600;letter-spacing:-.015em;line-height:1.25">One shared framework, seven brands.</div></div>
     <div><p class="sb-label">Deck · clamp(18px, 1.9vw, 24px)</p>
@@ -49,14 +49,14 @@ const L={title:"Foundations"},E=`
       <div style="font-size:var(--sdc-text-label);letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--sdc-text-mute)">Product</div></div>
   </div>`,a=()=>`<p class="sb-note">The named widths on the <code>wdth</code> axis. Headlines on the site sit
     around 62, between Condensed and Narrow.</p>
-    <div class="sb-col">${[["Compressed",25],["Extra Condensed",38],["Condensed",50],["Narrow",75],["Regular",100],["Semi Wide",125],["Wide",150]].map(([t,s])=>`
+    <div class="sb-col">${[["Compressed",25],["Extra Condensed",38],["Condensed",50],["Narrow",75],["Regular",100],["Semi Wide",125],["Wide",150]].map(([t,e])=>`
       <div class="sb-row">
-        <div class="sb-row__k">${t} · ${s}</div>
-        <div style="font-family:var(--sdc-font-display);font-variation-settings:'wdth' ${s},'slnt' 0;font-synthesis:none;font-size:34px;line-height:1.1">Becoming the default</div>
+        <div class="sb-row__k">${t} · ${e}</div>
+        <div style="font-family:var(--sdc-font-display);font-variation-settings:'wdth' ${e},'slnt' 0;font-synthesis:none;font-size:34px;line-height:1.1">Becoming the default</div>
       </div>`).join("")}</div>`;a.storyName="Display widths";const o=()=>`<p class="sb-note">One scale for every gap, margin and section rhythm.</p>
-    <div class="sb-col">${[["xs",8],["sm",16],["md",24],["lg",32],["xl",48],["2xl",64],["3xl",96],["4xl",128],["5xl",160]].map(([t,s])=>`
-      <div class="sb-row"><div class="sb-row__k">--space-${t} · ${s}px</div>
-      <div class="sb-bar" style="width:${s}px"></div></div>`).join("")}</div>`,n=()=>`
+    <div class="sb-col">${[["xs",8],["sm",16],["md",24],["lg",32],["xl",48],["2xl",64],["3xl",96],["4xl",128],["5xl",160]].map(([t,e])=>`
+      <div class="sb-row"><div class="sb-row__k">--space-${t} · ${e}px</div>
+      <div class="sb-bar" style="width:${e}px"></div></div>`).join("")}</div>`,n=()=>`
   <p class="sb-note">Cards carry a four-stop shadow and deepen on hover. Radius is 18px for cards
     and 10px for controls.</p>
   <div class="sb-stack" style="gap:28px">
@@ -70,19 +70,19 @@ const L={title:"Foundations"},E=`
     It measures 10.6 to 1 against the page in light and 19.7 to 1 in dark, both far past the
     3 to 1 minimum for a focus indicator.</p>
   <div class="sb-stack">
-    <a class="btn btn--primary" href="#0">Primary button</a>
-    <a class="btn" href="#0">Secondary button</a>
-    <a class="pager" href="#0">Pager<span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 3.5 4.5 4.5L6 12.5"/></svg></span></a>
+    <a class="sdc-btn sdc-btn--primary" href="#0">Primary button</a>
+    <a class="sdc-btn" href="#0">Secondary button</a>
+    <a class="sdc-pager" href="#0">Pager<span class="sdc-pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 3.5 4.5 4.5L6 12.5"/></svg></span></a>
     <a href="#0" style="font-weight:600">A text link</a>
   </div>`,c=()=>`
   <p class="sb-note">The page ground is a one pixel dot on a twenty pixel grid, drawn as a single
     background image on the body. No overlay element and no extra request. Turn it up or down
     with <code>--sdc-texture-dot</code>.</p>
   <div class="sb-stack" style="gap:24px">
-    ${[["0.04","subtle"],["0.10","shipped"],["0.20","loud"]].map(([e,t])=>`
+    ${[["0.04","subtle"],["0.10","shipped"],["0.20","loud"]].map(([s,t])=>`
       <div style="width:220px">
-        <div style="height:120px;border-radius:12px;border:1px solid var(--sdc-rule);background-color:var(--sdc-bg);background-image:radial-gradient(circle at 1px 1px, rgba(45,52,54,${e}) 1px, transparent 0);background-size:20px 20px"></div>
-        <p class="sb-label" style="margin-top:8px">${t} · ${e}</p>
+        <div style="height:120px;border-radius:12px;border:1px solid var(--sdc-rule);background-color:var(--sdc-bg);background-image:radial-gradient(circle at 1px 1px, rgba(45,52,54,${s}) 1px, transparent 0);background-size:20px 20px"></div>
+        <p class="sb-label" style="margin-top:8px">${t} · ${s}</p>
       </div>`).join("")}
   </div>`;var l,p,v;r.parameters={...r.parameters,docs:{...(l=r.parameters)==null?void 0:l.docs,source:{originalSource:`() => {
   const el = document.createElement('div');
@@ -122,9 +122,9 @@ const L={title:"Foundations"},E=`
     nothing. Body is Inter, 400 through 900.</p>
   <div class="sb-col">
     <div><p class="sb-label">Display 1 · clamp(48px, 8vw, 96px)</p>
-      <div class="display" style="font-size:var(--sdc-text-display-1);line-height:.95">Case studies</div></div>
+      <div class="sdc-display" style="font-size:var(--sdc-text-display-1);line-height:.95">Case studies</div></div>
     <div><p class="sb-label">Display 2 · clamp(32px, 4.8vw, 48px)</p>
-      <div class="display" style="font-size:var(--sdc-text-display-2);line-height:1">Nobody asked for this one.</div></div>
+      <div class="sdc-display" style="font-size:var(--sdc-text-display-2);line-height:1">Nobody asked for this one.</div></div>
     <div><p class="sb-label">Heading · clamp(24px, 3.2vw, 32px)</p>
       <div style="font-size:var(--sdc-text-heading);font-weight:600;letter-spacing:-.015em;line-height:1.25">One shared framework, seven brands.</div></div>
     <div><p class="sb-label">Deck · clamp(18px, 1.9vw, 24px)</p>
@@ -162,9 +162,9 @@ const L={title:"Foundations"},E=`
     It measures 10.6 to 1 against the page in light and 19.7 to 1 in dark, both far past the
     3 to 1 minimum for a focus indicator.</p>
   <div class="sb-stack">
-    <a class="btn btn--primary" href="#0">Primary button</a>
-    <a class="btn" href="#0">Secondary button</a>
-    <a class="pager" href="#0">Pager<span class="pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 3.5 4.5 4.5L6 12.5"/></svg></span></a>
+    <a class="sdc-btn sdc-btn--primary" href="#0">Primary button</a>
+    <a class="sdc-btn" href="#0">Secondary button</a>
+    <a class="sdc-pager" href="#0">Pager<span class="sdc-pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 3.5 4.5 4.5L6 12.5"/></svg></span></a>
     <a href="#0" style="font-weight:600">A text link</a>
   </div>\``,...($=(z=i.parameters)==null?void 0:z.docs)==null?void 0:$.source}}};var B,C,N;c.parameters={...c.parameters,docs:{...(B=c.parameters)==null?void 0:B.docs,source:{originalSource:`() => \`
   <p class="sb-note">The page ground is a one pixel dot on a twenty pixel grid, drawn as a single

@@ -11,7 +11,7 @@ the CSS the site ships, so it cannot drift. See
 
 ## Versions
 
-SDC is versioned major.minor.patch, two digits each (`01.00.01`). The number
+SDC follows semantic versioning, major.minor.patch, two digits each (`02.00.00`). A rename of any token or class is a major version. The number
 lives in `src/styles/tokens/sdc-version.json`; the rules and the log are on the
 docs site at `/docs/start/releases/`. Bump it in the same pull request as the
 change.
@@ -130,23 +130,23 @@ All global, in `Site.astro`.
 
 | Class | What it is |
 |-------|------------|
-| `.display` | Nickel Gothic, upright, tight line height. Add it to a heading |
-| `.eyebrow` | The small uppercase label above a heading |
-| `.btn`, `.btn--primary` | Two button weights only. 10px radius. The secondary border uses `--sdc-rule-strong` |
-| `.pager`, `.pager--prev`, `.pager__cap` | The solid next and previous button with a chevron end cap |
-| `.cta-row` | The row of links in the hero and contact. Stacks and drops its separators when it wraps |
-| `.flip`, `.flip__row`, `.flip__char` | The letter flip on hover for menu and CTA links. Built by script |
-| `.skip-link` | Skip to content. Off screen until focused |
-| `.sr-only` | Text for assistive tech only |
-| `.site-header`, `.nav`, `.nav-mobile`, `.nav-toggle` | Header and both navs |
-| `.site-footer` | Footer |
-| `.section`, `.section--alt`, `.section__inner` | Page bands and their content width |
-| `.theme-img--light`, `.theme-img--dark` | Swap an image by theme |
+| `.sdc-display` | Nickel Gothic, upright, tight line height. Add it to a heading |
+| `.sdc-eyebrow` | The small uppercase label above a heading |
+| `.sdc-btn`, `.sdc-btn--primary` | Two button weights only. 10px radius. The secondary border uses `--sdc-rule-strong` |
+| `.sdc-pager`, `.sdc-pager--prev`, `.sdc-pager__cap` | The solid next and previous button with a chevron end cap |
+| `.sdc-cta-row` | The row of links in the hero and contact. Stacks and drops its separators when it wraps |
+| `.sdc-flip`, `.sdc-flip__row`, `.sdc-flip__char` | The letter flip on hover for menu and CTA links. Built by script |
+| `.sdc-skip-link` | Skip to content. Off screen until focused |
+| `.sdc-u-sr-only` | Text for assistive tech only |
+| `.sdc-site-header`, `.sdc-nav`, `.sdc-nav-mobile`, `.sdc-nav-toggle` | Header and both navs |
+| `.sdc-site-footer` | Footer |
+| `.sdc-section`, `.sdc-section--alt`, `.sdc-section__inner` | Page bands and their content width |
+| `.sdc-theme-img--light`, `.sdc-theme-img--dark` | Swap an image by theme |
 | `[data-animate="fade"]` | Fade in on scroll. Only hidden when `html.js` is present |
 
-The case study classes (`cs-hero`, `cs-meta`, `cs-block`, `cs-figure`,
-`cs-body`) are defined once in `src/layouts/Site.astro`, scoped under `.case`.
-A page turns them on by passing `variant="case"` to the layout, which puts `.case`
+The case study classes (`sdc-cs-hero`, `sdc-cs-meta`, `sdc-cs-block`, `sdc-cs-figure`,
+`sdc-cs-body`) are defined once in `src/layouts/Site.astro`, scoped under `.sdc-case`.
+A page turns them on by passing `variant="case"` to the layout, which puts `.sdc-case`
 on `<main>`. They used to be defined per page; they are not any more, so a case
 study page carries no CSS of its own. See
 [ARCHITECTURE.md](ARCHITECTURE.md#case-study-pages).

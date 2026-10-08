@@ -12,6 +12,6 @@ interface Props {
 const { items } = Astro.props;
 ---
 
-<ul class="cs-awards">
-	{items.map((i) => <li><span class="cs-awards__mark">★</span><span set:html={i} /></li>)}
+<ul class="sdc-cs-awards">
+	{items.map((i) => <li><span class="sdc-cs-awards__mark">★</span><span set:html={i} /></li>)}
 </ul>

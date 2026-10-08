@@ -16,11 +16,11 @@ export default async function forcedColors(browser, base) {
 	const r = await page.evaluate(() => {
 		if (!matchMedia('(forced-colors: active)').matches) return { unsupported: true };
 		const out = [];
-		document.querySelectorAll('.pager').forEach((pager) => {
-			const cap = pager.querySelector('.pager__cap');
+		document.querySelectorAll('.sdc-pager').forEach((pager) => {
+			const cap = pager.querySelector('.sdc-pager__cap');
 			if (!cap) return;
 			const c = getComputedStyle(cap);
-			const prev = pager.classList.contains('pager--prev');
+			const prev = pager.classList.contains('sdc-pager--prev');
 			const side = prev ? c.borderRightWidth : c.borderLeftWidth;
 			out.push({
 				which: prev ? 'prev' : 'next',

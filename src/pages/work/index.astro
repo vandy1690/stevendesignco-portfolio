@@ -29,24 +29,24 @@ const labs = [
 	image="/og/work.png"
 >
 	<section class="wk-hero">
-		<div class="section__inner">
-			<p class="eyebrow">Work</p>
-			<h1 class="wk-title display">All of it.</h1>
+		<div class="sdc-section__inner">
+			<p class="sdc-eyebrow">Work</p>
+			<h1 class="wk-title sdc-display">All of it.</h1>
 			<p class="wk-lede">Six case studies carry the home page. The rest of the record is here, with the libraries you can open.</p>
 		</div>
 	</section>
 
-	<section class="section">
-		<div class="section__inner">
-			<p class="eyebrow">Case studies</p>
+	<section class="sdc-section">
+		<div class="sdc-section__inner">
+			<p class="sdc-eyebrow">Case studies</p>
 			<ul class="wk-list">
 				{[...featured, ...more].map((w) => (
 					<li>
-						<a class="wk-row" href={w.href}>
-							<span class="wk-row__meta">{w.meta}</span>
-							<span class="wk-row__title display">{w.title}</span>
-							<span class="wk-row__note">{w.note}</span>
-							<span class="wk-row__cta">Read <span class="arrow" aria-hidden="true">→</span></span>
+						<a class="sdc-wk-row" href={w.href}>
+							<span class="sdc-wk-row__meta">{w.meta}</span>
+							<span class="sdc-wk-row__title sdc-display">{w.title}</span>
+							<span class="sdc-wk-row__note">{w.note}</span>
+							<span class="sdc-wk-row__cta">Read <span class="arrow" aria-hidden="true">→</span></span>
 						</a>
 					</li>
 				))}
@@ -54,16 +54,16 @@ const labs = [
 		</div>
 	</section>
 
-	<section class="section">
-		<div class="section__inner">
-			<p class="eyebrow">Labs and libraries</p>
+	<section class="sdc-section">
+		<div class="sdc-section__inner">
+			<p class="sdc-eyebrow">Labs and libraries</p>
 			<ul class="wk-list wk-list--labs">
 				{labs.map((w) => (
 					<li>
-						<a class="wk-row" href={w.href} target={w.href.startsWith('/labs') ? '_blank' : undefined} rel={w.href.startsWith('/labs') ? 'noopener' : undefined}>
-							<span class="wk-row__title display">{w.title}</span>
-							<span class="wk-row__note">{w.note}</span>
-							<span class="wk-row__cta">Open <span class="arrow" aria-hidden="true">→</span></span>{w.href.startsWith('/labs') && <span class="sr-only"> (opens in a new tab)</span>}
+						<a class="sdc-wk-row" href={w.href} target={w.href.startsWith('/labs') ? '_blank' : undefined} rel={w.href.startsWith('/labs') ? 'noopener' : undefined}>
+							<span class="sdc-wk-row__title sdc-display">{w.title}</span>
+							<span class="sdc-wk-row__note">{w.note}</span>
+							<span class="sdc-wk-row__cta">Open <span class="arrow" aria-hidden="true">→</span></span>{w.href.startsWith('/labs') && <span class="sdc-u-sr-only"> (opens in a new tab)</span>}
 						</a>
 					</li>
 				))}
@@ -78,7 +78,7 @@ const labs = [
 	.wk-title { font-size: clamp(48px, 8vw, 96px); margin: 0 0 var(--sdc-space-md); }
 	.wk-lede { font-size: var(--sdc-text-deck); max-width: 48ch; margin: 0; color: var(--sdc-text); text-wrap: pretty; }
 	.wk-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--sdc-rule); }
-	.wk-row {
+	.sdc-wk-row {
 		display: grid;
 		grid-template-columns: 240px minmax(0, 1fr) auto;
 		grid-template-areas: "meta title cta" "meta note cta";
@@ -89,18 +89,18 @@ const labs = [
 		color: var(--sdc-text);
 		transition: color 0.14s ease;
 	}
-	.wk-list--labs .wk-row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "title cta" "note cta"; }
-	.wk-row:hover { color: var(--sdc-accent); }
-	.wk-row:hover .arrow { transform: translateX(6px); }
-	.wk-row__meta { grid-area: meta; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sdc-text-mute); font-weight: 600; }
-	.wk-row__title { grid-area: title; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.05; }
-	.wk-row__note { grid-area: note; font-size: 15px; color: var(--sdc-text); line-height: 1.5; max-width: 60ch; text-wrap: pretty; }
-	.wk-row:hover .wk-row__note { color: var(--sdc-text); }
-	.wk-row__cta { grid-area: cta; align-self: center; font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+	.wk-list--labs .sdc-wk-row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "title cta" "note cta"; }
+	.sdc-wk-row:hover { color: var(--sdc-accent); }
+	.sdc-wk-row:hover .arrow { transform: translateX(6px); }
+	.sdc-wk-row__meta { grid-area: meta; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sdc-text-mute); font-weight: 600; }
+	.sdc-wk-row__title { grid-area: title; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.05; }
+	.sdc-wk-row__note { grid-area: note; font-size: 15px; color: var(--sdc-text); line-height: 1.5; max-width: 60ch; text-wrap: pretty; }
+	.sdc-wk-row:hover .sdc-wk-row__note { color: var(--sdc-text); }
+	.sdc-wk-row__cta { grid-area: cta; align-self: center; font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
 	.arrow { display: inline-block; transition: transform 0.22s ease; }
 	.wk-note { margin: var(--sdc-space-xl) 0 0; padding: 0; border: 0; font-family: var(--sdc-font-body); font-weight: 400; font-size: 14px; line-height: 1.6; letter-spacing: 0.04em; color: var(--sdc-text-mute); max-width: 64ch; }
 	@media (max-width: 720px) {
-		.wk-row, .wk-list--labs .wk-row { grid-template-columns: 1fr; grid-template-areas: "meta" "title" "note" "cta"; gap: 6px; }
-		.wk-row__cta { margin-top: 6px; }
+		.sdc-wk-row, .wk-list--labs .sdc-wk-row { grid-template-columns: 1fr; grid-template-areas: "meta" "title" "note" "cta"; gap: 6px; }
+		.sdc-wk-row__cta { margin-top: 6px; }
 	}
 </style>

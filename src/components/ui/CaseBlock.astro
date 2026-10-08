@@ -18,8 +18,8 @@ interface Props {
 const { eyebrow, lede } = Astro.props;
 ---
 
-<div class="cs-block">
+<div class="sdc-cs-block">
 	<Eyebrow>{eyebrow}</Eyebrow>
-	{lede && <h2 class="cs-block__lede">{lede}</h2>}
+	{lede && <h2 class="sdc-cs-block__lede">{lede}</h2>}
 	<slot />
 </div>

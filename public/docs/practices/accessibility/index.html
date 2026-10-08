@@ -139,7 +139,7 @@ the failure publicly for weeks.</p>
 added during an accessibility pass. Fixing accessibility can break accessibility.</p>
 <p><strong>The High Contrast Mode rules were written and never applied.</strong> The
 <code dir="auto">@media (forced-colors: active)</code> block sat near the top of the stylesheet, and
-<code dir="auto">.pager__cap</code> set its own background further down. A media query adds no
+<code dir="auto">.sdc-pager__cap</code> set its own background further down. A media query adds no
 specificity, so the later rule simply won and the cap never became a border, on
 a page that documented it as doing so. The block now sits last in the sheet.</p>
 <p>Both of those passed every automated scan. A scanner cannot tell you that a rule
@@ -163,7 +163,7 @@ resume.</p>
 gutters. Two-dimensional scrolling at 320px is a Reflow failure. The orbit is
 clipped now, so it bleeds off the edges instead of widening the document.</p>
 <p><strong>The case study styles disappeared inside the dialog.</strong> The styles were scoped
-to <code dir="auto">.case</code> on <code dir="auto">&lt;main&gt;</code>, and the dialog injects a case page’s <code dir="auto">&lt;main&gt;</code> contents
+to <code dir="auto">.sdc-case</code> on <code dir="auto">&lt;main&gt;</code>, and the dialog injects a case page’s <code dir="auto">&lt;main&gt;</code> contents
 without the element itself. The pages were right, the dialog showing the same
 content was not. Anything scoped to an ancestor has to be checked everywhere that
 content gets reused.</p>

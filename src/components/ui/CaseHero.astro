@@ -33,14 +33,14 @@ interface Props {
 const { eyebrow, title, lede, meta, note, backHref = '/#work', backLabel = '← Case studies' } = Astro.props;
 ---
 
-<section class="cs-hero">
-	<div class="cs-hero__inner">
-		<a class="cs-back-top" href={backHref}>{backLabel}</a>
+<section class="sdc-cs-hero">
+	<div class="sdc-cs-hero__inner">
+		<a class="sdc-cs-back-top" href={backHref}>{backLabel}</a>
 		<Eyebrow>{eyebrow}</Eyebrow>
-		<h1 class="cs-hero__title display">{title}</h1>
-		<p class="cs-hero__lede" set:html={lede} />
+		<h1 class="sdc-cs-hero__title sdc-display">{title}</h1>
+		<p class="sdc-cs-hero__lede" set:html={lede} />
 		<slot name="figure" />
 		<CaseMeta items={meta} />
-		{note && <p class="cs-note" set:html={note} />}
+		{note && <p class="sdc-cs-note" set:html={note} />}
 	</div>
 </section>

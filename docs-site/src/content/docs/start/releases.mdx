@@ -15,35 +15,42 @@ production.
 
 ## How the number works
 
-Three parts, two digits each: **major.minor.patch**, for example `01.00.01`. A
-version with no third part, such as `01.00`, means patch `00`.
+Semantic versioning, the common practice: **major.minor.patch**, written with
+two digits each, for example `02.00.00`.
 
 | Part | Goes up when | Example |
 | :-- | :-- | :-- |
-| Major | The look changes as a whole: palette, type families, the layout system. | A rebrand. |
-| Minor | A component, token or pattern is added, removed, or changes how it looks. | Button padding moving onto the spacing scale. |
-| Patch | Nothing a visitor can see changes: refactors, renames, documentation, a fix that restores the intended look. | Namespacing every token with `--sdc-`. |
+| Major | Something that used the system before would break: a token, class or component name changes or goes away, or a component's markup contract changes. | Namespacing every token and class with `sdc-`. |
+| Minor | Something is added without breaking what exists: a new token, component, pattern or variant, or a visual change that keeps every name. | Button padding moving onto the spacing scale. |
+| Patch | A fix or a refactor that changes no name and no intended look: documentation, a bug fix that restores the intended rendering. | A docs page correcting a class name. |
 
-The test is what a visitor sees, because the site is the system's one consumer.
-When the system gets a second consumer, a rename that breaks its code becomes a
-major change for that consumer, and this rule should be revisited.
+The test is the consumer's code, not the visitor's eye. A rename is invisible
+on the page and still a major version, because every selector and every
+`var()` written against the old name stops working.
 
 Each release gets a git tag, `sdc-` plus the number, on the commit that reached
 production.
 
 ## Log
 
-### 01.00.01 · unreleased
+### 02.00.00 · unreleased
 
-- Every system token namespaced: `--accent` is now `--sdc-accent`, `--space-md`
-  is `--sdc-space-md`, and so on for all 86. Anything without the prefix is
-  private to one component. Figma keeps the plain names; the token build adds
-  the prefix.
+Breaking: every name the system owns gains the `sdc-` namespace.
+
+- Tokens: `--accent` is now `--sdc-accent`, `--space-md` is `--sdc-space-md`,
+  and so on for all 86. Figma keeps the plain names; the token build adds the
+  prefix.
+- Classes: `sdc-card` is `sdc-card`, `btn btn--primary` is `sdc-btn sdc-btn--primary`,
+  `sdc-deck__track` is `sdc-deck__track`. Utilities take `sdc-u-`: `sdc-u-sr-only` is
+  `sdc-u-sr-only`.
+- Anything without the prefix is not the system's: a page's own layout class,
+  an illustration's internal class, a state class such as `is-open`, or a
+  variable private to one component.
 - The version number added, in one file, shown here, in the Storybook and in a
   meta tag on every page.
 - No visual change.
 
-### 01.00 · October 7, 2026
+### 01.00.00 · October 7, 2026
 
 The baseline: the system as it stood in production on October 7, 2026, at
 commit `3b062e4`. It includes everything built before versions existed, among

@@ -21,8 +21,8 @@ interface Props {
 const { prev, next } = Astro.props;
 ---
 
-<section class="section section--alt">
-	<div class="section__inner cs-back">
+<section class="sdc-section sdc-section--alt">
+	<div class="sdc-section__inner sdc-cs-back">
 		<Pager dir="prev" href={prev.href} label={prev.label} hidden={prev.hidden} />
 		<Pager dir="next" href={next.href} label={next.label} hidden={next.hidden} />
 	</div>

@@ -6,10 +6,10 @@ sidebar:
 ---
 
 <dl class="sdc-hww">
-	<div><dt>How</dt><dd><code>.section</code> supplies vertical rhythm;
-	<code>.section__inner</code> supplies the measure and gutters.
-	<code>{'.section--alt'}</code> shifts the ground to the card surface,
-	<code>{'.section--ink'}</code> inverts it.</dd></div>
+	<div><dt>How</dt><dd><code>.sdc-section</code> supplies vertical rhythm;
+	<code>.sdc-section__inner</code> supplies the measure and gutters.
+	<code>{'.sdc-section--alt'}</code> shifts the ground to the card surface,
+	<code>{'.sdc-section--ink'}</code> inverts it.</dd></div>
 	<div><dt>When</dt><dd>Every band of content on a page. Alternate the tone only
 	to separate ideas, not for variety.</dd></div>
 	<div><dt>Where</dt><dd>All pages except the pinned decks, which manage their
@@ -42,10 +42,10 @@ import CaseFigure from '../../components/ui/CaseFigure.astro';
 | `figure` | boolean | `false` | A full bleed figure band. |
 | `flush` | boolean | `false` | No top padding, so the band sits tight against the one above. |
 | `id` | string | none | Anchor target for a link that jumps here. |
-| `inner` | string or `false` | `'cs-body'` | The layout class on the inner element, or `false` for a band with no measure. |
+| `inner` | string or `false` | `'sdc-cs-body'` | The layout class on the inner element, or `false` for a band with no measure. |
 | `animate` | boolean | `true` | Fades in on scroll. Turn it off for a band that must be readable immediately. |
 
-The case study styles live under `.case`, which `Site.astro` puts on `<main>`
+The case study styles live under `.sdc-case`, which `Site.astro` puts on `<main>`
 when a page passes `variant="case"`. A case study page that forgets that prop
 renders unstyled, which is the loud failure rather than the quiet one.
 
@@ -53,7 +53,7 @@ renders unstyled, which is the loud failure rather than the quiet one.
 
 Body copy is capped near 800px, not the full 1280px page width. A line of text
 longer than about 75 characters is measurably harder to track back from. Use
-`.section__inner--narrow` where the content is pure reading.
+`.sdc-section__inner--narrow` where the content is pure reading.
 
 ## Figures
 
@@ -74,11 +74,11 @@ is evidence of, that is usually a sign it should not be on the page.
 
 ## Captions
 
-`.cs-note` and `.wk-note` are captions: 14px, muted, no rule, no accent bar.
+`.sdc-cs-note` and `.wk-note` are captions: 14px, muted, no rule, no accent bar.
 They are for a qualification, a disclosure or a credit. The PayPal proprietary
 disclosure is a caption.
 
-A caption is not a pull quote. `.cs-quote` is the display-type treatment for a
+A caption is not a pull quote. `.sdc-cs-quote` is the display-type treatment for a
 sentence worth stopping on. Using the caption style for emphasis makes a
 disclosure look like a design flourish.
 

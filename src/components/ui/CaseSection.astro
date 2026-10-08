@@ -6,7 +6,7 @@
  * other band; two in a row reads as one long band.
  *
  * The inner element is what holds the measure. `inner` names the layout inside
- * it: "cs-body" for prose, "cs-back" for the pager row, "" for a bare column.
+ * it: "sdc-cs-body" for prose, "sdc-cs-back" for the pager row, "" for a bare column.
  * Pass `inner={false}` when the band holds a full bleed figure and needs no
  * measure at all, and `flush` when that figure should sit tight against the
  * band above it instead of carrying its own top padding.
@@ -25,11 +25,11 @@ interface Props {
 	/** Fades in on scroll. Off for bands that must be readable immediately. */
 	animate?: boolean;
 }
-const { alt = false, figure = false, flush = false, id, inner = 'cs-body', animate = true } = Astro.props;
+const { alt = false, figure = false, flush = false, id, inner = 'sdc-cs-body', animate = true } = Astro.props;
 ---
 
-<section id={id} class:list={['section', alt && 'section--alt', figure && 'section--figure', flush && 'section--flush']}>
+<section id={id} class:list={['sdc-section', alt && 'sdc-section--alt', figure && 'sdc-section--figure', flush && 'sdc-section--flush']}>
 	{inner === false ? <slot /> : (
-		<div class:list={['section__inner', inner]} data-animate={animate ? 'fade' : undefined}><slot /></div>
+		<div class:list={['sdc-section__inner', inner]} data-animate={animate ? 'fade' : undefined}><slot /></div>
 	)}
 </section>

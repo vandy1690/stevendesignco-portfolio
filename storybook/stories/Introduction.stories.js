@@ -4,8 +4,8 @@ export default { title: 'Introduction' };
 
 export const ReadMe = () => `
   <div class="sb-col" style="max-width:64ch">
-    <p class="eyebrow" style="font-family:var(--sdc-font-display);letter-spacing:.03em">Steven Design Co. &middot; SDC ${sdc.version}</p>
-    <h1 class="display" style="font-size:clamp(36px,5vw,64px);line-height:.98;margin:0">The component library.</h1>
+    <p class="sdc-eyebrow" style="font-family:var(--sdc-font-display);letter-spacing:.03em">Steven Design Co. &middot; SDC ${sdc.version}</p>
+    <h1 class="sdc-display" style="font-size:clamp(36px,5vw,64px);line-height:.98;margin:0">The component library.</h1>
     <p style="font-size:18px;line-height:1.6;margin:0">
       Every story on this page renders with the CSS stevendesignco.com actually ships.
       The stylesheet is pulled from the running site by <code>sync-css.mjs</code> at build
@@ -30,7 +30,7 @@ export const ReadMe = () => `
       </p>
       <a href="https://stevendesignco.com/docs/" target="_blank" rel="noopener"
          style="display:inline-flex;align-items:center;gap:8px;min-height:24px;font-size:15px;font-weight:600;color:var(--sdc-text);text-decoration:underline;text-underline-offset:5px">
-        Open the documentation<span aria-hidden="true">→</span><span class="sr-only"> (opens in a new tab)</span>
+        Open the documentation<span aria-hidden="true">→</span><span class="sdc-u-sr-only"> (opens in a new tab)</span>
       </a>
     </div>
     <p style="font-size:14px;color:var(--sdc-text-mute);margin:0">

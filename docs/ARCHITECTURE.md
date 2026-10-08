@@ -56,7 +56,7 @@ Props:
 | `title` | yes | The `<title>`, Open Graph title, and the Article headline (the part before ` · `) |
 | `description` | no | Meta description, Open Graph, Twitter |
 | `image` | no | Path to a social card under `public/`. Falls back to `/og-image.png` |
-| `variant` | no | `"case"` turns on the case study styles by putting `.case` on `<main>`. A case study page that omits it renders unstyled |
+| `variant` | no | `"case"` turns on the case study styles by putting `.sdc-case` on `<main>`. A case study page that omits it renders unstyled |
 
 What it renders:
 
@@ -83,7 +83,7 @@ The site has to work when JavaScript is blocked, fails, or is slow.
   the CSS. If the script never runs, nothing is hidden.
 - The home page has a `<noscript>` block with plain links to every case study.
 - The scroll driven decks fall back to plain lists. The script adds
-  `deck-static` to the root when the user asks for reduced motion, when the
+  `sdc-deck-static` to the root when the user asks for reduced motion, when the
   viewport is under 600 CSS pixels tall, or when it measures that a card would be
   clipped.
 
@@ -127,22 +127,22 @@ The `cs-*` class names below are what those components render. A page does not
 write them by hand.
 
 The `cs-*` classes are global. They are defined once in `src/layouts/Site.astro`,
-scoped under `.case`, and a page turns them on by passing `variant="case"` to the
-layout, which puts `.case` on `<main>`. Case study pages carry no CSS of their own.
+scoped under `.sdc-case`, and a page turns them on by passing `variant="case"` to the
+layout, which puts `.sdc-case` on `<main>`. Case study pages carry no CSS of their own.
 
 They used to be per page, with each file holding a near identical copy of the same
-rules. That is why `.case` exists: change a `cs-*` rule once and every case study
+rules. That is why `.sdc-case` exists: change a `cs-*` rule once and every case study
 page and the home page dialog pick it up together. Two things follow from the
 scoping:
 
 - **A page that forgets `variant="case"` renders unstyled.** It is a loud failure
   and the pixel check in `npm run qa` catches it.
-- **The dialog needs `.case` too.** It injects the contents of a case study's
-  `<main>` without the `<main>` element, so `.modal__content` carries `case` as a
+- **The dialog needs `.sdc-case` too.** It injects the contents of a case study's
+  `<main>` without the `<main>` element, so `.sdc-modal__content` carries `sdc-case` as a
   class. Without it the dialog shows the right content with none of the styles.
 
-The pieces that are global and not under `.case` (`pager`, `btn`, `eyebrow`,
-`display`, `skip-link`, `sr-only`) are also in `Site.astro`.
+The pieces that are global and not under `.sdc-case` (`sdc-pager`, `sdc-btn`, `sdc-eyebrow`,
+`sdc-display`, `sdc-skip-link`, `sdc-u-sr-only`) are also in `Site.astro`.
 
 ## Components
 
@@ -160,7 +160,7 @@ Each one has a page in the documentation site under `/docs/components/`.
 | `components/ui/PagerPair.astro` | The previous and next pair. Composes two `Pager` | Every case study |
 | `components/ui/Pager.astro` | One pager link. Composed inside `PagerPair` | Via `PagerPair` |
 | `components/ui/StatList.astro` | Two or three statistics, `three` and `large` | Selected case studies |
-| `components/ui/Quote.astro` | The case study pull quote, `blockquote.cs-quote` | Selected case studies |
+| `components/ui/Quote.astro` | The case study pull quote, `blockquote.sdc-cs-quote` | Selected case studies |
 | `components/ui/Button.astro` | A link styled as a button, `variant="primary"` for the filled one | Several pages |
 | `components/ui/ButtonGroup.astro` | A row of buttons | Several pages |
 | `components/ui/Eyebrow.astro` | The small label above a heading | Via `CaseHero`, `CaseBlock` |

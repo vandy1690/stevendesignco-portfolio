@@ -16,7 +16,7 @@ import { PAGES, THEMES } from '../config.mjs';
 
 const SELECTORS = [
 	'p', 'li', 'dt', 'dd', 'h1', 'h2', 'h3', 'h4',
-	'a', 'blockquote', 'figcaption', 'strong', 'span.cs-stats span', 'button',
+	'a', 'blockquote', 'figcaption', 'strong', 'span.sdc-cs-stats span', 'button',
 ];
 
 export default async function contrast(browser, base) {
@@ -63,7 +63,7 @@ export default async function contrast(browser, base) {
 				const out = [];
 				const seen = new Set();
 				document.querySelectorAll(sels.join(',')).forEach((el) => {
-					if (el.closest('.sr-only') || el.classList.contains('sr-only')) return;
+					if (el.closest('.sdc-u-sr-only') || el.classList.contains('sdc-u-sr-only')) return;
 					const cs = getComputedStyle(el);
 					if (cs.visibility === 'hidden' || cs.display === 'none') return;
 					if (Number(cs.opacity) < 0.95) return; // mid-animation or deliberately faded

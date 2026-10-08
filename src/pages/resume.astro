@@ -9,26 +9,26 @@ import Site from '../layouts/Site.astro';
 >
 	<article class="rs">
 		<header class="rs-head">
-			<p class="eyebrow">Resume</p>
-			<h1 class="rs-name display">Steven Vanden Heuvel</h1>
+			<p class="sdc-eyebrow">Resume</p>
+			<h1 class="rs-name sdc-display">Steven Vanden Heuvel</h1>
 			<p class="rs-role">Staff Product Designer · Design Systems &amp; AI Tooling</p>
 			<p class="rs-loc">Aurora, IL · Chicago area · Open to remote</p>
 			<ul class="rs-contact">
 				<li class="print-only">630.862.6534</li>
-				<li><a class="js-email" data-eml="73746576656e4073746576656e64657369676e636f2e636f6d" href="#">steven [at] stevendesignco [dot] com</a></li>
+				<li><a class="sdc-js-email" data-eml="73746576656e4073746576656e64657369676e636f2e636f6d" href="#">steven [at] stevendesignco [dot] com</a></li>
 				<li><a href="https://www.stevendesignco.com">stevendesignco.com</a></li>
-				<li><a href="https://linkedin.com/in/stevendesignco" target="_blank" rel="noopener">linkedin.com/in/stevendesignco<span class="sr-only"> (opens in a new tab)</span></a></li>
+				<li><a href="https://linkedin.com/in/stevendesignco" target="_blank" rel="noopener">linkedin.com/in/stevendesignco<span class="sdc-u-sr-only"> (opens in a new tab)</span></a></li>
 			</ul>
-			<a class="btn btn--primary rs-pdf" href="/resume.pdf" download>Download PDF</a>
+			<a class="sdc-btn sdc-btn--primary rs-pdf" href="/resume.pdf" download>Download PDF</a>
 		</header>
 
 		<section class="rs-sec">
-			<h2 class="eyebrow">Summary</h2>
+			<h2 class="sdc-eyebrow">Summary</h2>
 			<p class="rs-summary">Principal Designer at PayPal (contract via Magnit Global) from December 2025 to August 2026, working as a product designer on consumer checkout and merchant-facing payment flows for top global brands on weekly sprints. Spent 18 years at MTG Media Group building design systems for 7 B2B brands across responsive web, email, and print. Fintech background spanning consumer finance, financial products, consumer checkout, merchant tooling, and high-stakes payment flows. Build with agentic tooling, Claude Code and Cursor, every day. Four-time Jesse H. Neal Award winner.</p>
 		</section>
 
 		<section class="rs-sec">
-			<h2 class="eyebrow">Experience</h2>
+			<h2 class="sdc-eyebrow">Experience</h2>
 			<div class="rs-jobs">
 				<div class="rs-job">
 					<h3 class="rs-job__role">Principal Designer, Merchant Enablement</h3>
@@ -68,7 +68,7 @@ import Site from '../layouts/Site.astro';
 		</section>
 
 		<section class="rs-sec">
-			<h2 class="eyebrow">Skills</h2>
+			<h2 class="sdc-eyebrow">Skills</h2>
 			<ul class="rs-skills">
 				<li>Design Systems</li>
 				<li>UX and UI Design</li>
@@ -84,7 +84,7 @@ import Site from '../layouts/Site.astro';
 		</section>
 
 		<section class="rs-sec">
-			<h2 class="eyebrow">Recognition</h2>
+			<h2 class="sdc-eyebrow">Recognition</h2>
 			<ul class="rs-recognition">
 				<li>4 Jesse H. Neal Awards</li>
 				<li>6 Neal Finalists</li>
@@ -96,7 +96,7 @@ import Site from '../layouts/Site.astro';
 		</section>
 
 		<section class="rs-sec">
-			<h2 class="eyebrow">Education</h2>
+			<h2 class="sdc-eyebrow">Education</h2>
 			<p class="rs-education">University of Wisconsin-Whitewater, B.A. in Art with emphasis in Graphic Design and Marketing</p>
 		</section>
 	</article>
@@ -106,7 +106,7 @@ import Site from '../layouts/Site.astro';
 	.rs { max-width: var(--sdc-max-narrow); margin: 0 auto; padding: var(--sdc-space-3xl) var(--sdc-gutter) var(--sdc-space-4xl); }
 
 	/* Header */
-	.rs-head .eyebrow { margin-bottom: var(--sdc-space-sm); }
+	.rs-head .sdc-eyebrow { margin-bottom: var(--sdc-space-sm); }
 	.rs-name { font-size: clamp(40px, 6vw, 72px); letter-spacing: -0.02em; margin: 0 0 var(--sdc-space-md); }
 	.rs-role { font-size: clamp(20px, 2vw, 26px); font-weight: 600; color: var(--sdc-text); margin: 0 0 var(--sdc-space-sm); letter-spacing: -0.01em; }
 	.rs-loc { color: var(--sdc-text-mute); font-size: 15px; margin: 0 0 var(--sdc-space-md); }
@@ -119,7 +119,7 @@ import Site from '../layouts/Site.astro';
 
 	/* Sections, divided by rules */
 	.rs-sec { margin-top: var(--sdc-space-2xl); padding-top: var(--sdc-space-2xl); border-top: 1px solid var(--sdc-rule); }
-	.rs-sec > .eyebrow { margin-bottom: var(--sdc-space-md); }
+	.rs-sec > .sdc-eyebrow { margin-bottom: var(--sdc-space-md); }
 
 	/* Summary: eyebrow + this lead read as the headline */
 	.rs-summary { font-size: clamp(22px, 2.4vw, 30px); font-weight: 600; color: var(--sdc-text); line-height: 1.3; letter-spacing: -0.015em; margin: 0; max-width: 40ch; }
@@ -159,14 +159,14 @@ import Site from '../layouts/Site.astro';
 		.rs { padding: 0 !important; max-width: none; }
 		.rs-pdf { display: none !important; }
 		.rs-sec, .rs-job { break-inside: avoid; }
-		.rs-head .eyebrow { display: none; }
+		.rs-head .sdc-eyebrow { display: none; }
 		.rs-name { font-size: 26px !important; margin: 0 0 2px !important; }
 		.rs-role { font-size: 13px !important; margin: 0 0 2px !important; }
 		.rs-loc { font-size: 9.5px !important; margin: 0 0 3px !important; color: #444 !important; }
 		.rs-contact { font-size: 9.5px !important; gap: 1px 12px !important; margin: 0 !important; }
 		.rs-contact a { text-decoration: none !important; padding-block: 0 !important; }
 		.rs-sec { margin-top: 10px !important; padding-top: 8px !important; }
-		.rs-sec > .eyebrow { font-size: 8px !important; letter-spacing: 0.14em !important; margin-bottom: 5px !important; }
+		.rs-sec > .sdc-eyebrow { font-size: 8px !important; letter-spacing: 0.14em !important; margin-bottom: 5px !important; }
 		.rs-summary { font-size: 10px !important; font-weight: 500 !important; line-height: 1.4 !important; letter-spacing: 0 !important; max-width: none !important; }
 		.rs-jobs { gap: 10px !important; }
 		.rs-job__role { font-size: 12px !important; margin-bottom: 1px !important; }

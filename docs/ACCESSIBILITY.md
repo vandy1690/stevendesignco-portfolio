@@ -18,7 +18,7 @@ more.
 ## Structure and navigation
 
 - A skip link is the first focusable element and lands on `<main id="main">`.
-- Landmarks: `header`, two labelled `nav` elements (Main and Mobile), `main`,
+- Landmarks: `header`, two labelled `sdc-nav` elements (Main and Mobile), `main`,
   `footer`.
 - One `h1` per page.
 - The header is sticky, so `scroll-padding-top` is set to its height. A focused
@@ -32,7 +32,7 @@ more.
 - A link's accessible name comes from its visible text. No `aria-label` overrides
   what is on screen.
 - Links that would be vague on their own get an `aria-describedby` description,
-  or hidden text through `.sr-only`. The pager reads "Next case study: Plate"
+  or hidden text through `.sdc-u-sr-only`. The pager reads "Next case study: Plate"
   while showing only "Plate".
 - On a case study card, the headline is the only link. Its `::after` stretches
   over the card, so the whole card is clickable without the whole card being the
