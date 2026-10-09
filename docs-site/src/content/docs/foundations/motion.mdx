@@ -22,8 +22,8 @@ dialog stops flipping and smooth scrolling is off.
 
 This has to be checked, not assumed. The reduced-motion block was in place for
 months while missing two selectors that outranked it, and the result was
-severe: all twelve recommendation cards landed in the same absolute position, so
-eleven were invisible, behind roughly five screens of empty scroll track.
+severe: every recommendation card landed in the same absolute position, so all
+but one were invisible, behind roughly five screens of empty scroll track.
 
 The cause was specificity. A media query adds none, so a two-class rule
 elsewhere beat the single-class reset inside the block.
