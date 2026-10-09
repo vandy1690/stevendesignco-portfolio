@@ -94,7 +94,7 @@ behaviour. The data sits at the top of the file.
 
 - `cases`: the case study cards, in display order. Reorder the array to reorder
   the deck.
-- `quotes`: thirteen recommendation excerpts, titles only, no names.
+- `quotes`: twelve recommendation excerpts, titles only, no names.
 
 Behaviour, all in the page's own script:
 
