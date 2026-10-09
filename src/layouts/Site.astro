@@ -832,7 +832,16 @@ const jsonLd = {
 			   it stopped reaching the card the moment the card rendered from
 			   src/components/ui/CaseStudyCard.astro. System components are styled
 			   in the system stylesheet. */
-			.sdc-deck--work sdc-card, .sdc-card__art { max-height: none !important; }
+			/* No-JS only. This lived in the home page's <noscript> block until the
+			   card became a component on 2026-10-08; moving it here dropped the
+			   <noscript> scoping with it, so it applied to everyone and cancelled
+			   the 50svh art cap below. That made the card 116px taller, overflowed
+			   the pinned stage under about 900px of viewport height, and tripped
+			   the fit audit into the static fallback: no flip, and the
+			   recommendations fan unstacked. Gated on html:not(.js), the same
+			   mechanism every other JS-dependent state uses. */
+			html:not(.js) .sdc-deck--work sdc-card,
+			html:not(.js) .sdc-card__art { max-height: none !important; }
 			/* ---------- Card ---------- */
 	sdc-card {
 		display: flex;
