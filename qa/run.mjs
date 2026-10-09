@@ -21,6 +21,7 @@ import textSpacing from './checks/text-spacing.mjs';
 import forcedColors from './checks/forced-colors.mjs';
 import linkDistinction from './checks/link-distinction.mjs';
 import contrast from './checks/contrast.mjs';
+import deckFit from './checks/deck-fit.mjs';
 
 const CHECKS = {
 	reflow,
@@ -30,6 +31,7 @@ const CHECKS = {
 	'forced-colors': forcedColors,
 	'link-distinction': linkDistinction,
 	contrast,
+	'deck-fit': deckFit,
 };
 
 const args = process.argv.slice(2);
