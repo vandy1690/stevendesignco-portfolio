@@ -43,6 +43,7 @@ Every check exists because something got through. None of them are speculative.
 | `forced-colors` | Windows High Contrast Mode actually applying | The forced-colors block sat above the rules it had to override. A media query adds no specificity, so it never applied, on a component whose own documentation described the behaviour. |
 | `link-distinction` | A link in a sentence with no non-colour cue | **axe reported the page clean.** The one inline link measured 1.02:1 against its paragraph with no underline. Invisible to everybody, not just to people with a colour vision deficiency. |
 | `pixel` | A refactor that was supposed to change nothing, changing something | A structural HTML diff said three pages were identical. They were not. |
+| `deck-fit` | The home page decks silently falling back to the static list | **It shipped and reached production.** A `max-height: none !important` rule left its `noscript` block when the card became a component, cancelled the art's 50svh cap for everyone, and tripped the measured fallback for any window under about 900px tall. Seven checks were green, because they all run with reduced motion and had never seen the animated deck. |
 
 ## The three rules this suite is built on
 

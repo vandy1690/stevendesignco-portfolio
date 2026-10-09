@@ -38,6 +38,33 @@ smearing Inter.
 **Windows High Contrast Mode.** Anything painted with a background rather than a
 border is given an explicit override, because HCM forces backgrounds.
 
+## The way this breaks: a fallback rule that escapes its gate
+
+Every rule above is conditional. The danger is a conditional rule losing its
+condition and applying to everyone.
+
+That happened on 8 October 2026. A `max-height: none !important` rule lived in
+the home page's `noscript` block, where it undid the card art's viewport cap so
+the no-JS list could show the art at full size. When the card became a
+component, the rule moved into the global stylesheet, correctly, because a
+page's scoped styles can no longer reach a component. **The declaration moved
+and the `noscript` scoping did not.**
+
+It then cancelled the art's `max-height: 50svh` for every visitor. The art grew
+116 pixels, the card overflowed the pinned stage by 58 pixels at a 780 pixel
+viewport, the measured fallback in point 3 fired exactly as designed, and both
+decks sat in the plain list for anyone whose window was shorter than about 900
+pixels. The fallback was not wrong. It was reporting a real overflow caused by
+a rule that should never have been active.
+
+Two things make this worth remembering:
+
+- **The fallback hides its own cause.** Applying the static class sets the stage
+  to `height: auto`, which removes the overflow that triggered it. A later
+  measurement sees a clean layout and cannot tell anything is wrong.
+- **A fallback rule belongs behind its condition, wherever it lives.** Moving it
+  to the system stylesheet is fine. Moving it without `html:not(.js)` is not.
+
 ## The measured fallback is the important idea
 
 The first three are conditions you can predict. The fourth is not: it measures
@@ -45,6 +72,18 @@ the actual rendered result and reacts.
 
 That is what catches the case nobody listed, and it is the reason the deck
 survives a visitor with larger text on a phone size nobody tested.
+
+## What tests this
+
+`qa/checks/deck-fit.mjs` loads the home page at six viewport heights above the
+600 pixel threshold and asserts the deck is still animated and the art still
+carries its cap.
+
+It is the only check that runs with motion enabled. Every other check passes
+`reducedMotion: 'reduce'`, which keeps them deterministic and also puts both
+decks permanently in the static fallback. For seven checks and several months,
+nothing in the suite had ever seen the animated deck, which is why the
+regression above reached production through a green build.
 
 ## Checks before you ship
 

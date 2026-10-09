@@ -24,11 +24,15 @@ export async function launch() {
  * Open a page and put it in a state worth measuring: no dev toolbar, no
  * in-flight animation, fonts loaded.
  */
-export async function open(browser, url, { width = 1280, height = 900, forcedColors, theme } = {}) {
+export async function open(browser, url, { width = 1280, height = 900, forcedColors, theme, motion = false } = {}) {
 	const ctx = await browser.newContext({
 		viewport: { width, height },
 		deviceScaleFactor: 1,
-		reducedMotion: 'reduce',
+		// Reduced motion by default: it makes every other check deterministic.
+		// It also means the scroll decks are permanently in their static
+		// fallback, so nothing here sees the animated deck. Pass motion: true
+		// to test that side. See qa/checks/deck-fit.mjs.
+		reducedMotion: motion ? 'no-preference' : 'reduce',
 		...(forcedColors ? { forcedColors } : {}),
 	});
 	// Set the stored choice before the page runs, so the pre-paint script picks
