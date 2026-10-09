@@ -7,9 +7,9 @@ also the day the change went live, give or take a few minutes.
 Add a line here when you ship something a visitor or a future maintainer would
 notice.
 
-## Unreleased: SDC 02.00.00
+## October 8, 2026: SDC 02.00.00
 
-On branch `chore/sdc-token-prefix`, not yet on `dev`. The design system's first
+Shipped in #17. The design system's first
 major version since numbering began. Every name the system owns gains the `sdc-`
 namespace, tokens and classes alike, and the containers render as light-DOM
 custom elements (`<sdc-section tone="alt">`, `<sdc-card>`) with attributes for
