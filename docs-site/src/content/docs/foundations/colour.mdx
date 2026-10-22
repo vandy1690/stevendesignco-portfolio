@@ -94,6 +94,51 @@ publicly showing it as a failure. It now measures about 3.3 on the page.
 The lesson is not about a number. It is that a token's name and its comment are
 claims, and claims need checking.
 
+## Status
+
+Three colours, for the three things the system has to say: something failed,
+something needs attention, something worked. Added October 2026. Before that the
+system had none, and anything needing a red invented one.
+
+`--sdc-error`, `--sdc-warning` and `--sdc-success` are the solids, for text and
+small marks. Each has a tint, `--sdc-error-tint` and the other two, which is the
+ground a message sits on with ordinary `--sdc-text` on top. Six semantic tokens,
+pointing at twelve primitives under `--sdc-signal-`.
+
+The three picked values are `#B50F34`, `#FFA500` and `#5F923F`. They behave very
+differently on a warm paper ground, and the token set exists to hide that:
+
+**The red works everywhere.** As text it clears 4.5 on all three grounds, it
+takes white text as a fill, and it reads as a dot. It needed no second form.
+
+**The orange is very light.** It is a fill with charcoal on it, or a tint. As
+text or a bare dot on paper it measures 1.3 to 1 and is not there. White text on
+it is 2.0, so never white on the orange.
+
+**The green is the hard one.** It sits in the middle of the lightness range,
+which is the worst place to be: too light for white text at 3.7, too dark for
+charcoal at 3.4. Nothing can sit on it, and against paper it is 2.5.
+
+So in the light theme `--sdc-success` and `--sdc-warning` resolve to deeper forms
+of the same hue and saturation, taken down until they clear 4.5 on every ground.
+The full-strength values are still what the tints are mixed from, so the message
+grounds are the picked colours. In the dark theme it reverses: the green and
+orange are bright enough to use directly, and the red is the one that needs a
+lighter form, because on near-black it is 2.6.
+
+That is the whole reason the solids differ between themes. A colour that reads
+on paper does not read on black.
+
+### Never colour alone
+
+Every status message carries an icon or a word as well. This is not a nicety. If
+you tune a set of status colours to one contrast target they land at one
+lightness, and a reader with the common form of red-green colour blindness sees
+three identical olives. An earlier version of this palette did exactly that and
+scored 27 on a separation measure where 60 is the threshold. The three shipped
+values are far apart in lightness, which is what keeps them distinct, and the
+icon is what makes the point moot.
+
 ## Dark mode
 
 A full dark palette: black ground, near-white ink, a neon lime accent. It is the

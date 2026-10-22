@@ -1,0 +1,67 @@
+---
+title: Exceptions
+description: Colours and patterns that are deliberately outside the system, why, and what would have to change for them to come in.
+sidebar:
+  order: 5
+---
+
+Not everything built on this system belongs *in* it. This page is the register of
+deliberate exceptions, so that an exception stays a decision rather than becoming
+drift nobody remembers approving.
+
+An exception is recorded here when it is approved. If something is outside the
+system and is not on this page, that is not an exception, it is a bug.
+
+## Person colours (Family Shifts)
+
+**Status: approved as an app-level exception, October 2026. Not in the system,
+not in the Storybook.**
+
+Family Shifts gives each person in the household a colour, so a shift block can
+be read at a glance from across a kitchen. Eight of them, stored as `p1` through
+`p8` and validated on the server, which is why they are data and not only
+styling.
+
+They live in the app's own source and nowhere else. They are not tokens, they
+are not in the Figma library, and they are not on the Storybook colour page.
+
+### Why they are out
+
+**They are identity, not meaning.** A system token says what something *is for*.
+`--sdc-error` means something failed everywhere it appears. A person colour means
+"this one is Nathan," which is true in one app and meaningless in every other.
+Promoting it would put a token in the library that no second product could use.
+
+**They would compete with status.** The system now has three status colours. A
+categorical set large enough to tell eight people apart has to include a red and
+a green, and the moment both sets are tokens, a reader has no way to know whether
+a green block means success or means Nathan.
+
+**Eight is an app's problem.** The count comes from the size of a family. A
+design system should not carry a palette whose length is set by one product's
+data model.
+
+### What they look like anyway
+
+Each one sits at the brand blue's own 40% saturation and at a single lightness,
+so no person reads as more important than another and none of them competes with
+`--sdc-accent`. That constraint is the part worth copying. The values are not.
+
+### What would have to change
+
+Three things, together, would make this worth promoting:
+
+1. A second product needs categorical colour.
+2. The two products agree on what the categories *mean*, so the token can be
+   named for a role rather than a slot number.
+3. The set is reconciled with the status colours, so a hue never carries both an
+   identity and a meaning in the same interface.
+
+Until all three are true, it stays here.
+
+## How to add to this page
+
+Write the exception down when it is approved, not when someone later asks why the
+code looks like that. Say what is outside the system, why, and the condition that
+would bring it in. An exception with no exit condition is just an exemption, and
+those accumulate.
