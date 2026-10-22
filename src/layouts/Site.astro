@@ -103,22 +103,19 @@ const jsonLd = {
 <html lang="en" data-theme="light">
 	<head>
 		<meta charset="utf-8" />
-		<!-- Resolve the theme before anything paints. The attribute on <html> is
-		     "light" so a blocked script still renders a finished page; this script
-		     replaces it with the stored choice, or the operating system preference
-		     when there is no choice yet. It is inline and synchronous on purpose:
-		     deferring it means a visible flash of the wrong palette. -->
+		<!-- Resolve the theme before anything paints. Light is the default and the
+		     operating system does not override it: dark appears only when someone
+		     has chosen it with the toggle, which is what the stored value records.
+		     The attribute on <html> is already "light", so a blocked script still
+		     renders a finished page. Inline and synchronous on purpose: deferring it
+		     means a visible flash of the wrong palette for anyone who chose dark. -->
 		<script is:inline>
 			(function () {
 				try {
 					var stored = localStorage.getItem('theme');
-					var theme =
-						stored === 'light' || stored === 'dark'
-							? stored
-							: window.matchMedia('(prefers-color-scheme: dark)').matches
-								? 'dark'
-								: 'light';
-					document.documentElement.setAttribute('data-theme', theme);
+					if (stored === 'dark' || stored === 'light') {
+						document.documentElement.setAttribute('data-theme', stored);
+					}
 				} catch (e) {
 					/* Private mode can throw on localStorage. The markup default stands. */
 				}
@@ -254,13 +251,9 @@ const jsonLd = {
 						document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
 					apply(next, true);
 				});
-				// Follow the system until someone states a preference of their own.
-				const os = window.matchMedia('(prefers-color-scheme: dark)');
-				os.addEventListener('change', (e) => {
-					let stored = null;
-					try { stored = localStorage.getItem('theme'); } catch (err) { /* private mode */ }
-					if (stored !== 'light' && stored !== 'dark') apply(e.matches ? 'dark' : 'light', false);
-				});
+				// The operating system is deliberately not consulted. Light is the
+				// default and dark is a choice, so a visitor whose machine is set to
+				// dark still gets the light palette until they ask for the other one.
 			}
 
 			// Fade-in on scroll

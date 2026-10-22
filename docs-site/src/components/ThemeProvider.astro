@@ -1,0 +1,40 @@
+---
+/* Overrides Starlight's ThemeProvider.
+   Starlight ships with "auto", which reads prefers-color-scheme and hands a
+   dark-set machine the dark palette on a first visit. The system's rule is that
+   light is the default and dark is a choice, so the operating system is not
+   consulted here. Everything else matches Starlight's own component. */
+import { Icon } from '@astrojs/starlight/components';
+---
+
+{/* Inlined to avoid a flash of the wrong palette. */}
+<script is:inline>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const resolve = (value) => (value === 'dark' ? 'dark' : 'light');
+		document.documentElement.dataset.theme = resolve(storedTheme);
+		return {
+			updatePickers(theme = resolve(storedTheme)) {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script>
+
+<template id="theme-icons">
+	<Icon name="sun" class="light" />
+	<Icon name="moon" class="dark" />
+</template>

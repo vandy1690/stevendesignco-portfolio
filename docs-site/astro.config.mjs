@@ -18,6 +18,12 @@ export default defineConfig({
       description:
         'How, when and where to use every component on stevendesignco.com. Written for designers, engineers, content and QA.',
       customCss: ['./src/styles/sdc.css'],
+      /* Light is the default and dark is a choice, so Starlight's "auto" mode and
+         the prefers-color-scheme listener behind it are both replaced. */
+      components: {
+        ThemeProvider: './src/components/ThemeProvider.astro',
+        ThemeSelect: './src/components/ThemeSelect.astro',
+      },
       favicon: '/favicon.svg',
       lastUpdated: true,
       pagination: true,

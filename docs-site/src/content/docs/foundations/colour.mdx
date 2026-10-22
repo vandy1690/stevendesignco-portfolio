@@ -144,10 +144,18 @@ icon is what makes the point moot.
 A full dark palette: black ground, near-white ink, a neon lime accent. It is the
 alternate, not the default.
 
-The toggle is real again. It sits bottom right, follows the operating system on
-a first visit, remembers a choice once one is made, and resolves before the page
-paints so switching never flashes the wrong palette. Without JavaScript it hides
-itself and the page stays light.
+The toggle is real again. It sits bottom right, remembers a choice once one is
+made, and resolves before the page paints so switching never flashes the wrong
+palette. Without JavaScript it hides itself and the page stays light.
+
+**The operating system is not consulted.** It used to be: a first visit read
+`prefers-color-scheme`, so anyone whose machine was set to dark got the dark
+palette without asking for it, and the same was true of the documentation, where
+Starlight's "auto" mode did it. Both now default to light and change only when
+someone picks dark, which is what the stored value records. The reasoning is
+that this palette is the brand and the other one is an accommodation, so it
+should be offered rather than assumed. Clearing site data returns a visitor to
+light, not to whatever their laptop is set to.
 
 For a long stretch it was not real: `data-theme="light"` was fixed in the markup,
 nothing ever changed it, and the toggle had styling but no button. Roughly forty
