@@ -24,8 +24,10 @@ explains it.
   writes these.
 - **The head.** Title, description, canonical URL, the social card, the
   `sdc-version` meta tag, structured data, and the fonts.
-- **Theme.** The site ships light, follows the operating system on a first
-  visit, and remembers a choice. The toggle and its script are here.
+- **Theme.** The site ships light and stays light unless somebody picks dark
+  with the toggle, which is what the stored value records. The operating system
+  is not consulted; `/docs/foundations/color/` gives the reasoning. The toggle
+  and its script are here.
 - **Case study styles**, switched on by `variant="case"`, which puts the
   `sdc-case` class on `<main>`. Everything under `.sdc-case` in the stylesheet
   applies only to case study pages and to a case study opened in the home page

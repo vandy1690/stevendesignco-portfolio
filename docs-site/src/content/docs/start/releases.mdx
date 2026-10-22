@@ -33,6 +33,20 @@ production.
 
 ## Log
 
+### 02.01.00 · October 22, 2026
+
+Minor: tokens added, and one visual change that keeps every name.
+
+- A status palette. Six semantic tokens, `--sdc-error`, `--sdc-warning` and
+  `--sdc-success` with a tint each, over twelve new `--sdc-signal-*` primitives.
+  Colour primitives go from 16 to 28. Nothing uses them yet: there is no input,
+  form or alert in the library, so for now they are a documented palette waiting
+  for a control contract.
+- Light is the default theme unconditionally. The `prefers-color-scheme` query
+  and the first-visit check are gone, so a visitor whose machine is set to dark
+  now gets the light palette until they ask for the other one. No name changed,
+  which is why this is a minor and not a major.
+
 ### 02.00.00 · October 8, 2026
 
 Breaking: every name the system owns gains the `sdc-` namespace.

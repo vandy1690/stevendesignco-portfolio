@@ -28,18 +28,21 @@ primitives, and the semantic tier is written with it by hand.
 ## Themes
 
 The site ships in **light**. `<html>` carries `data-theme="light"`, and a toggle
-sits at the bottom right of every page: it follows the operating system on a first
-visit and remembers a choice once one is made. The dark palette is the `:root`
+sits at the bottom right of every page: dark appears only when somebody chooses
+it, which is what the stored value records. The operating system is deliberately
+not consulted, and `/docs/foundations/color/` gives the reasoning. The dark palette is the `:root`
 default in the CSS and applies when `data-theme` is `dark`. The Storybook toolbar
 is another way to look at it.
 
 How the CSS resolves a theme:
 
 1. `:root` holds the dark values.
-2. `@media (prefers-color-scheme: light)` applies light unless `data-theme="dark"`.
-3. `:root[data-theme="light"]` forces light. This is what ships.
+2. `:root[data-theme="light"]` forces light. This is what ships, because the
+   attribute is on `<html>` from the start.
 
-When you add a token, add it in all three places, or the themes fall out of step.
+There are two blocks and no `prefers-color-scheme` query: it was removed when
+light became the unconditional default. When you add a token, add it in both
+places, or the themes fall out of step.
 
 ## Color tokens
 
@@ -49,7 +52,7 @@ When you add a token, add it in all three places, or the themes fall out of step
 | `--sdc-surface` | `#E4E1DA` | `#111111` | Cards |
 | `--sdc-surface-2` | `#D8D4CB` | `#1A1A1A` | Card hover |
 | `--sdc-text` | `#2D3436` | `#FFFFFF` | Headings and body |
-| `--sdc-text-mute` | `#5A6160` | `#8A8F8C` | Secondary text. 5.9 to 1 on paper, 5.6 to 1 on black |
+| `--sdc-text-mute` | `#545B5A` | `#8A8F8C` | Secondary text |
 | `--sdc-accent` | `#3F5F92` | `#CCFF00` | Links, primary button, selection |
 | `--sdc-accent-text` | `#FFFFFF` | `#000000` | Text on the accent |
 | `--sdc-accent-hover` | `#3D5C8C` | `#D8FF33` | Accent hover |
@@ -59,9 +62,25 @@ When you add a token, add it in all three places, or the themes fall out of step
 | `--sdc-rule-strong` | ink at 58% | white at 42% | Control borders. Clears 3 to 1 |
 | `--sdc-texture-dot` | ink at 10% | white at 7% | The dot grid page grain |
 | `--sdc-header-bg` | paper at 82% | black at 78% | Sticky header, blurred |
+| `--sdc-error` | `#B50F34` | `#F25C7D` | Something failed. Text and small marks |
+| `--sdc-error-tint` | `#DDC4C3` | `#3C1820` | The ground an error message sits on, `--sdc-text` on top |
+| `--sdc-warning` | `#7E5100` | `#FFA500` | Something needs attention |
+| `--sdc-warning-tint` | `#E8D9BB` | `#4C3914` | The ground a warning sits on |
+| `--sdc-success` | `#41642B` | `#5F923F` | Something worked |
+| `--sdc-success-tint` | `#D1D6C4` | `#293422` | The ground a success message sits on |
 
 The light palette has names in the comments: Cloud Dancer paper, charcoal text,
-Regatta blue as the single accent.
+Regatta blue as the single accent. The six status tokens resolve to deeper forms
+in light and brighter ones in dark, so each stays legible on its own ground; the
+twelve `--sdc-signal-*` primitives behind them are in
+`src/styles/tokens/primitives.tokens.json`.
+
+**Contrast ratios are deliberately not listed here.** The
+[Storybook](https://stevendesignco.com/labs/sdc-storybook/) computes them live
+against the shipped tokens, so they cannot go stale the way a number typed into
+this page can. This row carried `#5A6160` and "5.9 to 1 on paper" for seventeen
+days after the token was darkened to `#545B5A`, and the 5.9 had never matched any
+shipped ground.
 
 The social card generator (`scripts/generate-og.mjs`) keeps its own copy of the
 palette and uses `#4A6FA8` for the accent, a lighter blue than the site's
@@ -166,7 +185,7 @@ The page ground is a dot grid: a `radial-gradient` on `body`, one dot per
 
 ## Changing a token
 
-Which token it is decides where you change it. The sixteen color primitives
+Which token it is decides where you change it. The 28 color primitives
 are generated; everything else is hand-authored.
 
 **A color primitive** (`--ink-*`, `--paper-*`, `--brand-*`):
