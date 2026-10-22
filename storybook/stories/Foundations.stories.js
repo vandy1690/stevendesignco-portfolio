@@ -19,9 +19,14 @@ const helpers = `
 export const Color = () => {
   const el = document.createElement('div');
   el.innerHTML = `
-    <p class="sb-note">Light is the shipped default; dark is the alternate. Ratios are against
-      the page ground and the card surface. AA needs 4.5 for body text and 3 for large text
-      and control boundaries.</p>
+    <p class="sb-note">Every colour token in the system, in one list. Light is the shipped
+      default and dark is the alternate, chosen rather than inherited from the operating
+      system. Ratios are against the page ground and the card surface. AA needs 4.5 for body
+      text and 3 for large text and control boundaries.</p>
+    <p class="sb-note">The last six are the status colours, added October 2026. They behave
+      differently from one another on paper, and the Status story shows which of them can
+      carry text, which can only be a fill or a ground, and why two resolve to a deeper form
+      in the light theme.</p>
     <div class="sb-grid"></div>`;
   const run = () => {
     const script = document.createElement('script');
@@ -31,7 +36,10 @@ export const Color = () => {
       /* Borders and dividers are non-text contrast: the bar is 3, not 4.5. */
       const TOKENS = [['--sdc-bg',0],['--sdc-surface',0],['--sdc-surface-2',0],['--sdc-text',4.5],['--sdc-text-mute',4.5],
                       ['--sdc-accent',4.5],['--sdc-accent-hover',4.5],['--sdc-accent-text',0],
-                      ['--sdc-rule',0],['--sdc-rule-strong',3]];
+                      ['--sdc-rule',0],['--sdc-rule-strong',3],
+                      ['--sdc-error',4.5],['--sdc-error-tint',0],
+                      ['--sdc-warning',4.5],['--sdc-warning-tint',0],
+                      ['--sdc-success',4.5],['--sdc-success-tint',0]];
       const host = document.currentScript.parentElement.querySelector('.sb-grid');
       if (host) host.innerHTML = TOKENS.map(([t, bar]) => {
         const v = read(t);
