@@ -12,6 +12,9 @@ export default defineConfig({
   base: '/docs',
   outDir: '../public/docs',
   build: { format: 'directory' },
+  // The colour page became the color page when the docs moved to US spelling.
+  // Anything already pointing at the old URL still lands.
+  redirects: { '/foundations/colour': '/docs/foundations/color/' },
   integrations: [
     starlight({
       title: 'SDC Design System',

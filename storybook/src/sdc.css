@@ -573,7 +573,7 @@
 			}
 
 			/* ---------- Tier 2: semantic ----------
-			   What a thing is for, not what colour it is. Every rule in this
+			   What a thing is for, not what color it is. Every rule in this
 			   stylesheet uses these. Each theme maps them onto the primitives
 			   above and introduces no new values of its own. */
 			:root {
@@ -1352,7 +1352,7 @@
 			}
 
 			/* An inline link inside prose is underlined. The accent and the body ink
-			   measure 1.02:1 against each other, so colour alone leaves a link in a
+			   measure 1.02:1 against each other, so color alone leaves a link in a
 			   sentence indistinguishable from the sentence. Links that are the whole
 			   content of their row are not affected; there is no surrounding text to
 			   confuse them with. */

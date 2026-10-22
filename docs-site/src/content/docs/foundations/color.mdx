@@ -1,11 +1,11 @@
 ---
-title: Colour
+title: Color
 description: The palette, what each token is for, and the contrast rules that constrain it.
 sidebar:
   order: 1
 ---
 
-Colour is two tiers. The live values are in the
+Color is two tiers. The live values are in the
 [Storybook](https://stevendesignco.com/labs/sdc-storybook/), which computes each
 contrast ratio in the browser against the current tokens, so the numbers there
 are never stale. This page is what the tokens are *for*.
@@ -42,7 +42,7 @@ exist yet. Add it rather than inlining the value.
 The split exists because the palette used to be written out in full three times:
 once for dark, and twice for light, since the light block was duplicated behind
 a `prefers-color-scheme` query. Three copies of the same fifteen declarations
-with nothing keeping them in step. A colour change is now one line in one place.
+with nothing keeping them in step. A color change is now one line in one place.
 
 A primitive also carries its channels where a translucent version is needed, as
 `--sdc-ink-charcoal-rgb`, so `--sdc-rule` can be built from the same source as `--sdc-text`
@@ -52,7 +52,7 @@ instead of repeating the numbers.
 
 **Ground and surface.** `--sdc-bg` is the page, a warm off-white. `--sdc-surface` is a
 card sitting on it, `--sdc-surface-2` a hover. The difference between them is small
-on purpose: cards are lifted by shadow, not by colour.
+on purpose: cards are lifted by shadow, not by color.
 
 **Ink.** `--sdc-text` is charcoal, never pure black. `--sdc-text-mute` is for supporting
 copy and labels, and is the darkest muted tone that still clears AA on both the
@@ -68,7 +68,7 @@ mistake this site has actually made.
 **Focus.** `--sdc-focus-ring` is the keyboard focus indicator and nothing else. It
 points at its own primitives, `--sdc-brand-focus` and `--sdc-brand-focus-dark`, rather
 than reusing `--sdc-accent-hover`. That separation is deliberate: retuning a hover
-colour should never silently move an accessibility affordance. See
+color should never silently move an accessibility affordance. See
 [Focus](/docs/foundations/focus/).
 
 ## Two contrast rules that decide the values
@@ -96,7 +96,7 @@ claims, and claims need checking.
 
 ## Status
 
-Three colours, for the three things the system has to say: something failed,
+Three colors, for the three things the system has to say: something failed,
 something needs attention, something worked. Added October 2026. Before that the
 system had none, and anything needing a red invented one.
 
@@ -122,18 +122,18 @@ charcoal at 3.4. Nothing can sit on it, and against paper it is 2.5.
 So in the light theme `--sdc-success` and `--sdc-warning` resolve to deeper forms
 of the same hue and saturation, taken down until they clear 4.5 on every ground.
 The full-strength values are still what the tints are mixed from, so the message
-grounds are the picked colours. In the dark theme it reverses: the green and
+grounds are the picked colors. In the dark theme it reverses: the green and
 orange are bright enough to use directly, and the red is the one that needs a
 lighter form, because on near-black it is 2.6.
 
-That is the whole reason the solids differ between themes. A colour that reads
+That is the whole reason the solids differ between themes. A color that reads
 on paper does not read on black.
 
-### Never colour alone
+### Never color alone
 
 Every status message carries an icon or a word as well. This is not a nicety. If
-you tune a set of status colours to one contrast target they land at one
-lightness, and a reader with the common form of red-green colour blindness sees
+you tune a set of status colors to one contrast target they land at one
+lightness, and a reader with the common form of red-green color blindness sees
 three identical olives. An earlier version of this palette did exactly that and
 scored 27 on a separation measure where 60 is the threshold. The three shipped
 values are far apart in lightness, which is what keeps them distinct, and the
@@ -163,18 +163,18 @@ rules served a mode nobody could reach, and the whole dark palette went without 
 scanner ever seeing it. That is how a figure caption came to sit at 3.31 to 1 on
 black: its rule named `--text-muted`, a token that does not exist, and fell back
 to a hard-coded light-theme hex. In the only theme anyone could load, the
-fallback happened to be the right colour.
+fallback happened to be the right color.
 
 Both themes are checked now, on every page, by `npm run qa`.
 
 ## Checks before you ship
 
-1. Any new text colour clears 4.5 to 1 against both the page and a card, **in
+1. Any new text color clears 4.5 to 1 against both the page and a card, **in
    both themes**. `npm run qa -- contrast` measures it on the rendered page.
 2. Any new control border clears 3 to 1.
 3. The token exists in both the light and dark blocks, and points at a
    primitive rather than a literal value.
 4. A new raw value was added as a primitive, not inlined into a semantic token.
-5. The Storybook colour page shows the new token passing, not failing.
+5. The Storybook color page shows the new token passing, not failing.
 6. The token name is spelled the way it is defined. A typo in a `var()` is
    silent: it falls through to the fallback, or to nothing.

@@ -11,11 +11,11 @@ const P={title:"Foundations"},R=`
   const ratio = (fg, bg) => { const L1 = lum(flatten(fg, bg)), L2 = lum(toRgb(bg).slice(0,3));
     const a = Math.max(L1, L2), b = Math.min(L1, L2); return (a + 0.05) / (b + 0.05); };
 `,r=()=>{const e=document.createElement("div");return e.innerHTML=`
-    <p class="sb-note">Every colour token in the system, in one list. Light is the shipped
+    <p class="sb-note">Every color token in the system, in one list. Light is the shipped
       default and dark is the alternate, chosen rather than inherited from the operating
       system. Ratios are against the page ground and the card surface. AA needs 4.5 for body
       text and 3 for large text and control boundaries.</p>
-    <p class="sb-note">The last six are the status colours, added October 2026. They behave
+    <p class="sb-note">The last six are the status colors, added October 2026. They behave
       differently from one another on paper, and the Status story shows which of them can
       carry text, which can only be a fill or a ground, and why two resolve to a deeper form
       in the light theme.</p>
@@ -140,11 +140,11 @@ const P={title:"Foundations"},R=`
   </div>`;var p,h,v;r.parameters={...r.parameters,docs:{...(p=r.parameters)==null?void 0:p.docs,source:{originalSource:`() => {
   const el = document.createElement('div');
   el.innerHTML = \`
-    <p class="sb-note">Every colour token in the system, in one list. Light is the shipped
+    <p class="sb-note">Every color token in the system, in one list. Light is the shipped
       default and dark is the alternate, chosen rather than inherited from the operating
       system. Ratios are against the page ground and the card surface. AA needs 4.5 for body
       text and 3 for large text and control boundaries.</p>
-    <p class="sb-note">The last six are the status colours, added October 2026. They behave
+    <p class="sb-note">The last six are the status colors, added October 2026. They behave
       differently from one another on paper, and the Status story shows which of them can
       carry text, which can only be a fill or a ground, and why two resolve to a deeper form
       in the light theme.</p>
@@ -177,7 +177,7 @@ const P={title:"Foundations"},R=`
   };
   requestAnimationFrame(run);
   return el;
-}`,...(v=(h=r.parameters)==null?void 0:h.docs)==null?void 0:v.source}}};var u,b,m;n.parameters={...n.parameters,docs:{...(u=n.parameters)==null?void 0:u.docs,source:{originalSource:`() => {
+}`,...(v=(h=r.parameters)==null?void 0:h.docs)==null?void 0:v.source}}};var b,u,m;n.parameters={...n.parameters,docs:{...(b=n.parameters)==null?void 0:b.docs,source:{originalSource:`() => {
   const el = document.createElement('div');
   el.innerHTML = \`
     <p class="sb-note">Three colors, for the three things a system has to say: something failed,
@@ -232,7 +232,7 @@ const P={title:"Foundations"},R=`
   };
   requestAnimationFrame(run);
   return el;
-}`,...(m=(b=n.parameters)==null?void 0:b.docs)==null?void 0:m.source}}};var g,x,w;o.parameters={...o.parameters,docs:{...(g=o.parameters)==null?void 0:g.docs,source:{originalSource:`() => \`
+}`,...(m=(u=n.parameters)==null?void 0:u.docs)==null?void 0:m.source}}};var g,x,w;o.parameters={...o.parameters,docs:{...(g=o.parameters)==null?void 0:g.docs,source:{originalSource:`() => \`
   <p class="sb-note">Display is Nickel Gothic Variable from Typekit. Its axes are width 25 to 150
     and slant −15 to 15. There is no weight axis, so a weight setting on the display face does
     nothing. Body is Inter, 400 through 900.</p>
