@@ -12,12 +12,21 @@ export default defineConfig({
   base: '/docs',
   outDir: '../public/docs',
   build: { format: 'directory' },
+  // The colour page became the color page when the docs moved to US spelling.
+  // Anything already pointing at the old URL still lands.
+  redirects: { '/foundations/colour': '/docs/foundations/color/' },
   integrations: [
     starlight({
       title: 'SDC Design System',
       description:
         'How, when and where to use every component on stevendesignco.com. Written for designers, engineers, content and QA.',
       customCss: ['./src/styles/sdc.css'],
+      /* Light is the default and dark is a choice, so Starlight's "auto" mode and
+         the prefers-color-scheme listener behind it are both replaced. */
+      components: {
+        ThemeProvider: './src/components/ThemeProvider.astro',
+        ThemeSelect: './src/components/ThemeSelect.astro',
+      },
       favicon: '/favicon.svg',
       lastUpdated: true,
       pagination: true,

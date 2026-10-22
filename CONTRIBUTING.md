@@ -44,10 +44,10 @@ More in [docs/CONTENT-GUIDE.md](docs/CONTENT-GUIDE.md).
 ## Code
 
 - **CSS.** Vanilla, with the tokens in `Site.astro`. Do not add Tailwind or a CSS
-  framework. Do not hard code a colour or a spacing value that a token covers.
+  framework. Do not hard code a color or a spacing value that a token covers.
   A new token goes in every theme block.
 - **JavaScript.** Plain TypeScript in an Astro `<script>`. Reach for React only
-  when a piece really needs component state. Every behaviour needs a fallback for
+  when a piece really needs component state. Every behavior needs a fallback for
   no JavaScript and for reduced motion.
 - **Comments.** Say why, not what. This codebase comments the reason for anything
   that looks odd, often with the bug that caused it. Keep doing that.

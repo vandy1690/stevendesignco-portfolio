@@ -41,7 +41,7 @@ How the CSS resolves a theme:
 
 When you add a token, add it in all three places, or the themes fall out of step.
 
-## Colour tokens
+## Color tokens
 
 | Token | Light (shipped) | Dark (alternate) | Use |
 |-------|-----------------|------------------|-----|
@@ -166,10 +166,10 @@ The page ground is a dot grid: a `radial-gradient` on `body`, one dot per
 
 ## Changing a token
 
-Which token it is decides where you change it. The sixteen colour primitives
+Which token it is decides where you change it. The sixteen color primitives
 are generated; everything else is hand-authored.
 
-**A colour primitive** (`--ink-*`, `--paper-*`, `--brand-*`):
+**A color primitive** (`--ink-*`, `--paper-*`, `--brand-*`):
 
 1. Change the value in `src/styles/tokens/primitives.tokens.json`, and in the
    Figma Primitives collection so the two agree.
@@ -190,4 +190,4 @@ are generated; everything else is hand-authored.
 
 3. Check contrast. The Storybook computes ratios live against the current tokens.
 4. Run `npm run sync` and rebuild in `storybook/` so the library picks up the change.
-5. If it is a brand colour, check `scripts/generate-og.mjs` too.
+5. If it is a brand color, check `scripts/generate-og.mjs` too.

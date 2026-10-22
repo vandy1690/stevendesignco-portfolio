@@ -19,9 +19,14 @@ const helpers = `
 export const Color = () => {
   const el = document.createElement('div');
   el.innerHTML = `
-    <p class="sb-note">Light is the shipped default; dark is the alternate. Ratios are against
-      the page ground and the card surface. AA needs 4.5 for body text and 3 for large text
-      and control boundaries.</p>
+    <p class="sb-note">Every color token in the system, in one list. Light is the shipped
+      default and dark is the alternate, chosen rather than inherited from the operating
+      system. Ratios are against the page ground and the card surface. AA needs 4.5 for body
+      text and 3 for large text and control boundaries.</p>
+    <p class="sb-note">The last six are the status colors, added October 2026. They behave
+      differently from one another on paper, and the Status story shows which of them can
+      carry text, which can only be a fill or a ground, and why two resolve to a deeper form
+      in the light theme.</p>
     <div class="sb-grid"></div>`;
   const run = () => {
     const script = document.createElement('script');
@@ -31,7 +36,10 @@ export const Color = () => {
       /* Borders and dividers are non-text contrast: the bar is 3, not 4.5. */
       const TOKENS = [['--sdc-bg',0],['--sdc-surface',0],['--sdc-surface-2',0],['--sdc-text',4.5],['--sdc-text-mute',4.5],
                       ['--sdc-accent',4.5],['--sdc-accent-hover',4.5],['--sdc-accent-text',0],
-                      ['--sdc-rule',0],['--sdc-rule-strong',3]];
+                      ['--sdc-rule',0],['--sdc-rule-strong',3],
+                      ['--sdc-error',4.5],['--sdc-error-tint',0],
+                      ['--sdc-warning',4.5],['--sdc-warning-tint',0],
+                      ['--sdc-success',4.5],['--sdc-success-tint',0]];
       const host = document.currentScript.parentElement.querySelector('.sb-grid');
       if (host) host.innerHTML = TOKENS.map(([t, bar]) => {
         const v = read(t);
@@ -44,6 +52,63 @@ export const Color = () => {
           '<div class="sb-swatch__meta"><div class="sb-swatch__name">' + t + '</div>' +
           '<div class="sb-swatch__val">' + v + '</div>' + line + '</div></div>';
       }).join(''); }`;
+    el.appendChild(script);
+  };
+  requestAnimationFrame(run);
+  return el;
+};
+
+export const Status = () => {
+  const el = document.createElement('div');
+  el.innerHTML = `
+    <p class="sb-note">Three colors, for the three things a system has to say: something failed,
+      something needs attention, something worked. Each one is a solid for text and small marks
+      and a tint for the message ground. The solid changes between themes because a color that
+      reads on paper does not read on black, and the other way round. Ratios below are live.</p>
+    <p class="sb-note">Status is never carried by color alone. Every message here has an icon and
+      a word as well, which is what makes it work for a reader who cannot tell the three hues
+      apart. The person colors used in Family Shifts are deliberately <b>not</b> in this system:
+      they are an app-level exception, recorded in the docs under Practices &rsaquo; Exceptions.</p>
+    <div class="sb-grid"></div>
+    <div class="sb-col" style="margin-top:28px"></div>`;
+  const run = () => {
+    const script = document.createElement('script');
+    script.textContent = `{ ${helpers}
+      const ROLES = [['error','Something failed'],['warning','Needs attention'],['success','It worked']];
+      const root = document.currentScript.parentElement;
+      const grid = root.querySelector('.sb-grid');
+      if (grid) grid.innerHTML = ROLES.map(([r]) => {
+        const solid = read('--sdc-' + r), tint = read('--sdc-' + r + '-tint');
+        const onBg = ratio(solid, read('--sdc-bg')), onSurf = ratio(solid, read('--sdc-surface'));
+        const inkOnTint = ratio(read('--sdc-text'), tint);
+        const mark = (x) => '<b class="' + (x >= 4.5 ? 'sb-pass' : 'sb-fail') + '">' + x.toFixed(2) + '</b>';
+        return '<div class="sb-swatch"><div class="sb-swatch__chip" style="background:' + solid + '"></div>' +
+          '<div class="sb-swatch__meta"><div class="sb-swatch__name">--sdc-' + r + '</div>' +
+          '<div class="sb-swatch__val">' + solid + '</div>' +
+          '<div class="sb-swatch__ratio">on bg ' + mark(onBg) + ' · on card ' + mark(onSurf) + '</div></div></div>' +
+          '<div class="sb-swatch"><div class="sb-swatch__chip" style="background:' + tint + '"></div>' +
+          '<div class="sb-swatch__meta"><div class="sb-swatch__name">--sdc-' + r + '-tint</div>' +
+          '<div class="sb-swatch__val">' + tint + '</div>' +
+          '<div class="sb-swatch__ratio">body text on it ' + mark(inkOnTint) + '</div></div></div>';
+      }).join('');
+      const ICON = {
+        error: '<circle cx="10" cy="10" r="7.5"/><path d="M10 6.2v4.6M10 13.6v.2"/>',
+        warning: '<path d="M10 2.8 18 16.4H2z"/><path d="M10 8v3.4M10 13.8v.2"/>',
+        success: '<circle cx="10" cy="10" r="7.5"/><path d="m6.6 10.2 2.3 2.3 4.5-4.8"/>'
+      };
+      const COPY = {
+        error: ['That shift could not be saved.', 'Check the start and end times, then try again.'],
+        warning: ['Two shifts overlap on Thursday.', 'Angie is booked twice between 5p and 7p.'],
+        success: ['The week is posted.', 'Everyone with the passcode sees it now.']
+      };
+      const demo = root.querySelector('.sb-col');
+      if (demo) demo.innerHTML = ROLES.map(([r]) =>
+        '<div style="display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-radius:var(--sdc-radius-sm);' +
+        'background:var(--sdc-' + r + '-tint);color:var(--sdc-text);font-size:14px;max-width:62ch">' +
+        '<svg viewBox="0 0 20 20" width="17" height="17" fill="none" stroke="var(--sdc-' + r + ')" stroke-width="1.9" ' +
+        'stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true">' + ICON[r] + '</svg>' +
+        '<span><b>' + COPY[r][0] + '</b> ' + COPY[r][1] + '</span></div>'
+      ).join(''); }`;
     el.appendChild(script);
   };
   requestAnimationFrame(run);

@@ -1,0 +1,30 @@
+<!--
+	Google Analytics for the Storybook, which ships at /labs/sdc-storybook/ and is
+	a separate document from the Astro site, so it does not inherit the layout's
+	tag. Same property as the site: see GA_ID in src/layouts/Site.astro.
+
+	The host check is the point. The site gates its tag on import.meta.env.PROD,
+	but this file is static and is injected in `npm run dev` too, so without a
+	guard every local Storybook session on port 6007 would land in the production
+	property. Only the public domain reports.
+
+	This is the manager frame, which is the top-level document at that URL, so one
+	page_view fires per visit. Story navigation inside the preview iframe is not
+	tracked, which is what we want: the question is whether someone arrived, not
+	which story they opened.
+-->
+<script>
+	(function () {
+		var host = location.hostname;
+		if (host !== 'stevendesignco.com' && host !== 'www.stevendesignco.com') return;
+		var id = 'G-RCWC0PX4G9';
+		var s = document.createElement('script');
+		s.async = true;
+		s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
+		document.head.appendChild(s);
+		window.dataLayer = window.dataLayer || [];
+		window.gtag = function () { window.dataLayer.push(arguments); };
+		window.gtag('js', new Date());
+		window.gtag('config', id);
+	})();
+</script>

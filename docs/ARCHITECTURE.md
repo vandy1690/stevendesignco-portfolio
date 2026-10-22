@@ -90,13 +90,13 @@ The site has to work when JavaScript is blocked, fails, or is slow.
 ## The home page
 
 `src/pages/index.astro` is the largest file and the only page with real
-behaviour. The data sits at the top of the file.
+behavior. The data sits at the top of the file.
 
 - `cases`: the case study cards, in display order. Reorder the array to reorder
   the deck.
 - `quotes`: twelve recommendation excerpts, titles only, no names.
 
-Behaviour, all in the page's own script:
+Behavior, all in the page's own script:
 
 | Piece | What it does |
 |-------|--------------|

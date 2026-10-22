@@ -5,8 +5,9 @@ dist/
 # generated types
 .astro/
 
-# dependencies
-node_modules/
+# dependencies. No trailing slash: `node_modules/` matches directories only,
+# so a symlink named node_modules slipped past it and reached dev in 9b794db.
+node_modules
 
 # logs
 npm-debug.log*

@@ -64,7 +64,7 @@ inside a case block now rendering at its documented 14px.
 - Case study pages are built from real components now. Fourteen of them live in
   `src/components/ui/`, and the CSS that each page used to carry its own copy of
   is centralized in the layout under `.case`.
-- Colour tokens tiered into primitives and semantic values, and the dark theme is
+- Color tokens tiered into primitives and semantic values, and the dark theme is
   reachable again: the toggle sits bottom right, follows the operating system on
   a first visit, and remembers a choice once one is made.
 - Five type sizes the layout was already shipping became tokens, after binding
@@ -104,7 +104,7 @@ inside a case block now rendering at its documented 14px.
 - Storybook add-ons for the SDC library: Controls, the theme toolbar, Viewport,
   Measure, Outline, a Docs page per section, an axe Accessibility tab, and an
   HTML tab. A Figma Design tab is wired and stays off until links are added.
-- Fixed a low contrast label in the Storybook Colour story, and a script
+- Fixed a low contrast label in the Storybook Color story, and a script
   collision on the Foundations Docs page.
 - Full project documentation: this file, the README, `docs/`, and the Storybook
   README.
@@ -144,7 +144,7 @@ inside a case block now rendering at its documented 14px.
   and their Storybook conversions. Unlisted in robots.txt.
 - Both Storybooks branded, with interactive controls and fixed asset paths.
 - The Plate Pattern Lab cleaned up: branding, a wrong favicon removed, blank
-  images filled, a broken logo path fixed, and the semantic colour layer shown.
+  images filled, a broken logo path fixed, and the semantic color layer shown.
 
 **August 20**
 - PayPal moved to the past tense across the site after the contract ended.

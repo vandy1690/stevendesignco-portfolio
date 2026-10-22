@@ -42,16 +42,16 @@ more.
 - The email link decodes at runtime and adds "(opens your email app)" for screen
   readers.
 
-## Colour and contrast
+## Color and contrast
 
 - Body text and muted text clear 4.5 to 1 in both themes. `--sdc-text-mute` was
   darkened in light and lightened in dark to get there.
 - Control borders use `--sdc-rule-strong`, which clears 3 to 1.
-- `prefers-contrast: more` collapses muted text into the full ink colour and
+- `prefers-contrast: more` collapses muted text into the full ink color and
   swaps dividers for the strong rule.
-- `forced-colors: active` (Windows High Contrast) gets a system colour focus
+- `forced-colors: active` (Windows High Contrast) gets a system color focus
   ring, and the pieces painted with backgrounds (menu bars, pager, skip link,
-  new tab icon) are redrawn with system colours so they do not disappear.
+  new tab icon) are redrawn with system colors so they do not disappear.
 
 ## Focus
 
@@ -111,7 +111,7 @@ Do these before merging to `dev`.
 5. **Automated.** Run axe DevTools or Lighthouse on the page. For shared
    components, open the story in the Storybook and check the Accessibility tab in
    both themes.
-6. **High contrast**, if you touched anything painted with a background colour.
+6. **High contrast**, if you touched anything painted with a background color.
 
 ## Known limits
 

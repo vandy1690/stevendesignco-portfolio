@@ -177,5 +177,139 @@
         }
       }
     }
+  },
+  "signal": {
+    "crimson": {
+      "$type": "color",
+      "$value": "#B50F34",
+      "$description": "Error red. Luminance .104, which clears 4.5:1 as text on every paper ground and takes white text as a fill.",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:163:2",
+          "name": "signal/crimson"
+        }
+      }
+    },
+    "crimson-dark": {
+      "$type": "color",
+      "$value": "#F25C7D",
+      "$description": "Error red for the dark theme. The light-theme crimson is only 2.6:1 on near-black-2.",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:163:3",
+          "name": "signal/crimson-dark"
+        }
+      }
+    },
+    "crimson-tint": {
+      "$type": "color",
+      "$value": "#DDC4C3",
+      "$description": "Soft error ground, light theme. 14% crimson over paper cloud-2.",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:163:4",
+          "name": "signal/crimson-tint"
+        }
+      }
+    },
+    "crimson-tint-dark": {
+      "$type": "color",
+      "$value": "#3C1820",
+      "$description": "Soft error ground, dark theme.",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:163:5",
+          "name": "signal/crimson-tint-dark"
+        }
+      }
+    },
+    "grass": {
+      "$type": "color",
+      "$value": "#5F923F",
+      "$description": "Success green. A mid tone: nothing can sit on it (white 3.7, charcoal 3.4) and it cannot be read against paper. Use it as a tint ground; use grass-deep for text and marks.",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:163:6",
+          "name": "signal/grass"
+        }
+      }
+    },
+    "grass-deep": {
+      "$type": "color",
+      "$value": "#41642B",
+      "$description": "Success green taken down until it clears 4.5:1 on every paper ground. Same hue and saturation as grass. For text and small marks in the light theme.",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:163:7",
+          "name": "signal/grass-deep"
+        }
+      }
+    },
+    "grass-tint": {
+      "$type": "color",
+      "$value": "#D1D6C4",
+      "$description": "Soft success ground, light theme.",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:163:8",
+          "name": "signal/grass-tint"
+        }
+      }
+    },
+    "grass-tint-dark": {
+      "$type": "color",
+      "$value": "#293422",
+      "$description": "Soft success ground, dark theme.",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:163:9",
+          "name": "signal/grass-tint-dark"
+        }
+      }
+    },
+    "amber": {
+      "$type": "color",
+      "$value": "#FFA500",
+      "$description": "Warning orange. Luminance .48, so it works as a fill with charcoal on it, never with white, and never as text or a bare dot on paper.",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:163:10",
+          "name": "signal/amber"
+        }
+      }
+    },
+    "amber-deep": {
+      "$type": "color",
+      "$value": "#7E5100",
+      "$description": "Warning orange taken down until it clears 4.5:1 on every paper ground. For text and small marks in the light theme.",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:163:11",
+          "name": "signal/amber-deep"
+        }
+      }
+    },
+    "amber-tint": {
+      "$type": "color",
+      "$value": "#E8D9BB",
+      "$description": "Soft warning ground, light theme.",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:163:12",
+          "name": "signal/amber-tint"
+        }
+      }
+    },
+    "amber-tint-dark": {
+      "$type": "color",
+      "$value": "#4C3914",
+      "$description": "Soft warning ground, dark theme.",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:163:13",
+          "name": "signal/amber-tint-dark"
+        }
+      }
+    }
   }
 }

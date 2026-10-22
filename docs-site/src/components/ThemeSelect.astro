@@ -1,0 +1,60 @@
+---
+/* Overrides Starlight's ThemeSelect.
+   The "auto" option is gone, along with the prefers-color-scheme listener that
+   came with it, because auto is how a dark machine ends up with a dark page
+   nobody asked for. Two options, light first, and dark only when chosen. */
+import Select from '@astrojs/starlight/components/Select.astro';
+---
+
+<starlight-theme-select>
+	<Select
+		icon="sun"
+		label={Astro.locals.t('themeSelect.accessibleLabel')}
+		options={[
+			{ label: Astro.locals.t('themeSelect.light'), selected: true, value: 'light' },
+			{ label: Astro.locals.t('themeSelect.dark'), selected: false, value: 'dark' },
+		]}
+		width="6.25em"
+	/>
+</starlight-theme-select>
+
+{/* Inlined to avoid FOUC. Uses global scope from `ThemeProvider.astro` */}
+<script is:inline>
+	StarlightThemeProvider.updatePickers();
+</script>
+
+<script>
+	/** Key in `localStorage` to store color theme preference at. */
+	const storageKey = 'starlight-theme';
+
+	/** Anything that is not an explicit choice of dark resolves to light. */
+	const parseTheme = (theme: unknown): 'dark' | 'light' => (theme === 'dark' ? 'dark' : 'light');
+
+	const loadTheme = (): 'dark' | 'light' =>
+		parseTheme(typeof localStorage !== 'undefined' && localStorage.getItem(storageKey));
+
+	function onThemeChange(theme: 'dark' | 'light'): void {
+		StarlightThemeProvider.updatePickers(theme);
+		document.documentElement.dataset.theme = theme;
+		if (typeof localStorage !== 'undefined') localStorage.setItem(storageKey, theme);
+	}
+
+	customElements.define(
+		'starlight-theme-select',
+		class StarlightThemeSelect extends HTMLElement {
+			constructor() {
+				super();
+				/* Reflect what is stored without writing anything back: a visitor who has
+				   never chosen stays unrecorded, and stays light. */
+				const current = loadTheme();
+				StarlightThemeProvider.updatePickers(current);
+				document.documentElement.dataset.theme = current;
+				this.querySelector('select')?.addEventListener('change', (e) => {
+					if (e.currentTarget instanceof HTMLSelectElement) {
+						onThemeChange(parseTheme(e.currentTarget.value));
+					}
+				});
+			}
+		}
+	);
+</script>
