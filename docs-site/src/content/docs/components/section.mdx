@@ -27,11 +27,11 @@ import CaseSection from '../../components/ui/CaseSection.astro';
 import CaseBlock from '../../components/ui/CaseBlock.astro';
 import CaseFigure from '../../components/ui/CaseFigure.astro';
 ---
-<CaseSection alt>
+<CaseSection tone="alt">
 	<CaseBlock eyebrow="What I led" lede="Two tools, one pipeline." />
 </CaseSection>
 
-<CaseSection figure flush inner={false}>
+<CaseSection figure flush layout={false}>
 	<CaseFigure src="/images/example.webp" alt="..." width={2400} height={971} loading="lazy" />
 </CaseSection>
 ```

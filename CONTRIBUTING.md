@@ -67,7 +67,7 @@ The machine's half, one command:
 ```
 npm run dev     # one terminal
 npm run ship    # the other: tokens, manifest, naming, docs in step, docs build,
-                # site build, the seven-check Q&A, never-say
+                # site build, the Q&A suite, never-say
 ```
 
 CI runs the same gates on every pull request. If `ship` is green locally and

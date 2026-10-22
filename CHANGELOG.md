@@ -7,6 +7,33 @@ also the day the change went live, give or take a few minutes.
 Add a line here when you ship something a visitor or a future maintainer would
 notice.
 
+## October 22, 2026: SDC 02.01.00
+
+A status palette and a theme default, shipped in #21.
+
+- Three status colours arrive as six semantic tokens over twelve new
+  `--sdc-signal-*` primitives: something failed, something needs attention,
+  something worked. Swatched in the Storybook and documented at
+  /docs/foundations/color/. Nothing on the site uses them yet.
+- **Light is now the default theme for everyone.** The site no longer reads
+  `prefers-color-scheme`, so a visitor whose machine is set to dark sees the
+  light palette until they choose dark with the toggle. Clearing site data
+  returns them to light.
+- The documentation moved to US spelling, and /docs/foundations/colour/ now
+  redirects to /docs/foundations/color/.
+- Analytics on the Storybook, so referral links to it are counted. Only the
+  public domain reports.
+
+## October 9, 2026
+
+- The card art height cap came back. 02.00.00 had moved a `max-height: none`
+  rule out of the home page's `noscript` block and into the stylesheet without
+  its gate, which made every card 116px taller, overflowed the pinned stage, and
+  dropped both home decks into their static fallback for anyone with a window
+  shorter than about 900px. Shipped on the 8th, fixed on the 9th. A `deck-fit`
+  check now runs the decks with motion on, which no check had ever done.
+- The recommendations are the current twelve, re-cut from LinkedIn.
+
 ## October 8, 2026: SDC 02.00.00
 
 Shipped in #17. The design system's first
