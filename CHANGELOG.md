@@ -7,6 +7,14 @@ also the day the change went live, give or take a few minutes.
 Add a line here when you ship something a visitor or a future maintainer would
 notice.
 
+## October 23, 2026: SDC 02.01.00
+
+Two new design system components, Field and Slider, with Storybook stories and
+documentation pages. Field is a labeled text input or textarea with an optional
+hint; Slider is the native range input tinted with the accent, with its value
+beside the label. Built for the MsMadeline type tester on the family subdomain.
+Nothing on stevendesignco.com uses them yet, so no page changes.
+
 ## October 8, 2026: SDC 02.00.00
 
 Shipped in #17. The design system's first

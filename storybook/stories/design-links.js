@@ -12,6 +12,8 @@ export const figma = {
   RowList: '',
   CaseBlock: '',
   SkipLink: '',
+  Field: '',
+  Slider: '',
   CaseStudyHero: '',
   DeckFallback: '',
   ContactBlock: '',

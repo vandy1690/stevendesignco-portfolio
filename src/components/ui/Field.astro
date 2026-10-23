@@ -1,0 +1,45 @@
+---
+/**
+ * Field
+ * A labeled text control: one line by default, several with `multiline`.
+ * The label always shows above the control. There is no placeholder-as-label
+ * and no floating label, because a label that disappears while you type is the
+ * one most often missed.
+ *
+ * `hint` adds a line of help under the control and ties it to the control with
+ * aria-describedby, so a screen reader reads it after the label.
+ */
+interface Props {
+	/** Ties the label to the control. Required, because a field without it has no name. */
+	id: string;
+	/** The visible label, and the accessible name. */
+	label: string;
+	/** The form field name, when the value is submitted. */
+	name?: string;
+	/** The starting text. */
+	value?: string;
+	/** A textarea instead of a single line. */
+	multiline?: boolean;
+	/** Visible lines when multiline. */
+	rows?: number;
+	/** The most characters the field accepts. Say the limit in the hint too. */
+	maxLength?: number;
+	/** The input type for a single line: text, email, search, url or tel. */
+	type?: 'text' | 'email' | 'search' | 'url' | 'tel';
+	/** One line of help under the control. */
+	hint?: string;
+	class?: string;
+}
+const { id, label, name, value = '', multiline = false, rows = 3, maxLength, type = 'text', hint, class: cls } = Astro.props;
+const hintId = hint ? `${id}-hint` : undefined;
+---
+
+<div class:list={['sdc-field', cls]}>
+	<label class="sdc-field__label" for={id}>{label}</label>
+	{multiline ? (
+		<textarea class="sdc-field__input" id={id} name={name} rows={rows} maxlength={maxLength} aria-describedby={hintId}>{value}</textarea>
+	) : (
+		<input class="sdc-field__input" id={id} name={name} type={type} value={value} maxlength={maxLength} aria-describedby={hintId} />
+	)}
+	{hint && <p class="sdc-field__hint" id={hintId}>{hint}</p>}
+</div>

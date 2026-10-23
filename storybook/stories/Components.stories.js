@@ -141,4 +141,64 @@ export const SkipLink = () => `
   </div>`;
 SkipLink.storyName = 'Skip link';
 
-attachDesigns({ Buttons, Pager, PagerPair, CaseCard, Recommendation, MetaRow, RowList, CaseBlock, SkipLink });
+export const Field = {
+  args: { label: 'Type something', hint: 'Up to 100 characters.', multiline: true, value: 'Hej Madeline! Vi saknar dig.' },
+  argTypes: {
+    label: { control: 'text' },
+    hint: { control: 'text' },
+    multiline: { control: 'boolean' },
+    value: { control: 'text' },
+  },
+  render: ({ label, hint, multiline, value }) => {
+    const control = multiline
+      ? `<textarea class="sdc-field__input" id="sb-field" rows="2" maxlength="100"${hint ? ' aria-describedby="sb-field-hint"' : ''}>${value}</textarea>`
+      : `<input class="sdc-field__input" id="sb-field" type="text" value="${value}" maxlength="100"${hint ? ' aria-describedby="sb-field-hint"' : ''}>`;
+    return `
+    <p class="sb-note">A label over one text control, and an optional hint tied to it with
+      <code>aria-describedby</code>. The edge is <code>--sdc-rule-strong</code>, the same as the plain
+      button, so the boundary clears 3 to 1. Body size, so phones do not zoom in on focus. Not
+      resizable. Focus is the site-wide ring.</p>
+    <div class="sdc-field" style="max-width:640px">
+      <label class="sdc-field__label" for="sb-field">${label}</label>
+      ${control}
+      ${hint ? `<p class="sdc-field__hint" id="sb-field-hint">${hint}</p>` : ''}
+    </div>`;
+  },
+};
+
+export const Slider = {
+  args: { label: 'Size', min: 16, max: 96, value: 32, unit: 'px' },
+  argTypes: {
+    label: { control: 'text' },
+    min: { control: 'number' },
+    max: { control: 'number' },
+    value: { control: 'number' },
+    unit: { control: 'text' },
+  },
+  render: ({ label, min, max, value, unit }) => {
+    const shown = unit ? `${value} ${unit}` : String(value);
+    const wrap = document.createElement('div');
+    wrap.innerHTML = `
+    <p class="sb-note">The browser's own range input, tinted with <code>--sdc-accent</code>, so keyboard,
+      touch and screen readers behave the way people expect. The current value sits beside the
+      label in an <code>&lt;output&gt;</code>, not inside it, and <code>aria-valuetext</code> carries the
+      unit, so a screen reader hears "${shown}". Drag it, or tab to it and use the arrow keys.</p>
+    <div class="sdc-field" style="max-width:640px">
+      <div class="sdc-field__head">
+        <label class="sdc-field__label" for="sb-slider">${label}</label>
+        <output class="sdc-field__value" for="sb-slider">${shown}</output>
+      </div>
+      <input class="sdc-field__slider" id="sb-slider" type="range" min="${min}" max="${max}" step="1" value="${value}" aria-valuetext="${shown}">
+    </div>`;
+    const input = wrap.querySelector('input');
+    const out = wrap.querySelector('output');
+    input.addEventListener('input', () => {
+      const text = unit ? `${input.value} ${unit}` : input.value;
+      out.textContent = text;
+      input.setAttribute('aria-valuetext', text);
+    });
+    return wrap;
+  },
+};
+
+attachDesigns({ Buttons, Pager, PagerPair, CaseCard, Recommendation, MetaRow, RowList, CaseBlock, SkipLink, Field, Slider });

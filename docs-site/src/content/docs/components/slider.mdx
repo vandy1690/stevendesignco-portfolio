@@ -1,0 +1,110 @@
+---
+title: Slider
+description: A labeled range slider with its current value beside the label.
+sidebar:
+  order: 21
+---
+
+<dl class="sdc-hww">
+	<div><dt>How</dt><dd>The browser's own <code>&lt;input type="range"&gt;</code> with
+	<code>.sdc-field__slider</code>, inside <code>.sdc-field</code>. A
+	<code>.sdc-field__head</code> row holds the label and an <code>&lt;output&gt;</code> with
+	<code>.sdc-field__value</code>. <code>Slider.astro</code> writes all of it and keeps the
+	number in step.</dd></div>
+	<div><dt>When</dt><dd>When a visitor picks an amount from a range and sees the result
+	right away, such as a text size. The first one sets the size in the MsMadeline type
+	tester. When the exact number matters more than the feel, use a
+	<a href="/docs/components/field/">Field</a> instead.</dd></div>
+	<div><dt>Where</dt><dd>Directly above the thing it changes, so the hand and the eye
+	are in the same place. In the type tester it sits between the text field and the
+	preview.</dd></div>
+</dl>
+
+## Size
+
+One size. The slider takes the full width of its column, with a touch target at
+least `--sdc-space-lg` (32px) tall. The label and the value share the row above
+it, the label on the left and the value on the right.
+
+## In code
+
+`src/components/ui/Slider.astro`.
+
+```astro
+---
+import Slider from '../../components/ui/Slider.astro';
+---
+<Slider id="try-size" label="Size" min={16} max={96} value={32} unit="px" />
+```
+
+| Prop | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `id` | string | required | Ties the label and the value to the slider. |
+| `label` | string | required | The visible label and the accessible name. Name what changes: "Size", not "Slider". |
+| `name` | string | none | The form field name, when the value is submitted. |
+| `min` | number | `0` | The low end. |
+| `max` | number | `100` | The high end. |
+| `step` | number | `1` | How far one arrow key press moves it. |
+| `value` | number | `50` | Where it starts. |
+| `unit` | string | none | Shown and announced after the number, such as `px`. |
+| `class` | string | none | Extra classes for positioning. |
+
+## Anatomy
+
+The label row, then the slider, with `--sdc-space-xs` between them. The label is
+`--sdc-text-body-sm` at 600 weight. The value is the same size in
+`--sdc-text-mute`, with tabular figures so the row does not shift as the number
+changes. The slider is the browser's own control, tinted with `--sdc-accent`:
+slate blue in the light theme, citron in the dark.
+
+It is a native control on purpose. A custom-drawn slider has to rebuild keyboard
+support, touch handling and everything a screen reader expects, and each of those
+is a place to get it wrong. The native one gets all of them right already.
+
+## States
+
+**Rest** and **focus**, plus whatever the browser draws while it is being
+dragged. Focus is the site-wide ring from [Focus](/docs/foundations/focus/). No
+disabled state.
+
+## Accessibility
+
+- Arrow keys move it one `step`, and Home and End go to either end. That is the
+  browser's behavior, and it is why the control is native.
+- The value sits beside the label in an `<output>`, not inside the `<label>`.
+  Inside, the number would become part of the slider's name and the name would
+  change with every move.
+- `aria-valuetext` carries the unit, so a screen reader says "32 px" and not
+  "32". `Slider.astro` keeps it in step with the visible number.
+- Without JavaScript the slider still works. The number beside it stays at the
+  starting value, and the thing it controls should not depend on the number.
+
+## Content
+
+The label is the thing being changed, in one word where possible: "Size",
+"Speed". The unit goes in `unit`, not in the label.
+
+<div class="sdc-dd">
+	<div class="sdc-dd--do">
+		<h4>Do</h4>
+		<ul>
+			<li>Show the current value beside the label.</li>
+			<li>Put the slider directly above what it changes.</li>
+			<li>Pick a range where every stop looks different.</li>
+		</ul>
+	</div>
+	<div class="sdc-dd--dont">
+		<h4>Don't</h4>
+		<ul>
+			<li>Put the value inside the label.</li>
+			<li>Replace the native control with a drawn one.</li>
+			<li>Use a slider when the visitor needs one exact number.</li>
+		</ul>
+	</div>
+</div>
+
+## Checks before you ship
+
+1. Tab to it and press the arrow keys. The value beside the label changes with it.
+2. Turn on VoiceOver and move it. You hear the unit with the number.
+3. Switch to the dark theme. The filled part of the track turns citron.
