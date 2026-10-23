@@ -614,6 +614,13 @@
 				--sdc-nav-h: 56px;            /* layout/nav-height */
 				--sdc-radius: 18px;
 				--sdc-radius-sm: 10px;
+				/* The control contract. A form control is at least this tall, which
+				   clears WCAG 2.2 target size (24px) with room to spare and matches
+				   the 44px the skip link already uses. The border width is a token
+				   because an invalid control thickens it, and two places had been
+				   writing 1px by hand. */
+				--sdc-control-h: 44px;        /* layout/control-height */
+				--sdc-control-border: 1px;    /* layout/control-border */
 
 				/* spacing tokens (from Spacing Tokens) */
 				--sdc-space-xs: 8px;
@@ -1263,6 +1270,108 @@
 			   native keyboard, touch and screen reader behavior. Focus comes from the
 			   site-wide ring, like every other control. */
 			.sdc-field__slider { width: 100%; min-height: var(--sdc-space-lg); margin: 0; accent-color: var(--sdc-accent); cursor: pointer; }
+
+			/* ---------- The rest of the control set, added 2026-10-23 ----------
+			   Proved out on stevendesignservices.com, which built a contact form and a
+			   52-question questionnaire on this system and had to invent all of it
+			   locally. The 2026-10-22 inspection named the missing control contract as
+			   the single largest coverage gap: height, border width, label, invalid,
+			   required and disabled were nowhere, so every form reinvented them. */
+
+			/* A control is at least --sdc-control-h tall. Single-line inputs already
+			   cleared it on padding alone; a select and a choice chip do not. */
+			.sdc-field__input, .sdc-select { min-height: var(--sdc-control-h); }
+			.sdc-field__input { border-width: var(--sdc-control-border); }
+
+			/* Required is marked in the label, not by colour alone, and the asterisk
+			   is hidden from assistive tech because `required` already says it. */
+			.sdc-field__req { color: var(--sdc-error); margin-inline-start: 0.25em; }
+
+			/* The error line. Tied to the control with aria-describedby by Field.astro,
+			   and the control takes aria-invalid at the same time, so the state does
+			   not depend on reading the colour. */
+			.sdc-field__error { margin: 0; font-size: var(--sdc-text-body-sm); color: var(--sdc-error); }
+			.sdc-field--invalid .sdc-field__input,
+			.sdc-field--invalid .sdc-select { border-color: var(--sdc-error); border-width: 2px; }
+
+			.sdc-field__input:disabled, .sdc-select:disabled {
+				background: var(--sdc-surface-2); color: var(--sdc-text-mute); cursor: not-allowed;
+			}
+
+			/* Select keeps the native element, so the platform picker, keyboard and
+			   screen reader behaviour all come for free. Only the chrome is ours. */
+			.sdc-select {
+				width: 100%;
+				padding: var(--sdc-space-sm);
+				padding-inline-end: var(--sdc-space-xl);
+				border: var(--sdc-control-border) solid var(--sdc-rule-strong);
+				border-radius: var(--sdc-radius-sm);
+				background: var(--sdc-surface);
+				color: var(--sdc-text);
+				font-family: var(--sdc-font-body);
+				font-size: var(--sdc-text-body);
+				line-height: 1.5;
+				cursor: pointer;
+			}
+			.sdc-select:hover { border-color: var(--sdc-text); }
+
+			/* Fieldset: a group of related controls with a real legend, because a
+			   heading above a group is not announced as its name. */
+			.sdc-fieldset { margin: 0; padding: 0; border: 0; display: grid; gap: var(--sdc-space-md); }
+			.sdc-fieldset > legend {
+				padding: 0; font-size: var(--sdc-text-subheading); font-weight: 700; color: var(--sdc-text);
+			}
+			.sdc-fieldset__desc { margin: 0; font-size: var(--sdc-text-body-sm); color: var(--sdc-text-mute); }
+
+			/* Choice: a checkbox or radio drawn as a chip. The input stays in the DOM
+			   and keeps focus and keyboard behaviour; the label is the visible target
+			   and carries the size, which is why the hidden input being 1px wide is
+			   not a target-size failure. */
+			.sdc-choice-set { display: flex; flex-wrap: wrap; gap: var(--sdc-space-xs); }
+			.sdc-choice {
+				display: inline-flex; align-items: center; gap: var(--sdc-space-xs);
+				min-height: var(--sdc-control-h);
+				padding: var(--sdc-space-xs) var(--sdc-space-md);
+				border: var(--sdc-control-border) solid var(--sdc-rule-strong);
+				border-radius: var(--sdc-radius-sm);
+				background: var(--sdc-surface);
+				color: var(--sdc-text);
+				font-size: var(--sdc-text-body);
+				cursor: pointer;
+				transition: border-color 0.14s ease, background 0.14s ease;
+			}
+			.sdc-choice:hover { border-color: var(--sdc-text); }
+			.sdc-choice:has(input:checked) { background: var(--sdc-accent); border-color: var(--sdc-accent); color: var(--sdc-accent-text); }
+			/* The ring goes on the chip, not the 1px input, so it is visible. */
+			.sdc-choice:has(input:focus-visible) { outline: 3px solid var(--sdc-focus-ring); outline-offset: 3px; }
+			.sdc-choice input { position: absolute; width: 1px; height: 1px; opacity: 0; margin: 0; }
+			/* Checked state must not be colour alone: the chip also carries a mark. */
+			.sdc-choice::before { content: ''; width: 0; }
+			.sdc-choice:has(input:checked)::before { content: '\2713'; width: auto; font-weight: 700; }
+
+			/* The error summary at the top of a form, moved to on submit. role="alert"
+			   so it is announced, tabindex -1 so it can take focus without being a tab
+			   stop. Hidden until there is something to say. */
+			.sdc-form-summary {
+				padding: var(--sdc-space-md);
+				border: var(--sdc-control-border) solid var(--sdc-error);
+				border-radius: var(--sdc-radius-sm);
+				background: var(--sdc-error-tint);
+				color: var(--sdc-text);
+			}
+			.sdc-form-summary[hidden] { display: none; }
+			.sdc-form-summary ul { margin: var(--sdc-space-xs) 0 0; padding-inline-start: var(--sdc-space-md); }
+			/* The links inside take the ink, not the accent. The accent on the error
+			   tint measures 3.91 to 1 and fails, which is the tint's documented
+			   contract working as written: a tint is a ground for --sdc-text. They
+			   stay underlined, so they still read as links without the colour. */
+			.sdc-form-summary a { color: var(--sdc-text); text-decoration: underline; text-underline-offset: 3px; }
+
+			/* The live region a form speaks through after submitting. Polite, so it
+			   waits for a gap rather than interrupting. */
+			.sdc-form-status { margin: 0; font-size: var(--sdc-text-body-sm); color: var(--sdc-text-mute); }
+			.sdc-form-status--ok { color: var(--sdc-success); }
+			.sdc-form-status--err { color: var(--sdc-error); }
 
 			@media print {
 				.sdc-site-header, .sdc-site-footer, .sdc-nav-mobile, .sdc-theme-toggle { display: none !important; }

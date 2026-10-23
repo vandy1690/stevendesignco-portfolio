@@ -1,0 +1,41 @@
+---
+/**
+ * FormSummary
+ * The error summary a form moves focus to when submission fails. One list of
+ * what went wrong, each item a link to the control that needs fixing.
+ *
+ * role="alert" so it is announced when it appears, and tabindex -1 so script
+ * can focus it without making it a tab stop. Hidden until there is something
+ * to say: an empty alert region that is always present announces nothing and
+ * confuses everything.
+ *
+ * Added 2026-10-23 with the rest of the control set.
+ */
+interface Props {
+	/** Ties a form's script to this region. */
+	id?: string;
+	/** The sentence above the list. */
+	lede?: string;
+	/** One per failed control. `id` is the control to jump to. */
+	errors?: { id: string; message: string }[];
+	class?: string;
+}
+const { id = 'form-summary', lede = 'That did not send yet.', errors = [], class: cls } = Astro.props;
+---
+
+<div
+	class:list={['sdc-form-summary', cls]}
+	id={id}
+	role="alert"
+	tabindex="-1"
+	hidden={errors.length === 0 || undefined}
+>
+	<strong>{lede}</strong>
+	{errors.length > 0 && (
+		<ul>
+			{errors.map((e) => (
+				<li><a href={`#${e.id}`}>{e.message}</a></li>
+			))}
+		</ul>
+	)}
+</div>

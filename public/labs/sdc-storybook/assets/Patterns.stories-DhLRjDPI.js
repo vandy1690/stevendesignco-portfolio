@@ -1,4 +1,4 @@
-import{a as u}from"./design-links-5xpGFJ9n.js";const f={title:"Patterns"},e=()=>`
+import{a as u}from"./design-links-CsRzzX79.js";const f={title:"Patterns"},e=()=>`
   <p class="sb-note">Order is fixed across all seven case studies: back link, kicker, title, deck,
     figure, then the stats. The figure sits between the deck and the stats at full width.</p>
   <div style="max-width:900px">

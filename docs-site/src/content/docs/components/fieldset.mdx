@@ -1,0 +1,53 @@
+---
+title: Fieldset
+description: A named group of related controls, with a real legend.
+sidebar:
+  order: 22
+---
+
+<dl class="sdc-hww">
+	<div><dt>How</dt><dd>A native <code>&lt;fieldset class="sdc-fieldset"&gt;</code> with a
+	<code>&lt;legend&gt;</code> and an optional <code>.sdc-fieldset__desc</code> tied to it with
+	<code>aria-describedby</code>. <code>Fieldset.astro</code> writes it.</dd></div>
+	<div><dt>When</dt><dd>Whenever two or more controls only make sense together: a set of
+	<a href="/docs/components/choice/">Choice</a> chips, a pair of date fields, a name split
+	across two inputs.</dd></div>
+	<div><dt>Where</dt><dd>Inside a form, around the controls it names.</dd></div>
+</dl>
+
+## Why not a heading
+
+A heading above a group of controls is read as a heading. It is not announced as
+the group's name, so someone moving control to control hears "Call me, checkbox"
+with nothing saying what the question was. A legend is announced with each
+control in the group, which is the whole point of it.
+
+The legend is styled at `--sdc-text-subheading` so it reads like the heading it
+replaces, but it is still a `legend` element. The default browser border and
+padding are removed, which is safe: none of the grouping behaviour lives in the
+border.
+
+## In code
+
+`src/components/ui/Fieldset.astro`.
+
+```astro
+---
+import Fieldset from '../../components/ui/Fieldset.astro';
+---
+<Fieldset legend="How should people reach you?" desc="Pick as many as you like.">
+	<div class="sdc-choice-set">…</div>
+</Fieldset>
+```
+
+| Prop | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `legend` | string | required | The group's name |
+| `desc` | string | none | One line under the legend, tied with `aria-describedby` |
+| `id` | string | from the legend | Only needed when `desc` is set and the legend is not unique |
+
+## Checks before you ship
+
+1. The legend says what the group is asking, not what the page is about.
+2. A screen reader announces the legend with each control.
+3. There is no heading duplicating the legend directly above it.

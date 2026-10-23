@@ -1,0 +1,94 @@
+---
+title: Choice
+description: A checkbox or radio drawn as a chip, with the label as the target.
+sidebar:
+  order: 21
+---
+
+<dl class="sdc-hww">
+	<div><dt>How</dt><dd>A <code>&lt;label class="sdc-choice"&gt;</code> wrapping a native
+	checkbox or radio and a <code>&lt;span&gt;</code> for the words. Several sit in a
+	<code>.sdc-choice-set</code>, which wraps them onto as many rows as they need.
+	<code>Choice.astro</code> writes one.</dd></div>
+	<div><dt>When</dt><dd>For a short, visible set of options a visitor picks from. Checkbox for
+	any number, radio for exactly one. Not for a long list: past about a dozen options a
+	<a href="/docs/components/select/">Select</a> is easier to scan.</dd></div>
+	<div><dt>Where</dt><dd>Inside a <a href="/docs/components/fieldset/">Fieldset</a>, which gives
+	the group its name. A set of chips with only a heading above it has no accessible name.</dd></div>
+</dl>
+
+## Why the input is one pixel wide
+
+The native input stays in the DOM. It is not `display: none` and not
+`visibility: hidden`, because both remove it from the accessibility tree and from
+the tab order. It is one pixel, transparent and absolutely positioned, so it
+keeps every behaviour the browser gives it for free: space to toggle, arrow keys
+to move between radios in a group, and the right announcement.
+
+The label is the visible target and carries the size, `--sdc-control-h` (44px).
+The focus ring is drawn on the label with `:has(input:focus-visible)`, not on the
+input, because a ring around a one pixel box is not a visible focus indicator.
+
+**An automated target-size scan will flag the input and it is wrong to.** The
+input measures about 1 by 52; the label around it measures at least 54 by 44.
+WCAG 2.2 target size is about the thing a person activates, and that is the
+label. This is worth knowing before someone "fixes" it.
+
+## Checked is not colour alone
+
+A checked chip fills with `--sdc-accent` and takes `--sdc-accent-text`, and it
+also grows a tick through `::before`. The colour is the fast signal and the mark
+is the one that survives a monochrome display, a colour vision difference, and a
+screenshot printed in grey.
+
+## In code
+
+`src/components/ui/Choice.astro`.
+
+```astro
+---
+import Choice from '../../components/ui/Choice.astro';
+import Fieldset from '../../components/ui/Fieldset.astro';
+---
+<Fieldset legend="What should people be able to do?">
+	<div class="sdc-choice-set">
+		<Choice name="can" label="Call me" />
+		<Choice name="can" label="Email me" />
+		<Choice name="can" label="Book an appointment" />
+	</div>
+</Fieldset>
+```
+
+| Prop | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `label` | string | required | The visible label and the accessible name |
+| `name` | string | required | The form field name. Radios in one group share it |
+| `value` | string | the label | What is submitted |
+| `radio` | boolean | `false` | A radio instead of a checkbox |
+| `checked` | boolean | `false` | Starts checked |
+| `disabled` | boolean | `false` | Greys it out and stops it submitting |
+
+<div class="sdc-dd">
+	<div class="sdc-dd--do">
+		<h4>Do</h4>
+		<ul>
+			<li>Put a set inside a Fieldset with a legend.</li>
+			<li>Use radio when exactly one answer is allowed.</li>
+			<li>Keep labels short enough to read at a glance.</li>
+		</ul>
+	</div>
+	<div class="sdc-dd--dont">
+		<h4>Don't</h4>
+		<ul>
+			<li>Hide the input with <code>display: none</code>.</li>
+			<li>Put the focus ring on the input.</li>
+			<li>Use a chip for a single yes or no. That is one checkbox with a label.</li>
+		</ul>
+	</div>
+</div>
+
+## Checks before you ship
+
+1. Tab reaches every chip and space toggles it.
+2. Arrow keys move within a radio group and skip the rest.
+3. The group has a legend, not just a heading.

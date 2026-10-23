@@ -1,0 +1,67 @@
+---
+title: Form messages
+description: The error summary a form moves focus to, and the live region it speaks through.
+sidebar:
+  order: 24
+---
+
+Two components, documented together because they are two halves of one job:
+telling somebody what happened after they pressed the button.
+
+<dl class="sdc-hww">
+	<div><dt>How</dt><dd><code>.sdc-form-summary</code> is a
+	<code>role="alert"</code> region with <code>tabindex="-1"</code>, hidden until it has
+	something to say. <code>.sdc-form-status</code> is a polite live region that stays in the
+	DOM empty. <code>FormSummary.astro</code> and <code>FormStatus.astro</code>.</dd></div>
+	<div><dt>When</dt><dd>The summary on a failed submit. The status for sending, sent and
+	failed.</dd></div>
+	<div><dt>Where</dt><dd>The summary at the top of the form, above the first field. The status
+	next to the submit button, where the result is expected.</dd></div>
+</dl>
+
+## The summary takes focus
+
+On a failed submit, script unhides the summary and calls `focus()` on it. That is
+why it carries `tabindex="-1"`: focusable by script, not a stop in the normal tab
+order. Each item links to the control that needs fixing, so the fix is one click
+or one Enter away.
+
+It is hidden when empty rather than always present. An alert region that exists
+and says nothing announces nothing useful, and some screen readers announce the
+empty region on page load.
+
+**The links inside take `--sdc-text`, not the accent.** The accent on
+`--sdc-error-tint` measures 3.91 to 1 and fails. That is the tint's documented
+contract working exactly as written: a tint is a ground for ordinary text. The
+links stay underlined, so they still read as links without leaning on colour.
+
+## The status stays in the DOM
+
+`.sdc-form-status` is rendered empty and filled later. A live region added to the
+page at the moment it has something to say is often missed, because the
+announcement can fire before assistive tech has registered the region exists.
+
+It is `aria-live="polite"`, not assertive. The visitor pressed the button and is
+waiting, so there is no need to interrupt whatever is being read.
+
+Tone classes tint it, `--sdc-form-status--ok` and `--sdc-form-status--err`, and
+the words carry the meaning on their own. "Sent." and "That did not send." read
+the same in grey.
+
+## In code
+
+```astro
+---
+import FormSummary from '../../components/ui/FormSummary.astro';
+import FormStatus from '../../components/ui/FormStatus.astro';
+---
+<FormSummary errors={[{ id: 'f-name', message: 'Add your name.' }]} />
+<FormStatus message="Sent. I will reply within a day." tone="ok" />
+```
+
+## Checks before you ship
+
+1. A failed submit moves focus to the summary and a screen reader reads it.
+2. Each summary item lands on the control it names.
+3. The status region is in the DOM before it has anything to say.
+4. Every message makes sense with the colour removed.

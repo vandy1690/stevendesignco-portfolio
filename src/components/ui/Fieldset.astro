@@ -1,0 +1,27 @@
+---
+/**
+ * Fieldset
+ * A group of related controls with a real legend. A heading above a group is
+ * not announced as the group's name, so a set of choices that only makes sense
+ * together gets a fieldset and a legend instead.
+ *
+ * Added 2026-10-23 with the rest of the control set.
+ */
+interface Props {
+	/** The group's name, rendered as the legend. */
+	legend: string;
+	/** One line under the legend explaining the group. Tied to the fieldset with aria-describedby. */
+	desc?: string;
+	/** Ties the description to the fieldset. Only needed when desc is set. */
+	id?: string;
+	class?: string;
+}
+const { legend, desc, id, class: cls } = Astro.props;
+const descId = desc ? `${id ?? legend.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-desc` : undefined;
+---
+
+<fieldset class:list={['sdc-fieldset', cls]} aria-describedby={descId}>
+	<legend>{legend}</legend>
+	{desc && <p class="sdc-fieldset__desc" id={descId}>{desc}</p>}
+	<slot />
+</fieldset>

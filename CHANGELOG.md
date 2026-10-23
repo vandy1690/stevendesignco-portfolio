@@ -13,7 +13,17 @@ Two new design system components, Field and Slider, with Storybook stories and
 documentation pages. Field is a labeled text input or textarea with an optional
 hint; Slider is the native range input tinted with the accent, with its value
 beside the label. Built for the MsMadeline type tester on the family subdomain.
-Nothing on stevendesignco.com uses them yet, so no page changes.
+
+Then the rest of the control set, which the October 22 inspection named as the
+system's largest coverage gap. Field gained error, required, autocomplete,
+inputmode, disabled and placeholder states, and four components arrived: Choice
+(a checkbox or radio as a chip), Fieldset, Select, and the error summary and
+status live region. Two layout tokens for the control contract, a 44px control
+height and a border width. All of it was proved out first on
+stevendesignservices.com, which built a contact form and a 52-question
+questionnaire on this system and had to invent every piece locally.
+
+Nothing on stevendesignco.com uses any of it yet, so no page changes.
 
 ## October 8, 2026: SDC 02.00.00
 

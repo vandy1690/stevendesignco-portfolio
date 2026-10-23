@@ -201,4 +201,88 @@ export const Slider = {
   },
 };
 
-attachDesigns({ Buttons, Pager, PagerPair, CaseCard, Recommendation, MetaRow, RowList, CaseBlock, SkipLink, Field, Slider });
+export const FieldStates = {
+  args: { label: 'Email address', error: 'That email address is missing something. Check it for a typo.' },
+  argTypes: { label: { control: 'text' }, error: { control: 'text' } },
+  render: ({ label, error }) => `
+    <p class="sb-note">Required, invalid and disabled. The asterisk is <code>aria-hidden</code> because
+      <code>required</code> already says it. An invalid control takes <code>aria-invalid="true"</code> and
+      points <code>aria-describedby</code> at the error, so the failure is announced and not only
+      coloured. The border thickens as well as reddens, for the same reason.</p>
+    <div class="sb-stack" style="display:grid;gap:24px;max-width:640px">
+      <div class="sdc-field">
+        <label class="sdc-field__label" for="sb-req">${label}<span class="sdc-field__req" aria-hidden="true">*</span></label>
+        <input class="sdc-field__input" id="sb-req" type="email" required autocomplete="email" inputmode="email" placeholder="jane@mercerdental.com">
+      </div>
+      <div class="sdc-field sdc-field--invalid">
+        <label class="sdc-field__label" for="sb-inv">${label}<span class="sdc-field__req" aria-hidden="true">*</span></label>
+        <input class="sdc-field__input" id="sb-inv" type="email" value="jane@" required aria-invalid="true" aria-describedby="sb-inv-err">
+        <p class="sdc-field__error" id="sb-inv-err">${error}</p>
+      </div>
+      <div class="sdc-field">
+        <label class="sdc-field__label" for="sb-dis">${label}</label>
+        <input class="sdc-field__input" id="sb-dis" type="email" value="set by your account" disabled>
+      </div>
+    </div>`,
+};
+FieldStates.storyName = 'Field states';
+
+export const Choice = {
+  args: { legend: 'What should people be able to do?' },
+  argTypes: { legend: { control: 'text' } },
+  render: ({ legend }) => `
+    <p class="sb-note">A checkbox or radio drawn as a chip. The native input stays in the DOM and keeps
+      its keyboard behaviour; the label is the visible target and carries the 44px height. The input is
+      1px wide, which is why an automated target-size scan flags it and is wrong to. Checked is not
+      colour alone: the chip grows a tick. Tab to one and press space.</p>
+    <fieldset class="sdc-fieldset" style="max-width:640px">
+      <legend>${legend}</legend>
+      <div class="sdc-choice-set">
+        <label class="sdc-choice"><input type="checkbox" name="sb-do" value="call" checked><span>Call me</span></label>
+        <label class="sdc-choice"><input type="checkbox" name="sb-do" value="email"><span>Email me</span></label>
+        <label class="sdc-choice"><input type="checkbox" name="sb-do" value="book"><span>Book an appointment</span></label>
+        <label class="sdc-choice"><input type="checkbox" name="sb-do" value="quote"><span>Ask for a quote</span></label>
+      </div>
+    </fieldset>`,
+};
+
+export const SelectControl = {
+  args: { label: 'How did you hear about me?' },
+  argTypes: { label: { control: 'text' } },
+  render: ({ label }) => `
+    <p class="sb-note">The browser's own select with our chrome on it, so the platform picker, the
+      keyboard and the screen reader announcement all still work. Same height, border and radius as a
+      text input, because they sit next to each other.</p>
+    <div class="sdc-field" style="max-width:640px">
+      <label class="sdc-field__label" for="sb-sel">${label}</label>
+      <select class="sdc-select" id="sb-sel">
+        <option value="" disabled selected>Pick one</option>
+        <option value="referral">Someone referred me</option>
+        <option value="search">I searched for it</option>
+        <option value="social">Social media</option>
+      </select>
+    </div>`,
+};
+SelectControl.storyName = 'Select';
+
+export const FormMessages = {
+  render: () => `
+    <p class="sb-note">The two things a form says. The summary appears on a failed submit, takes focus,
+      and links each message to the control that needs fixing: <code>role="alert"</code>, <code>tabindex="-1"</code>,
+      hidden until it has something to say. The status line is a polite live region that stays in the DOM
+      empty, because a region added at the moment it speaks is often missed.</p>
+    <div class="sb-stack" style="display:grid;gap:24px;max-width:640px">
+      <div class="sdc-form-summary" role="alert" tabindex="-1">
+        <strong>That did not send yet.</strong>
+        <ul>
+          <li><a href="#0">Add your name.</a></li>
+          <li><a href="#0">That email address is missing something.</a></li>
+        </ul>
+      </div>
+      <p class="sdc-form-status sdc-form-status--ok" role="status" aria-live="polite">Sent. I will reply within a day.</p>
+      <p class="sdc-form-status sdc-form-status--err" role="status" aria-live="polite">That did not send. Email me directly instead.</p>
+    </div>`,
+};
+FormMessages.storyName = 'Form messages';
+
+attachDesigns({ Buttons, Pager, PagerPair, CaseCard, Recommendation, MetaRow, RowList, CaseBlock, SkipLink, Field, Slider, FieldStates, Choice, SelectControl, FormMessages });

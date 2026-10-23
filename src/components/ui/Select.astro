@@ -1,0 +1,47 @@
+---
+/**
+ * Select
+ * The browser's own select, with our chrome on it. The native element keeps the
+ * platform picker, the keyboard behaviour and the screen reader announcement,
+ * none of which a custom dropdown gets for free.
+ *
+ * It sits inside a Field for its label, hint and error, the same as an input.
+ * Added 2026-10-23 with the rest of the control set.
+ */
+interface Props {
+	/** Ties the label to the control. */
+	id: string;
+	/** The form field name. */
+	name?: string;
+	/** The options, in display order. A value of '' makes a placeholder row. */
+	options: { value: string; label: string }[];
+	/** Which option starts selected. */
+	value?: string;
+	/** Marks the control required. */
+	required?: boolean;
+	/** Greys the control out. */
+	disabled?: boolean;
+	/** Sets aria-invalid. Field draws the border. */
+	invalid?: boolean;
+	/** The id of the hint or error that describes this control. */
+	describedBy?: string;
+	class?: string;
+}
+const { id, name, options, value, required = false, disabled = false, invalid = false, describedBy, class: cls } = Astro.props;
+---
+
+<select
+	class:list={['sdc-select', cls]}
+	id={id}
+	name={name}
+	required={required || undefined}
+	disabled={disabled || undefined}
+	aria-invalid={invalid ? 'true' : undefined}
+	aria-describedby={describedBy}
+>
+	{options.map((o) => (
+		<option value={o.value} selected={o.value === value || undefined} disabled={o.value === '' || undefined}>
+			{o.label}
+		</option>
+	))}
+</select>

@@ -1,0 +1,42 @@
+---
+/**
+ * Choice
+ * A checkbox or radio drawn as a chip. The native input stays in the DOM and
+ * keeps its keyboard and screen reader behaviour; the label is the visible
+ * target and carries the size, so the chip clears 44px while the input itself
+ * is 1px. That is why an automated target-size scan flags the input and is
+ * wrong to: the label is what anyone actually hits.
+ *
+ * Checked state is not colour alone. The chip also grows a tick.
+ *
+ * Added 2026-10-23, lifted from the 52-question questionnaire on
+ * stevendesignservices.com, which is where the pattern was proved.
+ */
+interface Props {
+	/** The visible label, and the accessible name. */
+	label: string;
+	/** The form field name. Radios in one group share it. */
+	name: string;
+	/** The submitted value. Defaults to the label. */
+	value?: string;
+	/** A radio instead of a checkbox. Use when exactly one may be picked. */
+	radio?: boolean;
+	/** Starts checked. */
+	checked?: boolean;
+	/** Greys the chip out and stops it submitting. */
+	disabled?: boolean;
+	class?: string;
+}
+const { label, name, value, radio = false, checked = false, disabled = false, class: cls } = Astro.props;
+---
+
+<label class:list={['sdc-choice', cls]}>
+	<input
+		type={radio ? 'radio' : 'checkbox'}
+		name={name}
+		value={value ?? label}
+		checked={checked || undefined}
+		disabled={disabled || undefined}
+	/>
+	<span>{label}</span>
+</label>
