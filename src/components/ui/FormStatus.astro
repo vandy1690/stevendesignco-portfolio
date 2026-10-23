@@ -17,14 +17,20 @@ interface Props {
 	/** The message. Empty is the normal resting state. */
 	message?: string;
 	/** Tints the message. Colour is never the only signal: the words carry it. */
-	tone?: 'ok' | 'error';
+	tone?: 'ok' | 'warning' | 'error';
 	class?: string;
 }
 const { id = 'form-status', message = '', tone, class: cls } = Astro.props;
 ---
 
 <p
-	class:list={['sdc-form-status', tone === 'ok' && 'sdc-form-status--ok', tone === 'error' && 'sdc-form-status--err', cls]}
+	class:list={[
+		'sdc-form-status',
+		tone === 'ok' && 'sdc-form-status--ok',
+		tone === 'warning' && 'sdc-form-status--warn',
+		tone === 'error' && 'sdc-form-status--err',
+		cls,
+	]}
 	id={id}
 	role="status"
 	aria-live="polite"

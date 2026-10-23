@@ -17,7 +17,7 @@ import{a as ye}from"./design-links-CsRzzX79.js";const k=e=>`<span class="sdc-pag
   <sdc-layout-container layout="pager" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between;align-items:center;max-width:800px">
     <a class="sdc-pager sdc-pager--prev" href="#0">${k("prev")}<span class="sdc-u-sr-only">Back to </span>All case studies</a>
     <a class="sdc-pager" href="#0"><span class="sdc-u-sr-only">Next case study: </span>Plate${k("next")}</a>
-  </sdc-layout-container>`;n.storyName="Pager pair";const i={args:{head:"Nobody asked for this one.",text:"A Figma plugin, built on my own initiative, that cut merchant flow setup from most of a day to 10 to 15 minutes, across the 38-merchant program.",product:"Figma plugin, PayPal",objective:"Faster merchant flow setup",image:"/images/case-studies/merchant-flow-builder/plugin-pipeline.webp"},argTypes:{head:{control:"text"},text:{control:"text"},product:{control:"text"},objective:{control:"text"},image:{control:"select",options:["/images/case-studies/merchant-flow-builder/plugin-pipeline.webp","/images/case-studies/paypal/one-click.webp","/images/case-studies/paypal/journey-dead-end.webp","/images/case-studies/plate/plate-scene.webp","/images/case-studies/design-systems/pattern-lab.webp"]}},render:({head:e,text:s,product:h,objective:a,image:t})=>`
+  </sdc-layout-container>`;n.storyName="Pager pair";const o={args:{head:"Nobody asked for this one.",text:"A Figma plugin, built on my own initiative, that cut merchant flow setup from most of a day to 10 to 15 minutes, across the 38-merchant program.",product:"Figma plugin, PayPal",objective:"Faster merchant flow setup",image:"/images/case-studies/merchant-flow-builder/plugin-pipeline.webp"},argTypes:{head:{control:"text"},text:{control:"text"},product:{control:"text"},objective:{control:"text"},image:{control:"select",options:["/images/case-studies/merchant-flow-builder/plugin-pipeline.webp","/images/case-studies/paypal/one-click.webp","/images/case-studies/paypal/journey-dead-end.webp","/images/case-studies/plate/plate-scene.webp","/images/case-studies/design-systems/pattern-lab.webp"]}},render:({head:e,text:s,product:h,objective:a,image:t})=>`
     <p class="sb-note">The unit the home page deck is built from. Art is 16:9 and full bleed; the
       body is a grid so the meta and the call to action share the last row on desktop and stack
       on phones. Labels read Product and Objective, not Client and Service. The headline is the only link;
@@ -36,7 +36,7 @@ import{a as ye}from"./design-links-CsRzzX79.js";const k=e=>`<span class="sdc-pag
           <span class="sdc-card__cta">Read case study <span class="arrow" aria-hidden="true">→</span></span>
         </div>
       </sdc-card>
-    </div>`};i.storyName="Case study card";const g={args:{quote:"He is one of those uncommon designers who can move fluidly between strategy, design, prototyping, and code.",title:"Product Designer, PayPal Merchant Enablement"},argTypes:{quote:{control:"text"},title:{control:"text"}},render:({quote:e,title:s})=>`
+    </div>`};o.storyName="Case study card";const g={args:{quote:"He is one of those uncommon designers who can move fluidly between strategy, design, prototyping, and code.",title:"Product Designer, PayPal Merchant Enablement"},argTypes:{quote:{control:"text"},title:{control:"text"}},render:({quote:e,title:s})=>`
     <p class="sb-note">One verbatim sentence from a LinkedIn recommendation. Titles only, never
       names. Twelve of these run in the scroll-driven fan under "On the record."</p>
     <div style="width:440px;max-width:100%">
@@ -44,14 +44,14 @@ import{a as ye}from"./design-links-CsRzzX79.js";const k=e=>`<span class="sdc-pag
         <blockquote class="sdc-quote__text" style="margin:0"><p>${e}</p></blockquote>
         <figcaption class="sdc-quote__title" style="margin-top:18px">${s}</figcaption>
       </figure>
-    </div>`},o=()=>`
+    </div>`},i=()=>`
   <p class="sb-note">Key and value, with a pipe between them. The pipe is a CSS pseudo-element with
     empty alt text, so assistive tech never announces it, and it is suppressed on phones where the
     label stacks above the value.</p>
   <dl class="sdc-card__meta" style="max-width:640px">
     <div><dt>Product</dt><dd>One-click checkout, PayPal</dd></div>
     <div><dt>Objective</dt><dd>One tap in each merchant's own checkout</dd></div>
-  </dl>`;o.storyName="Meta row";const r=()=>`
+  </dl>`;i.storyName="Meta row";const r=()=>`
   <p class="sb-note">The shared treatment for How I work and Recognition. A 220px key column, a rule
     under each row, and nothing else.</p>
   <ul class="sdc-how__list" style="max-width:800px">
@@ -141,7 +141,9 @@ import{a as ye}from"./design-links-CsRzzX79.js";const k=e=>`<span class="sdc-pag
     <p class="sb-note">The two things a form says. The summary appears on a failed submit, takes focus,
       and links each message to the control that needs fixing: <code>role="alert"</code>, <code>tabindex="-1"</code>,
       hidden until it has something to say. The status line is a polite live region that stays in the DOM
-      empty, because a region added at the moment it speaks is often missed.</p>
+      empty, because a region added at the moment it speaks is often missed. Three tones, one per
+      status colour: the tint is the ground, the ink sits on it, the solid draws the border. Measured
+      in both themes, text on tint runs 7.70 to 15.63 and every border clears 3 to 1.</p>
     <div class="sb-stack" style="display:grid;gap:24px;max-width:640px">
       <div class="sdc-form-summary" role="alert" tabindex="-1">
         <strong>That did not send yet.</strong>
@@ -150,9 +152,17 @@ import{a as ye}from"./design-links-CsRzzX79.js";const k=e=>`<span class="sdc-pag
           <li><a href="#0">That email address is missing something.</a></li>
         </ul>
       </div>
+      <div class="sdc-form-summary sdc-form-summary--warning" role="alert" tabindex="-1">
+        <strong>Saved, with one thing to check.</strong>
+        <ul><li><a href="#0">No phone number, so I can only reply by email.</a></li></ul>
+      </div>
+      <div class="sdc-form-summary sdc-form-summary--success" role="alert" tabindex="-1">
+        <strong>Sent. I will reply within a day.</strong>
+      </div>
       <p class="sdc-form-status sdc-form-status--ok" role="status" aria-live="polite">Sent. I will reply within a day.</p>
+      <p class="sdc-form-status sdc-form-status--warn" role="status" aria-live="polite">Saved as a draft. Nothing has been sent yet.</p>
       <p class="sdc-form-status sdc-form-status--err" role="status" aria-live="polite">That did not send. Email me directly instead.</p>
-    </div>`};u.storyName="Form messages";ye({Buttons:b,Pager:m,PagerPair:n,CaseCard:i,Recommendation:g,MetaRow:o,RowList:r,CaseBlock:l,SkipLink:d,Field:y,Slider:v,FieldStates:c,Choice:f,SelectControl:p,FormMessages:u});var T,S,q;b.parameters={...b.parameters,docs:{...(T=b.parameters)==null?void 0:T.docs,source:{originalSource:`{
+    </div>`};u.storyName="Form messages";ye({Buttons:b,Pager:m,PagerPair:n,CaseCard:o,Recommendation:g,MetaRow:i,RowList:r,CaseBlock:l,SkipLink:d,Field:y,Slider:v,FieldStates:c,Choice:f,SelectControl:p,FormMessages:u});var T,S,q;b.parameters={...b.parameters,docs:{...(T=b.parameters)==null?void 0:T.docs,source:{originalSource:`{
   args: {
     label: 'View work'
   },
@@ -196,12 +206,12 @@ import{a as ye}from"./design-links-CsRzzX79.js";const k=e=>`<span class="sdc-pag
         \${direction === 'prev' ? chevron('prev') : ''}<span class="sdc-u-sr-only">\${direction === 'prev' ? 'Previous' : 'Next'} case study: </span>\${label}\${direction === 'next' ? chevron('next') : ''}
       </a>
     </div>\`
-}`,...(j=(P=m.parameters)==null?void 0:P.docs)==null?void 0:j.source}}};var O,A,F;n.parameters={...n.parameters,docs:{...(O=n.parameters)==null?void 0:O.docs,source:{originalSource:`() => \`
+}`,...(j=(P=m.parameters)==null?void 0:P.docs)==null?void 0:j.source}}};var O,A,N;n.parameters={...n.parameters,docs:{...(O=n.parameters)==null?void 0:O.docs,source:{originalSource:`() => \`
   <p class="sb-note">How the pair sits at the foot of every case study.</p>
   <sdc-layout-container layout="pager" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between;align-items:center;max-width:800px">
     <a class="sdc-pager sdc-pager--prev" href="#0">\${chevron('prev')}<span class="sdc-u-sr-only">Back to </span>All case studies</a>
     <a class="sdc-pager" href="#0"><span class="sdc-u-sr-only">Next case study: </span>Plate\${chevron('next')}</a>
-  </sdc-layout-container>\``,...(F=(A=n.parameters)==null?void 0:A.docs)==null?void 0:F.source}}};var M,N,B;i.parameters={...i.parameters,docs:{...(M=i.parameters)==null?void 0:M.docs,source:{originalSource:`{
+  </sdc-layout-container>\``,...(N=(A=n.parameters)==null?void 0:A.docs)==null?void 0:N.source}}};var F,M,B;o.parameters={...o.parameters,docs:{...(F=o.parameters)==null?void 0:F.docs,source:{originalSource:`{
   args: {
     head: 'Nobody asked for this one.',
     text: 'A Figma plugin, built on my own initiative, that cut merchant flow setup from most of a day to 10 to 15 minutes, across the 38-merchant program.',
@@ -253,7 +263,7 @@ import{a as ye}from"./design-links-CsRzzX79.js";const k=e=>`<span class="sdc-pag
         </div>
       </sdc-card>
     </div>\`
-}`,...(B=(N=i.parameters)==null?void 0:N.docs)==null?void 0:B.source}}};var R,D,E;g.parameters={...g.parameters,docs:{...(R=g.parameters)==null?void 0:R.docs,source:{originalSource:`{
+}`,...(B=(M=o.parameters)==null?void 0:M.docs)==null?void 0:B.source}}};var R,D,E;g.parameters={...g.parameters,docs:{...(R=g.parameters)==null?void 0:R.docs,source:{originalSource:`{
   args: {
     quote: 'He is one of those uncommon designers who can move fluidly between strategy, design, prototyping, and code.',
     title: 'Product Designer, PayPal Merchant Enablement'
@@ -278,14 +288,14 @@ import{a as ye}from"./design-links-CsRzzX79.js";const k=e=>`<span class="sdc-pag
         <figcaption class="sdc-quote__title" style="margin-top:18px">\${title}</figcaption>
       </figure>
     </div>\`
-}`,...(E=(D=g.parameters)==null?void 0:D.docs)==null?void 0:E.source}}};var L,z,H;o.parameters={...o.parameters,docs:{...(L=o.parameters)==null?void 0:L.docs,source:{originalSource:`() => \`
+}`,...(E=(D=g.parameters)==null?void 0:D.docs)==null?void 0:E.source}}};var L,z,H;i.parameters={...i.parameters,docs:{...(L=i.parameters)==null?void 0:L.docs,source:{originalSource:`() => \`
   <p class="sb-note">Key and value, with a pipe between them. The pipe is a CSS pseudo-element with
     empty alt text, so assistive tech never announces it, and it is suppressed on phones where the
     label stacks above the value.</p>
   <dl class="sdc-card__meta" style="max-width:640px">
     <div><dt>Product</dt><dd>One-click checkout, PayPal</dd></div>
     <div><dt>Objective</dt><dd>One tap in each merchant's own checkout</dd></div>
-  </dl>\``,...(H=(z=o.parameters)==null?void 0:z.docs)==null?void 0:H.source}}};var I,V,W;r.parameters={...r.parameters,docs:{...(I=r.parameters)==null?void 0:I.docs,source:{originalSource:`() => \`
+  </dl>\``,...(H=(z=i.parameters)==null?void 0:z.docs)==null?void 0:H.source}}};var I,V,W;r.parameters={...r.parameters,docs:{...(I=r.parameters)==null?void 0:I.docs,source:{originalSource:`() => \`
   <p class="sb-note">The shared treatment for How I work and Recognition. A 220px key column, a rule
     under each row, and nothing else.</p>
   <ul class="sdc-how__list" style="max-width:800px">
@@ -401,7 +411,7 @@ import{a as ye}from"./design-links-CsRzzX79.js";const k=e=>`<span class="sdc-pag
     });
     return wrap;
   }
-}`,...(te=(ae=v.parameters)==null?void 0:ae.docs)==null?void 0:te.source}}};var ne,ie,oe;c.parameters={...c.parameters,docs:{...(ne=c.parameters)==null?void 0:ne.docs,source:{originalSource:`{
+}`,...(te=(ae=v.parameters)==null?void 0:ae.docs)==null?void 0:te.source}}};var ne,oe,ie;c.parameters={...c.parameters,docs:{...(ne=c.parameters)==null?void 0:ne.docs,source:{originalSource:`{
   args: {
     label: 'Email address',
     error: 'That email address is missing something. Check it for a typo.'
@@ -437,7 +447,7 @@ import{a as ye}from"./design-links-CsRzzX79.js";const k=e=>`<span class="sdc-pag
         <input class="sdc-field__input" id="sb-dis" type="email" value="set by your account" disabled>
       </div>
     </div>\`
-}`,...(oe=(ie=c.parameters)==null?void 0:ie.docs)==null?void 0:oe.source}}};var re,le,de;f.parameters={...f.parameters,docs:{...(re=f.parameters)==null?void 0:re.docs,source:{originalSource:`{
+}`,...(ie=(oe=c.parameters)==null?void 0:oe.docs)==null?void 0:ie.source}}};var re,le,de;f.parameters={...f.parameters,docs:{...(re=f.parameters)==null?void 0:re.docs,source:{originalSource:`{
   args: {
     legend: 'What should people be able to do?'
   },
@@ -491,7 +501,9 @@ import{a as ye}from"./design-links-CsRzzX79.js";const k=e=>`<span class="sdc-pag
     <p class="sb-note">The two things a form says. The summary appears on a failed submit, takes focus,
       and links each message to the control that needs fixing: <code>role="alert"</code>, <code>tabindex="-1"</code>,
       hidden until it has something to say. The status line is a polite live region that stays in the DOM
-      empty, because a region added at the moment it speaks is often missed.</p>
+      empty, because a region added at the moment it speaks is often missed. Three tones, one per
+      status colour: the tint is the ground, the ink sits on it, the solid draws the border. Measured
+      in both themes, text on tint runs 7.70 to 15.63 and every border clears 3 to 1.</p>
     <div class="sb-stack" style="display:grid;gap:24px;max-width:640px">
       <div class="sdc-form-summary" role="alert" tabindex="-1">
         <strong>That did not send yet.</strong>
@@ -500,7 +512,15 @@ import{a as ye}from"./design-links-CsRzzX79.js";const k=e=>`<span class="sdc-pag
           <li><a href="#0">That email address is missing something.</a></li>
         </ul>
       </div>
+      <div class="sdc-form-summary sdc-form-summary--warning" role="alert" tabindex="-1">
+        <strong>Saved, with one thing to check.</strong>
+        <ul><li><a href="#0">No phone number, so I can only reply by email.</a></li></ul>
+      </div>
+      <div class="sdc-form-summary sdc-form-summary--success" role="alert" tabindex="-1">
+        <strong>Sent. I will reply within a day.</strong>
+      </div>
       <p class="sdc-form-status sdc-form-status--ok" role="status" aria-live="polite">Sent. I will reply within a day.</p>
+      <p class="sdc-form-status sdc-form-status--warn" role="status" aria-live="polite">Saved as a draft. Nothing has been sent yet.</p>
       <p class="sdc-form-status sdc-form-status--err" role="status" aria-live="polite">That did not send. Email me directly instead.</p>
     </div>\`
-}`,...(me=(be=u.parameters)==null?void 0:be.docs)==null?void 0:me.source}}};const xe=["Buttons","Pager","PagerPair","CaseCard","Recommendation","MetaRow","RowList","CaseBlock","SkipLink","Field","Slider","FieldStates","Choice","SelectControl","FormMessages"];export{b as Buttons,l as CaseBlock,i as CaseCard,f as Choice,y as Field,c as FieldStates,u as FormMessages,o as MetaRow,m as Pager,n as PagerPair,g as Recommendation,r as RowList,p as SelectControl,d as SkipLink,v as Slider,xe as __namedExportsOrder,fe as default};
+}`,...(me=(be=u.parameters)==null?void 0:be.docs)==null?void 0:me.source}}};const xe=["Buttons","Pager","PagerPair","CaseCard","Recommendation","MetaRow","RowList","CaseBlock","SkipLink","Field","Slider","FieldStates","Choice","SelectControl","FormMessages"];export{b as Buttons,l as CaseBlock,o as CaseCard,f as Choice,y as Field,c as FieldStates,u as FormMessages,i as MetaRow,m as Pager,n as PagerPair,g as Recommendation,r as RowList,p as SelectControl,d as SkipLink,v as Slider,xe as __namedExportsOrder,fe as default};

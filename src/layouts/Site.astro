@@ -1211,9 +1211,15 @@ const jsonLd = {
 			.sdc-choice::before { content: ''; width: 0; }
 			.sdc-choice:has(input:checked)::before { content: '\2713'; width: auto; font-weight: 700; }
 
-			/* The error summary at the top of a form, moved to on submit. role="alert"
+			/* The summary at the top of a form, moved to on submit. role="alert"
 			   so it is announced, tabindex -1 so it can take focus without being a tab
-			   stop. Hidden until there is something to say. */
+			   stop. Hidden until there is something to say.
+
+			   Three tones, one per status colour, and they follow the palette's own
+			   contract exactly: the tint is the ground, --sdc-text sits on it, and the
+			   solid draws the border. Measured in both themes before shipping: text on
+			   tint runs 7.70 to 15.63, every border clears 3 to 1. Error is the default
+			   because a failed submit is the common case. */
 			.sdc-form-summary {
 				padding: var(--sdc-space-md);
 				border: var(--sdc-control-border) solid var(--sdc-error);
@@ -1221,6 +1227,8 @@ const jsonLd = {
 				background: var(--sdc-error-tint);
 				color: var(--sdc-text);
 			}
+			.sdc-form-summary--warning { border-color: var(--sdc-warning); background: var(--sdc-warning-tint); }
+			.sdc-form-summary--success { border-color: var(--sdc-success); background: var(--sdc-success-tint); }
 			.sdc-form-summary[hidden] { display: none; }
 			.sdc-form-summary ul { margin: var(--sdc-space-xs) 0 0; padding-inline-start: var(--sdc-space-md); }
 			/* The links inside take the ink, not the accent. The accent on the error
@@ -1233,6 +1241,7 @@ const jsonLd = {
 			   waits for a gap rather than interrupting. */
 			.sdc-form-status { margin: 0; font-size: var(--sdc-text-body-sm); color: var(--sdc-text-mute); }
 			.sdc-form-status--ok { color: var(--sdc-success); }
+			.sdc-form-status--warn { color: var(--sdc-warning); }
 			.sdc-form-status--err { color: var(--sdc-error); }
 
 			@media print {
