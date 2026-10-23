@@ -52,5 +52,7 @@ export const KEY_WIDTHS = [390, 880, 1440];
  */
 export const THEMES = ['light', 'dark'];
 
-export const LOCAL = 'http://localhost:4321';
+// QA_BASE points the suite and the never-say check at another local address, for
+// when 4321 is taken by a second dev server, or to test a served production build.
+export const LOCAL = process.env.QA_BASE || 'http://localhost:4321';
 export const PROD = 'https://stevendesignco.com';
