@@ -809,6 +809,29 @@
 				letter-spacing: normal;
 				line-height: 0.96;
 			}
+			/* Display 3: the display face at heading size, promoted from
+			   stevendesignservices.com on 2026-10-23, where it was .sds-display-3
+			   pending promotion.
+
+			   It is a class and not a token on purpose. The size it wanted,
+			   clamp(24px, 3.2vw, 32px), is already --sdc-text-heading, to the
+			   character. What the scale was missing was not a size but a display-face
+			   treatment at that size, since heading is a body-font style. Adding
+			   --sdc-text-display-3 would have been a second name for one value, which
+			   is the drift the naming page warns about.
+
+			   Line height 1.1 rather than .sdc-display's 0.96: at this size the tighter
+			   figure collides on two lines. */
+			.sdc-display-3,
+			.sdc-fieldset > legend {
+				font-family: var(--sdc-font-display);
+				font-size: var(--sdc-text-heading);
+				font-weight: 400;
+				font-variation-settings: "wdth" 100, "slnt" 0;
+				font-synthesis: none;
+				line-height: 1.1;
+				letter-spacing: 0;
+			}
 
 			.sdc-eyebrow {
 				font-size: var(--sdc-text-label);
@@ -1318,9 +1341,8 @@
 			/* Fieldset: a group of related controls with a real legend, because a
 			   heading above a group is not announced as its name. */
 			.sdc-fieldset { margin: 0; padding: 0; border: 0; display: grid; gap: var(--sdc-space-md); }
-			.sdc-fieldset > legend {
-				padding: 0; font-size: var(--sdc-text-subheading); font-weight: 700; color: var(--sdc-text);
-			}
+			/* Size and face come from .sdc-display-3, which this shares a selector with. */
+			.sdc-fieldset > legend { padding: 0; color: var(--sdc-text); }
 			.sdc-fieldset__desc { margin: 0; font-size: var(--sdc-text-body-sm); color: var(--sdc-text-mute); }
 
 			/* Choice: a checkbox or radio drawn as a chip. The input stays in the DOM
@@ -1349,9 +1371,15 @@
 			.sdc-choice::before { content: ''; width: 0; }
 			.sdc-choice:has(input:checked)::before { content: '\2713'; width: auto; font-weight: 700; }
 
-			/* The error summary at the top of a form, moved to on submit. role="alert"
+			/* The summary at the top of a form, moved to on submit. role="alert"
 			   so it is announced, tabindex -1 so it can take focus without being a tab
-			   stop. Hidden until there is something to say. */
+			   stop. Hidden until there is something to say.
+
+			   Three tones, one per status colour, and they follow the palette's own
+			   contract exactly: the tint is the ground, --sdc-text sits on it, and the
+			   solid draws the border. Measured in both themes before shipping: text on
+			   tint runs 7.70 to 15.63, every border clears 3 to 1. Error is the default
+			   because a failed submit is the common case. */
 			.sdc-form-summary {
 				padding: var(--sdc-space-md);
 				border: var(--sdc-control-border) solid var(--sdc-error);
@@ -1359,6 +1387,8 @@
 				background: var(--sdc-error-tint);
 				color: var(--sdc-text);
 			}
+			.sdc-form-summary--warning { border-color: var(--sdc-warning); background: var(--sdc-warning-tint); }
+			.sdc-form-summary--success { border-color: var(--sdc-success); background: var(--sdc-success-tint); }
 			.sdc-form-summary[hidden] { display: none; }
 			.sdc-form-summary ul { margin: var(--sdc-space-xs) 0 0; padding-inline-start: var(--sdc-space-md); }
 			/* The links inside take the ink, not the accent. The accent on the error
@@ -1371,6 +1401,7 @@
 			   waits for a gap rather than interrupting. */
 			.sdc-form-status { margin: 0; font-size: var(--sdc-text-body-sm); color: var(--sdc-text-mute); }
 			.sdc-form-status--ok { color: var(--sdc-success); }
+			.sdc-form-status--warn { color: var(--sdc-warning); }
 			.sdc-form-status--err { color: var(--sdc-error); }
 
 			@media print {
