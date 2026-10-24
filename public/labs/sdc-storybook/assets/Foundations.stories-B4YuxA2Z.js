@@ -1,4 +1,4 @@
-const P={title:"Foundations"},R=`
+const H={title:"Foundations"},R=`
   const read = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
   const toRgb = (c) => { const d = document.createElement('div'); d.style.color = c;
     document.body.appendChild(d); const v = getComputedStyle(d).color; d.remove();
@@ -10,7 +10,7 @@ const P={title:"Foundations"},R=`
     return 0.2126*s[0] + 0.7152*s[1] + 0.0722*s[2]; };
   const ratio = (fg, bg) => { const L1 = lum(flatten(fg, bg)), L2 = lum(toRgb(bg).slice(0,3));
     const a = Math.max(L1, L2), b = Math.min(L1, L2); return (a + 0.05) / (b + 0.05); };
-`,r=()=>{const e=document.createElement("div");return e.innerHTML=`
+`,n=()=>{const e=document.createElement("div");return e.innerHTML=`
     <p class="sb-note">Every color token in the system, in one list. Light is the shipped
       default and dark is the alternate, chosen rather than inherited from the operating
       system. Ratios are against the page ground and the card surface. AA needs 4.5 for body
@@ -38,7 +38,7 @@ const P={title:"Foundations"},R=`
         return '<div class="sb-swatch"><div class="sb-swatch__chip" style="background:' + v + '"></div>' +
           '<div class="sb-swatch__meta"><div class="sb-swatch__name">' + t + '</div>' +
           '<div class="sb-swatch__val">' + v + '</div>' + line + '</div></div>';
-      }).join(''); }`,e.appendChild(s)}),e},n=()=>{const e=document.createElement("div");return e.innerHTML=`
+      }).join(''); }`,e.appendChild(s)}),e},r=()=>{const e=document.createElement("div");return e.innerHTML=`
     <p class="sb-note">Three colors, for the three things a system has to say: something failed,
       something needs attention, something worked. Each one is a solid for text and small marks
       and a tint for the message ground. The solid changes between themes because a color that
@@ -94,6 +94,12 @@ const P={title:"Foundations"},R=`
       <div class="sdc-display" style="font-size:var(--sdc-text-display-2);line-height:1">Nobody asked for this one.</div></div>
     <div><p class="sb-label">Heading · clamp(24px, 3.2vw, 32px)</p>
       <div style="font-size:var(--sdc-text-heading);font-weight:600;letter-spacing:-.015em;line-height:1.25">One shared framework, seven brands.</div></div>
+    <div><p class="sb-label">Display 3 · <code>.sdc-display-3</code> · the same clamp, display face</p>
+      <div class="sdc-display-3">One shared framework, seven brands.</div>
+      <p class="sb-note" style="margin-top:8px">Same size as Heading above. The scale had the measurement
+        and not the treatment, so a heading wanting the display face at 24 to 32px had nothing to use.
+        A class rather than a token, because a second name for one value is drift. Line height 1.1, not
+        <code>.sdc-display</code>'s 0.96, which collides on two lines at this size.</p></div>
     <div><p class="sb-label">Deck · clamp(18px, 1.9vw, 24px)</p>
       <div style="font-size:var(--sdc-text-deck);font-weight:500;line-height:1.5;max-width:56ch">Plate's website was only a recipe database. The work was to grow it into a platform that carried the whole brand.</div></div>
     <div><p class="sb-label">Body · 16px / 1.65</p>
@@ -137,7 +143,7 @@ const P={title:"Foundations"},R=`
         <div style="height:120px;border-radius:12px;border:1px solid var(--sdc-rule);background-color:var(--sdc-bg);background-image:radial-gradient(circle at 1px 1px, rgba(45,52,54,${e}) 1px, transparent 0);background-size:20px 20px"></div>
         <p class="sb-label" style="margin-top:8px">${t} · ${e}</p>
       </div>`).join("")}
-  </div>`;var p,h,v;r.parameters={...r.parameters,docs:{...(p=r.parameters)==null?void 0:p.docs,source:{originalSource:`() => {
+  </div>`;var p,h,v;n.parameters={...n.parameters,docs:{...(p=n.parameters)==null?void 0:p.docs,source:{originalSource:`() => {
   const el = document.createElement('div');
   el.innerHTML = \`
     <p class="sb-note">Every color token in the system, in one list. Light is the shipped
@@ -177,7 +183,7 @@ const P={title:"Foundations"},R=`
   };
   requestAnimationFrame(run);
   return el;
-}`,...(v=(h=r.parameters)==null?void 0:h.docs)==null?void 0:v.source}}};var b,u,m;n.parameters={...n.parameters,docs:{...(b=n.parameters)==null?void 0:b.docs,source:{originalSource:`() => {
+}`,...(v=(h=n.parameters)==null?void 0:h.docs)==null?void 0:v.source}}};var b,u,m;r.parameters={...r.parameters,docs:{...(b=r.parameters)==null?void 0:b.docs,source:{originalSource:`() => {
   const el = document.createElement('div');
   el.innerHTML = \`
     <p class="sb-note">Three colors, for the three things a system has to say: something failed,
@@ -232,7 +238,7 @@ const P={title:"Foundations"},R=`
   };
   requestAnimationFrame(run);
   return el;
-}`,...(m=(u=n.parameters)==null?void 0:u.docs)==null?void 0:m.source}}};var g,x,w;o.parameters={...o.parameters,docs:{...(g=o.parameters)==null?void 0:g.docs,source:{originalSource:`() => \`
+}`,...(m=(u=r.parameters)==null?void 0:u.docs)==null?void 0:m.source}}};var g,x,w;o.parameters={...o.parameters,docs:{...(g=o.parameters)==null?void 0:g.docs,source:{originalSource:`() => \`
   <p class="sb-note">Display is Nickel Gothic Variable from Typekit. Its axes are width 25 to 150
     and slant −15 to 15. There is no weight axis, so a weight setting on the display face does
     nothing. Body is Inter, 400 through 900.</p>
@@ -243,6 +249,12 @@ const P={title:"Foundations"},R=`
       <div class="sdc-display" style="font-size:var(--sdc-text-display-2);line-height:1">Nobody asked for this one.</div></div>
     <div><p class="sb-label">Heading · clamp(24px, 3.2vw, 32px)</p>
       <div style="font-size:var(--sdc-text-heading);font-weight:600;letter-spacing:-.015em;line-height:1.25">One shared framework, seven brands.</div></div>
+    <div><p class="sb-label">Display 3 · <code>.sdc-display-3</code> · the same clamp, display face</p>
+      <div class="sdc-display-3">One shared framework, seven brands.</div>
+      <p class="sb-note" style="margin-top:8px">Same size as Heading above. The scale had the measurement
+        and not the treatment, so a heading wanting the display face at 24 to 32px had nothing to use.
+        A class rather than a token, because a second name for one value is drift. Line height 1.1, not
+        <code>.sdc-display</code>'s 0.96, which collides on two lines at this size.</p></div>
     <div><p class="sb-label">Deck · clamp(18px, 1.9vw, 24px)</p>
       <div style="font-size:var(--sdc-text-deck);font-weight:500;line-height:1.5;max-width:56ch">Plate's website was only a recipe database. The work was to grow it into a platform that carried the whole brand.</div></div>
     <div><p class="sb-label">Body · 16px / 1.65</p>
@@ -264,14 +276,14 @@ const P={title:"Foundations"},R=`
     <div class="sb-col">\${steps.map(([n, px]) => \`
       <div class="sb-row"><div class="sb-row__k">--space-\${n} · \${px}px</div>
       <div class="sb-bar" style="width:\${px}px"></div></div>\`).join('')}</div>\`;
-}`,...(S=(T=d.parameters)==null?void 0:T.docs)==null?void 0:S.source}}};var C,E,B;i.parameters={...i.parameters,docs:{...(C=i.parameters)==null?void 0:C.docs,source:{originalSource:`() => \`
+}`,...(S=(T=d.parameters)==null?void 0:T.docs)==null?void 0:S.source}}};var C,E,z;i.parameters={...i.parameters,docs:{...(C=i.parameters)==null?void 0:C.docs,source:{originalSource:`() => \`
   <p class="sb-note">Cards carry a four-stop shadow and deepen on hover. Radius is 18px for cards
     and 10px for controls.</p>
   <div class="sb-stack" style="gap:28px">
     <div style="width:230px;height:130px;border-radius:var(--sdc-radius);background:var(--sdc-surface);box-shadow:var(--sdc-shadow-card);display:grid;place-items:center;font-size:13px;color:var(--sdc-text-mute)">--sdc-shadow-card</div>
     <div style="width:230px;height:130px;border-radius:var(--sdc-radius);background:var(--sdc-surface);box-shadow:var(--sdc-shadow-card-hover);display:grid;place-items:center;font-size:13px;color:var(--sdc-text-mute)">--sdc-shadow-card-hover</div>
     <div style="width:230px;height:130px;border-radius:var(--sdc-radius-sm);background:var(--sdc-surface);border:1px solid var(--sdc-rule-strong);display:grid;place-items:center;font-size:13px;color:var(--sdc-text-mute)">--sdc-radius-sm, --sdc-rule-strong</div>
-  </div>\``,...(B=(E=i.parameters)==null?void 0:E.docs)==null?void 0:B.source}}};var O,z,L;c.parameters={...c.parameters,docs:{...(O=c.parameters)==null?void 0:O.docs,source:{originalSource:`() => \`
+  </div>\``,...(z=(E=i.parameters)==null?void 0:E.docs)==null?void 0:z.source}}};var B,O,L;c.parameters={...c.parameters,docs:{...(B=c.parameters)==null?void 0:B.docs,source:{originalSource:`() => \`
   <p class="sb-note">The ring has its own token, <code>--sdc-focus-ring</code>, rather than borrowing the body
     ink, so focus can be retuned without moving hover or text with it. It appears only for
     <code>:focus-visible</code>. Tab into these to see it; clicking them shows nothing.
@@ -282,7 +294,7 @@ const P={title:"Foundations"},R=`
     <a class="sdc-btn" href="#0">Secondary button</a>
     <a class="sdc-pager" href="#0">Pager<span class="sdc-pager__cap" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 3.5 4.5 4.5L6 12.5"/></svg></span></a>
     <a href="#0" style="font-weight:600">A text link</a>
-  </div>\``,...(L=(z=c.parameters)==null?void 0:z.docs)==null?void 0:L.source}}};var $,M,N;l.parameters={...l.parameters,docs:{...($=l.parameters)==null?void 0:$.docs,source:{originalSource:`() => \`
+  </div>\``,...(L=(O=c.parameters)==null?void 0:O.docs)==null?void 0:L.source}}};var $,M,N;l.parameters={...l.parameters,docs:{...($=l.parameters)==null?void 0:$.docs,source:{originalSource:`() => \`
   <p class="sb-note">The page ground is a one pixel dot on a twenty pixel grid, drawn as a single
     background image on the body. No overlay element and no extra request. Turn it up or down
     with <code>--sdc-texture-dot</code>.</p>
@@ -292,4 +304,4 @@ const P={title:"Foundations"},R=`
         <div style="height:120px;border-radius:12px;border:1px solid var(--sdc-rule);background-color:var(--sdc-bg);background-image:radial-gradient(circle at 1px 1px, rgba(45,52,54,\${o}) 1px, transparent 0);background-size:20px 20px"></div>
         <p class="sb-label" style="margin-top:8px">\${n} · \${o}</p>
       </div>\`).join('')}
-  </div>\``,...(N=(M=l.parameters)==null?void 0:M.docs)==null?void 0:N.source}}};const j=["Color","Status","Typography","DisplayWidths","Spacing","Elevation","Focus","Texture"];export{r as Color,a as DisplayWidths,i as Elevation,c as Focus,d as Spacing,n as Status,l as Texture,o as Typography,j as __namedExportsOrder,P as default};
+  </div>\``,...(N=(M=l.parameters)==null?void 0:M.docs)==null?void 0:N.source}}};const P=["Color","Status","Typography","DisplayWidths","Spacing","Elevation","Focus","Texture"];export{n as Color,a as DisplayWidths,i as Elevation,c as Focus,d as Spacing,r as Status,l as Texture,o as Typography,P as __namedExportsOrder,H as default};

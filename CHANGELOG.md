@@ -23,6 +23,11 @@ height and a border width. All of it was proved out first on
 stevendesignservices.com, which built a contact form and a 52-question
 questionnaire on this system and had to invent every piece locally.
 
+Display 3 was promoted at the same time, as `.sdc-display-3`: the display face
+at heading size, which the scale had never carried because `--sdc-text-heading`
+is a body-font style. It arrived as a class rather than a token, since the size
+it needed already existed under another name.
+
 Nothing on stevendesignco.com uses any of it yet, so no page changes.
 
 ## October 8, 2026: SDC 02.00.00

@@ -131,6 +131,7 @@ All global, in `Site.astro`.
 | Class | What it is |
 |-------|------------|
 | `.sdc-display` | Nickel Gothic, upright, tight line height. Add it to a heading |
+| `.sdc-display-3` | The display face at `--sdc-text-heading` size, line height 1.1. For a heading that wants the display face at this size, where `--sdc-text-heading` on its own is a body-font style. A Fieldset legend uses it |
 | `.sdc-eyebrow` | The small uppercase label above a heading |
 | `.sdc-btn`, `.sdc-btn--primary` | Two button weights only. 10px radius. The secondary border uses `--sdc-rule-strong` |
 | `.sdc-pager`, `.sdc-pager--prev`, `.sdc-pager__cap` | The solid next and previous button with a chevron end cap |

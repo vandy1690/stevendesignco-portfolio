@@ -86,3 +86,24 @@ and it stays local.
    `wght` 400, 700 and 900 on it in three places; the face has no weight axis, so
    all three are inert. Do not copy that pattern into anything new.
 3. No em dash or en dash in any new copy.
+
+## Display 3
+
+The display face at `--sdc-text-heading` size, as `.sdc-display-3`.
+
+The scale carries `display-1` and `display-2` for the big sizes and
+`--sdc-text-heading` for 24 to 32px, but heading is a body-font style. So a
+heading that wanted the display face at that size had nothing to use, and
+stevendesignservices.com invented `.sds-display-3` locally for its fieldset
+legends and questionnaire section headings. Promoted here on 23 October 2026.
+
+**It is a class, not a token.** The size it needed is `--sdc-text-heading`
+already, `clamp(24px, 3.2vw, 32px)`, to the character. What was missing was the
+treatment, not the measurement, and a second token name for one value is the
+drift the [naming page](/docs/start/naming/) warns about.
+
+Line height is 1.1 rather than `.sdc-display`'s 0.96. At this size the tighter
+figure collides when a heading wraps to two lines.
+
+A [Fieldset](/docs/components/fieldset/) legend uses it, which is how the
+legends on stevendesignservices.com already read.

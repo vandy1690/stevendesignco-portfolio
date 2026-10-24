@@ -55,6 +55,12 @@ Added, nothing renamed.
   border. Proved out first on stevendesignservices.com, which built a
   contact form and a 52-question questionnaire on this system and had to invent
   every one of them locally.
+- **Display 3**, as `.sdc-display-3`: the display face at `--sdc-text-heading`
+  size, line height 1.1. Promoted from stevendesignservices.com, where it was
+  `.sds-display-3` pending promotion. A class and not a token, because the size
+  it wanted is already `--sdc-text-heading` to the character; what the scale
+  lacked was a display-face treatment at that size, not a measurement. A
+  Fieldset legend uses it.
 - Two layout tokens for the control contract: `--sdc-control-h` (44px, which
   clears WCAG 2.2 target size with room) and `--sdc-control-border`. Two places
   had been writing `1px` by hand.
