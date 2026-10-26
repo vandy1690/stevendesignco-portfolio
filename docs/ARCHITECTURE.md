@@ -146,7 +146,7 @@ The pieces that are global and not under `.sdc-case` (`sdc-pager`, `sdc-btn`, `s
 
 ## Components
 
-The shared library is the 14 components in `components/ui/`. Every case study
+The shared library is the 16 components in `components/ui/`. Every case study
 page is assembled from them and carries no markup of its own for these pieces.
 Each one has a page in the documentation site under `/docs/components/`.
 

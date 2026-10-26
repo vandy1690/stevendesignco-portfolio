@@ -88,8 +88,10 @@ mobile takeover, the floating theme toggle, and the site footer. A page never
 writes these.</li>
 <li><strong>The head.</strong> Title, description, canonical URL, the social card, the
 <code dir="auto">sdc-version</code> meta tag, structured data, and the fonts.</li>
-<li><strong>Theme.</strong> The site ships light, follows the operating system on a first
-visit, and remembers a choice. The toggle and its script are here.</li>
+<li><strong>Theme.</strong> The site ships light and stays light unless somebody picks dark
+with the toggle, which is what the stored value records. The operating system
+is not consulted; <code dir="auto">/docs/foundations/color/</code> gives the reasoning. The toggle
+and its script are here.</li>
 <li><strong>Case study styles</strong>, switched on by <code dir="auto">variant="case"</code>, which puts the
 <code dir="auto">sdc-case</code> class on <code dir="auto">&lt;main&gt;</code>. Everything under <code dir="auto">.sdc-case</code> in the stylesheet
 applies only to case study pages and to a case study opened in the home page

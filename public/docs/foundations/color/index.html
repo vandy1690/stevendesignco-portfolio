@@ -80,7 +80,7 @@ to one component and is not part of the system. Figma keeps the plain names; the
 prefix is added when the tokens are generated.</p>
 <div class="sl-heading-wrapper level-h2"><h2 id="two-tiers">Two tiers</h2><a class="sl-anchor-link" href="#two-tiers"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Two tiers”</span></a></div>
 <p><strong>Primitives</strong> hold the raw values and are named for what they are:
-<code dir="auto">--sdc-paper-cloud</code>, <code dir="auto">--sdc-ink-charcoal</code>, <code dir="auto">--sdc-brand-regatta</code>. Sixteen of them, defined
+<code dir="auto">--sdc-paper-cloud</code>, <code dir="auto">--sdc-ink-charcoal</code>, <code dir="auto">--sdc-brand-regatta</code>. Twenty-eight of them, defined
 once on <code dir="auto">:root</code>, the same in every theme. Nothing in the stylesheet may use one
 directly except the semantic tokens below.</p>
 <p>Primitives are <strong>generated, not hand-written</strong>. Figma is the source of truth for
@@ -141,7 +141,8 @@ claims, and claims need checking.</p>
 something needs attention, something worked. Added October 2026. Before that the
 system had none, and anything needing a red invented one.</p>
 <p><code dir="auto">--sdc-error</code>, <code dir="auto">--sdc-warning</code> and <code dir="auto">--sdc-success</code> are the solids, for text and
-small marks. Each has a tint, <code dir="auto">--sdc-error-tint</code> and the other two, which is the
+small marks. Each has a tint, <code dir="auto">--sdc-error-tint</code>, <code dir="auto">--sdc-warning-tint</code> and
+<code dir="auto">--sdc-success-tint</code>, which is the
 ground a message sits on with ordinary <code dir="auto">--sdc-text</code> on top. Six semantic tokens,
 pointing at twelve primitives under <code dir="auto">--sdc-signal-</code>.</p>
 <p>The three picked values are <code dir="auto">#B50F34</code>, <code dir="auto">#FFA500</code> and <code dir="auto">#5F923F</code>. They behave very
