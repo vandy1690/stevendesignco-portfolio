@@ -106,7 +106,7 @@ If the Adobe kit fails to load, display text falls back to Inter.
 |-------|-------|-----|
 | `--sdc-text-display-1` | clamp(48px, 8vw, 96px) | Hero headlines |
 | `--sdc-text-display-2` | clamp(32px, 4.8vw, 48px) | Section titles |
-| `--sdc-text-heading` | clamp(24px, 3.2vw, 32px) | Case study titles |
+| `--sdc-text-heading` | clamp(24px, 3.2vw, 32px) | The 24 to 32 step. `.sdc-display-3` is its only consumer; case study headings use `--sdc-text-display-2` |
 | `--sdc-text-deck` | clamp(18px, 1.9vw, 24px) | Taglines and intros |
 | `--sdc-text-subheading` | 20px | Section labels |
 | `--sdc-text-body` | 16px | Paragraphs, line height 1.6 |
@@ -131,7 +131,7 @@ All global, in `Site.astro`.
 | Class | What it is |
 |-------|------------|
 | `.sdc-display` | Nickel Gothic, upright, tight line height. Add it to a heading |
-| `.sdc-display-3` | The display face at `--sdc-text-heading` size, line height 1.1. For a heading that wants the display face at this size, where `--sdc-text-heading` on its own is a body-font style. A Fieldset legend uses it |
+| `.sdc-display-3` | The display face at `--sdc-text-heading` size, line height 1.1, letter spacing 0. The design-side counterpart is the Figma text style **Display/3**. A Fieldset legend uses it |
 | `.sdc-eyebrow` | The small uppercase label above a heading |
 | `.sdc-btn`, `.sdc-btn--primary` | Two button weights only. 10px radius. The secondary border uses `--sdc-rule-strong` |
 | `.sdc-pager`, `.sdc-pager--prev`, `.sdc-pager__cap` | The solid next and previous button with a chevron end cap |
