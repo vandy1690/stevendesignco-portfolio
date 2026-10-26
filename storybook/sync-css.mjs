@@ -4,7 +4,7 @@
    story markup is the same classes without Astro's compile-time hashes.
 
    Usage: node sync-css.mjs [origin]   default http://localhost:4321 */
-import { writeFileSync, mkdirSync } from 'node:fs';
+import { writeFileSync, mkdirSync, readFileSync } from 'node:fs';
 
 const ORIGIN = process.argv[2] || 'http://localhost:4321';
 const PAGES = ['/', '/work/paypal', '/design-systems', '/resume', '/work'];
@@ -24,6 +24,32 @@ for (const path of PAGES) {
     seen.add(css);
     out.push(`/* ---- from ${path} ---- */\n${css}`);
   }
+}
+
+/* The scrape is only as fresh as the server it reads. A dev server left running
+   across an edit can serve a stale inline <style>, and this script will copy the
+   stale copy without complaint: on 2026-10-24 it dropped two commits' worth of
+   CSS that way, and the Storybook showed unstyled markup that still passed axe.
+
+   So compare what came back against what the layout defines. Every `.sdc-` class
+   in Site.astro has to appear in the scrape, or the server was stale. */
+const layout = readFileSync(new URL('../src/layouts/Site.astro', import.meta.url), 'utf8');
+/* Comments are stripped from both sides before comparing. A comment that merely
+   names a class satisfied a substring check and masked the rule's absence, which
+   is how the first version of this guard passed a deliberately stale server. */
+const decomment = (css) => css.replace(/\/\*[\s\S]*?\*\//g, '');
+const defined = new Set([...decomment(layout).matchAll(/^\s*\.(sdc-[a-z0-9_-]+)/gm)].map((m) => m[1]));
+const scraped = decomment(out.join('\n'));
+/* Look for the class as a selector, so the next character has to be able to
+   follow one: a brace, comma, combinator, colon, bracket or whitespace. */
+const isSelector = (c) => new RegExp(`\\.${c}(?![a-z0-9_-])`, 'i').test(scraped);
+const missing = [...defined].filter((c) => !isSelector(c)).sort();
+if (missing.length) {
+  console.error(`\nStale scrape: ${missing.length} class${missing.length === 1 ? '' : 'es'} defined in Site.astro did not come back from ${ORIGIN}.`);
+  for (const c of missing.slice(0, 12)) console.error(`  .${c}`);
+  if (missing.length > 12) console.error(`  and ${missing.length - 12} more`);
+  console.error('\nThe dev server is serving an older compile. Restart it and run this again.');
+  process.exit(1);
 }
 
 mkdirSync(new URL('./src/', import.meta.url), { recursive: true });

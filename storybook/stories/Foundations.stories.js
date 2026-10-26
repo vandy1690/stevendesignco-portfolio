@@ -126,6 +126,12 @@ export const Typography = () => `
       <div class="sdc-display" style="font-size:var(--sdc-text-display-2);line-height:1">Nobody asked for this one.</div></div>
     <div><p class="sb-label">Heading · clamp(24px, 3.2vw, 32px)</p>
       <div style="font-size:var(--sdc-text-heading);font-weight:600;letter-spacing:-.015em;line-height:1.25">One shared framework, seven brands.</div></div>
+    <div><p class="sb-label">Display 3 · <code>.sdc-display-3</code> · the same clamp, display face</p>
+      <div class="sdc-display-3">One shared framework, seven brands.</div>
+      <p class="sb-note" style="margin-top:8px">Same size as Heading above. The scale had the measurement
+        and not the treatment, so a heading wanting the display face at 24 to 32px had nothing to use.
+        A class rather than a token, because a second name for one value is drift. Line height 1.1, not
+        <code>.sdc-display</code>'s 0.96, which collides on two lines at this size.</p></div>
     <div><p class="sb-label">Deck · clamp(18px, 1.9vw, 24px)</p>
       <div style="font-size:var(--sdc-text-deck);font-weight:500;line-height:1.5;max-width:56ch">Plate's website was only a recipe database. The work was to grow it into a platform that carried the whole brand.</div></div>
     <div><p class="sb-label">Body · 16px / 1.65</p>

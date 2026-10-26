@@ -1,0 +1,37 @@
+---
+/**
+ * FormStatus
+ * The live region a form speaks through: sending, sent, or failed. Polite, so
+ * it waits for a gap in speech rather than interrupting, which is right for a
+ * result the person is already waiting for.
+ *
+ * It stays in the DOM empty. A live region added to the page at the moment it
+ * has something to say is often missed, because the announcement can fire
+ * before assistive tech has registered the region.
+ *
+ * Added 2026-10-23 with the rest of the control set.
+ */
+interface Props {
+	/** Ties a form's script to this region. */
+	id?: string;
+	/** The message. Empty is the normal resting state. */
+	message?: string;
+	/** Tints the message. Colour is never the only signal: the words carry it. */
+	tone?: 'ok' | 'warning' | 'error';
+	class?: string;
+}
+const { id = 'form-status', message = '', tone, class: cls } = Astro.props;
+---
+
+<p
+	class:list={[
+		'sdc-form-status',
+		tone === 'ok' && 'sdc-form-status--ok',
+		tone === 'warning' && 'sdc-form-status--warn',
+		tone === 'error' && 'sdc-form-status--err',
+		cls,
+	]}
+	id={id}
+	role="status"
+	aria-live="polite"
+>{message}</p>

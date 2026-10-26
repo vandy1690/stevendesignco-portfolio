@@ -1,0 +1,55 @@
+---
+/**
+ * Slider
+ * A labeled range slider with its current value shown beside the label.
+ * It is the browser's own <input type="range">, tinted with the accent, so
+ * arrow keys, Home and End, touch and screen readers all work
+ * the way people already expect.
+ *
+ * The value sits in an <output> beside the label, not inside it. Inside, it
+ * would become part of the slider's name and the name would change on every
+ * move. The script keeps the output and aria-valuetext in step, so a screen
+ * reader hears "32 px" and not "32". Without JavaScript the slider still works;
+ * the number beside it just stays at the starting value.
+ */
+interface Props {
+	/** Ties the label and the output to the slider. Required. */
+	id: string;
+	/** The visible label, and the accessible name. Says what changes, not "Slider". */
+	label: string;
+	/** The form field name, when the value is submitted. */
+	name?: string;
+	min?: number;
+	max?: number;
+	step?: number;
+	/** The starting value. */
+	value?: number;
+	/** A unit to show and announce after the number, such as "px". */
+	unit?: string;
+	class?: string;
+}
+const { id, label, name, min = 0, max = 100, step = 1, value = 50, unit, class: cls } = Astro.props;
+const shown = unit ? `${value} ${unit}` : String(value);
+---
+
+<div class:list={['sdc-field', cls]}>
+	<div class="sdc-field__head">
+		<label class="sdc-field__label" for={id}>{label}</label>
+		<output class="sdc-field__value" for={id} data-unit={unit}>{shown}</output>
+	</div>
+	<input class="sdc-field__slider" id={id} name={name} type="range" min={min} max={max} step={step} value={value} aria-valuetext={shown} />
+</div>
+
+<script>
+	// One listener for every slider on the page. Astro bundles this once.
+	document.querySelectorAll<HTMLInputElement>('input.sdc-field__slider').forEach((input) => {
+		const out = document.querySelector<HTMLOutputElement>(`output[for="${CSS.escape(input.id)}"]`);
+		const unit = out?.dataset.unit;
+		const sync = () => {
+			const text = unit ? `${input.value} ${unit}` : input.value;
+			if (out) out.textContent = text;
+			input.setAttribute('aria-valuetext', text);
+		};
+		input.addEventListener('input', sync);
+	});
+</script>

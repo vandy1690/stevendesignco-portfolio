@@ -1,0 +1,64 @@
+---
+title: Select
+description: The browser's own select, with the system's chrome on it.
+sidebar:
+  order: 23
+---
+
+<dl class="sdc-hww">
+	<div><dt>How</dt><dd>A native <code>&lt;select class="sdc-select"&gt;</code>. It sits inside a
+	<a href="/docs/components/field/">Field</a> for its label, hint and error, the same as an
+	input. <code>Select.astro</code> writes the element and its options.</dd></div>
+	<div><dt>When</dt><dd>For one answer out of many, past the point where
+	<a href="/docs/components/choice/">Choice</a> chips stop being scannable, roughly a
+	dozen.</dd></div>
+	<div><dt>Where</dt><dd>In a form, in a Field.</dd></div>
+</dl>
+
+## Why the native element
+
+The platform picker is better than anything we would build: it is the control
+the visitor already knows, it works with a keyboard, it works with a screen
+reader, and on a phone it opens the system wheel rather than a list that scrolls
+inside a scrolling page. A custom dropdown has to re-earn all of that and
+usually does not.
+
+So only the chrome is ours: the same height, border, radius and background as a
+text input, because the two sit next to each other and a mismatch reads as a
+mistake. The extra inline-end padding leaves room for the platform's own arrow.
+
+## In code
+
+`src/components/ui/Select.astro`.
+
+```astro
+---
+import Select from '../../components/ui/Select.astro';
+---
+<Select
+	id="heard"
+	name="heard"
+	options={[
+		{ value: '', label: 'Pick one' },
+		{ value: 'referral', label: 'Someone referred me' },
+		{ value: 'search', label: 'I searched for it' },
+	]}
+/>
+```
+
+| Prop | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `id` | string | required | Ties the Field's label to this control |
+| `name` | string | none | The form field name |
+| `options` | `{ value, label }[]` | required | In display order. A `value` of `''` becomes a disabled placeholder row |
+| `value` | string | none | Which option starts selected |
+| `required` | boolean | `false` | Marks it required |
+| `disabled` | boolean | `false` | Greys it out |
+| `invalid` | boolean | `false` | Sets `aria-invalid`. The Field draws the border |
+| `describedBy` | string | none | The id of the hint or error describing it |
+
+## Checks before you ship
+
+1. It has a label, from the Field around it.
+2. The placeholder row is disabled, so it cannot be submitted as an answer.
+3. It is not being used for fewer than about four options.

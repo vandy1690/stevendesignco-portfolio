@@ -7,6 +7,28 @@ also the day the change went live, give or take a few minutes.
 Add a line here when you ship something a visitor or a future maintainer would
 notice.
 
+## October 26, 2026: SDC 02.02.00
+
+Two new design system components, Field and Slider, with Storybook stories and
+documentation pages. Field is a labeled text input or textarea with an optional
+hint; Slider is the native range input tinted with the accent, with its value
+beside the label. Built for the MsMadeline type tester on the family subdomain.
+
+Then the rest of the control set, which the October 22 inspection named as the
+system's largest coverage gap. Field gained error, required, autocomplete,
+inputmode, disabled and placeholder states, and four components arrived: Choice
+(a checkbox or radio as a chip), Fieldset, Select, and the error summary and
+status live region. Two layout tokens for the control contract, a 44px control
+height and a border width. All of it was proved out first on
+stevendesignservices.com, which built a contact form and a 52-question
+questionnaire on this system and had to invent every piece locally.
+
+Display 3 was promoted at the same time, as `.sdc-display-3`: the display face
+at heading size, which nothing in the stylesheet had ever used: case study
+headings take `--sdc-text-display-2`. It arrived as a class rather than a token,
+since the size it needed already existed under another name.
+
+Nothing on stevendesignco.com uses any of it yet, so no page changes.
 ## October 22, 2026: SDC 02.01.00
 
 A status palette and a theme default, shipped in #21.

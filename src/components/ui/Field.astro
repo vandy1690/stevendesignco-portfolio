@@ -1,0 +1,84 @@
+---
+/**
+ * Field
+ * A labeled text control: one line by default, several with `multiline`.
+ * The label always shows above the control. There is no placeholder-as-label
+ * and no floating label, because a label that disappears while you type is the
+ * one most often missed.
+ *
+ * `hint` adds a line of help under the control and ties it to the control with
+ * aria-describedby, so a screen reader reads it after the label.
+ *
+ * `error` does the same and also sets aria-invalid, so the failure is announced
+ * rather than only coloured. When both are present the hint is read first.
+ * Added 2026-10-23 with the rest of the control set.
+ */
+interface Props {
+	/** Ties the label to the control. Required, because a field without it has no name. */
+	id: string;
+	/** The visible label, and the accessible name. */
+	label: string;
+	/** The form field name, when the value is submitted. */
+	name?: string;
+	/** The starting text. */
+	value?: string;
+	/** A textarea instead of a single line. */
+	multiline?: boolean;
+	/** Visible lines when multiline. */
+	rows?: number;
+	/** The most characters the field accepts. Say the limit in the hint too. */
+	maxLength?: number;
+	/** The input type for a single line: text, email, search, url or tel. */
+	type?: 'text' | 'email' | 'search' | 'url' | 'tel';
+	/** One line of help under the control. */
+	hint?: string;
+	/** The validation message. Present means the field is invalid. */
+	error?: string;
+	/** Marks the control required and puts an asterisk in the label. */
+	required?: boolean;
+	/** The browser autofill hint, such as "name" or "email". Worth setting on anything a person has typed before. */
+	autocomplete?: string;
+	/** The on-screen keyboard to offer, such as "email" or "tel". */
+	inputmode?: 'text' | 'email' | 'tel' | 'url' | 'numeric' | 'decimal' | 'search';
+	/** Greys the control out and stops it submitting. */
+	disabled?: boolean;
+	/** Shown in an empty control. Never the only label. */
+	placeholder?: string;
+	class?: string;
+}
+const {
+	id, label, name, value = '', multiline = false, rows = 3, maxLength, type = 'text',
+	hint, error, required = false, autocomplete, inputmode, disabled = false, placeholder,
+	class: cls,
+} = Astro.props;
+const hintId = hint ? `${id}-hint` : undefined;
+const errId = error ? `${id}-err` : undefined;
+// Hint first, so the help is read before the failure.
+const describedBy = [hintId, errId].filter(Boolean).join(' ') || undefined;
+const shared = {
+	class: 'sdc-field__input',
+	id,
+	name,
+	maxlength: maxLength,
+	'aria-describedby': describedBy,
+	'aria-invalid': error ? 'true' : undefined,
+	required: required || undefined,
+	disabled: disabled || undefined,
+	autocomplete,
+	inputmode,
+	placeholder,
+};
+---
+
+<div class:list={['sdc-field', error && 'sdc-field--invalid', cls]}>
+	<label class="sdc-field__label" for={id}>
+		{label}{required && <span class="sdc-field__req" aria-hidden="true">*</span>}
+	</label>
+	{multiline ? (
+		<textarea {...shared} rows={rows}>{value}</textarea>
+	) : (
+		<input {...shared} type={type} value={value} />
+	)}
+	{hint && <p class="sdc-field__hint" id={hintId}>{hint}</p>}
+	{error && <p class="sdc-field__error" id={errId}>{error}</p>}
+</div>

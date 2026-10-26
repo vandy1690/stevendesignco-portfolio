@@ -1,0 +1,125 @@
+---
+title: Field
+description: A labeled text control, one line or several, with an optional hint.
+sidebar:
+  order: 20
+---
+
+<dl class="sdc-hww">
+	<div><dt>How</dt><dd><code>.sdc-field</code> around a <code>&lt;label&gt;</code> with
+	<code>.sdc-field__label</code>, one <code>&lt;input&gt;</code> or <code>&lt;textarea&gt;</code>
+	with <code>.sdc-field__input</code>, and an optional <code>.sdc-field__hint</code> under it.
+	<code>Field.astro</code> writes all of it, including the label and hint wiring.</dd></div>
+	<div><dt>When</dt><dd>When a page asks a visitor to type something. The first one is the
+	type tester on the MsMadeline font page, where a visitor types a line and sees it in the
+	font. There are no forms on stevendesignco.com itself yet.</dd></div>
+	<div><dt>Where</dt><dd>In the page content, full width of its column. Pair it with a
+	<a href="/docs/components/slider/">Slider</a> when the visitor also sets a size or an amount,
+	the field first and the slider directly under it.</dd></div>
+</dl>
+
+## Size
+
+One size. Padding is `--sdc-space-sm` on every side and the corners use
+`--sdc-radius-sm` (10px), the control radius the Button uses. The text inside is
+`--sdc-text-body`, 16px, on purpose: iOS zooms the whole page into any field set
+smaller than 16px, and the zoom does not undo itself when the field loses focus.
+
+The field takes the full width of its container and is not resizable. Its height
+comes from `rows` on a textarea. A field that the visitor can drag bigger breaks
+the layout around it, and the size is the page's decision.
+
+## In code
+
+`src/components/ui/Field.astro`.
+
+```astro
+---
+import Field from '../../components/ui/Field.astro';
+---
+<Field id="try-text" label="Type something" multiline rows={2} maxLength={100}
+	hint="Up to 100 characters." />
+```
+
+| Prop | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `id` | string | required | Ties the label, and the hint if there is one, to the control. |
+| `label` | string | required | The visible label. It is also the accessible name. |
+| `name` | string | none | The form field name, when the value is submitted. |
+| `value` | string | `''` | The starting text. |
+| `multiline` | boolean | `false` | A textarea instead of a single line. |
+| `rows` | number | `3` | Visible lines, when `multiline`. |
+| `maxLength` | number | none | The most characters the field accepts. Say the limit in the hint as well, since a silent limit reads as a broken keyboard. |
+| `type` | `'text'` \| `'email'` \| `'search'` \| `'url'` \| `'tel'` | `'text'` | The input type for a single line. Phones show the matching keyboard. |
+| `hint` | string | none | One line of help under the control, tied to it with `aria-describedby`. |
+| `error` | string | none | The validation message. Its presence is what makes the field invalid: it adds `sdc-field--invalid`, sets `aria-invalid="true"` and ties the message to the control. |
+| `required` | boolean | `false` | Sets `required` and puts an asterisk in the label. The asterisk is `aria-hidden`, because `required` already says it. |
+| `autocomplete` | string | none | The browser autofill hint, such as `name` or `email`. Worth setting on anything a person has typed before. |
+| `inputmode` | `'text'` \| `'email'` \| `'tel'` \| `'url'` \| `'numeric'` \| `'decimal'` \| `'search'` | none | Which on-screen keyboard to offer. |
+| `disabled` | boolean | `false` | Greys the control out and stops it submitting. |
+| `placeholder` | string | none | Shown in an empty control. Never the only label. |
+| `class` | string | none | Extra classes for positioning. |
+
+When both `hint` and `error` are set, `aria-describedby` lists the hint first, so
+the help is read before the failure.
+
+## Anatomy
+
+A grid with `--sdc-space-xs` between its parts: the label, the control, and the
+hint. The label is `--sdc-text-body-sm` at 600 weight in `--sdc-text`. The hint is
+the same size in `--sdc-text-mute`. The control is filled with `--sdc-surface`
+and edged with `--sdc-rule-strong`, so on the page ground it reads as a recessed
+panel, the same fill a static card uses.
+
+## States
+
+**Rest**, **hover** and **focus**. Hover darkens the edge to `--sdc-text`. Focus
+is the site-wide ring from [Focus](/docs/foundations/focus/). A text field shows
+the ring on a mouse click too, which is the browser following `:focus-visible`:
+the visitor is about to type, so the field says it is ready.
+
+There is no disabled state, for the same reason the Button has none. There is no
+error state yet either, because nothing on the site validates input. When a form
+needs one, build it on `--sdc-error` with words in the hint, never color alone.
+See [Color](/docs/foundations/color/).
+
+## Accessibility
+
+- The label is always visible and always above the control, tied with
+  `for` and `id`. A placeholder is not a label: it disappears as soon as the
+  visitor starts typing, and its gray rarely clears 4.5 to 1.
+- The hint is read after the label through `aria-describedby`.
+- The edge uses `--sdc-rule-strong`, which clears the 3 to 1 a control boundary
+  needs on every ground in both themes. The weaker rule token does not.
+- At 16px, text in the field never triggers the iOS zoom.
+
+## Content
+
+The label says what to type, in sentence case, in one to three words: "Type
+something", "Your email". The hint says the rule a visitor would otherwise find by
+hitting it: the character limit, or the format.
+
+<div class="sdc-dd">
+	<div class="sdc-dd--do">
+		<h4>Do</h4>
+		<ul>
+			<li>Keep the label visible and above the control.</li>
+			<li>Say the limit in the hint when there is one.</li>
+			<li>Start a textarea with an example the visitor can edit.</li>
+		</ul>
+	</div>
+	<div class="sdc-dd--dont">
+		<h4>Don't</h4>
+		<ul>
+			<li>Use the placeholder as the label.</li>
+			<li>Make the field resizable.</li>
+			<li>Set the text smaller than 16px.</li>
+		</ul>
+	</div>
+</div>
+
+## Checks before you ship
+
+1. Click the label. The cursor lands in the field.
+2. Tab to the field. The site-wide focus ring appears around it.
+3. Switch to the dark theme. The edge is still easy to see.

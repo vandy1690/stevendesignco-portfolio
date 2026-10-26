@@ -33,6 +33,38 @@ production.
 
 ## Log
 
+### 02.02.00 · October 26, 2026
+
+Added, nothing renamed.
+
+- Two new components, [Field](/docs/components/field/) and
+  [Slider](/docs/components/slider/), built for the MsMadeline type tester. Field
+  is a labeled text input or textarea with an optional hint. Slider is the
+  browser's own range input, tinted with the accent, with its value beside the
+  label. Both live in the new `.sdc-field` block and use existing tokens only.
+- **The rest of the control set**, which the 2026-10-22 inspection named as the
+  system's largest coverage gap. Field gains `error`, `required`, `autocomplete`,
+  `inputmode`, `disabled` and `placeholder`, so an invalid control now carries
+  `aria-invalid` rather than only a colour. Four more components:
+  [Choice](/docs/components/choice/) for a checkbox or radio as a chip,
+  [Fieldset](/docs/components/fieldset/) for a named group,
+  [Select](/docs/components/select/) for the native picker, and
+  [Form messages](/docs/components/form-messages/) for the error summary and the
+  status live region, each in three tones so all six status tokens finally have
+  a consumer: the tint is the ground, the ink sits on it, the solid draws the
+  border. Proved out first on stevendesignservices.com, which built a
+  contact form and a 52-question questionnaire on this system and had to invent
+  every one of them locally.
+- **Display 3**, as `.sdc-display-3`: the display face at `--sdc-text-heading`
+  size, line height 1.1. Promoted from stevendesignservices.com, where it was
+  `.sds-display-3` pending promotion. A class and not a token, because the size
+  it wanted is already `--sdc-text-heading` to the character; what the scale
+  lacked was a display-face treatment at that size, not a measurement. A
+  Fieldset legend uses it.
+- Two layout tokens for the control contract: `--sdc-control-h` (44px, which
+  clears WCAG 2.2 target size with room) and `--sdc-control-border`. Two places
+  had been writing `1px` by hand.
+- No change to anything already on the site.
 ### 02.01.00 · October 22, 2026
 
 Minor: tokens added, and one visual change that keeps every name.
