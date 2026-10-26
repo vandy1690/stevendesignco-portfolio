@@ -7,7 +7,7 @@ also the day the change went live, give or take a few minutes.
 Add a line here when you ship something a visitor or a future maintainer would
 notice.
 
-## October 24, 2026: SDC 02.02.00
+## October 26, 2026: SDC 02.02.00
 
 Two new design system components, Field and Slider, with Storybook stories and
 documentation pages. Field is a labeled text input or textarea with an optional
