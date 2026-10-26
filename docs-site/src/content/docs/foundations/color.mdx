@@ -19,7 +19,7 @@ prefix is added when the tokens are generated.
 ## Two tiers
 
 **Primitives** hold the raw values and are named for what they are:
-`--sdc-paper-cloud`, `--sdc-ink-charcoal`, `--sdc-brand-regatta`. Sixteen of them, defined
+`--sdc-paper-cloud`, `--sdc-ink-charcoal`, `--sdc-brand-regatta`. Twenty-eight of them, defined
 once on `:root`, the same in every theme. Nothing in the stylesheet may use one
 directly except the semantic tokens below.
 
@@ -101,7 +101,8 @@ something needs attention, something worked. Added October 2026. Before that the
 system had none, and anything needing a red invented one.
 
 `--sdc-error`, `--sdc-warning` and `--sdc-success` are the solids, for text and
-small marks. Each has a tint, `--sdc-error-tint` and the other two, which is the
+small marks. Each has a tint, `--sdc-error-tint`, `--sdc-warning-tint` and
+`--sdc-success-tint`, which is the
 ground a message sits on with ordinary `--sdc-text` on top. Six semantic tokens,
 pointing at twelve primitives under `--sdc-signal-`.
 
