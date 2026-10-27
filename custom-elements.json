@@ -39,7 +39,7 @@
 				{
 					"kind": "class",
 					"name": "Button",
-					"summary": "A link styled as a button. Everything on this site that looks like a button",
+					"summary": "A link styled as a button.",
 					"description": "Rendered by src/components/ui/Button.astro. Not a custom element: it keeps the native element that carries the role and writes sdc- classes on it, styled in src/layouts/Site.astro. Import the component rather than writing the markup by hand.",
 					"members": [
 						{
@@ -103,7 +103,7 @@
 					"customElement": true,
 					"tagName": "sdc-button-group",
 					"name": "ButtonGroup",
-					"summary": "The row of artifact links at the end of a case study block. It wraps on",
+					"summary": "The row of artifact links at the end of a case study block.",
 					"description": "Rendered by src/components/ui/ButtonGroup.astro. Light DOM, no shadow root, no JavaScript: the element is styled by tag and attribute in src/layouts/Site.astro.",
 					"attributes": [],
 					"slots": [
@@ -124,7 +124,7 @@
 					"customElement": true,
 					"tagName": "sdc-case-block",
 					"name": "CaseBlock",
-					"summary": "The prose unit a case study is written in: a label, a one line claim, then",
+					"summary": "The prose unit a case study is written in: a label, a one line claim, then the paragraphs that back it up.",
 					"description": "Rendered by src/components/ui/CaseBlock.astro. Light DOM, no shadow root, no JavaScript: the element is styled by tag and attribute in src/layouts/Site.astro.",
 					"attributes": [
 						{
@@ -235,7 +235,7 @@
 					"customElement": true,
 					"tagName": "sdc-case-hero",
 					"name": "CaseHero",
-					"summary": "The top of a case study: the way back, the label, the title, the one",
+					"summary": "The top of a case study: the way back, the label, the title, the one paragraph that says what the work was, then the credits.",
 					"description": "Rendered by src/components/ui/CaseHero.astro. Light DOM, no shadow root, no JavaScript: the element is styled by tag and attribute in src/layouts/Site.astro.",
 					"attributes": [
 						{
@@ -318,7 +318,7 @@
 					"customElement": true,
 					"tagName": "sdc-section",
 					"name": "CaseSection",
-					"summary": "One band of a case study, rendered as <sdc-section> with an",
+					"summary": "One band of a case study, rendered as <sdc-section> with an <sdc-layout-container> inside it that holds the measure.",
 					"description": "Rendered by src/components/ui/CaseSection.astro. Light DOM, no shadow root, no JavaScript: the element is styled by tag and attribute in src/layouts/Site.astro.",
 					"attributes": [
 						{
@@ -369,7 +369,7 @@
 					"customElement": true,
 					"tagName": "sdc-layout-container",
 					"name": "CaseSection",
-					"summary": "One band of a case study, rendered as <sdc-section> with an",
+					"summary": "One band of a case study, rendered as <sdc-section> with an <sdc-layout-container> inside it that holds the measure.",
 					"description": "Rendered by src/components/ui/CaseSection.astro. Light DOM, no shadow root, no JavaScript: the element is styled by tag and attribute in src/layouts/Site.astro.",
 					"attributes": [
 						{
@@ -412,7 +412,7 @@
 					"customElement": true,
 					"tagName": "sdc-card",
 					"name": "CaseStudyCard",
-					"summary": "One case study in the home page deck: art above, then the claim as a link,",
+					"summary": "One case study in the home page deck: art above, then the claim as a link, one paragraph, the product and objective pairs, and the call to read.",
 					"description": "Rendered by src/components/ui/CaseStudyCard.astro. Light DOM, no shadow root, no JavaScript: the element is styled by tag and attribute in src/layouts/Site.astro.",
 					"attributes": [
 						{
@@ -512,7 +512,7 @@
 				{
 					"kind": "class",
 					"name": "Choice",
-					"summary": "A checkbox or radio drawn as a chip. The native input stays in the DOM and",
+					"summary": "A checkbox or radio drawn as a chip.",
 					"description": "Rendered by src/components/ui/Choice.astro. Not a custom element: it keeps the native element that carries the role and writes sdc- classes on it, styled in src/layouts/Site.astro. Import the component rather than writing the markup by hand.",
 					"members": [
 						{
@@ -596,7 +596,7 @@
 				{
 					"kind": "class",
 					"name": "Eyebrow",
-					"summary": "The small uppercase label that sits above a heading. It names the section",
+					"summary": "The small uppercase label that sits above a heading.",
 					"description": "Rendered by src/components/ui/Eyebrow.astro. Not a custom element: it keeps the native element that carries the role and writes sdc- classes on it, styled in src/layouts/Site.astro. Import the component rather than writing the markup by hand.",
 					"members": [
 						{
@@ -799,7 +799,7 @@
 				{
 					"kind": "class",
 					"name": "Fieldset",
-					"summary": "A group of related controls with a real legend. A heading above a group is",
+					"summary": "A group of related controls with a real legend.",
 					"description": "Rendered by src/components/ui/Fieldset.astro. Not a custom element: it keeps the native element that carries the role and writes sdc- classes on it, styled in src/layouts/Site.astro. Import the component rather than writing the markup by hand.",
 					"members": [
 						{
@@ -860,7 +860,7 @@
 				{
 					"kind": "class",
 					"name": "FormStatus",
-					"summary": "The live region a form speaks through: sending, sent, or failed. Polite, so",
+					"summary": "The live region a form speaks through: sending, sent, or failed.",
 					"description": "Rendered by src/components/ui/FormStatus.astro. Not a custom element: it keeps the native element that carries the role and writes sdc- classes on it, styled in src/layouts/Site.astro. Import the component rather than writing the markup by hand.",
 					"members": [
 						{
@@ -918,7 +918,7 @@
 				{
 					"kind": "class",
 					"name": "FormSummary",
-					"summary": "The error summary a form moves focus to when submission fails. One list of",
+					"summary": "The error summary a form moves focus to when submission fails.",
 					"description": "Rendered by src/components/ui/FormSummary.astro. Not a custom element: it keeps the native element that carries the role and writes sdc- classes on it, styled in src/layouts/Site.astro. Import the component rather than writing the markup by hand.",
 					"members": [
 						{
@@ -984,7 +984,7 @@
 				{
 					"kind": "class",
 					"name": "MetaRow",
-					"summary": "The role, org and recognition list under a case study hero. It is a",
+					"summary": "The role, org and recognition list under a case study hero.",
 					"description": "Rendered by src/components/ui/MetaRow.astro. Not a custom element: it keeps the native element that carries the role and writes sdc- classes on it, styled in src/layouts/Site.astro. Import the component rather than writing the markup by hand.",
 					"members": [
 						{
@@ -1013,7 +1013,7 @@
 				{
 					"kind": "class",
 					"name": "Note",
-					"summary": "A smaller aside under a block, set in the muted ink. It is where a page says",
+					"summary": "A smaller aside under a block, set in the muted ink.",
 					"description": "Rendered by src/components/ui/Note.astro. Not a custom element: it keeps the native element that carries the role and writes sdc- classes on it, styled in src/layouts/Site.astro. Import the component rather than writing the markup by hand.",
 					"members": [],
 					"slots": [
@@ -1035,7 +1035,7 @@
 				{
 					"kind": "class",
 					"name": "Pager",
-					"summary": "One of the two links at the foot of a case study. The arrow is decorative:",
+					"summary": "One of the two links at the foot of a case study.",
 					"description": "Rendered by src/components/ui/Pager.astro. Not a custom element: it keeps the native element that carries the role and writes sdc- classes on it, styled in src/layouts/Site.astro. Import the component rather than writing the markup by hand.",
 					"members": [
 						{
@@ -1096,7 +1096,7 @@
 				{
 					"kind": "class",
 					"name": "PagerPair",
-					"summary": "The band that closes every case study: back or previous on the left, the",
+					"summary": "The band that closes every case study: back or previous on the left, the next case study on the right.",
 					"description": "Rendered by src/components/ui/PagerPair.astro. Not a custom element: it keeps the native element that carries the role and writes sdc- classes on it, styled in src/layouts/Site.astro. Import the component rather than writing the markup by hand.",
 					"members": [
 						{
@@ -1154,7 +1154,7 @@
 				{
 					"kind": "class",
 					"name": "Select",
-					"summary": "The browser's own select, with our chrome on it. The native element keeps the",
+					"summary": "The browser's own select, with our chrome on it.",
 					"description": "Rendered by src/components/ui/Select.astro. Not a custom element: it keeps the native element that carries the role and writes sdc- classes on it, styled in src/layouts/Site.astro. Import the component rather than writing the markup by hand.",
 					"members": [
 						{
@@ -1362,7 +1362,7 @@
 				{
 					"kind": "class",
 					"name": "StatList",
-					"summary": "The numbers at the end of a case study. Two or three, never more: the point",
+					"summary": "The numbers at the end of a case study.",
 					"description": "Rendered by src/components/ui/StatList.astro. Not a custom element: it keeps the native element that carries the role and writes sdc- classes on it, styled in src/layouts/Site.astro. Import the component rather than writing the markup by hand.",
 					"members": [
 						{
@@ -1413,7 +1413,7 @@
 					"customElement": true,
 					"tagName": "sdc-text-passage",
 					"name": "TextPassage",
-					"summary": "A run of reading prose outside a case study: the paragraphs on the home",
+					"summary": "A run of reading prose outside a case study: the paragraphs on the home page's About band.",
 					"description": "Rendered by src/components/ui/TextPassage.astro. Light DOM, no shadow root, no JavaScript: the element is styled by tag and attribute in src/layouts/Site.astro.",
 					"attributes": [
 						{

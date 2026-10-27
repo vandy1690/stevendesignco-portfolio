@@ -37,7 +37,7 @@
 				"default"
 			],
 			"docs": "/docs/components/button/",
-			"summary": "A link styled as a button. Everything on this site that looks like a button"
+			"summary": "A link styled as a button."
 		},
 		{
 			"name": "ButtonGroup",
@@ -52,7 +52,7 @@
 				"default"
 			],
 			"docs": "/docs/components/button/",
-			"summary": "The row of artifact links at the end of a case study block. It wraps on"
+			"summary": "The row of artifact links at the end of a case study block."
 		},
 		{
 			"name": "CaseBlock",
@@ -72,7 +72,7 @@
 				"default"
 			],
 			"docs": "/docs/components/case-study-block/",
-			"summary": "The prose unit a case study is written in: a label, a one line claim, then"
+			"summary": "The prose unit a case study is written in: a label, a one line claim, then the paragraphs that back it up."
 		},
 		{
 			"name": "CaseFigure",
@@ -129,7 +129,7 @@
 				"figure"
 			],
 			"docs": "/docs/components/case-hero/",
-			"summary": "The top of a case study: the way back, the label, the title, the one"
+			"summary": "The top of a case study: the way back, the label, the title, the one paragraph that says what the work was, then the credits."
 		},
 		{
 			"name": "CaseSection",
@@ -154,7 +154,7 @@
 				"default"
 			],
 			"docs": "/docs/components/section/",
-			"summary": "One band of a case study, rendered as <sdc-section> with an"
+			"summary": "One band of a case study, rendered as <sdc-section> with an <sdc-layout-container> inside it that holds the measure."
 		},
 		{
 			"name": "CaseStudyCard",
@@ -189,7 +189,7 @@
 				"art"
 			],
 			"docs": "/docs/components/case-study-card/",
-			"summary": "One case study in the home page deck: art above, then the claim as a link,"
+			"summary": "One case study in the home page deck: art above, then the claim as a link, one paragraph, the product and objective pairs, and the call to read."
 		},
 		{
 			"name": "Choice",
@@ -210,7 +210,7 @@
 			],
 			"slots": [],
 			"docs": "/docs/components/choice/",
-			"summary": "A checkbox or radio drawn as a chip. The native input stays in the DOM and"
+			"summary": "A checkbox or radio drawn as a chip."
 		},
 		{
 			"name": "Eyebrow",
@@ -227,7 +227,7 @@
 				"default"
 			],
 			"docs": "/docs/components/eyebrow/",
-			"summary": "The small uppercase label that sits above a heading. It names the section"
+			"summary": "The small uppercase label that sits above a heading."
 		},
 		{
 			"name": "Field",
@@ -284,7 +284,7 @@
 				"default"
 			],
 			"docs": "/docs/components/fieldset/",
-			"summary": "A group of related controls with a real legend. A heading above a group is"
+			"summary": "A group of related controls with a real legend."
 		},
 		{
 			"name": "FormStatus",
@@ -305,7 +305,7 @@
 			],
 			"slots": [],
 			"docs": "/docs/components/form-messages/",
-			"summary": "The live region a form speaks through: sending, sent, or failed. Polite, so"
+			"summary": "The live region a form speaks through: sending, sent, or failed."
 		},
 		{
 			"name": "FormSummary",
@@ -326,7 +326,7 @@
 			],
 			"slots": [],
 			"docs": "/docs/components/form-messages/",
-			"summary": "The error summary a form moves focus to when submission fails. One list of"
+			"summary": "The error summary a form moves focus to when submission fails."
 		},
 		{
 			"name": "MetaRow",
@@ -341,7 +341,7 @@
 			],
 			"slots": [],
 			"docs": "/docs/components/meta-row/",
-			"summary": "The role, org and recognition list under a case study hero. It is a"
+			"summary": "The role, org and recognition list under a case study hero."
 		},
 		{
 			"name": "Note",
@@ -356,7 +356,7 @@
 				"default"
 			],
 			"docs": "/docs/components/note/",
-			"summary": "A smaller aside under a block, set in the muted ink. It is where a page says"
+			"summary": "A smaller aside under a block, set in the muted ink."
 		},
 		{
 			"name": "Pager",
@@ -377,7 +377,7 @@
 			],
 			"slots": [],
 			"docs": "/docs/components/pager/",
-			"summary": "One of the two links at the foot of a case study. The arrow is decorative:"
+			"summary": "One of the two links at the foot of a case study."
 		},
 		{
 			"name": "PagerPair",
@@ -391,7 +391,7 @@
 			],
 			"slots": [],
 			"docs": "/docs/components/pager/",
-			"summary": "The band that closes every case study: back or previous on the left, the"
+			"summary": "The band that closes every case study: back or previous on the left, the next case study on the right."
 		},
 		{
 			"name": "Quote",
@@ -429,7 +429,7 @@
 			],
 			"slots": [],
 			"docs": "/docs/components/select/",
-			"summary": "The browser's own select, with our chrome on it. The native element keeps the"
+			"summary": "The browser's own select, with our chrome on it."
 		},
 		{
 			"name": "Slider",
@@ -475,7 +475,7 @@
 			],
 			"slots": [],
 			"docs": "/docs/components/stat-list/",
-			"summary": "The numbers at the end of a case study. Two or three, never more: the point"
+			"summary": "The numbers at the end of a case study."
 		},
 		{
 			"name": "TextPassage",
@@ -494,7 +494,7 @@
 				"default"
 			],
 			"docs": "/docs/components/text-passage/",
-			"summary": "A run of reading prose outside a case study: the paragraphs on the home"
+			"summary": "A run of reading prose outside a case study: the paragraphs on the home page's About band."
 		}
 	],
 	"cssOnly": [

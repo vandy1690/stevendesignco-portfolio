@@ -26,6 +26,14 @@ invisible.
 Four reference documents that had drifted are corrected, and llms.txt mentions
 the design system for the first time.
 
+The documentation site was also accessibility tested for the first time. The
+Q&A suite covers the eleven site routes, so these 47 pages had never been run
+through it, and two defects turned up on every component page: the docs
+stylesheet carried the ink colors once with light values and no value for the
+dark theme it ships a toggle for, which put the How / When / Where labels at
+2.80 to 1 in dark against a 4.5 requirement, and Do and Don't were h4 headings
+under an h2 on 21 pages. Both fixed. 47 pages, both themes, zero violations.
+
 ## October 26, 2026: SDC 02.02.00
 
 Two new design system components, Field and Slider, with Storybook stories and

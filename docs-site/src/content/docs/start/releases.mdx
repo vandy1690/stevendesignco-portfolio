@@ -68,6 +68,26 @@ system says about itself did.
   reads first and it had no line for the documentation, the manifest or the
   Storybook.
 
+**And the documentation site's own accessibility**, tested for the first time.
+The Q&A suite covers the eleven site routes; these 47 pages had never been run
+through it. Two defects across every component page:
+
+- `docs-site/src/styles/sdc.css` is a hand-written copy of the handful of tokens
+  Starlight needs, and it carried the ink values once, in `:root`, with no value
+  for the dark theme it ships a toggle for. The muted ink was also the value the
+  site **retired on 5 October** for failing on its deepest light ground. It
+  measured **2.80 in dark and 4.29 on surface-2 in light** against a 4.5
+  requirement, on the How / When / Where block that opens every component page.
+  The ink, the mute, the rules and the texture now carry the site's value per
+  theme: 5.40 and 4.70 respectively, and 17.74 for the body ink in dark. The two
+  buttons on the docs home page measured 2.76 and 1.40 in dark for the same
+  reason, and now take `--sdc-accent-text`.
+- Do and Don't were `<h4>` under an `<h2>` on 21 pages, skipping a level. They
+  are `<h3>`.
+
+**47 pages, both themes, zero axe violations.** That was 83 contrast nodes and
+42 heading-order nodes before.
+
 ### 02.02.00 · October 26, 2026
 
 Added, nothing renamed.

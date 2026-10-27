@@ -62,8 +62,20 @@ for (const file of files) {
 	}
 	const docsUrl = slug ? `/docs/${slug}/` : undefined;
 
-	const doc = src.match(/\/\*\*\s*\n\s*\*\s*(\w+)\s*\n\s*\*\s*([^\n]*)/);
-	const summary = doc ? doc[2].trim() : '';
+	/* The summary is the first sentence of the doc comment, not its first line.
+	   A line break is where the prose wrapped at 80 columns, so cutting there
+	   left every summary ending mid-clause, in the manifest and on the index
+	   page that reads it. Join the opening paragraph, then cut at the sentence. */
+	const docBlock = src.match(/\/\*\*\s*\n([\s\S]*?)\n\s*\*\//);
+	let summary = '';
+	if (docBlock) {
+		const lines = docBlock[1].split('\n').map((l) => l.replace(/^\s*\*\s?/, '').trimEnd());
+		const body = lines.slice(1); // line 0 is the component name
+		const para = [];
+		for (const l of body) { if (!l.trim()) break; para.push(l.trim()); }
+		const text = para.join(' ');
+		summary = (text.match(/^.+?[.!?](?=\s|$)/) || [text])[0].trim();
+	}
 
 	const props = [];
 	const propsBlock = src.match(/interface Props \{([\s\S]*?)\n\}/);

@@ -1,5 +1,11 @@
-/* The docs wear the system they document. Values come from the light theme in
-   src/layouts/Site.astro, which is the theme the site ships. */
+/* The docs wear the system they document. Values come from src/layouts/Site.astro,
+   which is the source of truth. This file is a hand-written copy of the handful
+   of tokens Starlight needs, so it can drift from the site, and it has: the mute
+   ink below sat three weeks behind the site's own correction.
+
+   Anything used as ink needs a value per theme. These docs ship a theme toggle,
+   so a single value gets used on both grounds, and the dark ground is where it
+   fails. Measured before writing, against the deepest ground each one lands on. */
 @import url('https://use.typekit.net/uic8bwd.css');
 
 :root {
@@ -7,8 +13,15 @@
 	--sdc-surface: #E4E1DA;
 	--sdc-surface-2: #D8D4CB;
 	--sdc-text: #2D3436;
-	--sdc-text-mute: #5A6160;
+	/* 6.00 on the page, 5.32 on surface, 4.70 on surface-2, which is the ground
+	   that failed at #5A6160 (4.29) and is why the site darkened it. */
+	--sdc-text-mute: #545B5A;
 	--sdc-accent: #3F5F92;
+	/* Ink on the accent. 6.44 on the accent, which is the only ground it lands
+	   on. The accent stays the light one in both themes here, because Starlight
+	   keeps its own grounds and the citron the site uses in dark needs the
+	   site's black page under it. */
+	--sdc-accent-text: #FFFFFF;
 	--sdc-rule: rgba(45, 52, 54, 0.20);
 	--sdc-rule-strong: rgba(45, 52, 54, 0.58);
 	--sdc-texture-dot: rgba(45, 52, 54, 0.10);
@@ -42,6 +55,17 @@
 }
 
 :root[data-theme='dark'] {
+	/* The site's dark values for everything the rules below read directly. The
+	   grounds stay Starlight's, because it owns the page and sidebar here; the
+	   inks and rules are the system's, because they are what gets measured.
+	   17.74 for the ink on Starlight's dark page. */
+	--sdc-text: #FFFFFF;
+	/* The site's dark mute. 5.40 on the dark page; the light ink measured 2.80
+	   there, which failed on every component page. */
+	--sdc-text-mute: #8A8F8C;
+	--sdc-rule: rgba(255, 255, 255, 0.20);
+	--sdc-rule-strong: rgba(255, 255, 255, 0.42);
+	--sdc-texture-dot: rgba(255, 255, 255, 0.07);
 	--sl-color-accent-low: #16233a;
 	--sl-color-accent: #7ea2d8;
 	--sl-color-accent-high: #cfdcf0;
@@ -82,22 +106,25 @@
 /* Do and Don't, side by side. */
 .sdc-dd { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1rem; margin: 1.5rem 0; }
 .sdc-dd > div { border: 1px solid var(--sdc-rule); border-radius: 12px; padding: 1rem 1.1rem; background: var(--sdc-surface); }
-.sdc-dd h4 { margin: 0 0 0.5rem; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; }
+.sdc-dd h3 { margin: 0 0 0.5rem; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; }
 .sdc-dd ul { margin: 0; padding-left: 1.1rem; }
 .sdc-dd li + li { margin-top: 0.4rem; }
 /* 5.48:1 on the card surface. #1F7A4C measured 4.07 and failed the standard
    these pages document. */
-.sdc-dd--do h4 { color: #176440; }
-.sdc-dd--dont h4 { color: #B3261E; }
+.sdc-dd--do h3 { color: #176440; }
+.sdc-dd--dont h3 { color: #B3261E; }
 :root[data-theme='dark'] .sdc-dd > div { background: transparent; }
-:root[data-theme='dark'] .sdc-dd--do h4 { color: #6EE7A8; }
-:root[data-theme='dark'] .sdc-dd--dont h4 { color: #FF9B93; }
+:root[data-theme='dark'] .sdc-dd--do h3 { color: #6EE7A8; }
+:root[data-theme='dark'] .sdc-dd--dont h3 { color: #FF9B93; }
 
 /* The system's own rules applied to its documentation. Controls take the 10px
    control radius; pills were removed from the site deliberately, because a pill
    reads as a tag or a status rather than a control. */
 .sl-link-button { border-radius: 10px; }
-.sl-link-button.primary { background: var(--sdc-accent); border-color: var(--sdc-accent); }
+/* Starlight takes the primary button's ink from its own --sl-color-black, which
+   in dark is a near-black and measured 2.76 on the accent. The system has a
+   token for ink on the accent, so use it in both themes. */
+.sl-link-button.primary { background: var(--sdc-accent); border-color: var(--sdc-accent); color: var(--sdc-accent-text); }
 .sl-link-button.minimal { color: var(--sdc-text); }
 
 /* Card icons take the accent rather than Starlight's multi-hue defaults, so the
