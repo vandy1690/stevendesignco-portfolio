@@ -88,6 +88,27 @@ through it. Two defects across every component page:
 **47 pages, both themes, zero axe violations.** That was 83 contrast nodes and
 42 heading-order nodes before.
 
+**And the Figma library**, which is linked publicly from
+[/design-systems](https://stevendesignco.com/design-systems) and so is read by
+anyone reviewing this system:
+
+- **Six effect styles**, `Shadow/Card` through `Shadow/Tile`, one per shadow
+  token. The library had **zero** effect styles and no drop shadow anywhere in
+  it, so the card was drawn flat while the shipped card carries four layers.
+  Shadows are not themed in the CSS, so one style each is the whole set.
+  `Shadow/Card` is applied to Case study card, and its values match the
+  computed `box-shadow` on the live card exactly.
+- **Eleven layers named "Frame"** inside components are named for what they are,
+  using the class the code gives them: `nav`, `meta`, `input`, `select`,
+  `choice`. No generic layer name is left in any component.
+- **An ACCESSIBILITY section on all 18 components**, up from the two that had
+  one. Every claim in them was checked against the source first, which is how
+  the Award list note came to say that the star is `display: none` inside a case
+  study rather than repeating the component's own looser wording.
+- **A code pointer on all 18**, up from six. Without a Code Connect seat the
+  description is the only bridge from the library to the repository.
+- Four British spellings in the descriptions are now US.
+
 ### 02.02.00 · October 26, 2026
 
 Added, nothing renamed.

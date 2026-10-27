@@ -34,6 +34,12 @@ dark theme it ships a toggle for, which put the How / When / Where labels at
 2.80 to 1 in dark against a 4.5 requirement, and Do and Don't were h4 headings
 under an h2 on 21 pages. Both fixed. 47 pages, both themes, zero violations.
 
+The Figma library, which is linked publicly from the design systems page, got
+the same pass: six effect styles built from the shadow tokens where it had none
+and drew no shadow at all, eleven layers named "Frame" renamed for what they
+are, and an accessibility section plus a pointer to the code on all eighteen
+components, up from two and six.
+
 ## October 26, 2026: SDC 02.02.00
 
 Two new design system components, Field and Slider, with Storybook stories and
