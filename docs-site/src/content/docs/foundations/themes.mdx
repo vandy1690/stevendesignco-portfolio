@@ -74,9 +74,11 @@ higher ratio on its own ground: 12.33:1 against 10.94:1.
 **`--sdc-accent-hover`** — regatta deep `#233552` becomes Leaves dark `#425927`.
 Both go darker on hover, for the reason below.
 
-The live swatches and their computed ratios are in the
-[Storybook](https://stevendesignco.com/labs/sdc-storybook/), under Foundations,
-SDS theme.
+**SDS is in the Storybook's Theme menu**, beside Light and Dark. Switch to it
+and every story re-renders in it, which is the point: a component that only
+works in the theme it was drawn in is not a system component. Every story was
+checked in it, and the Color story computes its ratios against whichever ground
+is selected, so the numbers are never copied.
 
 ### Two rules it proved
 

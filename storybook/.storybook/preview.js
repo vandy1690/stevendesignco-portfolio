@@ -24,6 +24,13 @@ export default {
         items: [
           { value: 'light', title: 'Light (shipped default)' },
           { value: 'dark', title: 'Dark (alternate)' },
+          /* A product theme rather than a mode of this site. SDS is the Urban
+             Oasis palette that stevendesignservices.com runs: it re-points the
+             grounds, the ink and the accent set and restates everything else.
+             Every story renders in it, which is the point: a component that
+             only works in the theme it was drawn in is not a system component.
+             See /docs/foundations/themes/. */
+          { value: 'sds', title: 'SDS (product theme)' },
         ],
         dynamicTitle: true,
       },

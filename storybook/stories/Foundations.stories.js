@@ -21,8 +21,11 @@ export const Color = () => {
   el.innerHTML = `
     <p class="sb-note">Every color token in the system, in one list. Light is the shipped
       default and dark is the alternate, chosen rather than inherited from the operating
-      system. Ratios are against the page ground and the card surface. AA needs 4.5 for body
-      text and 3 for large text and control boundaries.</p>
+      system. SDS is a third option in the Theme menu: a product theme rather than a mode of
+      this site, the one stevendesignservices.com runs. Switch to it and every story on this
+      page re-renders in it, because the values are the system's own. Ratios below are
+      against whichever ground is selected. AA needs 4.5 for body text and 3 for large text
+      and control boundaries.</p>
     <p class="sb-note">The last six are the status colors, added October 2026. They behave
       differently from one another on paper, and the Status story shows which of them can
       carry text, which can only be a fill or a ground, and why two resolve to a deeper form
@@ -51,64 +54,6 @@ export const Color = () => {
         return '<div class="sb-swatch"><div class="sb-swatch__chip" style="background:' + v + '"></div>' +
           '<div class="sb-swatch__meta"><div class="sb-swatch__name">' + t + '</div>' +
           '<div class="sb-swatch__val">' + v + '</div>' + line + '</div></div>';
-      }).join(''); }`;
-    el.appendChild(script);
-  };
-  requestAnimationFrame(run);
-  return el;
-};
-
-/* The SDS theme. A third mode on the Color collection in Figma, and a
-   data-theme block in Site.astro, so the values are the system's own. The
-   story sets the attribute on a wrapper and reads the computed tokens, which
-   means nothing is written down here and nothing can go stale. */
-export const SDSTheme = () => {
-  const el = document.createElement('div');
-  el.innerHTML = `
-    <p class="sb-note">stevendesignservices.com runs the SDS theme: the Urban Oasis
-      palette. It re-points the grounds, the ink and the accent set, restates the status
-      colors unchanged, and touches nothing else. See
-      <a href="/docs/foundations/themes/">Themes</a> for the contract.</p>
-    <p class="sb-note">Every value below is read from the live tokens with
-      <code>data-theme="sds"</code> applied, and every ratio is measured against the SDS
-      ground rather than this site's paper. Nothing here is a copied number.</p>
-    <div class="sb-sds" data-theme="sds"><div class="sb-grid"></div></div>`;
-  const run = () => {
-    const script = document.createElement('script');
-    script.textContent = `{ ${helpers}
-      const host = document.currentScript.parentElement.querySelector('.sb-sds');
-      const grid = host.querySelector('.sb-grid');
-      const cs = getComputedStyle(host);
-      const v = (n) => cs.getPropertyValue(n).trim();
-      const GROUND = v('--sdc-bg');
-      const ROWS = [
-        ['--sdc-bg', 0, 'page ground'], ['--sdc-surface', 0, 'raised surface'],
-        ['--sdc-surface-2', 0, 'alternating section'],
-        ['--sdc-text', 4.5, 'ink'], ['--sdc-text-mute', 4.5, 'secondary ink'],
-        ['--sdc-accent', 4.5, 'accent'],
-        ['--sdc-accent-hover', 4.5, 'hover, must beat the accent'],
-        ['--sdc-focus-ring', 3, 'focus ring'],
-        ['--sdc-error', 4.5, 'status, unchanged from light'],
-        ['--sdc-success', 4.5, 'status, unchanged from light'],
-        ['--sdc-warning', 4.5, 'status, unchanged from light'],
-      ];
-      const accentRatio = ratio(v('--sdc-accent'), GROUND);
-      grid.innerHTML = ROWS.map(([tok, bar, what]) => {
-        const val = v(tok);
-        const r = ratio(val, GROUND);
-        const beats = tok === '--sdc-accent-hover' ? r >= accentRatio : true;
-        const ok = (bar ? r >= bar : true) && beats;
-        const mark = '<b class="' + (ok ? 'sb-pass' : 'sb-fail') + '">' + r.toFixed(2) + '</b>';
-        const line = !bar
-          ? '<div class="sb-swatch__ratio" style="color:var(--sdc-text-mute)">ground</div>'
-          : '<div class="sb-swatch__ratio">on the SDS ground ' + mark +
-            ' <span style="color:var(--sdc-text-mute)">(needs ' + bar +
-            (tok === '--sdc-accent-hover' ? ', and more than the accent' : '') + ')</span></div>';
-        return '<div class="sb-swatch"><div class="sb-swatch__chip" style="background:' + val + '"></div>' +
-          '<div class="sb-swatch__meta"><div class="sb-swatch__name">' + tok + '</div>' +
-          '<div class="sb-swatch__val">' + val + '</div>' +
-          '<div class="sb-swatch__val" style="color:var(--sdc-text-mute)">' + what + '</div>' +
-          line + '</div></div>';
       }).join(''); }`;
     el.appendChild(script);
   };
