@@ -38,10 +38,9 @@ the next one the same way.
 **The type, the spacing, the radius, the elevation.** Those are the system's
 voice. A product that wants different type wants a different system.
 
-**Anything by editing the generated token block.** A theme is a layer on top,
-declared under the same `:root[data-theme="light"]` selector and loaded after
-the system, so it wins on source order without raising specificity. The system's
-own drift check must still pass.
+**Anything by editing the primitives.** A theme adds primitives it needs and
+re-points semantic tokens at them. It does not change what an existing
+primitive means.
 
 ## The worked example: stevendesignservices.com
 
@@ -49,11 +48,19 @@ The LLC site runs the **Urban Oasis** theme. Steven Design Services is a
 deliberately separate business from the portfolio, so it reads as related
 through type and structure rather than through color.
 
-Its tokens live in the same Figma file, `SDC Fall of 2026`, in a collection
-called **SDS theme**, each variable carrying its `codeSyntax`. They are
-generated into that repo and never pass through `Site.astro`, so
-stevendesignco.com never carries tokens it has no use for. That is why they are
-`--sds-` rather than `--sdc-`.
+It lives in this system rather than beside it. In Figma it is a third **mode**
+on the Color collection, next to Light and Dark, so a designer switches a frame
+to it the same way they switch to dark. Its primitives sit in the Primitives
+collection under the existing groups: `paper/marble`, `ink/bark`,
+`brand/leaves`.
+
+In code it is a `:root[data-theme="sds"]` block in `Site.astro`, beside the
+light and dark blocks, and the product opts in by setting `data-theme="sds"` on
+`<html>`. Nothing else is needed: no second token file, no second generator, no
+parallel naming.
+
+This site carries those primitives and that block without using them, about 200
+bytes gzipped. That is the price of one source of truth and it is worth paying.
 
 ### What it re-points
 
@@ -85,16 +92,29 @@ color to the eye, so a green confirmation message and a green primary button are
 close. That was measured, surfaced, and chosen anyway, which is a legitimate
 outcome. What is not legitimate is not knowing.
 
+### The trap that cost a build
+
+**An absent token does not fall back to the light theme.** It falls through to
+`:root`, which here is dark-first. The SDS block was first written without the
+six status colors, on the assumption that leaving them out meant inheriting
+them. It meant inheriting the *dark* ones: the error pink reads **2.69:1** on
+Marble, below AA, and it reached a build before anything noticed.
+
+So a theme restates every token the light theme sets, even the ones it does not
+change. The product repo has a `check-theme-complete` step that compares the two
+blocks and fails on any token the theme forgot. The contrast checks could never
+have caught this, because they measure the tokens a theme declares and not the
+one it left out.
+
 ## Starting a theme
 
-1. Make a collection in the Figma file, named for the product. Give every
-   variable a `codeSyntax` naming its CSS custom property, the way the
-   primitives do. That field is the mapping; without it the next reader has to
-   guess, and they will guess wrong.
-2. Keep a DTCG file in the product repo as the checked-in record, and generate
-   the CSS from it. Nothing writes those values by hand.
-3. Measure contrast in the generator, not in a comment. Every pair the theme
-   creates: ink on each ground, accent as text, accent label on accent, hover as
-   text, hover against the accent, focus against the ground.
-4. Make the generator **fail** rather than warn. A theme that ships a failing
-   pair has no check; it has a note.
+1. Add the primitives the theme needs to the **Primitives** collection, under
+   the existing groups. Give each a `codeSyntax` naming its CSS custom property,
+   the way the others do.
+2. Add a **mode** to the Color collection named for the product. Point the
+   semantic variables at the new primitives for that mode, and copy the light
+   values for everything the theme does not change, including the status colors.
+3. Add a matching `:root[data-theme="<name>"]` block to `Site.astro`, after the
+   light theme. Restate every token the light theme sets.
+4. In the product, set `data-theme="<name>"` on `<html>` and add a check that
+   the block is complete. Absent is not inherited.

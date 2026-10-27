@@ -58,25 +58,21 @@ export const Color = () => {
   return el;
 };
 
-/* The SDS theme, the one product theme on the system. The values are declared
-   here because they live in another repo, and the SDS repo has a check that
-   fails if this copy drifts from its token file. Ratios are computed in the
-   browser against this block rather than written down, the same way the Color
-   story works, so a stale number is not possible. */
+/* The SDS theme. A third mode on the Color collection in Figma, and a
+   data-theme block in Site.astro, so the values are the system's own. The
+   story sets the attribute on a wrapper and reads the computed tokens, which
+   means nothing is written down here and nothing can go stale. */
 export const SDSTheme = () => {
   const el = document.createElement('div');
   el.innerHTML = `
-    <p class="sb-note">stevendesignservices.com runs its own theme on this system: the
-      Urban Oasis palette. It re-points the grounds, the ink and the accent, and nothing
-      else. The type, the spacing, the status colors and every component stay SDC's.
-      See <a href="/docs/foundations/themes/">Themes</a> for what a theme may and may not
-      change.</p>
-    <p class="sb-note">Swatches below are the SDS values, and the ratios are measured
-      against the SDS ground rather than SDC's paper, which is the only way the numbers
-      mean anything.</p>
-    <div class="sb-sds" style="--sds-marble:#F3EBDD;--sds-marble-2:#EFE7D9;--sds-marble-3:#EAE2D3;--sds-bark:#2A2922;--sds-bark-mute:#5C584B;--sds-leaves:#506D2F;--sds-leaves-hover:#425927;--sds-leaves-deep:#3B5123">
-      <div class="sb-grid"></div>
-    </div>`;
+    <p class="sb-note">stevendesignservices.com runs the SDS theme: the Urban Oasis
+      palette. It re-points the grounds, the ink and the accent set, restates the status
+      colors unchanged, and touches nothing else. See
+      <a href="/docs/foundations/themes/">Themes</a> for the contract.</p>
+    <p class="sb-note">Every value below is read from the live tokens with
+      <code>data-theme="sds"</code> applied, and every ratio is measured against the SDS
+      ground rather than this site's paper. Nothing here is a copied number.</p>
+    <div class="sb-sds" data-theme="sds"><div class="sb-grid"></div></div>`;
   const run = () => {
     const script = document.createElement('script');
     script.textContent = `{ ${helpers}
@@ -84,33 +80,33 @@ export const SDSTheme = () => {
       const grid = host.querySelector('.sb-grid');
       const cs = getComputedStyle(host);
       const v = (n) => cs.getPropertyValue(n).trim();
-      const GROUND = v('--sds-marble');
+      const GROUND = v('--sdc-bg');
       const ROWS = [
-        ['--sds-marble',       '--sdc-bg',           0,   'page ground'],
-        ['--sds-marble-2',     '--sdc-surface',      0,   'raised surface'],
-        ['--sds-marble-3',     '--sdc-surface-2',    0,   'alternating section'],
-        ['--sds-bark',         '--sdc-text',         4.5, 'ink'],
-        ['--sds-bark-mute',    '--sdc-text-mute',    4.5, 'secondary ink'],
-        ['--sds-leaves',       '--sdc-accent',       4.5, 'accent'],
-        ['--sds-leaves-hover', '--sdc-accent-hover', 4.5, 'hover, must beat the accent'],
-        ['--sds-leaves-deep',  '--sdc-focus-ring',   3,   'focus ring'],
+        ['--sdc-bg', 0, 'page ground'], ['--sdc-surface', 0, 'raised surface'],
+        ['--sdc-surface-2', 0, 'alternating section'],
+        ['--sdc-text', 4.5, 'ink'], ['--sdc-text-mute', 4.5, 'secondary ink'],
+        ['--sdc-accent', 4.5, 'accent'],
+        ['--sdc-accent-hover', 4.5, 'hover, must beat the accent'],
+        ['--sdc-focus-ring', 3, 'focus ring'],
+        ['--sdc-error', 4.5, 'status, unchanged from light'],
+        ['--sdc-success', 4.5, 'status, unchanged from light'],
+        ['--sdc-warning', 4.5, 'status, unchanged from light'],
       ];
-      const accentRatio = ratio(v('--sds-leaves'), GROUND);
-      grid.innerHTML = ROWS.map(([tok, role, bar, what]) => {
+      const accentRatio = ratio(v('--sdc-accent'), GROUND);
+      grid.innerHTML = ROWS.map(([tok, bar, what]) => {
         const val = v(tok);
         const r = ratio(val, GROUND);
-        const ok = bar ? r >= bar : true;
-        const beats = tok === '--sds-leaves-hover' ? (r >= accentRatio) : true;
-        const mark = '<b class="' + (ok && beats ? 'sb-pass' : 'sb-fail') + '">' + r.toFixed(2) + '</b>';
+        const beats = tok === '--sdc-accent-hover' ? r >= accentRatio : true;
+        const ok = (bar ? r >= bar : true) && beats;
+        const mark = '<b class="' + (ok ? 'sb-pass' : 'sb-fail') + '">' + r.toFixed(2) + '</b>';
         const line = !bar
           ? '<div class="sb-swatch__ratio" style="color:var(--sdc-text-mute)">ground</div>'
           : '<div class="sb-swatch__ratio">on the SDS ground ' + mark +
             ' <span style="color:var(--sdc-text-mute)">(needs ' + bar +
-            (tok === '--sds-leaves-hover' ? ', and more than the accent\\u2019s ' + accentRatio.toFixed(2) : '') +
-            ')</span></div>';
+            (tok === '--sdc-accent-hover' ? ', and more than the accent' : '') + ')</span></div>';
         return '<div class="sb-swatch"><div class="sb-swatch__chip" style="background:' + val + '"></div>' +
           '<div class="sb-swatch__meta"><div class="sb-swatch__name">' + tok + '</div>' +
-          '<div class="sb-swatch__val">' + val + ' \\u2192 ' + role + '</div>' +
+          '<div class="sb-swatch__val">' + val + '</div>' +
           '<div class="sb-swatch__val" style="color:var(--sdc-text-mute)">' + what + '</div>' +
           line + '</div></div>';
       }).join(''); }`;
