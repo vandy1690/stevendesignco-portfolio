@@ -1,0 +1,100 @@
+---
+title: Themes
+description: How a product on SDC can change its accent, its grounds and its ink without forking the system, and the one worked example.
+sidebar:
+  order: 2
+---
+
+SDC ships one look: warm paper, regatta blue, charcoal ink, with dark mode as
+the alternate. A product built on it is expected to use that look.
+
+A product can also run its **own theme**, which means re-declaring a short list
+of semantic tokens and nothing else. The primitives, the type, the spacing, the
+status colors and every component stay the system's. Only the few properties
+that say *which* primitive a role points at change.
+
+There is one worked example and this page documents it, because a rule nobody
+has followed is a proposal rather than a rule.
+
+## What a theme may change
+
+A theme may re-point these, and only these:
+
+- the three grounds, `--sdc-bg`, `--sdc-surface`, `--sdc-surface-2`
+- the two ink values, `--sdc-text` and `--sdc-text-mute`
+- the accent set, `--sdc-accent`, `--sdc-accent-hover`, `--sdc-focus-ring`,
+  `--sdc-accent-glow`
+- the chrome ground, `--sdc-header-bg`
+- the rules and the texture, **but only when it also changes the ink**, because
+  upstream those are `rgba()` over the ink and would otherwise be left pointing
+  at a color the product no longer uses
+
+## What a theme may not change
+
+**The status colors.** Error, success and warning carry meaning that is not the
+product's to redefine, and a visitor who has seen one SDC product should read
+the next one the same way.
+
+**The type, the spacing, the radius, the elevation.** Those are the system's
+voice. A product that wants different type wants a different system.
+
+**Anything by editing the generated token block.** A theme is a layer on top,
+declared under the same `:root[data-theme="light"]` selector and loaded after
+the system, so it wins on source order without raising specificity. The system's
+own drift check must still pass.
+
+## The worked example: stevendesignservices.com
+
+The LLC site runs the **Urban Oasis** theme. Steven Design Services is a
+deliberately separate business from the portfolio, so it reads as related
+through type and structure rather than through color.
+
+Its tokens live in the same Figma file, `SDC Fall of 2026`, in a collection
+called **SDS theme**, each variable carrying its `codeSyntax`. They are
+generated into that repo and never pass through `Site.astro`, so
+stevendesignco.com never carries tokens it has no use for. That is why they are
+`--sds-` rather than `--sdc-`.
+
+### What it re-points
+
+**`--sdc-bg`** — paper cloud `#F0EEE9` becomes Marble `#F3EBDD`.
+
+**`--sdc-text`** — charcoal `#2D3436` becomes Bark `#2A2922`. Warmer, and a
+higher ratio on its own ground: 12.33:1 against 10.94:1.
+
+**`--sdc-accent`** — regatta `#3F5F92` becomes Leaves `#506D2F`.
+
+**`--sdc-accent-hover`** — regatta deep `#233552` becomes Leaves dark `#425927`.
+Both go darker on hover, for the reason below.
+
+The live swatches and their computed ratios are in the
+[Storybook](https://stevendesignco.com/labs/sdc-storybook/), under Foundations,
+SDS theme.
+
+### Two rules it proved
+
+**A hover has to beat the accent it replaces.** The first draft of this theme
+used a *lighter* accent on hover, because that is what reads as "lit up" on a
+dark ground. On light paper it does the opposite: links dropped from 6.16:1 to
+4.66:1 when hovered, so hovering made them harder to read. The theme's build
+script now has a check named exactly that and refuses to write CSS if it fails.
+
+**An accent has to stay clear of the status colors.** Urban Oasis offers a green
+and a brown. The green sits 18 units from the success green, which is the same
+color to the eye, so a green confirmation message and a green primary button are
+close. That was measured, surfaced, and chosen anyway, which is a legitimate
+outcome. What is not legitimate is not knowing.
+
+## Starting a theme
+
+1. Make a collection in the Figma file, named for the product. Give every
+   variable a `codeSyntax` naming its CSS custom property, the way the
+   primitives do. That field is the mapping; without it the next reader has to
+   guess, and they will guess wrong.
+2. Keep a DTCG file in the product repo as the checked-in record, and generate
+   the CSS from it. Nothing writes those values by hand.
+3. Measure contrast in the generator, not in a comment. Every pair the theme
+   creates: ink on each ground, accent as text, accent label on accent, hover as
+   text, hover against the accent, focus against the ground.
+4. Make the generator **fail** rather than warn. A theme that ships a failing
+   pair has no check; it has a note.
