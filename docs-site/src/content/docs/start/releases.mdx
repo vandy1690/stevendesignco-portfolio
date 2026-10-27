@@ -33,6 +33,41 @@ production.
 
 ## Log
 
+### 02.02.01 · October 27, 2026
+
+Patch: nothing added and nothing renamed. The system did not change; what the
+system says about itself did.
+
+- **`custom-elements.json` now covers the whole library.** It described eight
+  custom elements and the library has twenty-three components, and
+  `manifest:check` passed anyway, because it verified the eight it knew about
+  rather than whether anything was missing. The components that keep their
+  native element now appear as plain class declarations, with their props as
+  members and the classes they write under `sdcClasses`. A consumer that wants
+  only custom elements filters on `customElement` and gets exactly the same
+  eight back.
+- **[Every component](/docs/components/)**, a new page: the whole library in one
+  table, with each component's summary, what it renders, its props and a link to
+  its page, and a second table of the patterns that are CSS and markup only. Both
+  are generated, the first from `src/components/ui/` and the second from the
+  pages no component claims, so the two halves cannot disagree about which is
+  which.
+- **Every component declares where it is documented**, with `@docs` in its doc
+  comment. `manifest:check` now fails if a component has no pointer, if the
+  pointer names a page that does not exist, or if a component is missing from
+  the manifest. Adding a component to the folder can no longer leave it
+  invisible.
+- Four documents that had gone out of step with the code are corrected:
+  `ARCHITECTURE.md` had a component count and a duplicate list of the library,
+  both of which now point at the generated one; `DESIGN-SYSTEM.md` gains the
+  control classes and the two control tokens that shipped in 02.02.00;
+  `start/naming` described the manifest as the attribute API of every element,
+  which read as the component API and was a third of it; `start/how-to-read`
+  listed fourteen components by name when there were twenty-three.
+- `llms.txt` says the design system exists. It is one of the surfaces an agent
+  reads first and it had no line for the documentation, the manifest or the
+  Storybook.
+
 ### 02.02.00 · October 26, 2026
 
 Added, nothing renamed.
@@ -45,7 +80,7 @@ Added, nothing renamed.
 - **The rest of the control set**, which the 2026-10-22 inspection named as the
   system's largest coverage gap. Field gains `error`, `required`, `autocomplete`,
   `inputmode`, `disabled` and `placeholder`, so an invalid control now carries
-  `aria-invalid` rather than only a colour. Four more components:
+  `aria-invalid` rather than only a color. Four more components:
   [Choice](/docs/components/choice/) for a checkbox or radio as a chip,
   [Fieldset](/docs/components/fieldset/) for a named group,
   [Select](/docs/components/select/) for the native picker, and
@@ -71,7 +106,7 @@ Minor: tokens added, and one visual change that keeps every name.
 
 - A status palette. Six semantic tokens, `--sdc-error`, `--sdc-warning` and
   `--sdc-success` with a tint each, over twelve new `--sdc-signal-*` primitives.
-  Colour primitives go from 16 to 28. Nothing uses them yet: there is no input,
+  Color primitives go from 16 to 28. Nothing uses them yet: there is no input,
   form or alert in the library, so for now they are a documented palette waiting
   for a control contract.
 - Light is the default theme unconditionally. The `prefers-color-scheme` query

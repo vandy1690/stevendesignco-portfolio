@@ -7,6 +7,25 @@ also the day the change went live, give or take a few minutes.
 Add a line here when you ship something a visitor or a future maintainer would
 notice.
 
+## October 27, 2026: SDC 02.02.01
+
+No visitor-facing change. The design system's machine-readable surface now
+covers the library instead of a third of it.
+
+`custom-elements.json` described eight custom elements while the library held
+twenty-three components, and its drift check passed, because it verified the
+eight it knew about. It now carries every component: the ones that keep their
+native element appear as class declarations with their props and the classes
+they write, and anything reading it for custom elements alone gets the same
+eight as before. A new page, /docs/components/, lists the whole library in one
+generated table alongside the patterns that are CSS and markup only. Every
+component now says in its own doc comment where it is documented, and the check
+fails if that pointer is missing or broken, so a new component cannot stay
+invisible.
+
+Four reference documents that had drifted are corrected, and llms.txt mentions
+the design system for the first time.
+
 ## October 26, 2026: SDC 02.02.00
 
 Two new design system components, Field and Slider, with Storybook stories and
@@ -29,11 +48,12 @@ headings take `--sdc-text-display-2`. It arrived as a class rather than a token,
 since the size it needed already existed under another name.
 
 Nothing on stevendesignco.com uses any of it yet, so no page changes.
+
 ## October 22, 2026: SDC 02.01.00
 
 A status palette and a theme default, shipped in #21.
 
-- Three status colours arrive as six semantic tokens over twelve new
+- Three status colors arrive as six semantic tokens over twelve new
   `--sdc-signal-*` primitives: something failed, something needs attention,
   something worked. Swatched in the Storybook and documented at
   /docs/foundations/color/. Nothing on the site uses them yet.
@@ -41,7 +61,7 @@ A status palette and a theme default, shipped in #21.
   `prefers-color-scheme`, so a visitor whose machine is set to dark sees the
   light palette until they choose dark with the toggle. Clearing site data
   returns them to light.
-- The documentation moved to US spelling, and /docs/foundations/colour/ now
+- The documentation moved to US spelling, and /docs/foundations/color/ now
   redirects to /docs/foundations/color/.
 - Analytics on the Storybook, so referral links to it are counted. Only the
   public domain reports.

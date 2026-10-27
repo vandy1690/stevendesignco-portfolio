@@ -1,0 +1,527 @@
+{
+	"generated": "scripts/build-manifest.mjs, from src/components/ui and the component pages",
+	"components": [
+		{
+			"name": "AwardList",
+			"path": "src/components/ui/AwardList.astro",
+			"elements": [],
+			"block": "sdc-cs-awards",
+			"classes": [
+				"sdc-cs-awards",
+				"sdc-cs-awards__mark"
+			],
+			"props": [
+				"items"
+			],
+			"slots": [],
+			"docs": "/docs/components/award-list/",
+			"summary": "The starred list of outcomes at the end of a case study."
+		},
+		{
+			"name": "Button",
+			"path": "src/components/ui/Button.astro",
+			"elements": [],
+			"block": "sdc-btn",
+			"classes": [
+				"sdc-btn",
+				"sdc-btn--primary",
+				"sdc-u-sr-only"
+			],
+			"props": [
+				"href",
+				"variant",
+				"external",
+				"class"
+			],
+			"slots": [
+				"default"
+			],
+			"docs": "/docs/components/button/",
+			"summary": "A link styled as a button. Everything on this site that looks like a button"
+		},
+		{
+			"name": "ButtonGroup",
+			"path": "src/components/ui/ButtonGroup.astro",
+			"elements": [
+				"sdc-button-group"
+			],
+			"block": null,
+			"classes": [],
+			"props": [],
+			"slots": [
+				"default"
+			],
+			"docs": "/docs/components/button/",
+			"summary": "The row of artifact links at the end of a case study block. It wraps on"
+		},
+		{
+			"name": "CaseBlock",
+			"path": "src/components/ui/CaseBlock.astro",
+			"elements": [
+				"sdc-case-block"
+			],
+			"block": "sdc-case-block__lede",
+			"classes": [
+				"sdc-case-block__lede"
+			],
+			"props": [
+				"eyebrow",
+				"lede"
+			],
+			"slots": [
+				"default"
+			],
+			"docs": "/docs/components/case-study-block/",
+			"summary": "The prose unit a case study is written in: a label, a one line claim, then"
+		},
+		{
+			"name": "CaseFigure",
+			"path": "src/components/ui/CaseFigure.astro",
+			"elements": [
+				"sdc-case-figure"
+			],
+			"block": "sdc-theme-img",
+			"classes": [
+				"sdc-theme-img",
+				"sdc-theme-img--dark",
+				"sdc-theme-img--light"
+			],
+			"props": [
+				"src",
+				"alt",
+				"light",
+				"width",
+				"height",
+				"loading",
+				"class"
+			],
+			"slots": [
+				"default"
+			],
+			"docs": "/docs/components/case-figure/",
+			"summary": "A full width image inside a case study."
+		},
+		{
+			"name": "CaseHero",
+			"path": "src/components/ui/CaseHero.astro",
+			"elements": [
+				"sdc-case-hero"
+			],
+			"block": "sdc-cs-note",
+			"classes": [
+				"sdc-case-hero__inner",
+				"sdc-case-hero__lede",
+				"sdc-case-hero__title",
+				"sdc-cs-back-top",
+				"sdc-cs-note",
+				"sdc-display"
+			],
+			"props": [
+				"eyebrow",
+				"heading",
+				"lede",
+				"meta",
+				"note",
+				"backHref",
+				"backLabel"
+			],
+			"slots": [
+				"figure"
+			],
+			"docs": "/docs/components/case-hero/",
+			"summary": "The top of a case study: the way back, the label, the title, the one"
+		},
+		{
+			"name": "CaseSection",
+			"path": "src/components/ui/CaseSection.astro",
+			"elements": [
+				"sdc-section",
+				"sdc-layout-container"
+			],
+			"block": null,
+			"classes": [],
+			"props": [
+				"tone",
+				"figure",
+				"flush",
+				"id",
+				"layout",
+				"width",
+				"labelledby",
+				"animate"
+			],
+			"slots": [
+				"default"
+			],
+			"docs": "/docs/components/section/",
+			"summary": "One band of a case study, rendered as <sdc-section> with an"
+		},
+		{
+			"name": "CaseStudyCard",
+			"path": "src/components/ui/CaseStudyCard.astro",
+			"elements": [
+				"sdc-card"
+			],
+			"block": "sdc-card__art",
+			"classes": [
+				"sdc-card__arrow",
+				"sdc-card__art",
+				"sdc-card__art--contain",
+				"sdc-card__body",
+				"sdc-card__cta",
+				"sdc-card__head",
+				"sdc-card__link",
+				"sdc-card__meta",
+				"sdc-card__text"
+			],
+			"props": [
+				"href",
+				"head",
+				"text",
+				"product",
+				"objective",
+				"art",
+				"image",
+				"contain",
+				"field"
+			],
+			"slots": [
+				"art"
+			],
+			"docs": "/docs/components/case-study-card/",
+			"summary": "One case study in the home page deck: art above, then the claim as a link,"
+		},
+		{
+			"name": "Choice",
+			"path": "src/components/ui/Choice.astro",
+			"elements": [],
+			"block": "sdc-choice",
+			"classes": [
+				"sdc-choice"
+			],
+			"props": [
+				"label",
+				"name",
+				"value",
+				"radio",
+				"checked",
+				"disabled",
+				"class"
+			],
+			"slots": [],
+			"docs": "/docs/components/choice/",
+			"summary": "A checkbox or radio drawn as a chip. The native input stays in the DOM and"
+		},
+		{
+			"name": "Eyebrow",
+			"path": "src/components/ui/Eyebrow.astro",
+			"elements": [],
+			"block": "sdc-eyebrow",
+			"classes": [
+				"sdc-eyebrow"
+			],
+			"props": [
+				"class"
+			],
+			"slots": [
+				"default"
+			],
+			"docs": "/docs/components/eyebrow/",
+			"summary": "The small uppercase label that sits above a heading. It names the section"
+		},
+		{
+			"name": "Field",
+			"path": "src/components/ui/Field.astro",
+			"elements": [],
+			"block": "sdc-field",
+			"classes": [
+				"sdc-field",
+				"sdc-field--invalid",
+				"sdc-field__error",
+				"sdc-field__hint",
+				"sdc-field__input",
+				"sdc-field__label",
+				"sdc-field__req"
+			],
+			"props": [
+				"id",
+				"label",
+				"name",
+				"value",
+				"multiline",
+				"rows",
+				"maxLength",
+				"type",
+				"hint",
+				"error",
+				"required",
+				"autocomplete",
+				"inputmode",
+				"disabled",
+				"placeholder",
+				"class"
+			],
+			"slots": [],
+			"docs": "/docs/components/field/",
+			"summary": "A labeled text control: one line by default, several with `multiline`."
+		},
+		{
+			"name": "Fieldset",
+			"path": "src/components/ui/Fieldset.astro",
+			"elements": [],
+			"block": "sdc-fieldset",
+			"classes": [
+				"sdc-fieldset",
+				"sdc-fieldset__desc"
+			],
+			"props": [
+				"legend",
+				"desc",
+				"id",
+				"class"
+			],
+			"slots": [
+				"default"
+			],
+			"docs": "/docs/components/fieldset/",
+			"summary": "A group of related controls with a real legend. A heading above a group is"
+		},
+		{
+			"name": "FormStatus",
+			"path": "src/components/ui/FormStatus.astro",
+			"elements": [],
+			"block": "sdc-form-status",
+			"classes": [
+				"sdc-form-status",
+				"sdc-form-status--err",
+				"sdc-form-status--ok",
+				"sdc-form-status--warn"
+			],
+			"props": [
+				"id",
+				"message",
+				"tone",
+				"class"
+			],
+			"slots": [],
+			"docs": "/docs/components/form-messages/",
+			"summary": "The live region a form speaks through: sending, sent, or failed. Polite, so"
+		},
+		{
+			"name": "FormSummary",
+			"path": "src/components/ui/FormSummary.astro",
+			"elements": [],
+			"block": "sdc-form-summary",
+			"classes": [
+				"sdc-form-summary",
+				"sdc-form-summary--success",
+				"sdc-form-summary--warning"
+			],
+			"props": [
+				"id",
+				"lede",
+				"errors",
+				"tone",
+				"class"
+			],
+			"slots": [],
+			"docs": "/docs/components/form-messages/",
+			"summary": "The error summary a form moves focus to when submission fails. One list of"
+		},
+		{
+			"name": "MetaRow",
+			"path": "src/components/ui/MetaRow.astro",
+			"elements": [],
+			"block": "sdc-meta-row",
+			"classes": [
+				"sdc-meta-row"
+			],
+			"props": [
+				"items"
+			],
+			"slots": [],
+			"docs": "/docs/components/meta-row/",
+			"summary": "The role, org and recognition list under a case study hero. It is a"
+		},
+		{
+			"name": "Note",
+			"path": "src/components/ui/Note.astro",
+			"elements": [],
+			"block": "sdc-cs-note",
+			"classes": [
+				"sdc-cs-note"
+			],
+			"props": [],
+			"slots": [
+				"default"
+			],
+			"docs": "/docs/components/note/",
+			"summary": "A smaller aside under a block, set in the muted ink. It is where a page says"
+		},
+		{
+			"name": "Pager",
+			"path": "src/components/ui/Pager.astro",
+			"elements": [],
+			"block": "sdc-pager",
+			"classes": [
+				"sdc-pager",
+				"sdc-pager--prev",
+				"sdc-pager__cap",
+				"sdc-u-sr-only"
+			],
+			"props": [
+				"direction",
+				"href",
+				"label",
+				"prefix"
+			],
+			"slots": [],
+			"docs": "/docs/components/pager/",
+			"summary": "One of the two links at the foot of a case study. The arrow is decorative:"
+		},
+		{
+			"name": "PagerPair",
+			"path": "src/components/ui/PagerPair.astro",
+			"elements": [],
+			"block": null,
+			"classes": [],
+			"props": [
+				"prev",
+				"next"
+			],
+			"slots": [],
+			"docs": "/docs/components/pager/",
+			"summary": "The band that closes every case study: back or previous on the left, the"
+		},
+		{
+			"name": "Quote",
+			"path": "src/components/ui/Quote.astro",
+			"elements": [],
+			"block": "sdc-cs-quote",
+			"classes": [
+				"sdc-cs-quote"
+			],
+			"props": [],
+			"slots": [
+				"default"
+			],
+			"docs": "/docs/components/quote/",
+			"summary": "A pulled quote inside a case study body, set larger than the prose around it."
+		},
+		{
+			"name": "Select",
+			"path": "src/components/ui/Select.astro",
+			"elements": [],
+			"block": "sdc-select",
+			"classes": [
+				"sdc-select"
+			],
+			"props": [
+				"id",
+				"name",
+				"options",
+				"value",
+				"required",
+				"disabled",
+				"invalid",
+				"describedBy",
+				"class"
+			],
+			"slots": [],
+			"docs": "/docs/components/select/",
+			"summary": "The browser's own select, with our chrome on it. The native element keeps the"
+		},
+		{
+			"name": "Slider",
+			"path": "src/components/ui/Slider.astro",
+			"elements": [],
+			"block": "sdc-field",
+			"classes": [
+				"sdc-field",
+				"sdc-field__head",
+				"sdc-field__label",
+				"sdc-field__slider",
+				"sdc-field__value"
+			],
+			"props": [
+				"id",
+				"label",
+				"name",
+				"min",
+				"max",
+				"step",
+				"value",
+				"unit",
+				"class"
+			],
+			"slots": [],
+			"docs": "/docs/components/slider/",
+			"summary": "A labeled range slider with its current value shown beside the label."
+		},
+		{
+			"name": "StatList",
+			"path": "src/components/ui/StatList.astro",
+			"elements": [],
+			"block": "sdc-cs-stats",
+			"classes": [
+				"sdc-cs-stats",
+				"sdc-cs-stats--large",
+				"sdc-cs-stats--three"
+			],
+			"props": [
+				"items",
+				"three",
+				"large"
+			],
+			"slots": [],
+			"docs": "/docs/components/stat-list/",
+			"summary": "The numbers at the end of a case study. Two or three, never more: the point"
+		},
+		{
+			"name": "TextPassage",
+			"path": "src/components/ui/TextPassage.astro",
+			"elements": [
+				"sdc-text-passage"
+			],
+			"block": null,
+			"classes": [],
+			"props": [
+				"width",
+				"reveal",
+				"class"
+			],
+			"slots": [
+				"default"
+			],
+			"docs": "/docs/components/text-passage/",
+			"summary": "A run of reading prose outside a case study: the paragraphs on the home"
+		}
+	],
+	"cssOnly": [
+		{
+			"title": "Case study dialog",
+			"summary": "The in-place panel that opens a case study without leaving the home page.",
+			"docs": "/docs/components/dialog/"
+		},
+		{
+			"title": "Links",
+			"summary": "Inline links, artifact links, and anything that opens a new tab.",
+			"docs": "/docs/components/links/"
+		},
+		{
+			"title": "Navigation",
+			"summary": "The header nav, the mobile panel and the skip link.",
+			"docs": "/docs/components/navigation/"
+		},
+		{
+			"title": "Progress dots",
+			"summary": "The position indicator under the case study deck and the recommendations fan.",
+			"docs": "/docs/components/progress-dots/"
+		},
+		{
+			"title": "Row list",
+			"summary": "The key and description list used for tools and recognition.",
+			"docs": "/docs/components/row-list/"
+		}
+	]
+}

@@ -20,7 +20,7 @@ points at sources rather than copying them, so it cannot drift from them.
 | :-- | :-- | :-- |
 | Primitive color tokens | `src/layouts/Site.astro`, between `TOKENS:START` and `TOKENS:END` | Generated from Figma by `npm run tokens`. Never edit by hand. |
 | Semantic tokens, shadows, type scale | `src/layouts/Site.astro`, below the generated block | Edit here. A new token gets a line in the docs. |
-| Components | `src/components/ui/` | Containers render as light-DOM custom elements (`<sdc-section>`, `<sdc-card>`); their attribute API is generated into `custom-elements.json`. Naming rules: /docs/start/naming/. |
+| Components | `src/components/ui/` | Containers render as light-DOM custom elements (`<sdc-section>`, `<sdc-card>`); the rest keep their native element with `sdc-` classes. Every one of them is generated into `custom-elements.json` with its props, slots, classes and docs page, and listed at /docs/components/. Naming rules: /docs/start/naming/. |
 | Documentation | `docs-site/src/content/docs/` | Published as built files in `public/docs`. Run `npm run build:docs` and commit the output, or the change never reaches /docs. |
 | Storybook | `storybook/` | Built into `public/labs/sdc-storybook`. The build copies CSS from the running site, so start `npm run dev` first. |
 

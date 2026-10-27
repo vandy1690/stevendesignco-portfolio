@@ -18,6 +18,13 @@ Before PayPal he spent 18 years at MTG Media Group, growing from Senior Art Dire
 - [The Artistic Eye](https://www.stevendesignco.com/work/artistic-eye): A full brand build for a gallery and eyewear shop in Sturgeon Bay, Wisconsin: wordmark, monogram, color, type, and applications. In progress.
 - [Design Systems](https://www.stevendesignco.com/design-systems): The practice behind the case studies: two Pattern Labs, two Storybook builds, and a Figma library of about 600 component variants, all browsable.
 
+## Design system
+
+- [Design system documentation](https://www.stevendesignco.com/docs/): How, when and where to use every component on this site, written so a designer, an engineer, a writer and a tester can answer the same question.
+- [Every component](https://www.stevendesignco.com/docs/components/): The whole library on one page, generated from the components themselves.
+- [custom-elements.json](https://www.stevendesignco.com/custom-elements.json): The same library in the standard machine-readable manifest format, each component with its props, slots, classes and a pointer to its documentation page.
+- [Storybook](https://www.stevendesignco.com/labs/sdc-storybook/): Every component rendered live in both themes, from the stylesheet the site ships.
+
 ## Resume
 
 - [Resume](https://www.stevendesignco.com/resume): Experience, skills, recognition, and education, with a PDF download.

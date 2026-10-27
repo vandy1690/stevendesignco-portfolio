@@ -31,9 +31,14 @@ a pager stays `<a>`, navigation stays `<nav>`, and the page's main content stays
 should be a landmark passes `labelledby`, and the element adds `role="region"`
 itself.
 
-The full attribute API of every element is generated from the components into
+Every component in the library is generated into
 [`custom-elements.json`](/custom-elements.json), the standard manifest format,
-so a tool or an agent can read it without opening the source.
+so a tool or an agent can read the API without opening the source. The ones that
+render a custom element carry a `tagName` and the full attribute API. The rest
+keep their native element, so they carry their props as members and the classes
+they write under `sdcClasses`. Both carry a pointer to their documentation page.
+Filtering on `customElement` returns only the elements this page describes.
+[Every component](/docs/components/) is the same thing to read rather than parse.
 
 ## Classes
 

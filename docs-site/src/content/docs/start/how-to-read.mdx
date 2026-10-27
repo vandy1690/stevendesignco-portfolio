@@ -43,15 +43,15 @@ markup gets written by hand each time. Those are the ones still to build.
 
 ## What is real in code, and what is not
 
-As of October 2026 these render from a component under
-`src/components/ui/`: Button, ButtonGroup, Pager, PagerPair, CaseHero, MetaRow,
-CaseFigure, CaseSection, CaseBlock, Eyebrow, Note, Quote, StatList, AwardList.
-Every case study page is assembled from those and carries no CSS of its own.
+[Every component](/docs/components/) is the answer, in two tables: the ones you
+import, and the patterns that are CSS and markup only. Both are generated, one
+from `src/components/ui/` and the other from the pages no component claims, so
+neither can go out of date the way the hand-written list that used to sit here
+did. It named fourteen components when there were twenty-three.
 
-These are still CSS and markup only, written by hand: the case study card, the
-dialog, the navigation, the progress dots and the row list. They live on the home
-page, which has not been converted yet. Their pages describe real, shipped
-classes, but there is no component to import.
+The CSS-only ones are mostly on the home page, which has not been converted yet.
+Their pages describe real, shipped classes, but there is nothing to import, so
+the markup gets written by hand each time.
 
 Saying which is which is the point. A documented class that looks like a
 component is how two slightly different versions of the same thing end up in a
@@ -59,7 +59,7 @@ codebase.
 
 ## The Figma library
 
-The library lives in **SDC Fall of 2026**. It carries the token collections, nine
+The library lives in **SDC Fall of 2026**. It carries the token collections, the
 components, the home and case study screens assembled from them, and a flow of
 the routes.
 

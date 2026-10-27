@@ -96,6 +96,8 @@ palette and uses `#4A6FA8` for the accent, a lighter blue than the site's
 | `--sdc-nav-h` | 56px | Header height. Also the scroll padding, so anchors clear the sticky header |
 | `--sdc-radius` | 18px | Cards |
 | `--sdc-radius-sm` | 10px | Buttons and controls |
+| `--sdc-control-h` | 44px | The least a form control may be. Clears the WCAG 2.2 target size with room, and matches the height the skip link already used |
+| `--sdc-control-border` | 1px | A control's border. A token because an invalid control thickens it |
 | `--sdc-texture-size` | 20px | Dot grid pitch |
 
 ## Spacing scale
@@ -163,6 +165,18 @@ All global, in `Site.astro`.
 | `<sdc-section tone="alt">`, `<sdc-layout-container width="narrow">` | Page bands and their content width |
 | `.sdc-theme-img--light`, `.sdc-theme-img--dark` | Swap an image by theme |
 | `[data-animate="fade"]` | Fade in on scroll. Only hidden when `html.js` is present |
+| `.sdc-field` and its parts | The control block: `__label`, `__input`, `__hint`, `__error`, `__req`, `--invalid`, plus `__head`, `__slider` and `__value` for the slider. Every control is at least `--sdc-control-h` tall |
+| `.sdc-choice`, `.sdc-choice-set` | A checkbox or radio as a chip, and the row they sit in. The native input stays in the DOM at one pixel, so the focus ring is drawn on the label |
+| `.sdc-select` | The native select with the system's chrome on it |
+| `.sdc-fieldset`, `.sdc-fieldset__desc` | A named group with a real `<legend>`, which takes `.sdc-display-3` |
+| `.sdc-form-summary`, `--warning`, `--success` | The error summary a failed submit moves focus to. Base is the error tone |
+| `.sdc-form-status`, `--ok`, `--warn`, `--err` | The polite live region. Stays in the DOM empty |
+
+The control classes are the generated half of this table: which component writes
+which of them is in [`custom-elements.json`](https://stevendesignco.com/custom-elements.json)
+under `sdcClasses`, and the whole library is listed at
+[/docs/components/](https://stevendesignco.com/docs/components/). Neither is
+repeated here, so neither can disagree with this page.
 
 The case study pieces (`<sdc-case-hero>`, `.sdc-meta-row`, `<sdc-case-block>`, `<sdc-case-figure>`,
 `<sdc-layout-container layout="prose">`) are styled once in `src/layouts/Site.astro`, scoped under `.sdc-case`.

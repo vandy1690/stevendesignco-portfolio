@@ -35,7 +35,10 @@ function walk(dir, exts) {
 
 // --- 1. elements
 const manifest = existsSync('custom-elements.json') ? JSON.parse(read('custom-elements.json')) : { modules: [] };
-const declared = new Set(manifest.modules.flatMap((m) => m.declarations.map((d) => d.tagName)));
+// The manifest covers every component, not only the ones that are elements.
+// Only the custom element declarations carry a tagName, and only those are
+// what rule 1 is about.
+const declared = new Set(manifest.modules.flatMap((m) => m.declarations.filter((d) => d.customElement).map((d) => d.tagName)));
 const used = new Map();
 for (const f of walk('src', ['.astro', '.tsx'])) {
 	for (const m of read(f).matchAll(/<(sdc-[a-z-]+)[\s>]/g)) used.set(m[1], f);

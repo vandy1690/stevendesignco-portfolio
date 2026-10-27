@@ -4,6 +4,98 @@
 	"modules": [
 		{
 			"kind": "javascript-module",
+			"path": "src/components/ui/AwardList.astro",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "AwardList",
+					"summary": "The starred list of outcomes at the end of a case study.",
+					"description": "Rendered by src/components/ui/AwardList.astro. Not a custom element: it keeps the native element that carries the role and writes sdc- classes on it, styled in src/layouts/Site.astro. Import the component rather than writing the markup by hand.",
+					"members": [
+						{
+							"kind": "field",
+							"name": "items",
+							"type": {
+								"text": "string[]"
+							},
+							"description": "",
+							"privacy": "public",
+							"required": true
+						}
+					],
+					"slots": [],
+					"sdcClasses": [
+						"sdc-cs-awards",
+						"sdc-cs-awards__mark"
+					],
+					"sdcDocs": "/docs/components/award-list/"
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/ui/Button.astro",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Button",
+					"summary": "A link styled as a button. Everything on this site that looks like a button",
+					"description": "Rendered by src/components/ui/Button.astro. Not a custom element: it keeps the native element that carries the role and writes sdc- classes on it, styled in src/layouts/Site.astro. Import the component rather than writing the markup by hand.",
+					"members": [
+						{
+							"kind": "field",
+							"name": "href",
+							"type": {
+								"text": "string"
+							},
+							"description": "",
+							"privacy": "public",
+							"required": true
+						},
+						{
+							"kind": "field",
+							"name": "variant",
+							"type": {
+								"text": "'primary' | 'secondary'"
+							},
+							"description": "Which of the two styles the Figma library defines. Secondary by default.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "external",
+							"type": {
+								"text": "boolean"
+							},
+							"description": "Opens in a new tab and says so to a screen reader.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "class",
+							"type": {
+								"text": "string"
+							},
+							"description": "",
+							"privacy": "public"
+						}
+					],
+					"slots": [
+						{
+							"name": ""
+						}
+					],
+					"sdcClasses": [
+						"sdc-btn",
+						"sdc-btn--primary",
+						"sdc-u-sr-only"
+					],
+					"sdcDocs": "/docs/components/button/"
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
 			"path": "src/components/ui/ButtonGroup.astro",
 			"declarations": [
 				{
@@ -18,7 +110,8 @@
 						{
 							"name": ""
 						}
-					]
+					],
+					"sdcDocs": "/docs/components/button/"
 				}
 			]
 		},
@@ -54,7 +147,11 @@
 						{
 							"name": ""
 						}
-					]
+					],
+					"sdcClasses": [
+						"sdc-case-block__lede"
+					],
+					"sdcDocs": "/docs/components/case-study-block/"
 				}
 			]
 		},
@@ -119,7 +216,13 @@
 						{
 							"name": ""
 						}
-					]
+					],
+					"sdcClasses": [
+						"sdc-theme-img",
+						"sdc-theme-img--dark",
+						"sdc-theme-img--light"
+					],
+					"sdcDocs": "/docs/components/case-figure/"
 				}
 			]
 		},
@@ -193,7 +296,16 @@
 						{
 							"name": "figure"
 						}
-					]
+					],
+					"sdcClasses": [
+						"sdc-case-hero__inner",
+						"sdc-case-hero__lede",
+						"sdc-case-hero__title",
+						"sdc-cs-back-top",
+						"sdc-cs-note",
+						"sdc-display"
+					],
+					"sdcDocs": "/docs/components/case-hero/"
 				}
 			]
 		},
@@ -249,7 +361,8 @@
 						{
 							"name": ""
 						}
-					]
+					],
+					"sdcDocs": "/docs/components/section/"
 				},
 				{
 					"kind": "class",
@@ -285,7 +398,8 @@
 						{
 							"name": ""
 						}
-					]
+					],
+					"sdcDocs": "/docs/components/section/"
 				}
 			]
 		},
@@ -375,7 +489,918 @@
 						{
 							"name": "art"
 						}
-					]
+					],
+					"sdcClasses": [
+						"sdc-card__arrow",
+						"sdc-card__art",
+						"sdc-card__art--contain",
+						"sdc-card__body",
+						"sdc-card__cta",
+						"sdc-card__head",
+						"sdc-card__link",
+						"sdc-card__meta",
+						"sdc-card__text"
+					],
+					"sdcDocs": "/docs/components/case-study-card/"
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/ui/Choice.astro",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Choice",
+					"summary": "A checkbox or radio drawn as a chip. The native input stays in the DOM and",
+					"description": "Rendered by src/components/ui/Choice.astro. Not a custom element: it keeps the native element that carries the role and writes sdc- classes on it, styled in src/layouts/Site.astro. Import the component rather than writing the markup by hand.",
+					"members": [
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							},
+							"description": "The visible label, and the accessible name.",
+							"privacy": "public",
+							"required": true
+						},
+						{
+							"kind": "field",
+							"name": "name",
+							"type": {
+								"text": "string"
+							},
+							"description": "The form field name. Radios in one group share it.",
+							"privacy": "public",
+							"required": true
+						},
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "string"
+							},
+							"description": "The submitted value. Defaults to the label.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "radio",
+							"type": {
+								"text": "boolean"
+							},
+							"description": "A radio instead of a checkbox. Use when exactly one may be picked.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "checked",
+							"type": {
+								"text": "boolean"
+							},
+							"description": "Starts checked.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"description": "Greys the chip out and stops it submitting.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "class",
+							"type": {
+								"text": "string"
+							},
+							"description": "",
+							"privacy": "public"
+						}
+					],
+					"slots": [],
+					"sdcClasses": [
+						"sdc-choice"
+					],
+					"sdcDocs": "/docs/components/choice/"
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/ui/Eyebrow.astro",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Eyebrow",
+					"summary": "The small uppercase label that sits above a heading. It names the section",
+					"description": "Rendered by src/components/ui/Eyebrow.astro. Not a custom element: it keeps the native element that carries the role and writes sdc- classes on it, styled in src/layouts/Site.astro. Import the component rather than writing the markup by hand.",
+					"members": [
+						{
+							"kind": "field",
+							"name": "class",
+							"type": {
+								"text": "string"
+							},
+							"description": "Extra classes, for the rare page that needs to position it.",
+							"privacy": "public"
+						}
+					],
+					"slots": [
+						{
+							"name": ""
+						}
+					],
+					"sdcClasses": [
+						"sdc-eyebrow"
+					],
+					"sdcDocs": "/docs/components/eyebrow/"
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/ui/Field.astro",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Field",
+					"summary": "A labeled text control: one line by default, several with `multiline`.",
+					"description": "Rendered by src/components/ui/Field.astro. Not a custom element: it keeps the native element that carries the role and writes sdc- classes on it, styled in src/layouts/Site.astro. Import the component rather than writing the markup by hand.",
+					"members": [
+						{
+							"kind": "field",
+							"name": "id",
+							"type": {
+								"text": "string"
+							},
+							"description": "Ties the label to the control. Required, because a field without it has no name.",
+							"privacy": "public",
+							"required": true
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							},
+							"description": "The visible label, and the accessible name.",
+							"privacy": "public",
+							"required": true
+						},
+						{
+							"kind": "field",
+							"name": "name",
+							"type": {
+								"text": "string"
+							},
+							"description": "The form field name, when the value is submitted.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "string"
+							},
+							"description": "The starting text.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "multiline",
+							"type": {
+								"text": "boolean"
+							},
+							"description": "A textarea instead of a single line.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "rows",
+							"type": {
+								"text": "number"
+							},
+							"description": "Visible lines when multiline.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "maxLength",
+							"type": {
+								"text": "number"
+							},
+							"description": "The most characters the field accepts. Say the limit in the hint too.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "type",
+							"type": {
+								"text": "'text' | 'email' | 'search' | 'url' | 'tel'"
+							},
+							"description": "The input type for a single line: text, email, search, url or tel.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "hint",
+							"type": {
+								"text": "string"
+							},
+							"description": "One line of help under the control.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "error",
+							"type": {
+								"text": "string"
+							},
+							"description": "The validation message. Present means the field is invalid.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "required",
+							"type": {
+								"text": "boolean"
+							},
+							"description": "Marks the control required and puts an asterisk in the label.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "autocomplete",
+							"type": {
+								"text": "string"
+							},
+							"description": "The browser autofill hint, such as \"name\" or \"email\". Worth setting on anything a person has typed before.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "inputmode",
+							"type": {
+								"text": "'text' | 'email' | 'tel' | 'url' | 'numeric' | 'decimal' | 'search'"
+							},
+							"description": "The on-screen keyboard to offer, such as \"email\" or \"tel\".",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"description": "Greys the control out and stops it submitting.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "placeholder",
+							"type": {
+								"text": "string"
+							},
+							"description": "Shown in an empty control. Never the only label.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "class",
+							"type": {
+								"text": "string"
+							},
+							"description": "",
+							"privacy": "public"
+						}
+					],
+					"slots": [],
+					"sdcClasses": [
+						"sdc-field",
+						"sdc-field--invalid",
+						"sdc-field__error",
+						"sdc-field__hint",
+						"sdc-field__input",
+						"sdc-field__label",
+						"sdc-field__req"
+					],
+					"sdcDocs": "/docs/components/field/"
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/ui/Fieldset.astro",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Fieldset",
+					"summary": "A group of related controls with a real legend. A heading above a group is",
+					"description": "Rendered by src/components/ui/Fieldset.astro. Not a custom element: it keeps the native element that carries the role and writes sdc- classes on it, styled in src/layouts/Site.astro. Import the component rather than writing the markup by hand.",
+					"members": [
+						{
+							"kind": "field",
+							"name": "legend",
+							"type": {
+								"text": "string"
+							},
+							"description": "The group's name, rendered as the legend.",
+							"privacy": "public",
+							"required": true
+						},
+						{
+							"kind": "field",
+							"name": "desc",
+							"type": {
+								"text": "string"
+							},
+							"description": "One line under the legend explaining the group. Tied to the fieldset with aria-describedby.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "id",
+							"type": {
+								"text": "string"
+							},
+							"description": "Ties the description to the fieldset. Only needed when desc is set.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "class",
+							"type": {
+								"text": "string"
+							},
+							"description": "",
+							"privacy": "public"
+						}
+					],
+					"slots": [
+						{
+							"name": ""
+						}
+					],
+					"sdcClasses": [
+						"sdc-fieldset",
+						"sdc-fieldset__desc"
+					],
+					"sdcDocs": "/docs/components/fieldset/"
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/ui/FormStatus.astro",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "FormStatus",
+					"summary": "The live region a form speaks through: sending, sent, or failed. Polite, so",
+					"description": "Rendered by src/components/ui/FormStatus.astro. Not a custom element: it keeps the native element that carries the role and writes sdc- classes on it, styled in src/layouts/Site.astro. Import the component rather than writing the markup by hand.",
+					"members": [
+						{
+							"kind": "field",
+							"name": "id",
+							"type": {
+								"text": "string"
+							},
+							"description": "Ties a form's script to this region.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "message",
+							"type": {
+								"text": "string"
+							},
+							"description": "The message. Empty is the normal resting state.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "tone",
+							"type": {
+								"text": "'ok' | 'warning' | 'error'"
+							},
+							"description": "Tints the message. Colour is never the only signal: the words carry it.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "class",
+							"type": {
+								"text": "string"
+							},
+							"description": "",
+							"privacy": "public"
+						}
+					],
+					"slots": [],
+					"sdcClasses": [
+						"sdc-form-status",
+						"sdc-form-status--err",
+						"sdc-form-status--ok",
+						"sdc-form-status--warn"
+					],
+					"sdcDocs": "/docs/components/form-messages/"
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/ui/FormSummary.astro",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "FormSummary",
+					"summary": "The error summary a form moves focus to when submission fails. One list of",
+					"description": "Rendered by src/components/ui/FormSummary.astro. Not a custom element: it keeps the native element that carries the role and writes sdc- classes on it, styled in src/layouts/Site.astro. Import the component rather than writing the markup by hand.",
+					"members": [
+						{
+							"kind": "field",
+							"name": "id",
+							"type": {
+								"text": "string"
+							},
+							"description": "Ties a form's script to this region.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "lede",
+							"type": {
+								"text": "string"
+							},
+							"description": "The sentence above the list.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "errors",
+							"type": {
+								"text": "{ id: string; message: string }[]"
+							},
+							"description": "One per item. `id` is the control to jump to.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "tone",
+							"type": {
+								"text": "'error' | 'warning' | 'success'"
+							},
+							"description": "Which status colour to wear. Error is a failed submit, warning is saved with something to check, success is done.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "class",
+							"type": {
+								"text": "string"
+							},
+							"description": "",
+							"privacy": "public"
+						}
+					],
+					"slots": [],
+					"sdcClasses": [
+						"sdc-form-summary",
+						"sdc-form-summary--success",
+						"sdc-form-summary--warning"
+					],
+					"sdcDocs": "/docs/components/form-messages/"
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/ui/MetaRow.astro",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "MetaRow",
+					"summary": "The role, org and recognition list under a case study hero. It is a",
+					"description": "Rendered by src/components/ui/MetaRow.astro. Not a custom element: it keeps the native element that carries the role and writes sdc- classes on it, styled in src/layouts/Site.astro. Import the component rather than writing the markup by hand.",
+					"members": [
+						{
+							"kind": "field",
+							"name": "items",
+							"type": {
+								"text": "{ term: string; value: string }[]"
+							},
+							"description": "",
+							"privacy": "public",
+							"required": true
+						}
+					],
+					"slots": [],
+					"sdcClasses": [
+						"sdc-meta-row"
+					],
+					"sdcDocs": "/docs/components/meta-row/"
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/ui/Note.astro",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Note",
+					"summary": "A smaller aside under a block, set in the muted ink. It is where a page says",
+					"description": "Rendered by src/components/ui/Note.astro. Not a custom element: it keeps the native element that carries the role and writes sdc- classes on it, styled in src/layouts/Site.astro. Import the component rather than writing the markup by hand.",
+					"members": [],
+					"slots": [
+						{
+							"name": ""
+						}
+					],
+					"sdcClasses": [
+						"sdc-cs-note"
+					],
+					"sdcDocs": "/docs/components/note/"
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/ui/Pager.astro",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Pager",
+					"summary": "One of the two links at the foot of a case study. The arrow is decorative:",
+					"description": "Rendered by src/components/ui/Pager.astro. Not a custom element: it keeps the native element that carries the role and writes sdc- classes on it, styled in src/layouts/Site.astro. Import the component rather than writing the markup by hand.",
+					"members": [
+						{
+							"kind": "field",
+							"name": "direction",
+							"type": {
+								"text": "'prev' | 'next'"
+							},
+							"description": "Which way the chevron points, and which side it sits on.",
+							"privacy": "public",
+							"required": true
+						},
+						{
+							"kind": "field",
+							"name": "href",
+							"type": {
+								"text": "string"
+							},
+							"description": "",
+							"privacy": "public",
+							"required": true
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							},
+							"description": "The visible text.",
+							"privacy": "public",
+							"required": true
+						},
+						{
+							"kind": "field",
+							"name": "prefix",
+							"type": {
+								"text": "string"
+							},
+							"description": "Read before the visible text by a screen reader. Omit for none.",
+							"privacy": "public"
+						}
+					],
+					"slots": [],
+					"sdcClasses": [
+						"sdc-pager",
+						"sdc-pager--prev",
+						"sdc-pager__cap",
+						"sdc-u-sr-only"
+					],
+					"sdcDocs": "/docs/components/pager/"
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/ui/PagerPair.astro",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "PagerPair",
+					"summary": "The band that closes every case study: back or previous on the left, the",
+					"description": "Rendered by src/components/ui/PagerPair.astro. Not a custom element: it keeps the native element that carries the role and writes sdc- classes on it, styled in src/layouts/Site.astro. Import the component rather than writing the markup by hand.",
+					"members": [
+						{
+							"kind": "field",
+							"name": "prev",
+							"type": {
+								"text": "Link"
+							},
+							"description": "",
+							"privacy": "public",
+							"required": true
+						},
+						{
+							"kind": "field",
+							"name": "next",
+							"type": {
+								"text": "Link"
+							},
+							"description": "",
+							"privacy": "public",
+							"required": true
+						}
+					],
+					"slots": [],
+					"sdcDocs": "/docs/components/pager/"
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/ui/Quote.astro",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Quote",
+					"summary": "A pulled quote inside a case study body, set larger than the prose around it.",
+					"description": "Rendered by src/components/ui/Quote.astro. Not a custom element: it keeps the native element that carries the role and writes sdc- classes on it, styled in src/layouts/Site.astro. Import the component rather than writing the markup by hand.",
+					"members": [],
+					"slots": [
+						{
+							"name": ""
+						}
+					],
+					"sdcClasses": [
+						"sdc-cs-quote"
+					],
+					"sdcDocs": "/docs/components/quote/"
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/ui/Select.astro",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Select",
+					"summary": "The browser's own select, with our chrome on it. The native element keeps the",
+					"description": "Rendered by src/components/ui/Select.astro. Not a custom element: it keeps the native element that carries the role and writes sdc- classes on it, styled in src/layouts/Site.astro. Import the component rather than writing the markup by hand.",
+					"members": [
+						{
+							"kind": "field",
+							"name": "id",
+							"type": {
+								"text": "string"
+							},
+							"description": "Ties the label to the control.",
+							"privacy": "public",
+							"required": true
+						},
+						{
+							"kind": "field",
+							"name": "name",
+							"type": {
+								"text": "string"
+							},
+							"description": "The form field name.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "options",
+							"type": {
+								"text": "{ value: string; label: string }[]"
+							},
+							"description": "The options, in display order. A value of '' makes a placeholder row.",
+							"privacy": "public",
+							"required": true
+						},
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "string"
+							},
+							"description": "Which option starts selected.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "required",
+							"type": {
+								"text": "boolean"
+							},
+							"description": "Marks the control required.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"description": "Greys the control out.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "invalid",
+							"type": {
+								"text": "boolean"
+							},
+							"description": "Sets aria-invalid. Field draws the border.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "describedBy",
+							"type": {
+								"text": "string"
+							},
+							"description": "The id of the hint or error that describes this control.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "class",
+							"type": {
+								"text": "string"
+							},
+							"description": "",
+							"privacy": "public"
+						}
+					],
+					"slots": [],
+					"sdcClasses": [
+						"sdc-select"
+					],
+					"sdcDocs": "/docs/components/select/"
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/ui/Slider.astro",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Slider",
+					"summary": "A labeled range slider with its current value shown beside the label.",
+					"description": "Rendered by src/components/ui/Slider.astro. Not a custom element: it keeps the native element that carries the role and writes sdc- classes on it, styled in src/layouts/Site.astro. Import the component rather than writing the markup by hand.",
+					"members": [
+						{
+							"kind": "field",
+							"name": "id",
+							"type": {
+								"text": "string"
+							},
+							"description": "Ties the label and the output to the slider. Required.",
+							"privacy": "public",
+							"required": true
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							},
+							"description": "The visible label, and the accessible name. Says what changes, not \"Slider\".",
+							"privacy": "public",
+							"required": true
+						},
+						{
+							"kind": "field",
+							"name": "name",
+							"type": {
+								"text": "string"
+							},
+							"description": "The form field name, when the value is submitted.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "min",
+							"type": {
+								"text": "number"
+							},
+							"description": "",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "max",
+							"type": {
+								"text": "number"
+							},
+							"description": "",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "step",
+							"type": {
+								"text": "number"
+							},
+							"description": "",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "number"
+							},
+							"description": "The starting value.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "unit",
+							"type": {
+								"text": "string"
+							},
+							"description": "A unit to show and announce after the number, such as \"px\".",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "class",
+							"type": {
+								"text": "string"
+							},
+							"description": "",
+							"privacy": "public"
+						}
+					],
+					"slots": [],
+					"sdcClasses": [
+						"sdc-field",
+						"sdc-field__head",
+						"sdc-field__label",
+						"sdc-field__slider",
+						"sdc-field__value"
+					],
+					"sdcDocs": "/docs/components/slider/"
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/ui/StatList.astro",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "StatList",
+					"summary": "The numbers at the end of a case study. Two or three, never more: the point",
+					"description": "Rendered by src/components/ui/StatList.astro. Not a custom element: it keeps the native element that carries the role and writes sdc- classes on it, styled in src/layouts/Site.astro. Import the component rather than writing the markup by hand.",
+					"members": [
+						{
+							"kind": "field",
+							"name": "items",
+							"type": {
+								"text": "{ value: string; label: string }[]"
+							},
+							"description": "",
+							"privacy": "public",
+							"required": true
+						},
+						{
+							"kind": "field",
+							"name": "three",
+							"type": {
+								"text": "boolean"
+							},
+							"description": "Three across instead of two.",
+							"privacy": "public"
+						},
+						{
+							"kind": "field",
+							"name": "large",
+							"type": {
+								"text": "boolean"
+							},
+							"description": "The bigger display size for the numbers.",
+							"privacy": "public"
+						}
+					],
+					"slots": [],
+					"sdcClasses": [
+						"sdc-cs-stats",
+						"sdc-cs-stats--large",
+						"sdc-cs-stats--three"
+					],
+					"sdcDocs": "/docs/components/stat-list/"
 				}
 			]
 		},
@@ -410,7 +1435,8 @@
 						{
 							"name": ""
 						}
-					]
+					],
+					"sdcDocs": "/docs/components/text-passage/"
 				}
 			]
 		}

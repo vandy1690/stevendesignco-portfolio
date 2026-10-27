@@ -146,26 +146,24 @@ The pieces that are global and not under `.sdc-case` (`sdc-pager`, `sdc-btn`, `s
 
 ## Components
 
-The shared library is the 16 components in `components/ui/`. Every case study
-page is assembled from them and carries no markup of its own for these pieces.
-Each one has a page in the documentation site under `/docs/components/`.
+The shared library is every component in `components/ui/`. Every case study page
+is assembled from them and carries no markup of its own for these pieces.
+
+The list of them, each with its props, slots, classes and documentation page, is
+at [/docs/components/](https://stevendesignco.com/docs/components/) and in
+`custom-elements.json`. Both are generated from the folder by
+`scripts/build-manifest.mjs`, and `npm run manifest:check` fails if a component
+is missing from either. It is not repeated here: the count that used to sit in
+this sentence was accurate both times somebody wrote it, 14 on 5 October and 16
+on 26 October, and out of date within weeks both times, because the next release
+added components and the sentence did not know. That is what a count in prose
+does, so there is no count in this one.
+
+These are the components that are not in that list, because they are not part of
+the shared library:
 
 | Component | Type | Used on |
 |-----------|------|---------|
-| `components/ui/CaseHero.astro` | Case study hero; renders `MetaRow` and `Eyebrow` itself | Every case study |
-| `components/ui/CaseSection.astro` | The page band, with `alt`, `figure`, `flush`, `inner` | Every case study |
-| `components/ui/CaseBlock.astro` | The prose unit: eyebrow, lede heading, paragraphs | Every case study |
-| `components/ui/CaseFigure.astro` | Figure with a caption slot | Case studies with art |
-| `components/ui/MetaRow.astro` | The role, org, recognition row. Composed inside `CaseHero` | Via `CaseHero` |
-| `components/ui/PagerPair.astro` | The previous and next pair. Composes two `Pager` | Every case study |
-| `components/ui/Pager.astro` | One pager link. Composed inside `PagerPair` | Via `PagerPair` |
-| `components/ui/StatList.astro` | Two or three statistics, `three` and `large` | Selected case studies |
-| `components/ui/Quote.astro` | The case study pull quote, `blockquote.sdc-cs-quote` | Selected case studies |
-| `components/ui/Button.astro` | A link styled as a button, `variant="primary"` for the filled one | Several pages |
-| `components/ui/ButtonGroup.astro` | A row of buttons | Several pages |
-| `components/ui/Eyebrow.astro` | The small label above a heading | Via `CaseHero`, `CaseBlock` |
-| `components/ui/Note.astro` | The aside for what a page is not showing | Several case studies |
-| `components/ui/AwardList.astro` | The recognition list | `/work/plate` |
 | `components/art/PluginPipeline.astro` | Inline SVG diagram | Home card stand in |
 | `components/art/OneClickCheckout.astro` | Inline SVG diagram | Home card stand in |
 | `components/art/JourneyMap.astro` | Inline SVG diagram | Home card stand in |
