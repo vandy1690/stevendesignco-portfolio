@@ -264,6 +264,39 @@
           "name": "paper/marble-3"
         }
       }
+    },
+    "chalk": {
+      "$type": "color",
+      "$value": "#FCFCFA",
+      "$description": "Near-white. The SDS page ground from 2026-10-27, replacing Marble.",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:221:133",
+          "name": "paper/chalk"
+        }
+      }
+    },
+    "chalk-2": {
+      "$type": "color",
+      "$value": "#F8F8F6",
+      "$description": "Chalk, one step down. SDS raised surfaces.",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:221:134",
+          "name": "paper/chalk-2"
+        }
+      }
+    },
+    "chalk-3": {
+      "$type": "color",
+      "$value": "#F3F3F0",
+      "$description": "Chalk, two steps down. SDS alternating sections.",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:221:135",
+          "name": "paper/chalk-3"
+        }
+      }
     }
   },
   "signal": {

@@ -535,6 +535,9 @@
 				--sdc-paper-marble: #F3EBDD;   /* Urban Oasis Marble. The SDS page ground. */
 				--sdc-paper-marble-2: #EFE7D9;   /* Marble, one step down. SDS raised surfaces. */
 				--sdc-paper-marble-3: #EAE2D3;   /* Marble, two steps down. SDS alternating sections. */
+				--sdc-paper-chalk: #FCFCFA;   /* Near-white. The SDS page ground from 2026-10-27, replacing Marble. */
+				--sdc-paper-chalk-2: #F8F8F6;   /* Chalk, one step down. SDS raised surfaces. */
+				--sdc-paper-chalk-3: #F3F3F0;   /* Chalk, two steps down. SDS alternating sections. */
 				--sdc-signal-crimson: #B50F34;   /* Error red. Luminance .104, which clears 4.5:1 as text on every paper ground and takes white text as a fill. */
 				--sdc-signal-crimson-dark: #F25C7D;   /* Error red for the dark theme. The light-theme crimson is only 2.6:1 on near-black-2. */
 				--sdc-signal-crimson-tint: #DDC4C3;   /* Soft error ground, light theme. 14% crimson over paper cloud-2. */
@@ -573,6 +576,9 @@
 				--sdc-paper-marble-rgb: 243, 235, 221;
 				--sdc-paper-marble-2-rgb: 239, 231, 217;
 				--sdc-paper-marble-3-rgb: 234, 226, 211;
+				--sdc-paper-chalk-rgb: 252, 252, 250;
+				--sdc-paper-chalk-2-rgb: 248, 248, 246;
+				--sdc-paper-chalk-3-rgb: 243, 243, 240;
 				--sdc-signal-crimson-rgb: 181, 15, 52;
 				--sdc-signal-crimson-dark-rgb: 242, 92, 125;
 				--sdc-signal-crimson-tint-rgb: 221, 196, 195;
@@ -751,9 +757,9 @@
 			   Figma holds this as a third mode on the Color collection, beside
 			   Light and Dark, so a designer can switch a frame to it. */
 			:root[data-theme="sds"] {
-				--sdc-bg: var(--sdc-paper-marble);
-				--sdc-surface: var(--sdc-paper-marble-2);
-				--sdc-surface-2: var(--sdc-paper-marble-3);
+				--sdc-bg: var(--sdc-paper-chalk);
+				--sdc-surface: var(--sdc-paper-chalk-2);
+				--sdc-surface-2: var(--sdc-paper-chalk-3);
 				--sdc-text: var(--sdc-ink-bark);
 				--sdc-text-mute: var(--sdc-ink-bark-mute);
 				--sdc-rule: rgba(var(--sdc-ink-bark-rgb), 0.20);
@@ -766,7 +772,7 @@
 				--sdc-accent-hover: var(--sdc-brand-leaves-deep);
 				--sdc-focus-ring: var(--sdc-brand-leaves-focus);
 				--sdc-accent-glow: rgba(var(--sdc-brand-leaves-rgb), 0.22);
-				--sdc-header-bg: rgba(var(--sdc-paper-marble-rgb), 0.82);
+				--sdc-header-bg: rgba(var(--sdc-paper-chalk-rgb), 0.82);
 
 				/* The status colors are restated rather than left out. An absent
 				   token here does NOT fall back to the light theme: it falls
