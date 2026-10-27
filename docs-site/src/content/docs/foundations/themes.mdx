@@ -1,0 +1,122 @@
+---
+title: Themes
+description: How a product on SDC can change its accent, its grounds and its ink without forking the system, and the one worked example.
+sidebar:
+  order: 2
+---
+
+SDC ships one look: warm paper, regatta blue, charcoal ink, with dark mode as
+the alternate. A product built on it is expected to use that look.
+
+A product can also run its **own theme**, which means re-declaring a short list
+of semantic tokens and nothing else. The primitives, the type, the spacing, the
+status colors and every component stay the system's. Only the few properties
+that say *which* primitive a role points at change.
+
+There is one worked example and this page documents it, because a rule nobody
+has followed is a proposal rather than a rule.
+
+## What a theme may change
+
+A theme may re-point these, and only these:
+
+- the three grounds, `--sdc-bg`, `--sdc-surface`, `--sdc-surface-2`
+- the two ink values, `--sdc-text` and `--sdc-text-mute`
+- the accent set, `--sdc-accent`, `--sdc-accent-hover`, `--sdc-focus-ring`,
+  `--sdc-accent-glow`
+- the chrome ground, `--sdc-header-bg`
+- the rules and the texture, **but only when it also changes the ink**, because
+  upstream those are `rgba()` over the ink and would otherwise be left pointing
+  at a color the product no longer uses
+
+## What a theme may not change
+
+**The status colors.** Error, success and warning carry meaning that is not the
+product's to redefine, and a visitor who has seen one SDC product should read
+the next one the same way.
+
+**The type, the spacing, the radius, the elevation.** Those are the system's
+voice. A product that wants different type wants a different system.
+
+**Anything by editing the primitives.** A theme adds primitives it needs and
+re-points semantic tokens at them. It does not change what an existing
+primitive means.
+
+## The worked example: stevendesignservices.com
+
+The LLC site runs the **Urban Oasis** theme. Steven Design Services is a
+deliberately separate business from the portfolio, so it reads as related
+through type and structure rather than through color.
+
+It lives in this system rather than beside it. In Figma it is a third **mode**
+on the Color collection, next to Light and Dark, so a designer switches a frame
+to it the same way they switch to dark. Its primitives sit in the Primitives
+collection under the existing groups: `paper/marble`, `ink/bark`,
+`brand/leaves`.
+
+In code it is a `:root[data-theme="sds"]` block in `Site.astro`, beside the
+light and dark blocks, and the product opts in by setting `data-theme="sds"` on
+`<html>`. Nothing else is needed: no second token file, no second generator, no
+parallel naming.
+
+This site carries those primitives and that block without using them, about 200
+bytes gzipped. That is the price of one source of truth and it is worth paying.
+
+### What it re-points
+
+**`--sdc-bg`**: paper cloud `#F0EEE9` becomes Marble `#F3EBDD`.
+
+**`--sdc-text`**: charcoal `#2D3436` becomes Bark `#2A2922`. Warmer, and a
+higher ratio on its own ground: 12.33:1 against 10.94:1.
+
+**`--sdc-accent`**: regatta `#3F5F92` becomes Leaves `#506D2F`.
+
+**`--sdc-accent-hover`**: regatta deep `#233552` becomes Leaves dark `#425927`.
+Both go darker on hover, for the reason below.
+
+**SDS is in the Storybook's Theme menu**, beside Light and Dark. Switch to it
+and every story re-renders in it, which is the point: a component that only
+works in the theme it was drawn in is not a system component. Every story was
+checked in it, and the Color story computes its ratios against whichever ground
+is selected, so the numbers are never copied.
+
+### Two rules it proved
+
+**A hover has to beat the accent it replaces.** The first draft of this theme
+used a *lighter* accent on hover, because that is what reads as "lit up" on a
+dark ground. On light paper it does the opposite: links dropped from 6.16:1 to
+4.66:1 when hovered, so hovering made them harder to read. The theme's build
+script now has a check named exactly that and refuses to write CSS if it fails.
+
+**An accent has to stay clear of the status colors.** Urban Oasis offers a green
+and a brown. The green sits 18 units from the success green, which is the same
+color to the eye, so a green confirmation message and a green primary button are
+close. That was measured, surfaced, and chosen anyway, which is a legitimate
+outcome. What is not legitimate is not knowing.
+
+### The trap that cost a build
+
+**An absent token does not fall back to the light theme.** It falls through to
+`:root`, which here is dark-first. The SDS block was first written without the
+six status colors, on the assumption that leaving them out meant inheriting
+them. It meant inheriting the *dark* ones: the error pink reads **2.69:1** on
+Marble, below AA, and it reached a build before anything noticed.
+
+So a theme restates every token the light theme sets, even the ones it does not
+change. The product repo has a `check-theme-complete` step that compares the two
+blocks and fails on any token the theme forgot. The contrast checks could never
+have caught this, because they measure the tokens a theme declares and not the
+one it left out.
+
+## Starting a theme
+
+1. Add the primitives the theme needs to the **Primitives** collection, under
+   the existing groups. Give each a `codeSyntax` naming its CSS custom property,
+   the way the others do.
+2. Add a **mode** to the Color collection named for the product. Point the
+   semantic variables at the new primitives for that mode, and copy the light
+   values for everything the theme does not change, including the status colors.
+3. Add a matching `:root[data-theme="<name>"]` block to `Site.astro`, after the
+   light theme. Restate every token the light theme sets.
+4. In the product, set `data-theme="<name>"` on `<html>` and add a check that
+   the block is complete. Absent is not inherited.

@@ -70,6 +70,39 @@
           "name": "brand/regatta-deep"
         }
       }
+    },
+    "leaves": {
+      "$type": "color",
+      "$value": "#506D2F",
+      "$description": "Urban Oasis Leaves. The SDS accent, where SDC uses regatta.",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:219:130",
+          "name": "brand/leaves"
+        }
+      }
+    },
+    "leaves-deep": {
+      "$type": "color",
+      "$value": "#425927",
+      "$description": "Leaves darkened 18 percent. SDS hover.",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:219:131",
+          "name": "brand/leaves-deep"
+        }
+      }
+    },
+    "leaves-focus": {
+      "$type": "color",
+      "$value": "#3B5123",
+      "$description": "Leaves darkened 26 percent. SDS focus ring.",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:219:132",
+          "name": "brand/leaves-focus"
+        }
+      }
     }
   },
   "ink": {
@@ -134,6 +167,28 @@
           "name": "ink/near-black-2"
         }
       }
+    },
+    "bark": {
+      "$type": "color",
+      "$value": "#2A2922",
+      "$description": "Urban Oasis Bark. The SDS text colour.",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:219:128",
+          "name": "ink/bark"
+        }
+      }
+    },
+    "bark-mute": {
+      "$type": "color",
+      "$value": "#5C584B",
+      "$description": "Bark lightened. SDS secondary text.",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:219:129",
+          "name": "ink/bark-mute"
+        }
+      }
     }
   },
   "paper": {
@@ -174,6 +229,39 @@
         "com.stevendesignco.figma": {
           "id": "VariableID:3:9",
           "name": "paper/white"
+        }
+      }
+    },
+    "marble": {
+      "$type": "color",
+      "$value": "#F3EBDD",
+      "$description": "Urban Oasis Marble. The SDS page ground.",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:219:125",
+          "name": "paper/marble"
+        }
+      }
+    },
+    "marble-2": {
+      "$type": "color",
+      "$value": "#EFE7D9",
+      "$description": "Marble, one step down. SDS raised surfaces.",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:219:126",
+          "name": "paper/marble-2"
+        }
+      }
+    },
+    "marble-3": {
+      "$type": "color",
+      "$value": "#EAE2D3",
+      "$description": "Marble, two steps down. SDS alternating sections.",
+      "$extensions": {
+        "com.stevendesignco.figma": {
+          "id": "VariableID:219:127",
+          "name": "paper/marble-3"
         }
       }
     }

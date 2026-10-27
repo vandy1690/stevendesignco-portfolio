@@ -21,8 +21,11 @@ export const Color = () => {
   el.innerHTML = `
     <p class="sb-note">Every color token in the system, in one list. Light is the shipped
       default and dark is the alternate, chosen rather than inherited from the operating
-      system. Ratios are against the page ground and the card surface. AA needs 4.5 for body
-      text and 3 for large text and control boundaries.</p>
+      system. SDS is a third option in the Theme menu: a product theme rather than a mode of
+      this site, the one stevendesignservices.com runs. Switch to it and every story on this
+      page re-renders in it, because the values are the system's own. Ratios below are
+      against whichever ground is selected. AA needs 4.5 for body text and 3 for large text
+      and control boundaries.</p>
     <p class="sb-note">The last six are the status colors, added October 2026. They behave
       differently from one another on paper, and the Status story shows which of them can
       carry text, which can only be a fill or a ground, and why two resolve to a deeper form

@@ -13,8 +13,11 @@ const H={title:"Foundations"},R=`
 `,n=()=>{const e=document.createElement("div");return e.innerHTML=`
     <p class="sb-note">Every color token in the system, in one list. Light is the shipped
       default and dark is the alternate, chosen rather than inherited from the operating
-      system. Ratios are against the page ground and the card surface. AA needs 4.5 for body
-      text and 3 for large text and control boundaries.</p>
+      system. SDS is a third option in the Theme menu: a product theme rather than a mode of
+      this site, the one stevendesignservices.com runs. Switch to it and every story on this
+      page re-renders in it, because the values are the system's own. Ratios below are
+      against whichever ground is selected. AA needs 4.5 for body text and 3 for large text
+      and control boundaries.</p>
     <p class="sb-note">The last six are the status colors, added October 2026. They behave
       differently from one another on paper, and the Status story shows which of them can
       carry text, which can only be a fill or a ground, and why two resolve to a deeper form
@@ -112,10 +115,10 @@ const H={title:"Foundations"},R=`
       <div class="sb-row">
         <div class="sb-row__k">${t} · ${s}</div>
         <div style="font-family:var(--sdc-font-display);font-variation-settings:'wdth' ${s},'slnt' 0;font-synthesis:none;font-size:34px;line-height:1.1">Becoming the default</div>
-      </div>`).join("")}</div>`;a.storyName="Display widths";const d=()=>`<p class="sb-note">One scale for every gap, margin and section rhythm.</p>
+      </div>`).join("")}</div>`;a.storyName="Display widths";const i=()=>`<p class="sb-note">One scale for every gap, margin and section rhythm.</p>
     <div class="sb-col">${[["xs",8],["sm",16],["md",24],["lg",32],["xl",48],["2xl",64],["3xl",96],["4xl",128],["5xl",160]].map(([t,s])=>`
       <div class="sb-row"><div class="sb-row__k">--space-${t} · ${s}px</div>
-      <div class="sb-bar" style="width:${s}px"></div></div>`).join("")}</div>`,i=()=>`
+      <div class="sb-bar" style="width:${s}px"></div></div>`).join("")}</div>`,d=()=>`
   <p class="sb-note">Cards carry a four-stop shadow and deepen on hover. Radius is 18px for cards
     and 10px for controls.</p>
   <div class="sb-stack" style="gap:28px">
@@ -143,13 +146,16 @@ const H={title:"Foundations"},R=`
         <div style="height:120px;border-radius:12px;border:1px solid var(--sdc-rule);background-color:var(--sdc-bg);background-image:radial-gradient(circle at 1px 1px, rgba(45,52,54,${e}) 1px, transparent 0);background-size:20px 20px"></div>
         <p class="sb-label" style="margin-top:8px">${t} · ${e}</p>
       </div>`).join("")}
-  </div>`;var p,h,v;n.parameters={...n.parameters,docs:{...(p=n.parameters)==null?void 0:p.docs,source:{originalSource:`() => {
+  </div>`;var h,p,v;n.parameters={...n.parameters,docs:{...(h=n.parameters)==null?void 0:h.docs,source:{originalSource:`() => {
   const el = document.createElement('div');
   el.innerHTML = \`
     <p class="sb-note">Every color token in the system, in one list. Light is the shipped
       default and dark is the alternate, chosen rather than inherited from the operating
-      system. Ratios are against the page ground and the card surface. AA needs 4.5 for body
-      text and 3 for large text and control boundaries.</p>
+      system. SDS is a third option in the Theme menu: a product theme rather than a mode of
+      this site, the one stevendesignservices.com runs. Switch to it and every story on this
+      page re-renders in it, because the values are the system's own. Ratios below are
+      against whichever ground is selected. AA needs 4.5 for body text and 3 for large text
+      and control boundaries.</p>
     <p class="sb-note">The last six are the status colors, added October 2026. They behave
       differently from one another on paper, and the Status story shows which of them can
       carry text, which can only be a fill or a ground, and why two resolve to a deeper form
@@ -183,7 +189,7 @@ const H={title:"Foundations"},R=`
   };
   requestAnimationFrame(run);
   return el;
-}`,...(v=(h=n.parameters)==null?void 0:h.docs)==null?void 0:v.source}}};var b,u,m;r.parameters={...r.parameters,docs:{...(b=r.parameters)==null?void 0:b.docs,source:{originalSource:`() => {
+}`,...(v=(p=n.parameters)==null?void 0:p.docs)==null?void 0:v.source}}};var b,m,u;r.parameters={...r.parameters,docs:{...(b=r.parameters)==null?void 0:b.docs,source:{originalSource:`() => {
   const el = document.createElement('div');
   el.innerHTML = \`
     <p class="sb-note">Three colors, for the three things a system has to say: something failed,
@@ -238,7 +244,7 @@ const H={title:"Foundations"},R=`
   };
   requestAnimationFrame(run);
   return el;
-}`,...(m=(u=r.parameters)==null?void 0:u.docs)==null?void 0:m.source}}};var g,x,w;o.parameters={...o.parameters,docs:{...(g=o.parameters)==null?void 0:g.docs,source:{originalSource:`() => \`
+}`,...(u=(m=r.parameters)==null?void 0:m.docs)==null?void 0:u.source}}};var g,x,w;o.parameters={...o.parameters,docs:{...(g=o.parameters)==null?void 0:g.docs,source:{originalSource:`() => \`
   <p class="sb-note">Display is Nickel Gothic Variable from Typekit. Its axes are width 25 to 150
     and slant −15 to 15. There is no weight axis, so a weight setting on the display face does
     nothing. Body is Inter, 400 through 900.</p>
@@ -270,20 +276,20 @@ const H={title:"Foundations"},R=`
         <div class="sb-row__k">\${n} · \${w}</div>
         <div style="font-family:var(--sdc-font-display);font-variation-settings:'wdth' \${w},'slnt' 0;font-synthesis:none;font-size:34px;line-height:1.1">Becoming the default</div>
       </div>\`).join('')}</div>\`;
-}`,...(k=(f=a.parameters)==null?void 0:f.docs)==null?void 0:k.source}}};var _,T,S;d.parameters={...d.parameters,docs:{...(_=d.parameters)==null?void 0:_.docs,source:{originalSource:`() => {
+}`,...(k=(f=a.parameters)==null?void 0:f.docs)==null?void 0:k.source}}};var _,S,T;i.parameters={...i.parameters,docs:{...(_=i.parameters)==null?void 0:_.docs,source:{originalSource:`() => {
   const steps = [['xs', 8], ['sm', 16], ['md', 24], ['lg', 32], ['xl', 48], ['2xl', 64], ['3xl', 96], ['4xl', 128], ['5xl', 160]];
   return \`<p class="sb-note">One scale for every gap, margin and section rhythm.</p>
     <div class="sb-col">\${steps.map(([n, px]) => \`
       <div class="sb-row"><div class="sb-row__k">--space-\${n} · \${px}px</div>
       <div class="sb-bar" style="width:\${px}px"></div></div>\`).join('')}</div>\`;
-}`,...(S=(T=d.parameters)==null?void 0:T.docs)==null?void 0:S.source}}};var C,E,z;i.parameters={...i.parameters,docs:{...(C=i.parameters)==null?void 0:C.docs,source:{originalSource:`() => \`
+}`,...(T=(S=i.parameters)==null?void 0:S.docs)==null?void 0:T.source}}};var C,E,z;d.parameters={...d.parameters,docs:{...(C=d.parameters)==null?void 0:C.docs,source:{originalSource:`() => \`
   <p class="sb-note">Cards carry a four-stop shadow and deepen on hover. Radius is 18px for cards
     and 10px for controls.</p>
   <div class="sb-stack" style="gap:28px">
     <div style="width:230px;height:130px;border-radius:var(--sdc-radius);background:var(--sdc-surface);box-shadow:var(--sdc-shadow-card);display:grid;place-items:center;font-size:13px;color:var(--sdc-text-mute)">--sdc-shadow-card</div>
     <div style="width:230px;height:130px;border-radius:var(--sdc-radius);background:var(--sdc-surface);box-shadow:var(--sdc-shadow-card-hover);display:grid;place-items:center;font-size:13px;color:var(--sdc-text-mute)">--sdc-shadow-card-hover</div>
     <div style="width:230px;height:130px;border-radius:var(--sdc-radius-sm);background:var(--sdc-surface);border:1px solid var(--sdc-rule-strong);display:grid;place-items:center;font-size:13px;color:var(--sdc-text-mute)">--sdc-radius-sm, --sdc-rule-strong</div>
-  </div>\``,...(z=(E=i.parameters)==null?void 0:E.docs)==null?void 0:z.source}}};var B,O,L;c.parameters={...c.parameters,docs:{...(B=c.parameters)==null?void 0:B.docs,source:{originalSource:`() => \`
+  </div>\``,...(z=(E=d.parameters)==null?void 0:E.docs)==null?void 0:z.source}}};var B,O,L;c.parameters={...c.parameters,docs:{...(B=c.parameters)==null?void 0:B.docs,source:{originalSource:`() => \`
   <p class="sb-note">The ring has its own token, <code>--sdc-focus-ring</code>, rather than borrowing the body
     ink, so focus can be retuned without moving hover or text with it. It appears only for
     <code>:focus-visible</code>. Tab into these to see it; clicking them shows nothing.
@@ -304,4 +310,4 @@ const H={title:"Foundations"},R=`
         <div style="height:120px;border-radius:12px;border:1px solid var(--sdc-rule);background-color:var(--sdc-bg);background-image:radial-gradient(circle at 1px 1px, rgba(45,52,54,\${o}) 1px, transparent 0);background-size:20px 20px"></div>
         <p class="sb-label" style="margin-top:8px">\${n} · \${o}</p>
       </div>\`).join('')}
-  </div>\``,...(N=(M=l.parameters)==null?void 0:M.docs)==null?void 0:N.source}}};const P=["Color","Status","Typography","DisplayWidths","Spacing","Elevation","Focus","Texture"];export{n as Color,a as DisplayWidths,i as Elevation,c as Focus,d as Spacing,r as Status,l as Texture,o as Typography,P as __namedExportsOrder,H as default};
+  </div>\``,...(N=(M=l.parameters)==null?void 0:M.docs)==null?void 0:N.source}}};const P=["Color","Status","Typography","DisplayWidths","Spacing","Elevation","Focus","Texture"];export{n as Color,a as DisplayWidths,d as Elevation,c as Focus,i as Spacing,r as Status,l as Texture,o as Typography,P as __namedExportsOrder,H as default};
