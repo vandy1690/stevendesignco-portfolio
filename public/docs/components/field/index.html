@@ -210,10 +210,14 @@ panel, the same fill a static card uses.</p>
 is the site-wide ring from <a href="/docs/foundations/focus/">Focus</a>. A text field shows
 the ring on a mouse click too, which is the browser following <code dir="auto">:focus-visible</code>:
 the visitor is about to type, so the field says it is ready.</p>
-<p>There is no disabled state, for the same reason the Button has none. There is no
-error state yet either, because nothing on the site validates input. When a form
-needs one, build it on <code dir="auto">--sdc-error</code> with words in the hint, never color alone.
-See <a href="/docs/foundations/color/">Color</a>.</p>
+<p><strong>Invalid</strong>, when <code dir="auto">error</code> is set. The edge turns <code dir="auto">--sdc-error</code> at 2px, the message
+sits under the control in <code dir="auto">--sdc-error</code>, and the control takes <code dir="auto">aria-invalid</code> and
+an <code dir="auto">aria-describedby</code> pointing at the message, so the failure is announced and
+never carried by color alone. Write the message as the fix (“Enter an email
+address like <a href="mailto:name@example.com">name@example.com</a>”), not the fault. See <a href="/docs/foundations/color/">Color</a>.</p>
+<p><strong>Disabled</strong>, when <code dir="auto">disabled</code> is set. The control fills with <code dir="auto">--sdc-surface-2</code>,
+its text drops to <code dir="auto">--sdc-text-mute</code>, and it is skipped on submit. Use it rarely:
+a control that cannot be used usually should not be shown.</p>
 <div class="sl-heading-wrapper level-h2"><h2 id="accessibility">Accessibility</h2><a class="sl-anchor-link" href="#accessibility"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Accessibility”</span></a></div>
 <ul>
 <li>The label is always visible and always above the control, tied with

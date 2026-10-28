@@ -126,9 +126,11 @@ the border.</p>
 </tbody>
 </table>
 <p>Measured in both themes before shipping: text on tint runs 7.70 to 15.63, and
-every border clears 3 to 1. The status line has the same three, as
-<code dir="auto">--sdc-form-status--ok</code>, <code dir="auto">--warn</code> and <code dir="auto">--err</code>, where the solid is the text
-colour rather than the border.</p>
+every border clears 3 to 1. The status line has the same three colors, set by
+FormStatus’s <code dir="auto">tone</code>: <code dir="auto">ok</code>, <code dir="auto">warning</code> and <code dir="auto">error</code>, which write the classes
+<code dir="auto">.sdc-form-status--ok</code>, <code dir="auto">--warn</code> and <code dir="auto">--err</code>. On the status line the solid is
+the text color rather than the border. Note that the green tone is <code dir="auto">success</code> on
+the summary and <code dir="auto">ok</code> on the status line.</p>
 <p>An <code dir="auto">error</code> summary hides itself when its list is empty. The other two do not,
 because a success message is the whole content and has nothing to list.</p>
 <div class="sl-heading-wrapper level-h2"><h2 id="the-status-stays-in-the-dom">The status stays in the DOM</h2><a class="sl-anchor-link" href="#the-status-stays-in-the-dom"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “The status stays in the DOM”</span></a></div>
@@ -142,6 +144,88 @@ waiting, so there is no need to interrupt whatever is being read.</p>
 the test: if the sentence needs its colour, rewrite the sentence.</p>
 <div class="sl-heading-wrapper level-h2"><h2 id="in-code">In code</h2><a class="sl-anchor-link" href="#in-code"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “In code”</span></a></div>
 <div class="expressive-code"><link rel="stylesheet" href="/docs/_astro/ec.w36nc.css"><script type="module" src="/docs/_astro/ec.0vx5m.js"></script><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="astro"><code><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F">---</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">import</span><span style="--0:#D6DEEB;--1:#403F53"> FormSummary </span><span style="--0:#C792EA;--1:#8844AE">from</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#984E4D">../../components/ui/FormSummary.astro</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">;</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">import</span><span style="--0:#D6DEEB;--1:#403F53"> FormStatus </span><span style="--0:#C792EA;--1:#8844AE">from</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#984E4D">../../components/ui/FormStatus.astro</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">;</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F">---</span></div></div><div class="ec-line"><div class="code"><span style="--0:#7FDBCA;--1:#8844AE">&lt;</span><span style="--0:#C5E478;--1:#3B61B0">FormSummary</span><span style="--0:#7FDBCA;--1:#8844AE"> </span><span style="--0:#C5E478;--1:#3B61B0">errors</span><span style="--0:#7FDBCA;--1:#8844AE">=</span><span style="--0:#E2817F;--1:#B23834">{</span><span style="--0:#D6DEEB;--1:#403F53">[{ id: </span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#984E4D">f-name</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">, message: </span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#984E4D">Add your name.</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53"> }]</span><span style="--0:#E2817F;--1:#B23834">}</span><span style="--0:#7FDBCA;--1:#8844AE"> /&gt;</span></div></div><div class="ec-line"><div class="code"><span style="--0:#7FDBCA;--1:#8844AE">&lt;</span><span style="--0:#C5E478;--1:#3B61B0">FormSummary</span><span style="--0:#7FDBCA;--1:#8844AE"> </span><span style="--0:#C5E478;--1:#3B61B0">tone</span><span style="--0:#7FDBCA;--1:#8844AE">=</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#ECC48D;--1:#984E4D">success</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#7FDBCA;--1:#8844AE"> </span><span style="--0:#C5E478;--1:#3B61B0">lede</span><span style="--0:#7FDBCA;--1:#8844AE">=</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#ECC48D;--1:#984E4D">Sent. I will reply within a day.</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#7FDBCA;--1:#8844AE"> /&gt;</span></div></div><div class="ec-line"><div class="code"><span style="--0:#7FDBCA;--1:#8844AE">&lt;</span><span style="--0:#C5E478;--1:#3B61B0">FormStatus</span><span style="--0:#7FDBCA;--1:#8844AE"> </span><span style="--0:#C5E478;--1:#3B61B0">message</span><span style="--0:#7FDBCA;--1:#8844AE">=</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#ECC48D;--1:#984E4D">Saved as a draft. Nothing has been sent yet.</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#7FDBCA;--1:#8844AE"> </span><span style="--0:#C5E478;--1:#3B61B0">tone</span><span style="--0:#7FDBCA;--1:#8844AE">=</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#ECC48D;--1:#984E4D">warning</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#7FDBCA;--1:#8844AE"> /&gt;</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="---import FormSummary from &#x27;../../components/ui/FormSummary.astro&#x27;;import FormStatus from &#x27;../../components/ui/FormStatus.astro&#x27;;---<FormSummary errors={[{ id: &#x27;f-name&#x27;, message: &#x27;Add your name.&#x27; }]} /><FormSummary tone=&quot;success&quot; lede=&quot;Sent. I will reply within a day.&quot; /><FormStatus message=&quot;Saved as a draft. Nothing has been sent yet.&quot; tone=&quot;warning&quot; />"><div></div></button></div></figure></div>
+<p><code dir="auto">src/components/ui/FormSummary.astro</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">id</code></td>
+<td>string</td>
+<td><code dir="auto">'form-summary'</code></td>
+<td>Ties a form’s script to this region</td>
+</tr>
+<tr>
+<td><code dir="auto">lede</code></td>
+<td>string</td>
+<td><code dir="auto">'That did not send yet.'</code></td>
+<td>The bold sentence above the list</td>
+</tr>
+<tr>
+<td><code dir="auto">errors</code></td>
+<td><code dir="auto">{ id, message }[]</code></td>
+<td><code dir="auto">[]</code></td>
+<td>One item per problem. <code dir="auto">id</code> is the control the link jumps to</td>
+</tr>
+<tr>
+<td><code dir="auto">tone</code></td>
+<td><code dir="auto">'error'</code> | <code dir="auto">'warning'</code> | <code dir="auto">'success'</code></td>
+<td><code dir="auto">'error'</code></td>
+<td>Which status color it wears. An <code dir="auto">error</code> summary with no errors stays hidden</td>
+</tr>
+<tr>
+<td><code dir="auto">class</code></td>
+<td>string</td>
+<td>none</td>
+<td>Extra classes on the region</td>
+</tr>
+</tbody>
+</table>
+<p><code dir="auto">src/components/ui/FormStatus.astro</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">id</code></td>
+<td>string</td>
+<td><code dir="auto">'form-status'</code></td>
+<td>Ties a form’s script to this region</td>
+</tr>
+<tr>
+<td><code dir="auto">message</code></td>
+<td>string</td>
+<td><code dir="auto">''</code></td>
+<td>The words. Empty is the normal resting state</td>
+</tr>
+<tr>
+<td><code dir="auto">tone</code></td>
+<td><code dir="auto">'ok'</code> | <code dir="auto">'warning'</code> | <code dir="auto">'error'</code></td>
+<td>none</td>
+<td>Tints the words. Leave it off for a neutral message such as “Sending.”</td>
+</tr>
+<tr>
+<td><code dir="auto">class</code></td>
+<td>string</td>
+<td>none</td>
+<td>Extra classes on the region</td>
+</tr>
+</tbody>
+</table>
+<p>Any other <code dir="auto">tone</code> value renders untinted and raises no error, so check the
+spelling: the status line takes <code dir="auto">ok</code>, not <code dir="auto">success</code>.</p>
 <div class="sl-heading-wrapper level-h2"><h2 id="checks-before-you-ship">Checks before you ship</h2><a class="sl-anchor-link" href="#checks-before-you-ship"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Checks before you ship”</span></a></div>
 <ol>
 <li>A failed submit moves focus to the summary and a screen reader reads it.</li>

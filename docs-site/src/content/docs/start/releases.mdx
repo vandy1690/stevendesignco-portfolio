@@ -33,6 +33,29 @@ production.
 
 ## Log
 
+### 02.03.00 · October 28, 2026
+
+Minor: tokens added, nothing renamed, no change to how stevendesignco.com looks.
+
+- **The SDS product theme**, `:root[data-theme="sds"]`, for
+  stevendesignservices.com. It first reached production on October 27 in #24
+  without a version number; this release is the version it should have had.
+  It re-points the grounds, the two inks and the accent set, and restates the
+  status colors at their light values. In Figma it is a third mode on the Color
+  collection, and the Storybook's Theme menu offers it beside Light and Dark. The
+  contract is on [Themes](/docs/foundations/themes/).
+- **Chalk is the SDS ground.** Three new primitives, `--sdc-paper-chalk`,
+  `-chalk-2` and `-chalk-3` (`#FCFCFA`, `#F8F8F6`, `#F3F3F0`), replace Marble
+  for the page, the raised surfaces, the alternating sections and the header.
+  Marble stays in the system, used by no theme. Color primitives go from 28 to
+  39 across the two changes.
+- Documentation corrected to match the code: the Eyebrow prop name on three
+  pages, the figure band's `layout={false}`, the Field's error and disabled
+  states, how a Select gets its label, the props of both form messages, what
+  the section tones actually do, the Eyebrow's face, and the token and class
+  tables in `docs/DESIGN-SYSTEM.md`, whose accent hover values had been wrong
+  since September.
+
 ### 02.02.00 · October 26, 2026
 
 Added, nothing renamed.

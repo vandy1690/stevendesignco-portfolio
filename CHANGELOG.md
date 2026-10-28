@@ -7,6 +7,19 @@ also the day the change went live, give or take a few minutes.
 Add a line here when you ship something a visitor or a future maintainer would
 notice.
 
+## October 28, 2026: SDC 02.03.00
+
+The SDS product theme gets the version it shipped without on October 27, and
+moves its ground from Marble to Chalk, a near-white `#FCFCFA` with two steps
+down for surfaces. Figma's SDS mode matches it, header included. Nothing changes
+on stevendesignco.com, which never sets the SDS theme.
+
+The same release corrects the documentation an inspection found out of step
+with the code: three pages naming the Eyebrow prop `sdc-eyebrow` when it is
+`eyebrow`, a figure band prop that was renamed on October 8, the Field states,
+the Select example (which built an unlabeled control), the form message props,
+the section tones, the Eyebrow's face, and the tables in `docs/DESIGN-SYSTEM.md`.
+
 ## October 26, 2026: SDC 02.02.00
 
 Two new design system components, Field and Slider, with Storybook stories and
