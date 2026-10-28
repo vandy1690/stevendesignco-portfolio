@@ -78,10 +78,15 @@ is the site-wide ring from [Focus](/docs/foundations/focus/). A text field shows
 the ring on a mouse click too, which is the browser following `:focus-visible`:
 the visitor is about to type, so the field says it is ready.
 
-There is no disabled state, for the same reason the Button has none. There is no
-error state yet either, because nothing on the site validates input. When a form
-needs one, build it on `--sdc-error` with words in the hint, never color alone.
-See [Color](/docs/foundations/color/).
+**Invalid**, when `error` is set. The edge turns `--sdc-error` at 2px, the message
+sits under the control in `--sdc-error`, and the control takes `aria-invalid` and
+an `aria-describedby` pointing at the message, so the failure is announced and
+never carried by color alone. Write the message as the fix ("Enter an email
+address like name@example.com"), not the fault. See [Color](/docs/foundations/color/).
+
+**Disabled**, when `disabled` is set. The control fills with `--sdc-surface-2`,
+its text drops to `--sdc-text-mute`, and it is skipped on submit. Use it rarely:
+a control that cannot be used usually should not be shown.
 
 ## Accessibility
 

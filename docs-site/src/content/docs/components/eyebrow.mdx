@@ -6,8 +6,10 @@ sidebar:
 ---
 
 <dl class="sdc-hww">
-	<div><dt>How</dt><dd>A short label in the display face with added letterspacing,
-	set above a heading.</dd></div>
+	<div><dt>How</dt><dd>A short uppercase label with added letterspacing, set above a
+	heading. It is in the body face, bold, everywhere except inside a case study,
+	where <code>.sdc-case</code> switches it to the display face at regular
+	weight.</dd></div>
 	<div><dt>When</dt><dd>Once per block, to name what the block is for, so the
 	heading can be a claim instead of a label.</dd></div>
 	<div><dt>Where</dt><dd>Directly before the heading it belongs to. Never on its
@@ -17,7 +19,7 @@ sidebar:
 ## In code
 
 `src/components/ui/Eyebrow.astro`. `CaseBlock` and `CaseHero` already render it
-from their `sdc-eyebrow` prop, so call it directly only outside those.
+from their `eyebrow` prop, so call it directly only outside those.
 
 ```astro
 ---

@@ -5,7 +5,8 @@
  * platform picker, the keyboard behaviour and the screen reader announcement,
  * none of which a custom dropdown gets for free.
  *
- * It sits inside a Field for its label, hint and error, the same as an input.
+ * It renders only the select. Its label, hint and error come from .sdc-field
+ * wrapper markup written around it; Field.astro cannot hold it (no slot).
  * Added 2026-10-23 with the rest of the control set.
  */
 interface Props {

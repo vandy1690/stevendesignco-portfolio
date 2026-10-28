@@ -55,7 +55,8 @@ places, or the themes fall out of step.
 | `--sdc-text-mute` | `#545B5A` | `#8A8F8C` | Secondary text |
 | `--sdc-accent` | `#3F5F92` | `#CCFF00` | Links, primary button, selection |
 | `--sdc-accent-text` | `#FFFFFF` | `#000000` | Text on the accent |
-| `--sdc-accent-hover` | `#3D5C8C` | `#D8FF33` | Accent hover |
+| `--sdc-accent-hover` | `#233552` | `#F1FFB8` | Accent hover. Darker on light paper, lighter on black |
+| `--sdc-focus-ring` | `#233552` | `#F1FFB8` | The keyboard focus ring. Its own token, so hover can change without moving focus |
 | `--sdc-accent-glow` | accent at 22% | accent at 20% | Soft glow |
 | `--sdc-rule` | ink at 20% | white at 20% | Dividers |
 | `--sdc-rule-soft` | ink at 10% | white at 10% | Quiet dividers |
@@ -96,6 +97,8 @@ palette and uses `#4A6FA8` for the accent, a lighter blue than the site's
 | `--sdc-nav-h` | 56px | Header height. Also the scroll padding, so anchors clear the sticky header |
 | `--sdc-radius` | 18px | Cards |
 | `--sdc-radius-sm` | 10px | Buttons and controls |
+| `--sdc-control-h` | 44px | Height of every text input, select and choice chip. Clears the WCAG 2.2 target size with room |
+| `--sdc-control-border` | 1px | Edge width of a control. Invalid controls double it |
 | `--sdc-texture-size` | 20px | Dot grid pitch |
 
 ## Spacing scale
@@ -161,6 +164,13 @@ All global, in `Site.astro`.
 | `.sdc-site-header`, `.sdc-nav`, `.sdc-nav-mobile`, `.sdc-nav-toggle` | Header and both navs |
 | `.sdc-site-footer` | Footer |
 | `<sdc-section tone="alt">`, `<sdc-layout-container width="narrow">` | Page bands and their content width |
+| `.sdc-field`, `__label`, `__input`, `__hint`, `__error`, `.sdc-field--invalid` | A labeled text control. `Field.astro` renders it; the same wrapper holds a Select or a Slider |
+| `.sdc-field__head`, `__slider`, `__value` | The range input and its live value. `Slider.astro` |
+| `.sdc-select` | The native select with the system's chrome. `Select.astro` |
+| `.sdc-choice`, `.sdc-choice-set` | A checkbox or radio as a chip, and the row that holds them. `Choice.astro` |
+| `.sdc-fieldset`, `.sdc-fieldset__desc` | A named group of controls with a real legend. `Fieldset.astro` |
+| `.sdc-form-summary`, `--warning`, `--success` | The error summary a failed submit moves focus to. `FormSummary.astro` |
+| `.sdc-form-status`, `--ok`, `--warn`, `--err` | The polite live region a form speaks through. `FormStatus.astro` |
 | `.sdc-theme-img--light`, `.sdc-theme-img--dark` | Swap an image by theme |
 | `[data-animate="fade"]` | Fade in on scroll. Only hidden when `html.js` is present |
 

@@ -1,47 +1,57 @@
-# GARAGE.md — Steven Design Co. Design System 2.0
-_Checked in: 2026-10-03 · Re-confirmed 2026-10-05, 2026-10-08, 2026-10-22 · **Re-confirmed 2026-10-26** before a full ten-station pass · Re-confirm at next inspection_
+# GARAGE.md: Steven Design Co. Design System 2.0
+_Checked in: 2026-10-03 · Re-confirmed 2026-10-05, 2026-10-08, 2026-10-22, 2026-10-26 · **Re-confirmed 2026-10-28** before a re-inspection of stations 2, 4, 5, 6, 9 and 10 · Re-confirm at next inspection_
 
 ## Vehicle
-- System: Steven Design Co. design system 2.0, serving stevendesignco.com (one property, 11 routes) plus browsable labs under /labs, and **a second consumer**: stevendesignservices.com, which syncs the tokens and components down.
-- Team: one person, side-of-desk · Consumers: **2 properties**, 0 other teams
-- Age: v2 site live 6 May 2026. Component and token layers rebuilt 1–2 October 2026. **02.02.00 reached production 26 October 2026.**
-- Reason for service: first full ten-station pass since 2026-10-08. Two releases shipped in four days, seven components landed, the Figma library was published, and the design bridge is reachable for the first time in two inspections.
+- System: Steven Design Co. design system 2.0, serving stevendesignco.com (one property, 11 routes) plus browsable labs under /labs, and two more consumers:
+  - **stevendesignservices.com**, which syncs the tokens and components down and runs the SDS product theme.
+  - **Designer Job Search** (`~/Documents/claude/LLC/LLC/site-analytics`), a local app, which copies `storybook/src/sdc.css` with `sync-sdc.mjs`. **Added as a consumer 2026-10-28.**
+- Team: one person, side-of-desk · Consumers: **3 properties**, 0 other teams
+- Age: v2 site live 6 May 2026. Component and token layers rebuilt 1–2 October 2026. 02.02.00 reached production 26 October 2026. **The SDS product theme reached production 27 October 2026 (#24) without a version bump.**
+- Reason for service (2026-10-28): re-inspect the six yellow stations from 2026-10-26 and check every work order item. One PR shipped and one theme branch is in flight (`docs/sds-theme`, Marble to Chalk).
 
 ## Assets
-- **Design library:** Figma, "SDC Fall of 2026" (`TJjqs7XSz21Y72GRPnVAQB`), published. **18 components** (12 on 2026-10-08), **93 variables** in 6 collections, **17 text styles**, **0 paint styles, 0 effect styles**. A 1.0 library, "SDC Design Tokens", is still published.
-- **Code library:** Astro 6.2.1 plus one React island, on Vercel. **23 components** in `src/components/ui/`, 8 light-DOM custom elements. **118 `--sdc-*` tokens**, two tiers; 28 colour primitives generated from `primitives.tokens.json`. Versioned in `sdc-version.json`, now **02.02.00**, four tags (`sdc-01.00.00` through `sdc-02.02.00`).
-- **Docs:** Starlight in `docs-site/`, built into `public/docs`. **45 pages, 25 of them components.**
-- **Process:** GitHub (vandy1690/stevendesignco-portfolio). `dev` is production. Branch protection: one required check, strict, force pushes blocked, admins deliberately not enforced. **20 PRs merged.** CONTRIBUTING 125 lines, CHANGELOG 241, a release-rules page, 4 releases logged and 4 tagged.
-- **AI surface:** 9 Q&A checks (8 gating in CI), `custom-elements.json` generated and gated, `check-names`, `check-claims`, `check-docs-in-step`, `build-tokens --check`, and a **staleness guard on `sync-css.mjs`** added 2026-10-24. `SITE-CONTEXT.md`, `never-say.txt`, `llms.txt`, `docs/DESIGN-SYSTEM.md`, `docs/ARCHITECTURE.md` all tracked. `CLAUDE.md` and `claude-context/` gitignored by design. No Code Connect (no seat).
+- **Design library:** Figma, "SDC Fall of 2026" (`TJjqs7XSz21Y72GRPnVAQB`), published. **18 components**, **104 variables** in 6 collections (Color has three modes: Light, Dark, SDS), **17 text styles**, 0 paint styles, **6 effect styles** (added between 2026-10-26 and 2026-10-28). A 1.0 library, "SDC Design Tokens", is still published.
+- **Code library:** Astro 6.2.1 plus one React island, on Vercel. **23 components** in `src/components/ui/`, 8 light-DOM custom elements. **134 `--sdc-*` names on production** (140 on `docs/sds-theme`), including 36 derived `-rgb` helpers; color primitives generated from `primitives.tokens.json`. Versioned in `sdc-version.json`, still **02.02.00**, four tags (`sdc-01.00.00` through `sdc-02.02.00`).
+- **Docs:** Starlight in `docs-site/`, built into `public/docs`. **46 pages, 25 of them components.**
+- **Process:** GitHub (vandy1690/stevendesignco-portfolio). `dev` is production. Branch protection: one required check, strict, force pushes blocked, admins deliberately not enforced. CONTRIBUTING, CHANGELOG, a release-rules page, 4 releases logged and 4 tagged.
+- **AI surface:** 9 Q&A checks (8 gating in CI), `custom-elements.json` generated and gated, `check-names`, `check-claims`, `check-docs-in-step`, `build-tokens --check`, and a staleness guard on `sync-css.mjs` (manual only). `SITE-CONTEXT.md`, `never-say.txt`, `llms.txt`, `docs/DESIGN-SYSTEM.md`, `docs/ARCHITECTURE.md` all tracked. `CLAUDE.md` and `claude-context/` gitignored by design. No Code Connect (no seat). No `astro check`.
 
-## Evidence access map
-| Asset | Access 2026-10-26 | Verified how |
-|---|---|---|
-| Design library | **LIVE** — Figma Console MCP Desktop Bridge, read and write | `figma_get_status` probe: 5ms, file "SDC Fall of 2026". Whole-file sweeps via `figma.root.children` walks: 18 components, 93 variables, 95 frames, 17 text styles. Contrast computed from the design variables in both modes. |
-| Code library | live — repo open | Every count measured with grep, node or python in session |
-| Docs | live — source plus build | 45 pages read; `npm run build` run in `docs-site` |
-| Process | live — GitHub API via `gh` | Branch protection, 20 merged PRs, tags, CI step list |
-| Live agent test | **run** | One subagent given only the public context surfaces, asked to build a contact page |
+## Evidence access map (2026-10-28)
 
-**First inspection since 2026-10-08 with design-library access.** Stations 2, 3, 4 and 6 carried `[reported]` design-side claims for two runs; this run replaces them with measured ones.
+**Design library: LIVE.** Figma Console MCP Desktop Bridge, read and write. Probe 4 ms, file "SDC Fall of 2026". Whole-file sweeps with `figma_execute`: 18 components, 57 component frames, 67 text layers, 104 variables with every mode and alias, 6 effect styles and their users, all component property definitions.
+
+**Code library: live.** Repo open. Production measured at `origin/dev`, the branch measured separately. Every count taken with grep, node or python in session.
+
+**Docs: live.** All 46 pages read as source. Not rebuilt this pass.
+
+**Process: partial.** The workflow file, scripts and git history read. GitHub run history and branch protection not re-checked this pass.
+
+**Live agent test: run.** One subagent given only seven public context surfaces, asked to build a notification preferences page. 20 claims re-checked: 18 held.
 
 ## Known symptoms
-- **Seven of 23 code components are used by nothing on stevendesignco.com**: Choice, Field, Fieldset, FormStatus, FormSummary, Select, Slider. They were built for the services site and the MsMadeline tester. `scripts/adoption.mjs` reports it.
-- **The sync guard does not run in CI**, and `npm run ship` does not build the Storybook. The guard added on 2026-10-24 fires only when somebody runs the sync by hand, so a stale `storybook/src/sdc.css` can still ship. It protects the operation, not the artifact.
-- **Zero effect styles in Figma.** Six shadow tokens, `--sdc-scrim` and `--sdc-texture-size` exist in code with no design-side counterpart. This is the whole of the design/code token gap.
-- **Prop vocabulary collides in three places.** `tone` means `success` in FormSummary and `ok` in FormStatus. The same concept is `error` (string) in Field and `invalid` (boolean) in Select. `width` is a number in CaseFigure and `'narrow'` in CaseSection and TextPassage. The first two were introduced on one day, 2026-10-23.
-- **11 generic "Frame" layer names and 6 unbound corner radii** in the Figma library, 9 and 4 of which are in components built 2026-10-24.
-- **No behaviour tests and no evals.** Zero test files. Keyboard behaviour is asserted in exactly one place, `qa/checks/dialog.mjs`.
-- **No visual regression baseline.** `qa/checks/pixel.mjs` still compares a dev server against live production, so it cannot catch a regression that already shipped.
-- Two Figma libraries published (1.0 and 2.0) with only documentation saying which is current.
+- **Twelve documentation surfaces contradict the code**, four of them props tables or examples that break when copied (`sdc-eyebrow` three times, `inner={false}`). `check:docs` passes through all of them because it checks that docs were touched, not that they are true.
+- **Nothing type-checks component props.** `astro check` runs nowhere, so an invalid value such as `tone="success"` on FormStatus ships silently.
+- **The Q&A suite never renders the seven form components.** It runs on the 11 site pages, and none of them uses Choice, Field, Fieldset, FormStatus, FormSummary, Select or Slider.
+- **The sync guard is manual.** Artifacts were in step on 2026-10-28 (74 of 74 classes, 134 of 134 tokens) by care, not by check. Designer Job Search's copy has its own `--check` flag that nothing runs.
+- **Prop vocabulary collides in four places.** `tone` is `ok` in FormStatus and `success` in FormSummary, and FormStatus writes `--warn` and `--err` for its own `warning` and `error`. `error` (string) in Field versus `invalid` (boolean) in Select. `width` a number in CaseFigure and `'narrow'` elsewhere. Figma Button `Style` versus code `variant`.
+- **Figma's SDS mode is half-migrated**: three grounds on Chalk (branch only), `header-bg` on Marble. It matches neither production nor the branch.
+- **The SDS theme is unversioned**: 16 tokens added to production on 2026-10-27, version still 02.02.00.
+- **The manifest covers 8 of 23 components**, `llms.txt` describes Steve's career rather than the system, and no component index exists.
+- **No behavior tests, no evals, no visual baseline.** Zero test files. Keyboard is asserted only in `qa/checks/dialog.mjs`.
+- **Designer Job Search defines 82 local `dash-` blocks**, including a switch, chips, a table, badges and a dialog that SDC does not offer. `dash-switch` and `dash-callout` are awaiting Steve's approval.
+- Two Figma libraries published (1.0 and 2.0), with only documentation saying which is current.
 - Five documented patterns are CSS-only with no component: dialog, links, navigation, progress dots, row list.
-- RESOLVED since 2026-10-22: the version collision (02.01.00 and 02.02.00 now distinct and tagged); the changelog gap; `--sdc-text-mute` documented as a dead hex; the Section page's wrong prop names; "sixteen colour primitives"; the status palette having no consumer; Display 3 pending promotion; the design library being unreachable.
+- **RESOLVED since 2026-10-26** (all in Figma):
+  - Elevation now has six effect styles, identical to the code.
+  - All 18 descriptions carry an ACCESSIBILITY section and a code line.
+  - 0 unbound radii.
+  - 1 generic layer name left, down from 11.
 
 ## Probable greens
-- Design craft: **99% auto-layout** (94 of 95 frames), **zero detached instances**, **100% of text sizes bound** to variables, 99% of fills bound
-- Token parity: **82 of 82 shared names agree**, zero exist in Figma and not in code, values verified identical by computing contrast from both sides
-- Contrast: **12 of 12 pairs pass in both Light and Dark**, computed from the design variables
-- Release hygiene: 4 releases, 4 tags, each on the commit that reached production, changelog current to the day
+- **Design craft:** 56 of 57 component frames use auto-layout. 0 unbound radii, fills, strokes or text sizes. Note that there are no instances inside components at all, so "zero detached instances" is trivially true.
+- **Token parity:** 132 of 132 Light and Dark values identical design to code on production. 93 of 93 code-syntax variables resolve. 15 are spelled differently on the two sides (`size/*` and `--sdc-text-*`), all carried by code syntax.
+- **Contrast:** 12 of 12 pairs passed in Light and Dark on 2026-10-26. SDS on Chalk is not yet measured from the design side.
+- **CI depth:** 8 gating checks across 11 pages, 11 widths and both themes on every PR.
 
 ## Intentional deviations
 - 11 one-off `clamp()` type sizes on the home page as per-page art direction, documented in `foundations/type`
@@ -55,7 +65,7 @@ _Checked in: 2026-10-03 · Re-confirmed 2026-10-05, 2026-10-08, 2026-10-22 · **
 - The Figma style `Display/3` binds to the variable `size/heading`: renaming the token would be a major version for no value change
 
 ## Scope & frame
-- Stations: all 10 on 2026-10-03, 2026-10-08 and **2026-10-26**. Partial passes 2026-10-05 (1, 3, 7, 9, 10) and 2026-10-22 (1, 2, 5, 6, 7, 9).
-- Scoring frame: **solo / side-of-desk**, now with two consumers rather than one.
-- **Technician conflict of interest:** the inspecting agent built most of what is graded, including all seven components added in 02.02.00, the control tokens, the sync guard and the Figma Controls section, in the four days before this inspection. Steve's standing instruction is "counts over judgements": prefer measured numbers, state the sample, flag self-marked findings inline.
-- **Known failure mode of this inspector, logged six times:** measuring one file or one spelling and writing the claim broadly. Caught twice more in this run before reporting (a filename-conversion bug made 7 components look undocumented when they are covered on their parent pages; a case-sensitive grep missed "Sixteen" on 2026-10-24). **Rule added 2026-10-22 after Steve caught an eleven-point scoring error: before scoring any station down, check the finding against git history and establish whether it is new.**
+- Stations: all 10 on 2026-10-03, 2026-10-08 and 2026-10-26. Partial passes 2026-10-05 (1, 3, 7, 9, 10), 2026-10-22 (1, 2, 5, 6, 7, 9) and **2026-10-28 (2, 4, 5, 6, 9, 10)**.
+- Scoring frame: **solo / side-of-desk**, now with three consumers.
+- **Technician conflict of interest:** the inspecting agent built most of what is graded, including all seven components added in 02.02.00, the control tokens, the sync guard, the Figma Controls section and Designer Job Search. Steve's standing instruction is "counts over judgements": prefer measured numbers, state the sample, flag self-marked findings inline.
+- **Known failure mode of this inspector, logged eight times:** measuring one file or one spelling and writing the claim broadly. On 2026-10-28 a keyword search for accessibility guidance in Figma descriptions returned seven false misses, caught before reporting. Three undercounts from the 2026-10-26 run were found and corrected: British spellings (12 in 3 pages, actually 17 in 6), how-to-read omissions (7, actually 9), token name divergences (1, actually 15). **Rule added 2026-10-22 after Steve caught an eleven-point scoring error: before scoring any station down, check the finding against git history and establish whether it is new.**
