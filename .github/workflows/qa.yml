@@ -69,6 +69,13 @@ jobs:
         # and this is what stops the two drifting.
         run: npm run tokens:check
 
+      - name: Types
+        # astro check reads every component's Props and fails on a page that
+        # passes a prop or value the component does not accept. Added 2026-10-28,
+        # after a live agent test wrote tone="success" on FormStatus, which took
+        # only "ok" at the time, and nothing in CI noticed.
+        run: npm run check:types
+
       - name: Install the browser
         # Only chromium, and only its own dependencies. Installing all three
         # engines triples the time for no extra coverage.

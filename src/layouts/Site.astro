@@ -320,7 +320,7 @@ const jsonLd = {
 				links.forEach((a) => {
 					const text = (a.textContent || '').trim();
 					if (!text) return;
-					const makeRow = (cls, hidden) => {
+					const makeRow = (cls: string, hidden: boolean) => {
 						const row = document.createElement('span');
 						row.className = 'sdc-flip__row ' + cls;
 						if (hidden) row.setAttribute('aria-hidden', 'true');
@@ -1249,7 +1249,8 @@ const jsonLd = {
 			   not depend on reading the colour. */
 			.sdc-field__error { margin: 0; font-size: var(--sdc-text-body-sm); color: var(--sdc-error); }
 			.sdc-field--invalid .sdc-field__input,
-			.sdc-field--invalid .sdc-select { border-color: var(--sdc-error); border-width: 2px; }
+			.sdc-field--invalid .sdc-select,
+			.sdc-select[aria-invalid="true"] { border-color: var(--sdc-error); border-width: 2px; }
 
 			.sdc-field__input:disabled, .sdc-select:disabled {
 				background: var(--sdc-surface-2); color: var(--sdc-text-mute); cursor: not-allowed;
@@ -1334,9 +1335,13 @@ const jsonLd = {
 			/* The live region a form speaks through after submitting. Polite, so it
 			   waits for a gap rather than interrupting. */
 			.sdc-form-status { margin: 0; font-size: var(--sdc-text-body-sm); color: var(--sdc-text-mute); }
-			.sdc-form-status--ok { color: var(--sdc-success); }
-			.sdc-form-status--warn { color: var(--sdc-warning); }
-			.sdc-form-status--err { color: var(--sdc-error); }
+			/* The modifiers carry the tone prop's own words, as the summary's do.
+			   --ok, --warn and --err are the 02.03 names: stevendesignservices.com
+			   and Designer Job Search still write them from script, so they stay
+			   as aliases until 03.00.00. */
+			.sdc-form-status--success, .sdc-form-status--ok { color: var(--sdc-success); }
+			.sdc-form-status--warning, .sdc-form-status--warn { color: var(--sdc-warning); }
+			.sdc-form-status--error, .sdc-form-status--err { color: var(--sdc-error); }
 
 			@media print {
 				.sdc-site-header, .sdc-site-footer, .sdc-nav-mobile, .sdc-theme-toggle { display: none !important; }

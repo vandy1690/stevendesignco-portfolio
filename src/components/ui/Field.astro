@@ -61,7 +61,7 @@ const shared = {
 	name,
 	maxlength: maxLength,
 	'aria-describedby': describedBy,
-	'aria-invalid': error ? 'true' : undefined,
+	'aria-invalid': error ? ('true' as const) : undefined,
 	required: required || undefined,
 	disabled: disabled || undefined,
 	autocomplete,

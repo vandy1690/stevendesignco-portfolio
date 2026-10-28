@@ -4,7 +4,7 @@ _From inspection: [`reports/2026-10-28-inspection.md`](../reports/2026-10-28-ins
 
 Reds get fixed now. Yellows get scheduled. Every item cites its station and evidence. Steve owns prioritization.
 
-**Status, 2026-10-28:** items **1, 3, 7 and 15 done** in SDC 02.03.00 (branch `release/sdc-02.03.00`). Fixing item 3 turned up a thirteenth surface: `DESIGN-SYSTEM.md` listed the accent hover as `#3D5C8C` and `#D8FF33` since 2026-09-28, while the code and Figma say `#233552` and `#F1FFB8`. Two of item 3's design calls were resolved toward the code, so nothing visible changed: the docs now describe the section tones and the Eyebrow face as they ship. If either should look different, that is a new change.
+**Status, 2026-10-28:** items **1, 3, 7 and 15 done** in SDC 02.03.00 (#25, tagged `sdc-02.03.00`). Items **2 and 6 done** in SDC 02.04.00 (#26): `astro check` gates CI after fixing the 11 errors its first run found, FormStatus and Select use the same words as their neighbors with the old names kept until 03.00.00, Figma's properties match the code, and `check:names` has a rule for shared choices. Fixing item 3 turned up a thirteenth surface: `DESIGN-SYSTEM.md` listed the accent hover as `#3D5C8C` and `#D8FF33` since 2026-09-28, while the code and Figma say `#233552` and `#F1FFB8`. Two of item 3's design calls were resolved toward the code, so nothing visible changed: the docs now describe the section tones and the Eyebrow face as they ship. If either should look different, that is a new change.
 
 **No reds.** Six yellow stations re-inspected: 2, 4, 5, 6, 9, 10.
 

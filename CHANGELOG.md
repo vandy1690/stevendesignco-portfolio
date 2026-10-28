@@ -7,6 +7,17 @@ also the day the change went live, give or take a few minutes.
 Add a line here when you ship something a visitor or a future maintainer would
 notice.
 
+## October 28, 2026: SDC 02.04.00
+
+One word per concept. The form status line now says `success`, like the error
+summary beside it, instead of `ok`, and Select takes an `error` message the way
+Field does instead of an `invalid` flag. The old names still work until 03.00.00,
+because the services site and Designer Job Search use them. Figma's component
+properties were renamed to match the code. Two new checks hold it: `astro check`
+fails the build on a prop value a component does not accept, and the naming
+check fails when two components offer the same prop with different choices.
+Nothing on stevendesignco.com looks different.
+
 ## October 28, 2026: SDC 02.03.00
 
 The SDS product theme gets the version it shipped without on October 27, and

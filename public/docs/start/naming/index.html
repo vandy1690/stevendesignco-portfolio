@@ -125,13 +125,28 @@ means image alt text everywhere else. The two deliberate pass-throughs are
 <code dir="auto">class</code> and <code dir="auto">id</code>.</p>
 <p>The same concept carries the same name in Figma, in code and in these docs. Where
 they differ today, the docs name wins and the other two move to it.</p>
+<p><strong>A shared prop name offers one list of words.</strong> If two components both take a
+<code dir="auto">tone</code>, a word that works on one works on the other. Field and Select both take
+<code dir="auto">error</code>, a message whose presence means invalid. FormSummary and FormStatus both
+take <code dir="auto">tone</code> as <code dir="auto">success</code>, <code dir="auto">warning</code> or <code dir="auto">error</code>, and their class modifiers use the
+same three words. Until 2026-10-28 the status line said <code dir="auto">ok</code> for success and
+Select said <code dir="auto">invalid</code>; both old names still work and go away in 03.00.00.</p>
+<p>Two collisions are known and scheduled for 03.00.00, because renaming them now
+would break shipped pages:</p>
+<ul>
+<li><code dir="auto">tone</code> on CaseSection is a band style (<code dir="auto">alt</code>, <code dir="auto">ink</code>), not a status color.</li>
+<li><code dir="auto">width</code> on CaseFigure is the image’s pixel width, not the measure (<code dir="auto">narrow</code>)
+that CaseSection and TextPassage mean.</li>
+</ul>
 <div class="sl-heading-wrapper level-h2"><h2 id="the-check">The check</h2><a class="sl-anchor-link" href="#the-check"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “The check”</span></a></div>
 <p><code dir="auto">npm run check:names</code> runs <code dir="auto">scripts/check-names.mjs</code>. It fails when:</p>
 <ol>
 <li>an <code dir="auto">&lt;sdc-*&gt;</code> tag is used that no component declares, or the manifest is stale;</li>
 <li>a class the global stylesheet defines appears anywhere without its prefix;</li>
 <li>a custom property in the global stylesheet lacks <code dir="auto">--sdc-</code>;</li>
-<li>a component prop reuses an HTML global attribute name.</li>
+<li>a component prop reuses an HTML global attribute name;</li>
+<li>two components offer the same prop name with different lists of choices,
+unless the odd one out is listed in the script’s <code dir="auto">KNOWN</code> with a reason.</li>
 </ol>
 <p>It runs in <code dir="auto">npm run ship</code> and in CI on every pull request, next to the token
 check and the never-say check. The manifest is rebuilt with

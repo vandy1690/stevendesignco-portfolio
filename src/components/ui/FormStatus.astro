@@ -16,19 +16,20 @@ interface Props {
 	id?: string;
 	/** The message. Empty is the normal resting state. */
 	message?: string;
-	/** Tints the message. Colour is never the only signal: the words carry it. */
-	tone?: 'ok' | 'warning' | 'error';
+	/** Tints the message. Color is never the only signal: the words carry it.
+	 *  The same three words as FormSummary. 'ok' is the 02.03 name for success,
+	 *  still accepted and drawn the same; it goes away in 03.00.00. */
+	tone?: 'success' | 'warning' | 'error' | 'ok';
 	class?: string;
 }
-const { id = 'form-status', message = '', tone, class: cls } = Astro.props;
+const { id = 'form-status', message = '', tone: given, class: cls } = Astro.props;
+const tone = given === 'ok' ? 'success' : given;
 ---
 
 <p
 	class:list={[
 		'sdc-form-status',
-		tone === 'ok' && 'sdc-form-status--ok',
-		tone === 'warning' && 'sdc-form-status--warn',
-		tone === 'error' && 'sdc-form-status--err',
+		tone && `sdc-form-status--${tone}`,
 		cls,
 	]}
 	id={id}

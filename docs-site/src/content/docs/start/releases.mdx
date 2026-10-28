@@ -33,6 +33,29 @@ production.
 
 ## Log
 
+### 02.04.00 · October 28, 2026
+
+Minor: names added and old ones kept, so nothing that worked stops working. One
+word per concept, and two checks that hold it.
+
+- **FormStatus takes the same tones as FormSummary**: `success`, `warning` and
+  `error`, and its class modifiers are those words, `.sdc-form-status--success`,
+  `--warning` and `--error`. The old `ok` and the classes `--ok`, `--warn` and
+  `--err` still work, drawn the same, because stevendesignservices.com and
+  Designer Job Search write them from script. They go away in 03.00.00.
+- **Select takes `error`**, a message, the same as Field. It writes the message
+  under the control, sets `aria-invalid`, ties the message with
+  `aria-describedby` after any hint, and draws the error border itself. `invalid`
+  still works until 03.00.00.
+- **Figma's property names match the code**: Button `variant`, Pager `direction`
+  with `Prev` and `Next`, every property lowercase. Form status offers `Success`,
+  and Field's invalid state is named `Error`.
+- **A fifth naming rule**: two components may not offer the same prop with
+  different lists of choices. CaseSection's `tone` and CaseFigure's `width` are
+  the two known exceptions, listed with a reason and scheduled for 03.00.00.
+- **`astro check` runs in CI and in `ship`**, so a prop value a component does
+  not accept fails the build instead of shipping.
+
 ### 02.03.00 · October 28, 2026
 
 Minor: tokens added, nothing renamed, no change to how stevendesignco.com looks.
