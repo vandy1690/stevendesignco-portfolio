@@ -320,7 +320,7 @@ const jsonLd = {
 				links.forEach((a) => {
 					const text = (a.textContent || '').trim();
 					if (!text) return;
-					const makeRow = (cls, hidden) => {
+					const makeRow = (cls: string, hidden: boolean) => {
 						const row = document.createElement('span');
 						row.className = 'sdc-flip__row ' + cls;
 						if (hidden) row.setAttribute('aria-hidden', 'true');

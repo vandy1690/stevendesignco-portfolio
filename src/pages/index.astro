@@ -5,12 +5,14 @@ import OneClickCheckout from '../components/art/OneClickCheckout.astro';
 import JourneyMap from '../components/art/JourneyMap.astro';
 import CaseStudyCard from '../components/ui/CaseStudyCard.astro';
 import TextPassage from '../components/ui/TextPassage.astro';
+import type { ComponentProps } from 'astro/types';
 
 // Six case studies, one argument each. Order is a data decision: swap entries here.
 // `image` is the full-bleed card image (16:9, 1600 by 900 or larger, object-fit cover).
 // Card art is flat editorial art in the site palette, generated Sept 12 2026. The
 // labelled SVG diagrams still live on the case study pages, where the facts belong.
-const cases = [
+// Each entry is the card's props, plus an optional anchor: an id inside the deck that a link can scroll to.
+const cases: (ComponentProps<typeof CaseStudyCard> & { anchor?: string })[] = [
 	{
 		href: '/work/merchant-flow-builder',
 		art: 'image',
@@ -394,7 +396,7 @@ const quotes = [
 			dots[activeDot].classList.add('is-active');
 		};
 		setActive(0);
-		const target = cards.map((_, j) => (j === 0 ? 0 : 1));
+		const target: number[] = cards.map((_, j) => (j === 0 ? 0 : 1));
 		const current = target.slice();
 		let raf = 0;
 		let inView = false;
