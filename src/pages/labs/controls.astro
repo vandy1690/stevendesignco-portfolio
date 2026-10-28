@@ -1,0 +1,112 @@
+---
+/**
+ * Every form control in the system, in every state, on one page.
+ *
+ * No page on stevendesignco.com uses the control set, so without this the Q&A
+ * suite never renders Choice, Field, Fieldset, FormStatus, FormSummary, Select
+ * or Slider, and axe, contrast, reflow and the keyboard check never reach them.
+ * It is in qa/config.mjs PAGES for that reason. It is public because the site
+ * is, but unlinked, out of the sitemap and marked noindex.
+ *
+ * The ids are what qa/checks/keyboard.mjs drives. Change one here and change it
+ * there. Added 2026-10-28.
+ */
+import Site from '../../layouts/Site.astro';
+import CaseSection from '../../components/ui/CaseSection.astro';
+import Eyebrow from '../../components/ui/Eyebrow.astro';
+import Field from '../../components/ui/Field.astro';
+import Select from '../../components/ui/Select.astro';
+import Choice from '../../components/ui/Choice.astro';
+import Fieldset from '../../components/ui/Fieldset.astro';
+import Slider from '../../components/ui/Slider.astro';
+import FormSummary from '../../components/ui/FormSummary.astro';
+import FormStatus from '../../components/ui/FormStatus.astro';
+
+const sources = [
+	{ value: '', label: 'Pick one' },
+	{ value: 'referral', label: 'Someone referred me' },
+	{ value: 'search', label: 'I searched for it' },
+	{ value: 'social', label: 'Social media' },
+	{ value: 'talk', label: 'A talk or podcast' },
+];
+---
+
+<Site title="Controls test page" description="Every form control in the system, in every state, for the automated checks." noindex>
+	<CaseSection width="narrow" animate={false}>
+		<Eyebrow>Test page</Eyebrow>
+		<h1 class="sdc-display">Controls</h1>
+		<p>
+			Every form control in the system, in every state, so the automated checks
+			can reach them. Nothing here submits.
+		</p>
+	</CaseSection>
+
+	<CaseSection width="narrow" animate={false} labelledby="kb-messages-title">
+		<h2 id="kb-messages-title" class="sdc-display-3">Form messages</h2>
+		<FormSummary
+			id="kb-summary"
+			errors={[
+				{ id: 'kb-site', message: 'Enter a web address like example.com.' },
+				{ id: 'kb-referral', message: 'Pick how you heard about me.' },
+			]}
+		/>
+		<FormSummary id="kb-summary-warning" tone="warning" lede="Saved, with one thing to check." />
+		<FormSummary id="kb-summary-success" tone="success" lede="Sent. I will reply within a day." />
+		<FormStatus id="kb-status" message="Sending." />
+		<FormStatus id="kb-status-success" tone="success" message="Saved." />
+		<FormStatus id="kb-status-warning" tone="warning" message="Saved as a draft. Nothing has been sent yet." />
+		<FormStatus id="kb-status-error" tone="error" message="That did not send. Try again." />
+	</CaseSection>
+
+	<CaseSection width="narrow" animate={false} labelledby="kb-text-title">
+		<h2 id="kb-text-title" class="sdc-display-3">Text</h2>
+		<div class="kb-form">
+			<Field id="kb-name" name="name" label="Your name" autocomplete="name" />
+			<Field id="kb-email" name="email" type="email" label="Email" hint="I only use it to reply." required autocomplete="email" inputmode="email" />
+			<Field id="kb-site" name="site" type="url" label="Website" value="example" error="Enter a web address like example.com." />
+			<Field id="kb-off" name="off" label="Account number" value="Not editable" disabled />
+			<Field id="kb-note" name="note" label="Anything else" multiline rows={3} maxLength={500} hint="Up to 500 characters." />
+		</div>
+	</CaseSection>
+
+	<CaseSection width="narrow" animate={false} labelledby="kb-pick-title">
+		<h2 id="kb-pick-title" class="sdc-display-3">Pick</h2>
+		<div class="kb-form">
+			<div class="sdc-field">
+				<label class="sdc-field__label" for="kb-source">How did you hear about me?</label>
+				<Select id="kb-source" name="source" options={sources} />
+			</div>
+			<div class="sdc-field">
+				<label class="sdc-field__label" for="kb-referral">Who referred you?</label>
+				<Select id="kb-referral" name="referral" options={sources} error="Pick how you heard about me." />
+			</div>
+			<div class="sdc-field">
+				<label class="sdc-field__label" for="kb-locked">Plan</label>
+				<Select id="kb-locked" name="locked" options={[{ value: 'basic', label: 'Basic' }]} value="basic" disabled />
+			</div>
+
+			<Fieldset id="kb-topics" legend="What do you want to hear about?" desc="Pick as many as you like.">
+				<div class="sdc-choice-set">
+					<Choice name="topics" value="case-studies" label="Case studies" checked />
+					<Choice name="topics" value="process" label="Process notes" />
+					<Choice name="topics" value="speaking" label="Speaking" />
+					<Choice name="topics" value="roles" label="Open roles" disabled />
+				</div>
+			</Fieldset>
+
+			<Fieldset id="kb-often" legend="How often?">
+				<div class="sdc-choice-set">
+					<Choice radio name="often" value="weekly" label="Weekly" />
+					<Choice radio name="often" value="monthly" label="Monthly" checked />
+					<Choice radio name="often" value="big-news" label="Only big news" />
+				</div>
+			</Fieldset>
+
+			<Slider id="kb-posts" name="posts" label="Posts" min={1} max={8} value={4} unit="per month" />
+		</div>
+	</CaseSection>
+</Site>
+
+<style>
+	.kb-form { display: grid; gap: var(--sdc-space-lg); }
+</style>

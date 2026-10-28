@@ -102,9 +102,10 @@ pass in order.</p>
 branch reports for itself. That is a second pair of eyes, not a replacement for
 the first: on <code dir="auto">dev</code> the result lands after the deploy, because <code dir="auto">dev</code> is
 production. Run it on your branch before you merge.</p>
-<p>It covers reflow and target size across eleven pages and eleven widths, axe on
-every page and with every dialog open, the dialog’s keyboard behavior, text
-spacing overrides, High Contrast Mode, and inline link distinction. <code dir="auto">--pixel</code>
+<p>It covers reflow and target size on every page in <code dir="auto">qa/config.mjs</code> at eleven
+widths, axe on every page and with every dialog open, the dialog’s keyboard
+behavior, the form controls’ keyboard behavior on <code dir="auto">/labs/controls</code>, text spacing
+overrides, High Contrast Mode, and inline link distinction. <code dir="auto">--pixel</code>
 adds a comparison against the live site and is worth the wait on any change that
 was supposed to be invisible.</p>
 <p>Each check is in <code dir="auto">qa/checks/</code>, and each one opens with the defect it was written

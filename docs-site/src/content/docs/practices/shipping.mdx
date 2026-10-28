@@ -50,9 +50,10 @@ branch reports for itself. That is a second pair of eyes, not a replacement for
 the first: on `dev` the result lands after the deploy, because `dev` is
 production. Run it on your branch before you merge.
 
-It covers reflow and target size across eleven pages and eleven widths, axe on
-every page and with every dialog open, the dialog's keyboard behavior, text
-spacing overrides, High Contrast Mode, and inline link distinction. `--pixel`
+It covers reflow and target size on every page in `qa/config.mjs` at eleven
+widths, axe on every page and with every dialog open, the dialog's keyboard
+behavior, the form controls' keyboard behavior on `/labs/controls`, text spacing
+overrides, High Contrast Mode, and inline link distinction. `--pixel`
 adds a comparison against the live site and is worth the wait on any change that
 was supposed to be invisible.
 

@@ -31,7 +31,11 @@ export default async function reflow(browser, base) {
 				}
 				const small = [];
 				document.querySelectorAll('a, button, input, select, [role="button"]').forEach((el) => {
-					const box = el.getBoundingClientRect();
+					// A control wrapped in its <label> is hit through the label, so
+					// the label is the target: Choice hides its 1px input inside a
+					// 44px chip. Measure what the pointer actually lands on.
+					const wrap = el.matches('input') && el.closest('label');
+					const box = (wrap || el).getBoundingClientRect();
 					if (!box.width || !box.height) return;
 					if (box.height >= 24 && box.width >= 24) return;
 					const block = el.closest('p, li, dd, blockquote');

@@ -7,6 +7,17 @@ also the day the change went live, give or take a few minutes.
 Add a line here when you ship something a visitor or a future maintainer would
 notice.
 
+## October 28, 2026: SDC 02.04.01
+
+A keyboard check for the form controls, and the bug it found on its first run.
+`/labs/controls` renders every control in every state (unlinked, out of the
+sitemap, noindex), the Q&A suite now runs all its checks there, and a new
+keyboard check drives it: Tab order, disabled controls skipped, focus rings in
+both themes, chips, radios, the slider, select type-ahead, and the error
+summary's links. The bug: a Select with a "Pick one" row opened on the first
+real answer, because the placeholder is disabled and was never marked selected.
+It now starts on the placeholder.
+
 ## October 28, 2026: SDC 02.04.00
 
 One word per concept. The form status line now says `success`, like the error

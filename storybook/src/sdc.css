@@ -1467,8 +1467,11 @@
 			/* The links inside take the ink, not the accent. The accent on the error
 			   tint measures 3.91 to 1 and fails, which is the tint's documented
 			   contract working as written: a tint is a ground for --sdc-text. They
-			   stay underlined, so they still read as links without the colour. */
-			.sdc-form-summary a { color: var(--sdc-text); text-decoration: underline; text-underline-offset: 3px; }
+			   stay underlined, so they still read as links without the colour.
+			   Each link is a whole list item, not a link inside a sentence, so it
+			   gets no inline exception from WCAG 2.5.8: the block padding takes it
+			   from 20px to 26px tall. Found by the Q&A suite on /labs/controls. */
+			.sdc-form-summary a { color: var(--sdc-text); text-decoration: underline; text-underline-offset: 3px; padding-block: 3px; }
 
 			/* The live region a form speaks through after submitting. Polite, so it
 			   waits for a gap rather than interrupting. */

@@ -22,6 +22,7 @@ import forcedColors from './checks/forced-colors.mjs';
 import linkDistinction from './checks/link-distinction.mjs';
 import contrast from './checks/contrast.mjs';
 import deckFit from './checks/deck-fit.mjs';
+import keyboard from './checks/keyboard.mjs';
 
 const CHECKS = {
 	reflow,
@@ -32,6 +33,7 @@ const CHECKS = {
 	'link-distinction': linkDistinction,
 	contrast,
 	'deck-fit': deckFit,
+	keyboard,
 };
 
 const args = process.argv.slice(2);

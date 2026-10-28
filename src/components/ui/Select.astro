@@ -37,6 +37,11 @@ interface Props {
 	class?: string;
 }
 const { id, name, options, value, required = false, disabled = false, error, invalid = false, describedBy, class: cls } = Astro.props;
+// With no value given, start on the placeholder row. It is disabled, and a
+// browser skips a disabled first option it was not told to select, so without
+// this the control opened on the first real answer and a form could submit an
+// answer nobody picked. Found by the keyboard check, 2026-10-28.
+const current = value ?? (options.some((o) => o.value === '') ? '' : undefined);
 const errId = error ? `${id}-err` : undefined;
 // The hint first, so the help is read before the failure, as Field does it.
 const described = [describedBy, errId].filter(Boolean).join(' ') || undefined;
@@ -52,7 +57,7 @@ const described = [describedBy, errId].filter(Boolean).join(' ') || undefined;
 	aria-describedby={described}
 >
 	{options.map((o) => (
-		<option value={o.value} selected={o.value === value || undefined} disabled={o.value === '' || undefined}>
+		<option value={o.value} selected={o.value === current || undefined} disabled={o.value === '' || undefined}>
 			{o.label}
 		</option>
 	))}
