@@ -74,6 +74,20 @@ means image alt text everywhere else. The two deliberate pass-throughs are
 The same concept carries the same name in Figma, in code and in these docs. Where
 they differ today, the docs name wins and the other two move to it.
 
+**A shared prop name offers one list of words.** If two components both take a
+`tone`, a word that works on one works on the other. Field and Select both take
+`error`, a message whose presence means invalid. FormSummary and FormStatus both
+take `tone` as `success`, `warning` or `error`, and their class modifiers use the
+same three words. Until 2026-10-28 the status line said `ok` for success and
+Select said `invalid`; both old names still work and go away in 03.00.00.
+
+Two collisions are known and scheduled for 03.00.00, because renaming them now
+would break shipped pages:
+
+- `tone` on CaseSection is a band style (`alt`, `ink`), not a status color.
+- `width` on CaseFigure is the image's pixel width, not the measure (`narrow`)
+  that CaseSection and TextPassage mean.
+
 ## The check
 
 `npm run check:names` runs `scripts/check-names.mjs`. It fails when:
@@ -81,7 +95,9 @@ they differ today, the docs name wins and the other two move to it.
 1. an `<sdc-*>` tag is used that no component declares, or the manifest is stale;
 2. a class the global stylesheet defines appears anywhere without its prefix;
 3. a custom property in the global stylesheet lacks `--sdc-`;
-4. a component prop reuses an HTML global attribute name.
+4. a component prop reuses an HTML global attribute name;
+5. two components offer the same prop name with different lists of choices,
+   unless the odd one out is listed in the script's `KNOWN` with a reason.
 
 It runs in `npm run ship` and in CI on every pull request, next to the token
 check and the never-say check. The manifest is rebuilt with

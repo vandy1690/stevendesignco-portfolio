@@ -5,9 +5,14 @@
  * platform picker, the keyboard behaviour and the screen reader announcement,
  * none of which a custom dropdown gets for free.
  *
- * It renders only the select. Its label, hint and error come from .sdc-field
- * wrapper markup written around it; Field.astro cannot hold it (no slot).
- * Added 2026-10-23 with the rest of the control set.
+ * It renders the select and, when `error` is set, the message under it. The
+ * label and any hint come from .sdc-field wrapper markup written around it;
+ * Field.astro cannot hold it (no slot).
+ *
+ * `error` works as it does on Field: present means invalid. It sets
+ * aria-invalid, writes the message, and ties it to the control with
+ * aria-describedby, after any hint passed in `describedBy`.
+ * Added 2026-10-23 with the rest of the control set; `error` added 2026-10-28.
  */
 interface Props {
 	/** Ties the label to the control. */
@@ -20,15 +25,21 @@ interface Props {
 	value?: string;
 	/** Marks the control required. */
 	required?: boolean;
-	/** Greys the control out. */
+	/** Grays the control out. */
 	disabled?: boolean;
-	/** Sets aria-invalid. Field draws the border. */
+	/** The validation message. Present means the choice is invalid, as on Field. */
+	error?: string;
+	/** The 02.03 way to mark it invalid, with no message. Still accepted; use
+	 *  `error` instead. It goes away in 03.00.00. */
 	invalid?: boolean;
-	/** The id of the hint or error that describes this control. */
+	/** The id of a hint that describes this control. */
 	describedBy?: string;
 	class?: string;
 }
-const { id, name, options, value, required = false, disabled = false, invalid = false, describedBy, class: cls } = Astro.props;
+const { id, name, options, value, required = false, disabled = false, error, invalid = false, describedBy, class: cls } = Astro.props;
+const errId = error ? `${id}-err` : undefined;
+// The hint first, so the help is read before the failure, as Field does it.
+const described = [describedBy, errId].filter(Boolean).join(' ') || undefined;
 ---
 
 <select
@@ -37,8 +48,8 @@ const { id, name, options, value, required = false, disabled = false, invalid = 
 	name={name}
 	required={required || undefined}
 	disabled={disabled || undefined}
-	aria-invalid={invalid ? 'true' : undefined}
-	aria-describedby={describedBy}
+	aria-invalid={error || invalid ? 'true' : undefined}
+	aria-describedby={described}
 >
 	{options.map((o) => (
 		<option value={o.value} selected={o.value === value || undefined} disabled={o.value === '' || undefined}>
@@ -46,3 +57,4 @@ const { id, name, options, value, required = false, disabled = false, invalid = 
 		</option>
 	))}
 </select>
+{error && <p class="sdc-field__error" id={errId}>{error}</p>}

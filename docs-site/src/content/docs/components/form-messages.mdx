@@ -49,11 +49,14 @@ the border.
 | `success` | Done, and worth saying prominently. | `--sdc-success-tint` | `--sdc-success` |
 
 Measured in both themes before shipping: text on tint runs 7.70 to 15.63, and
-every border clears 3 to 1. The status line has the same three colors, set by
-FormStatus's `tone`: `ok`, `warning` and `error`, which write the classes
-`.sdc-form-status--ok`, `--warn` and `--err`. On the status line the solid is
-the text color rather than the border. Note that the green tone is `success` on
-the summary and `ok` on the status line.
+every border clears 3 to 1. The status line takes the same three words in its
+`tone`, `success`, `warning` and `error`, and writes them as its classes,
+`.sdc-form-status--success`, `--warning` and `--error`. On the status line the
+solid is the text color rather than the border.
+
+Before 02.04.00 the status line said `ok` for success, and its classes were
+`--ok`, `--warn` and `--err`. Both still work, drawn the same, and go away in
+03.00.00.
 
 An `error` summary hides itself when its list is empty. The other two do not,
 because a success message is the whole content and has nothing to list.
@@ -99,11 +102,10 @@ import FormStatus from '../../components/ui/FormStatus.astro';
 | --- | --- | --- | --- |
 | `id` | string | `'form-status'` | Ties a form's script to this region |
 | `message` | string | `''` | The words. Empty is the normal resting state |
-| `tone` | `'ok'` \| `'warning'` \| `'error'` | none | Tints the words. Leave it off for a neutral message such as "Sending." |
+| `tone` | `'success'` \| `'warning'` \| `'error'` | none | Tints the words. Leave it off for a neutral message such as "Sending." `'ok'` still works as success until 03.00.00 |
 | `class` | string | none | Extra classes on the region |
 
-Any other `tone` value renders untinted and raises no error, so check the
-spelling: the status line takes `ok`, not `success`.
+Both take the same three tones. A value outside them fails `npm run check:types`.
 
 ## Checks before you ship
 

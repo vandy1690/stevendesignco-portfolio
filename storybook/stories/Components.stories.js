@@ -288,9 +288,9 @@ export const FormMessages = {
       <div class="sdc-form-summary sdc-form-summary--success" role="alert" tabindex="-1">
         <strong>Sent. I will reply within a day.</strong>
       </div>
-      <p class="sdc-form-status sdc-form-status--ok" role="status" aria-live="polite">Sent. I will reply within a day.</p>
-      <p class="sdc-form-status sdc-form-status--warn" role="status" aria-live="polite">Saved as a draft. Nothing has been sent yet.</p>
-      <p class="sdc-form-status sdc-form-status--err" role="status" aria-live="polite">That did not send. Email me directly instead.</p>
+      <p class="sdc-form-status sdc-form-status--success" role="status" aria-live="polite">Sent. I will reply within a day.</p>
+      <p class="sdc-form-status sdc-form-status--warning" role="status" aria-live="polite">Saved as a draft. Nothing has been sent yet.</p>
+      <p class="sdc-form-status sdc-form-status--error" role="status" aria-live="polite">That did not send. Email me directly instead.</p>
     </div>`,
 };
 FormMessages.storyName = 'Form messages';

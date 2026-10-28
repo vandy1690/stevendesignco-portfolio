@@ -7,10 +7,11 @@ sidebar:
 
 <dl class="sdc-hww">
 	<div><dt>How</dt><dd>A native <code>&lt;select class="sdc-select"&gt;</code>.
-	<code>Select.astro</code> writes the element and its options, and nothing else: no label,
-	hint or error. Those come from the <code>.sdc-field</code> wrapper markup that
-	<a href="/docs/components/field/">Field</a> uses, written around it by hand, because
-	<code>Field.astro</code> renders its own input and cannot hold a Select.</dd></div>
+	<code>Select.astro</code> writes the element, its options and, when <code>error</code> is
+	set, the message under it. The label and any hint come from the
+	<code>.sdc-field</code> wrapper markup that <a href="/docs/components/field/">Field</a>
+	uses, written around it by hand, because <code>Field.astro</code> renders its own input
+	and cannot hold a Select.</dd></div>
 	<div><dt>When</dt><dd>For one answer out of many, past the point where
 	<a href="/docs/components/choice/">Choice</a> chips stop being scannable, roughly a
 	dozen.</dd></div>
@@ -37,26 +38,28 @@ mistake. The extra inline-end padding leaves room for the platform's own arrow.
 ```astro
 ---
 import Select from '../../components/ui/Select.astro';
+const options = [
+	{ value: '', label: 'Pick one' },
+	{ value: 'referral', label: 'Someone referred me' },
+	{ value: 'search', label: 'I searched for it' },
+];
 ---
 <div class="sdc-field">
 	<label class="sdc-field__label" for="heard">How did you hear about me?</label>
-	<Select
-		id="heard"
-		name="heard"
-		options={[
-			{ value: '', label: 'Pick one' },
-			{ value: 'referral', label: 'Someone referred me' },
-			{ value: 'search', label: 'I searched for it' },
-		]}
-	/>
+	<Select id="heard" name="heard" options={options} />
 </div>
 ```
 
 The label's `for` matches the Select's `id`, which is what gives the control its
-name. To show an error, add `sdc-field--invalid` to the wrapper, which draws the
-error border, put the message in a `<p class="sdc-field__error" id="heard-err">`
-after the Select, and pass `invalid` and `describedBy="heard-err"` so the
-failure is announced.
+name. To show an error, pass `error`, the same as on Field:
+
+```astro
+<Select id="heard" name="heard" options={options} error="Pick how you heard about me." />
+```
+
+That draws the error border, writes the message under the control, and sets
+`aria-invalid` and `aria-describedby`, so the failure is announced and not carried
+by color alone.
 
 | Prop | Type | Default | What it does |
 | --- | --- | --- | --- |
@@ -66,8 +69,9 @@ failure is announced.
 | `value` | string | none | Which option starts selected |
 | `required` | boolean | `false` | Marks it required |
 | `disabled` | boolean | `false` | Greys it out |
-| `invalid` | boolean | `false` | Sets `aria-invalid`. The `sdc-field--invalid` wrapper draws the border |
-| `describedBy` | string | none | The id of the hint or error describing it |
+| `error` | string | none | The validation message. Present means invalid, as on Field |
+| `invalid` | boolean | `false` | The 02.03 way to mark it invalid, with no message. Still works; use `error`. Goes away in 03.00.00 |
+| `describedBy` | string | none | The id of a hint describing it. An error is added after it |
 
 ## Checks before you ship
 

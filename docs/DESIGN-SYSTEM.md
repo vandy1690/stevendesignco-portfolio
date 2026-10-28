@@ -170,7 +170,7 @@ All global, in `Site.astro`.
 | `.sdc-choice`, `.sdc-choice-set` | A checkbox or radio as a chip, and the row that holds them. `Choice.astro` |
 | `.sdc-fieldset`, `.sdc-fieldset__desc` | A named group of controls with a real legend. `Fieldset.astro` |
 | `.sdc-form-summary`, `--warning`, `--success` | The error summary a failed submit moves focus to. `FormSummary.astro` |
-| `.sdc-form-status`, `--ok`, `--warn`, `--err` | The polite live region a form speaks through. `FormStatus.astro` |
+| `.sdc-form-status`, `--success`, `--warning`, `--error` | The polite live region a form speaks through. `FormStatus.astro`. `--ok`, `--warn` and `--err` still work until 03.00.00 |
 | `.sdc-theme-img--light`, `.sdc-theme-img--dark` | Swap an image by theme |
 | `[data-animate="fade"]` | Fade in on scroll. Only hidden when `html.js` is present |
 

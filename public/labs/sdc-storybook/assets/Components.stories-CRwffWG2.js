@@ -159,9 +159,9 @@ import{a as ye}from"./design-links-CsRzzX79.js";const k=e=>`<span class="sdc-pag
       <div class="sdc-form-summary sdc-form-summary--success" role="alert" tabindex="-1">
         <strong>Sent. I will reply within a day.</strong>
       </div>
-      <p class="sdc-form-status sdc-form-status--ok" role="status" aria-live="polite">Sent. I will reply within a day.</p>
-      <p class="sdc-form-status sdc-form-status--warn" role="status" aria-live="polite">Saved as a draft. Nothing has been sent yet.</p>
-      <p class="sdc-form-status sdc-form-status--err" role="status" aria-live="polite">That did not send. Email me directly instead.</p>
+      <p class="sdc-form-status sdc-form-status--success" role="status" aria-live="polite">Sent. I will reply within a day.</p>
+      <p class="sdc-form-status sdc-form-status--warning" role="status" aria-live="polite">Saved as a draft. Nothing has been sent yet.</p>
+      <p class="sdc-form-status sdc-form-status--error" role="status" aria-live="polite">That did not send. Email me directly instead.</p>
     </div>`};u.storyName="Form messages";ye({Buttons:b,Pager:m,PagerPair:n,CaseCard:o,Recommendation:g,MetaRow:i,RowList:r,CaseBlock:l,SkipLink:d,Field:y,Slider:v,FieldStates:c,Choice:f,SelectControl:p,FormMessages:u});var T,S,q;b.parameters={...b.parameters,docs:{...(T=b.parameters)==null?void 0:T.docs,source:{originalSource:`{
   args: {
     label: 'View work'
@@ -519,8 +519,8 @@ import{a as ye}from"./design-links-CsRzzX79.js";const k=e=>`<span class="sdc-pag
       <div class="sdc-form-summary sdc-form-summary--success" role="alert" tabindex="-1">
         <strong>Sent. I will reply within a day.</strong>
       </div>
-      <p class="sdc-form-status sdc-form-status--ok" role="status" aria-live="polite">Sent. I will reply within a day.</p>
-      <p class="sdc-form-status sdc-form-status--warn" role="status" aria-live="polite">Saved as a draft. Nothing has been sent yet.</p>
-      <p class="sdc-form-status sdc-form-status--err" role="status" aria-live="polite">That did not send. Email me directly instead.</p>
+      <p class="sdc-form-status sdc-form-status--success" role="status" aria-live="polite">Sent. I will reply within a day.</p>
+      <p class="sdc-form-status sdc-form-status--warning" role="status" aria-live="polite">Saved as a draft. Nothing has been sent yet.</p>
+      <p class="sdc-form-status sdc-form-status--error" role="status" aria-live="polite">That did not send. Email me directly instead.</p>
     </div>\`
 }`,...(me=(be=u.parameters)==null?void 0:be.docs)==null?void 0:me.source}}};const xe=["Buttons","Pager","PagerPair","CaseCard","Recommendation","MetaRow","RowList","CaseBlock","SkipLink","Field","Slider","FieldStates","Choice","SelectControl","FormMessages"];export{b as Buttons,l as CaseBlock,o as CaseCard,f as Choice,y as Field,c as FieldStates,u as FormMessages,i as MetaRow,m as Pager,n as PagerPair,g as Recommendation,r as RowList,p as SelectControl,d as SkipLink,v as Slider,xe as __namedExportsOrder,fe as default};

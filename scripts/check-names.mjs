@@ -82,6 +82,55 @@ for (const f of walk('src/components', ['.astro'])) {
 	}
 }
 
+// --- 5. shared choices. Added 2026-10-28, after FormSummary took
+// tone: 'success' and FormStatus took tone: 'ok' for the same green state, and
+// a live agent test wrote the one into the other. When any component offers a
+// prop as a fixed list of words, every component with a prop of that name must
+// offer the same list, so a word learned on one component works on the next.
+// Props typed as a plain string, number or object are not compared: `value` or
+// `items` holding different shapes is expected.
+//
+// KNOWN collisions are listed, not hidden: each is a real one, waiting on a
+// rename that would break shipped pages, so it is scheduled rather than done.
+// Add to this list only with a reason, and remove the entry when it is fixed.
+const KNOWN = {
+	'CaseSection.tone': 'a band style (alt, ink), where the form messages use tone for a status color. Rename it in 03.00.00.',
+	'CaseFigure.width': 'the image\'s pixel width, where CaseSection and TextPassage use width for the measure (narrow). Rename it in 03.00.00.',
+};
+// Values still accepted for one release and then removed, as component.prop.
+const DEPRECATED = { 'FormStatus.tone': ['ok'] };
+const choices = new Map(); // prop -> [{ comp, values | null }]
+for (const f of walk('src/components/ui', ['.astro'])) {
+	const block = read(f).match(/interface Props \{([\s\S]*?)\n\}/);
+	if (!block) continue;
+	const comp = f.split('/').pop().replace('.astro', '');
+	const body = block[1].replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/[^\n]*/g, '');
+	for (const m of body.matchAll(/^\s*(\w+)\??:\s*([^;]+);/gm)) {
+		const [, prop, type] = m;
+		const lits = type.split('|').map((t) => t.trim());
+		const isChoice = lits.every((t) => /^'[^']*'$/.test(t) || t === 'false');
+		const gone = new Set(DEPRECATED[`${comp}.${prop}`] || []);
+		const values = isChoice ? lits.map((t) => t.replace(/'/g, '')).filter((v) => !gone.has(v)).sort() : null;
+		if (!choices.has(prop)) choices.set(prop, []);
+		choices.get(prop).push({ comp, values, type: type.trim() });
+	}
+}
+const shapeOf = (u) => (u.values ? u.values.join('|') : `type ${u.type}`);
+for (const [prop, all] of choices) {
+	const uses = all.filter((u) => !KNOWN[`${u.comp}.${prop}`]);
+	if (uses.length < 2 || !uses.some((u) => u.values)) continue;
+	if (new Set(uses.map(shapeOf)).size > 1) {
+		problems.push(`prop "${prop}" offers different choices: ${uses.map((u) => `${u.comp} (${u.values ? u.values.join(' | ') : u.type})`).join(', ')}. Use one list, or add the odd one out to KNOWN with a reason`);
+	}
+}
+for (const key of Object.keys(KNOWN)) {
+	const [comp, prop] = key.split('.');
+	const all = choices.get(prop) || [];
+	const mine = all.find((u) => u.comp === comp);
+	const others = all.filter((u) => u.comp !== comp);
+	if (!mine || others.every((u) => shapeOf(u) === shapeOf(mine))) problems.push(`KNOWN lists ${key}, but it no longer collides. Remove the entry.`);
+}
+
 if (problems.length) {
 	console.error(`\nNaming check failed: ${problems.length} problem${problems.length > 1 ? 's' : ''}.\n`);
 	for (const p of problems) console.error('  ' + p);
