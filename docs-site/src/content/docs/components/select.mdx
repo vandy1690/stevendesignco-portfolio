@@ -6,13 +6,16 @@ sidebar:
 ---
 
 <dl class="sdc-hww">
-	<div><dt>How</dt><dd>A native <code>&lt;select class="sdc-select"&gt;</code>. It sits inside a
-	<a href="/docs/components/field/">Field</a> for its label, hint and error, the same as an
-	input. <code>Select.astro</code> writes the element and its options.</dd></div>
+	<div><dt>How</dt><dd>A native <code>&lt;select class="sdc-select"&gt;</code>.
+	<code>Select.astro</code> writes the element and its options, and nothing else: no label,
+	hint or error. Those come from the <code>.sdc-field</code> wrapper markup that
+	<a href="/docs/components/field/">Field</a> uses, written around it by hand, because
+	<code>Field.astro</code> renders its own input and cannot hold a Select.</dd></div>
 	<div><dt>When</dt><dd>For one answer out of many, past the point where
 	<a href="/docs/components/choice/">Choice</a> chips stop being scannable, roughly a
 	dozen.</dd></div>
-	<div><dt>Where</dt><dd>In a form, in a Field.</dd></div>
+	<div><dt>Where</dt><dd>In a form, inside a <code>.sdc-field</code> wrapper with a
+	label.</dd></div>
 </dl>
 
 ## Why the native element
@@ -35,30 +38,39 @@ mistake. The extra inline-end padding leaves room for the platform's own arrow.
 ---
 import Select from '../../components/ui/Select.astro';
 ---
-<Select
-	id="heard"
-	name="heard"
-	options={[
-		{ value: '', label: 'Pick one' },
-		{ value: 'referral', label: 'Someone referred me' },
-		{ value: 'search', label: 'I searched for it' },
-	]}
-/>
+<div class="sdc-field">
+	<label class="sdc-field__label" for="heard">How did you hear about me?</label>
+	<Select
+		id="heard"
+		name="heard"
+		options={[
+			{ value: '', label: 'Pick one' },
+			{ value: 'referral', label: 'Someone referred me' },
+			{ value: 'search', label: 'I searched for it' },
+		]}
+	/>
+</div>
 ```
+
+The label's `for` matches the Select's `id`, which is what gives the control its
+name. To show an error, add `sdc-field--invalid` to the wrapper, which draws the
+error border, put the message in a `<p class="sdc-field__error" id="heard-err">`
+after the Select, and pass `invalid` and `describedBy="heard-err"` so the
+failure is announced.
 
 | Prop | Type | Default | What it does |
 | --- | --- | --- | --- |
-| `id` | string | required | Ties the Field's label to this control |
+| `id` | string | required | Ties the label's `for` to this control |
 | `name` | string | none | The form field name |
 | `options` | `{ value, label }[]` | required | In display order. A `value` of `''` becomes a disabled placeholder row |
 | `value` | string | none | Which option starts selected |
 | `required` | boolean | `false` | Marks it required |
 | `disabled` | boolean | `false` | Greys it out |
-| `invalid` | boolean | `false` | Sets `aria-invalid`. The Field draws the border |
+| `invalid` | boolean | `false` | Sets `aria-invalid`. The `sdc-field--invalid` wrapper draws the border |
 | `describedBy` | string | none | The id of the hint or error describing it |
 
 ## Checks before you ship
 
-1. It has a label, from the Field around it.
+1. It has a visible label whose `for` matches the Select's `id`.
 2. The placeholder row is disabled, so it cannot be submitted as an answer.
 3. It is not being used for fewer than about four options.

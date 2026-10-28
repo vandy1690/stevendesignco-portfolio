@@ -49,9 +49,11 @@ the border.
 | `success` | Done, and worth saying prominently. | `--sdc-success-tint` | `--sdc-success` |
 
 Measured in both themes before shipping: text on tint runs 7.70 to 15.63, and
-every border clears 3 to 1. The status line has the same three, as
-`--sdc-form-status--ok`, `--warn` and `--err`, where the solid is the text
-colour rather than the border.
+every border clears 3 to 1. The status line has the same three colors, set by
+FormStatus's `tone`: `ok`, `warning` and `error`, which write the classes
+`.sdc-form-status--ok`, `--warn` and `--err`. On the status line the solid is
+the text color rather than the border. Note that the green tone is `success` on
+the summary and `ok` on the status line.
 
 An `error` summary hides itself when its list is empty. The other two do not,
 because a success message is the whole content and has nothing to list.
@@ -80,6 +82,28 @@ import FormStatus from '../../components/ui/FormStatus.astro';
 <FormSummary tone="success" lede="Sent. I will reply within a day." />
 <FormStatus message="Saved as a draft. Nothing has been sent yet." tone="warning" />
 ```
+
+`src/components/ui/FormSummary.astro`:
+
+| Prop | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `id` | string | `'form-summary'` | Ties a form's script to this region |
+| `lede` | string | `'That did not send yet.'` | The bold sentence above the list |
+| `errors` | `{ id, message }[]` | `[]` | One item per problem. `id` is the control the link jumps to |
+| `tone` | `'error'` \| `'warning'` \| `'success'` | `'error'` | Which status color it wears. An `error` summary with no errors stays hidden |
+| `class` | string | none | Extra classes on the region |
+
+`src/components/ui/FormStatus.astro`:
+
+| Prop | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `id` | string | `'form-status'` | Ties a form's script to this region |
+| `message` | string | `''` | The words. Empty is the normal resting state |
+| `tone` | `'ok'` \| `'warning'` \| `'error'` | none | Tints the words. Leave it off for a neutral message such as "Sending." |
+| `class` | string | none | Extra classes on the region |
+
+Any other `tone` value renders untinted and raises no error, so check the
+spelling: the status line takes `ok`, not `success`.
 
 ## Checks before you ship
 

@@ -4,9 +4,10 @@
  * One band of a case study, rendered as <sdc-section> with an
  * <sdc-layout-container> inside it that holds the measure.
  *
- * Bands alternate between the page background and the slightly darker surface,
- * which is what `tone="alt"` does. Alternate every other band; two in a row
- * reads as one long band. `tone="ink"` inverts the band.
+ * Bands alternate between the dot-grid page and a plain band: `tone="alt"`
+ * paints the band in --sdc-bg, which covers the dot grid. Alternate every other
+ * band; two in a row reads as one long band. `tone="ink"` renders the same as
+ * `alt` today.
  *
  * `layout` names what the container lays out: "prose" for the written body,
  * "pager" for the row of case study links, "orbit" for the PayPal hero art,
@@ -23,7 +24,7 @@
  * @element sdc-layout-container
  */
 interface Props {
-	/** Darker surface ("alt") or inverted ("ink"). Alternate alt, never two in a row. */
+	/** A plain band without the dot grid ("alt"); "ink" matches alt today. Alternate alt, never two in a row. */
 	tone?: 'alt' | 'ink';
 	/** Full bleed figure band. */
 	figure?: boolean;

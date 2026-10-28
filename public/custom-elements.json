@@ -214,7 +214,7 @@
 							"type": {
 								"text": "'alt' | 'ink'"
 							},
-							"description": "Darker surface (\"alt\") or inverted (\"ink\"). Alternate alt, never two in a row."
+							"description": "A plain band without the dot grid (\"alt\"); \"ink\" matches alt today. Alternate alt, never two in a row."
 						},
 						{
 							"name": "figure",

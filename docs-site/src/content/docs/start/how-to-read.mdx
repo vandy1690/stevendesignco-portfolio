@@ -43,15 +43,14 @@ markup gets written by hand each time. Those are the ones still to build.
 
 ## What is real in code, and what is not
 
-As of October 2026 these render from a component under
-`src/components/ui/`: Button, ButtonGroup, Pager, PagerPair, CaseHero, MetaRow,
-CaseFigure, CaseSection, CaseBlock, Eyebrow, Note, Quote, StatList, AwardList.
-Every case study page is assembled from those and carries no CSS of its own.
+A component page with an **In code** section renders from a component under
+`src/components/ui/`, and that section names the file. The folder is the list.
+It is not copied here, because a hand-kept list of names on this page went stale
+twice in October 2026.
 
-These are still CSS and markup only, written by hand: the case study card, the
-dialog, the navigation, the progress dots and the row list. They live on the home
-page, which has not been converted yet. Their pages describe real, shipped
-classes, but there is no component to import.
+Five pages describe CSS and markup only, written by hand: Dialog, Links,
+Navigation, Progress dots and Row list. Their classes are real and shipped, but
+there is no component to import.
 
 Saying which is which is the point. A documented class that looks like a
 component is how two slightly different versions of the same thing end up in a
