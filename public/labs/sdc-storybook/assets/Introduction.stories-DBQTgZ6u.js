@@ -1,4 +1,4 @@
-const o="02.04.00",i={version:o},a={title:"Introduction"},e=()=>`
+const o="02.04.01",i={version:o},a={title:"Introduction"},e=()=>`
   <div class="sb-col" style="max-width:64ch">
     <p class="sdc-eyebrow" style="font-family:var(--sdc-font-display);letter-spacing:.03em">Steven Design Co. &middot; SDC ${i.version}</p>
     <h1 class="sdc-display" style="font-size:clamp(36px,5vw,64px);line-height:.98;margin:0">The component library.</h1>

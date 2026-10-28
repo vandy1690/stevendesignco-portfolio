@@ -21,9 +21,12 @@ interface Props {
 	image?: string;
 	/** "case" turns on the case study page styles. See the .sdc-case block below. */
 	variant?: 'case';
+	/** Keeps the page out of search results: test and lab pages that are public
+	    but not part of the site, such as /labs/controls. */
+	noindex?: boolean;
 }
 
-const { title, description, image, variant } = Astro.props;
+const { title, description, image, variant, noindex = false } = Astro.props;
 const path = Astro.url.pathname;
 const isHome = path === '/';
 const SITE_URL = 'https://www.stevendesignco.com';
@@ -132,7 +135,7 @@ const jsonLd = {
 		<meta name="theme-color" content="#F0EEE9" />
 		<meta name="author" content="Steven Vanden Heuvel" />
 		<meta name="sdc-version" content={sdc.version} />
-		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+		<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
 		<link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 		{ADOBE_KIT_ID && <link rel="stylesheet" href={`https://use.typekit.net/${ADOBE_KIT_ID}.css`} />}
 		<title>{title}</title>
@@ -1329,8 +1332,11 @@ const jsonLd = {
 			/* The links inside take the ink, not the accent. The accent on the error
 			   tint measures 3.91 to 1 and fails, which is the tint's documented
 			   contract working as written: a tint is a ground for --sdc-text. They
-			   stay underlined, so they still read as links without the colour. */
-			.sdc-form-summary a { color: var(--sdc-text); text-decoration: underline; text-underline-offset: 3px; }
+			   stay underlined, so they still read as links without the colour.
+			   Each link is a whole list item, not a link inside a sentence, so it
+			   gets no inline exception from WCAG 2.5.8: the block padding takes it
+			   from 20px to 26px tall. Found by the Q&A suite on /labs/controls. */
+			.sdc-form-summary a { color: var(--sdc-text); text-decoration: underline; text-underline-offset: 3px; padding-block: 3px; }
 
 			/* The live region a form speaks through after submitting. Polite, so it
 			   waits for a gap rather than interrupting. */

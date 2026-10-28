@@ -19,6 +19,9 @@ export const PAGES = [
 	'/work/meatingplace',
 	'/work/merchant-flow-builder',
 	'/work/artistic-eye',
+	// Unlinked and noindex: every form control in every state, so the checks
+	// reach the control set, which no page above uses. See qa/checks/keyboard.mjs.
+	'/labs/controls',
 ];
 
 /**

@@ -33,6 +33,24 @@ production.
 
 ## Log
 
+### 02.04.01 · October 28, 2026
+
+Patch: a bug fix that restores the intended behavior.
+
+- **Select starts on its placeholder row.** The row is disabled, and a browser
+  skips a disabled first option it was not told to select, so a Select with a
+  "Pick one" row opened on the first real answer instead, and a form could submit
+  an answer nobody picked. With no `value` given, Select now marks the
+  placeholder selected. Found on the first run of the new keyboard check.
+- **The error summary's links clear the 24px target size.** Each link is a
+  whole list item, so WCAG 2.5.8's exception for links inside a sentence does
+  not apply, and they were 20px tall. Block padding makes them 26px with no
+  change to the layout. Found when the Q&A suite first reached the controls.
+- Not part of the system, but new with it: `/labs/controls`, an unlinked,
+  noindex page with every form control in every state, so the Q&A suite reaches
+  the control set, and `qa/checks/keyboard.mjs`, which drives it from the
+  keyboard in both themes.
+
 ### 02.04.00 · October 28, 2026
 
 Minor: names added and old ones kept, so nothing that worked stops working. One
