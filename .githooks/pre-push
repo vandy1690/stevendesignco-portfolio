@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+#
+# Refuses a direct push to the branch that is production.
+#
+# This repository deploys from `dev`, so a commit that lands there is live on
+# stevendesignco.com. The gate ("Accessibility, reflow and contrast") runs on
+# pull requests and on pushes to dev, which means a direct push gets the check
+# AFTER the deploy rather than before it. Four commits on dev carry no pull
+# request number, so that has already happened more than once.
+#
+# GitHub refuses this too, now that enforce_admins is on. This hook exists so
+# the refusal arrives in a second, on your machine, with the right command to
+# use instead, rather than as a rejected push after the upload.
+#
+# Which branch is production is read from git config, so the same hook works in
+# every repository:
+#
+#   git config ship.productionBranch dev
+#
+# Unset, it falls back to the remote's default branch, then to main.
+#
+# Enabled per clone with:  git config core.hooksPath .githooks
+# Checked by:              npm run check:hooks
+#
+# To push anyway, which should be rare and deliberate:  git push --no-verify
+
+set -euo pipefail
+
+remote_name="${1:-origin}"
+
+production="$(git config --get ship.productionBranch || true)"
+if [ -z "$production" ]; then
+	production="$(git symbolic-ref --quiet --short "refs/remotes/${remote_name}/HEAD" 2>/dev/null | sed "s#^${remote_name}/##" || true)"
+fi
+[ -z "$production" ] && production="main"
+
+# Each line is: <local ref> <local sha> <remote ref> <remote sha>
+while read -r _local_ref _local_sha remote_ref _remote_sha; do
+	[ -z "${remote_ref:-}" ] && continue
+	if [ "$remote_ref" = "refs/heads/${production}" ]; then
+		current="$(git branch --show-current)"
+		cat >&2 <<EOF
+
+  Refusing to push straight to ${production}, which is production here.
+
+  Open a pull request instead, so the gate runs before the deploy:
+
+      git push -u ${remote_name} ${current}
+      gh pr create --base ${production} --fill
+
+  If you mean it:  git push --no-verify
+
+EOF
+		exit 1
+	fi
+done
+
+exit 0
