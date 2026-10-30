@@ -44,7 +44,12 @@ function designSystemPartChanged() {
 	} catch {
 		return true; // New file, or no base to compare against. Ask for docs.
 	}
-	const after = readFileSync(LAYOUT, 'utf8');
+	let after;
+	try {
+		after = readFileSync(LAYOUT, 'utf8');
+	} catch {
+		return true; // Deleted. That is a change worth asking about.
+	}
 	return styleBlock(before) !== styleBlock(after);
 }
 
