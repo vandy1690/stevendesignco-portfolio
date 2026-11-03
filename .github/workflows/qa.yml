@@ -111,14 +111,25 @@ jobs:
         run: npm run check:claims
 
       - name: Documentation builds
-        # Catches broken frontmatter and MDX before it reaches the docs site.
-        # It does not diff the built output against what is committed: Pagefind
-        # rewrites its index filenames on every build, so that comparison would
-        # fail constantly and teach everyone to ignore it.
+        # Catches broken frontmatter and MDX before it reaches the docs site,
+        # and regenerates public/docs for the comparison in the next step.
         run: |
           cd docs-site
           npm ci
           npm run build
+
+      - name: Documentation output in step
+        # /docs is served from committed build output, so a docs change merged
+        # without `npm run build:docs` never reaches the site, and nothing
+        # noticed. This compares what the build just produced against what is
+        # committed.
+        #
+        # It is not a plain git diff, because two parts of the output change on
+        # every build whatever the source says: Pagefind rewrites its index
+        # filenames, and Starlight stamps "Last updated" from the file's git
+        # commit date. Both are normalized away, so what is left is prose and
+        # markup. Added 2026-10-30.
+        run: npm run check:docs-built
 
       - name: Documentation in step
         # Compares against origin/dev, so it only means something off that branch.

@@ -14,9 +14,19 @@ There is a gate now. `dev` is protected and the Q&A check has to pass before a
 merge lands, so a change that breaks accessibility, reflow or contrast cannot
 reach the live site by accident. Force pushes and branch deletion are off.
 
-The protection does not apply to repository admins, which is deliberate: this is
-a one-person repository and locking yourself out at the wrong moment is its own
-risk. The gate is there to stop a mistake, not to stop you.
+The protection applies to everyone, including repository admins. It did not
+until 2026-10-30, and in the meantime four commits reached `dev` with no pull
+request, which means the gate ran after those deploys rather than before them.
+If a flaky check ever blocks something urgent, turning protection off for a
+minute is a deliberate and visible act. Merging past a red check was neither.
+
+Git also refuses a direct push before it leaves your machine. `.githooks/pre-push`
+reads `ship.productionBranch`, and `npm install` wires it up. `npm run check:hooks`
+says whether it is active, and `ship` runs that first. `--no-verify` skips it,
+which should be rare enough to feel odd.
+
+Only squash merges are enabled, so `dev` stays one commit per pull request, and
+the branch is deleted on merge.
 
 Work happens on a branch. A branch deploys to a password-protected review URL.
 Merging into `dev` is the act of publishing.
@@ -44,6 +54,14 @@ npm run qa      # in another
 
 Or `npm run ship`, which runs the documentation check, the build and the Q&A
 pass in order.
+
+Two things stop the pass from lying to you. It refuses to run against a dev
+server belonging to a different worktree: both worktrees default to port 4321,
+so whichever starts first owns it, and on 2026-10-29 a run passed while
+measuring the wrong branch. And `check:docs-built` compares the built
+documentation in `public/docs` against what `docs-site/` produces, because
+/docs is served from committed output, so a docs change merged without
+`npm run build:docs` never reaches the site.
 
 GitHub Actions runs the same pass on every push and every pull request, so a
 branch reports for itself. That is a second pair of eyes, not a replacement for

@@ -56,6 +56,33 @@ if (!reachable) {
 	process.exit(2);
 }
 
+// A dev server on the expected port is not necessarily THIS dev server. Two
+// worktrees of this repository both default to 4321, so whichever started
+// first owns the port and the other one's `npm run qa` silently measures the
+// wrong branch. That happened on 2026-10-29 and the run passed, which is the
+// worst way for it to happen.
+//
+// Vite restricts /@fs/ to files under its own project root, so asking the
+// server for a file from this working tree separates the two: 200 means it is
+// serving this worktree, 403 means it belongs to another one. Only dev servers
+// have /@fs/, so a served production build is left alone.
+if (base !== PROD) {
+	const html = await fetch(base).then((r) => r.text()).catch(() => '');
+	if (html.includes('/@vite/client')) {
+		const probe = `${base}/@fs${process.cwd()}/qa/run.mjs`;
+		const mine = await fetch(probe).then((r) => r.ok).catch(() => false);
+		if (!mine) {
+			console.error(`\nThe server on ${base} is not serving this working tree.`);
+			console.error(`  this worktree:  ${process.cwd()}`);
+			console.error('\nAnother worktree started first and owns the port. Measuring it would');
+			console.error('test the wrong branch. Stop that server, or give this one its own port:');
+			console.error('\n  npm run dev -- --port 4399');
+			console.error('  QA_BASE=http://localhost:4399 npm run qa\n');
+			process.exit(2);
+		}
+	}
+}
+
 console.log(`\nQ&A against ${base}`);
 
 // Warm every page first. The dev server compiles a route on its first request

@@ -9,7 +9,13 @@ points at sources rather than copying them, so it cannot drift from them.
 - Astro on Vercel, project `stevendesignco-dev`. **The `dev` branch is
   production.** `main` is stale.
 - Ship through a pull request into `dev`, even a one-line copy fix, so the
-  required check ("Accessibility, reflow and contrast") actually runs.
+  required check ("Accessibility, reflow and contrast") actually runs. This is
+  enforced now, for admins too, and a pre-push hook refuses a direct push before
+  it leaves the machine. Squash merges only; the branch is deleted on merge.
+- Branch from `origin/dev`, never from whatever is checked out. Use
+  `git switch -c <name> origin/dev && git branch --unset-upstream`, because
+  `checkout -b` off a remote branch inherits it as upstream and leaves a branch
+  pointed at production.
 - Every address except stevendesignco.com and www sits behind a password prompt
   (`src/middleware.ts`). The password is in Steve's password manager under
   dev.stevendesignco.com. Vercel cannot show it back.

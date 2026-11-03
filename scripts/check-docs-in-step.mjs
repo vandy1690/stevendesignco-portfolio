@@ -11,6 +11,7 @@
  * Default baseRef is origin/dev.
  */
 import { execSync } from 'node:child_process';
+import { readFileSync } from 'node:fs';
 
 const base = process.argv[2] || 'origin/dev';
 const changed = execSync(`git diff --name-only ${base}...HEAD`, { encoding: 'utf8' })
@@ -21,9 +22,40 @@ if (!changed.length) {
 	process.exit(0);
 }
 
+const LAYOUT = 'src/layouts/Site.astro';
+
+/* Site.astro is two things in one file: the design system, which lives in its
+   <style> block, and the page shell around it, which holds the head, the
+   structured data and the scripts. Treating every edit to it as a design
+   system change raised a false alarm on 2026-10-30 for a change to the
+   Person graph's sameAs, which no documentation page describes. A check that
+   cries wolf gets overridden, and then it is not a check.
+
+   So compare the style block alone. Everything else in the file is the shell. */
+function styleBlock(text) {
+	const m = text.match(/<style[^>]*>([\s\S]*?)<\/style>/g);
+	return m ? m.join('\n') : '';
+}
+
+function designSystemPartChanged() {
+	let before;
+	try {
+		before = execSync(`git show ${base}:${LAYOUT}`, { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
+	} catch {
+		return true; // New file, or no base to compare against. Ask for docs.
+	}
+	let after;
+	try {
+		after = readFileSync(LAYOUT, 'utf8');
+	} catch {
+		return true; // Deleted. That is a change worth asking about.
+	}
+	return styleBlock(before) !== styleBlock(after);
+}
+
 // What counts as touching the system people rely on the docs to explain.
 const systemChanged = changed.filter((f) =>
-	f === 'src/layouts/Site.astro' ||
+	(f === LAYOUT && designSystemPartChanged()) ||
 	f.startsWith('src/components/') ||
 	(f.startsWith('storybook/stories/') && f.endsWith('.js')) ||
 	f === 'storybook/.storybook/storybook.css');
@@ -39,8 +71,9 @@ const problems = [];
 if (systemChanged.length && !docsChanged.length) {
 	problems.push(
 		'These changed, but no documentation page did:\n  ' + systemChanged.join('\n  ') +
-		'\n\nUpdate the matching page under docs-site/src/content/docs/, or say in the\n' +
-		'commit message why the behaviour people rely on did not change.');
+		'\n\nUpdate the matching page under docs-site/src/content/docs/. If the\n' +
+		'behaviour people rely on genuinely did not change, use the override below\n' +
+		'and say why in the commit message.');
 }
 
 if (storybookSourceChanged && !storybookRebuilt) {
