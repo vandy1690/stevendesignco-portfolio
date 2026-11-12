@@ -19,6 +19,21 @@ export const CaseStudyHero = () => `
   </div>`;
 CaseStudyHero.storyName = 'Case study hero';
 
+export const CaseVideo = () => `
+  <p class="sb-note">A short screen recording inside a case study. It uses the same element and
+    caption as a case figure. It never plays by itself, it starts muted, and its label says what
+    the recording shows. The portrait modifier keeps a tall recording from filling the column.</p>
+  <div class="sdc-case">
+    <sdc-case-figure class="sdc-case-figure--video sdc-case-figure--portrait">
+      <video controls playsinline muted preload="none" poster="/labs/low-supply/poster.jpg" width="1080" height="1350"
+        aria-label="Screen recording of Low Supply with a child's phone on the left and a parent's phone on the right.">
+        <source src="/labs/low-supply/low-supply-demo.mp4" type="video/mp4" />
+      </video>
+      <p class="sdc-case-figure__cap">No sound. Recorded from the running app in a browser.</p>
+    </sdc-case-figure>
+  </div>`;
+CaseVideo.storyName = 'Case video';
+
 export const DeckFallback = () => `
   <p class="sb-note">The home page pins a card to the viewport and flips through five of them on
     scroll. That needs height it does not always have, so the deck degrades to this plain list in

@@ -1,0 +1,36 @@
+---
+/**
+ * CaseVideo
+ * A short screen recording inside a case study. It sits where a CaseFigure
+ * would and takes a caption the same way.
+ *
+ * @element sdc-case-figure
+ *
+ * The video never plays by itself and starts muted. `label` says what the
+ * recording shows for someone who cannot see it, so the page around it has to
+ * tell the same story in words. Pass `portrait` for a recording taller than it
+ * is wide, which keeps it from filling the whole column.
+ */
+interface Props {
+	src: string;
+	/** A still shown before the video plays. */
+	poster: string;
+	/** What the recording shows, for assistive technology. */
+	label: string;
+	/** The recording's real pixel width, so the browser reserves the space. */
+	pixelWidth: number;
+	/** The recording's real pixel height. */
+	pixelHeight: number;
+	/** A recording taller than it is wide. */
+	portrait?: boolean;
+	class?: string;
+}
+const { src, poster, label, pixelWidth, pixelHeight, portrait = false, class: cls } = Astro.props;
+---
+
+<sdc-case-figure class:list={['sdc-case-figure--video', portrait && 'sdc-case-figure--portrait', cls]} data-animate="fade">
+	<video controls playsinline muted preload="none" poster={poster} width={pixelWidth} height={pixelHeight} aria-label={label}>
+		<source src={src} type="video/mp4" />
+	</video>
+	<slot />
+</sdc-case-figure>

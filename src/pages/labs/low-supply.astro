@@ -1,0 +1,120 @@
+---
+/**
+ * Low Supply: a personal project write up. Added 2026-11-12.
+ *
+ * Public and in the sitemap, but not linked from the home page or the work
+ * list: it is reached by direct link. The video and screenshots are made by `npm run demo` in the app's own
+ * repo (~/Sites/low-supply) with sample nicknames; nothing here is family data.
+ * Content rules for the app apply to this page too: no product brand names, no
+ * real names, and never call it a medical device.
+ */
+import Site from '../../layouts/Site.astro';
+import CaseHero from '../../components/ui/CaseHero.astro';
+import CaseFigure from '../../components/ui/CaseFigure.astro';
+import CaseVideo from '../../components/ui/CaseVideo.astro';
+import CaseSection from '../../components/ui/CaseSection.astro';
+import CaseBlock from '../../components/ui/CaseBlock.astro';
+import StatList from '../../components/ui/StatList.astro';
+import PagerPair from '../../components/ui/PagerPair.astro';
+---
+
+<Site
+	title="Low Supply: One Tap to Tell Both Parents · Steven Vanden Heuvel"
+	description="A family web app I designed and built: a child with type 1 diabetes taps a supply that is running low, and both parents get told."
+	variant="case"
+>
+	<CaseHero
+		eyebrow="Personal project"
+		heading="Low Supply: One Tap to Tell Both Parents"
+		lede="A child with type 1 diabetes taps a supply that is running low. Both parents get told. One of them marks it ordered, and the child hears back."
+		meta={[
+			{ term: 'Role', value: 'Design and build' },
+			{ term: 'For', value: 'My own family' },
+			{ term: 'When', value: 'November 2026' },
+		]}
+		note="It tracks supplies only. It shows no glucose numbers and no dosing, and it is not a medical device. It is not distributed or sold. The screens here use sample nicknames."
+	/>
+
+	<CaseSection>
+		<CaseBlock eyebrow="The 25 second version" lede="Two phones, one request." />
+		<CaseVideo
+			portrait
+			src="/labs/low-supply/low-supply-demo.mp4"
+			poster="/labs/low-supply/poster.jpg"
+			pixelWidth={1080}
+			pixelHeight={1350}
+			label="Screen recording of Low Supply with a child's phone on the left and a parent's phone on the right. The child's phone links with a code, the child taps Sensor and then Running low, the request appears on the parent's list, the parent marks it ordered, and the child's phone shows who ordered it."
+		>
+			<p class="sdc-case-figure__cap">No sound. Recorded from the running app in a browser, so the notification banner a parent gets is not shown.</p>
+		</CaseVideo>
+	</CaseSection>
+
+	<CaseSection tone="alt">
+		<CaseBlock eyebrow="Why I made it" lede="Running out is found at the worst time.">
+			<p>Diabetes supplies get used up quietly. The person who notices the box is nearly empty is the child, and the people who can order more are the parents. The message between them is easy to lose: said in passing on the way out the door, or remembered at bedtime when the last one is already in use.</p>
+			<p>I wanted the smallest thing that would carry that message every time. One tap from the child, a notification to both parents, and a note back so the child knows it was heard.</p>
+		</CaseBlock>
+	</CaseSection>
+
+	<CaseSection>
+		<CaseBlock eyebrow="The child's side" lede="Big buttons, two choices, nothing to type.">
+			<p>The child's home screen is one large button for each supply, filling the screen. Tapping one gives two choices: running low, in yellow with dark text, or out, in red. The button then changes to say the parents know, and tapping it again cancels.</p>
+			<p>A second tap on the other choice updates the same request, so a parent never sees two alerts for one box. Read aloud is on by default and the child can turn it off. On a schedule the parent sets, the app also asks the child whether anything is running low, and stays quiet during school and sleep hours.</p>
+		</CaseBlock>
+		<CaseFigure
+			src="/labs/low-supply/child.webp"
+			alt="Three screens from the child's phone. A grid of four large supply buttons, the Sensor screen with Running low and I am out, and the same screen after tapping, where the button reads Cancel running low, your parents know."
+			width={1980}
+			height={1364}
+			loading="lazy"
+		/>
+	</CaseSection>
+
+	<CaseSection tone="alt">
+		<CaseBlock eyebrow="The parents' side" lede="Both parents hear it. Either one closes it.">
+			<p>Every request goes to both parents and sits on one list they share. Either parent marks it ordered, which clears it for both and sends the child a note saying who ordered it. If nobody acts, the reminder repeats at a pace the parents choose.</p>
+			<p>The app is careful about one thing above all: it never tells the child a request was sent when it was not.</p>
+		</CaseBlock>
+		<CaseFigure
+			src="/labs/low-supply/parent.webp"
+			alt="Three screens. A parent's request list showing Sensor, for Kiddo, Running low, with a Mark ordered button. The same list after marking it ordered. The child's phone with a note that reads Mom ordered your Sensor."
+			width={1980}
+			height={1364}
+			loading="lazy"
+		/>
+	</CaseSection>
+
+	<CaseSection>
+		<CaseBlock eyebrow="Setup and privacy" lede="No accounts and no real names.">
+			<p>People are nicknames. A device joins the family with a one time code, scanned with the camera or typed in, that works once and stops working after 30 minutes. A lost phone is removed in Settings and a new one is linked with a new code.</p>
+			<p>A parent picks which supplies the child can ask for from a list of plain names and plain icons, with no product brands, and can add their own, such as juice boxes.</p>
+		</CaseBlock>
+		<CaseFigure
+			src="/labs/low-supply/setup.webp"
+			alt="Three setup screens from a parent's phone. A checklist of supplies the child can ask for, the check in schedule for each supply, and a QR code with a typed code for linking the child's device."
+			width={1980}
+			height={1364}
+			loading="lazy"
+		/>
+	</CaseSection>
+
+	<CaseSection tone="alt">
+		<CaseBlock eyebrow="How I built it" lede="A brief in the morning, in use by evening.">
+			<p>I wrote the brief, then built the first working version in a day with Claude Code. It is a web app that installs to a phone's Home Screen, written in plain HTML, CSS and JavaScript with a small backend and web push. There is no app store step and no framework.</p>
+			<p>The screens are built on my own design system, the same tokens and controls as this site, so the work went into the flow and the words instead of the styling. It was built to WCAG 2.2 AA, and automated accessibility checks run against every screen.</p>
+		</CaseBlock>
+		<StatList
+			three
+			items={[
+				{ value: '1', label: 'Tap for a child to ask' },
+				{ value: '2', label: 'Parents told every time' },
+				{ value: '0', label: 'Accounts to create' },
+			]}
+		/>
+	</CaseSection>
+
+	<PagerPair
+		prev={{ href: '/#work', label: 'All case studies', prefix: 'Back to ' }}
+		next={{ href: '/design-systems', label: 'Design systems', prefix: 'Next: ' }}
+	/>
+</Site>

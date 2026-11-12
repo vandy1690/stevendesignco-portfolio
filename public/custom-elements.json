@@ -381,6 +381,74 @@
 		},
 		{
 			"kind": "javascript-module",
+			"path": "src/components/ui/CaseVideo.astro",
+			"declarations": [
+				{
+					"kind": "class",
+					"customElement": true,
+					"tagName": "sdc-case-figure",
+					"name": "CaseVideo",
+					"summary": "A short screen recording inside a case study. It sits where a CaseFigure",
+					"description": "Rendered by src/components/ui/CaseVideo.astro. Light DOM, no shadow root, no JavaScript: the element is styled by tag and attribute in src/layouts/Site.astro.",
+					"attributes": [
+						{
+							"name": "src",
+							"type": {
+								"text": "string"
+							},
+							"description": "",
+							"required": true
+						},
+						{
+							"name": "poster",
+							"type": {
+								"text": "string"
+							},
+							"description": "A still shown before the video plays.",
+							"required": true
+						},
+						{
+							"name": "label",
+							"type": {
+								"text": "string"
+							},
+							"description": "What the recording shows, for assistive technology.",
+							"required": true
+						},
+						{
+							"name": "pixelWidth",
+							"type": {
+								"text": "number"
+							},
+							"description": "The recording's real pixel width, so the browser reserves the space.",
+							"required": true
+						},
+						{
+							"name": "pixelHeight",
+							"type": {
+								"text": "number"
+							},
+							"description": "The recording's real pixel height.",
+							"required": true
+						},
+						{
+							"name": "portrait",
+							"type": {
+								"text": "boolean"
+							},
+							"description": "A recording taller than it is wide."
+						}
+					],
+					"slots": [
+						{
+							"name": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
 			"path": "src/components/ui/TextPassage.astro",
 			"declarations": [
 				{
