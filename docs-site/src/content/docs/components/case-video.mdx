@@ -1,0 +1,64 @@
+---
+title: Case video
+description: A short screen recording inside a case study, with a poster, a label and a caption.
+sidebar:
+  order: 15
+---
+
+<dl class="sdc-hww">
+	<div><dt>How</dt><dd>A video with its own controls that fades in on scroll. It
+	shows a poster until someone presses play, never plays by itself, and starts
+	muted.</dd></div>
+	<div><dt>When</dt><dd>When the work is a flow and a still cannot show it: a
+	request moving from one phone to another, a tool assembling a page. Keep it
+	short. Not for anything the page does not also say in words.</dd></div>
+	<div><dt>Where</dt><dd>Inside a band, after the block that introduces it, the
+	same place a case figure goes.</dd></div>
+</dl>
+
+## In code
+
+`src/components/ui/CaseVideo.astro`. It renders the `sdc-case-figure` element, so
+it takes the same caption.
+
+```astro
+---
+import CaseVideo from '../../components/ui/CaseVideo.astro';
+---
+<CaseVideo
+	portrait
+	src="/labs/low-supply/low-supply-demo.mp4"
+	poster="/labs/low-supply/poster.jpg"
+	pixelWidth={1080}
+	pixelHeight={1350}
+	label="Screen recording with a child's phone on the left and a parent's phone on the right."
+>
+	<p class="sdc-case-figure__cap">No sound. Recorded from the running app.</p>
+</CaseVideo>
+```
+
+| Prop | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `src` | string | required | The MP4 file. |
+| `poster` | string | required | The still shown before the video plays. |
+| `label` | string | required | What the recording shows, for assistive technology. |
+| `pixelWidth` | number | required | The file's real pixel width, so the browser reserves the space. |
+| `pixelHeight` | number | required | The file's real pixel height, same reason. |
+| `portrait` | boolean | `false` | For a recording taller than it is wide. Keeps it to 60 percent of the narrow measure. |
+| `class` | string | none | Extra classes. |
+
+## Accessibility
+
+- The video does not autoplay and has the browser's own controls, so nothing
+  moves until the reader asks for it.
+- `label` names the recording. It is not a transcript. The sections around the
+  video have to tell the same story in text, because a recording of a screen is
+  not readable by a screen reader.
+- A recording with speech needs captions. This component has no track slot yet,
+  so use it for silent recordings only until one is added.
+
+## Why the size props are not `width` and `height`
+
+`width` already means the measure on Section and Text passage. Case figure uses
+it for pixels, which is a known collision waiting on a rename. A new component
+should not repeat it.
