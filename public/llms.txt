@@ -13,7 +13,7 @@ Before PayPal he spent 18 years at MTG Media Group, growing from Senior Art Dire
 - [PayPal: Becoming the Default at Checkout](https://www.stevendesignco.com/work/paypal): Merchant checkout proposals for the one-click program on weekly sprints, the three-library constraint, and the consumer-side checkout dead end.
 - [Plate](https://www.stevendesignco.com/work/plate): A complete new design, workshop to launch. 2017 Jesse H. Neal Award for Best Website.
 - [Meatingplace](https://www.stevendesignco.com/work/meatingplace): The flagship daily news site redesigned in Figma, ready to launch when the company was acquired.
-- [Alt-Meat](https://www.stevendesignco.com/work/alt-meat): Brand identity, magazine, responsive site, and newsletters launched from nothing. 22,000 registered users.
+- [Alt-Meat](https://www.stevendesignco.com/work/alt-meat): Brand identity, magazine, responsive site, and newsletters launched from nothing in under 8 weeks.
 - [Project Blackbird](https://www.stevendesignco.com/work/blackbird): An oral history microsite under the Plate brand. Grand Jesse H. Neal Finalist.
 - [The Artistic Eye](https://www.stevendesignco.com/work/artistic-eye): A full brand build for a gallery and eyewear shop in Sturgeon Bay, Wisconsin: wordmark, monogram, color, type, and applications. In progress.
 - [Design Systems](https://www.stevendesignco.com/design-systems): The practice behind the case studies: two Pattern Labs, two Storybook builds, and a Figma library of about 600 component variants, all browsable.
