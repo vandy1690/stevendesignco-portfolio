@@ -7,6 +7,13 @@ also the day the change went live, give or take a few minutes.
 Add a line here when you ship something a visitor or a future maintainer would
 notice.
 
+## November 18, 2026
+
+- Alt-Meat copy describes the launch without an audience number. The line
+  came off the home page card, the work index, the resume and `llms.txt`,
+  the page shell example in the docs uses Plate's numbers instead, and
+  `never-say.txt` keeps it from coming back.
+
 ## October 28, 2026: SDC 02.04.01
 
 A keyboard check for the form controls, and the bug it found on its first run.

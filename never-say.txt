@@ -19,6 +19,11 @@ one design system across | each MTG product had its own design system on the sha
 token set across | MTG brands did not share one token set (2026-09-02)
 one set of tokens across | MTG brands did not share one token set (2026-09-02)
 
+# --- Alt-Meat: no registered-user number (Nov 18, 2026). The MTG media kits are the only
+# written source for MTG audience numbers, and none of them gives a registered-user count.
+22,000 registered | Alt-Meat has no written source for a registered-user count (2026-11-18)
+registered users | Alt-Meat has no written source for a registered-user count (2026-11-18)
+
 # --- PayPal: the contract ended August 14, 2026; past tense only
 currently at paypal | PayPal contract ended 2026-08-14; write it in the past tense
 currently a principal designer | PayPal contract ended 2026-08-14; write it in the past tense
