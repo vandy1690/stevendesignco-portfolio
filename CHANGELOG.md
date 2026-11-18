@@ -13,6 +13,9 @@ notice.
   came off the home page card, the work index, the resume and `llms.txt`,
   the page shell example in the docs uses Plate's numbers instead, and
   `never-say.txt` keeps it from coming back.
+- The resume page and its PDF match the current master resume: a first entry
+  for Steven Design Co, the PayPal section led by the plugin, the split MTG
+  title, the Drupal theming bullet, and the Neal win for Project Blackbird.
 
 ## October 28, 2026: SDC 02.04.01
 
